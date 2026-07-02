@@ -1,4 +1,4 @@
-name: I’m having trouble with the Eleventy documentation
+name: I’m having trouble with the Build Awesome (Eleventy) documentation
 description: Have a problem? It might be a bug! Create a report to help us improve.
 body:
   - type: markdown

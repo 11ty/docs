@@ -1,7 +1,7 @@
 let data = {
 	layout: "layouts/docs.njk",
-	headerTitle: "Eleventy Documentation",
-	feedTitle: "Eleventy Documentation",
+	headerTitle: "Build Awesome (Eleventy) Documentation",
+	feedTitle: "Build Awesome (Eleventy) Documentation",
 	feedUrl: "/docs/feed.xml",
 };
 

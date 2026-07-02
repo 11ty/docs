@@ -51,12 +51,12 @@
 		top: 0;
 		z-index: 2;
 	}
-	:root:has(.elv-header.elv-header-docs, :target) {
-		scroll-padding-top: 3.75em; /* 60px /16 */
+	:root:has(.elv-header.elv-header-docs):has(:target) {
+		scroll-padding-top: 9.375em; /* 150px /16 */
 	}
 	/* Leave extra room for tabs links */
-	:root:has(.elv-header.elv-header-docs, [role="tabpanel"]:target) {
-		scroll-padding-top: 6em;
+	:root:has(.elv-header.elv-header-docs):has([role="tabpanel"]:target) {
+		scroll-padding-top: 11.25em; /* 180px /16 */
 	}
 }
 

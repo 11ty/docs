@@ -3,7 +3,6 @@ newstitle: "New Sponsorship Tiers for the Build Awesome Kickstarter"
 sidebarTitle:
 eleventyNavigation:
   parent: Blog
-blogHighlight: true
 screenshotCacheBust: 1
 ---
 <a href="https://blog.fontawesome.com/new-build-awesome-sponsorship-tiers/" style="display: block; max-width: 16em;" class="elv-externalexempt">{% getScreenshotHtml "New Sponsorship Tiers for the Build Awesome Kickstarter", "https://blog.fontawesome.com/new-build-awesome-sponsorship-tiers/" %}</a>

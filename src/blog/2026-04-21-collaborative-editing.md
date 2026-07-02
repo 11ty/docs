@@ -80,7 +80,7 @@ This will render the template’s new `title` property in the data cascade (wher
 
 At some future time, if you decide that editing is no longer necessary for your project, your Build Awesome project will still build using the open source engine for hosting wherever you’d like, without any changes! **No lock-in, no shenanigans.**
 
-_Check out this [lower-level (developer-specific) example of full template editing and build-in-a-browser on our home page.](/#try-eleventy-in-your-browser)_
+_Check out this [lower-level (developer-specific) example of full template editing and build-in-a-browser on our home page.](/#try-build-awesome-in-your-browser)_
 
 ## Get notified — April 28!
 
