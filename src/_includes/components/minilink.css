@@ -10,7 +10,7 @@
 	border-radius: 0.1875em; /* 3px /16 */
 	font-weight: 500;
 	margin: 0 0.4285714285714em; /* 0 6px /14 */
-	vertical-align: text-bottom;
+	vertical-align: baseline;
 }
 @media (prefers-color-scheme: dark) {
 	.minilink.minilink {
