@@ -1,6 +1,7 @@
 /* Mini link */
 .minilink {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
 	padding: 0.125em 0.375em;
 	text-transform: uppercase;
 	font-size: 0.875rem; /* 14px /16 */
@@ -8,17 +9,14 @@
 	background-color: #ddd;
 	border-radius: 0.1875em; /* 3px /16 */
 	font-weight: 500;
-	margin: 0 0.4285714285714em 0.07142857142857em 0; /* 0 6px 1px 0 /14 */
-	line-height: 1.285714285714; /* 18px /14 */
+	margin: 0 0.4285714285714em; /* 0 6px /14 */
+	vertical-align: text-bottom;
 }
 @media (prefers-color-scheme: dark) {
 	.minilink.minilink {
 		background-color: #222;
 		color: #fff;
 	}
-}
-table .minilink {
-	margin-top: 6px;
 }
 .minilink[href] {
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
