@@ -16,8 +16,8 @@ You can also browse the latest releases on:
 ## Major Branches
 
 <ul>
-	<li class="listitem-disabled">Soon: <code>v4</code> (Currently in alpha)</li>
-	<li><a href="https://www.11ty.dev/docs/"><code>www.11ty.dev</code></a> for <code>v3</code> (Latest, stable)</li>
+	<li><a href="https://build.awesome.me/docs/"><code>build.awesome.me</code> for <code>v4</code> (Currently in alpha)</li>
+	<li><a href="https://www.11ty.dev/docs/"><code>www.11ty.dev</code></a> for <code>v3</code> (Latest Stable)</li>
 	<li><a href="https://v2.11ty.dev/docs/"><code>v2.11ty.dev</code></a></li>
 	<li><a href="https://v1.11ty.dev/docs/"><code>v1.11ty.dev</code></a></li>
 	<li><a href="https://v0.11ty.dev/docs/"><code>v0.11ty.dev</code></a></li>
