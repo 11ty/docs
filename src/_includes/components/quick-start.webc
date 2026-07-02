@@ -2,38 +2,9 @@
 
 <p>Build Awesome requires a way to <a href="docs/javascript-runtime.webc">run JavaScript</a> on your computer and we recommend Node.js (version <node-minimum></node-minimum> or newer). You can check whether or not you have Node.js installed by running <code>node --version</code> in a Terminal. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If <code>node</code> is not found or it reports a version number below <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">install Node.js</a> before moving on.</p>
 
-<p>Now we’ll create an <code>index.md</code> <a href="https://commonmark.org/help/">Markdown</a> file. You can do this in the text editor of your choice or by running one of these commands in your terminal:</p>
+<p>Next create an <code>index.md</code> <a href="https://commonmark.org/help/">Markdown</a> file. You can do this in the text editor of your choice (Notepad.exe, TextEdit, <a href="https://nova.app/">Nova</a>, <a href="https://code.visualstudio.com/">Visual Studio Code</a>, or others).</p>
 
-<seven-minute-tabs class="tabs-flush" persist sync autoheight>
-	<div role="tablist" aria-label="Choose your Operating System">
-		<a href="#quickstart-os-nix" id="quickstart-os-mac-btn" role="tab" data-tabs-persist="os:mac">macOS</a>
-		<a href="#quickstart-os-nix" role="tab" data-tabs-persist="os:posix">Linux</a>
-		<a href="#quickstart-os-win" role="tab" data-tabs-persist="os:win">Windows</a>
-		<a href="#quickstart-os-all" role="tab" data-tabs-persist="os:all">Cross Platform</a>
-	</div>
-	<div id="quickstart-os-nix" role="tabpanel">
-		<syntax-highlight language="bash">
-echo '# Heading' > index.md
-		</syntax-highlight>
-	</div>
-	<div id="quickstart-os-win" role="tabpanel">
-		<syntax-highlight language="bash">
-echo '# Heading' | out-file -encoding utf8 'index.md'
-		</syntax-highlight>
-		<p>If the <code>out-file</code> command is not available in your Windows Terminal window (it’s PowerShell specific), use the Cross Platform method.</p>
-		<!--- <syntax-highlight language="bash">
-echo # Heading > index.md
-		</syntax-highlight> --->
-	</div>
-	<div id="quickstart-os-all" role="tabpanel">
-		<syntax-highlight language="bash">
-echo '# Heading' | npx @11ty/create index.md
-		</syntax-highlight>
-		<p>Learn more about <a href="https://github.com/11ty/create"><code>@11ty/create</code></a> <em>(requires Node.js 18 or newer)</em>.</p>
-	</div>
-</seven-minute-tabs>
-
-<p>Run Build Awesome using <code>npx</code>, an <a href="https://www.npmjs.com/">npm</a>-provided command that is bundled with Node.js.</p>
+<p>Now run Build Awesome using <code>npx</code>, an <a href="https://www.npmjs.com/">npm</a>-provided command that is bundled with Node.js.</p>
 
 <seven-minute-tabs class="tabs-flush" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">

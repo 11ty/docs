@@ -15,6 +15,7 @@
 }
 :host td {
 	border-color: transparent;
+	vertical-align: middle;
 }
 :host tr:first-child td {
 	border-top: none;
@@ -40,7 +41,7 @@
 			<td><text-throbber duration="684"></text-throbber></td>
 		</tr>
 		<tr>
-			<td>Eleventy</td>
+			<td>Build Awesome</td>
 			<td class="numeric">1.93<abbr title="seconds">s</abbr></td>
 			<td><text-throbber duration="1930"></text-throbber></td>
 		</tr>

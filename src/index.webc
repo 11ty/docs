@@ -1,9 +1,9 @@
 ---js
 // <script>
-let headerTitle = "Build Awesome (Eleventy) is a simpler static site generator";
+let headerTitle = "Build Awesome is a simpler static site generator";
 let layout = "layouts/docs.njk";
 
-let searchTitle = "Build Awesome (Eleventy) is a simpler static site generator";
+let searchTitle = "Build Awesome is a simpler static site generator";
 
 let eleventyImport = {
 	collections: ["blog"]
@@ -45,11 +45,19 @@ export function randomTestimonialLink(testimonials) {
 }
 </script>
 
-<!--- css-only components --->
-<possum variant="home" webc:nokeep></possum>
+<h1>Build Awesome helps you build better web sites</h1>
 
-<!--- this is a workaround for the layout used in the header --->
-<flex-luthor webc:nokeep></flex-luthor>
+<p>Build Awesome is a lightweight developer tool to help you build web sites without getting in your way.</p>
+
+<ul>
+	<li>It’s <strong>fast</strong> and offers best-in-class build times for JavaScript site generators.</li>
+	<li>It generates fast web sites focused on reducing runtime JavaScript.</li>
+	<li>It’s <strong>lean</strong>: we decrease our dependency count with every release.</li>
+	<li>It’s <strong>secure</strong>: static web sites are the most secure web sites.</li>
+	<li>It’s <strong>trusted</strong>.</li>
+	<li>It’s <strong>stable</strong>.</li>
+	<li>It’s <strong>scalable</strong>.</li>
+</ul>
 
 <quick-start></quick-start>
 

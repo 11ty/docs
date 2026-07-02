@@ -69,7 +69,7 @@ let eleventyComputed = {
 {%- elseif eleventy.env.runMode == "serve" or page.url == "/" or page.inputPath.endsWith("author-pages.md") %}
 		<meta property="og:image" content="{{ '/img/open-graph.jpg' | productionUrl }}">
 		<meta property="og:image:type" content="image/jpeg">
-		<meta property="og:image:alt" content="The 11ty logo (with a small floating possum hiding in the letter y)">
+		<meta property="og:image:alt" content="A green background with an assortment of icons. Build Awesome white text in overlaid in the center and the previous 11ty logo is peaking out in the bottom right corner.">
 {%- else %}
 		<meta property="og:image" content="{{ page | getOpengraphImageUrl(screenshotCacheBust) }}">
 		<meta property="og:image:type" content="image/png">
@@ -100,6 +100,10 @@ let eleventyComputed = {
 {% include 'components/seven-minute-tabs.css' %}
 {% include 'components/supporters.css' %}
 {% include 'components/editor.css' %}
+{% include 'components/possum.css' %}
+{# TODO reference these directly from node_modules at some point #}
+{% include 'components/flex-luthor/flex-luthor.css' %}
+{% include 'components/flex-luthor/flex-luthor-separators.css' %}
 
 {% if page.url != '/' %}
 	{# these components are not yet used on WebC pages #}
@@ -112,11 +116,8 @@ let eleventyComputed = {
 	{% include 'components/code-more.css' %}
 	{% include 'components/inline-code.css' %}
 	{% include 'components/layout.css' %}
-	{# TODO reference these directly from node_modules at some point #}
-	{% include 'components/flex-luthor/flex-luthor.css' %}
-	{% include 'components/flex-luthor/flex-luthor-separators.css' %}
+
 	{% include 'components/testimonials.css' %}
-	{% include 'components/possum.css' %}
 
 	/* Filters */
 	.filter-tags--hide {
