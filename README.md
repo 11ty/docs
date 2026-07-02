@@ -1,10 +1,11 @@
-<p align="center"><img src="https://www.11ty.dev/img/logo-github.svg" width="200" height="200" alt="eleventy Logo"></p>
+<p align="center"><img src="./docs/ba-balloon.png" width="200" height="200" alt="Build Awesome (white balloon on a green background) Logo"></p>
 
-# 11ty.dev 🕚⚡️🎈🐀
+# build.awesome.me 🕚⚡️🎈🐀
 
-- https://www.11ty.dev/
+- https://build.awesome.me/ (v4)
+- https://www.11ty.dev/ (v3 and prior)
 
-The website and documentation for the [Eleventy static site generator](https://github.com/11ty/eleventy/).
+The website and documentation for the [Build Awesome (Eleventy/11ty) site generator](https://github.com/11ty/buildawesome/).
 
 ## Running Locally
 

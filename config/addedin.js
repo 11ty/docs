@@ -1,4 +1,6 @@
 import semver from "semver";
+export { rcompare } from "semver";
+
 import versions from "../src/_data/versions.js";
 
 const newestPublishedVersion = versions
@@ -33,7 +35,7 @@ function isPreReleaseOf(version, releasedVersion) {
 }
 
 // coerce -canary to -beta or if stable version is released, strips -canary and -beta
-function coerceVersion(version) {
+export function coerceVersion(version) {
 	if (!isCoreRelease(version)) {
 		return version;
 	}
@@ -66,7 +68,7 @@ function coerceVersion(version) {
 	return versionText;
 }
 
-function addedIn(version, tag, extraClass) {
+export function addedIn(version, tag, extraClass) {
 	let beforeText = "Added in ";
 	if (isCoreRelease(version)) {
 		// Skip super old version notes
@@ -100,8 +102,6 @@ function addedIn(version, tag, extraClass) {
 	)}</${tag}>`;
 }
 
-function greaterThan(first, second) {
+export function greaterThan(first, second) {
 	return semver.gt(first, second);
 }
-
-export { addedIn, coerceVersion, greaterThan };

@@ -35,8 +35,8 @@ async function getPagedGitHubData(url, pageIndex = 1) {
 export default async function () {
 	try {
 		// https://developer.github.com/v3/repos/#get
-		let releasesJson = await getPagedGitHubData("https://api.github.com/repos/11ty/eleventy/releases");
-		let tagsJson = await getPagedGitHubData("https://api.github.com/repos/11ty/eleventy/tags");
+		let releasesJson = await getPagedGitHubData("https://api.github.com/repos/11ty/buildawesome/releases");
+		let tagsJson = await getPagedGitHubData("https://api.github.com/repos/11ty/buildawesome/tags");
 
 		let releases = releasesJson.filter(entry => {
 			// no drafts

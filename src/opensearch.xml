@@ -2,15 +2,15 @@
 <OpenSearchDescription
 	xmlns="http://a9.com/-/spec/opensearch/1.1/"
 	xmlns:moz="http://www.mozilla.org/2006/browser/search/">
-	<ShortName>11ty</ShortName>
-	<LongName>Eleventy</LongName>
-	<Description>Search for things on the Eleventy website</Description>
+	<ShortName>Build Awesome</ShortName>
+	<LongName>Build Awesome (11ty)</LongName>
+	<Description>Search for things on the Build Awesome website</Description>
 	<InputEncoding>UTF-8</InputEncoding>
 	<!-- <Image width="16" height="16"
-	type="image/png">https://www.11ty.dev/img/favicon-16.png</Image> -->
-	<Image width="96" height="96" type="image/png">https://www.11ty.dev/img/favicon.png</Image>
-	<Url type="text/html" method="get" template="https://www.11ty.dev/docs/search/?q={searchTerms}" />
+	type="image/png">https://build.awesome.me/img/favicon-16.png</Image> -->
+	<Image width="96" height="96" type="image/png">https://build.awesome.me/img/favicon.png</Image>
+	<Url type="text/html" method="get" template="https://build.awesome.me/docs/search/?q={searchTerms}" />
 	<Url type="application/opensearchdescription+xml" rel="self"
-		template="https://www.11ty.dev/opensearch.xml" />
-	<moz:SearchForm>https://www.11ty.dev/</moz:SearchForm>
+		template="https://build.awesome.me/opensearch.xml" />
+	<moz:SearchForm>https://build.awesome.me/</moz:SearchForm>
 </OpenSearchDescription>

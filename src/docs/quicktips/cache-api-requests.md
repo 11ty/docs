@@ -32,7 +32,7 @@ import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
 	// https://developer.github.com/v3/repos/#get
-	let json = await Fetch("https://api.github.com/repos/11ty/eleventy", {
+	let json = await Fetch("https://api.github.com/repos/11ty/buildawesome", {
 		duration: "1d", // 1 day
 		type: "json", // also supports "text" or "buffer"
 	});
@@ -59,7 +59,7 @@ export default async function () {
 	try {
 		// https://developer.github.com/v3/repos/#get
 		let json = await Fetch(
-			"https://api.github.com/repos/11ty/eleventy",
+			"https://api.github.com/repos/11ty/buildawesome",
 			{
 				duration: "1d", // 1 day
 				type: "json", // also supports "text" or "buffer"

@@ -134,15 +134,6 @@ a[href]:focus .minilink-buildcost {
 .minilink-github > :first-child {
 	color: #eac54f;
 }
-/* GitHub star count, home page variant (dark theme) */
-.elv-header-default .minilink-github {
-	background-color: #222;
-	color: #fff;
-}
-.elv-header-default .minilink[href]:hover,
-.elv-header-default .minilink[href]:focus {
-	background-color: #444;
-}
 @media (prefers-color-scheme: dark) {
 	.minilink-github.minilink-github {
 		background-color: #222;

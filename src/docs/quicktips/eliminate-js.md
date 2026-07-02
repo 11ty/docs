@@ -28,7 +28,7 @@ export default async function () {
 	console.log("Fetching new github stargazers count…");
 
 	// GitHub API: https://developer.github.com/v3/repos/#get
-	let res = await fetch("https://api.github.com/repos/11ty/eleventy");
+	let res = await fetch("https://api.github.com/repos/11ty/buildawesome");
 	let json = await res.json();
 
 	// prune the data to return only what we want

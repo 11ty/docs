@@ -9,14 +9,26 @@
 	--callout-label-skew: 11deg;
 
 	line-height: 1.5;
-	margin-inline: -1rem;
+	margin-inline: 0;
 	margin-block: 1em;
 	background-color: var(--callout-secondary);
 	border: 1.5px solid var(--callout-primary);
 }
+header .elv-callout {
+	margin: 0;
+	border-radius: 0;
+	box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.08);
+
+	.elv-callout-c {
+		text-align: center;
+		text-wrap: balance;
+	}
+}
+main .elv-callout {
+	margin-inline: -1rem;
+}
 details .elv-callout {
-	margin-left: 0;
-	margin-right: 0;
+	margin-inline: 0;
 }
 
 /* #2col */
@@ -167,30 +179,6 @@ table .elv-callout {
 	margin-bottom: 0;
 }
 
-/* Sticky callout is for legacy docs versions */
-body > .elv-callout-sticky .elv-callout-label {
-	display: none;
-}
-body > .elv-callout-sticky .elv-callout {
-	margin: 0;
-	border-left: 0;
-	border-right: 0;
-	border-radius: 0;
-	margin-bottom: 1em;
-}
-body > .elv-callout-sticky .elv-callout-c {
-	text-align: center;
-	text-wrap: balance;
-}
-@media (min-height: 43.75em) { /* 700px */
-	body > .elv-callout-sticky {
-		position: sticky;
-		top: 0;
-		z-index: 12;
-		box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.08);
-	}
-}
-
 /* in left nav */
 .elv-toc .elv-callout {
 	margin-block-start: 0;
@@ -251,6 +239,10 @@ body > .elv-callout-sticky .elv-callout-c {
 /* Warning */
 .elv-callout-warn {
 	--callout-hue: 60;
+}
+/* Brand */
+.elv-callout-brand {
+	--callout-hue: 162;
 }
 .elv-callout-skew--demo {
 	--callout-hue: 270;

@@ -20,18 +20,12 @@
 }
 .elv-header {
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 }
 .elv-hed,
 .elv-nav-header {
 	width: 100%;
 	margin: 0 auto;
-}
-/* #2col */
-@media (min-width: 41.4375em) {
-	.elv-header-default .elv-nav-header {
-		margin-block-end: 3.5rem;
-	}
 }
 .elv-nav-menu {
 	padding: 1rem;
@@ -47,26 +41,6 @@
 .elv-nav-header,
 .elv-nav-menu {
 	max-width: calc(var(--layout-max));
-}
-.elv-nav-menu-logo {
-	display: block;
-	width: 2em;
-	height: 2em;
-	max-height: 2em;
-	background-color: #222;
-	text-align: center;
-	border-radius: 0.15em;
-	padding: 0 0.25em;
-}
-.elv-nav-menu-logo svg {
-	width: 100%;
-	height: 100%;
-	color: #fff;
-	margin: 0;
-}
-/* Full width logo */
-.elv-header-default .elv-nav-header {
-	max-width: none;
 }
 
 /* Sticky, #2col × 600px */
@@ -218,11 +192,6 @@ a[href].elv-hero-11ty:visited {
 	color: #fff;
 	background-color: #222;
 }
-.elv-header-default .elv-hero {
-	display: flex;
-	justify-content: center;
-	padding-inline-end: 8rem;
-}
 .elv-header-docs .elv-hero {
 	float: left;
 	margin-right: 0.5em;
@@ -254,16 +223,6 @@ a[href].elv-hero-11ty:visited {
 }
 main h1.elv-hed {
 	border: none;
-}
-
-/* fix: big header link fighting with versions overlay */
-.elv-header-default .elv-menu {
-	position: relative;
-	z-index: 1;
-}
-.elv-header-default .elv-nav-header {
-	position: relative;
-	z-index: 0;
 }
 
 .elv-mascot-image {

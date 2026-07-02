@@ -24,17 +24,6 @@ a.btn-primary:hover {
 		transform: none;
 	}
 }
-/* #2col × 950px */
-@media (min-width: 41.4375em) and (min-height: 59.375em) {
-	:host-context(html:not(:has(:focus-visible))) {
-		display: block;
-		position: sticky;
-		top: 10px;
-		left: 0;
-		right: 0;
-		z-index: 10;
-	}
-}
 </style>
 
 <a href="/docs/" class="btn-primary benchnine rainbow-active">Documentation</a>

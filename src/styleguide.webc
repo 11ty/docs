@@ -1,5 +1,5 @@
 ---
-headerTitle: 11ty.dev Style Guide
+headerTitle: Docs Style Guide
 layout: layouts/docs.njk
 ---
 <style>
@@ -183,24 +183,13 @@ layout: layouts/docs.njk
 {% callout "box", "html", "Super long custom label that we want to wrap nicely—does it?" %}Unstyled box with an inline <code>Code block</code>{% endcallout %}
 {% callout %}Default message with an inline <code>Code block</code>{% endcallout %}
 {% callout "info" %}Default info message with an inline <code>Code block</code>{% endcallout %}
+{% callout "brand" %}Brand message with an inline <code>Code block</code>{% endcallout %}
 {% callout "warn" %}Default warning message with an inline <code>Code block</code>{% endcallout %}
 {% callout "error" %}Default error message with an inline <code>Code block</code>{% endcallout %}
 {% callout "demo" %}Default demo with an inline <code>Code block</code>. Default demo with an inline <code>Code block</code>. Default demo with an inline <code>Code block</code>.{% endcallout %}
 {% callout "pitfall" %}This is a <strong>common pitfall</strong>.{% endcallout %}
 
 </template>
-
-<h3>Sticky info block</h3>
-
-Use the <code>elv-callout-sticky</code> class to affix to the top of the viewport while scrolling.
-
-<!-- <div class="styleguide-component">
-    <div class="elv-callout elv-callout-info">This documentation is for an upcoming version of Eleventy. Go to the <a href="/docs/">latest stable version of Eleventy docs</a> or check out the <a href="/docs/versions/">full release history.</a></div>
-</div>
-
-<div class="styleguide-component">
-    <div class="elv-callout elv-callout-warn">This documentation is for an older version. Go to the <a href="/docs/">newest Eleventy docs</a> or check out the <a href="/docs/versions/">full release history.</a></div>
-</div> -->
 
 <h3>OpenGraph card</h3>
 

@@ -16,12 +16,17 @@
 	font-size: 1rem; /* Reset */
 }
 .elv-header-docs + .elv-layout .elv-toc {
-	--elv-toc-sticky-top: 5.625rem;
+	--elv-toc-sticky-top: 6rem;
 }
-@media (min-width: 55em) {
-	/* 880px */
+.elv-header-docs:has(.elv-callout) + .elv-layout .elv-toc {
+	--elv-toc-sticky-top: 13.5rem;
+}
+@media (min-width: 55em) {/* 880px */
 	.elv-header-docs + .elv-layout .elv-toc {
 		--elv-toc-sticky-top: 4rem;
+	}
+	.elv-header-docs:has(.elv-callout) + .elv-layout .elv-toc {
+		--elv-toc-sticky-top: 9rem;
 	}
 }
 @media (prefers-color-scheme: dark) {
@@ -281,7 +286,7 @@ details.toc[open] > summary {
 
 /* Sidebar ads */
 .elv-toc .elv-callout:first-child:has(+ .elv-callout) {
-	--callout-hue: 162;
+	--callout-hue: 162; /* Also a `brand` callout */
 }
 .elv-toc-callout-link {
 	display: block;

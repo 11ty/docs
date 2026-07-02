@@ -54,8 +54,8 @@ export function randomTestimonialLink(testimonials) {
 <quick-start></quick-start>
 
 <div webc:bucket="async">
-	<h2>Try Eleventy in Your Browser</h2>
-	<p>Next try editing one of the three files in this Eleventy project. Change the <code>title</code> in front matter on a blog post and watch the list update on the index page!</p>
+	<h2>Try Build Awesome in Your Browser</h2>
+	<p>Now try editing one of the three files in this project. You can make use of <a href="/docs/data-frontmatter/">Front Matter</a>, <a href="/docs/languages/liquid/">Liquid</a> and <a href="/docs/languages/markdown/">Markdown</a> template syntax. Change the <code>title</code> in front matter on a blog post and watch the list update on the index page!</p>
 	<is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js">
 		<eleventy-editor focus group="group1" label="Edit index.md" data-editor-filename="index.md">
 			<syntax-highlight language="liquid" :copy-button-enabled="false">---
@@ -74,7 +74,7 @@ You can type here!
 - [{{ post.data.title }}]({{ post.url}})
 {%- endfor %}
 
-_Built with {{ eleventy.generator }}_</syntax-highlight>
+_Built with {{ buildawesome.generator }}_</syntax-highlight>
 		</eleventy-editor>
 
 		<eleventy-editor group="group1" label="Edit post1.md" data-editor-filename="post1.md">
@@ -97,7 +97,7 @@ tags: posts
 	<h2>News from the Blog</h2>
 	<ul @html="getHighlightedBlogPostContent(collections.blog)"></ul>
 
-	<h2>Why should you use Eleventy?</h2>
+	<h2>Why should you use Build Awesome?</h2>
 	<ul>
 		<li>
 			Eleventy has <a href="/docs/performance/"><strong>fast builds and even faster web sites</strong></a>.

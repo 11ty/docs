@@ -4,7 +4,6 @@
 <header class="elv-header{% if headerClass %} {{ headerClass }}{% endif %}">
 	<div class="elv-menu">
 		<ul class="elv-nav-menu list-bare fl fl-inline fl-nowrap">
-			<li><a href="/" class="elv-nav-menu-logo"><i class="fa-brands fa-eleventy"></i><span class="sr-only">11ty</span></a></li>
 			<li><a href="/docs/">Get Started</a></li>
 			<li><a href="/blog/">Blog</a></li>
 			<li><a href="/docs/community/">Community</a></li>
@@ -15,8 +14,8 @@
 						<summary>Versions</summary>
 						<div>
 							<ul class="list-bare">
-								<li class="listitem-disabled"><code>v4</code> <small>Pre-release</small></li>
-								<li><a href="/docs/" class="elv-externalexempt"><code>v3</code> <small>Stable</small></a></li>
+								<li><a href="/" class="elv-externalexempt"><code>v4</code> <small>Pre-release</small></a></li>
+								<li><a href="https://www.11ty.dev/docs/" class="elv-externalexempt"><code>v3</code> <small>Stable</small></a></li>
 								<li><a href="https://v2.11ty.dev/docs/" class="elv-externalexempt"><code>v2</code></a></li>
 								<li><a href="https://v1.11ty.dev/docs/" class="elv-externalexempt"><code>v1</code></a></li>
 								<li><a href="https://v0.11ty.dev/docs/" class="elv-externalexempt"><code>v0</code></a></li>
@@ -77,4 +76,10 @@
 			</template>
 		</is-land>
 	</div>
+
+	{% if config.outdated -%}
+	{% callout "warn" %}This is an <strong>older version of Eleventy</strong>. Go to the <a href="https://www.11ty.dev/docs/">newest Eleventy docs</a> (current path: <a href="https://www.11ty.dev{{ page.url }}"><code>{{ page.url }}</code></a>) or the <a href="https://www.11ty.dev/docs/versions/">full release history</a>.{% endcallout %}
+	{% elseif config.prerelease -%}
+	{% callout "brand" %}These docs are for an upcoming version of <strong>Build Awesome</strong> (Eleventy) and are <em>subject to change</em>—take extra care before linking here as URLs may change! Look to the <a href="https://www.11ty.dev/docs/">latest stable docs</a> instead (or full <a href="https://www.11ty.dev/docs/versions/">release history</a>).{% endcallout %}
+	{% endif -%}
 </header>

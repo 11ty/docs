@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
-headerClass: elv-header-default
+headerClass: elv-header-docs
+isDocs: true
 ---
 <div class="elv-skip">
 	<a href="#skip-nav">Skip to navigation</a>
@@ -8,13 +9,6 @@ headerClass: elv-header-default
 </div>
 
 {% include "header.njk" %}
-
-{% if config.outdated -%}
-<div class="elv-callout-sticky">{% callout "warn" %}This is an <strong>older version of Eleventy</strong>. Go to the <a href="https://www.11ty.dev/docs/">newest Eleventy docs</a> (current path: <a href="https://www.11ty.dev{{ page.url }}"><code>{{ page.url }}</code></a>) or the <a href="https://www.11ty.dev/docs/versions/">full release history</a>.{% endcallout %}</div>
-{% endif -%}
-{% if config.prerelease -%}
-<div class="elv-callout-sticky">{% callout "info" %}These docs are for an upcoming version of Eleventy and <em>subject to change</em>—take extra care before linking here! Look to the <a href="https://www.11ty.dev/docs/">latest docs</a> instead (or full <a href="https://www.11ty.dev/docs/versions/">release history</a>).{% endcallout %}</div>
-{% endif -%}
 
 <main class="elv-layout elv-layout-toc{% if classAdditions.main %} {{ classAdditions.main }}{% endif %}" {% if not excludeFromSearch %} data-pagefind-body{% endif %}>
 	{% include "components/docs-toc.njk" %}

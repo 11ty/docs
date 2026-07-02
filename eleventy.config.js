@@ -19,7 +19,7 @@ import fontAwesomePlugin from "@11ty/font-awesome";
 import { getImageColors } from "@11ty/image-color";
 
 import imagePlugin from "./config/imagePlugin.js";
-import { addedIn, coerceVersion, greaterThan } from "./config/addedin.js";
+import { addedIn, coerceVersion, greaterThan, rcompare as compareVersion } from "./config/addedin.js";
 import minificationLocalPlugin, { minifyJavaScriptFile } from "./config/minification.js";
 import { bundle, bundleModulePath } from "./config/bundleJavaScript.js";
 import cleanName from "./config/cleanAuthorName.js";
@@ -517,7 +517,7 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addShortcode(
 		"latestVersion",
 		function (versions, config, prefix = "v") {
-			for (let version of versions) {
+			for (let version of versions.sort((v1, v2) => compareVersion(v1.tag, v2.tag))) {
 				if (version.channel && version.channel !== "latest") {
 					continue;
 				}
@@ -899,14 +899,6 @@ to:
 			}</a></is-land></div>`;
 		}
 	);
-
-	eleventyConfig.addFilter("injectAvatars", function (content) {
-		return content
-			.split("Eleventy")
-			.join(
-				shortcodes.getIndieAvatarHtml("https://www.11ty.dev/") + "Eleventy"
-			);
-	});
 
 	eleventyConfig.addFilter("packageManagerCodeTransform", (content, type) => {
 		if(type === "yarn") {

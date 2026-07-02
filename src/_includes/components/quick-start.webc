@@ -1,6 +1,6 @@
 <h2 class="mt-0" id="quick-start">Quick Start</h2>
 
-<p>Eleventy requires a way to <a href="docs/javascript-runtime.webc">run JavaScript</a> on your computer and we recommend Node.js (version <node-minimum></node-minimum> or newer). You can check whether or not you have Node.js installed by running <code>node --version</code> in a Terminal. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If <code>node</code> is not found or it reports a version number below <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">install Node.js</a> before moving on.</p>
+<p>Build Awesome requires a way to <a href="docs/javascript-runtime.webc">run JavaScript</a> on your computer and we recommend Node.js (version <node-minimum></node-minimum> or newer). You can check whether or not you have Node.js installed by running <code>node --version</code> in a Terminal. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If <code>node</code> is not found or it reports a version number below <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">install Node.js</a> before moving on.</p>
 
 <p>Now we’ll create an <code>index.md</code> <a href="https://commonmark.org/help/">Markdown</a> file. You can do this in the text editor of your choice or by running one of these commands in your terminal:</p>
 
@@ -33,7 +33,7 @@ echo '# Heading' | npx @11ty/create index.md
 	</div>
 </seven-minute-tabs>
 
-<p>Run Eleventy using <code>npx</code>, an <a href="https://www.npmjs.com/">npm</a>-provided command that is bundled with Node.js.</p>
+<p>Run Build Awesome using <code>npx</code>, an <a href="https://www.npmjs.com/">npm</a>-provided command that is bundled with Node.js.</p>
 
 <seven-minute-tabs class="tabs-flush" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -43,49 +43,38 @@ echo '# Heading' | npx @11ty/create index.md
 	</div>
 	<div id="quickstart-run-npm" role="tabpanel">
 		<syntax-highlight language="bash">
-npx @11ty/eleventy --serve
+npx @awesome.me/buildawesome --serve
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-pnpm" role="tabpanel">
 		<syntax-highlight language="bash">
-pnpm dlx @11ty/eleventy --serve
+pnpm dlx @awesome.me/buildawesome --serve
 		</syntax-highlight>
 		<p><a href="https://pnpm.io/">pnpm</a> is an <em>optional</em> alternative to npm that needs to be installed separately.</p>
 	</div>
 	<div id="quickstart-run-yarn" role="tabpanel">
 		<syntax-highlight language="bash">
-yarn dlx @11ty/eleventy --serve
+yarn dlx @awesome.me/buildawesome --serve
 		</syntax-highlight>
 		<p><a href="https://yarnpkg.com/">Yarn</a> is an <em>optional</em> alternative to npm that needs to be installed separately.</p>
 	</div>
 </seven-minute-tabs>
 
-<p>Eleventy compiles any files in the current directory matching valid <a href="/docs/languages/">file extensions</a> (<code>md</code> is one of many) to the <code>_site</code> output folder. It might look like this:</p>
+<p>Build Awesome compiles any files in the current directory matching valid <a href="/docs/languages/">file extensions</a> (<code>md</code> is one of many) to the <code>_site</code> output folder. It might look like this:</p>
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 
 ```11ty-output
-[11ty] Writing _site/index.html from ./index.md (liquid)
-[11ty] Wrote 1 file in 0.03 seconds ({% latestVersion $data.versions, $data.config %})
-[11ty] Watching…
-[11ty] Server at http://localhost:8080/
+[buildawesome] Writing _site/index.html from ./index.md (liquid)
+[buildawesome] Wrote 1 file in 0.03 seconds ({% latestVersion $data.versions, $data.config %})
+[buildawesome] Watching…
+[buildawesome] Server at http://localhost:8080/
 ```
 
 </template>
 
 <p>The <code>--serve</code> option also starts a <a href="/docs/dev-server/">local development server</a>. Open up <code>http://localhost:8080/</code> in your favorite web browser to view your web site.</p>
-<p>If you’d like to experiment further with different template syntax, edit the following sample <code>index.md</code> file in your browser. <a href="/docs/data-frontmatter/">Front Matter</a>, <a href="/docs/languages/liquid/">Liquid</a> and <a href="/docs/languages/markdown/">Markdown</a> are in use.</p>
-
-<is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js">
-	<eleventy-editor focus label="Edit index.md" data-editor-filename="index.md">
-		<syntax-highlight language="markdown">
----
-title: Heading
----
-# {{ title }}
-		</syntax-highlight>
-	</eleventy-editor>
-</is-land>
+<p>If you’d like to experiment further with different template syntax, try out <a href="#try-eleventy-in-your-browser">the playground below</a>.</p>
 
 <ul>
 	<li>Read our full <a href="/docs/"><strong>Get Started guide</strong></a> on the docs.</li>

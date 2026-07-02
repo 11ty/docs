@@ -1,13 +1,13 @@
 contact_links:
-  - name: I’m having trouble with Eleventy!
-    url: https://github.com/11ty/eleventy/issues/new/choose
+  - name: I’m having trouble with Build Awesome or Eleventy
+    url: https://github.com/11ty/buildawesome/issues/new/choose
     about: If you have a question or suggestion regarding Eleventy (not the docs), head over to the `eleventy` repo!
-  - name: I built something with Eleventy and want to add it to 11ty.dev!
-    url: https://github.com/11ty/11ty-community/issues/new/choose
+  - name: I built something with Build Awesome or Eleventy and want to add it to build.awesome.me or 11ty.dev!
+    url: https://github.com/11ty/docs/issues/new/choose
     about: Sites to add to your authors page or to the Eleventy Leaderboards are now added on the `11ty/11ty-community` repository.
   - name: I have a feature request for the docs
     url: https://github.com/11ty/docs/discussions/categories/documentation-queue
-    about: Enhancement or new Features for the documentation. e.g. “I wish the Eleventy docs did this.” Suggest an idea! (Please search existing discussions first!)
+    about: Enhancement or new Features for the documentation. e.g. “I wish the docs did this.” Suggest an idea! (Please search existing discussions first!)
   - name: Discord Community
     url: https://discord.gg/GBkBy9u
     about: Ask the community on Discord

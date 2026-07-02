@@ -2,6 +2,8 @@
 import { escapeText } from "entities/escape";
 import activity from "../config/activity.js";
 
+const html = String.raw;
+
 function getSlugFromTitle(str) {
 	if (str.startsWith("GitHub Releases [")) {
 		return "github";
@@ -30,10 +32,10 @@ export async function data() {
 }
 
 export async function render({ entries }) {
-	return `
-<h1>Eleventy Firehose</h1>
+	return html`
+<h1>Build Awesome Firehose</h1>
 
-<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, <a href="https://11ty.dev/mastodon">Mastodon account</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
+<p>This page shows activity from the <a href="/blog/">Build Awesome Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://build.awesome.me/youtube">YouTube channel</a>, <a href="https://build.awesome.me/mastodon">Mastodon account</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>

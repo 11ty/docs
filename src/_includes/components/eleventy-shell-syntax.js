@@ -3,7 +3,7 @@ const css = String.raw;
 // Properly highlights Eleventy syntax in a terminal window
 class EleventyShell {
 	static selector = "code.language-11ty-output";
-	static PREFIX = "[11ty] ";
+	static PREFIX = "[buildawesome] ";
 	static cssAdded = false;
 
 	static register(root) {

@@ -7,7 +7,7 @@ export default async function () {
 	try {
 		// https://developer.github.com/v3/repos/#get
 		let json = await Fetch(
-			"https://api.github.com/repos/11ty/eleventy",
+			"https://api.github.com/repos/11ty/buildawesome",
 			{
 				type: "json",
 				duration: CACHE_DURATION,

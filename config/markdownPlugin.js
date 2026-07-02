@@ -82,6 +82,9 @@ export default function (eleventyConfig) {
 			} else if(level === "info") {
 				// label is skipped
 				classLevel = "elv-callout-info";
+			} else if(level === "brand") {
+				// label is skipped
+				classLevel = "elv-callout-brand";
 			} else if(level === "demo") {
 				// label is skipped
 				classLevel = "elv-callout-skew elv-callout-skew--demo";

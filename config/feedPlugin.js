@@ -1,5 +1,15 @@
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 
+const FEED_BASE = "https://build.awesome.me/";
+
+const METADATA_OPTIONS = {
+	language: "en",
+	base: FEED_BASE,
+	author: {
+		name: "Zach Leatherman"
+	}
+}
+
 export default function(eleventyConfig) {
 	eleventyConfig.addCollection("docsFeed", function (collection) {
 		return collection.getFilteredByGlob("src/docs/**/*.md").filter(entry => {
@@ -19,13 +29,9 @@ export default function(eleventyConfig) {
 			limit: 10,
 		},
 		metadata: {
-			language: "en",
-			title: "Eleventy Documentation",
-			subtitle: "Updates to the Eleventy Documentation, sorted by recent git commits.",
-			base: "https://www.11ty.dev/",
-			author: {
-				name: "Zach Leatherman"
-			}
+			title: "Build Awesome Documentation",
+			subtitle: "Updates to the Build Awesome Documentation, sorted by recent git commits.",
+			...METADATA_OPTIONS,
 		}
 	});
 
@@ -38,13 +44,9 @@ export default function(eleventyConfig) {
 			limit: 0,
 		},
 		metadata: {
-			language: "en",
-			title: "Eleventy Quick Tips",
-			subtitle: "All of the official Eleventy Quick Tips, in feed form.",
-			base: "https://www.11ty.dev/",
-			author: {
-				name: "Zach Leatherman"
-			}
+			title: "Build Awesome Quick Tips",
+			subtitle: "All of the official Build Awesome Quick Tips, in feed form.",
+			...METADATA_OPTIONS,
 		}
 	});
 
@@ -57,13 +59,9 @@ export default function(eleventyConfig) {
 			limit: 10,
 		},
 		metadata: {
-			language: "en",
-			title: "Eleventy Blog",
-			subtitle: "News and updates about the Eleventy static site generator project.",
-			base: "https://www.11ty.dev/",
-			author: {
-				name: "Zach Leatherman"
-			}
+			title: "Build Awesome Blog",
+			subtitle: "News and updates about the Build Awesome site generator project.",
+			...METADATA_OPTIONS,
 		}
 	});
 }

@@ -1,8 +1,8 @@
 {
-  "name": "@11ty/website",
-  "version": "2.0.0",
+  "name": "@11ty/docs",
+  "version": "4.0.0",
   "private": true,
-  "description": "The website at 11ty.dev",
+  "description": "The docs website for Build Awesome at build.awesome.me",
   "type": "module",
   "engines": {
     "node": ">=22.15"
@@ -11,7 +11,7 @@
     "check-links": "npx check-html-links _site",
     "build": "npx @11ty/eleventy --quiet && npm run create-search-index",
     "build-production": "npm run get-new-data && NODE_ENV=production npx @11ty/eleventy && npm run create-search-index",
-    "start": "npx @11ty/eleventy --serve --quiet --port=8091 --incremental",
+    "start": "npx @11ty/eleventy --serve --quiet --port=8091",
     "start-production": "NODE_ENV=production npx @11ty/eleventy --serve --quiet --port=8091",
     "create-search-index": "npx pagefind --site \"_site\" --glob \"{docs,blog}/**/*.html\"",
     "get-new-data": "rm -rf ./src/_data/builtwith/ && npx degit github:11ty/11ty-community/built-with-eleventy src/_data/builtwith/",

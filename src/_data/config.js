@@ -1,6 +1,6 @@
 export default {
 	outdated: false,
-	prerelease: false,
+	prerelease: true,
 	githubEdit: "https://github.com/11ty/docs/tree/main/",
 	now: new Date(),
 	env: process.env.NODE_ENV,

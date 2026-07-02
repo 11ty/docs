@@ -60,7 +60,7 @@ Consider the following example, perhaps in an Eleventy [Global Data File](/docs/
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
-	let url = "https://api.github.com/repos/11ty/eleventy";
+	let url = "https://api.github.com/repos/11ty/buildawesome";
 
 	let json = await Fetch(url, {
 		duration: "1d", // save for 1 day
@@ -130,7 +130,7 @@ import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
 	try {
-		let url = "https://api.github.com/repos/11ty/eleventy";
+		let url = "https://api.github.com/repos/11ty/buildawesome";
 
 		/* This returns a promise */
 		return Fetch(url, {

@@ -1,2 +1,1 @@
 <link rel="stylesheet" href="possum.css">
-<link rel="stylesheet" href="possum-home.css" webc:if="variant === 'home'">
