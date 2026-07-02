@@ -29,7 +29,7 @@ Create a directory for your project using the `mkdir` command (short for _make d
 </template>
 
 <syntax-highlight language="bash">
-mkdir eleventy-sample
+mkdir sample
 </syntax-highlight>
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
@@ -37,15 +37,15 @@ Now move into that directory with the `cd` command (short for _change directory_
 </template>
 
 <syntax-highlight language="bash">
-cd eleventy-sample
+cd sample
 </syntax-highlight>
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
-## <span class="numberflag"><span class="sr-only">Step</span> 2</span> Install Eleventy
+## <span class="numberflag"><span class="sr-only">Step</span> 2</span> Install Build Awesome
 
 ### Create a `package.json`
 
-Installing Eleventy into a project requires a `package.json` file.
+Installing Build Awesome into a project requires a `package.json` file.
 
 </template>
 
@@ -59,7 +59,7 @@ Installing Eleventy into a project requires a `package.json` file.
 	<div id="quickstart-run-2a-npm" role="tabpanel">
 		<syntax-highlight language="bash">npm init -y</syntax-highlight>
 		<p>The <code>npm</code> command (included with Node.js) will create a <code>package.json</code> file for you with <a href="https://docs.npmjs.com/cli/init"><code>npm init -y</code></a>. The <code>-y</code> flag tells <code>npm</code> to use default values and skips the questionnaire.</p>
-		<p>Use the following command if you want to use <a href="/docs/cjs-esm.md">ESM in your project and not CommonJS</a>.</p>
+		<p>Use the following command if you want to use <a href="/docs/cjs-esm.md">ESM in your project and not CommonJS</a> (recommended).</p>
 		<syntax-highlight language="bash">npm pkg set type="module"</syntax-highlight>
 	</div>
 	<div id="quickstart-run-2a-pnpm" role="tabpanel">
@@ -74,9 +74,9 @@ Installing Eleventy into a project requires a `package.json` file.
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 
-### Install Eleventy
+### Install Build Awesome
 
-[`@11ty/eleventy` is published on npm](https://www.npmjs.com/package/@11ty/eleventy) and we can install and save it into our project’s `package.json` by running:
+[`@awesome.me/buildawesome` is published on npm](https://www.npmjs.com/package/@awesome.me/buildawesome) and we can install and save it into our project’s `package.json` by running:
 
 </template>
 
@@ -88,17 +88,17 @@ Installing Eleventy into a project requires a `package.json` file.
 	</div>
 	<div id="quickstart-run-2b-npm" role="tabpanel">
 		<syntax-highlight language="bash">
-			npm install @11ty/eleventy
+			npm install @awesome.me/buildawesome
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-2b-pnpm" role="tabpanel">
 		<syntax-highlight language="bash">
-			pnpm install @11ty/eleventy
+			pnpm install @awesome.me/buildawesome
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-2b-yarn" role="tabpanel">
 		<syntax-highlight language="bash">
-			yarn add @11ty/eleventy
+			yarn add @awesome.me/buildawesome
 		</syntax-highlight>
 	</div>
 </seven-minute-tabs>
@@ -107,7 +107,7 @@ Installing Eleventy into a project requires a `package.json` file.
 
 _You may also [install Eleventy globally](/docs/global-installation/) but the `package.json` installation method above is recommended._
 
-## <span class="numberflag"><span class="sr-only">Step</span> 3</span> Run Eleventy
+## <span class="numberflag"><span class="sr-only">Step</span> 3</span> Run Build Awesome
 
 </template>
 
@@ -119,35 +119,35 @@ _You may also [install Eleventy globally](/docs/global-installation/) but the `p
 	</div>
 	<div id="quickstart-run-3a-npm" role="tabpanel">
 		<syntax-highlight language="bash">
-			npx @11ty/eleventy
+			npx @awesome.me/buildawesome
 		</syntax-highlight>
-		<p>We can use the <code>npx</code> command (also provided by Node.js) to run our local project's version of Eleventy.</p>
+		<p>We can use the <code>npx</code> command (also provided by Node.js) to run our local project's version of Build Awesome.</p>
 	</div>
 	<div id="quickstart-run-3a-pnpm" role="tabpanel">
 		<syntax-highlight language="bash">
-			pnpm exec eleventy
+			pnpm exec buildawesome
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-3a-yarn" role="tabpanel">
 		<syntax-highlight language="bash">
-			yarn exec eleventy
+			yarn exec buildawesome
 		</syntax-highlight>
 	</div>
 </seven-minute-tabs>
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 
-Here’s what your command line should look like after you run Eleventy:
+Here’s what your command line should look like after you run Build Awesome:
 
 ```11ty-output
-[11ty] Wrote 0 files in 0.03 seconds ({% latestVersion versions, config %})
+[buildawesome] Wrote 0 files in 0.03 seconds ({% latestVersion versions, config %})
 ```
 
-If you see `({% latestVersion versions, config %})` in your output you know you’re using the newest version. However, Eleventy didn’t process any files! This is expected—we have an empty folder with no templates inside.
+If you see `({% latestVersion versions, config %})` in your output you know you’re using the newest version. However, Build Awesome didn’t process any files! This is expected—we have an empty folder with no templates inside.
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 4</span> Create some templates
 
-A <dfn>template</dfn> is a content file written in a [format such as Markdown, HTML, Liquid, Nunjucks, and more](/docs/languages/), which Eleventy transforms into a page (or pages) when building our site.
+A <dfn>template</dfn> is a content file written in a [format such as Markdown, HTML, Liquid, Nunjucks, and more](/docs/languages/), which Build Awesome transforms into a page (or pages) when building our site.
 
 Let’s run two commands to create two new template files.
 </template>
@@ -183,7 +183,7 @@ echo '# Heading' | npx @11ty/create README.md
 
 <p>Alternatively, you can create these using any text editor — make sure you save them into your project folder and they have the correct file extensions.</p>
 
-<p>After you’ve created an HTML template and a Markdown template, let’s run Eleventy again with the following command:</p>
+<p>After you’ve created an HTML template and a Markdown template, let’s run Build Awesome again with the following command:</p>
 
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -193,17 +193,17 @@ echo '# Heading' | npx @11ty/create README.md
 	</div>
 	<div id="quickstart-run-4-npm" role="tabpanel">
 		<syntax-highlight language="bash">
-npx @11ty/eleventy
+npx @awesome.me/buildawesome
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-4-pnpm" role="tabpanel">
 		<syntax-highlight language="bash">
-pnpm exec eleventy
+pnpm exec buildawesome
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-4-yarn" role="tabpanel">
 		<syntax-highlight language="bash">
-yarn exec eleventy
+yarn exec buildawesome
 		</syntax-highlight>
 	</div>
 </seven-minute-tabs>
@@ -212,9 +212,9 @@ yarn exec eleventy
 The output might look like this:
 
 ```11ty-output
-[11ty] Writing _site/README/index.html from ./README.md (liquid)
-[11ty] Writing _site/index.html from ./index.html (liquid)
-[11ty] Wrote 2 files in 0.04 seconds ({% latestVersion versions, config %})
+[buildawesome] Writing _site/README/index.html from ./README.md (liquid)
+[buildawesome] Writing _site/index.html from ./index.html (liquid)
+[buildawesome] Wrote 2 files in 0.04 seconds ({% latestVersion versions, config %})
 ```
 
 We’ve now compiled our two content templates in the current directory into the output folder (`_site` is the default).
@@ -248,17 +248,17 @@ Use `--serve` to start up a hot-reloading local web server.
 	</div>
 	<div id="quickstart-run-5-npm" role="tabpanel">
 		<syntax-highlight language="bash">
-			npx @11ty/eleventy --serve
+			npx @awesome.me/buildawesome --serve
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-5-pnpm" role="tabpanel">
 		<syntax-highlight language="bash">
-			pnpm exec eleventy --serve
+			pnpm exec buildawesome --serve
 		</syntax-highlight>
 	</div>
 	<div id="quickstart-run-5-yarn" role="tabpanel">
 		<syntax-highlight language="bash">
-			yarn exec eleventy -- --serve
+			yarn exec buildawesome -- --serve
 		</syntax-highlight>
 	</div>
 </seven-minute-tabs>
@@ -268,22 +268,22 @@ Use `--serve` to start up a hot-reloading local web server.
 Your command line might look something like:
 
 ```11ty-output
-[11ty] Writing _site/index.html from ./index.html (liquid)
-[11ty] Writing _site/README/index.html from ./README.md (liquid)
-[11ty] Wrote 2 files in 0.04 seconds ({% latestVersion versions, config %})
-[11ty] Watching…
-[11ty] Server at http://localhost:8080/
+[buildawesome] Writing _site/index.html from ./index.html (liquid)
+[buildawesome] Writing _site/README/index.html from ./README.md (liquid)
+[buildawesome] Wrote 2 files in 0.04 seconds ({% latestVersion versions, config %})
+[buildawesome] Watching…
+[buildawesome] Server at http://localhost:8080/
 ```
 
 Open `http://localhost:8080/` or `http://localhost:8080/README/` in your favorite web browser to see your Eleventy site live! When you save your template files—Eleventy will refresh the browser with your new changes automatically!
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 6</span> Put it online (optional)
 
-Your output folder (`_site`) now contains all of the statically built files for your new web site. You can upload this folder to any web host! Head over to our [deployment documentation](/docs/deployment/) to read more about putting your Eleventy project online for everyone to see.
+Your output folder (`_site`) now contains all of the statically built files for your new web site. You can upload this folder to any web host! Head over to our [deployment documentation](/docs/deployment/) to read more about putting your Build Awesome project online for everyone to see.
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 7</span> Continue Learning…
 
-Congratulations—you made something with Eleventy! Now put it to work:
+Congratulations—you made something with Build Awesome! Now put it to work:
 
 1. Add more content! In the above tutorial we used [HTML](/docs/languages/html/) and [Markdown](/docs/languages/markdown/). Why not [JavaScript](/docs/languages/javascript/) or [WebC](/docs/languages/webc/) (for components) next? [Nunjucks](/docs/languages/nunjucks/) and [Liquid](/docs/languages/liquid/) are also very popular. Maybe you’re feeling super adventurous and want to [add your own custom type?](/docs/languages/custom/).
 1. Use [a layout file so that you don’t have to repeat boilerplate on every template](/docs/layouts/).

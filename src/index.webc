@@ -47,8 +47,11 @@ export function randomTestimonialLink(testimonials) {
 
 <h1>Build Awesome helps you build better web sites</h1>
 
-<p>Build Awesome is a developer tool to help you build fast web sites, faster. It features <strong>fast build times</strong> and generates <strong>fast web sites</strong> focused on reducing runtime JavaScript. It’s <strong>lean</strong>: we’ve been decreasing our dependency count with every major release since 2017.</p>
-<p>Build Awesome is <strong>secure</strong>. Choosing to generate a static web site is the most secure and resilient/scalable architecture for the modern agent-heavy web. It’s <strong>trusted</strong> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</p>
+<p>Build Awesome is a developer tool to help you build fast web sites, faster. It features <a href="/docs/performance/"><strong>fast build times</strong> and generates <strong>fast web sites</strong></a> focused on reducing runtime JavaScript. It’s <strong>lightweight</strong>: we’ve been <a href="/blog/dependency-watch/">decreasing our dependency count</a> with every major release since 2018.</p>
+
+<p>Build Awesome is <strong>secure</strong>. When you create a static web site with Build Awesome, there is no runtime that can fail in the middle of the night. It’s easy to host and is widely accepted as the most resilient and scalable architecture for the modern agent-heavy web. It’s <a href="#why-should-you-use-build-awesome"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</p>
+
+<p><strong>You should have a web site</strong> and Build Awesome can help you create your very own home on the web. <a href="/docs/">Get started!</a></p>
 
 <quick-start></quick-start>
 
@@ -151,7 +154,7 @@ tags: posts
 	<giant-docs-button></giant-docs-button>
 	<giant-docs-button-subtext></giant-docs-button-subtext>
 
-	<h2>Built With Build Awesome</h2>
+	<h2>Built Awesome</h2>
 
 	<sites-list>
 		<site-card :show-icons="true" webc:for="(key, site) in shuffle($data.builtwith)" webc:if="!site.disabled && site.featured" :featured="site.featured" :url="site.demo || site.url" :iconUrl="site.iconUrl" :name="site.name" :date="false"></site-card>
