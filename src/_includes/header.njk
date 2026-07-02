@@ -80,6 +80,6 @@
 	{% if config.outdated -%}
 	{% callout "warn" %}This is an <strong>older version of Eleventy</strong>. Go to the <a href="https://www.11ty.dev/docs/">newest Eleventy docs</a> (current path: <a href="https://www.11ty.dev{{ page.url }}"><code>{{ page.url }}</code></a>) or the <a href="https://www.11ty.dev/docs/versions/">full release history</a>.{% endcallout %}
 	{% elseif config.prerelease -%}
-	{% callout "brand" %}These docs are for an upcoming version of <strong>Build Awesome</strong> (Eleventy) and are <em>subject to change</em>—take extra care before linking here as URLs may change! Look to the <a href="https://www.11ty.dev/docs/">latest stable docs</a> instead (or full <a href="https://www.11ty.dev/docs/versions/">release history</a>).{% endcallout %}
+	{% callout "brand" %}These docs are for an upcoming version of <strong><i class="fa-brands fa-build-awesome"></i>Build Awesome</strong> (<i class="fa-brands fa-eleventy"></i>Eleventy) and are <em>subject to change</em>—take extra care before linking here as URLs may change! Look to the <a href="https://www.11ty.dev/docs/">latest stable docs</a> instead (or the full <a href="https://www.11ty.dev/docs/versions/">release history</a>).{% endcallout %}
 	{% endif -%}
 </header>

@@ -1,9 +1,9 @@
 ---js
 // <script>
-let headerTitle = "Eleventy is a simpler <code>static</code> site generator";
+let headerTitle = "Build Awesome (Eleventy) is a simpler static site generator";
 let layout = "layouts/docs.njk";
 
-let searchTitle = "Eleventy is a simpler static site generator";
+let searchTitle = "Build Awesome (Eleventy) is a simpler static site generator";
 
 let eleventyImport = {
 	collections: ["blog"]
@@ -11,7 +11,7 @@ let eleventyImport = {
 
 let eleventyComputed = {
 	social: {
-		description: () => "Eleventy is a simpler static site generator."
+		description: () => "Build Awesome (Eleventy) is a simpler static site generator."
 	},
 };
 // </script>
