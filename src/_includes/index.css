@@ -186,11 +186,10 @@ h5,
 .elv-h3 {
 	font-family: Cera Round Pro, system-ui, sans-serif;
 	font-weight: 700;
-	text-wrap: pretty;
+	text-wrap: balance;
 }
 h1 {
 	margin: 0 0 .5em;
-	text-wrap: balance;
 }
 h1,
 .elv-hed,
