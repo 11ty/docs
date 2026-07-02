@@ -101,33 +101,29 @@ let eleventyComputed = {
 {% include 'components/supporters.css' %}
 {% include 'components/editor.css' %}
 {% include 'components/possum.css' %}
+
 {# TODO reference these directly from node_modules at some point #}
 {% include 'components/flex-luthor/flex-luthor.css' %}
 {% include 'components/flex-luthor/flex-luthor-separators.css' %}
 
-{% if page.url != '/' %}
-	{# these components are not yet used on WebC pages #}
-	{% include 'components/breadcrumb.css' %}
+{% include 'components/testimonials.css' %}
+{% include 'components/breadcrumb.css' %}
 
-	{# these components have been converted to WebC #}
-	{% include 'components/prism-theme.css' %}
-	{% include 'components/code.css' %}
-	{% include 'components/code-copy.css' %}
-	{% include 'components/code-more.css' %}
-	{% include 'components/inline-code.css' %}
-	{% include 'components/layout.css' %}
+{% include 'components/prism-theme.css' %}
+{% include 'components/code.css' %}
+{% include 'components/code-copy.css' %}
+{% include 'components/code-more.css' %}
+{% include 'components/inline-code.css' %}
+{% include 'components/layout.css' %}
 
-	{% include 'components/testimonials.css' %}
-
-	/* Filters */
-	.filter-tags--hide {
-		display: none;
-	}
-	.select-filter {
-		font-size: 16px;
-		padding: .3em .5em;
-	}
-{% endif %}
+/* Filters */
+.filter-tags--hide {
+	display: none;
+}
+.select-filter {
+	font-size: 16px;
+	padding: .3em .5em;
+}
 {% endset %}
 
 		<style>

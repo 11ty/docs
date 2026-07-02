@@ -1,18 +1,14 @@
-<link rel="stylesheet" href="prism-theme.css" webc:bucket="async">
-<link rel="stylesheet" href="code.css">
-<link rel="stylesheet" href="code-copy.css">
-<link rel="stylesheet" href="code-more.css" webc:bucket="async">
 <style>
 syntax-highlight {
 	display: block;
 }
 syntax-highlight > pre {
-	margin-bottom: 0;
+	margin-block-end: 0;
 }
 </style>
 <style webc:if="hed">
 .syntax-title {
-	margin-top: 1em;
+	margin-block-start: 1em;
 	padding: .25em 0 .25em .5em;
 	border-radius: .25em .25em 0 0;
 	font-family: Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;
@@ -31,7 +27,7 @@ syntax-highlight > pre {
 }
 .syntax-title + .syntax-highlight > pre,
 .syntax-title ~ pre {
-	margin-top: 0;
+	margin-block-start: 0;
 }
 @media (prefers-color-scheme: dark) {
 	.syntax-title b {

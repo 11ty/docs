@@ -24,14 +24,15 @@ pre {
 }
 
 :is(.syntax-highlight, syntax-highlight) {
-	margin-inline: -1rem;
-}
-:is(.syntax-highlight, syntax-highlight) pre {
-	margin-inline: 0;
+	margin: 0 -1rem;
+
+	pre {
+		margin: 0 0;
+	}
 }
 
 .fl > * > pre {
-	margin-top: 0;
+	margin-block-start: 0;
 }
 pre code {
 	border-radius: 0;
@@ -42,12 +43,12 @@ pre > code {
 	font-family: inherit;
 }
 pre + pre[class*="language-"] {
-	margin-top: 1em;
+	margin-block-start: 1em;
 }
 pre + .note {
 	font-size: 0.6666666666667em; /* 16px /24 */
-	margin-top: -2.875em; /* 46px /16 */
-	margin-bottom: 2.5em; /* 40px /16 */
+	margin-block-start: -2.875em; /* 46px /16 */
+	margin-block-end: 2.5em; /* 40px /16 */
 	text-align: right;
 }
 @media (prefers-color-scheme: dark) {

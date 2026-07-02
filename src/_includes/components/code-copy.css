@@ -2,12 +2,14 @@
 :is(syntax-highlight, .syntax-highlight):has(wa-copy-button) {
 	position: relative;
 
-	wa-copy-button {
+ 	wa-copy-button {
 		position: absolute;
 		right: 0;
 		bottom: 0;
-		margin: .25em;
+		padding: .25em 0;
+		margin: 0;
 		color: #fff;
+		height: 2.5em; /* SAFARI WEEEEE */
 
 		&::part(button) {
 			transition: 300ms all;
@@ -16,6 +18,7 @@
 			border-radius: .25em;
 			cursor: copy;
 		}
+
 		&:is(:hover, :focus)::part(button) {
 			opacity: 1;
 			background-color: rgba(0,0,0,1);

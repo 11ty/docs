@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="testimonials.css">
-
 <div class="testimonials">
   <div class="testimonials-layout fl">
     <template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
