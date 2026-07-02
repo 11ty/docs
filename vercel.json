@@ -1,5 +1,5 @@
 {
-	"trailingSlash": true,
+  "trailingSlash": true,
   "redirects": [
     { "source": "/survey/", "destination": "https://forms.gle/v8mjUuf5cyRZy2GG7", "statusCode": 301 },
     { "source": "/survey/2025/", "destination": "https://forms.gle/v8mjUuf5cyRZy2GG7", "statusCode": 301 },
@@ -15,22 +15,24 @@
     { "source": "/docs/accessibility-leaderboard/", "destination": "/speedlify/", "statusCode": 301 },
     { "source": "/leaderboard/(.*)", "destination": "/speedlify/", "statusCode": 301 },
     { "source": "/news/:path*", "destination": "/blog/:path*", "permanent": true },
-    { "source": "/blog/", "destination": "https://www.11ty.dev/blog/", "permanent": false },
-    { "source": "/blog/:path*", "destination": "https://www.11ty.dev/blog/:path*", "permanent": false },
     { "source": "/docs/how-to-support/", "destination": "/docs/community/", "statusCode": 301 },
     { "source": "/docs/plugins/cache/", "destination": "/docs/plugins/fetch/", "statusCode": 301 },
     { "source": "/docs/plugins/partial-hydration/", "destination": "/docs/plugins/is-land/", "statusCode": 301 },
     { "source": "/docs/templates/", "destination": "/docs/projects/", "statusCode": 301 },
     { "source": "/docs/plugins/official/", "destination": "/docs/plugins/", "statusCode": 301 },
-    { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 }
+    { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 },
+
+    { "source": "/speedlify/", "destination": "https://www.11ty.dev/speedlify/", "permanent": false },
+    { "source": "/blog/", "destination": "https://www.11ty.dev/blog/", "permanent": false },
+    { "source": "/blog/:path*", "destination": "https://www.11ty.dev/blog/:path*", "permanent": false }
   ],
-	"rewrites": [
+  "rewrites": [
     {
       "source": "/speedlify/(.*)",
       "destination": "https://built-with-11ty-speedlify.vercel.app/speedlify/$1"
     }
   ],
-	"headers": [
+  "headers": [
     {
       "source": "/(.*)",
       "headers": [
@@ -40,7 +42,7 @@
         }
       ]
     },
-		{
+    {
       "source": "/api/(.*)",
       "headers": [
         {
@@ -49,7 +51,7 @@
         }
       ]
     },
-		{
+    {
       "source": "/blog/feed.xml",
       "headers": [
         {
@@ -62,5 +64,5 @@
         }
       ]
     }
-	]
+  ]
 }
