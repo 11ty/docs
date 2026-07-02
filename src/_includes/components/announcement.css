@@ -4,7 +4,7 @@
 	justify-content: center;
 	width: 100%;
 	color: #fff;
-	font-weight: 600;
+	font-weight: 700;
 	padding: 0.25em 1em;
 	gap: .5em;
 }
@@ -22,7 +22,7 @@
 	--btn-shadow-color: #0f1f36;
 	display: flex;
 	justify-content: center;
-	font-weight: 600;
+	font-weight: 700;
 }
 .announcement {
 	flex-wrap: wrap;

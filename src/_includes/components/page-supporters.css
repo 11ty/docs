@@ -18,7 +18,7 @@
 .supporters-link {
 	display: inline-block;
 	white-space: nowrap;
-	font-weight: 600;
+	font-weight: 700;
 }
 .supporters-facepile .fl {
 	/*position: relative;
@@ -75,6 +75,6 @@
 	padding-right: 1em;
 }
 .supporters-facepile .supporters-active .supporters-tier:after {
-	font-weight: 600;
+	font-weight: 700;
 	content: "—THANK YOU! 🎉";
 }

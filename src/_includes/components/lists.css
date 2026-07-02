@@ -134,7 +134,6 @@ a.rainbow-active:is(:hover, :focus) {
 }
 
 .buzzword:is(:hover, :focus):after {
-	font-family: system-ui, sans-serif;
 	content: "Buzzword alert!!!";
 	position: absolute;
 	left: 0;
@@ -188,7 +187,7 @@ main :is(h2, h3, p) a.buzzword {
 	border-radius: 50%;
 	width: 1.75em;
 	height: 1.75em;
-	font-weight: 600;
+	font-weight: 700;
 }
 @media (prefers-color-scheme: dark) {
 	.numberflag {
@@ -234,8 +233,7 @@ h2 .numberflag:after {
 	font-size: 0.6666666666667em; /* 12px /18 */
 }
 :where(.inlinelist-sm) > li {
-	font-family: system-ui, sans-serif;
-	font-weight: 600;
+	font-weight: 700;
 }
 
 /* Disabled list item */

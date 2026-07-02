@@ -78,7 +78,7 @@ table .elv-callout {
 .elv-callout-label {
 	align-self: flex-start;
 	font-size: 0.9375em; /* 15px /16 */
-	font-weight: 600;
+	font-weight: 700;
 }
 .elv-callout-label,
 .elv-callout-skew:before,
@@ -96,7 +96,7 @@ table .elv-callout {
 	left: 0;
 	top: 0;
 	font-size: 0.8125em; /* 13px /16 */
-	font-weight: 800;
+	font-weight: 700;
 }
 .elv-callout-label {
 	background-color: var(--callout-primary);
@@ -188,6 +188,7 @@ table .elv-callout {
 }
 .elv-toc .elv-callout-label {
 	margin-inline-end: 0;
+	font-weight: 500;
 }
 
 /* #2col */

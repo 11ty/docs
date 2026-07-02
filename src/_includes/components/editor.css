@@ -45,7 +45,7 @@ is-land--eleventy-editor pre:before {
 	content: "Run";
 	top: 0;
 	right: -1rem;
-	font-weight: 600;
+	font-weight: 700;
 	line-height: 1;
 	padding: .75rem;
 	background-color: var(--edit-bg);

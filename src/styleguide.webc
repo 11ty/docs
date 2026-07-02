@@ -153,7 +153,7 @@ layout: layouts/docs.njk
 
 <h4>Number Flags in Headings</h4>
 <div class="styleguide-component">
-<h2><span class="numberflag"><span class="sr-only">Step</span> 1</span> Notice how the border disappears under the flag</h2>
+<h2><span class="numberflag"><span class="sr-only">Step</span> 1</span> No border under flag</h2>
 <h3><span class="numberflag"><span class="sr-only">Step</span> 2</span> Do a thing</h3>
 <h4><span class="numberflag"><span class="sr-only">Step</span> 3</span> Do a thing</h4>
 <h5><span class="numberflag"><span class="sr-only">Step</span> 4</span> Do a thing</h5>
