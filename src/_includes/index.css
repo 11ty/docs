@@ -190,6 +190,7 @@ h5,
 }
 h1 {
 	margin: 0 0 .5em;
+	text-wrap: balance;
 }
 h1,
 .elv-hed,
