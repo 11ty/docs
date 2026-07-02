@@ -35,7 +35,7 @@ export async function render({ entries }) {
 	return html`
 <h1>Build Awesome Firehose</h1>
 
-<p>This page shows activity from the <a href="/blog/">Build Awesome Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://build.awesome.me/youtube">YouTube channel</a>, <a href="https://build.awesome.me/mastodon">Mastodon account</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
+<p>This page shows activity from the <a href="https://www.11ty.dev/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://build.awesome.me/youtube">YouTube channel</a>, <a href="https://build.awesome.me/mastodon">Mastodon account</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>

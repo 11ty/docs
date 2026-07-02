@@ -11,12 +11,11 @@ export default async function () {
 
 	// The Eleventy Activity Feed
 	feed.addSource("youtubeUser", "YouTube", "UCskGTioqrMBcw8pd14_334A"); // Eleventy
-	feed.addSource("atom", "Blog", "https://build.awesome.me/blog/feed.xml");
+	feed.addSource("atom", "Blog", "https://www.11ty.dev/blog/feed.xml");
 	feed.addSource(
 		"atom",
 		"Quick Tips",
-		"https://www.11ty.dev/docs/quicktips/feed.xml"
-		// "https://build.awesome.me/docs/quicktips/feed.xml"
+		"https://build.awesome.me/docs/quicktips/feed.xml"
 	);
 	feed.addSource("fediverse", "Mastodon", "@eleventy@fosstodon.org");
 	feed.addSource("fediverse", "Mastodon", "@11ty@neighborhood.11ty.dev");
