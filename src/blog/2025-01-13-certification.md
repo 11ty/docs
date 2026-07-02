@@ -9,5 +9,5 @@ In the year 2025 Eleventy has launched an [official](https://fediverse.zachleat.
 	<label class="elv-type4">
 		<input type="checkbox" required> I heard Eleventy was good
 	</label>
-	<button class="btn-primary btn-primary-sm benchnine rainbow-active rainbow-active-noanim elv-externalexempt">Certify Me</button>
+	<button class="btn-primary btn-primary-sm brand-typeface rainbow-active rainbow-active-noanim elv-externalexempt">Certify Me</button>
 </form>

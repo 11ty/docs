@@ -1,9 +1,9 @@
 .subhed {
-	font-family: system-ui, sans-serif;
-	font-size: 0.9375em; /* 15px /16 */
+	font-family: Cera Round Pro, system-ui, sans-serif;
+	font-size: 1em;
 	line-height: 1;
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: 0.125em; /* 2px /16 */
 	margin: 0;
 	color: #666;
 	text-align: center;

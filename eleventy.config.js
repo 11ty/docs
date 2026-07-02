@@ -387,9 +387,9 @@ export default async function (eleventyConfig) {
 	// WebC migration: TODO remove this after full conversion
 	eleventyConfig.addPassthroughCopy({
 		"src/js/*.js": "js/",
+		"src/css/type/*": "css/fonts/", // cera round pro
 		"src/_includes/components/throbber.js": "js/throbber.js",
 		"src/_includes/components/throbber.css": "css/throbber.css",
-		"src/css/fonts/BenchNine-Bold-kern-latin.woff2": "css/fonts/benchnine-bold.woff2",
 		"src/css/fonts/RobotoMono-Regular-kern-latin.woff2": "css/fonts/robotomono-regular.woff2",
 		"src/css/fonts/RobotoMono-Regular-kern-latinext.woff2": "css/fonts/robotomono-regular-ext.woff2",
 		"src/opensearch.xml": "opensearch.xml",
@@ -420,8 +420,6 @@ export default async function (eleventyConfig) {
 	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", path.join(eleventyConfig.directories.output, "js/wa-copy-button.js"));
 
 	eleventyConfig.addPassthroughCopy("src/img");
-	eleventyConfig.addPassthroughCopy("src/blog/*.png");
-	eleventyConfig.addPassthroughCopy("src/blog/pretty-atom-feed-v3.xsl");
 	eleventyConfig.addPassthroughCopy("src/favicon.ico");
 	eleventyConfig.addPassthroughCopy({
 		"./node_modules/@awesome.me/webawesome/dist-cdn/": "/static/web-awesome/",

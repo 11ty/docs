@@ -8,7 +8,7 @@
 	</ul>
 	<ul class="list-bare">
 		<li><strong class="subhed">Built With</strong></li>
-		<li><em><i class="fa-brands fa-build-awesome"></i>Build Awesome v{{ eleventy.version }}</em></li>
+		<li><i class="fa-brands fa-build-awesome"></i>Build Awesome v{{ eleventy.version }}</li>
 		<li><is-land import="/js/time-difference.js" on:idle><time-difference live><em>Built <time datetime="{{ config.now | toISO }}">{{ config.now | newsDate }}</time></em></time-difference></is-land></li>
 		<li><strong class="subhed">Statistics</strong></li>
 {%- if github and github.stargazers %}

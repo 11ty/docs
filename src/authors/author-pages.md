@@ -41,7 +41,7 @@ let eleventyComputed = {
 
 ### Member of the [Eleventy Super Professional Business Network {% emoji "💼" %}](/super-professional-business-network/)
 
-<a href="{{ author.business_url }}" class="btn-primary benchnine rainbow-active rainbow-active-noanim elv-externalexempt">Let’s Do Business</a>
+<a href="{{ author.business_url }}" class="btn-primary brand-typeface rainbow-active rainbow-active-noanim elv-externalexempt">Let’s Do Business</a>
 {%- endif %}
 
 {%- set authorStarters = starters | sortObjectByOrder | findBy("author", author.name) %}

@@ -1,4 +1,4 @@
-<h2 class="mt-0" id="quick-start">Quick Start</h2>
+<h2 id="quick-start">Quick Start</h2>
 
 <p>Build Awesome requires a way to <a href="docs/javascript-runtime.webc">run JavaScript</a> on your computer and we recommend Node.js (version <node-minimum></node-minimum> or newer). You can check whether or not you have Node.js installed by running <code>node --version</code> in a Terminal. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If <code>node</code> is not found or it reports a version number below <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">install Node.js</a> before moving on.</p>
 

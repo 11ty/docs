@@ -26,4 +26,4 @@ a.btn-primary:hover {
 }
 </style>
 
-<a href="/docs/" class="btn-primary benchnine rainbow-active">Documentation</a>
+<a href="/docs/" class="btn-primary brand-typeface rainbow-active">Documentation</a>

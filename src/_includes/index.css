@@ -50,7 +50,7 @@ html {
 	overflow-y: scroll;
 }
 body {
-	font-family: system-ui, sans-serif;
+	font-family: Cera Round Pro, system-ui, sans-serif;
 	background-color: var(--background-color);
 	color: var(--color);
 	margin: 0;
@@ -169,6 +169,11 @@ main details[open] > summary {
 	margin: 0 0 1em;
 }
 
+.brand-typeface {
+	font-family: Cera Round Pro, system-ui, sans-serif;
+	font-weight: 700;
+}
+
 /* Headings */
 h1,
 h2,
@@ -177,9 +182,8 @@ h4,
 h5,
 .elv-hed,
 .elv-h2,
-.elv-h3,
-.benchnine {
-	font-family: BenchNine, system-ui, sans-serif;
+.elv-h3 {
+	font-family: Cera Round Pro, system-ui, sans-serif;
 	font-weight: 700;
 	text-wrap: pretty;
 }
@@ -198,6 +202,7 @@ main .elv-toc + #skip-content >  heading-anchors > h1:first-child {
 main .breadcrumb + h1,
 main h1:first-child,
 main .elv-toc + #skip-content >  heading-anchors > h1:first-child {
+	padding-block-end: .5em;
 	border-bottom: 1px solid #aaa;
 }
 @media (min-width: 55em) {
@@ -325,7 +330,7 @@ footer.elv-layout {
 		display: grid;
 		gap: 2rem;
 		grid-template-columns: var(--toc-sidebar-size) minmax(1px, 1fr);
-		padding: 1rem 1rem 2rem 1rem;
+		padding: 1.5rem 1rem 2rem 1rem;
 	}
 }
 

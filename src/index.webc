@@ -47,10 +47,10 @@ export function randomTestimonialLink(testimonials) {
 
 <h1>Build Awesome helps you build better web sites</h1>
 
-<p>Build Awesome is a lightweight developer tool to help you build web sites without getting in your way.</p>
+<p>Build Awesome is a tool to help you build fast web sites faster.</p>
 
 <ul>
-	<li>It’s <strong>fast</strong> and offers best-in-class build times for JavaScript site generators.</li>
+	<li>It’s <strong>fast</strong> with best-in-class build times for JavaScript site generators.</li>
 	<li>It generates fast web sites focused on reducing runtime JavaScript.</li>
 	<li>It’s <strong>lean</strong>: we decrease our dependency count with every release.</li>
 	<li>It’s <strong>secure</strong>: static web sites are the most secure web sites.</li>
@@ -160,7 +160,7 @@ tags: posts
 	<giant-docs-button></giant-docs-button>
 	<giant-docs-button-subtext></giant-docs-button-subtext>
 
-	<h2>Built With Eleventy</h2>
+	<h2>Built With Build Awesome</h2>
 
 	<sites-list>
 		<site-card :show-icons="true" webc:for="(key, site) in shuffle($data.builtwith)" webc:if="!site.disabled && site.featured" :featured="site.featured" :url="site.demo || site.url" :iconUrl="site.iconUrl" :name="site.name" :date="false"></site-card>
