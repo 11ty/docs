@@ -129,7 +129,7 @@ class Editor extends HTMLElement {
 .${Editor.classes.plaintext} {
 	display: flex;
 	font-size: inherit;
-	font-family: Roboto Mono, monospace;
+	font-family: Menlo,Monaco,Consolas,Courier New,monospace;
 	line-height: 1.5;
 	border: none;
 }
@@ -178,7 +178,7 @@ class Editor extends HTMLElement {
 }
 .toolbar,
 .${Editor.classes.plaintext} {
-	font-family: Roboto Mono, monospace;
+	font-family: Menlo,Monaco,Consolas,Courier New,monospace;
 	line-height: 1.428571428571; /* 20px /14 */
 }
 .toolbar {

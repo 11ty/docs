@@ -15,7 +15,7 @@ eleventyImport:
 # Blog
 
 {% if buildawesome.env.runMode == "serve" %}
-{% callout "warn" %}All <code>/blog/</code> pages redirect to 11ty.dev in production.{% endcallout %}
+{% callout "warn" %}Development warning: all <code>/blog/</code> pages (for this prerelease) redirect to 11ty.dev in production deploy.{% endcallout %}
 {% endif %}
 
 📢 [Subscribe to the **Eleventy News Feed**](/blog/feed.xml)

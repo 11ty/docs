@@ -38,8 +38,7 @@ table thead th a[href] {
 table .numeric {
 	white-space: nowrap;
 	text-align: right;
-	font-family: Roboto Mono, Consolas, Monaco, Andale Mono, Ubuntu Mono,
-		monospace;
+	font-family: Menlo,Monaco,Consolas,Courier New,monospace;
 }
 .numeric-down:not(.numeric-before, .numeric-after):before, /* default position before */
 .numeric-up:not(.numeric-before, .numeric-after):before, /* default position before */

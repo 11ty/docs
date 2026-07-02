@@ -6,8 +6,7 @@ pre {
 	line-height: 1.5;
 
 	overflow-x: auto;
-	font-family: Roboto Mono, Consolas, Monaco, Andale Mono, Ubuntu Mono,
-		monospace;
+	font-family: Menlo,Monaco,Consolas,Courier New,monospace;
 
 	-moz-tab-size: 2;
 	-o-tab-size: 2;

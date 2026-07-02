@@ -390,8 +390,6 @@ export default async function (eleventyConfig) {
 		"src/css/type/*": "css/fonts/", // cera round pro
 		"src/_includes/components/throbber.js": "js/throbber.js",
 		"src/_includes/components/throbber.css": "css/throbber.css",
-		"src/css/fonts/RobotoMono-Regular-kern-latin.woff2": "css/fonts/robotomono-regular.woff2",
-		"src/css/fonts/RobotoMono-Regular-kern-latinext.woff2": "css/fonts/robotomono-regular-ext.woff2",
 		"src/opensearch.xml": "opensearch.xml",
 	});
 
