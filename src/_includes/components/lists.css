@@ -195,11 +195,10 @@ main :is(h2, h3, p) a.buzzword {
 		color: #222;
 	}
 }
-h1 .numberflag,
-h2 .numberflag,
-h3 .numberflag,
-h4 .numberflag,
-h5 .numberflag {
+:is(h1, h2, h3, h4, h5):has(.numberflag) {
+	padding-block-end: 0;
+}
+:is(h1, h2, h3, h4, h5) .numberflag {
 	width: 1.4em;
 	height: 1.4em;
 }

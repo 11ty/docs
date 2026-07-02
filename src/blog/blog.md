@@ -14,6 +14,10 @@ eleventyImport:
 
 # Blog
 
+{% if buildawesome.env.runMode == "serve" %}
+{% callout "warn" %}All <code>/blog/</code> pages redirect to 11ty.dev in production.{% endcallout %}
+{% endif %}
+
 📢 [Subscribe to the **Eleventy News Feed**](/blog/feed.xml)
 
 _For extended Eleventy coverage, follow [`zachleat.com/web/eleventy`](https://www.zachleat.com/web/eleventy/)._
