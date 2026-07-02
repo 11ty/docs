@@ -47,17 +47,8 @@ export function randomTestimonialLink(testimonials) {
 
 <h1>Build Awesome helps you build better web sites</h1>
 
-<p>Build Awesome is a tool to help you build fast web sites faster.</p>
-
-<ul>
-	<li>It’s <strong>fast</strong> with best-in-class build times for JavaScript site generators.</li>
-	<li>It generates fast web sites focused on reducing runtime JavaScript.</li>
-	<li>It’s <strong>lean</strong>: we decrease our dependency count with every release.</li>
-	<li>It’s <strong>secure</strong>: static web sites are the most secure web sites.</li>
-	<li>It’s <strong>trusted</strong>.</li>
-	<li>It’s <strong>stable</strong>.</li>
-	<li>It’s <strong>scalable</strong>.</li>
-</ul>
+<p>Build Awesome is a developer tool to help you build fast web sites, faster. It features <strong>fast build times</strong> and generates <strong>fast web sites</strong> focused on reducing runtime JavaScript. It’s <strong>lean</strong>: we’ve been decreasing our dependency count with every major release since 2017.</p>
+<p>Build Awesome is <strong>secure</strong>. Choosing to generate a static web site is the most secure and resilient/scalable architecture for the modern agent-heavy web. It’s <strong>trusted</strong> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</p>
 
 <quick-start></quick-start>
 

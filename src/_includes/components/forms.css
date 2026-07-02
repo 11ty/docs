@@ -69,7 +69,7 @@ input[type="checkbox"] {
 }
 @media (min-width: 20em) {
 	.btn-primary {
-		font-size: 6vw;
+		font-size: 5vw;
 	}
 	.btn-primary-sm,
 	.btn-primary-standard {
@@ -97,7 +97,7 @@ input[type="checkbox"] {
 @media (min-width: 87.5em) {
 	/* 1400px */
 	.btn-primary {
-		font-size: 5.25em; /* 84px /16 */
+		font-size: 4em;
 	}
 }
 .btn-primary-nogrow {
