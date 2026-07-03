@@ -2,6 +2,6 @@
 	"url": "https://github.com/freshjuice-dev/electric-lime-11ty-starter",
 	"name": "Electric Lime",
 	"description": "Vibrant 11ty v3 starter with TailwindCSS v4, Alpine.js, Pagefind search, Shiki syntax highlighting, image optimization, and WCAG 2.1 AA accessibility",
-	"author": "freshjuice-dev",
+	"author": ["freshjuice-dev", "reatlat"],
 	"demo": "https://electric-lime-starter.freshjuice.dev/"
 }

@@ -207,13 +207,15 @@ function findBy(data, path, value) {
 			return false;
 		}
 
-		if (typeof value === "string") {
-			let valueLower = value.toLowerCase();
-			let dataLower = gotten.toLowerCase();
-			if (valueLower === dataLower) {
-				return true;
+		if (Array.isArray(gotten)) {
+			if (typeof value === "string") {
+				return gotten.some((item) => typeof item === "string" && item.localeCompare(value, undefined, { sensitivity: "base" }) === 0);
 			}
-			return false;
+			return gotten.includes(value);
+		}
+
+		if (typeof value === "string") {
+			return gotten.localeCompare(value, undefined, {sensitivity: "base"}) === 0;
 		}
 
 		return value === gotten;

@@ -2,6 +2,6 @@
 	"url": "https://github.com/freshjuice-dev/berry-blast-11ty-starter",
 	"name": "Berry Blast",
 	"description": "Modern 11ty v3 starter with TailwindCSS v4, Alpine.js, Pagefind search, Phosphor Icons, Shiki syntax highlighting, and WCAG 2.1 AA accessibility",
-	"author": "freshjuice-dev",
+	"author": ["freshjuice-dev", "reatlat"],
 	"demo": "https://berry-blast-starter.freshjuice.dev/"
 }
