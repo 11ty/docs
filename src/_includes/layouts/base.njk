@@ -166,6 +166,7 @@ let eleventyComputed = {
 		<script type="module" src="{% getBundleFileUrl 'js', 'async' %}"></script>
 {%- else %}
 		<script src="/js/eleventy.js" type="module"></script>
+		<script type="module" src="{% getBundleFileUrl 'js' %}"></script>
 {%- endif %}
 
 {#

@@ -24,6 +24,12 @@ headerClass: elv-header-default
 		{%- endif %}
 		<heading-anchors selector="h2,h3,h4">{{ content | safe }}</heading-anchors>
 	</div>
+	{# Just here to create a context for elv-local-toc, so it can be position: sticky #}
+	<div id="local-toc">
+		<div class="elv-local-toc">
+			{% renderTemplate "webc", { tocData: tocData } %}<local-toc :@toc-data="tocData" />{% endrenderTemplate %}
+		</div>
+	</div>
 </main>
 
 <footer class="elv-footer-wrap">
