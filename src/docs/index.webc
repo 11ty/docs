@@ -170,7 +170,10 @@ echo '# Heading' > README.md
 echo '<!doctype html><title>Page title</title><p>Hi</p>' | out-file -encoding utf8 'index.html'
 echo '# Heading' | out-file -encoding utf8 'README.md'
 </syntax-highlight>
-		<p>If the <code>out-file</code> command is not available in your Windows Terminal window (it’s PowerShell specific), use the Cross Platform method instead.</p>
+		<p>
+		If the <code>out-file</code> command is not available in your Windows Terminal window (it’s PowerShell specific), use the Cross Platform method instead.
+		When you use PowerShell in windows, you may need to change the execution policy using <code>Set-ExecutionPolicy Unrestricted</code> to ensure the smooth progress of the subsequent steps.
+		</p>
 	</div>
 	<div id="quickstart-os-all" role="tabpanel">
 <syntax-highlight language="bash">
