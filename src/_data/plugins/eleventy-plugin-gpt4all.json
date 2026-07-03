@@ -1,0 +1,5 @@
+{
+    "npm": "eleventy-plugin-gpt4all",
+    "description": "Use generative ai to generate your statics."
+}
+  
