@@ -45,7 +45,7 @@ export function randomTestimonialLink(testimonials) {
 }
 </script>
 
-<h1>Build Awesome helps you build better websites</h1>
+<h1>Build Awesome helps you build better websites.</h1>
 
 <p>Build Awesome is a developer tool to help you build <a href="/docs/performance/"><strong>fast websites</strong> even faster</a>.</p>
 
