@@ -17,10 +17,10 @@ Here’s the first command you can enter in your Terminal application to run Ele
 
 {% set usageCode %}
 # Searches the current directory, outputs to ./_site
-npx @11ty/eleventy
+npx @awesome.me/buildawesome
 
-# `npx @11ty/eleventy` is the same as:
-npx @11ty/eleventy --input=. --output=_site
+# `npx @awesome.me/buildawesome` is the same as:
+npx @awesome.me/buildawesome --input=. --output=_site
 {% endset %}
 <script type="module" src="/js/seven-minute-tabs.js"></script>
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -40,13 +40,13 @@ A hypothetical `template.md` in the current directory would be rendered to `_sit
 
 {% set usageFormatsCode %}
 # Use only a subset of template types
-npx @11ty/eleventy --formats=md,html,ejs
+npx @awesome.me/buildawesome --formats=md,html,ejs
 
 # Don’t process any formats
-npx @11ty/eleventy --formats=
+npx @awesome.me/buildawesome --formats=
 
 # Find out the most up-to-date list of commands (there are more)
-npx @11ty/eleventy --help
+npx @awesome.me/buildawesome --help
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -61,18 +61,18 @@ npx @11ty/eleventy --help
 
 * The default for `--formats=` changed in {{ "3.0.0-alpha.7" | coerceVersion }} from an alias of `*` to an empty set.
 
-### Re-run Eleventy when you save
+### Build when you save
 
 {% set usageServeCode %}
 # Add a web server to apply changes and
 # refresh automatically. We’ll also --watch for you.
-npx @11ty/eleventy --serve
+npx @awesome.me/buildawesome --serve
 
 # Change the web server’s port—use localhost:8081
-npx @11ty/eleventy --serve --port=8081
+npx @awesome.me/buildawesome --serve --port=8081
 
 # Watch and re-run when files change, without the web server.
-npx @11ty/eleventy --watch
+npx @awesome.me/buildawesome --watch
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -89,7 +89,7 @@ npx @11ty/eleventy --watch
 
 {% set usageQuietCode %}
 # Shhhhh—Don’t log so much to the console
-npx @11ty/eleventy --quiet
+npx @awesome.me/buildawesome --quiet
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -108,7 +108,7 @@ Runs without writing to the file system. Useful when [debugging](/docs/debugging
 
 {% set usageDryCode %}
 # Run Eleventy but don’t write any files
-npx @11ty/eleventy --dryrun
+npx @awesome.me/buildawesome --dryrun
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -125,7 +125,7 @@ npx @11ty/eleventy --dryrun
 
 {% set usageCfgCode %}
 # Override the default eleventy project config filename (.eleventy.js)
-npx @11ty/eleventy --config=myeleventyconfig.js
+npx @awesome.me/buildawesome --config=myeleventyconfig.js
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -146,13 +146,13 @@ Read more about [Configuration files](/docs/config.md).
 
 {% set usageJsonCode %}
 # Output a JSON structure (does not write to the file system)
-npx @11ty/eleventy --to=json
+npx @awesome.me/buildawesome --to=json
 
 # Output a Newline Deliminated JSON structure (does not write to the file system)
-npx @11ty/eleventy --to=ndjson
+npx @awesome.me/buildawesome --to=ndjson
 
 # Default behavior (Output to file system)
-npx @11ty/eleventy --to=fs
+npx @awesome.me/buildawesome --to=fs
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -171,15 +171,15 @@ Read more about [ndjson](https://github.com/ndjson/ndjson-spec).
 
 {% set usageIncrementalCode %}
 # *Repeat* builds only operate on files that have changed
-npx @11ty/eleventy --watch --incremental
-npx @11ty/eleventy --serve --incremental
+npx @awesome.me/buildawesome --watch --incremental
+npx @awesome.me/buildawesome --serve --incremental
 
 # Skip the initial full build with `--ignore-initial`
-npx @11ty/eleventy --serve --incremental --ignore-initial
+npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 
 # Pass in a template path, watch/serve not required
 # Added in {{ "3.0.0-alpha.14" | coerceVersion }}
-npx @11ty/eleventy --incremental=myfile.md
+npx @awesome.me/buildawesome --incremental=myfile.md
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -200,11 +200,11 @@ Be wary of any file changes that happened while Eleventy wasn’t running!
 
 {% set usageInitialCode %}
 # Don’t build when Eleventy starts, only build on file changes
-npx @11ty/eleventy --watch --ignore-initial
-npx @11ty/eleventy --serve --ignore-initial
+npx @awesome.me/buildawesome --watch --ignore-initial
+npx @awesome.me/buildawesome --serve --ignore-initial
 
 # Works great with Incremental
-npx @11ty/eleventy --serve --incremental --ignore-initial
+npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -227,9 +227,9 @@ You can use the `DEBUG` [environment variable](./environment-vars.md) to enable 
 		<a href="#usage-debugging-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
 		<a href="#usage-debugging-yarn" role="tab" data-tabs-persist="pkgmgr:yarn">yarn</a>
 	</div>
-	<div id="usage-debugging-npm" role="tabpanel">{{ "npx cross-env DEBUG=Eleventy:\* npx @11ty/eleventy --dryrun" | highlight("bash") | safe }}</div>
-	<div id="usage-debugging-pnpm" role="tabpanel">{{ "pnpm exec cross-env DEBUG=Eleventy:\* pnpm exec @11ty/eleventy --dryrun" | highlight("bash") | safe }}</div>
-	<div id="usage-debugging-yarn" role="tabpanel">{{ "yarn exec cross-env DEBUG=Eleventy:\* yarn exec @11ty/eleventy --dryrun" | highlight("bash") | safe }}</div>
+	<div id="usage-debugging-npm" role="tabpanel">{{ "npx cross-env DEBUG=Eleventy:\* npx @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
+	<div id="usage-debugging-pnpm" role="tabpanel">{{ "pnpm exec cross-env DEBUG=Eleventy:\* pnpm exec @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
+	<div id="usage-debugging-yarn" role="tabpanel">{{ "yarn exec cross-env DEBUG=Eleventy:\* yarn exec @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
 
 Learn more about [Eleventy’s Debug Mode log output](./debugging.md).
@@ -240,7 +240,7 @@ Yes, you can use the same `input` and `output` directories, like so:
 
 {% set usageSameDirsCode %}
 # Parse and write Markdown to HTML, respecting directory structure.
-npx @11ty/eleventy --input=. --output=. --formats=md
+npx @awesome.me/buildawesome --input=. --output=. --formats=md
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -259,7 +259,7 @@ npx @11ty/eleventy --input=. --output=. --formats=md
 ### Example: Process a Single File
 
 ```bash
-npx @11ty/eleventy --input=README.md --output=.
+npx @awesome.me/buildawesome --input=README.md --output=.
 ```
 
 Writes to `./README/index.html`.
