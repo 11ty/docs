@@ -53,9 +53,8 @@ export function randomTestimonialLink(testimonials) {
 	<li>It’s <strong>secure</strong> and <strong>resilient</strong>: with static web sites there is no runtime to fail in the middle of the night.</li>
 	<li>It’s <strong>lightweight</strong>: we’ve <a href="/blog/dependency-watch/">decreased our dependency count</a> with every major release since 2018.</li>
 	<li>It’s <strong>scalable</strong>: deploy with the most efficient architecture for the modern agent-heavy web.</li>
+	<li>It’s <a href="#why-should-you-use-build-awesome"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</li>
 </ul>
-
-<p>It’s <a href="#why-should-you-use-build-awesome"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</p>
 
 <p><strong>You should have a web site</strong> and Build Awesome can help you create your very own home on the web. <a href="/docs/">Get started!</a></p>
 
