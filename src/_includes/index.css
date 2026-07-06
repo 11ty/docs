@@ -254,6 +254,7 @@ h5,
 }
 :is(h1, h2, h3, h4, h5) code {
 	font-family: inherit;
+	font-kerning: none;
 }
 
 /* Lists */
