@@ -10,13 +10,13 @@ const eleventyNavigation = {
 ---
 <h1>Installing a JavaScript Runtime</h1>
 
-<p>To run Eleventy on your machine, you need at least one JavaScript Runtime (a program to run JavaScript code) installed on your computer. We recommend <a href="https://nodejs.org/">Node.js</a>.</p>
+<p>To run Build Awesome on your computer, you need at least one JavaScript Runtime (a program to run JavaScript code) installed on your computer. We recommend <a href="https://nodejs.org/">Node.js</a>.</p>
 
 <h2>Node.js</h2>
 
 <p>You can check whether or not you have Node.js installed by running <code>node --version</code> in a terminal application. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>)</p>
 
-<p>If the command is not found or it reports a number lower than <node-minimum></node-minimum>, you will need to head over to <a href="https://nodejs.org/en"><code>nodejs.org</code></a> to download and install <strong>Node.js version <node-minimum></node-minimum></strong> or higher (required by Eleventy <eleventy-version></eleventy-version>).</p>
+<p>If the command is not found or it reports a number lower than <node-minimum></node-minimum>, you will need to head over to <a href="https://nodejs.org/en"><code>nodejs.org</code></a> to download and install <strong>Node.js version <node-minimum></node-minimum></strong> or higher (required by Build Awesome <eleventy-version></eleventy-version>).</p>
 
 <p>For more advanced use cases (e.g. having multiple versions of Node.js installed simultaneously), it’s common to use tools like <a href="https://github.com/nvm-sh/nvm"><code>nvm</code></a> or <a href="https://github.com/Schniz/fnm"><code>fnm</code></a>. Platform-specific installation instructions for these tools are available at: <a href="https://nodejs.org/en/download"><code>nodejs.org/en/download</code></a>.</p>
 
@@ -28,34 +28,34 @@ const eleventyNavigation = {
 
 <h2>Deno</h2>
 
-<p>Eleventy runs great on <a href="https://deno.com/">Deno</a>. We support the latest major version of Deno. This can also be a great way to use <a href="/docs/languages/typescript/">TypeScript</a> and <a href="/docs/languages/jsx/">JSX</a> in your Eleventy projects.</p>
+<p>Build Awesome runs great on <a href="https://deno.com/">Deno</a>. We support the latest major version of Deno. This can also be a great way to use <a href="/docs/languages/typescript/">TypeScript</a> and <a href="/docs/languages/jsx/">JSX</a> in your projects.</p>
 
 <p>You can check whether or not you have Deno installed by running <code>deno --version</code> in a terminal application. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>)</p>
 
-<p>You’ll run Eleventy on Deno using one of these commands:</p>
+<p>You’ll run Build Awesome on Deno using one of these commands:</p>
 
 <syntax-highlight language="shell">
-deno --allow-all npm:@11ty/eleventy
-deno --allow-all npm:@11ty/eleventy --serve
+deno --allow-all npm:@awesome.me/buildawesome
+deno --allow-all npm:@awesome.me/buildawesome --serve
 </syntax-highlight>
 
-<p>Read about our plans to <a href="https://github.com/11ty/eleventy/issues/3278">move away from <code>--allow-all</code> on #3278</a>.</p>
+<p>Read about our plans to <a href="https://github.com/11ty/buildawesome/issues/3278">move away from <code>--allow-all</code> on #3278</a>.</p>
 
 <h3>Deno v2.6+</h3>
 
 <p>If you're on <a href="https://deno.com/blog/v2.6">Deno 2.6</a> or higher you can also use <code>deno x</code> (which includes an implied <code>--allow-all</code> and <code>npm:</code> by default):</p>
 
 <syntax-highlight language="shell">
-deno x @11ty/eleventy
-deno x @11ty/eleventy --serve
+deno x @awesome.me/buildawesome
+deno x @awesome.me/buildawesome --serve
 </syntax-highlight>
 
 <p>Alternatively, you can use <code>dx</code> (after running <code>deno x --install-alias</code>):</p>
 <syntax-highlight language="shell">
-dx @11ty/eleventy
-dx @11ty/eleventy --serve
+dx @awesome.me/buildawesome
+dx @awesome.me/buildawesome --serve
 </syntax-highlight>
 
 <h2>Web Browsers</h2>
 
-<div class="elv-callout elv-callout-info"><div class="elv-callout-c">We’re working on a feature to run Eleventy v4 in your web browser (this won’t require any installation or terminal windows). Stay tuned!</div></div>
+<div class="elv-callout elv-callout-info"><div class="elv-callout-c">We’re working on a feature to run Build Awesome in your web browser (this won’t require any installation or terminal windows). Stay tuned!</div></div>

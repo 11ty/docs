@@ -27,10 +27,10 @@ Take care with the HTML template type when using the same <code>--input</code> a
 If you run Eleventy more than once, it’ll try to process your output files too which may result in duplicate template errors.
 
 {%- set codeBlock %}{% raw %}
-$ npx @11ty/eleventy --input=. --output=. --formats=md,html
+$ npx @awesome.me/buildawesome --input=. --output=. --formats=md,html
 Writing ./README/index.html from ./README.md
 
-$ npx @11ty/eleventy --input=. --output=. --formats=md,html
+$ npx @awesome.me/buildawesome --input=. --output=. --formats=md,html
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 

@@ -79,6 +79,6 @@ module.exports = function($config) {
 Now run Eleventy and tell it to process `11ty.jsx` and `11ty.tsx` files:
 
 {%- set codeBlock %}
-npx @11ty/eleventy --formats=11ty.jsx,11ty.tsx
+npx @awesome.me/buildawesome --formats=11ty.jsx,11ty.tsx
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}

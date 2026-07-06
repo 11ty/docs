@@ -14,16 +14,16 @@ A build-time application of `<base>` to HTML (without relying on `<base>`) by mo
 
 - Read about [HTML’s `<base>` element on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)
 
-If you want to deploy your project in a different directory without changing the content, Eleventy provides a [Path Prefix feature to specify the target directory](/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix).
+If you want to deploy your project in a different directory without changing the content, Build Awesome provides a [Path Prefix feature to specify the target directory](/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix).
 
 - via `--pathprefix` on the command line
 - or via `pathPrefix` object key in your configuration file return object
 
-Historically, we then recommended to use the provided [`url` filter](/docs/filters/url/) in your templates to transform any local URL with the path prefix. The downside of this method was that it required you to remember and opt-in every URL transformation in your content!
+Previously, we would then tell folks to use the provided [`url` filter](/docs/filters/url/) in your templates to transform any local URL with the path prefix. The downside of this method was that it required you to remember and opt-in every URL transformation in your content!
 
 ## The New Way: HTML `<base>` Plugin
 
-With this new plugin, you no longer need to use the `url` filter in your HTML content. This plugin adds an [Eleventy Transform](/docs/config/#transforms) that will modify your HTML output and inject your Path Prefix in your template content.
+With this new plugin, you no longer need to use the `url` filter in your HTML content. This plugin adds a [Build Awesome Transform](/docs/config/#transforms) that will modify your HTML output and inject your Path Prefix in your template content.
 
 - Behind the scenes, this plugin transforms URLs found in `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and [a whole bunch more](https://github.com/11ty/eleventy-posthtml-urls/blob/6e064c8a03174835eb15afbb5b759fecd696f901/lib/defaultOptions.js#L12-L33) (via [posthtml-urls](https://github.com/11ty/posthtml-urls)).
 
@@ -37,9 +37,9 @@ You can, if you’d like! Some folks have found it to be a bit [unreliable]({{ "
 
 ### Installation
 
-{% addedin "2.0.0-canary.15" %} This plugin is bundled with Eleventy 2.0 (no extra installation is required). It works with all template languages (via an Eleventy Transform) and some of the advanced usage filters require async-friendly template syntax (Nunjucks, Liquid, and JavaScript).
+{% addedin "2.0.0-canary.15" %} This plugin is bundled with Build Awesome (Eleventy) 2.0 (no extra installation is required). It works with all template languages (via a Build Awesome Transform) and some of the advanced usage filters require async-friendly template syntax (Nunjucks, Liquid, and JavaScript).
 
-Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
+Open up your configuration file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% include "snippets/plugins/base-install.njk" %}
 

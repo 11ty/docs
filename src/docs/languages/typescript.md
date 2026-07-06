@@ -42,7 +42,7 @@ You can optionally use an Array `["11ty.ts", "11ty.cts", "11ty.mts"]` instead of
 
 {% addedin "3.0.0-alpha.11" %}Alternatively, you can use [`tsx`]({{ externalLinks.tsxNodeUse }}) to process `.11ty.jsx`, `.11ty.ts`, and `.11ty.tsx` files.
 
-{% callout "info", "md" %}This approach requires ESM (read more at [Issue #3304](https://github.com/11ty/eleventy/issues/3304)). This means your project `package.json` must contain `"type": "module"` or your configuration file must use the `.mjs` file extension, e.g. `eleventy.config.mjs`. Read more about [CommonJS versus ESM](../cjs-esm.md).{% endcallout %}
+{% callout "info", "md" %}This approach requires ESM (read more at [Issue #3304](https://github.com/11ty/eleventy/issues/3304)). This means your project `package.json` must contain `"type": "module"` or your configuration file must use the `.mjs` file extension, e.g. `buildawesome.config.mjs`. Read more about [CommonJS versus ESM](../cjs-esm.md).{% endcallout %}
 
 <div class="codetitle">buildawesome.config.js</div>
 {%- set codeBlock %}
@@ -68,14 +68,14 @@ export default function ($config) {
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
 
-Now Eleventy will find and process `**/*.11ty.{jsx,ts,tsx}` files.
+Now Build Awesome will find and process `**/*.11ty.{jsx,ts,tsx}` files.
 
 ## Using a TypeScript Configuration File
 
 {% addedin "3.0.0-alpha.11" %}Here we use [Node.js’ type stripping feature](https://nodejs.org/api/typescript.html) (available in Node 22.6+) to use a TypeScript configuration file.
 
 {%- set codeBlock %}
-npx @11ty/eleventy --config=eleventy.config.ts
+npx @awesome.me/buildawesome --config=buildawesome.config.ts
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
@@ -84,7 +84,7 @@ npx @11ty/eleventy --config=eleventy.config.ts
 You can use `tsx` to process your configuration file too, just run it directly like so:
 
 {%- set codeBlock %}
-npx tsx ./node_modules/.bin/eleventy --config=eleventy.config.ts
+npx tsx ./node_modules/.bin/eleventy --config=buildawesome.config.ts
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
@@ -116,6 +116,6 @@ module.exports = function($config) {
 Now run Eleventy and tell it to process `11ty.ts` and `11ty.tsx` files:
 
 {%- set codeBlock %}
-npx @11ty/eleventy --formats=11ty.ts,11ty.tsx
+npx @awesome.me/buildawesome --formats=11ty.ts,11ty.tsx
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}

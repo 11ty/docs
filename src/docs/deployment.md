@@ -92,7 +92,7 @@ webides:
 
 Now that you’ve built a website with Eleventy _(even if it’s one HTML page!)_ you might be ready to put it on the web for everyone to see! There are a bunch of different ways to do it!
 
-A standard Eleventy build (e.g. [running `npx @11ty/eleventy`](/docs/usage/)) is a **production-ready build by default**. Eleventy doesn’t change its build behavior internally for development versus production.
+A standard Eleventy build (e.g. [running `npx @awesome.me/buildawesome`](/docs/usage/)) is a **production-ready build by default**. Eleventy doesn’t change its build behavior internally for development versus production.
 
 If you want to customize Eleventy to do your own local development/production optimizations, [environment variables](/docs/environment-vars/) are a common solution to accomplish that goal.
 
@@ -188,7 +188,7 @@ Includes persisted cache across builds.
 3. In your project’s package.json, make sure the `build-ghpages` script has the `--pathprefix=` parameter set to your repository name.
 ```json
 "scripts": {
-	"build-ghpages": "npx @11ty/eleventy --pathprefix=/YOUR_REPO_NAME/",
+	"build-ghpages": "npx @awesome.me/buildawesome --pathprefix=/YOUR_REPO_NAME/",
 }
 ```
 4. _Exception:_ When using a Custom domain (example.com) with GitHub Pages, deploying to `example.com/` instead of `*.github.io/YOUR_REPO_NAME/` make sure to remove the `--pathprefix` parameter entirely. e.g. `"build-ghpages": "npx @awesome.me/buildawesome",`

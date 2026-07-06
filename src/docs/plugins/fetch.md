@@ -328,6 +328,6 @@ Fetch.concurrency = 4; // default is 10
 ### DEBUG mode
 
 {%- set codeBlock %}{% raw %}
-DEBUG=Eleventy:Fetch npx @11ty/eleventy
+DEBUG=Eleventy:Fetch npx @awesome.me/buildawesome
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}

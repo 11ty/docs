@@ -30,21 +30,21 @@ For private keys and other sensitive information, you’ll want to create a `.en
 #### macOS or Linux (et al)
 
 {%- set codeBlock %}
-MY_ENVIRONMENT=production npx @11ty/eleventy
+MY_ENVIRONMENT=production npx @awesome.me/buildawesome
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
 #### Windows cmd.exe
 
 {%- set codeBlock %}
-set MY_ENVIRONMENT=production & npx @11ty/eleventy
+set MY_ENVIRONMENT=production & npx @awesome.me/buildawesome
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
 #### Windows Powershell (default in VS Code)
 
 {%- set codeBlock %}
-$env:MY_ENVIRONMENT="production"; npx @11ty/eleventy
+$env:MY_ENVIRONMENT="production"; npx @awesome.me/buildawesome
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
@@ -98,24 +98,24 @@ Node.js supports a [`NODE_DISABLE_COLORS` environment variable](https://nodejs.o
 	</div>
 	<div id="disable-colors-nix" role="tabpanel">
 {%- set codeBlock %}{% raw %}
-NODE_DISABLE_COLORS=1 npx @11ty/eleventy
+NODE_DISABLE_COLORS=1 npx @awesome.me/buildawesome
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 	</div>
 	<div id="disable-colors-win" role="tabpanel">
 {%- set codeBlock %}
-$env:NODE_DISABLE_COLORS="1"; npx @11ty/eleventy
+$env:NODE_DISABLE_COLORS="1"; npx @awesome.me/buildawesome
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 		<p>Or with the older <code>cmd.exe</code>:</p>
 {%- set codeBlock %}
-set NODE_DISABLE_COLORS=1 & npx @11ty/eleventy
+set NODE_DISABLE_COLORS=1 & npx @awesome.me/buildawesome
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 	</div>
 	<div id="disable-colors-all" role="tabpanel">
 {%- set codeBlock %}
-npx cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy
+npx cross-env NODE_DISABLE_COLORS=1 npx @awesome.me/buildawesome
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 		<p>Use the <a href="https://github.com/kentcdodds/cross-env"><code>cross-env</code> package</a> to compatibly set your environment variables cross-platform.</p>

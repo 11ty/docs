@@ -33,13 +33,13 @@ Learn more about [environment variables for debug output](/docs/debugging/#comma
 ### macOS or Linux (et al)
 
 ```bash
-DEBUG=Eleventy:Benchmark* npx @11ty/eleventy
+DEBUG=BuildAwesome:Benchmark* npx @awesome.me/buildawesome
 ```
 
 ### Windows
 
 ```bash
-set DEBUG=Eleventy:Benchmark* & npx @11ty/eleventy
+set DEBUG=BuildAwesome:Benchmark* & npx @awesome.me/buildawesome
 ```
 
 ### Aggregate Benchmarks
@@ -64,13 +64,13 @@ The most reliable mechanism for tracking down performance issues in any Node.js 
 
 ```sh
 # Instead of:
-# npx @11ty/eleventy --quiet
+# npx @awesome.me/buildawesome --quiet
 
 # Use this:
-npx --node-options="--cpu-prof" @11ty/eleventy --quiet
+npx --node-options="--cpu-prof" @awesome.me/buildawesome --quiet
 
 # Alternatively, you can try this:
-# node --cpu-prof ./node_modules/.bin/eleventy --quiet
+# node --cpu-prof ./node_modules/.bin/buildawesome --quiet
 ```
 
 This will write a `CPU.***.cpuprofile` file to the same directory.

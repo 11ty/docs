@@ -76,7 +76,7 @@ export default function ($config) {
 Now run Eleventy and tell it to process `scss` files:
 
 ```sh
-npx @11ty/eleventy --formats=scss
+npx @awesome.me/buildawesome --formats=scss
 ```
 
 Alternatively, you can add `$config.addTemplateFormats("scss")` to your configuration file.

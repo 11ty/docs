@@ -53,7 +53,7 @@ export default function($config) {
 Now run Eleventy and tell it to process `mdx` files:
 
 {%- set codeBlock %}
-npx @11ty/eleventy --formats=mdx
+npx @awesome.me/buildawesome --formats=mdx
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
