@@ -47,11 +47,22 @@ export function randomTestimonialLink(testimonials) {
 
 <h1>Build Awesome helps you build better web sites</h1>
 
-<p>Build Awesome is a developer tool to help you build fast web sites, faster. It features <a href="/docs/performance/"><strong>fast build times</strong> and generates <strong>fast web sites</strong></a> focused on reducing runtime JavaScript. It’s <strong>lightweight</strong>: we’ve been <a href="/blog/dependency-watch/">decreasing our dependency count</a> with every major release since 2018.</p>
+<p>Build Awesome is a developer tool to help you build <a href="/docs/performance/"><strong>fast web sites</strong> even faster</a>.</p>
 
-<p>Build Awesome is <strong>secure</strong>. When you create a static web site with Build Awesome, there is no runtime that can fail in the middle of the night. It’s easy to host and is widely accepted as the most resilient and scalable architecture for the modern agent-heavy web. It’s <a href="#why-should-you-use-build-awesome"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</p>
+<ul>
+	<li>It’s <strong>secure</strong> and <strong>resilient</strong>: with static web sites there is no runtime to fail in the middle of the night.</li>
+	<li>It’s <strong>lightweight</strong>: we’ve <a href="/blog/dependency-watch/">decreased our dependency count</a> with every major release since 2018.</li>
+	<li>It’s <strong>scalable</strong>: deploy with the most efficient architecture for the modern agent-heavy web.</li>
+</ul>
+
+<p>It’s <a href="#why-should-you-use-build-awesome"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</p>
 
 <p><strong>You should have a web site</strong> and Build Awesome can help you create your very own home on the web. <a href="/docs/">Get started!</a></p>
+
+<!--- <ul>
+	<li>Build Awesome: runs on your computer.</li>
+	<li>Build Awesome Pro: run on our computers. (coming soon!)</li>
+</li> --->
 
 <quick-start></quick-start>
 
