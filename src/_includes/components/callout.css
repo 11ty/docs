@@ -22,6 +22,8 @@ header .elv-callout {
 	.elv-callout-c {
 		text-align: center;
 		text-wrap: balance;
+		max-width: calc(var(--layout-max) + 2rem);
+		margin-inline: auto;
 	}
 }
 main .elv-callout {
