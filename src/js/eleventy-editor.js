@@ -261,20 +261,20 @@ html {
 		let inputs = this.getInputsForGroup(groupName);
 		let configFn = await this.getConfiguration();
 		let elev = new Eleventy({
-			async config(eleventyConfig) {
+			async config($config) {
 				if(configFn) {
-					await configFn(eleventyConfig);
+					await configFn($config);
 				}
 
-				eleventyConfig.addEngine("liquid", Liquid);
-				eleventyConfig.addEngine("md", Markdown);
-				// eleventyConfig.addEngine("njk", Nunjucks);
+				$config.addEngine("liquid", Liquid);
+				$config.addEngine("md", Markdown);
+				// $config.addEngine("njk", Nunjucks);
 
-				// eleventyConfig.setMarkdownTemplateEngine(false);
-				// eleventyConfig.setHtmlTemplateEngine(false);
+				// $config.setMarkdownTemplateEngine(false);
+				// $config.setHtmlTemplateEngine(false);
 
 				for(let {inputFilename, content} of inputs) {
-					eleventyConfig.addTemplate(inputFilename, content);
+					$config.addTemplate(inputFilename, content);
 				}
 			}
 		});

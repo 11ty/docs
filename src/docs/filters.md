@@ -61,10 +61,10 @@ module.exports = function({name}) {
 Filters can be added using the [Configuration API](/docs/config/) and are available to multiple template engines, simultaneously. They are currently supported in JavaScript {% addedin "0.7.0" %}, Markdown, Nunjucks, Liquid, and WebC.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addFilter("makeUppercase", function(value) { /* … */ });
+export default function ($config) {
+	$config.addFilter("makeUppercase", function(value) { /* … */ });
 
-  eleventyConfig.addAsyncFilter("makeUppercase", async function(value) { /* … */ });
+  $config.addAsyncFilter("makeUppercase", async function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -88,9 +88,9 @@ We also provide a few universal filters, built-in:
 If you’d like to reuse existing filters, you can use the Configuration API’s `getFilter` method. When called with a valid filter name, it will return that filter’s callback function. It can be helpful when aliasing a filter to a different name, using a filter inside of your own filter, or using a filter inside of a shortcode.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("myCustomImage", function (url, alt) {
-		return `<img src="${eleventyConfig.getFilter("url")(url)}" alt="${alt}">`;
+export default function ($config) {
+	$config.addShortcode("myCustomImage", function (url, alt) {
+		return `<img src="${$config.getFilter("url")(url)}" alt="${alt}">`;
 	});
 };
 {% endset %}
@@ -101,18 +101,18 @@ export default function (eleventyConfig) {
 Eleventy has added a new universal filter API for asynchronous filters and extended the currently available `addFilter` method to be async-friendly.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Async universal filters add to:
 	// * Liquid
 	// * Nunjucks
 	// * JavaScript
 
-	eleventyConfig.addFilter("myFilter", async function (value) {
+	$config.addFilter("myFilter", async function (value) {
 		// do some Async work
 		return value;
 	});
 
-	eleventyConfig.addAsyncFilter("myFilter", async function (value) {
+	$config.addAsyncFilter("myFilter", async function (value) {
 		// do some Async work
 		return value;
 	});
@@ -134,9 +134,9 @@ A few Eleventy-specific data properties are available to filter callbacks.
 - `this.ctx` (Nunjucks-specific) {% addedin "3.0.0-canary.5" %}
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Make sure you’re not using an arrow function here: () => {}
-	eleventyConfig.addFilter("myFilter", function () {
+	$config.addFilter("myFilter", function () {
 		// this.page
 		// this.eleventy
 	});
@@ -152,13 +152,13 @@ There are many popular libraries to cache or memoize functions (filters, shortco
 
 Note that Eleventy 3.0 <!-- 3.0.0-alpha.15 --> ships with a memoization layer around the built-in [`slug`](/docs/filters/slug/), [`slugify`](/docs/filters/slugify/), and [`inputPathToUrl`](/docs/filters/inputpath-to-url/) filters.
 
-<div class="codetitle">eleventy.config.js</div>
+<div class="codetitle">buildawesome.config.js</div>
 
 {%- set codeBlock %}{% raw %}
 import memoize from "memoize";
 
-export default function(eleventyConfig) {
-	eleventyConfig.addFilter("htmlEntities", memoize(str => {
+export default function($config) {
+	$config.addFilter("htmlEntities", memoize(str => {
 		return encode(str);
 	}));
 };
@@ -170,19 +170,19 @@ export default function(eleventyConfig) {
 Filters can also be specified individually for one or more template engines. (The `addFilter` function is actually an alias for calling all of these functions.)
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Liquid Filter (async-friendly)
-  eleventyConfig.addLiquidFilter("myFilter", async function(value) { /* … */ });
+  $config.addLiquidFilter("myFilter", async function(value) { /* … */ });
 
   // Nunjucks Filter
-  eleventyConfig.addNunjucksFilter("myFilter", function(value) { /* … */ });
+  $config.addNunjucksFilter("myFilter", function(value) { /* … */ });
 
   // Nunjucks Async Filter
   // Read the Nunjucks docs before using this (link below)
-  eleventyConfig.addNunjucksAsyncFilter("myFilter", function() { /* … */ });
+  $config.addNunjucksAsyncFilter("myFilter", function() { /* … */ });
 
   // JavaScript Template Function (async-friendly)
-  eleventyConfig.addJavaScriptFunction("myFilter", async function(value) { /* … */ });
+  $config.addJavaScriptFunction("myFilter", async function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

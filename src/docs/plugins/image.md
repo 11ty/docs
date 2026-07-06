@@ -56,8 +56,8 @@ There are a few different ways to use Eleventy image:
 {% set codeContent %}
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(eleventyImageTransformPlugin);
+export default function ($config) {
+	$config.addPlugin(eleventyImageTransformPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -96,8 +96,8 @@ Any of the [configuration options](#options) can be defined when you add the plu
 {% set codeContent %}
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+export default function ($config) {
+	$config.addPlugin(eleventyImageTransformPlugin, {
 		// output image formats
 		formats: ["avif", "webp", "jpeg"],
 
@@ -166,7 +166,7 @@ console.assert(stats1 === stats2, "The same promise");
 <details>
 <summary>Example of in-memory cache (returns a new promise with different options)</summary>
 
-{% codetitle "eleventy.config.js" %}
+{% codetitle "buildawesome.config.js" %}
 
 ```js
 import Image from "@11ty/eleventy-img";

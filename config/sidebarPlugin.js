@@ -24,14 +24,14 @@ const navBreadcrumbsFn = memoize(function(key) {
 	return navigation.findBreadcrumbs(this.ctx.collections.all, key, {includeSelf: true})
 });
 
-export default function(eleventyConfig) {
+export default function($config) {
 
-	eleventyConfig.on("eleventy.after", () => {
+	$config.on("eleventy.after", () => {
 		memoizeClear(navFn);
 		memoizeClear(navFilteredFn);
 		memoizeClear(navBreadcrumbsFn);
 	})
-	eleventyConfig.addFilter("nav", navFn);
-	eleventyConfig.addFilter("navFiltered", navFilteredFn);
-	eleventyConfig.addFilter("navBreadcrumbs", navBreadcrumbsFn);
+	$config.addFilter("nav", navFn);
+	$config.addFilter("navFiltered", navFilteredFn);
+	$config.addFilter("navBreadcrumbs", navBreadcrumbsFn);
 };

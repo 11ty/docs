@@ -40,13 +40,13 @@ Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-plugin-inclusive
 npm install @11ty/eleventy-plugin-inclusive-language
 ```
 
-Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
+Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% set codeContent %}
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(inclusiveLangPlugin);
+export default function ($config) {
+	$config.addPlugin(inclusiveLangPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -60,8 +60,8 @@ Optionally pass in an options object as the second argument to `addPlugin` to fu
 {% set codeContent %}
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(inclusiveLangPlugin, {
+export default function ($config) {
+	$config.addPlugin(inclusiveLangPlugin, {
 		templateFormats: ["md"], // default, add more file extensions here
 
 		// accepts an array or a comma-delimited string

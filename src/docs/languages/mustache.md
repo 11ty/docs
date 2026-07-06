@@ -40,8 +40,8 @@ Add to your configuration file:
 {% set codeContent %}
 import mustachePlugin from "@11ty/eleventy-plugin-mustache";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(mustachePlugin);
+export default function ($config) {
+	$config.addPlugin(mustachePlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -52,8 +52,8 @@ Use more options:
 import mustache from "mustache";
 import mustachePlugin from "@11ty/eleventy-plugin-mustache";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(mustachePlugin, {
+export default function ($config) {
+	$config.addPlugin(mustachePlugin, {
 		// Override the `mustache` library instance
 		eleventyLibraryOverride: mustache,
 	});

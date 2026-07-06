@@ -1,29 +1,29 @@
 {%- set tabid = "addfiles" %}
-<div class="codetitle codetitle-right-md">eleventy.config.js</div>
+<div class="codetitle codetitle-right-md">buildawesome.config.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
 <seven-minute-tabs class="tabs-flush" persist sync>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
     <div data-filter-code="css">
 {%- set codeBlock %}
-export default function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("bundle.css");
+export default function($config) {
+  $config.addPassthroughCopy("bundle.css");
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="font">
 {%- set codeBlock %}
-export default function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("font.woff2");
+export default function($config) {
+  $config.addPassthroughCopy("font.woff2");
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="js">
 {%- set codeBlock %}
-export default function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("bundle.js");
+export default function($config) {
+  $config.addPassthroughCopy("bundle.js");
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -32,24 +32,24 @@ export default function(eleventyConfig) {
   <div id="{{ tabid }}-jscjs" role="tabpanel">
     <div data-filter-code="css">
 {%- set codeBlock %}
-module.exports = function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("bundle.css");
+module.exports = function($config) {
+  $config.addPassthroughCopy("bundle.css");
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="font">
 {%- set codeBlock %}
-module.exports = function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("font.woff");
+module.exports = function($config) {
+  $config.addPassthroughCopy("font.woff");
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="js">
 {%- set codeBlock %}
-module.exports = function(eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("bundle.js");
+module.exports = function($config) {
+  $config.addPassthroughCopy("bundle.js");
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}

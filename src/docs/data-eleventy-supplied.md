@@ -202,8 +202,8 @@ Starting in Eleventy 3.0, the `pkg`, `eleventy`, `page`, `content`, and `collect
 You can temporarily opt-out of the behavior using:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.setFreezeReservedData(false);
+export default function($config) {
+	$config.setFreezeReservedData(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

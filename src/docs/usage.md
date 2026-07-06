@@ -9,11 +9,11 @@ eleventyNavigation:
 # Command Line Usage
 
 {% callout "info", "md-block", "Prerequisites" %}
-1. Eleventy runs in a Terminal application. [_Well, wait—what is a Terminal?_](/docs/terminal-window/)
-1. Have you already [installed Eleventy](/docs/#step-2-install-eleventy)?
+1. Build Awesome runs in a Terminal application. [_Well, wait—what is a Terminal?_](/docs/terminal-window/)
+1. Have you already [installed Build Awesome](/docs/#step-2-install-build-awesome)?
 {% endcallout %}
 
-Here’s the first command you can enter in your Terminal application to run Eleventy:
+Here’s the first command you can enter in your Terminal application to run Build Awesome:
 
 {% set usageCode %}
 # Searches the current directory, outputs to ./_site
@@ -107,7 +107,7 @@ npx @awesome.me/buildawesome --quiet
 Runs without writing to the file system. Useful when [debugging](/docs/debugging/).
 
 {% set usageDryCode %}
-# Run Eleventy but don’t write any files
+# Run but don’t write any files
 npx @awesome.me/buildawesome --dryrun
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -124,8 +124,8 @@ npx @awesome.me/buildawesome --dryrun
 ### `--config` to Change the Config file name
 
 {% set usageCfgCode %}
-# Override the default eleventy project config filename (.eleventy.js)
-npx @awesome.me/buildawesome --config=myeleventyconfig.js
+# Override the default configuration filename (buildawesome.config.js)
+npx @awesome.me/buildawesome --config=myconfig.js
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -140,16 +140,13 @@ npx @awesome.me/buildawesome --config=myeleventyconfig.js
 
 Read more about [Configuration files](/docs/config.md).
 
-{% addedin "v3.0.0-alpha.18" %}If your specified `--config` file does not exist, Eleventy will throw an error.
+{% addedin "v3.0.0-alpha.18" %}If your specified `--config` file does not exist, Build Awesome will throw an error.
 
 ### `--to` can output JSON {% addedin "1.0.0" %}
 
 {% set usageJsonCode %}
 # Output a JSON structure (does not write to the file system)
 npx @awesome.me/buildawesome --to=json
-
-# Output a Newline Deliminated JSON structure (does not write to the file system)
-npx @awesome.me/buildawesome --to=ndjson
 
 # Default behavior (Output to file system)
 npx @awesome.me/buildawesome --to=fs
@@ -164,8 +161,6 @@ npx @awesome.me/buildawesome --to=fs
 	<div id="usage-json-pnpm" role="tabpanel">{{ usageJsonCode | packageManagerCodeTransform("pnpm") | highlight("bash") | safe }}</div>
 	<div id="usage-json-yarn" role="tabpanel">{{ usageJsonCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
-
-Read more about [ndjson](https://github.com/ndjson/ndjson-spec).
 
 ### `--incremental` for Partial Incremental Builds
 
@@ -194,12 +189,12 @@ npx @awesome.me/buildawesome --incremental=myfile.md
 
 Read more about [incremental builds](/docs/usage/incremental/). Related [GitHub #3324](https://github.com/11ty/eleventy/issues/3324)
 
-### `--ignore-initial` to run Eleventy without an Initial Build {% addedin "2.0.0-canary.25" %}
+### `--ignore-initial` to skip the Initial Build {% addedin "2.0.0-canary.25" %}
 
-Be wary of any file changes that happened while Eleventy wasn’t running!
+Be wary of any file changes that happened while Build Awesome wasn’t running!
 
 {% set usageInitialCode %}
-# Don’t build when Eleventy starts, only build on file changes
+# Don’t build when Build Awesome starts, only listen for future file changes
 npx @awesome.me/buildawesome --watch --ignore-initial
 npx @awesome.me/buildawesome --serve --ignore-initial
 
@@ -217,9 +212,9 @@ npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 	<div id="usage-initial-yarn" role="tabpanel">{{ usageInitialCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
 
-### Deeper insight into Eleventy Internals
+### Deeper insight into Internals
 
-You can use the `DEBUG` [environment variable](./environment-vars.md) to enable the [special debug log output](./debugging.md), allowing deeper insight into Eleventy’s internals. For simplicity this example is using the [`cross-env`](https://github.com/kentcdodds/cross-env) package.
+You can use the `DEBUG` [environment variable](./environment-vars.md) to enable the [special debug log output](./debugging.md), allowing deeper insight into Build Awesome’s internals. For simplicity this example is using the [`cross-env`](https://github.com/kentcdodds/cross-env) package.
 
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -227,12 +222,12 @@ You can use the `DEBUG` [environment variable](./environment-vars.md) to enable 
 		<a href="#usage-debugging-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
 		<a href="#usage-debugging-yarn" role="tab" data-tabs-persist="pkgmgr:yarn">yarn</a>
 	</div>
-	<div id="usage-debugging-npm" role="tabpanel">{{ "npx cross-env DEBUG=Eleventy:\* npx @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
-	<div id="usage-debugging-pnpm" role="tabpanel">{{ "pnpm exec cross-env DEBUG=Eleventy:\* pnpm exec @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
-	<div id="usage-debugging-yarn" role="tabpanel">{{ "yarn exec cross-env DEBUG=Eleventy:\* yarn exec @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
+	<div id="usage-debugging-npm" role="tabpanel">{{ "npx cross-env DEBUG=BuildAwesome:\* npx @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
+	<div id="usage-debugging-pnpm" role="tabpanel">{{ "pnpm exec cross-env DEBUG=BuildAwesome:\* pnpm exec @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
+	<div id="usage-debugging-yarn" role="tabpanel">{{ "yarn exec cross-env DEBUG=BuildAwesome:\* yarn exec @awesome.me/buildawesome --dryrun" | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
 
-Learn more about [Eleventy’s Debug Mode log output](./debugging.md).
+Learn more about [Debug Mode log output](./debugging.md).
 
 ### Using the Same Input and Output
 
@@ -253,7 +248,7 @@ npx @awesome.me/buildawesome --input=. --output=. --formats=md
 	<div id="usage-same-yarn" role="tabpanel">{{ usageSameDirsCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
 
-{% callout "warn" %}Careful with <code>--formats=html</code> here! If you run Eleventy more than once, we will attempt to process your new output files as input files (which will throw errors). Read more at the <a href="/docs/languages/html/#using-the-same-input-and-output-directories">HTML template docs</a>.{% endcallout %}
+{% callout "warn" %}Careful with <code>--formats=html</code> here! If you run Build Awesome more than once, we will attempt to process your new output files as input files (which will throw errors). Read more at the <a href="/docs/languages/html/#using-the-same-input-and-output-directories">HTML template docs</a>.{% endcallout %}
 
 <!--
 ### Example: Process a Single File

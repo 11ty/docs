@@ -25,7 +25,7 @@ Everything you’ve added to project’s configuration file will also be availab
 
 ## Installation
 
-This plugin is bundled with Eleventy core so it doesn’t require additional installation. But you do have to add it to your configuration file (probably `eleventy.config.js`) with `addPlugin`:
+This plugin is bundled with Eleventy core so it doesn’t require additional installation. But you do have to add it to your configuration file (probably `buildawesome.config.js`) with `addPlugin`:
 
 {% include "snippets/plugins/renderinstall.njk" %}
 

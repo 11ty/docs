@@ -76,12 +76,12 @@ function isRecentPost(date) {
 	return (Date.now() - date.getTime()) < ONE_DAY*14;
 }
 
-export default function(eleventyConfig) {
-	eleventyConfig.addFilter("productionUrl", productionUrl);
+export default function($config) {
+	$config.addFilter("productionUrl", productionUrl);
 
 	// Resize and transform an image format, return URL to that image
 	// Supports Font Awesome icons via protocol handler (e.g. `fas:font-awesome-flag`)
-	eleventyConfig.addFilter("getOpengraphImageUrl", async function({ url, date }, screenshotCacheBustParam) {
+	$config.addFilter("getOpengraphImageUrl", async function({ url, date }, screenshotCacheBustParam) {
 		// skip optimization of recent posts that have a cache buster (we don’t want to screenshot pages that aren’t deployed yet)
 		if(isRecentPost(date) && screenshotCacheBustParam) {
 			return getScreenshotUrl(url, screenshotCacheBustParam);
@@ -99,12 +99,12 @@ export default function(eleventyConfig) {
 		return productionUrl(formatStats.url);
 	});
 
-	eleventyConfig.addPlugin(eleventyImageTransformPlugin, imageOptions);
+	$config.addPlugin(eleventyImageTransformPlugin, imageOptions);
 
 	if(IS_COPY_CACHE_FOLDER) {
 		// We aren’t using passthrough file copy here because it globs too early to catch files created during the build
-		eleventyConfig.on("eleventy.after", () => {
-			fs.cpSync(".cache/@11ty/img/", path.join(eleventyConfig.directories.output, "img/built/"), { recursive: true });
+		$config.on("eleventy.after", () => {
+			fs.cpSync(".cache/@11ty/img/", path.join($config.directories.output, "img/built/"), { recursive: true });
 		});
 	}
 };

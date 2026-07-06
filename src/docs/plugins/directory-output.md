@@ -15,21 +15,21 @@ Group and sort Eleventy’s verbose output by directory (and show file size with
 
 ## Installation
 
-- Compatible with Eleventy 1.0.0 and newer.
+- Compatible with Build Awesome/Eleventy 1.0.0 and newer.
 - [`eleventy-plugin-directory-output` on npm](https://www.npmjs.com/package/@11ty/eleventy-plugin-directory-output)
 
 ```
 npm install @11ty/eleventy-plugin-directory-output
 ```
 
-Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
+Open up your Build Awesome config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% set codeContent %}
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
-export default function (eleventyConfig) {
-	eleventyConfig.setQuietMode(true);
-	eleventyConfig.addPlugin(dirOutputPlugin);
+export default function ($config) {
+	$config.setQuietMode(true);
+	$config.addPlugin(dirOutputPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -43,9 +43,9 @@ Read more about [Eleventy plugins.](/docs/plugins/)
 {% set codeContent %}
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
-export default function (eleventyConfig) {
-	eleventyConfig.setQuietMode(true);
-	eleventyConfig.addPlugin(dirOutputPlugin, {
+export default function ($config) {
+	$config.setQuietMode(true);
+	$config.addPlugin(dirOutputPlugin, {
 		// Customize columns
 		columns: {
 			filesize: true, // Use `false` to disable

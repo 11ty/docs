@@ -23,14 +23,14 @@ secretNunjucksTemplates/anotherFolder/**/*.njk
 
 ## Configuration API {% addedin "1.0.0" %}
 
-You can programmatically add and delete ignores in your configuration file. `eleventyConfig.ignores` is a JavaScript [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#instance_methods).
+You can programmatically add and delete ignores in your configuration file. `$config.ignores` is a JavaScript [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set#instance_methods).
 
 The `ignores` Set starts with a default `**/node_modules/**` entry in Eleventy v2.0 (it was `node_modules/**` in v1.0).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.ignores.add("README.md");
-	eleventyConfig.ignores.delete("README.md");
+export default function ($config) {
+	$config.ignores.add("README.md");
+	$config.ignores.delete("README.md");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -54,12 +54,12 @@ Paths listed in your project’s `.gitignore` file are automatically ignored. Yo
 If you want to opt-out and search for templates inside of your `node_modules` folder, delete the entry using the Configuration API:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// in Eleventy 2.0
-	eleventyConfig.ignores.delete("**/node_modules/**");
+	$config.ignores.delete("**/node_modules/**");
 
 	// in Eleventy 1.0
-	eleventyConfig.ignores.delete("node_modules/**");
+	$config.ignores.delete("node_modules/**");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -84,11 +84,11 @@ We look for ignores in these files. Entries are relative to the ignore file’s 
 
 ## Opt-out of using `.gitignore` {% addedin "0.3.5" %}
 
-You can disable automatic use of your `.gitignore` file by using the Configuration API method: `eleventyConfig.setUseGitIgnore(false);`.
+You can disable automatic use of your `.gitignore` file by using the Configuration API method: `$config.setUseGitIgnore(false);`.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.setUseGitIgnore(false);
+export default function ($config) {
+	$config.setUseGitIgnore(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

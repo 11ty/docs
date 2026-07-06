@@ -30,8 +30,8 @@ _Read more detail on the [Eleventy Dev Server 1.0 release notes](https://github.
 You can configure the server with the new `setServerOptions` Configuration API method.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
+export default function($config) {
+	$config.setServerOptions({
 		// Default values are shown:
 
 		// Whether the live reload snippet is used
@@ -82,8 +82,8 @@ export default function(eleventyConfig) {
 <summary><strong>Expand to see the Full options list</strong></summary>
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
+export default function($config) {
+	$config.setServerOptions({
 		// Change the name of the folder name used for injected scripts
 		injectedScriptsFolder: ".11ty",
 
@@ -124,8 +124,8 @@ Try out the [`devcert-cli`](https://github.com/davewasmer/devcert-cli) package t
 {% addedin "3.0.0-alpha.7" %}{% addedin "Dev Server 2.0.0" %} Use the new `onRequest` object to configure some of your project to use on-request-time processing. The keys in this object represent strings from the [URL Pattern API](https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API).
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
+export default function($config) {
+	$config.setServerOptions({
 		onRequest: {
 			"/": function({ url }) {
 				// will fallback to serve static files if we return any falsy value other than ""
@@ -153,10 +153,10 @@ export default function(eleventyConfig) {
 Works great with the [`process.env.ELEVENTY_RUN_MODE` environment variable](/docs/environment-vars/#eleventy-supplied) to change how your server operates during`--serve` mode.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Intercept all requests during --serve mode.
 	if(process.env.ELEVENTY_RUN_MODE === "serve") {
-		eleventyConfig.setServerOptions({
+		$config.setServerOptions({
 			onRequest: {
 				"/*": function({ url }) {
 					// Don’t return any static files, only show a help message
@@ -171,7 +171,7 @@ export default function(eleventyConfig) {
 
 ## Advanced `chokidar` options
 
-Access to advanced `chokidar` configuration is available via the [`eleventyConfig.setChokidarConfig` method (on the Watch and Serve documentation)](/docs/watch-serve/#advanced-chokidar-configuration).
+Access to advanced `chokidar` configuration is available via the [`$config.setChokidarConfig` method (on the Watch and Serve documentation)](/docs/watch-serve/#advanced-chokidar-configuration).
 
 ## Swap back to Browsersync {% addedin "2.0.0" %}
 
@@ -187,8 +187,8 @@ npm install @11ty/eleventy-server-browsersync
 Then, enable it in your configuration file:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
+export default function($config) {
+	$config.setServerOptions({
 		module: "@11ty/eleventy-server-browsersync",
 
 		// Default Browsersync options shown:
@@ -213,7 +213,7 @@ View the [full list of Browsersync options](https://browsersync.io/docs/options)
 
 ### `setBrowserSyncConfig`
 
-`eleventyConfig.setBrowserSyncConfig` was the previous Configuration API method used in versions of Eleventy prior to v2. It was changed to be a no-op in Eleventy v2 (it has no functional purpose).
+`$config.setBrowserSyncConfig` was the previous Configuration API method used in versions of Eleventy prior to v2. It was changed to be a no-op in Eleventy v2 (it has no functional purpose).
 
 <!--Check out the previous version docs to learn how to:
 

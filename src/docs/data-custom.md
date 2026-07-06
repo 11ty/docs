@@ -20,9 +20,9 @@ Note that you can also add [Custom Front Matter Formats](/docs/data-frontmatter-
 ## Usage
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Receives file contents, return parsed data
-	eleventyConfig.addDataExtension("yml,yaml", (contents, filePath) => {
+	$config.addDataExtension("yml,yaml", (contents, filePath) => {
 		return {};
 	});
 };
@@ -35,9 +35,9 @@ export default function (eleventyConfig) {
 ### Usage with Options {% addedin "2.0.0-canary.10" %}
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// or with options (new in 2.0)
-	eleventyConfig.addDataExtension("fileExtension", {
+	$config.addDataExtension("fileExtension", {
 		parser: (contents, filePath) => ({}),
 
 		// defaults are shown:
@@ -61,8 +61,8 @@ Here we’re using the [`yaml` package](https://www.npmjs.com/package/yaml). Don
 {% set codeContent %}
 import YAML from "yaml";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("yaml", (contents) => YAML.parse(contents));
+export default function ($config) {
+	$config.addDataExtension("yaml", (contents) => YAML.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -74,8 +74,8 @@ Here we’re using the [`@iarna/toml` package](https://www.npmjs.com/package/@ia
 {% set codeContent %}
 import toml from "@iarna/toml";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
+export default function ($config) {
+	$config.addDataExtension("toml", (contents) => toml.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -87,8 +87,8 @@ export default function (eleventyConfig) {
 {% set codeContent %}
 import JSON5 from "json5";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("json5", (contents) => JSON5.parse(contents));
+export default function ($config) {
+	$config.addDataExtension("json5", (contents) => JSON5.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -96,8 +96,8 @@ export default function (eleventyConfig) {
 ### Adding a custom JSON file extension
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("geojson", (contents) => JSON.parse(contents));
+export default function ($config) {
+	$config.addDataExtension("geojson", (contents) => JSON.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -111,8 +111,8 @@ Note that the second argument is an object with a `parser` function.
 {% set codeContent %}
 import exifr from "exifr";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("png,jpeg", {
+export default function ($config) {
+	$config.addDataExtension("png,jpeg", {
 		parser: async (file) => {
 			let exif = await exifr.parse(file);
 
@@ -144,12 +144,12 @@ If you add multiple file extensions, the latter ones take priority over the earl
 import toml from "@iarna/toml";
 import yaml from "js-yaml";
 
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Lower priority
-	eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
+	$config.addDataExtension("toml", (contents) => toml.parse(contents));
 
 	// Higher priority
-	eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
+	$config.addDataExtension("yaml", (contents) => yaml.load(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -40,8 +40,8 @@ Next add your configuration:
 import path from "node:path";
 import * as sass from "sass";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addExtension("scss", {
+export default function ($config) {
+	$config.addExtension("scss", {
 		outputFileExtension: "css",
 
 		// opt-out of Eleventy Layouts
@@ -79,7 +79,7 @@ Now run Eleventy and tell it to process `scss` files:
 npx @11ty/eleventy --formats=scss
 ```
 
-Alternatively, you can add `eleventyConfig.addTemplateFormats("scss")` to your configuration file.
+Alternatively, you can add `$config.addTemplateFormats("scss")` to your configuration file.
 
 ## Community Contributions
 

@@ -29,13 +29,13 @@ npm install @11ty/eleventy-navigation
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
-Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
+Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% set codeContent %}
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(eleventyNavigationPlugin);
+export default function ($config) {
+	$config.addPlugin(eleventyNavigationPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

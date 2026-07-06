@@ -45,8 +45,8 @@ Add to your configuration file (ESM version shown):
 {% set codeContent %}
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(handlebarsPlugin);
+export default function ($config) {
+	$config.addPlugin(handlebarsPlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -58,8 +58,8 @@ Use more options:
 import handlebars from "handlebars";
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(handlebarsPlugin, {
+export default function ($config) {
+	$config.addPlugin(handlebarsPlugin, {
 		// Override the `ejs` library instance
 		eleventyLibraryOverride: handlebars,
 	});
@@ -102,8 +102,8 @@ Shortcodes are basically reusable bits of content. Handlebars makes use of exist
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-  eleventyConfig.addShortcode("user", function(name, twitterUsername) {
+export default function($config) {
+  $config.addShortcode("user", function(name, twitterUsername) {
     return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
@@ -139,8 +139,8 @@ export default function(eleventyConfig) {
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-  eleventyConfig.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
+export default function($config) {
+  $config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
     return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>

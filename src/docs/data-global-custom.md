@@ -16,9 +16,9 @@ The first value of `addGlobalData` is the key that will be available to your tem
 ## Literals
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Values can be static:
-	eleventyConfig.addGlobalData("myString", "myValue");
+	$config.addGlobalData("myString", "myValue");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -28,8 +28,8 @@ export default function (eleventyConfig) {
 The first argument can be any [lodash-set compatible path](https://lodash.com/docs/4.17.15#set):
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("myNestedObject.myString", "myValue");
+export default function ($config) {
+	$config.addGlobalData("myNestedObject.myString", "myValue");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -40,8 +40,8 @@ export default function (eleventyConfig) {
 Importantly, passing a `function` to `addGlobalData` will evaluate that function before setting the value to the data cascade (and is async-friendly).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("myDate", () => new Date());
+export default function ($config) {
+	$config.addGlobalData("myDate", () => new Date());
 
 	// myDate’s value will be a Date instance
 };
@@ -51,8 +51,8 @@ export default function (eleventyConfig) {
 If you want a `function` returned, make sure you nest it:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("myFunction", () => {
+export default function ($config) {
+	$config.addGlobalData("myFunction", () => {
 		return () => new Date();
 	});
 
@@ -64,8 +64,8 @@ export default function (eleventyConfig) {
 The above is important to know when using this API with [Computed Data](/docs/data-computed/#using-javascript):
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("eleventyComputed.myString", () => {
+export default function ($config) {
+	$config.addGlobalData("eleventyComputed.myString", () => {
 		return (data) => "This is a string!";
 	});
 
@@ -77,16 +77,16 @@ export default function (eleventyConfig) {
 ### Async/Promises
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// or a promise:
-	eleventyConfig.addGlobalData("myFunctionPromise", () => {
+	$config.addGlobalData("myFunctionPromise", () => {
 		return new Promise((resolve) => {
 			setTimeout(resolve, 100, "foo");
 		});
 	});
 
 	// or async:
-	eleventyConfig.addGlobalData("myAsyncFunction", async () => {
+	$config.addGlobalData("myAsyncFunction", async () => {
 		return Promise.resolve("hi");
 	});
 };

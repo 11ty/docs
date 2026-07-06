@@ -37,8 +37,8 @@ We use [Nunjucks defaults for all environment options](https://mozilla.github.io
 It’s recommended to use the Configuration API to override the default Nunjucks options.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.setNunjucksEnvironmentOptions({
+export default function ($config) {
+	$config.setNunjucksEnvironmentOptions({
 		throwOnUndefined: true,
 		autoescape: false, // warning: don’t do this!
 	});
@@ -55,12 +55,12 @@ While it is preferred and simpler to use the Options-specific API method above (
 {% set codeContent %}
 import Nunjucks from "nunjucks";
 
-export default function (eleventyConfig) {
+export default function ($config) {
 	let nunjucksEnvironment = new Nunjucks.Environment(
 		new Nunjucks.FileSystemLoader("_includes")
 	);
 
-	eleventyConfig.setLibrary("njk", nunjucksEnvironment);
+	$config.setLibrary("njk", nunjucksEnvironment);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -87,15 +87,15 @@ Filters are used to transform or modify content. You can add Nunjucks specific f
 Read more about [Nunjucks Filter syntax](https://mozilla.github.io/nunjucks/templating.html#filters).
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
   // Nunjucks Filter
-  eleventyConfig.addNunjucksFilter("myNjkFilter", function(value) { /* … */ });
+  $config.addNunjucksFilter("myNjkFilter", function(value) { /* … */ });
 
   // Nunjucks Asynchronous Filter (read on below)
-  eleventyConfig.addNunjucksAsyncFilter("myAsyncNjkFilter", function(value, callback) { /* … */ });
+  $config.addNunjucksAsyncFilter("myAsyncNjkFilter", function(value, callback) { /* … */ });
 
   // Universal filters (Adds to Liquid, Nunjucks, and 11ty.js)
-  eleventyConfig.addFilter("myFilter", function(value) { /* … */ });
+  $config.addFilter("myFilter", function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -113,9 +113,9 @@ export default function(eleventyConfig) {
 ### Multiple Filter Arguments
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Nunjucks Filter
-	eleventyConfig.addNunjucksFilter(
+	$config.addNunjucksFilter(
 		"concatThreeStrings",
 		function (arg1, arg2, arg3) {
 			return arg1 + arg2 + arg3;
@@ -138,8 +138,8 @@ export default function (eleventyConfig) {
 By default, almost all templating engines are synchronous. Nunjucks supports some asynchronous behavior, like filters. Here’s how that works:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addNunjucksAsyncFilter(
+export default function ($config) {
+	$config.addNunjucksAsyncFilter(
 		"myAsyncFilter",
 		function (value, callback) {
 			setTimeout(function () {
@@ -156,8 +156,8 @@ The last argument here is the callback function, the first argument of which is 
 Here’s a Nunjucks example with 2 arguments:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addNunjucksAsyncFilter(
+export default function ($config) {
+	$config.addNunjucksAsyncFilter(
 		"myAsyncFilter",
 		function (value1, value2, callback) {
 			setTimeout(function () {
@@ -178,12 +178,12 @@ Shortcodes are reusable bits of content. You can add Nunjucks specific shortcode
 ### Single Shortcode
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
   // Nunjucks Shortcode
-  eleventyConfig.addNunjucksShortcode("user", function(name, twitterUsername) { /* … */ });
+  $config.addNunjucksShortcode("user", function(name, twitterUsername) { /* … */ });
 
   // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addShortcode("user", function(name, twitterUsername) {
+  $config.addShortcode("user", function(name, twitterUsername) {
     return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
@@ -215,12 +215,12 @@ export default function(eleventyConfig) {
 ### Paired Shortcode
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
   // Nunjucks Shortcode
-  eleventyConfig.addPairedNunjucksShortcode("user", function(bioContent, name, twitterUsername) { /* … */ });
+  $config.addPairedNunjucksShortcode("user", function(bioContent, name, twitterUsername) { /* … */ });
 
   // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
+  $config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
     return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
@@ -260,9 +260,9 @@ Note that you can put any Nunjucks tags or content inside the `{% raw %}{% user 
 Creates a single argument object to pass to the shortcode.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Nunjucks Shortcode
-	eleventyConfig.addNunjucksShortcode("user", function (user) {
+	$config.addNunjucksShortcode("user", function (user) {
 		return `<div class="user">
 <div class="user_name">${user.name}</div>
 ${user.twitter ? `<div class="user_twitter">@${user.twitter}</div>` : ""}
@@ -319,15 +319,15 @@ Importantly, this syntax means that any of the arguments can be optional (withou
 Note that the configuration methods here to add asynchronous shortcodes are different than their synchronous counterparts. This is just another gentle reminder here that these API methods are pretty verbose and it’s probably easier to add a [Universal shortcode](/docs/shortcodes/) instead.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addNunjucksAsyncShortcode(
+export default function ($config) {
+	$config.addNunjucksAsyncShortcode(
 		"user",
 		async function (name, twitterUsername) {
 			return await fetchAThing();
 		}
 	);
 
-	eleventyConfig.addPairedNunjucksAsyncShortcode(
+	$config.addPairedNunjucksAsyncShortcode(
 		"user2",
 		async function (content, name, twitterUsername) {
 			return await fetchAThing();
@@ -393,8 +393,8 @@ You can access `page`, `eleventy`, `ctx`, and `env` in filters and shortcodes. R
 Nunjucks provides a custom way to [add globals](https://mozilla.github.io/nunjucks/api.html#addglobal) to templates. These can be any arbitrary JavaScript: functions, variables, etc. Note that this is not async-friendly (Nunjucks does not support `await` inside of templates).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addNunjucksGlobal("fortythree", 43);
+export default function ($config) {
+	$config.addNunjucksGlobal("fortythree", 43);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -408,8 +408,8 @@ export default function (eleventyConfig) {
 {% endraw %}
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addNunjucksGlobal("fortytwo", function () {
+export default function ($config) {
+	$config.addNunjucksGlobal("fortytwo", function () {
 		return 42;
 	});
 };

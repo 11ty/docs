@@ -19,19 +19,19 @@ If we want to copy additional files that are not Eleventy templates, we use a fe
 Use a configuration API method to specify _files_ or _directories_ for Eleventy to copy to the output folder.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Output directory: _site
 
 	// Copy `img/` to `_site/img/`
-	eleventyConfig.addPassthroughCopy("img");
+	$config.addPassthroughCopy("img");
 
 	// Copy `css/fonts/` to `_site/css/fonts/`
 	// Keeps the same directory structure.
-	eleventyConfig.addPassthroughCopy("css/fonts");
+	$config.addPassthroughCopy("css/fonts");
 
 	// Copy any .jpg file to `_site`, via Glob pattern
 	// Keeps the same directory structure.
-	eleventyConfig.addPassthroughCopy("**/*.jpg");
+	$config.addPassthroughCopy("**/*.jpg");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -52,12 +52,12 @@ For example:
 If we copy `src/img` using passthrough file copy, it will copy to `_site/img`.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Input directory: src
 	// Output directory: _site
 
 	// The following copies to `_site/img`
-	eleventyConfig.addPassthroughCopy("src/img");
+	$config.addPassthroughCopy("src/img");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -69,9 +69,9 @@ In this example, we copy all `jpg` image files to the output folder, maintaining
 Note that this method is slower than non-glob methods, as it searches the entire directory structure and copies each file individually.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Find and copy any `jpg` files, maintaining directory structure.
-	eleventyConfig.addPassthroughCopy("**/*.jpg");
+	$config.addPassthroughCopy("**/*.jpg");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -86,9 +86,9 @@ With an output directory of `_site`:
 Use the _HTML Relative Passthrough Copy Mode_ to copy files referenced in any template syntax that outputs to `.html`. [Issue #3573](https://github.com/11ty/eleventy/pull/3573)
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Relative to the project root directory
-	eleventyConfig.addPassthroughCopy("content/**/*.mp4", {
+	$config.addPassthroughCopy("content/**/*.mp4", {
 		mode: "html-relative"
 	});
 }
@@ -99,9 +99,9 @@ export default function(eleventyConfig) {
 <summary><strong>Full options list</strong></summary>
 
 {% set codeContent %}
-export default async function(eleventyConfig) {
+export default async function($config) {
 	// glob or Array of globs to match for copy
-	eleventyConfig.addPassthroughCopy("**/*.png", {
+	$config.addPassthroughCopy("**/*.png", {
 		mode: "html-relative",
 		paths: [], // additional fallback directories to look for source files
 		failOnError: true, // throw an error when a path matches (via `match`) but not found on file system
@@ -133,18 +133,18 @@ As a few example paths, with an output directory of `_site`:
 Instead of a string, pass in an object of the following structure: `{ "input": "target" }`.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Input directory: src
 	// Output directory: _site
 
 	// Copy `img/` to `_site/subfolder/img`
-	eleventyConfig.addPassthroughCopy({ img: "subfolder/img" });
+	$config.addPassthroughCopy({ img: "subfolder/img" });
 
 	// Copy `src/img/` to `_site/subfolder/img`
-	eleventyConfig.addPassthroughCopy({ "src/img": "subfolder/img" });
+	$config.addPassthroughCopy({ "src/img": "subfolder/img" });
 
 	// Copy `random-folder/img/` to `_site/subfolder/img`
-	eleventyConfig.addPassthroughCopy({ "random-folder/img": "subfolder/img" });
+	$config.addPassthroughCopy({ "random-folder/img": "subfolder/img" });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -154,12 +154,12 @@ export default function (eleventyConfig) {
 Note that this method is slower than non-glob methods, as it is searching the entire directory structure and copies each file in Eleventy individually.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Output directory: _site
 
 	// Find and copy any `jpg` files in any folder to _site/img
 	// Does not keep the same directory structure.
-	eleventyConfig.addPassthroughCopy({ "**/*.jpg": "img" });
+	$config.addPassthroughCopy({ "**/*.jpg": "img" });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -181,9 +181,9 @@ Practically speaking, this means that (during `--serve` only!) files are referen
 You can enable this behavior in your project using this configuration API method:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// the default is "copy"
-	eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+	$config.setServerPassthroughCopyBehavior("passthrough");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -206,8 +206,8 @@ Eleventy, by default, searches for any file in the input directory with a file e
 If a file format is not recognized by Eleventy as a template file extension, Eleventy will ignore the file. You can modify this behavior by adding supported template formats:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.setTemplateFormats([
+export default function ($config) {
+	$config.setTemplateFormats([
 		"md",
 		"css", // `css` is not a registered template syntax file extension
 	]);
@@ -226,12 +226,12 @@ You might use this for images by adding `"jpg"`, `"png"`, or even `"webp"`.
 Additionally, you can pass additional configuration options to the `recursive-copy` package. This unlocks the use passthrough file copy with symlinks, transforming or renaming copied files. Here are just a few examples:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addPassthroughCopy("img", {
+export default function ($config) {
+	$config.addPassthroughCopy("img", {
 		expand: true, // expand symbolic links
 	});
 
-	eleventyConfig.addPassthroughCopy({ img: "subfolder/img" }, {
+	$config.addPassthroughCopy({ img: "subfolder/img" }, {
 		debug: true, // log debug information
 	});
 };

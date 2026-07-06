@@ -1,5 +1,5 @@
 {%- set tabid = "toml" %}
-<div class="codetitle codetitle-right-md">eleventy.config.js</div>
+<div class="codetitle codetitle-right-md">buildawesome.config.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
 <seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
@@ -8,8 +8,8 @@
 // Don’t forget to `npm install @iarna/toml`
 import toml from "@iarna/toml";
 
-export default function (eleventyConfig) {
-	eleventyConfig.setFrontMatterParsingOptions({
+export default function ($config) {
+	$config.setFrontMatterParsingOptions({
 		engines: {
 			toml: toml.parse.bind(toml),
 		},
@@ -23,8 +23,8 @@ export default function (eleventyConfig) {
 // Don’t forget to `npm install @iarna/toml`
 const toml = require("@iarna/toml");
 
-module.exports = function (eleventyConfig) {
-	eleventyConfig.setFrontMatterParsingOptions({
+module.exports = function ($config) {
+	$config.setFrontMatterParsingOptions({
 		engines: {
 			toml: toml.parse.bind(toml),
 		},

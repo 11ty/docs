@@ -26,10 +26,10 @@ But, after all that, you can still add a Custom Tag using the [Configuration API
 - [LiquidJS: Tags](https://liquidjs.com/tutorials/register-filters-tags.html)
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 {% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
   // Usage: {% uppercase "alice" %}{% endraw %}
-  eleventyConfig.addLiquidTag("uppercase", function (liquidEngine) {
+  $config.addLiquidTag("uppercase", function (liquidEngine) {
     return {
       parse: function (tagToken, remainingTokens) {
         this.str = tagToken.args; // myVar or "alice"
@@ -54,10 +54,10 @@ See all of the [built-in tag implementations for LiquidJS](https://liquidjs.com/
 - [Nunjucks: Custom Tags](https://mozilla.github.io/nunjucks/api.html#custom-tags)
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 {% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
   // Usage: {% uppercase "alice" %}{% endraw %}
-  eleventyConfig.addNunjucksTag("uppercase", function (nunjucksEngine) {
+  $config.addNunjucksTag("uppercase", function (nunjucksEngine) {
     return new (function () {
       this.tags = ["uppercase"];
 

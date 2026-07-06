@@ -27,8 +27,8 @@ For more larger, more complex use cases you may want to use a more full featured
 This plugin is included with Eleventy core and requires no additional installation. However, the plugin is opt-in and does not include any bundles by default: you must add these yourself via the `addBundle` configuration method.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addBundle("css");
+export default function($config) {
+	$config.addBundle("css");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -42,8 +42,8 @@ export default function(eleventyConfig) {
 <summary><strong>Full <code>addBundle</code> options list</strong></summary>
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addBundle("css", {
+export default function($config) {
+	$config.addBundle("css", {
 		// File extension used for bundle file output, defaults to bundle name
 		outputFileExtension: "css",
 
@@ -196,8 +196,8 @@ And to retrieve the code, you do the same with `getBundle` and `getBundleFileUrl
 ### Critical CSS
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addBundle("css");
+export default function($config) {
+	$config.addBundle("css");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -227,8 +227,8 @@ Now we’ll use asset bucketing to divide CSS between the default bucket and a d
 ### SVG Icon Library
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addBundle("svg");
+export default function($config) {
+	$config.addBundle("svg");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -256,8 +256,8 @@ And now you can use `icon-close` in as many SVG instances as you’d like (witho
 ### React Helmet style `<head>` additions
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addBundle("html");
+export default function($config) {
+	$config.addBundle("html");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -284,8 +284,8 @@ export default function(eleventyConfig) {
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
 
-export default function(eleventyConfig) {
-	eleventyConfig.addBundle("css", {
+export default function($config) {
+	$config.addBundle("css", {
 		transforms: [
 			async function(content) {
 				// type contains the bundle name.

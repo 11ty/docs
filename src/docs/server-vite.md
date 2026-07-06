@@ -34,8 +34,8 @@ npm install @11ty/eleventy-plugin-vite
 {% set codeContent %}
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(EleventyVitePlugin);
+export default function ($config) {
+	$config.addPlugin(EleventyVitePlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -49,8 +49,8 @@ View the [full list of Vite Configuration options](https://vite.dev/config/).
 {% set codeContent %}
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(EleventyVitePlugin, {
+export default function ($config) {
+	$config.addPlugin(EleventyVitePlugin, {
     tempFolderName: ".11ty-vite", // Default name of the temp folder
 
     // Options passed to the Eleventy Dev Server

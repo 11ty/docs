@@ -21,17 +21,17 @@ layout: layouts/langs.njk
 
 {% addedin "3.0.0-alpha.11" %}Here we use [Node.js’ type stripping feature](https://nodejs.org/api/typescript.html) (available in Node 22.6+) to process `*.11ty.ts` TypeScript files.
 
-<div class="codetitle">eleventy.config.js</div>
+<div class="codetitle">buildawesome.config.js</div>
 {%- set codeBlock %}
 
-export default function (eleventyConfig) {
-	eleventyConfig.addExtension("11ty.ts", {
+export default function ($config) {
+	$config.addExtension("11ty.ts", {
 		key: "11ty.js",
 	});
 
 	// Add to --formats via Configuration
 	// or via CLI: --formats=11ty.ts
-	eleventyConfig.addTemplateFormats("11ty.ts");
+	$config.addTemplateFormats("11ty.ts");
 }
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -44,14 +44,14 @@ You can optionally use an Array `["11ty.ts", "11ty.cts", "11ty.mts"]` instead of
 
 {% callout "info", "md" %}This approach requires ESM (read more at [Issue #3304](https://github.com/11ty/eleventy/issues/3304)). This means your project `package.json` must contain `"type": "module"` or your configuration file must use the `.mjs` file extension, e.g. `eleventy.config.mjs`. Read more about [CommonJS versus ESM](../cjs-esm.md).{% endcallout %}
 
-<div class="codetitle">eleventy.config.js</div>
+<div class="codetitle">buildawesome.config.js</div>
 {%- set codeBlock %}
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
 
-export default function (eleventyConfig) {
+export default function ($config) {
 	// We can add support for JSX too, at the same time:
-	eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+	$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
 		key: "11ty.js",
 		compile: function () {
 			return async function (data) {
@@ -63,7 +63,7 @@ export default function (eleventyConfig) {
 
 	// Add to --formats via Configuration
 	// or via CLI: --formats=11ty.jsx,11ty.ts,11ty.tsx
-	eleventyConfig.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
+	$config.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
 }
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -98,15 +98,15 @@ If you’d like an approach that works with CommonJS and Eleventy 2.0, you can u
 
 Your config file might look like this:
 
-{% codetitle "eleventy.config.js (CommonJS)" %}
+{% codetitle "buildawesome.config.js (CommonJS)" %}
 {%- set codeBlock %}
 const { register } = require("esbuild-register/dist/node");
 
 register();
 
-module.exports = function(eleventyConfig) {
+module.exports = function($config) {
 	// We can add support for JSX too, at the same time:
-	eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+	$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
 		key: "11ty.js",
 	});
 };

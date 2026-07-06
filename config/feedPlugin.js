@@ -10,8 +10,8 @@ const METADATA_OPTIONS = {
 	}
 }
 
-export default function(eleventyConfig) {
-	eleventyConfig.addCollection("docsFeed", function (collection) {
+export default function($config) {
+	$config.addCollection("docsFeed", function (collection) {
 		return collection.getFilteredByGlob("src/docs/**/*.md").filter(entry => {
 			// remove permalink: false templates
 			return !!entry.url;
@@ -21,7 +21,7 @@ export default function(eleventyConfig) {
 	});
 
 	// Documentation Feed
-	eleventyConfig.addPlugin(feedPlugin, {
+	$config.addPlugin(feedPlugin, {
 		type: "atom",
 		outputPath: "/docs/feed.xml",
 		collection: {
@@ -36,7 +36,7 @@ export default function(eleventyConfig) {
 	});
 
 	// Quick Tips Feed
-	eleventyConfig.addPlugin(feedPlugin, {
+	$config.addPlugin(feedPlugin, {
 		type: "atom",
 		outputPath: "/docs/quicktips/feed.xml",
 		collection: {
@@ -51,7 +51,7 @@ export default function(eleventyConfig) {
 	});
 
 	// Blog Feed
-	eleventyConfig.addPlugin(feedPlugin, {
+	$config.addPlugin(feedPlugin, {
 		type: "atom",
 		outputPath: "/blog/feed.xml",
 		collection: {

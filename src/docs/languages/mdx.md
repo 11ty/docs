@@ -25,15 +25,15 @@ layout: layouts/langs.njk
 
 The following configuration will read `*.mdx` files with full compatibility for [front matter](../data-frontmatter.md) (in `.mdx` files!). _[GitHub #3760](https://github.com/11ty/eleventy/issues/3760)._
 
-<div class="codetitle">eleventy.config.js</div>
+<div class="codetitle">buildawesome.config.js</div>
 {%- set codeBlock %}
 import {pathToFileURL} from "node:url";
 import {evaluate} from "@mdx-js/mdx";
 import {renderToStaticMarkup} from "react-dom/server";
 import * as runtime from "react/jsx-runtime";
 
-export default function(eleventyConfig) {
-	eleventyConfig.addExtension("mdx", {
+export default function($config) {
+	$config.addExtension("mdx", {
 		compile: async (str, inputPath) => {
 			const { default: mdxContent } = await evaluate(str, {
 				...runtime,
@@ -57,7 +57,7 @@ npx @11ty/eleventy --formats=mdx
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
-Alternatively, you can add `eleventyConfig.addTemplateFormats("mdx")` to your configuration file.
+Alternatively, you can add `$config.addTemplateFormats("mdx")` to your configuration file.
 
 ### Example
 
@@ -83,15 +83,15 @@ Read more on the [What is MDX? docs](https://mdxjs.com/docs/what-is-mdx/).
 
 {% addedin "3.0.0-alpha.11" %}MDX also provides a Node.js loader ([`@mdx-js/node-loader`](https://mdxjs.com/packages/node-loader/) on npm). This approach may be marginally faster but will **not** include support for Front Matter in `.mdx` files.
 
-<div class="codetitle">eleventy.config.js</div>
+<div class="codetitle">buildawesome.config.js</div>
 {%- set codeBlock %}
 import {register} from 'node:module';
 import {renderToStaticMarkup} from 'react-dom/server'
 
 register('@mdx-js/node-loader', import.meta.url);
 
-export default function(eleventyConfig) {
-	eleventyConfig.addExtension("mdx", {
+export default function($config) {
+	$config.addExtension("mdx", {
 		key: "11ty.js",
 		compile: () => {
 			return async function(data) {

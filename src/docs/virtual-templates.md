@@ -14,7 +14,7 @@ The [RSS plugin offers a virtual template](/docs/plugins/rss.md#virtual-template
 ## API
 
 ```js
-eleventyConfig.addTemplate(virtualPath, content, data = {});
+$config.addTemplate(virtualPath, content, data = {});
 ```
 
 * `virtualPath`: used to determine the template language and data cascade for this template. This path is relative to your project’s input directory.
@@ -26,14 +26,14 @@ eleventyConfig.addTemplate(virtualPath, content, data = {});
 ### Markdown, HTML (via Liquid) Layout
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Create content templates Files
-	eleventyConfig.addTemplate("virtual.md", `# Hello`, {
+	$config.addTemplate("virtual.md", `# Hello`, {
         	layout: "virtual.html"
 	});
 
 	// Works great with Layouts too
-	eleventyConfig.addTemplate("_includes/virtual.html", `<!-- Layout -->{% raw %}{{ content }}{% endraw %}`);
+	$config.addTemplate("_includes/virtual.html", `<!-- Layout -->{% raw %}{{ content }}{% endraw %}`);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -43,9 +43,9 @@ export default function(eleventyConfig) {
 Any of the JavaScript shapes on [`11ty.js` templates](/docs/languages/javascript.md) are also supported here.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Create content templates Files
-	eleventyConfig.addTemplate("virtual.11ty.js", function(data) {
+	$config.addTemplate("virtual.11ty.js", function(data) {
 		return `<h1>Hello</h1>`;
 	});
 };

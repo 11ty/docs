@@ -23,8 +23,8 @@ export async function minifyJavaScript(code) {
 	return minify(code).then(result => result.code);
 }
 
-export default function (eleventyConfig) {
-	eleventyConfig.addFilter("jsmin", async function(code) {
+export default function ($config) {
+	$config.addFilter("jsmin", async function(code) {
 		if (process.env.ELEVENTY_RUN_MODE === "build") {
 			return minifyJavaScript(code);
 		}
@@ -32,7 +32,7 @@ export default function (eleventyConfig) {
 		return `/* [11ty/docs] minification skipped during dev mode */\n${code}`;
 	});
 
-	eleventyConfig.addFilter("cssmin", function (inputCode) {
+	$config.addFilter("cssmin", function (inputCode) {
 		if (process.env.ELEVENTY_RUN_MODE === "build") {
 			let { code } = transform({
 				// filename: undefined,

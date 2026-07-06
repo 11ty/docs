@@ -30,8 +30,8 @@ For most use cases, the default behavior of this server should handle most thing
 The `addWatchTarget` config method allows you to manually add a file or directory for Eleventy to watch. When the file or the files in this directory change Eleventy will trigger a build. This is useful if Eleventy is not aware of your project-specific external dependencies.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addWatchTarget("./src/scss/");
+export default function($config) {
+	$config.addWatchTarget("./src/scss/");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -47,9 +47,9 @@ We do automatically look for dependencies in your configuration file based on Ja
 To reset your configuration for a specific watch target, use the `resetConfig` option.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// You probably don’t need this
-	eleventyConfig.addWatchTarget("./_config/**", {
+	$config.addWatchTarget("./_config/**", {
 		resetConfig: true
 	});
 };
@@ -68,17 +68,17 @@ Eleventy will ignore changes to files or folders listed in your `.gitignore` fil
 
 ### Configuration API {% addedin "2.0.0-canary.18" %}
 
-Previously, [the configuration API ignores for template processing](/docs/ignores/#configuration-api) were also used as ignores for watching (e.g. `eleventyConfig.ignores.add("README.md")`).
+Previously, [the configuration API ignores for template processing](/docs/ignores/#configuration-api) were also used as ignores for watching (e.g. `$config.ignores.add("README.md")`).
 
 New in {{ "2.0.0-canary.18" | coerceVersion }}, watch target ignores now have their own dedicated API:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Do not rebuild when README.md changes (You can use a glob here too)
-	eleventyConfig.watchIgnores.add("README.md");
+	$config.watchIgnores.add("README.md");
 
 	// Or delete entries too
-	eleventyConfig.watchIgnores.delete("README.md");
+	$config.watchIgnores.delete("README.md");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -87,24 +87,24 @@ The `watchIgnores` Set starts with a default `**/node_modules/**` entry.
 
 ## Watch JavaScript Dependencies {% addedin "0.7.0" %}
 
-When in `--watch` mode, Eleventy will spider the dependencies of your [JavaScript Templates](/docs/languages/javascript/) (`.11ty.js`), [JavaScript Data Files](/docs/data-js/) (`.11tydata.js` or `_data/**/*.js`), or Configuration File (usually `eleventy.config.js`) to watch those files too. Files in `node_modules` directories are ignored. This feature is _enabled by default_.
+When in `--watch` mode, Build Awesome will spider the dependencies of your [JavaScript Templates](/docs/languages/javascript/) (`.11ty.js`), [JavaScript Data Files](/docs/data-js/) (`.11tydata.js` or `_data/**/*.js`), or Configuration File (usually `buildawesome.config.js`) to watch those files too. Files in `node_modules` directories are ignored. This feature is _enabled by default_.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Enabled by default
-	eleventyConfig.setWatchJavaScriptDependencies(false);
+	$config.setWatchJavaScriptDependencies(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Add delay before re-running {% addedin "0.11.0" %}
 
-A hardcoded amount of time Eleventy will wait before triggering a new build when files have changes during `--watch` or `--serve` modes. You probably won’t need this, but is useful in some edge cases with other task runners (Gulp, Grunt, etc).
+A hardcoded amount of time Build Awesome will wait before triggering a new build when files have changes during `--watch` or `--serve` modes. You probably won’t need this, but is useful in some edge cases with other task runners (Gulp, Grunt, etc).
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// default is 0
-	eleventyConfig.setWatchThrottleWaitTime(100); // in milliseconds
+	$config.setWatchThrottleWaitTime(100); // in milliseconds
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -114,8 +114,8 @@ export default function(eleventyConfig) {
 Advanced [`chokidar` options](https://github.com/paulmillr/chokidar) can be defined using the `setChokidarConfig` configuration API method:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.setChokidarConfig({
+export default function($config) {
+	$config.setChokidarConfig({
 		usePolling: true,
 		interval: 500,
 	});

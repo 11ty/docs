@@ -1,16 +1,16 @@
 {% set tabid %}tab-{% uid %}{% endset %}
-<div class="codetitle codetitle-right-md">eleventy.config.js</div>
+<div class="codetitle codetitle-right-md">buildawesome.config.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
 <seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
 {% set codeBlock %}{% raw %}
-import { HtmlBasePlugin } from "@11ty/eleventy";
+import { HtmlBasePlugin } from "@awesome.me/buildawesome";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(HtmlBasePlugin, {
+export default function ($config) {
+	$config.addPlugin(HtmlBasePlugin, {
 		// The base URL: defaults to Path Prefix
-		baseHref: eleventyConfig.pathPrefix,
+		baseHref: $config.pathPrefix,
 
 		// But you could use a full URL here too:
 		// baseHref: "http://example.com/"
@@ -25,12 +25,12 @@ export default function (eleventyConfig) {
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
 {% set codeBlock %}{% raw %}
-module.exports = async function (eleventyConfig) {
-	const { HtmlBasePlugin } = await import("@11ty/eleventy");
+module.exports = async function ($config) {
+	const { HtmlBasePlugin } = await import("@awesome.me/buildawesome");
 
-	eleventyConfig.addPlugin(HtmlBasePlugin, {
+	$config.addPlugin(HtmlBasePlugin, {
 		// The base URL: defaults to Path Prefix
-		baseHref: eleventyConfig.pathPrefix,
+		baseHref: $config.pathPrefix,
 
 		// But you could use a full URL here too:
 		// baseHref: "http://example.com/"

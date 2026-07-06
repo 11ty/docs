@@ -10,16 +10,16 @@ eleventyNavigation:
 
 {% tableofcontents %}
 
-Configuration files are optional. Add an `eleventy.config.js` file to the root directory of your project (read more about [default configuration filenames](#default-filenames)) to configure Eleventy to your own project’s needs. It might look like this:
+Configuration files are optional. Add an `buildawesome.config.js` file to the root directory of your project (read more about [default configuration filenames](#default-filenames)) to configure Build Awesome to your own project’s needs. It might look like this:
 
 {% set codeContent %}
-export default async function(eleventyConfig) {
-	// Configure Eleventy
+export default async function($config) {
+	// Configure using $config
 };
 {% endset %}
 {% include "snippets/configDefinitionEager.njk" %}
 
-There are a few different ways to [shape your configuration file](/docs/config-shapes/). {% addedin "3.0.0-alpha.1" %}Eleventy v3 added support for both ESM and Asynchronous callbacks.
+There are a few different ways to [shape your configuration file](/docs/config-shapes/). {% addedin "3.0.0-alpha.1" %}Build Awesome supports [CommonJS, ESM, TypeScript](/docs/cjs-esm/) (and Asynchronous callbacks in each).
 
 
 - Add [Filters](/docs/filters/).
@@ -35,10 +35,19 @@ There are a few different ways to [shape your configuration file](/docs/config-s
 
 We look for the following configuration files:
 
+1. `buildawesome.config.js` (Recommended) {% addedin "4.0.0-alpha.8" %}
+1. `buildawesome.config.mjs` {% addedin "4.0.0-alpha.8" %}
+1. `buildawesome.config.cjs` {% addedin "4.0.0-alpha.8" %}
+1. `buildawesome.config.ts` {% addedin "4.0.0-alpha.8" %}
+1. `buildawesome.config.mts` {% addedin "4.0.0-alpha.8" %}
+1. `buildawesome.config.cts` {% addedin "4.0.0-alpha.8" %}
 1. `.eleventy.js`
 1. `eleventy.config.js` {% addedin "2.0.0-canary.15" %}
 1. `eleventy.config.mjs` {% addedin "3.0.0-alpha.1" %}
 1. `eleventy.config.cjs` {% addedin "2.0.0-canary.15" %}
+1. `eleventy.config.ts` {% addedin "4.0.0-alpha.7" %}
+1. `eleventy.config.mts` {% addedin "4.0.0-alpha.7" %}
+1. `eleventy.config.cts` {% addedin "4.0.0-alpha.7" %}
 
 The first configuration file found is used. The others are ignored.
 
@@ -57,23 +66,23 @@ Controls the top level directory/file/glob that we’ll use to look for template
 | _Object Key_            | `dir.input`               |
 | _Default Value_         | `.` _(current directory)_ |
 | _Valid Options_         | Any valid directory.      |
-| _Configuration API_     | `eleventyConfig.setInputDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setInputDirectory()` {% addedin "3.0.0-alpha.6" %} |
 | _Command Line Override_ | `--input`                 |
 
 #### Command Line
 
 {% set codeBlock %}
 # The current directory
-npx @11ty/eleventy --input=.
+npx @awesome.me/buildawesome --input=.
 
 # A single file
-npx @11ty/eleventy --input=README.md
+npx @awesome.me/buildawesome --input=README.md
 
 # A glob of files
-npx @11ty/eleventy --input=*.md
+npx @awesome.me/buildawesome --input=*.md
 
 # A subdirectory
-npx @11ty/eleventy --input=views
+npx @awesome.me/buildawesome --input=views
 {% endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
@@ -86,9 +95,9 @@ Via named export (order doesn’t matter). Note that there are many [different s
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Order matters, put this at the top of your configuration file.
-  eleventyConfig.setInputDirectory("views");
+  $config.setInputDirectory("views");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -102,7 +111,7 @@ The includes directory is meant for [Eleventy layouts](/docs/layouts/), include 
 | _Object Key_            | `dir.includes`                                                                |
 | _Default_               | `_includes`                                                                   |
 | _Valid Options_         | Any valid directory inside of `dir.input` (an empty string `""` is supported) |
-| _Configuration API_     | `eleventyConfig.setIncludesDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setIncludesDirectory()` {% addedin "3.0.0-alpha.6" %} |
 | _Command Line Override_ | _None_                                                                        |
 
 
@@ -113,10 +122,10 @@ Via named export (order doesn’t matter). Note that there are many [different s
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Order matters, put this at the top of your configuration file.
 	// This is relative to your input directory!
-  eleventyConfig.setIncludesDirectory("my_includes");
+  $config.setIncludesDirectory("my_includes");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -136,7 +145,7 @@ This configuration option is optional but useful if you want your [Eleventy layo
 | _Object Key_            | `dir.layouts`                                                                 |
 | _Default_               | _The value in `dir.includes`_                                                 |
 | _Valid Options_         | Any valid directory inside of `dir.input` (an empty string `""` is supported) |
-| _Configuration API_     | `eleventyConfig.setLayoutsDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setLayoutsDirectory()` {% addedin "3.0.0-alpha.6" %} |
 | _Command Line Override_ | _None_                                                                        |
 
 Via named export (order doesn’t matter). Note that there are many [different shapes of configuration file](/docs/config-shapes.md).
@@ -146,10 +155,10 @@ Via named export (order doesn’t matter). Note that there are many [different s
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Order matters, put this at the top of your configuration file.
 	// This is relative to your input directory!
-  eleventyConfig.setLayoutsDirectory("_layouts");
+  $config.setLayoutsDirectory("_layouts");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -163,7 +172,7 @@ Controls the directory inside which the global data template files, available to
 | _Object Key_            | `dir.data`                                |
 | _Default_               | `_data`                                   |
 | _Valid Options_         | Any valid directory inside of `dir.input` |
-| _Configuration API_     | `eleventyConfig.setDataDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setDataDirectory()` {% addedin "3.0.0-alpha.6" %} |
 | _Command Line Override_ | _None_                                    |
 
 Via named export (order doesn’t matter). Note that there are many [different shapes of configuration file](/docs/config-shapes.md).
@@ -173,9 +182,9 @@ Via named export (order doesn’t matter). Note that there are many [different s
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Order matters, put this at the top of your configuration file.
-  eleventyConfig.setDataDirectory("lore");
+  $config.setDataDirectory("lore");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -189,12 +198,12 @@ Controls the directory inside which the finished templates will be written to.
 | _Object Key_            | `dir.output`                                                                              |
 | _Default_               | `_site`                                                                                   |
 | _Valid Options_         | Any string that will work as a directory name. Eleventy creates this if it doesn’t exist. |
-| _Configuration API_     | `eleventyConfig.setOutputDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setOutputDirectory()` {% addedin "3.0.0-alpha.6" %} |
 | _Command Line Override_ | `--output`                                                                                |
 
 #### Command Line
 
-{{ "npx @11ty/eleventy --output=_site" | highlight("bash") | safe }}
+{{ "npx @awesome.me/buildawesome --output=_site" | highlight("bash") | safe }}
 
 #### Configuration
 
@@ -205,9 +214,9 @@ Via named export (order doesn’t matter). Note that there are many [different s
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Order matters, put this at the top of your configuration file.
-  eleventyConfig.setOutputDirectory("dist");
+  $config.setOutputDirectory("dist");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -257,7 +266,7 @@ Specify which types of templates should be transformed.
 #### Command Line
 
 ```
-npx @11ty/eleventy --formats=html,liquid,njk
+npx @awesome.me/buildawesome --formats=html,liquid,njk
 ```
 
 #### Configuration File Static Export
@@ -269,16 +278,16 @@ There are many [different shapes of configuration file](/docs/config-shapes.md).
 #### Configuration API
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Reset to this value
-	eleventyConfig.setTemplateFormats("html,liquid,njk");
+	$config.setTemplateFormats("html,liquid,njk");
 
 	// Additive to existing
-	eleventyConfig.addTemplateFormats("pug,haml");
+	$config.addTemplateFormats("pug,haml");
 
 	// Or:
-	// eleventyConfig.setTemplateFormats([ "html", "liquid", "njk" ]);
-	// eleventyConfig.addTemplateFormats([ "pug", "haml" ]);
+	// $config.setTemplateFormats([ "html", "liquid", "njk" ]);
+	// $config.addTemplateFormats([ "pug", "haml" ]);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -294,8 +303,8 @@ In order to maximize user-friendliness to beginners, Eleventy will show each fil
 | _Command Line Override_ | `--quiet`         |
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.setQuietMode(true);
+export default function ($config) {
+	$config.setQuietMode(true);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -303,7 +312,7 @@ export default function (eleventyConfig) {
 The command line will override any setting in configuration:
 
 ```bash
-npx @11ty/eleventy --quiet
+npx @awesome.me/buildawesome --quiet
 ```
 
 ### Deploy to a subdirectory with a Path Prefix
@@ -322,7 +331,7 @@ If your site lives in a different subdirectory (particularly useful with GitHub 
 Deploy to https://11ty.github.io/eleventy-base-blog/ on GitHub pages without modifying your config. This allows you to use the same code-base to deploy to either GitHub pages or Netlify, like the [`eleventy-base-blog`](https://github.com/11ty/eleventy-base-blog) project does.
 
 ```bash
-npx @11ty/eleventy --pathprefix=eleventy-base-blog
+npx @awesome.me/buildawesome --pathprefix=eleventy-base-blog
 ```
 
 ### Change Base File Name for Data Files
@@ -337,9 +346,9 @@ npx @11ty/eleventy --pathprefix=eleventy-base-blog
 | _Command Line Override_ | _None_                |
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Looks for index.json and index.11tydata.json instead of using folder names
-	eleventyConfig.setDataFileBaseName("index");
+	$config.setDataFileBaseName("index");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -362,15 +371,15 @@ This feature can also be used to disable Template and Directory Data Files altog
 Read more about [Template and Directory Specific Data Files](/docs/data-template-dir/).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// e.g. file.json and file.11tydata.json
-	eleventyConfig.setDataFileSuffixes([".11tydata", ""]);
+	$config.setDataFileSuffixes([".11tydata", ""]);
 
 	// e.g. file.11tydata.json
-	eleventyConfig.setDataFileSuffixes([".11tydata"]);
+	$config.setDataFileSuffixes([".11tydata"]);
 
 	// No data files are used.
-	eleventyConfig.setDataFileSuffixes([]);
+	$config.setDataFileSuffixes([]);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -381,7 +390,7 @@ export default function (eleventyConfig) {
 Prior to {{ "2.0.0-canary.19" | coerceVersion }} this feature was exposed using a `jsDataFileSuffix` property in the configuration return object. When the `setDataFileSuffixes` method has not been used, Eleventy maintains backwards compatibility for old projects by using this property as a fallback.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	return {
 		jsDataFileSuffix: ".11tydata",
 	};
@@ -407,9 +416,9 @@ Similar to Transforms, Linters are provided to analyze a template’s output wit
 | _Command Line Override_ | _None_            |
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Sync or async
-	eleventyConfig.addLinter("linter-name", async function (content) {
+	$config.addLinter("linter-name", async function (content) {
 		console.log(this.inputPath);
 		console.log(this.outputPath);
 
@@ -428,11 +437,11 @@ Inspired by the [CSS Tricks post _Words to Avoid in Educational Writing_](https:
 
 This example has been packaged as a plugin in [`eleventy-plugin-inclusive-language`](/docs/plugins/inclusive-language.md).
 
-{% codetitle "eleventy.config.js" %}
+{% codetitle "buildawesome.config.js" %}
 
 ```js
-export default function (eleventyConfig) {
-	eleventyConfig.addLinter(
+export default function ($config) {
+	$config.addLinter(
 		"inclusive-language",
 		function (content, inputPath, outputPath) {
 			let words =
@@ -462,12 +471,12 @@ export default function (eleventyConfig) {
 
 {% addedin "1.0.0" %}<!-- Beta 4 -->
 
-A `Set` of [`lodash` selectors](https://lodash.com/docs/4.17.15#get) that allow you to include data from the data cascade in the output from `--to=json`, `--to=ndjson`.
+A `Set` of [`lodash` selectors](https://lodash.com/docs/4.17.15#get) that allow you to include data from the data cascade in the output from `--to=json`.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.dataFilterSelectors.add("page");
-	eleventyConfig.dataFilterSelectors.delete("page");
+export default function ($config) {
+	$config.dataFilterSelectors.add("page");
+	$config.dataFilterSelectors.delete("page");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -479,8 +488,8 @@ This will now include a `data` property in your JSON output that includes the `p
 This may enable some extra autocomplete features in your IDE (where supported).
 
 {% set codeContent %}
-/** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
-export default function (eleventyConfig) {
+/** @param {import("@awesome.me/buildawesome").UserConfig} $config */
+export default function ($config) {
 	// …
 };
 {% endset %}

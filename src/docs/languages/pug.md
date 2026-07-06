@@ -42,8 +42,8 @@ Add to your configuration file:
 {% set codeContent %}
 import pugPlugin from "@11ty/eleventy-plugin-pug";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pugPlugin);
+export default function ($config) {
+	$config.addPlugin(pugPlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -57,8 +57,8 @@ Set compile/render options using the Configuration API. See all [Pug options](ht
 {% set codeContent %}
 import pugPlugin from "@11ty/eleventy-plugin-pug";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pugPlugin, {
+export default function ($config) {
+	$config.addPlugin(pugPlugin, {
 		debug: true
 	});
 }

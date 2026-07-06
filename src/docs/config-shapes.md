@@ -21,7 +21,7 @@ You can learn more about the [default file names for configuration files](/docs/
 Instead of exporting a `config` object with your static options, you _can_ return this same object in your configuration callback (though it is **not preferred** for order-of-operations reasons).
 
 {% set codeContent %}
-export default async function(eleventyConfig) {
+export default async function($config) {
 	return {
     dir: {
       input: "views",

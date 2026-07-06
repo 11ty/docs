@@ -50,20 +50,20 @@ ${ticks}\n\n${closeTag}`;
 	return `${openTag}${preamble}${syntaxHighlightFunction(code, language, lineHighlights, o)}${closeTag}`;
 }
 
-export default function(eleventyConfig) {
+export default function($config) {
 	let highlightCounter = 0;
-	eleventyConfig.on("eleventy.before", () => {
+	$config.on("eleventy.before", () => {
 		highlightCounter = 0;
 	});
 
-	eleventyConfig.addPairedShortcode("highlight", function(code, language) {
+	$config.addPairedShortcode("highlight", function(code, language) {
 		return highlightCode(code, language, undefined, {
 			highlightCounter: ++highlightCounter,
 			inputPath: this.page.inputPath,
 		});
 	});
 
-	eleventyConfig.addFilter("highlight", function(code, language, attrs = {}, options = {}) {
+	$config.addFilter("highlight", function(code, language, attrs = {}, options = {}) {
 		let o = Object.assign({}, options);
 		o.highlightCounter = ++highlightCounter;
 		o.inputPath = this.page.inputPath;
@@ -72,7 +72,7 @@ export default function(eleventyConfig) {
 	});
 
 	// This wires up Markdown’s triple-tick syntax
-	eleventyConfig.amendLibrary("md", (mdLib) => {
+	$config.amendLibrary("md", (mdLib) => {
 		let o = Object.assign({}, HIGHLIGHT_OPTIONS);
 		o.trim = false;
 		mdLib.set({

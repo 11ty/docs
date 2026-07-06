@@ -24,10 +24,10 @@ Asynchronous callback function support added in v1.0.
 The `eleventy.before` event runs every time Eleventy starts building, so it will run before the start of each stand-alone build, as well as each time building starts as either part of `--watch` or `--serve`. To use it, attach the event handler to your Eleventy config:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Async-friendly in 1.0+
 	// Arguments added in 2.0+
-	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
+	$config.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
 		// Run me before the build starts
 	});
 }
@@ -41,10 +41,10 @@ export default function(eleventyConfig) {
 The `eleventy.after` event runs every time Eleventy finishes building, so it will run after the end of each stand-alone build, as well as each time building ends as either part of `--watch` or `--serve`. To use it, attach the event handler to your Eleventy config:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Async-friendly in 1.0+
 	// Arguments added in 2.0+
-	eleventyConfig.on(
+	$config.on(
 		"eleventy.after",
 		async ({ directories, results, runMode, outputMode }) => {
 			// Run me after the build ends
@@ -59,12 +59,12 @@ export default function(eleventyConfig) {
 Eleventy now provides an object with metadata on the build as an argument to the `eleventy.before` and `eleventy.after` event callbacks.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
+export default function($config) {
+	$config.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
 		// Read more below
 	});
 
-	eleventyConfig.on(
+	$config.on(
 		"eleventy.after",
 		async ({ directories, results, runMode, outputMode }) => {
 			// Read more below
@@ -81,7 +81,6 @@ export default function(eleventyConfig) {
 - `outputMode`: a string representing the value of [`--to` on the command line](/docs/usage/#to-can-output-json)
   - `fs` (default)
   - `json`
-  - `ndjson`
 - `runMode`: a string representing [`--serve` or `--watch` usage on the command line](/docs/usage/#re-run-eleventy-when-you-save). One of:
   - `build` (default)
   - `watch`
@@ -99,11 +98,11 @@ The `eleventy.beforeConfig` runs before your configuration is initialized and wa
 
 {%- set codeBlock %}
 // sync configuration callback
-module.exports = function (eleventyConfig) {
+module.exports = function ($config) {
 	// async-friendly event
-  eleventyConfig.on("eleventy.beforeConfig", async function (eleventyConfig) {
-    const { HtmlBasePlugin } = await import("@11ty/eleventy");
-		eleventyConfig.addPlugin(HtmlBasePlugin);
+  $config.on("eleventy.beforeConfig", async function ($config) {
+    const { HtmlBasePlugin } = await import("@awesome.me/buildawesome");
+		$config.addPlugin(HtmlBasePlugin);
   });
 };
 {%- endset %}
@@ -114,9 +113,9 @@ module.exports = function (eleventyConfig) {
 The `eleventy.beforeWatch` event runs before a build _only_ if it's a re-run during `--watch` or `--serve`. This means it will not run during the initial build nor during stand-alone builds.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Async-friendly
-	eleventyConfig.on("eleventy.beforeWatch", async (changedFiles) => {
+	$config.on("eleventy.beforeWatch", async (changedFiles) => {
 		// Run me before --watch or --serve re-runs
 		// changedFiles is an array of files that changed
 		// to trigger the watch/serve build
@@ -130,9 +129,9 @@ export default function(eleventyConfig) {
 This event facilitates the [i18n plugin](/docs/plugins/i18n/) (but is available independent of it).
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Async-friendly
-	eleventyConfig.on("eleventy.contentMap", async ({ inputPathToUrl, urlToInputPath }) => {
+	$config.on("eleventy.contentMap", async ({ inputPathToUrl, urlToInputPath }) => {
 		// inputPathToUrl is an object mapping input file paths to output URLs
 		// urlToInputPath is an object mapping output URLs to input file paths
 	});
@@ -145,8 +144,8 @@ export default function(eleventyConfig) {
 Currently Eleventy triggers event callbacks in parallel. If you need to run the event callbacks sequentially, you can do so with the `setEventEmitterMode` configuration API method. Related [GitHub #3415](https://github.com/11ty/eleventy/issues/3415).
 
 {% set codeContent %}
-export default function(eleventyConfig){
-	eleventyConfig.setEventEmitterMode("sequential");
+export default function($config){
+	$config.setEventEmitterMode("sequential");
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

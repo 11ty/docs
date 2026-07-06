@@ -23,13 +23,13 @@ Eleventy now allows the addition of custom template extensions, meaning that you
 `clowd` is a pretend templating language that we’ve just created. It uses the `.clowd` file extension. The purpose of the language is to translate any occurrences of the word `cloud` to the word `butt` instead.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Add as a valid extension to process
 	// Alternatively, add this to the list of formats you pass to the `--formats` CLI argument
-	eleventyConfig.addTemplateFormats("clowd");
+	$config.addTemplateFormats("clowd");
 
 	// "clowd" here means that the extension will apply to any .clowd file
-	eleventyConfig.addExtension("clowd", {
+	$config.addExtension("clowd", {
 		compile: async (inputContent) => {
 			// Replace any instances of cloud with butt
 			let output = inputContent.replace(/cloud/gi, "butt");
@@ -58,11 +58,11 @@ For a more realistic sample, here’s an example of Eleventy looking for all `.s
 // Don’t forget to `npm install sass`!
 import * as sass from "sass";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addTemplateFormats("scss");
+export default function ($config) {
+	$config.addTemplateFormats("scss");
 
 	// Creates the extension for use
-	eleventyConfig.addExtension("scss", {
+	$config.addExtension("scss", {
 		outputFileExtension: "css", // optional, default: "html"
 
 		// `compile` is called once per .scss file in the input directory
@@ -90,7 +90,7 @@ The above extension would process a file located at `subdir/test.scss` to the ou
 You can pass in both the file’s `inputPath` and the Eleventy includes folder to provide a set of directories to look for when using Sass’ `@use`, `@forward`, and `@import` features. Read more about [`loadPaths` on the Sass documentation](https://sass-lang.com/documentation/js-api/interfaces/Options#loadPaths).
 
 <!-- TODO -->
-{% codetitle "eleventy.config.js" %}
+{% codetitle "buildawesome.config.js" %}
 
 ```diff-js
 // some configuration omitted…
@@ -170,13 +170,13 @@ This functionality is more-or-less identical to the [`compileOptions` `permalink
 {% addedin "2.0.0-canary.19" %} If `key` is the _only_ property in the options object, we treat the extension as an alias and use the existing upstream template syntax.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addExtension("11ty.jsx", {
+export default function ($config) {
+	$config.addExtension("11ty.jsx", {
 		key: "11ty.js",
 	});
 
 	// Or, you can pass an array of extensions in {{ "2.0.0-canary.19" | coerceVersion }} or newer.
-	eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+	$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
 		key: "11ty.js",
 	});
 };
@@ -198,8 +198,8 @@ In these example, we switch from the Eleventy default `markdown-it` to `marked` 
 {% set codeContent %}
 import { marked } from "marked";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addExtension("md", {
+export default function ($config) {
+	$config.addExtension("md", {
 		compile: function (inputContent, inputPath) {
 			let html = marked.parse(inputContent);
 
@@ -228,12 +228,12 @@ You can override a template language once. Any attempts to override an more than
 
 If you want to add support for universal filters and shortcodes in your custom template language, you can do so with the following configuration API methods. Related [GitHub #3310](https://github.com/11ty/eleventy/issues/3310).
 
-* `eleventyConfig.getFilter(name)` {% addedin "0.10.0" %}
-* `eleventyConfig.getFilters()` {% addedin "3.0.0-alpha.15" %}
-* `eleventyConfig.getShortcode(name)` {% addedin "3.0.0-alpha.15" %}
-* `eleventyConfig.getShortcodes()` {% addedin "3.0.0-alpha.15" %}
-* `eleventyConfig.getPairedShortcode(name)` {% addedin "3.0.0-alpha.15" %}
-* `eleventyConfig.getPairedShortcodes()` {% addedin "3.0.0-alpha.15" %}
+* `$config.getFilter(name)` {% addedin "0.10.0" %}
+* `$config.getFilters()` {% addedin "3.0.0-alpha.15" %}
+* `$config.getShortcode(name)` {% addedin "3.0.0-alpha.15" %}
+* `$config.getShortcodes()` {% addedin "3.0.0-alpha.15" %}
+* `$config.getPairedShortcode(name)` {% addedin "3.0.0-alpha.15" %}
+* `$config.getPairedShortcodes()` {% addedin "3.0.0-alpha.15" %}
 
 ## Full Options List
 
@@ -273,7 +273,7 @@ Shortcodes and Filters both provide access to `page` and `eleventy` (via `this.p
 	compile: function(compileFn) {
 		return function(data) {
 			// Binds this.page and this.eleventy to your render context (and any future additions added later)
-			let renderFn = eleventyConfig.augmentFunctionContext(compileFn, {
+			let renderFn = $config.augmentFunctionContext(compileFn, {
 				source: data,
 
 				// Overwrite existing values?
@@ -449,7 +449,7 @@ _Optional_. This has the same signature as the `compile` function and expects a 
 
 This provides another way to implement Sass’ underscore convention to skip writing the file to the output directory:
 
-{% codetitle "eleventy.config.js" %}
+{% codetitle "buildawesome.config.js" %}
 
 ```js
 	// … some configuration truncated

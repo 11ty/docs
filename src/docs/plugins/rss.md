@@ -47,8 +47,8 @@ npm install @11ty/eleventy-plugin-rss
 {% set codeContent %}
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(feedPlugin, {
+export default function ($config) {
+	$config.addPlugin(feedPlugin, {
 		type: "atom", // or "rss", "json"
 		outputPath: "/feed.xml",
 		collection: {
@@ -90,13 +90,13 @@ This configuration is the only step for the Virtual Template method. If you need
 
 ### Configuration
 
-Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
+Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginRss);
+export default function ($config) {
+	$config.addPlugin(pluginRss);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -113,8 +113,8 @@ export default function (eleventyConfig) {
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginRss, {
+export default function ($config) {
+	$config.addPlugin(pluginRss, {
 		posthtmlRenderOptions: {
 			closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
 		},
@@ -145,11 +145,11 @@ export default function (eleventyConfig) {
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addLiquidFilter("dateToRfc3339", pluginRss.dateToRfc3339);
+export default function ($config) {
+	$config.addLiquidFilter("dateToRfc3339", pluginRss.dateToRfc3339);
 
 	// New in RSS 1.2.0
-	eleventyConfig.addLiquidFilter("dateToRfc822", pluginRss.dateToRfc822);
+	$config.addLiquidFilter("dateToRfc822", pluginRss.dateToRfc822);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

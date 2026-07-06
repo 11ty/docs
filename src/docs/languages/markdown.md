@@ -52,14 +52,14 @@ Pass in your own instance of the Markdown library using the Configuration API. S
 {% set codeContent %}
 import markdownIt from "markdown-it";
 
-export default function (eleventyConfig) {
+export default function ($config) {
 	let options = {
 		html: true,
 		breaks: true,
 		linkify: true,
 	};
 
-	eleventyConfig.setLibrary("md", markdownIt(options));
+	$config.setLibrary("md", markdownIt(options));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -69,8 +69,8 @@ export default function (eleventyConfig) {
 Run your own callback on the provided Library instance (the default _or_ any provided by `setLibrary` above).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.enable("code"));
+export default function ($config) {
+	$config.amendLibrary("md", (mdLib) => mdLib.enable("code"));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -85,8 +85,8 @@ Pass in your own `markdown-it` plugins using the `amendLibrary` (Eleventy &gt;= 
 {%- set codeBlock %}
 import { full as emoji } from "markdown-it-emoji";
 
-export default function (eleventyConfig) {
-	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(emoji));
+export default function ($config) {
+	$config.amendLibrary("md", (mdLib) => mdLib.use(emoji));
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -132,8 +132,8 @@ After [listening to community feedback](https://github.com/11ty/eleventy/issues/
 To re-enable Indented Code Blocks in Eleventy 2.0 (or newer), use the [`amendLibrary` approach](#optional-amend-the-library-instance). Make sure you read through the warning documented below to understand the ramifications.
 
 ```js
-module.exports = function (eleventyConfig) {
-	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.enable("code"));
+module.exports = function ($config) {
+	$config.amendLibrary("md", (mdLib) => mdLib.enable("code"));
 };
 ```
 
@@ -146,7 +146,7 @@ When using [Indented Code Blocks](#indented-code-blocks), any content that follo
 
 ```js
 // 🛑 Bad, don’t do this
-eleventyConfig.addShortcode("badShortcode", function () {
+$config.addShortcode("badShortcode", function () {
 	return `
     This is a code block in a markdown file!
 `;
@@ -157,7 +157,7 @@ eleventyConfig.addShortcode("badShortcode", function () {
 
 ```js
 // ✅ This will return expected output
-eleventyConfig.addShortcode("goodShortcode", function () {
+$config.addShortcode("goodShortcode", function () {
 	return `
 This will not be a code block in a markdown file.
 `;
@@ -168,7 +168,7 @@ If you still wish to indent your template literals, you can use [outdent](https:
 
 ```js
 // ✅ This is also acceptable
-eleventyConfig.addShortcode("alsoGoodShortcode", function () {
+$config.addShortcode("alsoGoodShortcode", function () {
 	return outdent`
     This will not be a code block in a markdown file.
 `;
@@ -183,12 +183,12 @@ eleventyConfig.addShortcode("alsoGoodShortcode", function () {
 ```js
 const markdownIt = require("markdown-it");
 
-module.exports = function (eleventyConfig) {
+module.exports = function ($config) {
 	let options = {
 		// … truncated for brevity
 	};
 
-	eleventyConfig.setLibrary("md", markdownIt(options).disable("code"));
+	$config.setLibrary("md", markdownIt(options).disable("code"));
 };
 ```
 
@@ -205,8 +205,8 @@ module.exports = function (eleventyConfig) {
 The truth is, **you can** return markdown inside shortcodes (as long as the file is transforming markdown, either as a `.md` file extension or [with `templateEngineOverride`](/docs/template-overrides/)). However, there is one small wrinkle that might catch you off guard.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addPairedShortcode("myShortcode", function (content) {
+export default function($config) {
+	$config.addPairedShortcode("myShortcode", function (content) {
 		// Method A: ✅ This works fine
 		return content;
 

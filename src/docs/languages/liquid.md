@@ -39,8 +39,8 @@ Rather than constantly fixing outdated documentation, [find `getLiquidOptions` i
 Surprising to JavaScript developers—in [LiquidJS both `""` and `0` are truthy values](https://liquidjs.com/tutorials/truthy-and-falsy.html)! If you’d like to switch to use more JS-familiar conventions, use the Liquid option `jsTruthy: true` in your Eleventy config:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.setLiquidOptions({
+export default function ($config) {
+	$config.setLiquidOptions({
 		jsTruthy: true,
 	});
 };
@@ -52,8 +52,8 @@ export default function (eleventyConfig) {
 It’s recommended to use the Configuration API to override the default options above.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.setLiquidOptions({
+export default function ($config) {
+	$config.setLiquidOptions({
 		dynamicPartials: false,
 		strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
 	});
@@ -70,7 +70,7 @@ As an escape mechanism for advanced usage, pass in your own instance of the Liqu
 {% set codeContent %}
 import { Liquid } from "liquidjs";
 
-export default function (eleventyConfig) {
+export default function ($config) {
 	let options = {
 		extname: ".liquid",
 		dynamicPartials: false,
@@ -78,7 +78,7 @@ export default function (eleventyConfig) {
 		root: ["_includes"],
 	};
 
-	eleventyConfig.setLibrary("liquid", new Liquid(options));
+	$config.setLibrary("liquid", new Liquid(options));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -121,15 +121,15 @@ Read more about [LiquidJS Filter syntax](https://liquidjs.com/tutorials/register
 Note that Liquid supports asynchronous filters out of the box (without any additional code or API method changes).
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
   // Liquid Filter
-  eleventyConfig.addLiquidFilter("myLiquidFilter", function(myVariable) { /* … */ });
+  $config.addLiquidFilter("myLiquidFilter", function(myVariable) { /* … */ });
 
   // Async-friendly too
-  eleventyConfig.addLiquidFilter("myAsyncLiquidFilter", async function(myVariable) { /* … */ });
+  $config.addLiquidFilter("myAsyncLiquidFilter", async function(myVariable) { /* … */ });
 
   // Universal filters (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addFilter("myFilter", function(myVariable) { /* … */ });
+  $config.addFilter("myFilter", function(myVariable) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -147,9 +147,9 @@ export default function(eleventyConfig) {
 ### Multiple Filter Arguments
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Liquid Filter
-	eleventyConfig.addLiquidFilter(
+	$config.addLiquidFilter(
 		"concatThreeStrings",
 		function (arg1, arg2, arg3) {
 			return arg1 + arg2 + arg3;
@@ -174,13 +174,13 @@ Shortcodes are basically reusable bits of content. You can add Liquid specific s
 ### Shortcode
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
   // Liquid Shortcode
   // These can be async functions too
-  eleventyConfig.addLiquidShortcode("user", function(name, twitterUsername) { /* … */ });
+  $config.addLiquidShortcode("user", function(name, twitterUsername) { /* … */ });
 
   // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addShortcode("user", function(name, twitterUsername) {
+  $config.addShortcode("user", function(name, twitterUsername) {
     return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
@@ -217,13 +217,13 @@ export default function(eleventyConfig) {
 ### Paired Shortcode
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
   // Liquid Shortcode
   // These can be async functions too
-  eleventyConfig.addPairedLiquidShortcode("user2", function(bioContent, name, twitterUsername) { /* … */ });
+  $config.addPairedLiquidShortcode("user2", function(bioContent, name, twitterUsername) { /* … */ });
 
   // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addPairedShortcode("user2", function(bioContent, name, twitterUsername) {
+  $config.addPairedShortcode("user2", function(bioContent, name, twitterUsername) {
     return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
@@ -264,15 +264,15 @@ Nebraska beaches. {% enduser2 %}
 Liquid is already promise-based internally so `async` functions with `await` work fine out of the box.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addLiquidShortcode(
+export default function ($config) {
+	$config.addLiquidShortcode(
 		"user",
 		async function (name, twitterUsername) {
 			return await fetchAThing();
 		}
 	);
 
-	eleventyConfig.addPairedShortcode(
+	$config.addPairedShortcode(
 		"user2",
 		async function (content, name, twitterUsername) {
 			return await fetchAThing();
@@ -300,12 +300,12 @@ Zach likes to take long walks on Nebraska beaches. {% enduser2 %}
 Eleventy’s includes its own parameter parsing implementation for shortcodes. To swap to a more robust, Liquid-native solution, use the `setLiquidParameterParsing` Configuration API method. This will likely be enabled by default in a future major version of Eleventy. Related [GitHub #2679](https://github.com/11ty/eleventy/issues/2679).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Current default:
-	// eleventyConfig.setLiquidParameterParsing("legacy");
+	// $config.setLiquidParameterParsing("legacy");
 
 	// Liquid-native
-	eleventyConfig.setLiquidParameterParsing("builtin");
+	$config.setLiquidParameterParsing("builtin");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -315,8 +315,8 @@ export default function (eleventyConfig) {
 If you aren’t using an arrow function, Liquid Shortcodes (and Nunjucks and 11ty.js JavaScript Functions) will have access to Eleventy [`page` data values](/docs/data-eleventy-supplied/#page-variable-contents) without needing to pass them in as arguments.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addLiquidShortcode("myShortcode", function () {
+export default function ($config) {
+	$config.addLiquidShortcode("myShortcode", function () {
 		// Available in 0.11.0 and above
 		console.log(this.page);
 

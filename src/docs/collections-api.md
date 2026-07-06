@@ -9,12 +9,12 @@ eleventyNavigation:
 
 To get fancier with your collections (and even do a bit of your own custom filtering, if you’d like), you can use our Configuration API.
 
-Inside of your `eleventy.config.js` config file, you can use the `addCollection` method:
+Inside of your `buildawesome.config.js` config file, you can use the `addCollection` method:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// async-friendly
-	eleventyConfig.addCollection("myCollectionName", async (collectionsApi) => {
+	$config.addCollection("myCollectionName", async (collectionsApi) => {
 		// get items
 		return collectionsApi.getAllSorted();
 	});
@@ -35,9 +35,9 @@ The data collection gets passed to the callback. You can use it in all sorts of 
 Returns an array of items sorted by the [default sorting algorithm](/docs/collections/#sorting), just like they'd be sorted in a template.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Use the default sorting algorithm (ascending by date, filename tiebreaker)
-	eleventyConfig.addCollection("allMySortedContent", function (collectionsApi) {
+	$config.addCollection("allMySortedContent", function (collectionsApi) {
 		return collectionsApi.getAllSorted();
 	});
 };
@@ -47,10 +47,10 @@ export default function (eleventyConfig) {
 #### Example: `getAllSorted().reverse()`
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Use the default sorting algorithm in reverse (descending dir, date, filename)
 	// Note that using a template engine’s `reverse` filter might be easier here
-	eleventyConfig.addCollection("myPostsReverse", function (collectionsApi) {
+	$config.addCollection("myPostsReverse", function (collectionsApi) {
 		return collectionsApi.getAllSorted().reverse();
 	});
 };
@@ -62,9 +62,9 @@ Note that while Array `.reverse()` mutates the array _in-place_, all Eleventy Co
 #### Example: `getAllSorted().filter()`
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Filter using `Array.filter`
-	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
+	$config.addCollection("onlyMarkdown", function (collectionsApi) {
 		return collectionsApi.getAllSorted().filter(function (item) {
 			// Only return content that was originally a markdown file
 			let extension = item.inputPath.split(".").pop();
@@ -80,9 +80,9 @@ export default function (eleventyConfig) {
 Returns an array of items in arbitrary order. This is marginally faster than `getAllSorted()` if you don't need a particular ordering, but most of the time you'll want `getAllSorted` instead.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Unsorted items (in whatever order they were added)
-	eleventyConfig.addCollection("allMyContent", function (collectionsApi) {
+	$config.addCollection("allMyContent", function (collectionsApi) {
 		return collectionsApi.getAll();
 	});
 };
@@ -92,9 +92,9 @@ export default function (eleventyConfig) {
 #### Example: `getAll().filter()`
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Filter using `Array.filter`
-	eleventyConfig.addCollection("keyMustExistInData", function (collectionsApi) {
+	$config.addCollection("keyMustExistInData", function (collectionsApi) {
 		return collectionsApi.getAll().filter(function (item) {
 			// Side-step tags and do your own filtering
 			return "myCustomDataKey" in item.data;
@@ -107,9 +107,9 @@ export default function (eleventyConfig) {
 #### Example: `getAll().sort()`
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Sort with `Array.sort`
-	eleventyConfig.addCollection("myCustomSort", function (collectionsApi) {
+	$config.addCollection("myCustomSort", function (collectionsApi) {
 		return collectionsApi.getAll().sort(function (a, b) {
 			//return a.date - b.date; // sort by date - ascending
 			return b.date - a.date; // sort by date - descending
@@ -131,9 +131,9 @@ Note that the last example adding the `myCustomSort` collection will be availabl
 Returns a sorted array.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Get only content that matches a tag
-	eleventyConfig.addCollection("myPosts", function (collectionsApi) {
+	$config.addCollection("myPosts", function (collectionsApi) {
 		return collectionsApi.getFilteredByTag("post");
 	});
 };
@@ -145,9 +145,9 @@ export default function (eleventyConfig) {
 Retrieve content that includes _all_ of the tags passed in. Returns a sorted array.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Get only content that matches a tag
-	eleventyConfig.addCollection(
+	$config.addCollection(
 		"myTravelPostsWithPhotos",
 		function (collectionsApi) {
 			return collectionsApi.getFilteredByTags("post", "travel", "photo");
@@ -170,16 +170,16 @@ Returns an array. Will match an arbitrary glob (or an array of globs) against th
 {% endcallout %}
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
+export default function ($config) {
+	$config.addCollection("onlyMarkdown", function (collectionsApi) {
 		return collectionsApi.getFilteredByGlob("**/*.md");
 	});
 
-	eleventyConfig.addCollection("posts", function (collectionsApi) {
+	$config.addCollection("posts", function (collectionsApi) {
 		return collectionsApi.getFilteredByGlob("_posts/*.md");
 	});
 
-	eleventyConfig.addCollection("posts", function (collectionsApi) {
+	$config.addCollection("posts", function (collectionsApi) {
 		// Also accepts an array of globs!
 		return collectionsApi.getFilteredByGlob(["posts/*.md", "notes/*.md"]);
 	});

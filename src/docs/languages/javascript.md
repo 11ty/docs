@@ -258,8 +258,8 @@ export default Test;
 A JavaScript Template Function allows you to extend your JavaScript templates with extra functionality. If you add any Universal Filters or Shortcodes, they will be exposed as JavaScript Template Functions.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-  eleventyConfig.addJavaScriptFunction("myFunction", function(a, b) { /* … */ });
+export default function($config) {
+  $config.addJavaScriptFunction("myFunction", function(a, b) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -279,8 +279,8 @@ This works the same as any `async` JavaScript function or function that returns 
 This is the same as the example above but adds `async` before the `function`.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-  eleventyConfig.addJavaScriptFunction("myAsyncFunction", async function(a, b) { /* … */ });
+export default function($config) {
+  $config.addJavaScriptFunction("myAsyncFunction", async function(a, b) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -318,15 +318,15 @@ export default (data) => {
 Any universal filters or shortcodes will also be available as JavaScript Template Functions.
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
   // Universal filters (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addFilter("myFilter", function(myVariable) { /* … */ });
+  $config.addFilter("myFilter", function(myVariable) { /* … */ });
 
   // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addShortcode("user", function(firstName, lastName) { /* … */ });
+  $config.addShortcode("user", function(firstName, lastName) { /* … */ });
 
   // Universal Paired Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  eleventyConfig.addPairedShortcode("pairedUser", function(content, firstName, lastName) { /* … */ });
+  $config.addPairedShortcode("pairedUser", function(content, firstName, lastName) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -353,8 +353,8 @@ export default function (data) {
 If you aren’t using an arrow function, JavaScript Functions (and Nunjucks, Liquid Shortcodes) will have access to Eleventy [`page` data values](/docs/data-eleventy-supplied/#page-variable-contents) without needing to pass them in as arguments.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addJavaScriptFunction("myFunction", function () {
+export default function ($config) {
+	$config.addJavaScriptFunction("myFunction", function () {
 		// Available in 0.11.0 and above
 		console.log(this.page);
 

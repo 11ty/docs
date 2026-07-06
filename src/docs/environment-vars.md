@@ -61,7 +61,7 @@ npm install cross-env
 {%- set codeBlock %}
 {
 	"scripts": {
-		"build:prod": "cross-env MY_ENVIRONMENT=production npx @11ty/eleventy"
+		"build:prod": "cross-env MY_ENVIRONMENT=production npx @awesome.me/buildawesome"
   }
 }
 {%- endset %}

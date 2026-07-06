@@ -39,7 +39,7 @@ Now add an npm script in your `package.json`, unlocking `npm run debug`:
 ```json
 {
 	"scripts": {
-		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy"
+		"debug": "cross-env DEBUG=Eleventy* npx @awesome.me/buildawesome"
 	}
 }
 ```

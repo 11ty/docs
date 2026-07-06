@@ -5,10 +5,10 @@
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
 {%- set codeBlock %}{% raw %}
-import Eleventy from "@11ty/eleventy";
+import BuildAwesome from "@awesome.me/buildawesome";
 
-let elev = new Eleventy();
-let json = await elev.toJSON();
+let ba = new BuildAwesome();
+let json = await ba.toJSON();
 
 // All results
 console.log(json);
@@ -18,10 +18,10 @@ console.log(json);
   <div id="{{ tabid }}-jscjs" role="tabpanel">
 {%- set codeBlock %}{% raw %}
 (async function () {
-	const { Eleventy } = await import("@11ty/eleventy");
+	const { default: BuildAwesome } = await import("@awesome.me/buildawesome");
 
-	let elev = new Eleventy();
-	let json = await elev.toJSON();
+	let ba = new BuildAwesome();
+	let json = await ba.toJSON();
 
 	// All results
 	console.log(json);

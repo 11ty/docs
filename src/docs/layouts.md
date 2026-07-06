@@ -54,11 +54,11 @@ Front matter data set in a content template takes priority over layout front mat
 
 ## Layout Aliasing {% addedin "0.2.8" %}
 
-Configuration API: use `eleventyConfig.addLayoutAlias(from, to)` to add layout aliases. Say you have a bunch of existing content using `layout: post`. If you don’t want to rewrite all of those values, map `post` to a new file like this:
+Configuration API: use `$config.addLayoutAlias(from, to)` to add layout aliases. Say you have a bunch of existing content using `layout: post`. If you don’t want to rewrite all of those values, map `post` to a new file like this:
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
+export default function($config) {
+	$config.addLayoutAlias("post", "layouts/post.njk");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -91,8 +91,8 @@ Omitting the layout file extension (for example `layout: mylayout`) causes Eleve
 You can disable extensionless layouts in your project with the `setLayoutResolution` Configuration API method {% addedin "2.0.0-canary.21" %} (we may swap this to be the default in a future major version of Eleventy):
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.setLayoutResolution(false);
+export default function($config) {
+	$config.setLayoutResolution(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -14,9 +14,9 @@ Transforms can modify a template’s output. For example, use a transform to for
 {% callout "info", "md" %}The provided transform function **must** return the original or transformed content.{% endcallout %}
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Can be sync or async
-	eleventyConfig.addTransform("transform-name", async function (content) {
+	$config.addTransform("transform-name", async function (content) {
 		console.log(this.page.inputPath);
 
 		// Caution: this could be `false` (from permalink)
@@ -40,9 +40,9 @@ Access to [Eleventy’s `page` variable](/docs/data-eleventy-supplied/#page-vari
 Transforms are executed in order of insertion in your configuration file.
 
 ```js
-eleventyConfig.addTransform("first", () => {});
-eleventyConfig.addTransform("second", () => {});
-eleventyConfig.addTransform("third", () => {});
+$config.addTransform("first", () => {});
+$config.addTransform("second", () => {});
+$config.addTransform("third", () => {});
 ```
 
 ### Plugins
@@ -50,11 +50,11 @@ eleventyConfig.addTransform("third", () => {});
 Transforms added via plugins are inserted via the [second configuration stage for plugins](/docs/plugins/#creating-a-plugin).
 
 ```js
-eleventyConfig.addPlugin(eleventyConfig => {
-	eleventyConfig.addTransform("third", () => {});
+$config.addPlugin($config => {
+	$config.addTransform("third", () => {});
 });
-eleventyConfig.addTransform("first", () => {});
-eleventyConfig.addTransform("second", () => {});
+$config.addTransform("first", () => {});
+$config.addTransform("second", () => {});
 ```
 
 ## Examples
@@ -64,8 +64,8 @@ eleventyConfig.addTransform("second", () => {});
 {% set codeContent %}
 import htmlmin from "html-minifier-terser";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addTransform("htmlmin", function (content) {
+export default function ($config) {
+	$config.addTransform("htmlmin", function (content) {
 		// String conversion to handle `permalink: false`
 		if ((this.page.outputPath || "").endsWith(".html")) {
 			let minified = htmlmin.minify(content, {

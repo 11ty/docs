@@ -17,15 +17,15 @@ function removeExtraText(s) {
 	return newStr;
 }
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(IdAttributePlugin, {
+export default function ($config) {
+	$config.addPlugin(IdAttributePlugin, {
 		// custom slugify function, otherwise we use Eleventy’s built-in `slugify` filter.
 		slugify: markdownItSlugify,
 		selector: "h1,h2,h3,h4,h5,h6", // default
 	});
 
 	let mdIt;
-	eleventyConfig.amendLibrary("md", (mdLib) => {
+	$config.amendLibrary("md", (mdLib) => {
 		mdIt = mdLib;
 		mdLib.use(markdownItToc, {
 			includeLevel: [2, 3],
@@ -50,11 +50,11 @@ export default function (eleventyConfig) {
 		return mdIt.renderInline(content);
 	});
 
-	eleventyConfig.addPairedShortcode("markdown", renderMarkdownInline);
-	eleventyConfig.addFilter("markdown", renderMarkdownInline);
+	$config.addPairedShortcode("markdown", renderMarkdownInline);
+	$config.addFilter("markdown", renderMarkdownInline);
 
 	// WebC migration: callout.webc
-	eleventyConfig.addPairedShortcode(
+	$config.addPairedShortcode(
 		"callout",
 		function (content, level = "", format = "html", customLabel = "") {
 			if (format === "md") {
@@ -105,7 +105,7 @@ export default function (eleventyConfig) {
 		}
 	);
 
-	eleventyConfig.addShortcode("tableofcontents", function (isOpen) {
+	$config.addShortcode("tableofcontents", function (isOpen) {
 		// Markdown only.
 		if (this.page.inputPath.endsWith("md")) {
 			return `<details class="toc"${isOpen ? " open" : ""}>

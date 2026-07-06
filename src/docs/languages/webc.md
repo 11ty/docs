@@ -80,8 +80,8 @@ To add support for `.webc` files in Eleventy, add the plugin in your Eleventy co
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
-export default function(eleventyConfig) {
-	eleventyConfig.addPlugin(pluginWebc);
+export default function($config) {
+	$config.addPlugin(pluginWebc);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -92,8 +92,8 @@ export default function(eleventyConfig) {
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginWebc, {
+export default function ($config) {
+	$config.addPlugin(pluginWebc, {
 		// Glob to find no-import global components
 		// (The default changed from `false` in Eleventy WebC v0.7.0)
 		components: "_components/**/*.webc",
@@ -173,8 +173,8 @@ A few drawbacks to the transform method:
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginWebc, {
+export default function ($config) {
+	$config.addPlugin(pluginWebc, {
 		useTransform: true,
 	});
 };
@@ -982,12 +982,12 @@ This includes [`url`, `slugify`, `log`, and others](/docs/filters/#eleventy-prov
 #### Supply your own Helper
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// via Universal Filter
-	eleventyConfig.addFilter("alwaysRed", () => "Red");
+	$config.addFilter("alwaysRed", () => "Red");
 
 	// or via JavaScript Template Function directly
-	eleventyConfig.addJavaScriptFunction("alwaysBlue", () => "Blue");
+	$config.addJavaScriptFunction("alwaysBlue", () => "Blue");
 
 	// Don’t forget to add the WebC plugin in your config file too!
 };
@@ -1146,8 +1146,8 @@ We accept:
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginWebc, {
+export default function ($config) {
+	$config.addPlugin(pluginWebc, {
 		// Glob to find no-import global components
 		// This path is relative to the project-root!
 		// The default value is shown:

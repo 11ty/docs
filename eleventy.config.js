@@ -220,48 +220,48 @@ function findBy(data, path, value) {
 	});
 }
 
-export default async function (eleventyConfig) {
-	eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+export default async function ($config) {
+	$config.setServerPassthroughCopyBehavior("passthrough");
 
 	if (process.env.NODE_ENV === "production") {
 		// Skip on production
-		eleventyConfig.ignores.add("src/admin.md");
+		$config.ignores.add("src/admin.md");
 	} else {
 		// Skip on local dev
-		eleventyConfig.ignores.add("src/api/*");
-		eleventyConfig.ignores.add("src/authors/author-pages.md");
-		eleventyConfig.ignores.add("src/firehose.11ty.js");
-		eleventyConfig.ignores.add("src/firehose-feed.11ty.js");
+		$config.ignores.add("src/api/*");
+		$config.ignores.add("src/authors/author-pages.md");
+		$config.ignores.add("src/firehose.11ty.js");
+		$config.ignores.add("src/firehose-feed.11ty.js");
 	}
 
-	eleventyConfig.setServerOptions({
+	$config.setServerOptions({
 		showVersion: false,
 		domDiff: false,
 	});
 
 	/* Plugins */
-	eleventyConfig.addPlugin(syntaxHighlightPlugin);
+	$config.addPlugin(syntaxHighlightPlugin);
 
-	eleventyConfig.addPlugin(fontAwesomePlugin, {
+	$config.addPlugin(fontAwesomePlugin, {
 		defaultAttributes: {
 			class: "fa11ty-icon"
 		}
 	});
 
-	eleventyConfig.addPlugin(imagePlugin);
-	eleventyConfig.addPlugin(markdownPlugin);
+	$config.addPlugin(imagePlugin);
+	$config.addPlugin(markdownPlugin);
 
-	eleventyConfig.addPlugin(minificationLocalPlugin);
-	eleventyConfig.addPlugin(RenderPlugin);
+	$config.addPlugin(minificationLocalPlugin);
+	$config.addPlugin(RenderPlugin);
 
-	eleventyConfig.htmlTransformer.posthtmlProcessOptions.closingSingleTag = "slash";
-	// eleventyConfig.addPlugin(PreserveClosingTagsPlugin, {
+	$config.htmlTransformer.posthtmlProcessOptions.closingSingleTag = "slash";
+	// $config.addPlugin(PreserveClosingTagsPlugin, {
 	// 	tags: ["meta"]
 	// });
 
-	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+	$config.addPlugin(InputPathToUrlTransformPlugin);
 
-	eleventyConfig.addPlugin(eleventyWebcPlugin, {
+	$config.addPlugin(eleventyWebcPlugin, {
 		components: [
 			"./src/_includes/components/*.webc",
 			// "npm:@11ty/is-land/*.webc",
@@ -272,15 +272,15 @@ export default async function (eleventyConfig) {
 
 	// Feeds (only in production)
 	if (process.env.NODE_ENV === "production") {
-		feedPlugin(eleventyConfig);
+		feedPlugin($config);
 	}
 
 	/* End plugins */
 
-	eleventyConfig.addPlugin(navigationPlugin);
-	eleventyConfig.addPlugin(sidebarPlugin);
+	$config.addPlugin(navigationPlugin);
+	$config.addPlugin(sidebarPlugin);
 
-	eleventyConfig.addShortcode("getColorsForUrl", async (url) => {
+	$config.addShortcode("getColorsForUrl", async (url) => {
 		if(process.env.ELEVENTY_RUN_MODE !== "build") {
 			return [];
 		}
@@ -297,28 +297,28 @@ export default async function (eleventyConfig) {
 		})
 	});
 
-	eleventyConfig.addFilter("modulo", function (num, div) {
+	$config.addFilter("modulo", function (num, div) {
 		return num % div;
 	});
 
-	eleventyConfig.addFilter("throwErrorWhenMissing", function (arg, msg) {
+	$config.addFilter("throwErrorWhenMissing", function (arg, msg) {
 		if(arg) {
 			return;
 		}
 		throw new Error(msg + ` (via throwErrorWhenMissing filter on ${this.page.url})`);
 	});
-	eleventyConfig.addFilter("coerceVersion", coerceVersion);
-	eleventyConfig.addNunjucksGlobal("semverGreaterThan", greaterThan);
-	eleventyConfig.addShortcode("addedin", addedIn);
+	$config.addFilter("coerceVersion", coerceVersion);
+	$config.addNunjucksGlobal("semverGreaterThan", greaterThan);
+	$config.addShortcode("addedin", addedIn);
 
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"generatoravatar",
 		shortcodes.getGeneratorImageHtml
 	);
-	eleventyConfig.addShortcode("hostavatar", shortcodes.getHostingImageHtml);
-	eleventyConfig.addShortcode("indieavatar", shortcodes.getIndieAvatarHtml);
+	$config.addShortcode("hostavatar", shortcodes.getHostingImageHtml);
+	$config.addShortcode("indieavatar", shortcodes.getIndieAvatarHtml);
 
-	eleventyConfig.addShortcode("indieweblink", function (content, url, iconUrl) {
+	$config.addShortcode("indieweblink", function (content, url, iconUrl) {
 		if (!url) {
 			return content;
 		}
@@ -327,14 +327,14 @@ export default async function (eleventyConfig) {
 		return `<a href="${url}">${imgHtml}${content}</a>`;
 	});
 
-	eleventyConfig.addShortcode("emoji", function (emoji, alt = "") {
+	$config.addShortcode("emoji", function (emoji, alt = "") {
 		return (
 			`<span aria-hidden="true" class="emoji">${emoji}</span>` +
 			(alt ? `<span class="sr-only">${alt}</span>` : "")
 		);
 	});
 
-	eleventyConfig.addFilter("canonicalTwitterUrl", (url) => {
+	$config.addFilter("canonicalTwitterUrl", (url) => {
 		try {
 			return tweetbackTransform(url);
 		} catch (e) {
@@ -343,14 +343,14 @@ export default async function (eleventyConfig) {
 	});
 
 	let ref = 0;
-	eleventyConfig.on("eleventy.before", () => {
+	$config.on("eleventy.before", () => {
 		ref = 0;
 	});
-	eleventyConfig.addShortcode("uid", () => {
+	$config.addShortcode("uid", () => {
 		return `id-${++ref}`;
 	});
 
-	eleventyConfig.addFilter("esmToCjs", memoize((sourceCode) => {
+	$config.addFilter("esmToCjs", memoize((sourceCode) => {
 		try {
 			let it = new ImportTransformer(sourceCode);
 			let outputCode = it.transformToRequire();
@@ -363,29 +363,29 @@ export default async function (eleventyConfig) {
 		}
 	}));
 
-	eleventyConfig.addShortcode("communityavatar", shortcodes.communityAvatar);
-	eleventyConfig.addShortcode(
+	$config.addShortcode("communityavatar", shortcodes.communityAvatar);
+	$config.addShortcode(
 		"opencollectiveavatar",
 		shortcodes.getOpenCollectiveAvatarHtml
 	);
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"getScreenshotHtml",
 		shortcodes.getScreenshotHtml
 	);
 
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"codetitle",
 		function (title, heading = "Filename") {
 			return `<div class="codetitle codetitle-left"><b>${heading} </b>${title}</div>`;
 		}
 	);
 
-	eleventyConfig.addPairedShortcode("minilink", function (text, href) {
+	$config.addPairedShortcode("minilink", function (text, href) {
 		return `<a href="${href}" class="minilink minilink-lower">${text}</a>`;
 	});
 
 	// WebC migration: TODO remove this after full conversion
-	eleventyConfig.addPassthroughCopy({
+	$config.addPassthroughCopy({
 		"src/js/*.js": "js/",
 		"src/css/type/*": "css/fonts/", // cera round pro
 		"src/_includes/components/throbber.js": "js/throbber.js",
@@ -393,7 +393,7 @@ export default async function (eleventyConfig) {
 		"src/opensearch.xml": "opensearch.xml",
 	});
 
-	eleventyConfig.addPassthroughCopy({
+	$config.addPassthroughCopy({
 		[resolveModule("@11ty/logo/assets/logo-bg.svg")]: "img/logo-github.svg",
 		// [resolveModule("@11ty/logo/assets/open-graph.jpg")]: "img/open-graph.jpg",
 		[resolveModule("@11ty/logo/img/logo-784x1093.png")]: "img/logo.png",
@@ -412,30 +412,30 @@ export default async function (eleventyConfig) {
 
 	// Eleventy Editor
 	// Minification only happens in production
-	await minifyJavaScriptFile(resolveModule("@11ty/client"), path.join(eleventyConfig.directories.output, "js/eleventy.core.browser.js"));
-	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), path.join(eleventyConfig.directories.output, "js/eleventy.engine-md.browser.js"));
-	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), path.join(eleventyConfig.directories.output, "js/eleventy.engine-liquid.browser.js"));
-	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", path.join(eleventyConfig.directories.output, "js/wa-copy-button.js"));
+	await minifyJavaScriptFile(resolveModule("@11ty/client"), path.join($config.directories.output, "js/eleventy.core.browser.js"));
+	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), path.join($config.directories.output, "js/eleventy.engine-md.browser.js"));
+	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), path.join($config.directories.output, "js/eleventy.engine-liquid.browser.js"));
+	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", path.join($config.directories.output, "js/wa-copy-button.js"));
 
-	eleventyConfig.addPassthroughCopy("src/img");
-	eleventyConfig.addPassthroughCopy("src/favicon.ico");
-	eleventyConfig.addPassthroughCopy({
+	$config.addPassthroughCopy("src/img");
+	$config.addPassthroughCopy("src/favicon.ico");
+	$config.addPassthroughCopy({
 		"./node_modules/@awesome.me/webawesome/dist-cdn/": "/static/web-awesome/",
 	});
 
-	eleventyConfig.addFilter("matchbannerlink", (links, text) => {
+	$config.addFilter("matchbannerlink", (links, text) => {
 		return links.find((entry) => entry.label.indexOf(text) !== -1);
 	});
 
-	eleventyConfig.addFilter("lighthouseGoodDataCheck", function (data) {
+	$config.addFilter("lighthouseGoodDataCheck", function (data) {
 		return !!data && !("error" in data);
 	});
 
-	eleventyConfig.addFilter("lighthousePerfectScore", function (data) {
+	$config.addFilter("lighthousePerfectScore", function (data) {
 		return !!data && !("error" in data) && data.lighthouse.total === 400;
 	});
 
-	eleventyConfig.addFilter("cardScreenshotHtml", function (site) {
+	$config.addFilter("cardScreenshotHtml", function (site) {
 		let url = site.demo || site.url;
 		if(!url) {
 			return `<div class="sites-screenshot-container"><img class="sites-screenshot"></div>`;
@@ -446,7 +446,7 @@ export default async function (eleventyConfig) {
 		return `<div class="sites-screenshot-container">${shortcodes.getScreenshotHtml(site.fileSlug, url, null, site.screenshotSize, site.screenshotAspectRatio)}</div>`;
 	});
 
-	eleventyConfig.addFilter("speedlifyHash", function (site) {
+	$config.addFilter("speedlifyHash", function (site) {
 		if (!site || !site.url) {
 			// console.log( "speedlifyHash: Missing url for", site.name );
 			return;
@@ -455,29 +455,29 @@ export default async function (eleventyConfig) {
 		return shortHash(site.url);
 	});
 
-	eleventyConfig.addFilter("toJSON", function (obj) {
+	$config.addFilter("toJSON", function (obj) {
 		return JSON.stringify(obj);
 	});
 
-	eleventyConfig.addFilter("toSearchEntry", function (str) {
+	$config.addFilter("toSearchEntry", function (str) {
 		return str
 			.replace(/<a class="direct-link"[^>]*>#<\/a\>/g, "")
 			.replace(/[\t]{2,}/g, "\t") // change \t\t\t\t\t\t to \t
 			.replace(/[\n]{2,}/g, "\n"); // change \n\n\n\n\n to \n
 	});
 
-	eleventyConfig.addFilter("humanReadableNum", function (num) {
+	$config.addFilter("humanReadableNum", function (num) {
 		if (num || num === 0) {
 			return HumanReadable.toHumanString(num);
 		}
 		return "";
 	});
 
-	eleventyConfig.addFilter("commaNumber", function (num) {
+	$config.addFilter("commaNumber", function (num) {
 		return commaNumber(num);
 	});
 
-	eleventyConfig.addFilter("displayPrice", function (num) {
+	$config.addFilter("displayPrice", function (num) {
 		return new Intl.NumberFormat("en-US", {
 			style: "currency",
 			currency: "USD",
@@ -485,9 +485,9 @@ export default async function (eleventyConfig) {
 		}).format(num);
 	});
 
-	eleventyConfig.addFilter("displayUrl", displayUrl);
+	$config.addFilter("displayUrl", displayUrl);
 
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"templatelangs",
 		function (languages, page, whitelist, anchor, isinline) {
 			let parentTag = isinline ? "span" : "ul";
@@ -510,7 +510,7 @@ export default async function (eleventyConfig) {
 	);
 
 	// WebC migration: eleventy-version.webc
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"latestVersion",
 		function (versions, config, prefix = "v") {
 			for (let version of versions.sort((v1, v2) => compareVersion(v1.tag, v2.tag))) {
@@ -540,7 +540,7 @@ export default async function (eleventyConfig) {
 	}
 
 	// Thanks to https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-	eleventyConfig.addFilter("shuffle", (arr = [], sliceNum = undefined) => {
+	$config.addFilter("shuffle", (arr = [], sliceNum = undefined) => {
 		if (Array.isArray(arr)) {
 			if (!sliceNum) {
 				return randomizeArray(arr);
@@ -570,7 +570,7 @@ export default async function (eleventyConfig) {
 	}
 
 	// Thanks to https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-	eleventyConfig.addFilter("randompick", (arr) => {
+	$config.addFilter("randompick", (arr) => {
 		if (Array.isArray(arr)) {
 			return getRandomArrayEntry(arr);
 		}
@@ -579,7 +579,7 @@ export default async function (eleventyConfig) {
 		return arr[randkey];
 	});
 
-	eleventyConfig.addFilter("getsize", (arr) => {
+	$config.addFilter("getsize", (arr) => {
 		if (Array.isArray(arr)) {
 			return arr.length;
 		}
@@ -587,7 +587,7 @@ export default async function (eleventyConfig) {
 		return Object.keys(arr).length;
 	});
 
-	eleventyConfig.addShortcode("addToSampleSites", function () {
+	$config.addShortcode("addToSampleSites", function () {
 		return `<a href="https://github.com/11ty/docs/issues/new/choose"><strong>Want to add your site to this list?</strong></a>`;
 	});
 
@@ -602,20 +602,20 @@ export default async function (eleventyConfig) {
 		return avatarHtml + testimonial.name;
 	}
 
-	eleventyConfig.addShortcode("testimonialNameHtml", testimonialNameHtml);
+	$config.addShortcode("testimonialNameHtml", testimonialNameHtml);
 
-	eleventyConfig.addShortcode("testimonial", function (testimonial) {
+	$config.addShortcode("testimonial", function (testimonial) {
 		let nameHtml = testimonialNameHtml(testimonial);
 		return `<blockquote><p>${
 			!testimonial.indirect ? `“` : ``
 		}${testimonial.text}${!testimonial.indirect ? `” <span class="bio-source">—${shortcodes.link(testimonial.source, nameHtml)}</span>` : ``}</p></blockquote>`;
 	});
 
-	eleventyConfig.addFilter("filterBusinessPeople", function (authors) {
+	$config.addFilter("filterBusinessPeople", function (authors) {
 		return Object.values(authors).filter((entry) => !!entry.business_url);
 	});
 
-	eleventyConfig.addFilter("isBusinessPerson", function (supporter) {
+	$config.addFilter("isBusinessPerson", function (supporter) {
 		return (
 			supporter &&
 			supporter.isMonthly &&
@@ -624,7 +624,7 @@ export default async function (eleventyConfig) {
 		);
 	});
 
-	eleventyConfig.addFilter(
+	$config.addFilter(
 		"isSupporter",
 		function (
 			supporters,
@@ -652,11 +652,11 @@ export default async function (eleventyConfig) {
 		}
 	);
 
-	eleventyConfig.addFilter("toISO", (dateObj) => {
+	$config.addFilter("toISO", (dateObj) => {
 		return dateObj.toISOString();
 	});
 
-	eleventyConfig.addFilter("newsDate", (dateObj, format = "yyyy LLLL dd") => {
+	$config.addFilter("newsDate", (dateObj, format = "yyyy LLLL dd") => {
 		if (typeof dateObj === "string") {
 			return DateTime.fromISO(dateObj).toFormat(format);
 		} else if (typeof dateObj === "number") {
@@ -665,7 +665,7 @@ export default async function (eleventyConfig) {
 		return DateTime.fromJSDate(dateObj).toFormat(format);
 	});
 
-	eleventyConfig.addFilter("objectFilterNot", (obj, compareKey) => {
+	$config.addFilter("objectFilterNot", (obj, compareKey) => {
 		let newObj = {};
 		for (let j in obj) {
 			if (!obj[j][compareKey]) {
@@ -675,7 +675,7 @@ export default async function (eleventyConfig) {
 		return newObj;
 	});
 
-	eleventyConfig.addFilter("rankSortByNumericKey", (arr, ...keys) => {
+	$config.addFilter("rankSortByNumericKey", (arr, ...keys) => {
 		return arr
 			.filter((entry) => true)
 			.sort((a, b) => {
@@ -689,7 +689,7 @@ export default async function (eleventyConfig) {
 			});
 	});
 
-	eleventyConfig.addFilter(
+	$config.addFilter(
 		"calc",
 		(sites, type, key, greaterThanOrEqualTo = 1) => {
 			let sum = 0;
@@ -730,9 +730,9 @@ export default async function (eleventyConfig) {
 		}
 	);
 
-	eleventyConfig.addFilter("findBy", findBy);
+	$config.addFilter("findBy", findBy);
 
-	eleventyConfig.addFilter("findSiteDataByUrl", (url, sites) => {
+	$config.addFilter("findSiteDataByUrl", (url, sites) => {
 		let sitesArr = sites;
 		if (!Array.isArray(sitesArr)) {
 			sitesArr = Object.values(sites);
@@ -754,34 +754,34 @@ export default async function (eleventyConfig) {
 		}
 	});
 
-	eleventyConfig.addFilter("repeat", (number, str) => {
+	$config.addFilter("repeat", (number, str) => {
 		if (number > 0) {
 			return str + new Array(number).join(str);
 		}
 		return "";
 	});
 
-	eleventyConfig.addFilter("values", (obj) => {
+	$config.addFilter("values", (obj) => {
 		return Object.values(obj);
 	});
 
-	eleventyConfig.addFilter("sortAuthors", (authors) => {
+	$config.addFilter("sortAuthors", (authors) => {
 		return Object.values(authors).filter(author => !author.name.startsWith("twitter:")).sort((a, b) => {
 			return b.sites.length - a.sites.length;
 		});
 	});
 
-	eleventyConfig.addFilter("cleanAuthorName", cleanName);
+	$config.addFilter("cleanAuthorName", cleanName);
 
-	eleventyConfig.addFilter("head", (arr, num) => {
+	$config.addFilter("head", (arr, num) => {
 		return num ? arr.slice(0, num) : arr;
 	});
 
-	eleventyConfig.addFilter("headafter", (arr, num) => {
+	$config.addFilter("headafter", (arr, num) => {
 		return num ? arr.slice(num) : arr;
 	});
 
-	eleventyConfig.addFilter("filterSupportersActive", (supporters) => {
+	$config.addFilter("filterSupportersActive", (supporters) => {
 		// workaround a bug in the open collective API
 		const ALLOWED_SLUGS = [
 			"superluxuryreps"
@@ -793,7 +793,7 @@ export default async function (eleventyConfig) {
 	});
 
 	// Sort an object that has `order` props in values. Return an array
-	eleventyConfig.addFilter("sortObjectByOrder", (obj) => {
+	$config.addFilter("sortObjectByOrder", (obj) => {
 		let arr = [];
 		for (let key in obj) {
 			arr.push(obj[key]);
@@ -804,12 +804,12 @@ export default async function (eleventyConfig) {
 	});
 
 	// Case insensitive check an object for a key
-	eleventyConfig.addFilter("has", objectHas);
+	$config.addFilter("has", objectHas);
 
-	let slugify = eleventyConfig.getFilter("slugify");
+	let slugify = $config.getFilter("slugify");
 
 	// Case insensitive check an object for a key
-	eleventyConfig.addShortcode("authorLink", (authors, name) => {
+	$config.addShortcode("authorLink", (authors, name) => {
 		let html = [];
 
 		if (name) {
@@ -831,7 +831,7 @@ export default async function (eleventyConfig) {
 		return html.join("");
 	});
 
-	eleventyConfig.addFilter(
+	$config.addFilter(
 		"convertCommunityLinkToSiteCard",
 		function ({ url, author, title }) {
 			/*
@@ -859,7 +859,7 @@ to:
 		}
 	);
 
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"youtubeEmbed",
 		function (slug, label, startTime) {
 			if (label) {
@@ -896,7 +896,7 @@ to:
 		}
 	);
 
-	eleventyConfig.addFilter("packageManagerCodeTransform", (content, type) => {
+	$config.addFilter("packageManagerCodeTransform", (content, type) => {
 		if(type === "yarn") {
 			return content.replaceAll("npx @11ty/", "yarn exec ");
 		} else if(type === "pnpm") {
@@ -905,7 +905,7 @@ to:
 		return content;
 	});
 
-	eleventyConfig.addFilter("opencollectiveTier", (supporters = [], tier = undefined) => {
+	$config.addFilter("opencollectiveTier", (supporters = [], tier = undefined) => {
 		return supporters.filter(s => s.isMonthly && (!tier || s?.tier?.slug == tier));
 	});
 
@@ -916,7 +916,7 @@ to:
 	 *
 	 * Floor for minutes/hours, Round for days and weeks
 	 */
-	eleventyConfig.addFilter("timeDiff", dateStr => {
+	$config.addFilter("timeDiff", dateStr => {
 		let diff = (Date.now() - Date.parse(dateStr)) / 1000;
 		let day_diff = Math.round(diff / 86400);
 
@@ -938,7 +938,7 @@ to:
 		return result;
 	})
 
-	eleventyConfig.addFilter("normalizeVersion", (version = "") => {
+	$config.addFilter("normalizeVersion", (version = "") => {
 		if(version.startsWith("v")) {
 			return version.slice(1);
 		}
@@ -947,7 +947,7 @@ to:
 
 		// Remove after https://github.com/11ty/eleventy/issues/3668
 	const TIME_ZONE = "America/Chicago";
-	eleventyConfig.addDateParsing(function(dateValue) {
+	$config.addDateParsing(function(dateValue) {
 		let localDate;
 		if(dateValue instanceof Date) { // override YAML dates
 			localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(TIME_ZONE, { keepLocalTime: true });

@@ -24,13 +24,13 @@ npm install @11ty/eleventy-plugin-syntaxhighlight
 {% endraw %}{% endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
-Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
+Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% set codeContent %}
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(syntaxHighlight);
+export default function ($config) {
+	$config.addPlugin(syntaxHighlight);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -43,8 +43,8 @@ Optionally pass in an options object as the second argument to `addPlugin` to fu
 {% set codeContent %}
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
-export default function(eleventyConfig) {
-  eleventyConfig.addPlugin(syntaxHighlight, {
+export default function($config) {
+  $config.addPlugin(syntaxHighlight, {
 
     // Line separator for line breaks
     lineSeparator: "\n",

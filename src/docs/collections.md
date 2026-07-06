@@ -226,8 +226,8 @@ To sort descending in your template, you can use a filter to reverse the sort or
 This applies any time you use <code>reverse</code>, for example in a custom shortcode:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("myShortcode", function (aCollection){
+export default function ($config) {
+	$config.addShortcode("myShortcode", function (aCollection){
 	  // WARNING
 	  aCollection.reverse();
 	})

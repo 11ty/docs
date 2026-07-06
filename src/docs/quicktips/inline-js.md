@@ -19,8 +19,8 @@ Add the following `jsmin` filter to your Eleventy Config file:
 {% set codeContent %}
 import { minify } from "terser";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addFilter("jsmin", async function (code) {
+export default function ($config) {
+	$config.addFilter("jsmin", async function (code) {
 		try {
 			const minified = await minify(code);
 			return minified.code;

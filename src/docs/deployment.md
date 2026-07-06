@@ -121,7 +121,7 @@ One common practice when deploying Eleventy via a Jamstack provider is to use an
 ```js
 {
   "scripts": {
-    "build": "npx @11ty/eleventy"
+    "build": "npx @awesome.me/buildawesome"
   }
 }
 ```
@@ -191,7 +191,7 @@ Includes persisted cache across builds.
 	"build-ghpages": "npx @11ty/eleventy --pathprefix=/YOUR_REPO_NAME/",
 }
 ```
-4. _Exception:_ When using a Custom domain (example.com) with GitHub Pages, deploying to `example.com/` instead of `*.github.io/YOUR_REPO_NAME/` make sure to remove the `--pathprefix` parameter entirely. e.g. `"build-ghpages": "npx @11ty/eleventy",`
+4. _Exception:_ When using a Custom domain (example.com) with GitHub Pages, deploying to `example.com/` instead of `*.github.io/YOUR_REPO_NAME/` make sure to remove the `--pathprefix` parameter entirely. e.g. `"build-ghpages": "npx @awesome.me/buildawesome",`
 5. Commit this new `.github/workflows/deploy-gh-pages.yml` file and push it upstream to GitHub.
 
 

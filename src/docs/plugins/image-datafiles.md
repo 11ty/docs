@@ -33,14 +33,14 @@ excludeFromSidebar: true
 import path from "node:path";
 import Image from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("png,jpeg", {
+export default function ($config) {
+	$config.addDataExtension("png,jpeg", {
 		read: false, // Don’t read the input file, argument is now a file path
 		parser: async (imagePath) => {
 			let stats = await Image(imagePath, {
 				widths: ["auto"],
 				formats: ["avif", "webp", "jpeg"],
-				outputDir: path.join(eleventyConfig.dir.output, "img", "built"),
+				outputDir: path.join($config.dir.output, "img", "built"),
 			});
 
 			return {
@@ -52,7 +52,7 @@ export default function (eleventyConfig) {
 	});
 
 	// This works sync or async: images were processed ahead of time in the data cascade
-	eleventyConfig.addShortcode("dataCascadeImage", (stats, alt, sizes) => {
+	$config.addShortcode("dataCascadeImage", (stats, alt, sizes) => {
 		let imageAttributes = {
 			alt,
 			sizes,

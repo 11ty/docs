@@ -14,11 +14,11 @@ communityLinksKey: plugins
 
 ## Plugins are Configuration
 
-At their simplest, Eleventy plugins are a function passed to the `addPlugin` method. If you’re familiar with [Eleventy configuration files](/docs/config/), this will look and feel very similar!
+At their simplest, Build Awesome plugins are a function passed to the `addPlugin` method. If you’re familiar with [Build Awesome configuration files](/docs/config/), this will look and feel very similar!
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(function(eleventyConfig) {
+export default function ($config) {
+	$config.addPlugin(function($config) {
 		// I am a plugin!
 	});
 };
@@ -28,12 +28,12 @@ export default function (eleventyConfig) {
 The plugin can be defined elsewhere in the same file:
 
 {% set codeContent %}
-function myPlugin(eleventyConfig) {
+function myPlugin($config) {
 	// I am a plugin!
 }
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(myPlugin);
+export default function ($config) {
+	$config.addPlugin(myPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -43,8 +43,8 @@ Or in a different file:
 {% set codeContent %}
 import myPlugin from "./_config/plugin.js";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(myPlugin);
+export default function ($config) {
+	$config.addPlugin(myPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -54,8 +54,8 @@ Or in an `npm` package:
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginRss);
+export default function ($config) {
+	$config.addPlugin(pluginRss);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -63,8 +63,8 @@ export default function (eleventyConfig) {
 Plugins are async-friendly {% addedin "3.0.0-alpha.1" %} but you must `await` the `addPlugin` method.
 
 {% set codeContent %}
-export default async function (eleventyConfig) {
-	await eleventyConfig.addPlugin(async function(eleventyConfig) {
+export default async function ($config) {
+	await $config.addPlugin(async function($config) {
 		// I am an asynchronous plugin!
 	});
 };
@@ -83,15 +83,15 @@ Looking for a plugin? Check out the [official plugins](/docs/plugins/official/) 
 npm install @11ty/eleventy-plugin-rss --save
 ```
 
-### Add the plugin to Eleventy in your config file
+### Add the plugin to Build Awesome in your config file
 
-Your config file is probably named `eleventy.config.js` or `.eleventy.js`.
+Your config file is probably named `buildawesome.config.js` or `eleventy.config.js`.
 
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginRss);
+export default function ($config) {
+	$config.addPlugin(pluginRss);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -103,8 +103,8 @@ Use an optional second argument to `addPlugin` to customize your plugin’s beha
 {% set codeContent %}
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
+export default function ($config) {
+	$config.addPlugin(pluginSyntaxHighlight, {
 		// only install the markdown highlighter
 		templateFormats: ["md"],
 
@@ -119,15 +119,15 @@ export default function (eleventyConfig) {
 <details>
 <summary><strong>Advanced Usage: Namespacing a plugin</strong></summary>
 
-It’s unlikely you’ll need this feature _but_ you can namespace parts of your configuration using `eleventyConfig.namespace`. This will add a string prefix to all filters, tags, helpers, shortcodes, collections, and transforms.
+It’s unlikely you’ll need this feature _but_ you can namespace parts of your configuration using `$config.namespace`. This will add a string prefix to all filters, tags, helpers, shortcodes, collections, and transforms.
 
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.namespace("myPrefix_", () => {
+export default function ($config) {
+	$config.namespace("myPrefix_", () => {
 		// the rssLastUpdatedDate filter is now myPrefix_rssLastUpdatedDate
-		eleventyConfig.addPlugin(pluginRss);
+		$config.addPlugin(pluginRss);
 	});
 };
 {% endset %}
@@ -146,14 +146,14 @@ Plugins (by default) execute in a second stage of configuration after the user�
 You are unlikely to need this, but you can execute a plugin’s code immediately using the `immediate` option.
 
 {% set codeContent %}
-export default function (eleventyConfig, pluginOptions) {
+export default function ($config, pluginOptions) {
 	console.log( "first" );
 
-	eleventyConfig.addPlugin(eleventyConfig => {
+	$config.addPlugin($config => {
 		console.log("fourth");
 	});
 
-	eleventyConfig.addPlugin(eleventyConfig => {
+	$config.addPlugin($config => {
 		console.log("second");
 	}, {
 		immediate: true
@@ -166,12 +166,12 @@ export default function (eleventyConfig, pluginOptions) {
 
 ## Creating a Plugin
 
-A plugin primarily provides a “configuration function.” This function is called when Eleventy is first initialized, and operates similarly to a user’s configuration function (the same `eleventyConfig` argument passed to the user’s `eleventy.config.js` file is passed here), in addition to any config passed by the user:
+A plugin primarily provides a “configuration function.” This function is called when Build Awesome is first initialized, and operates similarly to a user’s configuration function (the same `$config` argument passed to the user’s `buildawesome.config.js` file is passed here), in addition to any config passed by the user:
 
 <div class="codetitle">plugin.js</div>
 
 {% set codeContent %}
-export default function (eleventyConfig, pluginOptions) {
+export default function ($config, pluginOptions) {
 	// Your plugin code goes here
 };
 {% endset %}
@@ -189,7 +189,7 @@ If you want to allow developers to use custom arguments provided by your plugin,
 {% set codeContent %}
 export default {
 	initArguments: {},
-	configFunction: function (eleventyConfig, pluginOptions) {
+	configFunction: function ($config, pluginOptions) {
 		// Your plugin code goes here
 	},
 };
@@ -197,10 +197,10 @@ export default {
 {% include "snippets/esmCjsTabs.njk" %}
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(require("./fancy-plugin.js"), {
+export default function ($config) {
+	$config.addPlugin(require("./fancy-plugin.js"), {
 		init: function (initArguments) {
-			// `this` is the eleventyConfig object
+			// `this` is the $config object
 			// initArguments will be the `myInitArguments` object from above
 		},
 	});
@@ -212,14 +212,14 @@ export default function (eleventyConfig) {
 
 ### Feature Testing
 
-If your plugin requires a specific feature in Eleventy, you should feature test it!
+If your plugin requires a specific feature in Build Awesome (Eleventy) core, you should feature test it!
 
 <div class="codetitle">plugin.js</div>
 
 {% set codeContent %}
-export default function (eleventyConfig, pluginOptions) {
-	if(!("addTemplate" in eleventyConfig)) {
-		console.log( `[my-test-plugin] WARN Eleventy plugin compatibility: Virtual Templates are required for this plugin, please use Eleventy v3.0 or newer.` );
+export default function ($config, pluginOptions) {
+	if(!("addTemplate" in $config)) {
+		console.log( `[my-test-plugin] WARN Build Awesome (Eleventy) plugin compatibility: Virtual Templates are required for this plugin, please use Build Awesome (Eleventy) v3.0 or newer.` );
 	}
 };
 {% endset %}
@@ -227,31 +227,31 @@ export default function (eleventyConfig, pluginOptions) {
 
 ### Version Checking
 
-If feature testing is not available for your specific use case, you can add this code to your plugin configuration to show a warning if the plugin consumer does not have a compatible version of Eleventy:
+If feature testing is not available for your specific use case, you can add this code to your plugin configuration to show a warning if the plugin consumer does not have a compatible version of Build Awesome or Eleventy:
 
 <div class="codetitle">plugin.js</div>
 
 {% set codeContent %}
-export default function (eleventyConfig, pluginOptions) {
+export default function ($config, pluginOptions) {
 	try {
-		// Emit a warning message if the application is not using Eleventy 3.0 or newer (including prereleases).
-		eleventyConfig.versionCheck(">=3.0");
+		// Emit a warning message if the application is not using Build Awesome (Eleventy) 3.0 or newer (including prereleases).
+		$config.versionCheck(">=3.0");
 	} catch(e) {
-		console.log( `[my-test-plugin] WARN Eleventy plugin compatibility: ${e.message}` );
+		console.log( `[my-test-plugin] WARN Build Awesome plugin compatibility: ${e.message}` );
 	}
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 * This uses the [`semver` package](https://www.npmjs.com/package/semver) and is compatible with advanced range syntax.
-* **Upper bounding your version number is _not recommended_**. Eleventy works very hard to maintain backwards compatibility between major versions. Please ensure your plugin code does the same!
-* The `versionCheck` method has been available in Eleventy core since v0.3.2 (~2018).
+* **Upper bounding your version number is _not recommended_**. We work very hard to maintain backwards compatibility between major versions. Please ensure your plugin code does the same!
+* The `versionCheck` method has been available in core since v0.3.2 (~2018).
 
 
 ### Distributing a Plugin
 
 If you’re distributing your plugin as a package, consider following these conventions. These are not hard requirements.
 
-- Add `"eleventy-plugin"` to your package.json’s `keywords` field.
-- Prefix your package name with `eleventy-plugin-`
+- Add `"buildawesome-plugin"` and `"eleventy-plugin"` to your package.json’s `keywords` field.
+- Prefix your package name with `"buildawesome-plugin-"` (previously: `eleventy-plugin-`)
 - Open a PR to add your plugin to our [list of community plugins](https://github.com/11ty/docs/tree/main/src/_data/plugins) for publication on [our community plugins directory](/docs/plugins/community.md).

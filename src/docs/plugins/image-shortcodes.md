@@ -31,8 +31,8 @@ The examples below require an [async-friendly shortcodes](/docs/shortcodes/#asyn
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt, widths = [300, 600], sizes = "") {
+export default function ($config) {
+	$config.addShortcode("image", async function (src, alt, widths = [300, 600], sizes = "") {
 		return Image(src, {
 			widths,
 			formats: ["avif", "jpeg"],
@@ -57,7 +57,7 @@ export default function (eleventyConfig) {
 
 #### More about Shortcodes
 
-- Read more about [`eleventyConfig.addShortcode`](/docs/shortcodes/#asynchronous-shortcodes) and universal shortcodes. Use `addAsyncShortcode` in versions of Eleventy older than v2.0. You can also [add these shortcodes to individual template engines](/docs/shortcodes/#async-friendly-per-engine-shortcodes), if you’d like!
+- Read more about [`$config.addShortcode`](/docs/shortcodes/#asynchronous-shortcodes) and universal shortcodes. Use `addAsyncShortcode` in versions of Eleventy older than v2.0. You can also [add these shortcodes to individual template engines](/docs/shortcodes/#async-friendly-per-engine-shortcodes), if you’d like!
 - **Warning** [Nunjucks macros are not async-friendly](/docs/languages/nunjucks/#warning-macros-are-not-async-friendly). If you make use of Nunjucks macros in your project, do **not** use asynchronous shortcodes for Image optimization. Instead use the [transform](./image.md#html-transform) or [synchronous shortcode](#synchronous-shortcode) methods.
 
 ### Template Usage
@@ -88,8 +88,8 @@ You _can_ use `transformOnRequest` with Eleventy Shortcodes too with a little bi
 import Image from "@11ty/eleventy-img";
 import { eleventyImageOnRequestDuringServePlugin } from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
+export default function ($config) {
+	$config.addShortcode("image", async function (src, alt) {
 		let html = await Image(src, {
 			transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
 			returnType: "html",
@@ -104,7 +104,7 @@ export default function (eleventyConfig) {
 	});
 
 	// Add the dev server middleware manually
-	eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin);
+	$config.addPlugin(eleventyImageOnRequestDuringServePlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -116,8 +116,8 @@ If you’re using an Image Shortcode or the WebC component in a project and you�
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
+export default function ($config) {
+	$config.addShortcode("image", async function (src, alt) {
 		let html = await Image(src, {
 			returnType: "html",
 			htmlOptions: {
@@ -139,8 +139,8 @@ export default function (eleventyConfig) {
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
+export default function ($config) {
+	$config.addShortcode("image", async function (src, alt) {
 		let metadata = await Image(src, {
 			widths: [600],
 			formats: ["jpeg"],
@@ -165,8 +165,8 @@ Uses the [`entities` npm package](https://www.npmjs.com/package/entities).
 import { escapeAttribute } from "entities";
 import Image from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
+export default function ($config) {
+	$config.addShortcode("image", async function (src, alt) {
 		if (alt === undefined) {
 			// You bet we throw an error on missing alt (alt="" works okay)
 			throw new Error(`Missing \`alt\` on myImage from: ${src}`);
@@ -197,8 +197,8 @@ Use `Image.statsSync` to get the metadata of a source even if the image generati
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("myImage", function imageShortcode(src, cls, alt, widths = ["auto"], sizes = "100vh") {
+export default function ($config) {
+	$config.addShortcode("myImage", function imageShortcode(src, cls, alt, widths = ["auto"], sizes = "100vh") {
 		let options = {
 			widths,
 			formats: ["jpeg"],

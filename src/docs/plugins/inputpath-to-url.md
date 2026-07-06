@@ -89,7 +89,7 @@ The above all render as the following in your output:
 
 Note that the [`inputPathToUrl` filter](/docs/filters/inputpath-to-url/) is available by default and does not require use of `addPlugin`.
 
-Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
+Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% include "snippets/plugins/inputpath.njk" %}
 

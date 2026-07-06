@@ -49,7 +49,7 @@ As a last resort, the file creation date is used. [Careful when relying on file 
 
 ## Configuration API for Custom Date Parsing
 
-Eleventy v3.0 <!-- v3.0.0-alpha.15 --> includes an `eleventyConfig.addDateParsing` method for adding your own custom date parsing logic. This is a preprocessing step for existing Date logic. Any number of callbacks can be assigned using `eleventyConfig.addDateParsing` and we’ll run them serially. Related [GitHub #867](https://github.com/11ty/eleventy/issues/867).
+Eleventy v3.0 <!-- v3.0.0-alpha.15 --> includes an `$config.addDateParsing` method for adding your own custom date parsing logic. This is a preprocessing step for existing Date logic. Any number of callbacks can be assigned using `$config.addDateParsing` and we’ll run them serially. Related [GitHub #867](https://github.com/11ty/eleventy/issues/867).
 
 In the callback, you can return:
 
@@ -72,8 +72,8 @@ date: 2019-08-31 23:59:56 America/New_York
 {% set codeContent %}
 import { DateTime } from "luxon";
 
-export default function(eleventyConfig) {
-	eleventyConfig.addDateParsing(function(dateValue) {
+export default function($config) {
+	$config.addDateParsing(function(dateValue) {
 		if (typeof dateValue === "string") {
 			return DateTime.fromFormat(dateValue, "yyyy-MM-dd hh:mm:ss z");
 		}
@@ -92,8 +92,8 @@ import { DateTime } from "luxon";
 // See https://moment.github.io/luxon/#/zones?id=specifying-a-zone
 const TIME_ZONE = "America/Chicago";
 
-export default function(eleventyConfig) {
-	eleventyConfig.addDateParsing(function(dateValue) {
+export default function($config) {
+	$config.addDateParsing(function(dateValue) {
 		let localDate;
 		if(dateValue instanceof Date) { // and YAML
 			localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(TIME_ZONE, { keepLocalTime: true });

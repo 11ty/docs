@@ -14,12 +14,12 @@ removedFeature: true
 Feel free to [head over to the previous Eleventy version of the docs for this documentation](https://v2.11ty.dev/docs/data-deep-merge/). Historically, it may be important to remember that the default for this feature was changed to `true` in [Eleventy v1](https://github.com/11ty/eleventy/releases/tag/v1.0.0).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// throws an error in Eleventy v4
-	eleventyConfig.setDataDeepMerge(false);
+	$config.setDataDeepMerge(false);
 
 	// is a no-op in Eleventy v4
-	eleventyConfig.setDataDeepMerge(true);
+	$config.setDataDeepMerge(true);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

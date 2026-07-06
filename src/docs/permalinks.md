@@ -356,9 +356,9 @@ permalink: /resource
 #### Allow missing file extensions globally using Configuration
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Disable this error for the project.
-	eleventyConfig.configureErrorReporting({ allowMissingExtensions: true })
+	$config.configureErrorReporting({ allowMissingExtensions: true })
 };
 {% endset %}
 {% set tabIdOverride = "permalink-configure-error-reporting" %}
@@ -381,15 +381,15 @@ permalink: /resource
 The following configuration (using [global data via the configuration API](/docs/data-global-custom.md) but you could set this using a [Global Data file](/docs/data-global.md) too) unlocks `/resource`-style URLs on your Eleventy project and works on GitHub Pages, Netlify, Cloudflare Pages, Render, and Azure Static Web Apps. This approach **does _not_ work on Vercel** (due to a [Vercel hosting limitation](https://www.zachleat.com/web/trailing-slash/#results-table)).
 
 {% set codeContent %}
-export default function(eleventyConfig) {
+export default function($config) {
 	// Set global permalinks to resource.html style
-	eleventyConfig.addGlobalData("permalink", () => {
+	$config.addGlobalData("permalink", () => {
 		return (data) =>
 			`${data.page.filePathStem}.${data.page.outputFileExtension}`;
 	});
 
 	// Remove .html from `page.url`
-	eleventyConfig.addUrlTransform((page) => {
+	$config.addUrlTransform((page) => {
 		if (page.url.endsWith(".html")) {
 			return page.url.slice(0, -1 * ".html".length);
 		}
@@ -421,8 +421,8 @@ Compared to the default behavior:
 The following works for `/resource`-style URLs on Vercel but additionally requires [`"trailingSlash": false` in your `vercel.json` file](https://vercel.com/docs/projects/project-configuration#trailingslash).
 
 {% set codeContent %}
-export default function(eleventyConfig) {
-	eleventyConfig.addUrlTransform((page) => {
+export default function($config) {
+	$config.addUrlTransform((page) => {
 		// remove trailing slash from `page.url`
 		if (page.url !== "/" && page.url.endsWith("/")) {
 			return page.url.slice(0, -1);
@@ -471,8 +471,8 @@ Say we want two or more files on the file system (e.g. `about.en.html` and `abou
 This example matches any `.xx.html` URL:
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.addUrlTransform(({ url }) => {
+export default function ($config) {
+	$config.addUrlTransform(({ url }) => {
 		// `url` is guaranteed to be a string here even if you’re using `permalink: false`
 		if (url.match(/\.[a-z]{2}\.html$/i)) {
 			return url.slice(0, -1 * ".en.html".length) + "/";
@@ -518,9 +518,9 @@ dynamicPermalink: false
 Eleventy includes a global configuration option to disable dynamic templating altogether. This will save a few template renders and is probably marginally faster, too.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
+export default function ($config) {
 	// Dynamic permalinks are enabled by default
-	eleventyConfig.setDynamicPermalinks(false);
+	$config.setDynamicPermalinks(false);
 };
 {% endset %}
 {% set tabIdOverride = "permalink-dynamic-permalinks" %}

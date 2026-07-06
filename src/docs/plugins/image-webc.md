@@ -27,9 +27,9 @@ First, add the following to your project’s configuration file:
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
 import { eleventyImagePlugin } from "@11ty/eleventy-img";
 
-export default function (eleventyConfig) {
+export default function ($config) {
 	// WebC
-	eleventyConfig.addPlugin(eleventyWebcPlugin, {
+	$config.addPlugin(eleventyWebcPlugin, {
 		components: [
 			// …
 			// Add as a global WebC component
@@ -38,7 +38,7 @@ export default function (eleventyConfig) {
 	});
 
 	// Image plugin
-	eleventyConfig.addPlugin(eleventyImagePlugin, {
+	$config.addPlugin(eleventyImagePlugin, {
 		// Set global default options
 		formats: ["webp", "jpeg"],
 		urlPath: "/img/",

@@ -43,8 +43,8 @@ Add to your configuration file:
 {% set codeContent %}
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(ejsPlugin);
+export default function ($config) {
+	$config.addPlugin(ejsPlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -56,8 +56,8 @@ Use more `ejs` options ([full options list](https://github.com/mde/ejs#options))
 import ejs from "ejs";
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(ejsPlugin, {
+export default function ($config) {
+	$config.addPlugin(ejsPlugin, {
 		async: false, // default
 
 		// use <? ?> instead of <% %>

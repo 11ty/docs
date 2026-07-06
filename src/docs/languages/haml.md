@@ -43,8 +43,8 @@ Add to your configuration file:
 {% set codeContent %}
 import hamlPlugin from "@11ty/eleventy-plugin-haml";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(hamlPlugin);
+export default function ($config) {
+	$config.addPlugin(hamlPlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -55,8 +55,8 @@ Use more options:
 import haml from "hamljs";
 import hamlPlugin from "@11ty/eleventy-plugin-haml";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(hamlPlugin, {
+export default function ($config) {
+	$config.addPlugin(hamlPlugin, {
 		// Override the `haml` library instance
 		eleventyLibraryOverride: haml,
 	});

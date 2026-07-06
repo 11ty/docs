@@ -14,8 +14,8 @@ eleventyNavigation:
 The Preprocessor Configuration API allows you to intercept and modify the content in template files (_not_ [Layouts](/docs/layouts.md)) before they’re processed and rendered by Eleventy.
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-  eleventyConfig.addPreprocessor("drafts", "njk,md,liquid", (data, content) => {
+export default function ($config) {
+  $config.addPreprocessor("drafts", "njk,md,liquid", (data, content) => {
 		if(data.draft) {
 			// Ignore this file.
 			return false;
@@ -34,7 +34,7 @@ export default function (eleventyConfig) {
 * The second argument can be:
 	* a `String` of comma separated file extensions
 	* an `Array<String>` of file extensions
-* Returning `false` will ignores the template in the same way as using [`eleventyConfig.ignores` or `.eleventyignore`](/docs/ignores.md)
+* Returning `false` will ignores the template in the same way as using [`$config.ignores` or `.eleventyignore`](/docs/ignores.md)
 * Returning nothing or `undefined` has no effect (unlike [Transforms](/docs/transforms.md))
 
 _Originally [GitHub Issue #188](https://github.com/11ty/eleventy/issues/188#issuecomment-2224060755)._
@@ -48,8 +48,8 @@ Set `draft: true` anywhere in a file’s [data cascade](/docs/data-cascade/) and
 You might imagine how this could be extended to add a publishing date feature too: to exclude content from builds before a specific date set in a post’s front matter (or elsewhere in the data cascade).
 
 {% set codeContent %}
-export default function (eleventyConfig) {
-  eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
+export default function ($config) {
+  $config.addPreprocessor("drafts", "*", (data, content) => {
 		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
 			return false;
 		}
