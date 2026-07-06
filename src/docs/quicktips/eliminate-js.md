@@ -5,7 +5,7 @@ date: 2019-01-31
 
 Older iterations of this website used a third party JavaScript widget to show the number of GitHub Stars the project currently had. You can see it in action on the [versioned docs for 0.7.1](https://v0-7-1.11ty.dev/docs/) (scroll to the bottom).
 
-This was in fact the only `<script>` tag on the entire `11ty.dev` web site and it was from a third party. Naturally, it needed to be annihilated.
+This was in fact the only `<script>` tag on the entire `11ty.dev` website and it was from a third party. Naturally, it needed to be annihilated.
 
 Let’s change up our architecture to ruthlessly eliminate this client-side JavaScript.
 
@@ -61,7 +61,7 @@ Bonus: I created a [`humanReadableNum` filter](https://github.com/11ty/docs/blob
 
 ## More Examples
 
-You can look in the footer of this page to see examples of this in use on this very web site. I used it for:
+You can look in the footer of this page to see examples of this in use on this very website. I used it for:
 
 - [NPM Download Count](https://github.com/11ty/docs/blob/ac3579909078f860f4af1185c8f7353d56833c22/_data/npm.js)
 - [GitHub Stargazers Count](https://github.com/11ty/docs/blob/ac3579909078f860f4af1185c8f7353d56833c22/_data/github.js)

@@ -39,7 +39,7 @@ You have two upgrade path options (pick which one suits your project best):
 
 ### Upgrade examples
 
-You can check out these two pull requests showing how these large-ish web site codebases were converted to use Eleventy v3.0:
+You can check out these two pull requests showing how these large-ish website codebases were converted to use Eleventy v3.0:
 
 - `zachleat.com` kept using CommonJS (easy mode: 3 files changed ~6 lines of code): https://github.com/zachleat/zachleat.com/pull/50
 - `11ty-website` CommonJS to ESM (a bit more work): https://github.com/11ty/11ty-website/pull/1636

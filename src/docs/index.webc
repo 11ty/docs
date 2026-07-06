@@ -105,7 +105,7 @@ Installing Build Awesome into a project requires a `package.json` file.
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 
-_You may also [install Eleventy globally](/docs/global-installation/) but the `package.json` installation method above is recommended._
+_You may also [install Build Awesome globally](/docs/global-installation/) but the `package.json` installation method above is recommended._
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 3</span> Run Build Awesome
 
@@ -275,11 +275,11 @@ Your command line might look something like:
 [buildawesome] Server at http://localhost:8080/
 ```
 
-Open `http://localhost:8080/` or `http://localhost:8080/README/` in your favorite web browser to see your Eleventy site live! When you save your template files—Eleventy will refresh the browser with your new changes automatically!
+Open `http://localhost:8080/` or `http://localhost:8080/README/` in your favorite web browser to see your website live! When you save your template files—Eleventy will refresh the browser with your new changes automatically!
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 6</span> Put it online (optional)
 
-Your output folder (`_site`) now contains all of the statically built files for your new web site. You can upload this folder to any web host! Head over to our [deployment documentation](/docs/deployment/) to read more about putting your Build Awesome project online for everyone to see.
+Your output folder (`_site`) now contains all of the statically built files for your new website. You can upload this folder to any web host! Head over to our [deployment documentation](/docs/deployment/) to read more about putting your Build Awesome project online for everyone to see.
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 7</span> Continue Learning…
 

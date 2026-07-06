@@ -11,7 +11,7 @@ We’ve added a bit more [information about the new sponsorship tiers for the Bu
 
 - Your company uses Eleventy currently or wants to support the Build Awesome platform moving forward.
 - You’re interested in getting your [**brand icon in the Font Awesome Icon library**](https://fontawesome.com/icons/packs/brands) (for everyone to use!).
-- You want to plaster your **sponsor logo across the Awesomeverse** (Build Awesome, Font Awesome, and Web Awesome web sites).
+- You want to plaster your **sponsor logo across the Awesomeverse** (Build Awesome, Font Awesome, and Web Awesome websites).
 
 If any of the above things apply to you, [have a look!](https://blog.fontawesome.com/new-build-awesome-sponsorship-tiers/)
 

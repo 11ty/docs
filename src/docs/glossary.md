@@ -127,7 +127,7 @@ Application servers can be slow. Instead of PHP, Java, or even Node.js dynamical
 
 ### Single Page Applications (SPA) versus Multi-Page Applications (MPA)
 
-Single Page Applications (SPA) use JavaScript to enable navigations between pages on a web site. Multi-Page Applications use the classic navigation model of the web and do a full page refresh to a new page.
+Single Page Applications (SPA) use JavaScript to enable navigations between pages on a website. Multi-Page Applications use the classic navigation model of the web and do a full page refresh to a new page.
 
 Should you [build a Single Page Application with Eleventy](/docs/single-page-applications/)?
 

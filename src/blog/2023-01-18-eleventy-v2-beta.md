@@ -114,7 +114,7 @@ Read more about [local versus global installation](/docs/global-installation/).
 
 ## Thank You Notes
 
-This project would not be possible without our lovely community. Thank you to everyone that built something with Eleventy ([×669 authors on our web site!](/authors/)), wrote a blog post about Eleventy, [contributed code](https://github.com/11ty/eleventy/graphs/contributors), wrote a plugins, [helped with documentation](https://github.com/11ty/11ty-website/graphs/contributors), asked questions, answered questions, braved [The Leaderboards](/speedlify/), participated on Discord, filed issues, attended (or organized!) a meetup, said a kind word on social media ❤️.
+This project would not be possible without our lovely community. Thank you to everyone that built something with Eleventy ([×669 authors on our website!](/authors/)), wrote a blog post about Eleventy, [contributed code](https://github.com/11ty/eleventy/graphs/contributors), wrote a plugins, [helped with documentation](https://github.com/11ty/11ty-website/graphs/contributors), asked questions, answered questions, braved [The Leaderboards](/speedlify/), participated on Discord, filed issues, attended (or organized!) a meetup, said a kind word on social media ❤️.
 
 - A **huge thank you to [Netlify](https://www.netlify.com/)**, especially: Matt Biilmann, Chris Bach, Lauren Sell (alum), and Claire Knight, without whom this release would not have been possible.
 - 🏆 A special thanks to [Peter DeHaan](https://github.com/pdehaan) for their tireless contributions on the Eleventy Issue tracker.

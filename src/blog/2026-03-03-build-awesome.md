@@ -45,7 +45,7 @@ The Awesomeverse of projects have a straightforward business model and Font Awes
 
 For a bit of history, you can read about our Open Collective fundraising push in early 2024 in the blog post: [_Open Source Needs to be Financially Symbiotic_](https://www.zachleat.com/web/symbiotic-open-source/), which has some notes about our current Open Collective account. We also made a change last year to [permanently feature individuals that have contributed to Eleventy](https://www.zachleat.com/web/permanent-eleventy-facepile/) over the years in our site’s (very large) backer facepile.
 
-This account is still being used to pay for expenses related to the project: costs related to our web site, expenses for the Meetup (Zoom subscriptions), honorariums and other costs from the 11ty Conference (in 2024), as well as some recurring donations to some dependencies in our stack. If you have eligible expenses, please use the [Submit Expense button on Open Collective](https://opencollective.com/11ty) to get reimbursed!
+This account is still being used to pay for expenses related to the project: costs related to our website, expenses for the Meetup (Zoom subscriptions), honorariums and other costs from the 11ty Conference (in 2024), as well as some recurring donations to some dependencies in our stack. If you have eligible expenses, please use the [Submit Expense button on Open Collective](https://opencollective.com/11ty) to get reimbursed!
 
 This also includes hosting and domain costs for community resources! Even if they’re old expenses, please get those receipts in so we can reimburse you.
 

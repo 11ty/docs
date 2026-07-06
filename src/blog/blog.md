@@ -37,7 +37,7 @@ _For extended Eleventy coverage, follow [`zachleat.com/web/eleventy`](https://ww
 - <small><code>Apr<!-- 26 --> 2019</code></small> [CERN 2019 WorldWideWeb Rebuild]({{ "https://twitter.com/eleven_ty/status/1106589569238085637" | canonicalTwitterUrl }}) site rebuilt using Eleventy! <small><em> on 2019 March</em></small>
 - <small><code>Dec<!-- 11 --> 2018</code></small> [Turn Jekyll up to Eleventy—a lovely tutorial by {% communityavatar "paulrobertlloyd" %}Paul Robert Lloyd](https://24ways.org/2018/turn-jekyll-up-to-eleventy/)
 - <small><code>Nov<!-- 26 --> 2018</code></small> [Happy First Birthday, Eleventy! 🎉](https://www.zachleat.com/web/eleventy-birthday/) <small><em> on 2018 November 26</em></small>
-- <small><code>Sep<!-- --> 2018</code></small> [Google’s {% indieavatar "https://v8.dev/" %}V8 web site launches using Eleventy]({{ "https://twitter.com/v8js/status/1044202940494475265" | canonicalTwitterUrl }})
+- <small><code>Sep<!-- --> 2018</code></small> [Google’s {% indieavatar "https://v8.dev/" %}V8 website launches using Eleventy]({{ "https://twitter.com/v8js/status/1044202940494475265" | canonicalTwitterUrl }})
 - <small><code>May<!-- 23 --> 2018</code></small> James Williamson delivers [Eleventy’s mascot](https://web.archive.org/web/20200307013845/https://twitter.com/jameswillweb/status/999052022497316865), named Edison the Static-Generating Possum. <small><em>on 2018 May 23</em></small>
 - <small><code>Mar<!-- 26 --> 2018</code></small> [Eleventy wins Google Open Source Award](https://www.zachleat.com/web/google-award/)
 - <small><code>Feb<!-- 12 --> 2018</code></small> [Introducing Eleventy, a new Static Site Generator](https://www.zachleat.com/web/introducing-eleventy/)

@@ -30,7 +30,7 @@ npm install @11ty/eleventy@beta -g
 - Our awesome Eleventy GitHub Support Team:
   - {% indieweblink "Pete DeHaan", "https://about.me/peterdehaan" %} and {% indieweblink "Binyamin Green", "https://binyam.in/" %}
   - …and any other folks participating in {% indieweblink "GitHub Discussions", "https://github.com/11ty/eleventy/discussions" %} or the {% indieweblink "Eleventy Discord", "/blog/discord/" %}!
-- Folks that contributed code, {% indieweblink "starter projects", "/docs/starter/" %}, {% indieweblink "plugins", "/docs/plugins/" %}, {% indieweblink "wrote blog posts", "/docs/tutorials/" %} (share what you learned—on _your web site_), recorded podcasts or did streams, {% indieweblink "helped with documentation", "https://github.com/11ty/11ty-website/graphs/contributors" %}! Here are a few of our contributors:
+- Folks that contributed code, {% indieweblink "starter projects", "/docs/starter/" %}, {% indieweblink "plugins", "/docs/plugins/" %}, {% indieweblink "wrote blog posts", "/docs/tutorials/" %} (share what you learned—on _your website_), recorded podcasts or did streams, {% indieweblink "helped with documentation", "https://github.com/11ty/11ty-website/graphs/contributors" %}! Here are a few of our contributors:
   - {% indieweblink "Philipp Rudloff", "https://kleinfreund.de/" %}
   - {% indieweblink "Mike Riethmuller", "https://www.madebymike.com.au/" %}
   - {% indieweblink "Alex Russell", "https://infrequently.org/" %}

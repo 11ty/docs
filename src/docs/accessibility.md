@@ -5,7 +5,7 @@
 
 The Eleventy project recognizes that Accessibility is an incredibly important baseline to developing inclusive and quality software. On Eleventy web properties specifically, we aim to meet [WCAG 2.1 AA standards](https://www.w3.org/WAI/standards-guidelines/wcag/) and to support our development community to do the same.
 
-If you’ve encountered an issue with our web site—accessibility or otherwise—please let us know! The best way to do this is filing a [new GitHub issue on the `docs` repository](https://github.com/11ty/docs/issues).
+If you’ve encountered an issue with our website—accessibility or otherwise—please let us know! The best way to do this is filing a [new GitHub issue on the `docs` repository](https://github.com/11ty/docs/issues).
 
 We are also available on Mastodon at [eleventy](https://neighborhood.11ty.dev/@11ty) or feel free to contact [zachleat](https://fediverse.zachleat.com/@zachleat) directly.
 

@@ -17,7 +17,7 @@ David was so excited to deliver this one and we think he absolutely nailed it. T
   <img src="/img/mascots/david.svg" alt="A possum in glasses suspended from a red balloon" width="800">
 </div>
 
-[_Read more about David on his web site._](https://reverentgeek.com/about/)
+[_Read more about David on his website._](https://reverentgeek.com/about/)
 
 > Hi! My name is David Neal. I am a family man, geek, musician, illustrator, international speaker, software developer, author, and Microsoft MVP living in North GA. I am currently a Developer Advoduck 🥑 🦆 for MotherDuck 😄 In the past, I have been a Principal Developer Advocate for Pluralsight, Developer Relations Manager at ActiveCampaign, Senior Developer Advocate at Okta, and Developer Advocate at LeanKit. Before DevRel, I spent many years building high-performance, scalable web applications. I run on a high-octane mixture of caffeine and JavaScript, and I'm entirely made of bacon 🥓.
 

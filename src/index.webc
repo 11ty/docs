@@ -45,18 +45,18 @@ export function randomTestimonialLink(testimonials) {
 }
 </script>
 
-<h1>Build Awesome helps you build better web sites</h1>
+<h1>Build Awesome helps you build better websites</h1>
 
-<p>Build Awesome is a developer tool to help you build <a href="/docs/performance/"><strong>fast web sites</strong> even faster</a>.</p>
+<p>Build Awesome is a developer tool to help you build <a href="/docs/performance/"><strong>fast websites</strong> even faster</a>.</p>
 
 <ul>
-	<li>It’s <strong>secure</strong> and <strong>resilient</strong>: with static web sites there is no runtime to fail in the middle of the night.</li>
+	<li>It’s <strong>secure</strong> and <strong>resilient</strong>: with static websites there is no runtime to fail in the middle of the night.</li>
 	<li>It’s <strong>lightweight</strong>: we’ve <a href="/blog/dependency-watch/">decreased our dependency count</a> with every major release since 2018.</li>
 	<li>It’s <strong>scalable</strong>: deploy with the most efficient architecture for the modern agent-heavy web.</li>
 	<li>It’s <a href="#why-should-you-use-build-awesome"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</li>
 </ul>
 
-<p><strong>You should have a web site</strong> and Build Awesome can help you create your very own home on the web. <a href="/docs/">Get started!</a></p>
+<p><strong>You should have a website</strong> and Build Awesome can help you create your very own home on the web. <a href="/docs/">Get started!</a></p>
 
 <!--- <ul>
 	<li>Build Awesome: runs on your computer.</li>
@@ -112,7 +112,7 @@ tags: posts
 	<h2>Why should you use Build Awesome?</h2>
 	<ul>
 		<li>
-			Build Awesome has <a href="/docs/performance/"><strong>fast builds and even faster web sites</strong></a>.
+			Build Awesome has <a href="/docs/performance/"><strong>fast builds and even faster websites</strong></a>.
 			<is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
 				<build-comparison></build-comparison>
 			</is-land>
@@ -176,7 +176,7 @@ tags: posts
 		</facepile>
 	</is-land>
 
-	<p>A random sample taken from <a href="/authors/"><code><span @text="Object.keys($data.authors).length"></span></code> authors</a>. Check out the <a href="/speedlify/">fastest of their <code><span @text="getsize(objectFilterNot(builtwith, 'disabled'))" webc:nokeep></span></code> web sites</a>.</p>
+	<p>A random sample taken from <a href="/authors/"><code><span @text="Object.keys($data.authors).length"></span></code> authors</a>. Check out the <a href="/speedlify/">fastest of their <code><span @text="getsize(objectFilterNot(builtwith, 'disabled'))" webc:nokeep></span></code> websites</a>.</p>
 
 	<h2>Don’t take my word for it <emoji @char="🌈" @alt="Rainbow"></emoji></h2>
 

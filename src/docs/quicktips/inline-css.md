@@ -4,7 +4,7 @@ date: 2018-06-07
 tags: ["related-filters"]
 ---
 
-_Originally posted on [The Simplest Web Site That Could Possibly Work Well on zachleat.com](https://www.zachleat.com/web/that-could-possibly-work/)_
+_Originally posted on [The Simplest Website That Could Possibly Work Well on zachleat.com](https://www.zachleat.com/web/that-could-possibly-work/)_
 
 This tip works well on small sites that don’t have a lot of CSS. Inlining your CSS removes an external request from your critical path and speeds up page rendering times! If your CSS file is small enough, this is a simplification/end-around for [Critical CSS approaches](https://www.smashingmagazine.com/2015/08/understanding-critical-css/).
 

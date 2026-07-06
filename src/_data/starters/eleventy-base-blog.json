@@ -1,7 +1,7 @@
 {
 	"url": "https://github.com/11ty/eleventy-base-blog",
 	"name": "eleventy-base-blog",
-	"description": "How to build a blog web site with Eleventy.",
+	"description": "How to build a blog website with Eleventy.",
 	"author": "eleven_ty",
 	"demo": "https://demo-base-blog.11ty.dev/",
 	"official": true,

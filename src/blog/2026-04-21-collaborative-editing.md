@@ -11,11 +11,11 @@ screenshotCacheBust: 1
 
 We’ve noticed a few things:
 
-1. **Static sites are still the most resilient, robust, long-lasting, and secure architecture when building for the web.** Using a static architecture to reduce your attack surface is an investment in your peace of mind. You shouldn’t have to maintain security hypervigilance to run a web site.
+1. **Static sites are still the most resilient, robust, long-lasting, and secure architecture when building for the web.** Using a static architecture to reduce your attack surface is an investment in your peace of mind. You shouldn’t have to maintain security hypervigilance to run a website.
 1. Developers face _too much_ infrastructure lock-in when shipping dynamic features (_especially_ in the JavaScript tooling ecosystem). Perhaps you’ve been eyeing the [per-compute pricing on your serverless bill](https://www.zachleat.com/web/serverless-cost/) as bot traffic increases over time.
-1. Adding collaborative editing and content management features to your static web site requires more configuration work than it should to get up and running.
+1. Adding collaborative editing and content management features to your static website requires more configuration work than it should to get up and running.
 
-**Build Awesome Pro** is a new web site builder that attempts to solve each of these problems. Fast by default, durable over time, with way less dependency drama. Build Awesome Pro will feature:
+**Build Awesome Pro** is a new website builder that attempts to solve each of these problems. Fast by default, durable over time, with way less dependency drama. Build Awesome Pro will feature:
 
 1. Static output. Versioned in git. Build and deploy wherever you’d like.
 1. Bring your own project or choose from our curated list of starter templates. Have an Eleventy project? We’ll maintain full compatibility with existing Eleventy projects and the Eleventy ecosystem.

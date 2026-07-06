@@ -90,7 +90,7 @@ webides:
 
 {% tableofcontents %}
 
-Now that you’ve built a web site with Eleventy _(even if it’s one HTML page!)_ you might be ready to put it on the web for everyone to see! There are a bunch of different ways to do it!
+Now that you’ve built a website with Eleventy _(even if it’s one HTML page!)_ you might be ready to put it on the web for everyone to see! There are a bunch of different ways to do it!
 
 A standard Eleventy build (e.g. [running `npx @11ty/eleventy`](/docs/usage/)) is a **production-ready build by default**. Eleventy doesn’t change its build behavior internally for development versus production.
 

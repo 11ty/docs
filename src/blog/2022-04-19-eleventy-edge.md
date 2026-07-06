@@ -1,5 +1,5 @@
 ---
-newstitle: Use Eleventy Edge to deliver dynamic web sites on the Edge
+newstitle: Use Eleventy Edge to deliver dynamic websites on the Edge
 eleventyNavigation:
   parent: Blog
   key: Eleventy Edge
@@ -45,7 +45,7 @@ The content inside of the `edge` shortcode is generated on the Edge.
 
 {% endraw %}
 
-This feature makes heavy use of [Netlify’s new Edge Functions feature](https://docs.netlify.com/netlify-labs/experimental-features/edge-functions/) to run Eleventy in Deno on Edge servers. It continues Eleventy’s architectural dedication to markup-first zero-clientside JavaScript solutions to deliver the fast and scalable dynamic web sites. Check out our [introductory demos](https://demo-eleventy-edge.netlify.app/) and watch for more content to come discussing this exciting new feature.
+This feature makes heavy use of [Netlify’s new Edge Functions feature](https://docs.netlify.com/netlify-labs/experimental-features/edge-functions/) to run Eleventy in Deno on Edge servers. It continues Eleventy’s architectural dedication to markup-first zero-clientside JavaScript solutions to deliver the fast and scalable dynamic websites. Check out our [introductory demos](https://demo-eleventy-edge.netlify.app/) and watch for more content to come discussing this exciting new feature.
 
 ## More around the web
 

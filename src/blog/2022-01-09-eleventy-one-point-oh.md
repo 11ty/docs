@@ -5,9 +5,9 @@ eleventyNavigation:
   key: Eleventy v1.0.0
 ---
 
-- [Full docs for v1.0.0 on our web site](https://v1.11ty.dev/docs/)
+- [Full docs for v1.0.0 on our website](https://v1.11ty.dev/docs/)
 
-This project would not be possible without our lovely community. Thank you to everyone that built something with Eleventy ([×476 authors on our web site!](https://v1.11ty.dev/authors/)), wrote a blog post about Eleventy, [contributed code to core](https://github.com/11ty/eleventy/graphs/contributors) or plugins, [documentation](https://github.com/11ty/11ty-website/graphs/contributors), asked questions, answered questions, braved [The Leaderboards](https://www.11ty.dev/speedlify/), participated on Discord, filed issues, attended (or organized!) a meetup, said a kind word on Twitter ❤️.
+This project would not be possible without our lovely community. Thank you to everyone that built something with Eleventy ([×476 authors on our website!](https://v1.11ty.dev/authors/)), wrote a blog post about Eleventy, [contributed code to core](https://github.com/11ty/eleventy/graphs/contributors) or plugins, [documentation](https://github.com/11ty/11ty-website/graphs/contributors), asked questions, answered questions, braved [The Leaderboards](https://www.11ty.dev/speedlify/), participated on Discord, filed issues, attended (or organized!) a meetup, said a kind word on Twitter ❤️.
 
 I really wish I had time to list everyone, but I do want to mention a few folks that have made tremendous contributions:
 

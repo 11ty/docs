@@ -18,7 +18,7 @@ What’s up everybody? I have some great news—in a few short weeks I will be j
 
 And for folks in the Eleventy community, I am delighted to reveal that this move will unlock sponsorship of official open source development time for Eleventy! Importantly, Eleventy will continue on as an independent open source project and I’m excited about the opportunities ahead.
 
-If you aren’t familiar with CloudCannon—they are an incredible git-backed CMS with amazing visual editing features. CloudCannon have also been avid supporters of Eleventy for quite some time, relaunching their web site using Eleventy earlier this year. I’d also recommend checking out the framework independent open source projects they manage too—I personally love the Pagefind static search project we use on Eleventy’s documentation.
+If you aren’t familiar with CloudCannon—they are an incredible git-backed CMS with amazing visual editing features. CloudCannon have also been avid supporters of Eleventy for quite some time, relaunching their website using Eleventy earlier this year. I’d also recommend checking out the framework independent open source projects they manage too—I personally love the Pagefind static search project we use on Eleventy’s documentation.
 
 After surveying the Eleventy community we found the data reflected an opportunity to refocus Eleventy as a static site generator, returning to our roots and the original benefits of the Jamstack that we all came to know and love: front-end web performance, improved security by decreasing runtimes, and reducing vendor lock-in for maximum hosting portability.
 

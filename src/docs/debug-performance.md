@@ -75,4 +75,4 @@ npx --node-options="--cpu-prof" @11ty/eleventy --quiet
 
 This will write a `CPU.***.cpuprofile` file to the same directory.
 
-[SpeedScope](https://www.speedscope.app/) is a great web site that will help you look at a visual representation of this data, with a special nod to the `Left Heavy` and `Sandwich` visuals!
+[SpeedScope](https://www.speedscope.app/) is a great website that will help you look at a visual representation of this data, with a special nod to the `Left Heavy` and `Sandwich` visuals!

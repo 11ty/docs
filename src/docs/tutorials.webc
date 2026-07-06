@@ -17,7 +17,7 @@ feedUrl: /docs/quicktips/feed.xml
 	<site-card @url="https://learneleventyfromscratch.com/" @name="Learn Eleventy from Scratch" @date="2020-05"></site-card>
 	<site-card @url="https://tatianamac.com/posts/beginner-eleventy-tutorial-parti/" @name="Beginner’s Guide to Eleventy" @date="2020-04-02"></site-card>
 	<site-card @url="https://sia.codes/posts/itsiest-bitsiest-eleventy-tutorial/" @name="Itsiest, Bitsiest Eleventy Tutorial" @date="2021-05-24"></site-card>
-	<site-card @url="https://www.zachleat.com/web/eleventy-tutorial-level-1/" @name="Making a simple web site with the simplest static site generator" @date="2018-01-24"></site-card>
+	<site-card @url="https://www.zachleat.com/web/eleventy-tutorial-level-1/" @name="Making a simple website with the simplest static site generator" @date="2018-01-24"></site-card>
 </sites-list>
 
 <p>And for folks wanting to <strong>start building a blog</strong>:</p>

@@ -3,11 +3,11 @@ newstitle: "11ty Conference is this week!"
 eleventyNavigation:
   parent: Blog
 ---
-[11ty’s International Symposium on Making Web Sites Real Good](https://conf.11ty.dev/) is a mere two days away! [Not registered yet? You can still get in!](https://conf.11ty.dev/#register)
+[11ty’s International Symposium on Making Websites Real Good](https://conf.11ty.dev/) is a mere two days away! [Not registered yet? You can still get in!](https://conf.11ty.dev/#register)
 
 ## Schedule
 
-The [full schedule](https://conf.11ty.dev/#schedule) (localized to your time zone) including all speakers and sessions is now on the web site for your review. We provide convenient Add to Calendar links for the full conference and each individual talk.
+The [full schedule](https://conf.11ty.dev/#schedule) (localized to your time zone) including all speakers and sessions is now on the website for your review. We provide convenient Add to Calendar links for the full conference and each individual talk.
 
 * [The Future of 11ty — Zach Leatherman](https://conf.11ty.dev/2024/the-future-of-11ty/)
 * [Hints &amp; Suggestions (First, Do No Harm) — Miriam Suzanne](https://conf.11ty.dev/2024/hints-and-suggestions-first-do-no-harm/)

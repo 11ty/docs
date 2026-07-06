@@ -32,7 +32,7 @@ Single Page Application frameworks in the last few years have pivoted away from 
 
 Single Page Application advocates argue these large, costly bundles enable performance gains for future navigations, seamless media playback during transition, and fancy transition animations. While we can debate (and even agree on some of) those points (recognizing also that they will fade into irrelevance as the web platform progresses), take a moment to consider **whether or not this trade-off should be made for you as a default**.
 
-The **data supports the case that Single Page Applications are a bad default for the web** too. An analysis of Core Web Vitals across 9.3 million web sites in February 2023 [shows that only 26% of sites built using the most popular Single Page Application framework (Next.js) have good Core Web Vitals](https://lookerstudio.google.com/u/0/reporting/55bc8fad-44c2-4280-aa0b-5f3f0cd3d2be/page/M6ZPC?s=lD9m_MQgyGU), far lower than the web at large (40%).
+The **data supports the case that Single Page Applications are a bad default for the web** too. An analysis of Core Web Vitals across 9.3 million websites in February 2023 [shows that only 26% of sites built using the most popular Single Page Application framework (Next.js) have good Core Web Vitals](https://lookerstudio.google.com/u/0/reporting/55bc8fad-44c2-4280-aa0b-5f3f0cd3d2be/page/M6ZPC?s=lD9m_MQgyGU), far lower than the web at large (40%).
 
 With all of that said—it is possible to integrate existing third-party tools with Eleventy to solve single page application requirements—but importantly it isn’t the _default choice_ in Eleventy nor should it be the default choice when building things for the web.
 </template>

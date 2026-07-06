@@ -23,7 +23,7 @@ You’re probably already familiar with the folks at Font Awesome.
 
 ## What does this mean for Eleventy?
 
-No action is required by folks using and building with Eleventy. We will continue to help you build fast web sites (with fast build times!) and we will continue to develop and maintain the open source project as before!
+No action is required by folks using and building with Eleventy. We will continue to help you build fast websites (with fast build times!) and we will continue to develop and maintain the open source project as before!
 
 We’ve had a lot of great discussions about best practices for sustainable open source with the Font Awesome folks in the past few months and they have a well established record of maintaining open source projects—as evidenced by the [path already paved by Cory Laviska with Shoelace and Web Awesome](https://www.abeautifulsite.net/posts/the-future-of-shoelace/) (October 2022).
 

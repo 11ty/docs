@@ -44,7 +44,7 @@ yarn dlx @awesome.me/buildawesome --serve
 
 </template>
 
-<p>The <code>--serve</code> option also starts a <a href="/docs/dev-server/">local development server</a>. Open up <code>http://localhost:8080/</code> in your favorite web browser to view your web site.</p>
+<p>The <code>--serve</code> option also starts a <a href="/docs/dev-server/">local development server</a>. Open up <code>http://localhost:8080/</code> in your favorite web browser to view your website.</p>
 <p>If you’d like to experiment further with different template syntax, try out <a href="#try-build-awesome-in-your-browser">the playground below</a>.</p>
 
 <ul>

@@ -9,7 +9,7 @@ communityLinksKey: api-generator
 
 {% tableofcontents %}
 
-A runtime service to return the image logo of the `<meta name="generator">` used on any given web site. For example, if a web site is built with Eleventy, this service will return the image logo for 11ty.
+A runtime service to return the image logo of the `<meta name="generator">` used on any given website. For example, if a website is built with Eleventy, this service will return the image logo for 11ty.
 
 Supports: [11ty / Eleventy](/), [Hugo](https://gohugo.io/), [Gatsby](https://www.gatsbyjs.com/), [WordPress](https://wordpress.com/), [Silex](https://www.silex.me/), [Jekyll](https://jekyllrb.com/), [Docusaurus](https://docusaurus.io/), [Gridsome](https://gridsome.org/), [VuePress](https://vuepress.vuejs.org/), [Hexo](https://hexo.io/), [Astro](https://astro.build/).
 

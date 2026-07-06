@@ -4,7 +4,7 @@ eleventyNavigation:
   title: '<i class="fa-solid fa-sailboat"></i><code>&lt;is-land&gt;</code>'
   pinned: true
   order: 3
-  excerpt: A plugin to smartly and efficiently load and initialize client-side components to your web site.
+  excerpt: A plugin to smartly and efficiently load and initialize client-side components to your website.
 overrideCommunityLinks: true
 ---
 

@@ -4,7 +4,7 @@ date: 2018-06-08
 tags: ["related-filters"]
 ---
 
-_Originally posted on [The Simplest Web Site That Could Possible Work Well on zachleat.com](https://www.zachleat.com/web/that-could-possibly-work/)_
+_Originally posted on [The Simplest Website That Could Possible Work Well on zachleat.com](https://www.zachleat.com/web/that-could-possibly-work/)_
 
 This tip works great if you have small JS utilities that you’d like to have in your `<head>`. For example, this works great with the Filament Group [`loadJS`](https://github.com/filamentgroup/loadJS) or [`loadCSS`](https://github.com/filamentgroup/loadCSS) utilities.
 
