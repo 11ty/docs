@@ -132,7 +132,7 @@ tags: posts
 			Build Awesome has a <a href="/docs/community/">lovely community of folks</a> that really care about what they build. <em @html="randomTestimonialLink(testimonials)"></em>
 		</li>
 		<li>
-			<a href="/blog/stability/">Build Awesome and it’s predecessor Eleventy are <strong>stable</strong></a>. We’ve shipped <span @text="versions.length"></span> releases going back to the first version in December 2017 and only three of those releases have had Eleventy-specific changes requiring developer changes.
+			<a href="/blog/stability/">Build Awesome and it’s predecessor Eleventy are <strong>stable</strong></a>. We’ve shipped <span @text="versions.length"></span> releases going back to the first version in December 2017 and only three of those releases have required developer intervention.
 			<blockquote>
 				<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.design/"> Eric Bailey</a></p>
 			</blockquote>
@@ -156,7 +156,7 @@ tags: posts
 			Build Awesome <strong>works with your project’s existing directory structure</strong>. The tool doesn’t require an <code>app</code> directory or a <code>pages</code> directory. Use the structure that you want.
 		</li>
 		<li>
-			Build Awesome allows <strong>incremental adoption</strong>. We only <a href="/docs/config/#template-formats">look for the files</a> and <a href="/docs/config/#input-directory">directories</a> you specify. Further, with even more precision you can <a href="/docs/ignores/">opt-out or ignore specific files</a> in your project. You don’t need to start an Eleventy project from scratch. Eleventy is flexible enough to allow conversion of only a few templates at a time. Migrate as fast or as slow as you’d like.
+			Build Awesome allows <strong>incremental adoption</strong>. We only <a href="/docs/config/#template-formats">look for the files</a> and <a href="/docs/config/#input-directory">directories</a> you specify. Further, with even more precision you can <a href="/docs/ignores/">opt-out or ignore specific files</a> in your project. You don’t need to start a Build Awesome project from scratch. Build Awesome is flexible enough to allow conversion of only a few templates at a time. Migrate as fast or as slow as you’d like.
 		</li>
 	</ul>
 
