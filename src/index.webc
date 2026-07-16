@@ -59,6 +59,17 @@ export function randomTestimonialLink(testimonials) {
 
 <p><strong>You should have a website</strong> and Build Awesome can help you create your very own home on the web. <a href="/docs/">Get started!</a></p>
 
+<template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
+{% callout "info", "html", "" %}
+<p><strong>Build Awesome Pro</strong> is a new service we’re building now to help anyone launch and maintain a web site (no installation required). Already supported by <strong>×{{ kickstarterStats.backers }} lovely <a href="{{ config.kickstarterUrl }}">Kickstarter</a> backers</strong>, Build Awesome Pro is a web site builder boasting visual editing and collaboration, <em>zero lock-in</em> (ever), while ultimately helping to fund continued Build Awesome (11ty) maintenance for the entire community.</p>
+
+<div class="util-flex util-center">
+	<a href="{{ config.kickstarterUrl }}" class="announcement-btn announcement-btn--inline">Build Awesome Pro <span class="announcement-tag">Coming Soon!</span></a>
+	<a href="/docs/">Install Build Awesome (Free)<i class="fa-solid fa-arrow-right util-icon-sm"></i></a>
+</div>
+{% endcallout %}
+</template>
+
 <!--- <ul>
 	<li>Build Awesome: runs on your computer.</li>
 	<li>Build Awesome Pro: run on our computers. (coming soon!)</li>

@@ -2,20 +2,21 @@
 .minilink {
 	display: inline-flex;
 	align-items: center;
-	padding: 0.125em 0.375em;
+	padding: 0.125em 0.625em; /* 10px /16 */
 	text-transform: uppercase;
 	font-size: 0.875rem; /* 14px /16 */
 	text-decoration: none;
 	background-color: #ddd;
-	border-radius: 0.1875em; /* 3px /16 */
+	border-radius: 1em; /* 16px /16 */
 	font-weight: 500;
 	margin: 0 0.4285714285714em; /* 0 6px /14 */
 	vertical-align: baseline;
-}
-@media (prefers-color-scheme: dark) {
-	.minilink.minilink {
-		background-color: #222;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+
+	@media (prefers-color-scheme: dark) {
+		background-color: #333;
 		color: #fff;
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
 	}
 }
 .minilink[href] {
@@ -65,12 +66,6 @@ h4 .minilink {
 
 .minilink-addedin {
 	text-transform: none;
-	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
-}
-@media (prefers-color-scheme: dark) {
-	.minilink-addedin {
-		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
-	}
 }
 .minilink-addedin:not(:first-child) {
 	margin-left: 0.5em;
@@ -78,9 +73,8 @@ h4 .minilink {
 .minilink-addedin.minilink-inline {
 	margin: 0 4px;
 	background-color: #fff;
-}
-@media (prefers-color-scheme: dark) {
-	.minilink-addedin.minilink-inline {
+
+	@media (prefers-color-scheme: dark) {
 		background-color: #000;
 	}
 }
@@ -106,12 +100,11 @@ h4 .minilink {
 
 /* Build cost */
 .minilink-buildcost {
-	--internal-shadow-hsl: 0deg 0% 75%;
 	font-weight: 700;
 	text-transform: uppercase;
-	/* via https://www.joshwcomeau.com/shadow-palette/ */
-	box-shadow: 0px 0.3px 0.5px hsl(var(--internal-shadow-hsl) / 0),
-		0.1px 4.3px 6.5px hsl(var(--internal-shadow-hsl) / 0.14);
+}
+.minilink-buildcost code {
+	margin-right: .25em;
 }
 .minilink-buildcost code:before {
 	content: "🧰";

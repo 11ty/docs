@@ -26,7 +26,7 @@
 .fl-nowrap > *,
 .fl-cell-wrap {
 	/* or for an individual cell */
-	flex-basis: auto;
+	flex-basis: var(--fl-basis, auto);
 }
 
 /* Flex layout inline */

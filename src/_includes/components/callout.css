@@ -46,8 +46,7 @@ details .elv-callout {
 		--callout-secondary: hsl(var(--callout-hue), 100%, 12%);
 		--callout-primarytext: hsl(var(--callout-hue), 100%, 100%);
 	}
-	.elv-callout,
-	.elv-callout a {
+	.elv-callout {
 		color: var(--callout-primarytext);
 	}
 }
@@ -107,9 +106,8 @@ table .elv-callout {
 .elv-callout code {
 	background-color: var(--callout-code, var(--callout-primary));
 }
-.elv-callout a,
-.elv-callout :visited {
-	color: var(--callout-primarytext);
+.elv-callout p {
+	max-width: none;
 }
 .elv-callout pre {
 	margin-block: 1em;

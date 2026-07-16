@@ -57,11 +57,12 @@ export default function ($config) {
 	$config.addPairedShortcode(
 		"callout",
 		function (content, level = "", format = "html", customLabel = "") {
-			if (format === "md") {
-				content = mdIt.renderInline(content);
-			} else if (format === "md-block") {
+			if (format === "md-block" || content.trim().includes("\n")) {
 				content = mdIt.render(content);
+			} else if (format === "md") {
+				content = mdIt.renderInline(content);
 			}
+
 			let label = "";
 			let classLevel = "";
 			if (customLabel) {

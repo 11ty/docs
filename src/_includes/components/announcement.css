@@ -43,11 +43,11 @@
 	justify-content: center;
 	text-align: center;
 	flex-wrap: wrap;
-	gap: .5em;
+	gap: .25em .5em;
 	padding: .5em 2em;
 	text-decoration: none;
 	border-radius: .5em;
-	margin: .25em .25em .5em .25em;
+	margin: .25em .25em .375em .25em;
 	border: .125rem solid var(--btn-shadow-color);
 }
 .announcement > a,
@@ -81,11 +81,15 @@
 }
 .announcement-btn {
 	line-height: 1.6;
-	margin-block: 2em;
 	max-width: 28em;
 	margin-inline: auto;
 	text-align: center;
 	white-space: normal;
+}
+.announcement-btn--inline {
+	width: fit-content;
+	max-width: none;
+	margin-inline: 0;
 }
 
 .products .announcement svg {
@@ -102,7 +106,7 @@
 .elv-footer-wrap .announcement {
 	background-color: color-mix(in oklab, var(--background-color), var(--btn-bg) 85%);
 }
-.announcement .announcement-tag {
+.announcement-tag {
 	font-size: .75em;
 	text-transform: uppercase;
 	padding: .25em .75em;

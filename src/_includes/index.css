@@ -436,7 +436,7 @@ filter-container:defined form {
 }
 
 /* Utility classes */
-.f-b {
+.f-b, .util-bold {
 	font-weight: 700;
 }
 .nowrap {
@@ -482,16 +482,24 @@ filter-container:defined form {
 	display: flex;
 	gap: 1em;
 }
+.util-flex:where(.util-center) {
+	align-items: center;
+	justify-content: center;
+}
 .util-flex:is(ul, ol) {
+	display: inline-flex;
+	flex-wrap: wrap;
 	list-style: "";
 	margin: 0;
 	padding: 0;
-	align-items: flex-start;
-	justify-content: space-between;
+	align-items: center;
+	gap: 1.5em;
 }
-.util-flex:is(ul, ol) li {
-	flex-grow: 1;
+.util-flex:is(ul, ol) > li {
 	padding: 0;
+	text-wrap: balance;
+	flex-grow: 1;
+	flex-basis: var(--uf-basis, auto);
 }
 .util-stack {
 	display: grid;
@@ -511,6 +519,10 @@ filter-container:defined form {
 	width: 1.3em;
 	height: 1.3em;
 	vertical-align: text-bottom;
+}
+.util-icon-sm {
+	width: 1em;
+	height: 1em;
 }
 .fa-mastodon {
 	color: #7b68da;
