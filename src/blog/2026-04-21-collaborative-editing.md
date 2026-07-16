@@ -7,7 +7,7 @@ screenshotCacheBust: 1
 ---
 **TL;DR** After a [whoopsie-daisy false-start on our initial Kickstarter campaign](https://blog.fontawesome.com/pausing-kickstarter/), we’re ramping up again to launch [Kickstarter Final_FINAL_v2 on **April 28, 2026**](https://www.kickstarter.com/projects/fontawesome/build-awesome-pro?ref=43ttgb).
 
-<a href="{{ config.kickstarterUrl }}" class="announcement-btn elv-externalexempt">{% include "components/ba-balloon.svg" %}We’re improving how developers collaborate on the Open Web. Get notified on April 28th!</a>
+<a href="{{ config.kickstarterUrl }}" class="announcement-btn elv-externalexempt"><i class="fa-brands fa-build-awesome"></i>We’re improving how developers collaborate on the Open Web. Get notified on April 28th!</a>
 
 We’ve noticed a few things:
 
@@ -23,7 +23,7 @@ We’ve noticed a few things:
 
 Build Awesome Pro offers the option to add **collaborative editing to your project as an infrastructure-level Progressive Enhancement**.
 
-<a href="{{ config.kickstarterUrl }}" class="announcement-btn elv-externalexempt">{% include "components/ba-balloon.svg" %}Get notified (April 28th) on Kickstarter!</a>
+<a href="{{ config.kickstarterUrl }}" class="announcement-btn elv-externalexempt"><i class="fa-brands fa-build-awesome"></i>Get notified (April 28th) on Kickstarter!</a>
 
 ## One Possible Editable API
 

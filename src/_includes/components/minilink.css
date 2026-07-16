@@ -2,9 +2,10 @@
 .minilink {
 	display: inline-flex;
 	align-items: center;
+	gap: .25em;
 	padding: 0.125em 0.625em; /* 10px /16 */
 	text-transform: uppercase;
-	font-size: 0.875rem; /* 14px /16 */
+	font-size: 0.7222222222222em; /* 13px /18 */
 	text-decoration: none;
 	background-color: #ddd;
 	border-radius: 1em; /* 16px /16 */
@@ -12,6 +13,10 @@
 	margin: 0 0.4285714285714em; /* 0 6px /14 */
 	vertical-align: baseline;
 	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+
+	&:first-child {
+		margin-inline-start: 0;
+	}
 
 	@media (prefers-color-scheme: dark) {
 		background-color: #333;

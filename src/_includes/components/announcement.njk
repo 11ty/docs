@@ -1,7 +1,7 @@
 <div class="announcement">
 	<a href="{{ config.kickstarterUrl }}">
-		{# <progress class="announcement-progress" min="0" max="100000" value="{{ kickstarterStats.pledged }}"></progress> #}
-		{%- include "components/ba-balloon.svg" %}<span>Join the {{ kickstarterStats.backers }} backers of Build Awesome!</span>{#
+		{# <progress class="announcement-progress" min="0" max="100000" value="{{ kickstarterStats.pledged }}"></progress>
+		 #}<i class="fa-brands fa-build-awesome"></i><span>Join the {{ kickstarterStats.backers }} backers of Build Awesome!</span>{#
 		<is-land import="/js/time-difference.js" on:idle on:media="(prefers-reduced-motion: no-preference)"><time-difference class="announcement-tag" live mode="countdown,strip-prefix" suffix="Left"><time datetime="{{ config.kickstarterCloseDate }}">Until May 28</time></time-difference></is-land>
 		 #}<span class="announcement-tag">Late Pricing Available</span>
 	</a>

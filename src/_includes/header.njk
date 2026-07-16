@@ -52,25 +52,11 @@
 	</div>
 
 	<div class="elv-nav-header">
-{%- if not isDocs %}
-		<a class="elv-hero elv-externalexempt" href="/docs/">
-			<div class="elv-hero-ba">
-				{% include "components/ba-balloon.svg" %}
-				{% include "components/build-awesome.svg" %}
-				<span class="sr-only">Build Awesome</span>
-			</div>
-		</a>
-		<a href="/docs/" class="elv-hero-11ty">
-			<i class="fa-brands fa-eleventy"></i><span class="sr-only">Eleventy</span>
-			<img src="/img/mascots/ba-didelphis-awesomenicus.svg" alt="A cartoon possum wearing a green tshirt with a balloon logo on front" class="elv-mascot-image" eleventy:widths="120" loading="eager">
-		</a>
-{%- endif %}
-
 		<is-land class="elv-possum-island" on:visible on:idle on:load on:save-data="false" on:media="(prefers-reduced-motion: no-preference)">
 			<template data-island>
 				<a href="/blog/awesome-possum/" class="elv-possum-anchor elv-externalexempt">
 					<div class="elv-possum-pic">
-						<img src="/img/mascots/awesome-possum-balloon-smile-sm.svg" alt="The possum is Eleventy’s mascot" {% if isDocs %}eleventy:widths="222"{% else %}eleventy:widths="222,350" sizes="20vh"{% endif %} class="elv-possum" loading="eager">
+						<img src="/img/mascots/awesome-possum-balloon-smile-sm.svg" alt="The possum is Eleventy’s mascot" eleventy:widths="222" class="elv-possum" loading="eager">
 					</div>
 				</a>
 			</template>

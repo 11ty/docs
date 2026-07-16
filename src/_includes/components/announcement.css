@@ -99,10 +99,6 @@
 .announcement-btn:after {
 	display: none;
 }
-.announcement-btn svg {
-	min-width: 1.5em;
-	height: auto;
-}
 .elv-footer-wrap .announcement {
 	background-color: color-mix(in oklab, var(--background-color), var(--btn-bg) 85%);
 }
