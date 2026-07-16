@@ -9,7 +9,7 @@ eleventyNavigation:
 # Command Line Usage
 
 {% callout "info", "md-block", "Prerequisites" %}
-1. Build Awesome runs in a Terminal application. [_Well, wait—what is a Terminal?_](/docs/terminal-window/)
+1. Build Awesome runs in a Terminal application. [Well, wait—what is a Terminal?](/docs/terminal-window/)
 1. Have you already [installed Build Awesome](/docs/#step-2-install-build-awesome)?
 {% endcallout %}
 
