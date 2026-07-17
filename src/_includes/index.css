@@ -480,6 +480,7 @@ filter-container:defined form {
 }
 .util-flex {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 1em;
 }
 .util-flex:where(.util-center) {
@@ -487,8 +488,6 @@ filter-container:defined form {
 	justify-content: center;
 }
 .util-flex:is(ul, ol) {
-	display: inline-flex;
-	flex-wrap: wrap;
 	list-style: "";
 	margin: 0;
 	padding: 0;
