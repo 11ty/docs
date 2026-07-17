@@ -29,7 +29,7 @@ Look, we even made a fun video and a [Kickstarter]({{ config.kickstarterUrl }}) 
 
 _You can also watch it on [YouTube](https://www.youtube.com/watch?v=G4Xm4lLmRgg)_.
 
-Our [Kickstarter]({{ config.kickstarterUrl }}) was funded successfully by **{{ kickstarterStats.backers }} lovely folks** ({{ kickstarterStats.percentFunded }}% funded): If one of those people is you: **thank you**!
+Our [Kickstarter]({{ config.kickstarterUrl }}) was funded successfully by **{{ kickstarterStats.backers }} lovely folks** ({{ kickstarterStats.percentFunded }}% funded). If one of those people is you: **thank you**!
 
 ## Features
 
