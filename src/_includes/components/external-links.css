@@ -1,8 +1,8 @@
 /* External links */
-a[href^="https://"]:not([href^="https://11ty.dev"], [href^="https://www.11ty.dev"], .minilink, .elv-externalexempt) {
+a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt) {
 	text-decoration-color: var(--external-link-underline);
 }
-a[href^="https://"]:not([href^="https://11ty.dev"], [href^="https://www.11ty.dev"], .minilink, .elv-externalexempt):after {
+a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt):after {
 	content: " ↗";
 	font-family: system-ui, sans-serif;
 	font-style: normal;
@@ -14,12 +14,12 @@ a[href^="https://"]:not([href^="https://11ty.dev"], [href^="https://www.11ty.dev
 	letter-spacing: -0.08333333333333em; /* -1px /12 */
 }
 /* Contains Font Awesome icon */
-a[href^="https://"]:not([href^="https://11ty.dev"], [href^="https://www.11ty.dev"], .minilink, .elv-externalexempt):has(.fa11ty-icon):after {
+a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt):has(.fa11ty-icon):after {
 	content: "";
 }
 
 /* External link hovers */
-a[href^="https://"]:not([href^="https://11ty.dev"], [href^="https://www.11ty.dev"], .minilink, .elv-externalexempt):hover:after {
+a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt):hover:after {
 	color: inherit;
 }
 

@@ -6,6 +6,10 @@ eleventyNavigation:
 ---
 # Release History
 
+{% callout "info", "Eleventy and Build Awesome" %}
+You may see **11ty** or **Eleventy** mentioned and you might be asking yourself: what is the [difference between **Build Awesome** and Eleventy](/blog/build-awesome/)?
+{% endcallout %}
+
 You can also browse the latest releases on:
 - [<i class="fa-brands fa-npm"></i>`npm`](https://www.npmjs.com/package/@11ty/eleventy?activeTab=versions)
 - [GitHub](https://github.com/11ty/eleventy/releases).
@@ -15,13 +19,54 @@ You can also browse the latest releases on:
 
 ## Major Branches
 
-<ul>
-	<li><a href="https://build.awesome.me/docs/"><code>build.awesome.me</code> for <code>v4</code> (Currently in alpha)</li>
-	<li><a href="https://www.11ty.dev/docs/"><code>www.11ty.dev</code></a> for <code>v3</code> (Latest Stable)</li>
-	<li><a href="https://v2.11ty.dev/docs/"><code>v2.11ty.dev</code></a></li>
-	<li><a href="https://v1.11ty.dev/docs/"><code>v1.11ty.dev</code></a></li>
-	<li><a href="https://v0.11ty.dev/docs/"><code>v0.11ty.dev</code></a></li>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Version</th>
+			<th>URL</th>
+			<th>Status</th>
+			<th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Build Awesome</td>
+      <td><code>v4</code></td>
+      <td><a href="https://build.awesome.me/docs/"><code>build.awesome.me</code></a></td>
+      <td>Pre-release</td>
+			<td>2025+</td>
+    </tr>
+    <tr>
+      <td>Eleventy</td>
+      <td><code>v3</code></td>
+      <td><a href="https://www.11ty.dev/docs/"><code>www.11ty.dev</code></a></td>
+      <td>Latest Stable</td>
+			<td>2023+</td>
+    </tr>
+    <tr>
+      <td>Eleventy</td>
+      <td><code>v2</code></td>
+      <td><a href="https://v2.11ty.dev/docs/"><code>v2.11ty.dev</code></a></td>
+      <td>Outdated</td>
+			<td>2023</td>
+    </tr>
+    <tr>
+      <td>Eleventy</td>
+      <td><code>v1</code></td>
+      <td><a href="https://v1.11ty.dev/docs/"><code>v1.11ty.dev</code></a></td>
+      <td>Outdated</td>
+			<td>2021–2022</td>
+    </tr>
+    <tr>
+      <td>Eleventy</td>
+      <td><code>v0</code></td>
+      <td><a href="https://v0.11ty.dev/docs/"><code>v0.11ty.dev</code></a></td>
+      <td>Outdated</td>
+			<td>2017–2021</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Full Release History
 

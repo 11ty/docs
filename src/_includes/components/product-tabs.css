@@ -1,19 +1,9 @@
 .products {
 	--products-spacing: 1em;
-	--products-stripe-hue: 162;
-	--products-stripe-light: 84%;
-	background-color: #222;
-	background-image: repeating-linear-gradient(
-    -45deg,
-    hsl(var(--products-stripe-hue), 100%, var(--products-stripe-light)),
-    hsl(var(--products-stripe-hue), 100%, var(--products-stripe-light)) 20px,
-    hsl(var(--products-stripe-hue), 100%, calc(var(--products-stripe-light) + 6%)) 20px,
-    hsl(var(--products-stripe-hue), 100%, calc(var(--products-stripe-light) + 6%)) 40px
-  );
+	background: #f0f1f3;
 
 	@media (prefers-color-scheme: dark) {
-		--products-stripe-hue: 162;
-		--products-stripe-light: 13%;
+		background: #222;
 	}
 }
 

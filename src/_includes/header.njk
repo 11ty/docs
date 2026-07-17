@@ -14,13 +14,13 @@
 						<summary>Versions</summary>
 						<div>
 							<ul class="list-bare">
-								<li><a href="https://build.awesome.me/docs/" class="elv-externalexempt"><code>v4</code> <small>Pre-release</small></a></li>
+								<li><a href="/docs/"><code>v4</code> <small>Pre-release</small></a></li>
 								<li><a href="https://www.11ty.dev/docs/" class="elv-externalexempt"><code>v3</code> <small>Stable</small></a></li>
 								<li><a href="https://v2.11ty.dev/docs/" class="elv-externalexempt"><code>v2</code></a></li>
 								<li><a href="https://v1.11ty.dev/docs/" class="elv-externalexempt"><code>v1</code></a></li>
 								<li><a href="https://v0.11ty.dev/docs/" class="elv-externalexempt"><code>v0</code></a></li>
-								<li><a href="/docs/versions/" class="elv-externalexempt">History</a></li>
-								<li><a href="/firehose/" class="elv-externalexempt">Firehose</a></li>
+								<li><a href="/docs/versions/">History</a></li>
+								<li><a href="/firehose/">Firehose</a></li>
 							</dl>
 						</div>
 					</details>
@@ -64,8 +64,8 @@
 	</div>
 
 	{% if config.outdated -%}
-	{% callout "warn" %}This is an <strong>older version of Eleventy</strong>. Go to the <a href="https://www.11ty.dev/docs/">newest Eleventy docs</a> (current path: <a href="https://www.11ty.dev{{ page.url }}"><code>{{ page.url }}</code></a>) or the <a href="https://www.11ty.dev/docs/versions/">full release history</a>.{% endcallout %}
+	{% callout "warn" %}This is an <strong>older version of Build Awesome</strong>. Go to the <a href="https://build.awesome.me/docs/">newest Eleventy docs</a> (current path: <a href="https://build.awesome.me{{ page.url }}"><code>{{ page.url }}</code></a>) or the <a href="https://build.awesome.me/docs/versions/">full release history</a>.{% endcallout %}
 	{% elseif config.prerelease -%}
-	{% callout "brand" %}These docs are for an upcoming version of <strong><i class="fa-brands fa-build-awesome"></i>Build Awesome</strong> — take extra care before linking here as URLs may change! Look to the <a href="https://www.11ty.dev/docs/"><i class="fa-brands fa-eleventy"></i>latest stable docs</a> instead (or the full <a href="https://www.11ty.dev/docs/versions/">release history</a>).{% endcallout %}
+	{% callout "brand" %}These docs are for an upcoming version of <strong><i class="fa-brands fa-build-awesome"></i>Build Awesome</strong> — take extra care before linking here as URLs may change! Look to the <a href="https://www.11ty.dev/docs/"><i class="fa-brands fa-eleventy"></i>latest stable docs</a> instead (or the full <a href="https://build.awesome.me/docs/versions/">release history</a>).{% endcallout %}
 	{% endif -%}
 </header>

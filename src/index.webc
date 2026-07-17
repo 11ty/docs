@@ -65,7 +65,7 @@ export function randomTestimonialLink(testimonials) {
 
 <div class="util-flex util-center">
 	<a href="{{ config.kickstarterUrl }}" class="announcement-btn announcement-btn--inline"><i class="fa-brands fa-build-awesome"></i>Build Awesome Pro <span class="announcement-tag">Coming Soon!</span></a>
-	<a href="/docs/">Install Build Awesome (Free)<i class="fa-solid fa-arrow-right util-icon-sm"></i></a>
+	<a href="/docs/">Or install locally (free)<i class="fa-solid fa-arrow-right util-icon-sm"></i></a>
 </div>
 {% endcallout %}
 </template>

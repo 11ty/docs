@@ -57,6 +57,10 @@ export default function ($config) {
 	$config.addPairedShortcode(
 		"callout",
 		function (content, level = "", format = "html", customLabel = "") {
+			if(content.includes("](") && !content.includes("<a ")) { // content includes a markdown link and no html link
+				format = "md";
+			}
+
 			if (format === "md-block" || content.trim().includes("\n")) {
 				content = mdIt.render(content);
 			} else if (format === "md") {
