@@ -1,7 +1,7 @@
 <div class="elv-toc" data-pagefind-ignore>
-{%- set proCtaTitle %}<a href="/pro/"><i class="fa-brands fa-build-awesome util-icon-sm"></i><strong>Build Awesome Pro</strong></a>{% endset %}
+{# {%- set proCtaTitle %}<a href="/pro/"><i class="fa-brands fa-build-awesome util-icon-sm"></i><strong>Build Awesome Pro</strong></a>{% endset %}
 {%- callout "box", "html", proCtaTitle %}
-{%- endcallout %}
+{%- endcallout %} #}
 
 {%- set calloutTitle %}<a href="/blog/">Blog</a>{% endset %}
 {%- for post in collections.sidebarHighlight %}
@@ -23,6 +23,8 @@
 		<dt>Canary</dt>
 		<dd><a href="https://github.com/11ty/eleventy/releases/tag/v{{ npmVersions.canary }}" class="elv-externalexempt"><code>{{ npmVersions.canary }}</code>{# <small>{{ githubReleases[ npmVersions.canary | normalizeVersion ].date | timeDiff }}</small> #}</a></dd>
 		{%- endif %}
+		<dt><a href="/pro/">Pro</a></dt>
+		<dd><a href="/pro/">Coming Soon</a></dd>
 	</dl>
 {%- endcallout %}
 

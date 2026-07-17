@@ -22,6 +22,13 @@ You may see **11ty** or **Eleventy** mentioned and you might be asking yourself:
   </thead>
   <tbody>
     <tr>
+      <td><a href="/pro/">Build Awesome Pro</a></td>
+      <td></td>
+      <td><a href="/pro/"><code>build.awesome.me/pro/</code></a></td>
+      <td><em>Coming soon</em></td>
+      <td>2027</td>
+    </tr>
+    <tr>
       <td>Build Awesome</td>
       <td><code>v4</code></td>
       <td><a href="https://build.awesome.me/docs/"><code>build.awesome.me</code></a></td>
