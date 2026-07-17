@@ -235,12 +235,20 @@ main h1.elv-hed {
 	filter: drop-shadow(3px 3px #0006);
 }
 
-.elv-header-version {
+.elv-header-version,
+.elv-header-pro {
 	padding: .25em .75em;
 	border-radius: .25em;
 	background-color: #efefef;
 
 	@media (prefers-color-scheme: dark) {
 		background-color: #1a1a1a;
+	}
+}
+.elv-header-pro {
+	background-color: #e3fdf5;
+
+	@media (prefers-color-scheme: dark) {
+		background-color: #003d2b;
 	}
 }
