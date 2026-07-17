@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-shotpipe",
+	"author": "podop29",
+	"description": "Open Graph images with zero build-time cost: og:image URLs are signed locally at build time and rendered on the first crawler hit. No headless browser in your build."
+}
