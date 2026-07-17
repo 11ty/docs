@@ -238,9 +238,9 @@ main h1.elv-hed {
 .elv-header-version {
 	padding: .25em .75em;
 	border-radius: .25em;
-}
-@media (prefers-color-scheme: dark) {
-	.elv-header-version {
+	background-color: #efefef;
+
+	@media (prefers-color-scheme: dark) {
 		background-color: #1a1a1a;
 	}
 }

@@ -11,9 +11,9 @@ let eleventyComputed = {
 };
 // </script>
 ---
-<h1>Build Awesome Pro</h1>
+# Build Awesome Pro
 
-<p><strong>Build Awesome Pro</strong> is a new service we’re building to help anyone launch and maintain a web site—<strong>no installation required</strong>. It’s a web site builder boasting visual editing and collaboration, <em>zero lock-in</em> (ever), while ultimately helping to fund continued <a href="/docs/">Build Awesome (Eleventy)</a> maintenance for the entire community.</p>
+**Build Awesome Pro** is a new service we’re building to help anyone launch and maintain a web site—<strong>no installation required</strong>. It’s a web site builder boasting visual editing and collaboration, <em>zero lock-in</em> (ever), while ultimately helping to fund continued <a href="/docs/">Build Awesome (Eleventy)</a> maintenance for the entire community.</p>
 
 {% callout "brand", "html", "" %}
 <div class="util-flex util-center">
@@ -22,13 +22,16 @@ let eleventyComputed = {
 </div>
 {% endcallout %}
 
-<p>Our <a href="{{ config.kickstarterUrl }}">Kickstarter</a> was backed by <strong>{{ kickstarterStats.backers }} lovely folks</strong> ({{ kickstarterStats.percentFunded }}% funded): <strong>Thank you</strong>!</p>
+Look, we even made a fun video and a [Kickstarter]({{ config.kickstarterUrl }}) to introduce the thing:
 
-{% callout "info", "html", "" %}
-<div class="util-flex util-center">
-	<a href="{{ config.kickstarterUrl }}" class="announcement-btn announcement-btn--inline">Late pricing is still available for the <i class="fa-brands fa-kickstarter"></i>Kickstarter <span class="announcement-tag">Funded!</span></a>
-</div>
-{% endcallout %}
+{# autoplay disabled #}
+<iframe loading="lazy" class="video-player" src="https://player.vimeo.com/video/1168551192?h=6ba669b3ff&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;dnt=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Now on Kickstarter: Build Awesome — Collaborate on Websites That Last"></iframe>
+
+_You can also watch it on [YouTube](https://www.youtube.com/watch?v=G4Xm4lLmRgg)_.
+
+Our [Kickstarter]({{ config.kickstarterUrl }}) was funded successfully by **{{ kickstarterStats.backers }} lovely folks** ({{ kickstarterStats.percentFunded }}% funded): If one of those people is you: **thank you**!
+
+## Features
 
 <ul class="lo-grid m-8" style="--lo-grid-repeat: 2; --lo-c-minwidth: min(100%, 15rem); --fl-gap-h: 8vw; --fl-gap-v: 2em;">
 	<li><strong>No installation required.</strong> Build Awesome Pro runs on our servers — Build Awesome (free) runs on yours. Skip the terminal and get straight to building.</li>
@@ -38,3 +41,13 @@ let eleventyComputed = {
 	<li><strong>Zero lock-in, ever.</strong> Your site is built on open standards and the open-source Build Awesome (Eleventy) tool. Take your content and leave any time you like—it’s yours.</li>
 	<li><strong>Funds the open-source project.</strong> Every Build Awesome Pro subscription helps fund continued Build Awesome (Eleventy) maintenance for the entire community.</li>
 </ul>
+
+{% callout "info", "html", "" %}
+<div class="util-flex util-center">
+	<a href="{{ config.kickstarterUrl }}" class="announcement-btn announcement-btn--inline">Late pricing is still available for the <i class="fa-brands fa-kickstarter"></i>Kickstarter <span class="announcement-tag">Funded!</span></a>
+</div>
+{% endcallout %}
+
+## Build Awesome Timeline
+
+{% include "related-build-awesome.njk" %}
