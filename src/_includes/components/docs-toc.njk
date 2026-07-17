@@ -1,4 +1,8 @@
 <div class="elv-toc" data-pagefind-ignore>
+{%- set proCtaTitle %}<a href="/blog/build-awesome-pro/"><strong>Build Awesome Pro</strong></a>{% endset %}
+{%- callout "box", "html", proCtaTitle %}
+{%- endcallout %}
+
 {%- set calloutTitle %}<a href="/blog/">Blog</a>{% endset %}
 {%- for post in collections.sidebarHighlight %}
 {%- callout "", "html", calloutTitle %}

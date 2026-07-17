@@ -4,7 +4,6 @@ sidebarTitle:
 eleventyNavigation:
   parent: Blog
 blogHighlight: true
-tags: sidebarHighlight
 screenshotCacheBust: 1
 ---
 We’re trying to make it easier for anyone to build, publish, and maintain websites and today we’ve [launched a Kickstarter]({{ config.kickstarterUrl }}) with that goal in mind!
