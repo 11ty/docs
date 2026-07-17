@@ -11,14 +11,18 @@ overrideCommunityLinks: true
 <h1>Get Started</h1>
 
 <template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
-	{% callout "brand" %}
-		<p>{% include "star-on-github.njk" %}</p>
-	{% endcallout %}
+{% callout "brand" %}
+	<p>{% include "star-on-github.njk" %}</p>
+{% endcallout %}
 </template>
 
-<p>Build Awesome <eleventy-version></eleventy-version> requires a <a href="javascript-runtime.webc">JavaScript runtime</a>, typically <strong><a href="https://nodejs.org/">Node.js</a></strong> (<strong>version <node-minimum></node-minimum></strong> or higher).</p>
+<p>Build Awesome <eleventy-version></eleventy-version> requires a <a href="javascript-runtime.webc">JavaScript runtime</a>, typically <strong><a href="https://nodejs.org/">Node.js</a></strong> (version <node-minimum></node-minimum> or higher).</p>
 
 <p>You can check whether or not you have Node.js installed by running <code>node --version</code> in a terminal application. (<a href="/docs/terminal-window/">Well, wait—what is a Terminal?</a>) If the command is not found or it reports a number lower than <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">download and install Node.js</a> before moving on to the next step. Learn why it’s encouraged to use <a href="javascript-runtime.webc#odd-numbered-versions-of-node-js">even numbered releases of Node.js</a>.</p>
+
+<template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
+{% include "pro-cta.njk" %}
+</template>
 
 <p>Prefer to watch videos instead? Check out <a href="https://www.youtube.com/watch?v=kzf9A9tkkl4"><strong>6 minutes to Build a Blog from Scratch</strong></a>.</p>
 

@@ -1,0 +1,40 @@
+---js
+// <script>
+let headerTitle = "Build Awesome Pro";
+let searchTitle = "Build Awesome Pro is the easiest way to launch and maintain a web site";
+let layout = "layouts/docs.njk";
+
+let eleventyComputed = {
+	social: {
+		description: () => "Build Awesome Pro is a web site builder with visual editing and collaboration and zero lock-in."
+	},
+};
+// </script>
+---
+<h1>Build Awesome Pro</h1>
+
+<p><strong>Build Awesome Pro</strong> is a new service we’re building to help anyone launch and maintain a web site—<strong>no installation required</strong>. It’s a web site builder boasting visual editing and collaboration, <em>zero lock-in</em> (ever), while ultimately helping to fund continued <a href="/docs/">Build Awesome (Eleventy)</a> maintenance for the entire community.</p>
+
+{% callout "brand", "html", "" %}
+<div class="util-flex util-center">
+	<a class="announcement-btn announcement-btn--inline announcement-btn--disabled"><i class="fa-brands fa-build-awesome"></i>Build Awesome Pro <span class="announcement-tag">Coming Soon!</span></a>
+	<a href="/docs/">Or install locally (free)<i class="fa-solid fa-arrow-right util-icon-sm"></i></a>
+</div>
+{% endcallout %}
+
+<p>Our <a href="{{ config.kickstarterUrl }}">Kickstarter</a> was backed by <strong>{{ kickstarterStats.backers }} lovely folks</strong> ({{ kickstarterStats.percentFunded }}% funded): <strong>Thank you</strong>!</p>
+
+{% callout "info", "html", "" %}
+<div class="util-flex util-center">
+	<a href="{{ config.kickstarterUrl }}" class="announcement-btn announcement-btn--inline">Late pricing is still available for the <i class="fa-brands fa-kickstarter"></i>Kickstarter <span class="announcement-tag">Funded!</span></a>
+</div>
+{% endcallout %}
+
+<ul class="lo-grid m-8" style="--lo-grid-repeat: 2; --lo-c-minwidth: min(100%, 15rem); --fl-gap-h: 8vw; --fl-gap-v: 2em;">
+	<li><strong>No installation required.</strong> Build Awesome Pro runs on our servers — Build Awesome (free) runs on yours. Skip the terminal and get straight to building.</li>
+	<li><strong>Publish on the go.</strong> Return to the office? No thank you! Add new content from any device with a web browser.</li>
+	<li><strong>Visual editing.</strong> Edit your site’s content and preview your changes live.</li>
+	<li><strong>Collaboration.</strong> Work on your site together with your community and colleagues.</li>
+	<li><strong>Zero lock-in, ever.</strong> Your site is built on open standards and the open-source Build Awesome (Eleventy) tool. Take your content and leave any time you like—it’s yours.</li>
+	<li><strong>Funds the open-source project.</strong> Every Build Awesome Pro subscription helps fund continued Build Awesome (Eleventy) maintenance for the entire community.</li>
+</ul>

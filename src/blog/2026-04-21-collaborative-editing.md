@@ -86,7 +86,9 @@ _Check out this [lower-level (developer-specific) example of full template editi
 
 Build Awesome Pro is a better way to build and collaborate on websites! Convenient for developers and easy-to-use for the whole team: fast, flexible, and built to last.
 
-{% include "components/announcement.njk" %}
+<div class="announcement">
+	<a href="{{ config.kickstarterUrl }}">Join the {{ kickstarterStats.backers }} backers of <i class="fa-brands fa-build-awesome"></i><span>Build Awesome Pro!</span><span class="announcement-tag">Coming Soon</span></a>
+</div>
 
 _**Stay tuned: Build Awesome (11ty) v4 is coming** with that same great 11ty flavor you’re used to: more features with fewer dependencies and an ever-improving focus on build performance!_
 

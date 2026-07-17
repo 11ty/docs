@@ -40,6 +40,12 @@
 .fl-spaced-out {
 	justify-content: space-between;
 }
+.fl--balance {
+	justify-content: center;
+}
+.fl--balance > * {
+	flex-basis: min-content;
+}
 
 /* Debug */
 .fl-debug > * {

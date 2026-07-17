@@ -91,6 +91,10 @@
 	max-width: none;
 	margin-inline: 0;
 }
+.announcement-btn--disabled {
+	cursor: not-allowed;
+	opacity: .7;
+}
 
 .products .announcement svg {
 	min-width: 1em;

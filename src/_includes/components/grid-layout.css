@@ -16,3 +16,12 @@
 .lo-grid > * {
 	margin: 0;
 }
+.lo-grid:where(ul, ol) {
+	margin: 0;
+	padding: 0;
+	list-style: "";
+
+	& > * {
+		padding: 0;
+	}
+}

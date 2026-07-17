@@ -16,14 +16,12 @@ layout: layouts/base.njk
 </main>
 
 <footer class="elv-footer-wrap">
-	{% include "components/announcement.njk" %}
-
+	{%- include "components/announcement.njk" -%}
 	<div class="elv-footer elv-layout">
-	{% include "social-callout.njk" %}
-{% if not ignoreSupporters %}
-	{% include "supporters.njk" %}
-{% endif %}
-
-	{% include "footer-nav.njk" %}
+	{%- include "social-callout.njk" -%}
+	{%- if not ignoreSupporters -%}
+		{%- include "supporters.njk" -%}
+	{%- endif -%}
+	{%- include "footer-nav.njk" -%}
 	</div>
 </footer>
