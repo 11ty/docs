@@ -16,7 +16,7 @@ permalink: /imports/logo-cloud.html
 <li><img webc:is="indieweb-avatar" url="https://sentry.io/">Sentry</li>
 <li><img webc:is="indieweb-avatar" url="https://developer.chrome.com/">Chrome Developers</li>
 <li><img webc:is="indieweb-avatar" url="https://css-tricks.com/">CSS Tricks</li>
-<li><img webc:is="indieweb-avatar" url="https://www.webpagetest.org/">WebPageTest</li>
+<li><img webc:is="indieweb-avatar" url="https://www.catchpoint.com/webpagetest">WebPageTest</li>
 <li><img webc:is="indieweb-avatar" url="https://www.a11yproject.com/">A11Y Project</li>
 <li><img webc:is="indieweb-avatar" url="https://eslint.org/">ESLint</li>
 <li><img webc:is="indieweb-avatar" url="https://www.noaa.gov/"><abbr title="National Oceanic and Atmospheric Administration">NOAA</abbr></li>
@@ -27,10 +27,10 @@ permalink: /imports/logo-cloud.html
 <li><img webc:is="indieweb-avatar" url="https://www.numerique.gouv.fr/">France (gov)</li>
 <li><img webc:is="indieweb-avatar" url="https://www.louvre.fr/">The Louvre Museum</li>
 <li><img webc:is="indieweb-avatar" url="https://www.fastmail.com/">Fastmail</li>
-<li><img webc:is="indieweb-avatar" url="https://stackoverflow.com/">Stack Overflow</li>
+<li><img webc:is="indieweb-avatar" url="https://stackoverflow.co/">Stack Overflow</li>
 <li><img webc:is="indieweb-avatar" url="https://webawesome.com/">Web Awesome</li>
 <li><img webc:is="indieweb-avatar" url="https://lit.dev/" width="120">Lit</li>
-<li><img webc:is="indieweb-avatar" url="https://glitch.com/">Glitch</li>
+<li><img webc:is="indieweb-avatar" url="https://blog.glitch.com/">Glitch</li>
 <li><img webc:is="indieweb-avatar" url="https://stackblitz.com/">Stackblitz</li>
 <li><img webc:is="indieweb-avatar" url="https://openwebdocs.org/">Open Web Docs</li>
 <li><img webc:is="indieweb-avatar" url="https://foursquare.com/">Foursquare</li>
