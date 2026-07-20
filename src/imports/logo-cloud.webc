@@ -28,15 +28,13 @@ permalink: /imports/logo-cloud.html
 <li><img webc:is="indieweb-avatar" url="https://www.louvre.fr/">The Louvre Museum</li>
 <li><img webc:is="indieweb-avatar" url="https://www.fastmail.com/">Fastmail</li>
 <li><img webc:is="indieweb-avatar" url="https://stackoverflow.com/">Stack Overflow</li>
+<li><img webc:is="indieweb-avatar" url="https://webawesome.com/">Web Awesome</li>
 <li><img webc:is="indieweb-avatar" url="https://lit.dev/" width="120">Lit</li>
 <li><img webc:is="indieweb-avatar" url="https://glitch.com/">Glitch</li>
 <li><img webc:is="indieweb-avatar" url="https://stackblitz.com/">Stackblitz</li>
 <li><img webc:is="indieweb-avatar" url="https://openwebdocs.org/">Open Web Docs</li>
 <li><img webc:is="indieweb-avatar" url="https://foursquare.com/">Foursquare</li>
 <li><img webc:is="indieweb-avatar" url="https://jamstack.org/">jamstack.org</li>
-<li><img webc:is="indieweb-avatar" url="https://www.greenpeace.org/">Greenpeace</li>
-<li><img webc:is="indieweb-avatar" url="https://www.csis.org/"><abbr title="Center for Strategic & International Studies">CSIS</abbr></li>
-<li><img webc:is="indieweb-avatar" url="https://www.springernature.com/">Springer Nature</li>
 <li><img webc:is="indieweb-avatar" url="https://mochajs.org/">Mocha</li>
 <li><img webc:is="indieweb-avatar" url="https://revealjs.com/">reveal.js</li>
 <li><img webc:is="indieweb-avatar" url="https://panic.com/">Panic</li>
@@ -57,4 +55,7 @@ permalink: /imports/logo-cloud.html
 <li><img webc:is="indieweb-avatar" url="https://www.pie.design/">Just Eat Takeaway</li>
 <!--- <li><img webc:is="indieweb-avatar" url="https://covidtracking.com/">Covid Tracking</li> --->
 <li><img webc:is="indieweb-avatar" url="https://www.getty.edu/">Getty</li>
-<li><img webc:is="indieweb-avatar" url="https://webawesome.com/">Web Awesome</li>
+<li><img webc:is="indieweb-avatar" url="https://www.greenpeace.org/">Greenpeace</li>
+<li><img webc:is="indieweb-avatar" url="https://www.csis.org/"><abbr title="Center for Strategic & International Studies">CSIS</abbr></li>
+<li><img webc:is="indieweb-avatar" url="https://www.springernature.com/">Springer Nature</li>
+<li><img webc:is="indieweb-avatar" url="https://thewhitestonefoundation.org/">The Whitestone Foundation</li>
