@@ -55,3 +55,6 @@ permalink: /imports/logo-cloud.html
 <li><img webc:is="indieweb-avatar" url="https://www.ca.gov/">California (gov)</li>
 <li><img webc:is="indieweb-avatar" url="https://ux.redhat.com">Red Hat</li>
 <li><img webc:is="indieweb-avatar" url="https://www.pie.design/">Just Eat Takeaway</li>
+<!--- <li><img webc:is="indieweb-avatar" url="https://covidtracking.com/">Covid Tracking</li> --->
+<li><img webc:is="indieweb-avatar" url="https://www.getty.edu/">Getty</li>
+<li><img webc:is="indieweb-avatar" url="https://webawesome.com/">Web Awesome</li>

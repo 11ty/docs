@@ -6,6 +6,7 @@
 	<li><img webc:is="indieweb-avatar" url="https://about.google/">Google</li>
 	<li><img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft</li>
 	<li><img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla</li>
+	<li><img webc:is="indieweb-avatar" url="https://github.com/">GitHub</li>
 	<li><img webc:is="indieweb-avatar" url="https://fontawesome.com/">Font Awesome</li>
 	<li><img webc:is="indieweb-avatar" url="https://apache.org/">Apache</li>
 	<li><img webc:is="indieweb-avatar" url="https://www.freecodecamp.org/">freeCodeCamp</li>
