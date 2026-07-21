@@ -22,7 +22,7 @@ Note that you can also add [Custom Front Matter Formats](/docs/data-frontmatter-
 {% set codeContent %}
 export default function (eleventyConfig) {
 	// Receives file contents, return parsed data
-	eleventyConfig.addDataExtension("yml,yaml", (contents, filePath) => {
+	eleventyConfig.addDataExtension("fileExtension", (contents, filePath) => {
 		return {};
 	});
 };
