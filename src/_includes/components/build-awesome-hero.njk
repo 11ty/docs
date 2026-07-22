@@ -1,119 +1,119 @@
-<style>
-.ba-hero {
-	--ba-hero-navy:#183153;
-	--ba-hero-green:var(--brand-ba);
-	--ba-hero-cyan:#00e0e0;
-	--ba-hero-mint:#71f4cd;
-	--ba-hero-mint-bg:#e3fdf5;
-	--ba-hero-blue:#1873a5;
-	--ba-hero-muted:#6d6d6d;
-	--ba-hero-shadow: rgba(0,224,224,.18);
-	--ba-hero-body:"Cera Round Pro",system-ui,sans-serif;
-	--ba-hero-mono:Menlo,Monaco,Consolas,Courier New,monospace;
+<section class="ba-hero elv-layout">
+	<style>
+	.ba-hero {
+		--ba-hero-navy:#183153;
+		--ba-hero-green:var(--brand-ba);
+		--ba-hero-cyan:#00e0e0;
+		--ba-hero-mint:#71f4cd;
+		--ba-hero-mint-bg:#e3fdf5;
+		--ba-hero-blue:#1873a5;
+		--ba-hero-muted:#6d6d6d;
+		--ba-hero-shadow: rgba(0,224,224,.18);
+		--ba-hero-body:"Cera Round Pro",system-ui,sans-serif;
+		--ba-hero-mono:Menlo,Monaco,Consolas,Courier New,monospace;
+
+		@media (prefers-color-scheme: dark){
+			--ba-hero-navy:#eef3fb;     /* headings / strong text -> near-white */
+			--ba-hero-shadow: rgba(48,117,117,.18);
+			--ba-hero-muted:#93a2b6;
+			--ba-hero-mint-bg:rgba(0,167,118,.16);  /* pill / chip backgrounds */
+		}
+	}
+	.ba-hero{ position:relative; display:flex; flex-direction:column; font-family:var(--ba-hero-body); margin: 0 auto 6vh; padding-block: 4vh 0; }
+	.ba-hero::before{ content:""; position:absolute; top:-28%; right:0; width:52vw; height:66vw; z-index:-1; background: radial-gradient(circle at 50% 15%, var(--ba-hero-shadow), transparent 60%); filter:blur(24px); }
+
+	.ba-hero-grid{ position:relative; z-index:0; flex:1; display:grid; grid-template-columns: 1.02fr .98fr; gap:36px; align-items:center;
+		padding: 1em 0;
+	}
+	.ba-hero-kicker{ display:inline-flex; align-items:center; gap:8px; background:var(--ba-hero-mint-bg); color:var(--ba-hero-green); font-family:var(--ba-hero-body);
+		font-weight:600; font-size:.85rem; padding:8px 16px; border-radius:100px; margin-bottom:22px; }
+	.ba-hero-kicker-dot{ width:7px; height:7px; border-radius:50%; background:var(--ba-hero-green); box-shadow:0 0 0 0 rgba(0,167,118,.5); animation: ba-hero-ping 2.4s ease-out infinite; }
+	@keyframes ba-hero-ping{ 0%{ box-shadow:0 0 0 0 rgba(0,167,118,.5);} 70%,100%{ box-shadow:0 0 0 8px rgba(0,167,118,0);} }
+	.ba-hero-title{ font-family:var(--ba-hero-body); font-weight:700; font-size:clamp(2.6rem,6.6vw,5.4rem); line-height:.98; letter-spacing:-.01em; margin:0; color:var(--ba-hero-navy); }
+	.ba-hero-accent{ color:var(--ba-hero-green); }
+	.ba-hero-sub{ font-size:clamp(1.05rem,1.6vw,1.3rem); line-height:1.5; max-width:46ch; margin:22px 0 30px; }
+	.ba-hero-actions{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+	.ba-hero-btn{ font-family:var(--ba-hero-body); font-weight:600; font-size:1.05rem; padding:15px 30px; border-radius:100px; text-decoration:none; cursor:pointer; transition:transform .14s ease, box-shadow .14s ease; }
+	.ba-hero-btn-fill:any-link{ background:var(--ba-hero-navy); color:#fff; }
+	.ba-hero-btn-fill:hover{ transform:translateY(-3px); box-shadow:0 16px 30px -8px rgba(0,167,118,.7); }
+	.ba-hero-btn-ghost{ color:var(--ba-hero-navy); border:2px solid #e6e6e6; } .ba-hero-btn-ghost:hover{ border-color:var(--ba-hero-green); color:var(--ba-hero-green); }
+	.ba-hero-feats{ list-style:none; display:flex; flex-wrap:wrap; gap:10px 18px; margin:28px 0 0; padding:0; }
+	.ba-hero-feat{ display:flex; align-items:center; gap:8px; font-weight:600; font-size:.92rem; color:var(--ba-hero-navy); }
+	.ba-hero-feat::before{ content:""; width:16px; height:16px; border-radius:50%; background:var(--ba-hero-mint-bg);
+		box-shadow: inset 0 0 0 2px var(--ba-hero-green); }
+
+	/* stage */
+	.ba-hero-stage{ position:relative; z-index:2; height: clamp(420px, 40vw, 500px);margin-inline-end: clamp(1em,5vw,2em); }
+	.ba-hero-floaty{ position:absolute; animation: ba-hero-bob 7s ease-in-out infinite; }
+	.ba-hero-floaty-term{ top:0; left:0; width:97%; z-index:1; }
+	.ba-hero-floaty-browser{ top:220px; right:-20px; width:90%; z-index:3; animation-delay:1.5s; }
+	@keyframes ba-hero-bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+
+	.ba-hero-card{ border-radius:16px; will-change:transform; }
+	.ba-hero-dot{ width:12px; height:12px; border-radius:50%; display:inline-block; flex:none; }
+	.ba-hero-dot-r{ background:#ff5f57; } .ba-hero-dot-y{ background:#febc2e; } .ba-hero-dot-g{ background:#28c840; }
+
+	.ba-hero-term{ background:#0f1b2d; box-shadow:0 44px 90px -34px rgba(24,49,83,.55), 0 0 0 1px rgba(24,49,83,.06); overflow:hidden;
+		transform: perspective(1500px) rotateY(-6deg) rotateX(3deg) translate3d(var(--ba-hero-px,0),var(--ba-hero-py,0),0);
+		transition: transform .12s ease-out; }
+	.ba-hero-term-bar{ display:flex; align-items:center; gap:8px; padding:12px 14px; background:#14243b; }
+	.ba-hero-term-name{ margin-left:8px; font-family:var(--ba-hero-mono); font-size:.78rem; color:#7d90ad; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+	.ba-hero-copybtn{ margin-left:auto; flex:none; white-space:nowrap; font-family:var(--ba-hero-mono); font-size:.72rem; color:#9fb4d0; background:rgba(255,255,255,.06);
+		border:1px solid rgba(255,255,255,.12); border-radius:7px; padding:5px 10px; cursor:pointer; transition:.15s; }
+	.ba-hero-copybtn:hover{ color:#fff; background:rgba(255,255,255,.12); }
+	.ba-hero-copybtn.is-done{ color:var(--ba-hero-mint); border-color:rgba(113,244,205,.4); }
+	.ba-hero-term-body{ padding:18px 20px 24px; font-family:var(--ba-hero-mono); font-size:.84rem; line-height:1.75; color:#cde3ff; min-height:236px; }
+	.ba-hero-ln{ white-space:pre-wrap; word-break:break-word; }
+	.ba-hero-pr{ color:var(--ba-hero-green); font-weight:700; }
+	.ba-hero-cmd{ color:var(--ba-hero-cyan); }
+	.ba-hero-path{ color:#8fd0ff; }
+	.ba-hero-dim{ color:#63789a; }
+	.ba-hero-ok{ color:var(--ba-hero-mint); font-weight:700; }
+	.ba-hero-link{ color:var(--ba-hero-cyan); text-decoration:underline; text-underline-offset:3px; }
+	.ba-hero-term-body b{ color:#fff; font-weight:700; }
+	.ba-hero-cur{ display:inline-block; width:8px; height:1.05em; background:var(--ba-hero-cyan); vertical-align:-2px; animation: ba-hero-blink 1s steps(1) infinite; }
+	@keyframes ba-hero-blink{ 50%{ opacity:0; } }
+
+	/* browser preview */
+	.ba-hero-browser{ background:#fff; box-shadow:0 40px 80px -30px rgba(24,49,83,.4), 0 0 0 1px rgba(24,49,83,.07); overflow:hidden;
+		transform: perspective(1500px) rotateY(-6deg) rotateX(3deg) translate3d(var(--ba-hero-bx,0), var(--ba-hero-by,0), 0); }
+	.ba-hero-browser .ba-hero-bbody { opacity:0; transition: opacity .55s ease, transform .6s cubic-bezier(.2,.85,.25,1); }
+	.ba-hero-browser.is-shown .ba-hero-bbody{ opacity:1; }
+	.ba-hero-bbar{ display:flex; align-items:center; gap:8px; padding:10px 12px; background:#f1f3f6; border-bottom:1px solid #e6e9ef; }
+	.ba-hero-bbar .ba-hero-dot{ width:11px; height:11px; }
+	.ba-hero-url{ margin-left:8px; flex:1; background:#fff; border:1px solid #e6e9ef; border-radius:7px; padding:5px 10px;
+		font-family:var(--ba-hero-mono); font-size:.72rem; color:#6d7c90; }
+	.ba-hero-bbody{ padding:20px 22px 26px; }
+	.ba-hero-bnav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+	.ba-hero-bbrand{ display:flex; align-items:center; gap:7px; font-family:var(--ba-hero-body); font-weight:700; color:var(--ba-hero-navy); font-size:.98rem; }
+	.ba-hero-bballoon{ color:var(--ba-hero-green); }
+	.ba-hero-blink-link{ font-weight:600; color:var(--ba-hero-muted); font-size:.85rem; }
+	.ba-hero-bpost-title{ font-family:var(--ba-hero-body); font-weight:700; color:var(--ba-hero-navy); font-size:1.5rem; margin:0 0 8px; }
+	.ba-hero-bbody p{ margin:0 0 14px; color:var(--ba-hero-muted); font-size:.95rem; line-height:1.5; }
+	.ba-hero-bbody code{ font-family:var(--ba-hero-mono); font-size:.85em; background:var(--ba-hero-mint-bg); color:var(--ba-hero-green); padding:1px 6px; border-radius:5px; }
+	.ba-hero-btag{ display:inline-block; font-size:.78rem; font-weight:700; color:var(--ba-hero-green); background:var(--ba-hero-mint-bg); padding:4px 12px; border-radius:100px; }
+
+	@media (max-width: 58.6875em) { /* 939px /16 */
+		.ba-hero-grid{ grid-template-columns:1fr; text-align:center; }
+		.ba-hero-sub{ margin-inline:auto; } .ba-hero-actions, .ba-hero-feats{ justify-content:center; }
+		.ba-hero-stage{ height:auto; max-width:540px; margin:8px auto 60px; text-align:left; }
+		.ba-hero-floaty{ position:relative !important; width:100% !important; animation:none; }
+		.ba-hero-floaty-browser{ top: 0; width:92% !important; margin:-6px auto 0; }
+		.ba-hero-term, .ba-hero-browser{ transform:none !important; }
+	}
+	@media (prefers-reduced-motion: reduce){
+		.ba-hero-floaty, .ba-hero-cur, .ba-hero-kicker-dot, .ba-hero-copy{ animation:none; }
+		.ba-hero-browser{ transition:none; }
+	}
 
 	@media (prefers-color-scheme: dark){
-		--ba-hero-navy:#eef3fb;     /* headings / strong text -> near-white */
-		--ba-hero-shadow: rgba(48,117,117,.18);
-		--ba-hero-muted:#93a2b6;
-		--ba-hero-mint-bg:rgba(0,167,118,.16);  /* pill / chip backgrounds */
+		.ba-hero-btn-ghost{ border-color:rgba(255,255,255,.16); }
+		/* browser preview: dark chrome to match the terminal */
+		.ba-hero-browser{ background:#0f1b2d; box-shadow:0 40px 80px -30px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.07); }
+		.ba-hero-bbar{ background:#14243b; border-bottom-color:rgba(255,255,255,.08); }
+		.ba-hero-url{ background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.10); color:#9fb4d0; }
 	}
-}
-.ba-hero{ position:relative; display:flex; flex-direction:column; font-family:var(--ba-hero-body); margin: 0 auto 6vh; padding-block: 4vh 0; }
-.ba-hero::before{ content:""; position:absolute; top:-28%; right:0; width:52vw; height:66vw; z-index:-1; background: radial-gradient(circle at 50% 15%, var(--ba-hero-shadow), transparent 60%); filter:blur(24px); }
-
-.ba-hero-grid{ position:relative; z-index:0; flex:1; display:grid; grid-template-columns: 1.02fr .98fr; gap:36px; align-items:center;
-	padding: 1em 0;
-}
-.ba-hero-kicker{ display:inline-flex; align-items:center; gap:8px; background:var(--ba-hero-mint-bg); color:var(--ba-hero-green); font-family:var(--ba-hero-body);
-	font-weight:600; font-size:.85rem; padding:8px 16px; border-radius:100px; margin-bottom:22px; }
-.ba-hero-kicker-dot{ width:7px; height:7px; border-radius:50%; background:var(--ba-hero-green); box-shadow:0 0 0 0 rgba(0,167,118,.5); animation: ba-hero-ping 2.4s ease-out infinite; }
-@keyframes ba-hero-ping{ 0%{ box-shadow:0 0 0 0 rgba(0,167,118,.5);} 70%,100%{ box-shadow:0 0 0 8px rgba(0,167,118,0);} }
-.ba-hero-title{ font-family:var(--ba-hero-body); font-weight:700; font-size:clamp(2.6rem,6.6vw,5.4rem); line-height:.98; letter-spacing:-.01em; margin:0; color:var(--ba-hero-navy); }
-.ba-hero-accent{ color:var(--ba-hero-green); }
-.ba-hero-sub{ font-size:clamp(1.05rem,1.6vw,1.3rem); line-height:1.5; max-width:46ch; margin:22px 0 30px; }
-.ba-hero-actions{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
-.ba-hero-btn{ font-family:var(--ba-hero-body); font-weight:600; font-size:1.05rem; padding:15px 30px; border-radius:100px; text-decoration:none; cursor:pointer; transition:transform .14s ease, box-shadow .14s ease; }
-.ba-hero-btn-fill:any-link{ background:var(--ba-hero-navy); color:#fff; }
-.ba-hero-btn-fill:hover{ transform:translateY(-3px); box-shadow:0 16px 30px -8px rgba(0,167,118,.7); }
-.ba-hero-btn-ghost{ color:var(--ba-hero-navy); border:2px solid #e6e6e6; } .ba-hero-btn-ghost:hover{ border-color:var(--ba-hero-green); color:var(--ba-hero-green); }
-.ba-hero-feats{ list-style:none; display:flex; flex-wrap:wrap; gap:10px 18px; margin:28px 0 0; padding:0; }
-.ba-hero-feat{ display:flex; align-items:center; gap:8px; font-weight:600; font-size:.92rem; color:var(--ba-hero-navy); }
-.ba-hero-feat::before{ content:""; width:16px; height:16px; border-radius:50%; background:var(--ba-hero-mint-bg);
-	box-shadow: inset 0 0 0 2px var(--ba-hero-green); }
-
-/* stage */
-.ba-hero-stage{ position:relative; z-index:2; height: clamp(420px, 40vw, 500px);margin-inline-end: clamp(1em,5vw,2em); }
-.ba-hero-floaty{ position:absolute; animation: ba-hero-bob 7s ease-in-out infinite; }
-.ba-hero-floaty-term{ top:0; left:0; width:97%; z-index:1; }
-.ba-hero-floaty-browser{ top:220px; right:-20px; width:90%; z-index:3; animation-delay:1.5s; }
-@keyframes ba-hero-bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
-
-.ba-hero-card{ border-radius:16px; will-change:transform; }
-.ba-hero-dot{ width:12px; height:12px; border-radius:50%; display:inline-block; flex:none; }
-.ba-hero-dot-r{ background:#ff5f57; } .ba-hero-dot-y{ background:#febc2e; } .ba-hero-dot-g{ background:#28c840; }
-
-.ba-hero-term{ background:#0f1b2d; box-shadow:0 44px 90px -34px rgba(24,49,83,.55), 0 0 0 1px rgba(24,49,83,.06); overflow:hidden;
-	transform: perspective(1500px) rotateY(-6deg) rotateX(3deg) translate3d(var(--ba-hero-px,0),var(--ba-hero-py,0),0);
-	transition: transform .12s ease-out; }
-.ba-hero-term-bar{ display:flex; align-items:center; gap:8px; padding:12px 14px; background:#14243b; }
-.ba-hero-term-name{ margin-left:8px; font-family:var(--ba-hero-mono); font-size:.78rem; color:#7d90ad; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.ba-hero-copybtn{ margin-left:auto; flex:none; white-space:nowrap; font-family:var(--ba-hero-mono); font-size:.72rem; color:#9fb4d0; background:rgba(255,255,255,.06);
-	border:1px solid rgba(255,255,255,.12); border-radius:7px; padding:5px 10px; cursor:pointer; transition:.15s; }
-.ba-hero-copybtn:hover{ color:#fff; background:rgba(255,255,255,.12); }
-.ba-hero-copybtn.is-done{ color:var(--ba-hero-mint); border-color:rgba(113,244,205,.4); }
-.ba-hero-term-body{ padding:18px 20px 24px; font-family:var(--ba-hero-mono); font-size:.84rem; line-height:1.75; color:#cde3ff; min-height:236px; }
-.ba-hero-ln{ white-space:pre-wrap; word-break:break-word; }
-.ba-hero-pr{ color:var(--ba-hero-green); font-weight:700; }
-.ba-hero-cmd{ color:var(--ba-hero-cyan); }
-.ba-hero-path{ color:#8fd0ff; }
-.ba-hero-dim{ color:#63789a; }
-.ba-hero-ok{ color:var(--ba-hero-mint); font-weight:700; }
-.ba-hero-link{ color:var(--ba-hero-cyan); text-decoration:underline; text-underline-offset:3px; }
-.ba-hero-term-body b{ color:#fff; font-weight:700; }
-.ba-hero-cur{ display:inline-block; width:8px; height:1.05em; background:var(--ba-hero-cyan); vertical-align:-2px; animation: ba-hero-blink 1s steps(1) infinite; }
-@keyframes ba-hero-blink{ 50%{ opacity:0; } }
-
-/* browser preview */
-.ba-hero-browser{ background:#fff; box-shadow:0 40px 80px -30px rgba(24,49,83,.4), 0 0 0 1px rgba(24,49,83,.07); overflow:hidden;
-	transform: perspective(1500px) rotateY(-6deg) rotateX(3deg) translate3d(var(--ba-hero-bx,0), var(--ba-hero-by,0), 0); }
-.ba-hero-browser .ba-hero-bbody { opacity:0; transition: opacity .55s ease, transform .6s cubic-bezier(.2,.85,.25,1); }
-.ba-hero-browser.is-shown .ba-hero-bbody{ opacity:1; }
-.ba-hero-bbar{ display:flex; align-items:center; gap:8px; padding:10px 12px; background:#f1f3f6; border-bottom:1px solid #e6e9ef; }
-.ba-hero-bbar .ba-hero-dot{ width:11px; height:11px; }
-.ba-hero-url{ margin-left:8px; flex:1; background:#fff; border:1px solid #e6e9ef; border-radius:7px; padding:5px 10px;
-	font-family:var(--ba-hero-mono); font-size:.72rem; color:#6d7c90; }
-.ba-hero-bbody{ padding:20px 22px 26px; }
-.ba-hero-bnav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-.ba-hero-bbrand{ display:flex; align-items:center; gap:7px; font-family:var(--ba-hero-body); font-weight:700; color:var(--ba-hero-navy); font-size:.98rem; }
-.ba-hero-bballoon{ color:var(--ba-hero-green); }
-.ba-hero-blink-link{ font-weight:600; color:var(--ba-hero-muted); font-size:.85rem; }
-.ba-hero-bpost-title{ font-family:var(--ba-hero-body); font-weight:700; color:var(--ba-hero-navy); font-size:1.5rem; margin:0 0 8px; }
-.ba-hero-bbody p{ margin:0 0 14px; color:var(--ba-hero-muted); font-size:.95rem; line-height:1.5; }
-.ba-hero-bbody code{ font-family:var(--ba-hero-mono); font-size:.85em; background:var(--ba-hero-mint-bg); color:var(--ba-hero-green); padding:1px 6px; border-radius:5px; }
-.ba-hero-btag{ display:inline-block; font-size:.78rem; font-weight:700; color:var(--ba-hero-green); background:var(--ba-hero-mint-bg); padding:4px 12px; border-radius:100px; }
-
-@media (max-width: 58.6875em) { /* 939px /16 */
-	.ba-hero-grid{ grid-template-columns:1fr; text-align:center; }
-	.ba-hero-sub{ margin-inline:auto; } .ba-hero-actions, .ba-hero-feats{ justify-content:center; }
-	.ba-hero-stage{ height:auto; max-width:540px; margin:8px auto 60px; text-align:left; }
-	.ba-hero-floaty{ position:relative !important; width:100% !important; animation:none; }
-	.ba-hero-floaty-browser{ top: 0; width:92% !important; margin:-6px auto 0; }
-	.ba-hero-term, .ba-hero-browser{ transform:none !important; }
-}
-@media (prefers-reduced-motion: reduce){
-	.ba-hero-floaty, .ba-hero-cur, .ba-hero-kicker-dot, .ba-hero-copy{ animation:none; }
-	.ba-hero-browser{ transition:none; }
-}
-
-@media (prefers-color-scheme: dark){
-	.ba-hero-btn-ghost{ border-color:rgba(255,255,255,.16); }
-	/* browser preview: dark chrome to match the terminal */
-	.ba-hero-browser{ background:#0f1b2d; box-shadow:0 40px 80px -30px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.07); }
-	.ba-hero-bbar{ background:#14243b; border-bottom-color:rgba(255,255,255,.08); }
-	.ba-hero-url{ background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.10); color:#9fb4d0; }
-}
-</style>
-<section class="ba-hero elv-layout">
+	</style>
 	<div class="ba-hero-grid">
 		<div class="ba-hero-copy">
 			<span class="ba-hero-kicker"><span class="ba-hero-kicker-dot"></span> Zero runtime. Zero worries.</span>
@@ -156,94 +156,90 @@
 			</div>
 		</div>
 	</div>
+	<script type="module">
+	const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const HOLD_MS = 9000; // how long the finished build + preview stays visible before replaying
+	const JITTER = .6;
+	const CMD = 'npx @awesome.me/buildawesome --serve';
+
+	const steps = [
+		{ cmd: CMD },
+		{ out: '' },
+		{ out: 'Writing <span class="ba-hero-path">_site/index.html</span> from <span class="ba-hero-path">./index.md</span> <span class="ba-hero-dim">(liquid)</span>' },
+		{ out: 'Wrote <b>1 file</b> in <span class="ba-hero-ok">0.03 seconds</span> <span class="ba-hero-dim">(v4.0.0)</span>' },
+		{ out: 'Watching…' },
+		{ out: 'Server at <span class="ba-hero-link">http://localhost:8080/</span>', server: true },
+	];
+
+	const renderLines = ls => ls.map(l => `<div class="ba-hero-ln">${l || '&nbsp;'}</div>`).join('');
+
+	function initHero(root) {
+		const term = root.querySelector('.ba-hero-term-body');
+		const browser = root.querySelector('.ba-hero-browser');
+		const stage = root.querySelector('.ba-hero-stage');
+		const copy = root.querySelector('.ba-hero-copybtn');
+		if (!term || !browser || !stage) return;
+
+		function run() {
+			let lines = [];
+			browser.classList.remove('is-shown');
+			term.innerHTML = '';
+			let i = 0;
+
+			function step() {
+				if (i >= steps.length) { setTimeout(run, HOLD_MS); return; }
+				const s = steps[i];
+				if (s.cmd !== undefined) {
+					const prompt = '<span class="ba-hero-pr">$</span> ';
+					let k = 0;
+					(function typeCh() {
+						term.innerHTML = renderLines(lines) +
+							`<div class="ba-hero-ln">${prompt}<span class="ba-hero-cmd">${s.cmd.slice(0, k)}</span><span class="ba-hero-cur"></span></div>`;
+						k++;
+						if (k <= s.cmd.length) setTimeout(typeCh, 46);
+						else { lines.push(prompt + `<span class="ba-hero-cmd">${s.cmd}</span>`); i++; setTimeout(step, 520); }
+					})();
+				} else {
+					lines.push(s.out);
+					term.innerHTML = renderLines(lines) + `<div class="ba-hero-ln"><span class="ba-hero-cur"></span></div>`;
+					if (s.server) setTimeout(() => browser.classList.add('is-shown'), 380);
+					i++;
+					setTimeout(step, s.out ? 320 : 150);
+				}
+			}
+			step();
+		}
+
+		if (reduce) {
+			const all = steps.map(s => s.cmd !== undefined
+				? `<span class="ba-hero-pr">$</span> <span class="ba-hero-cmd">${s.cmd}</span>` : s.out);
+			term.innerHTML = renderLines(all);
+			browser.classList.add('is-shown');
+		} else {
+			setTimeout(run, 500);
+		}
+
+		// copy command
+		copy?.addEventListener('click', async () => {
+			try { await navigator.clipboard.writeText(CMD); } catch (e) {}
+			copy.textContent = 'Copied!'; copy.classList.add('is-done');
+			setTimeout(() => { copy.textContent = 'Copy command'; copy.classList.remove('is-done'); }, 1500);
+		});
+
+		// cursor parallax
+		if (!reduce) {
+			root.addEventListener('pointermove', e => {
+				const r = root.getBoundingClientRect();
+				const nx = (e.clientX - r.left) / r.width - .5;
+				const ny = (e.clientY - r.top) / r.height - .5;
+				stage.style.setProperty('--ba-hero-px', (nx * 16 * JITTER).toFixed(1) + 'px');
+				stage.style.setProperty('--ba-hero-py', (ny * 14 * JITTER).toFixed(1) + 'px');
+				stage.style.setProperty('--ba-hero-bx', (nx * 30 * JITTER).toFixed(1) + 'px');
+				stage.style.setProperty('--ba-hero-by', (ny * 24 * JITTER).toFixed(1) + 'px');
+			});
+		}
+	}
+
+	document.querySelectorAll('.ba-hero').forEach(initHero);
+	</script>
 </section>
-<script>
-  (function () {
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const HOLD_MS = 9000; // how long the finished build + preview stays visible before replaying
-		const JITTER = .6;
-    const CMD = 'npx @awesome.me/buildawesome --serve';
-
-    const steps = [
-      { cmd: CMD },
-      { out: '' },
-      { out: 'Writing <span class="ba-hero-path">_site/index.html</span> from <span class="ba-hero-path">./index.md</span> <span class="ba-hero-dim">(liquid)</span>' },
-      { out: 'Wrote <b>1 file</b> in <span class="ba-hero-ok">0.03 seconds</span> <span class="ba-hero-dim">(v4.0.0)</span>' },
-      { out: 'Watching…' },
-      { out: 'Server at <span class="ba-hero-link">http://localhost:8080/</span>', server: true },
-    ];
-
-    const renderLines = ls => ls.map(l => `<div class="ba-hero-ln">${l || '&nbsp;'}</div>`).join('');
-
-    function initHero(root) {
-      const term = root.querySelector('.ba-hero-term-body');
-      const browser = root.querySelector('.ba-hero-browser');
-      const stage = root.querySelector('.ba-hero-stage');
-      const copy = root.querySelector('.ba-hero-copybtn');
-      if (!term || !browser || !stage) return;
-
-      function run() {
-        let lines = [];
-        browser.classList.remove('is-shown');
-        term.innerHTML = '';
-        let i = 0;
-
-        function step() {
-          if (i >= steps.length) { setTimeout(run, HOLD_MS); return; }
-          const s = steps[i];
-          if (s.cmd !== undefined) {
-            const prompt = '<span class="ba-hero-pr">$</span> ';
-            let k = 0;
-            (function typeCh() {
-              term.innerHTML = renderLines(lines) +
-                `<div class="ba-hero-ln">${prompt}<span class="ba-hero-cmd">${s.cmd.slice(0, k)}</span><span class="ba-hero-cur"></span></div>`;
-              k++;
-              if (k <= s.cmd.length) setTimeout(typeCh, 46);
-              else { lines.push(prompt + `<span class="ba-hero-cmd">${s.cmd}</span>`); i++; setTimeout(step, 520); }
-            })();
-          } else {
-            lines.push(s.out);
-            term.innerHTML = renderLines(lines) + `<div class="ba-hero-ln"><span class="ba-hero-cur"></span></div>`;
-            if (s.server) setTimeout(() => browser.classList.add('is-shown'), 380);
-            i++;
-            setTimeout(step, s.out ? 320 : 150);
-          }
-        }
-        step();
-      }
-
-      if (reduce) {
-        const all = steps.map(s => s.cmd !== undefined
-          ? `<span class="ba-hero-pr">$</span> <span class="ba-hero-cmd">${s.cmd}</span>` : s.out);
-        term.innerHTML = renderLines(all);
-        browser.classList.add('is-shown');
-      } else {
-        setTimeout(run, 500);
-      }
-
-      // copy command
-      if (copy) {
-        copy.addEventListener('click', async () => {
-          try { await navigator.clipboard.writeText(CMD); } catch (e) {}
-          copy.textContent = 'Copied!'; copy.classList.add('is-done');
-          setTimeout(() => { copy.textContent = 'Copy command'; copy.classList.remove('is-done'); }, 1500);
-        });
-      }
-
-      // cursor parallax
-      if (!reduce) {
-        root.addEventListener('pointermove', e => {
-          const r = root.getBoundingClientRect();
-          const nx = (e.clientX - r.left) / r.width - .5;
-          const ny = (e.clientY - r.top) / r.height - .5;
-          stage.style.setProperty('--ba-hero-px', (nx * 16 * JITTER).toFixed(1) + 'px');
-          stage.style.setProperty('--ba-hero-py', (ny * 14 * JITTER).toFixed(1) + 'px');
-          stage.style.setProperty('--ba-hero-bx', (nx * 30 * JITTER).toFixed(1) + 'px');
-          stage.style.setProperty('--ba-hero-by', (ny * 24 * JITTER).toFixed(1) + 'px');
-        });
-      }
-    }
-
-    document.querySelectorAll('.ba-hero').forEach(initHero);
-  })();
-</script>
