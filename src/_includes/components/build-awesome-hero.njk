@@ -19,8 +19,7 @@
 	}
 }
 .ba-hero{ position:relative; display:flex; flex-direction:column; font-family:var(--ba-hero-body); margin: 0 auto 6vh; padding-block: 4vh 0; }
-.ba-hero::before{ content:""; position:absolute; top:-28%; right:0; width:52vw; height:66vw; z-index:0;
-	background: radial-gradient(circle at 50% 15%, var(--ba-hero-shadow), transparent 60%); filter:blur(24px); }
+.ba-hero::before{ content:""; position:absolute; top:-28%; right:0; width:52vw; height:66vw; z-index:-1; background: radial-gradient(circle at 50% 15%, var(--ba-hero-shadow), transparent 60%); filter:blur(24px); }
 
 .ba-hero-grid{ position:relative; z-index:0; flex:1; display:grid; grid-template-columns: 1.02fr .98fr; gap:36px; align-items:center;
 	padding: 1em 0;
