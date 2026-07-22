@@ -10,6 +10,13 @@
 	--ba-hero-shadow: rgba(0,224,224,.18);
 	--ba-hero-body:"Cera Round Pro",system-ui,sans-serif;
 	--ba-hero-mono:Menlo,Monaco,Consolas,Courier New,monospace;
+
+	@media (prefers-color-scheme: dark){
+		--ba-hero-navy:#eef3fb;     /* headings / strong text -> near-white */
+		--ba-hero-shadow: rgba(48,117,117,.18);
+		--ba-hero-muted:#93a2b6;
+		--ba-hero-mint-bg:rgba(0,167,118,.16);  /* pill / chip backgrounds */
+	}
 }
 .ba-hero{ position:relative; display:flex; flex-direction:column; font-family:var(--ba-hero-body); margin: 0 auto 6vh; padding-block: 4vh 0; }
 .ba-hero::before{ content:""; position:absolute; top:-28%; right:0; width:52vw; height:66vw; z-index:0;
@@ -100,11 +107,6 @@
 }
 
 @media (prefers-color-scheme: dark){
-	.ba-hero{
-		--ba-hero-navy:#eef3fb;     /* headings / strong text -> near-white */
-		--ba-hero-muted:#93a2b6;
-		--ba-hero-mint-bg:rgba(0,167,118,.16);  /* pill / chip backgrounds */
-	}
 	.ba-hero-btn-ghost{ border-color:rgba(255,255,255,.16); }
 	/* browser preview: dark chrome to match the terminal */
 	.ba-hero-browser{ background:#0f1b2d; box-shadow:0 40px 80px -30px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.07); }
