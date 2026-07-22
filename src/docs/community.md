@@ -42,7 +42,7 @@ eleventyNavigation:
 
 We’re going to Kickstarter to fund a suite of Pro tools for folks wanting a streamling building and content editing experience. Watch for updates to the [**Build Awesome Kickstarter**]({{ config.kickstarterUrl }}) to get notified when we launch!
 
-<a href="{{ config.kickstarterUrl }}" class="announcement-btn"><i class="fa-brands fa-build-awesome"></i>Build Awesome Pro Kickstarter</a>
+<a href="{{ config.kickstarterUrl }}" class="btn-brand"><i class="fa-brands fa-build-awesome"></i>Build Awesome Pro Kickstarter</a>
 
 {% set count = count + 1 %}
 
@@ -50,7 +50,7 @@ We’re going to Kickstarter to fund a suite of Pro tools for folks wanting a st
 
 Eleventy is supported by [folks <strong>like {% emoji "👋" %} you</strong>](/docs/supporters/) that want to invest in better, longer lasting tools to create on the web.
 
-<a href="https://opencollective.com/11ty" class="announcement-btn">Contribute on Open Collective</a>
+<a href="https://opencollective.com/11ty" class="btn-brand">Contribute on Open Collective</a>
 
 As a thank you to our Supporters, Eleventy will:
 

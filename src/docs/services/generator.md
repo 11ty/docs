@@ -33,7 +33,7 @@ https://v1.generator.11ty.dev/json/:url/
 
 ## Samples
 
-- See the “Built With” column on [Speedlify (Static Site Generators)](https://www.speedlify.dev/ssg/)
+- See the “Built With” column on [Speedlify (Website Generators)](https://www.speedlify.dev/ssg/)
 
 {% callout "demo" %}
 

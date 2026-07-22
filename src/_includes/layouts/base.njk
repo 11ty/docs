@@ -13,7 +13,7 @@ let eleventyComputed = {
 	},
 	social: {
 		description: function({ versions, config }) {
-			return `A docs page for Build Awesome (Eleventy), a simpler static site generator.`;
+			return `A docs page for Build Awesome (Eleventy), a simpler website generator.`;
 		}
 	}
 };
@@ -23,7 +23,7 @@ let eleventyComputed = {
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		{%- set subtitleText %}{{ title }}{% if title and title != "Build Awesome (Eleventy) is a simpler static site generator" %} — Build Awesome (Eleventy){% endif %}{% endset %}
+		{%- set subtitleText %}{{ title }}{% if title and title != "Build Awesome (Eleventy) is a simpler website generator" %} — Build Awesome (Eleventy){% endif %}{% endset %}
 		<title>{{ subtitleText }}</title>
 		<meta name="description" content="{{ subtitleText }}">
 		<meta name="generator" content="{{ eleventy.generator }}">
@@ -90,6 +90,7 @@ let eleventyComputed = {
 {% include 'components/announcement.css' %}
 {% include "components/fonts.css" %}
 {% include 'index.css' %}
+{% include 'components/buttons.css' %}
 {% include 'components/product-tabs.css' %}
 {% include 'components/header.css' %}
 {% include 'components/navigation.css' %}

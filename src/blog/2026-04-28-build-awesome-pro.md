@@ -18,8 +18,8 @@ We are so lucky to have the opportunity to build this project and _as always_ we
 
 _If you’re an 11ty Open Collective backer (active or otherwise), check your email for some secret tier rewards!_
 
-<div class="announcement">
-	<a href="{{ config.kickstarterUrl }}">Join the {{ kickstarterStats.backers }} backers of <i class="fa-brands fa-build-awesome"></i><span>Build Awesome Pro!</span><span class="announcement-tag">Coming Soon</span></a>
+<div>
+	<a href="{{ config.kickstarterUrl }}" class="brand-btn">Join the {{ kickstarterStats.backers }} backers of <i class="fa-brands fa-build-awesome"></i><span>Build Awesome Pro!</span><span class="btn-tag">Coming Soon</span></a>
 </div>
 
 ---

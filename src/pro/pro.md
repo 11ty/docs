@@ -17,7 +17,7 @@ let eleventyComputed = {
 
 {% callout "brand", "html", "" %}
 <div class="util-flex util-center">
-	<a class="announcement-btn announcement-btn--inline announcement-btn--disabled"><i class="fa-brands fa-build-awesome"></i>Build Awesome Pro <span class="announcement-tag">Coming Soon!</span></a>
+	<a class="btn-brand --disabled"><i class="fa-brands fa-build-awesome"></i>Build Awesome Pro <span class="btn-tag">Coming Soon!</span></a>
 	<a href="/docs/">Or install locally (free)<i class="fa-solid fa-arrow-right util-icon-sm"></i></a>
 </div>
 {% endcallout %}
@@ -44,7 +44,7 @@ Our [Kickstarter]({{ config.kickstarterUrl }}) was funded successfully by **{{ k
 
 {% callout "info", "html", "" %}
 <div class="util-flex util-center">
-	<a href="{{ config.kickstarterUrl }}" class="announcement-btn announcement-btn--inline">Late pricing is still available for the <i class="fa-brands fa-kickstarter"></i>Kickstarter <span class="announcement-tag">Funded!</span></a>
+	<a href="{{ config.kickstarterUrl }}" class="btn-brand">Late pricing is still available for the <i class="fa-brands fa-kickstarter"></i>Kickstarter <span class="btn-tag">Funded!</span></a>
 </div>
 {% endcallout %}
 

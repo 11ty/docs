@@ -15,7 +15,7 @@ We are following the same playbook for Eleventy! To support us, subscribe to the
 
 _Folks following along closely may have noticed the [_oopsie-daisy_ false-start fundraising campaign](https://blog.fontawesome.com/pausing-kickstarter/) earlier this week. Given a few email deliverability hiccups, folks not following along closely may [not know](https://blog.fontawesome.com/we-have-a-99-email-reputation-gmail-disagrees/) about the campaign at all! We are taking a mulligan._
 
-<a href="{{ config.kickstarterUrl }}" class="announcement-btn"><i class="fa-brands fa-build-awesome"></i>Subscribe to the Build Awesome Kickstarter</a>
+<a href="{{ config.kickstarterUrl }}" class="btn-brand"><i class="fa-brands fa-build-awesome"></i>Subscribe to the Build Awesome Kickstarter</a>
 
 ## What does Build Awesome mean for Eleventy?
 
@@ -51,7 +51,7 @@ This also includes hosting and domain costs for community resources! Even if the
 
 But importantly, moving forward — the best way to support the project moving forward will be through the [Kickstarter campaign]({{ config.kickstarterUrl }}).
 
-<a href="{{ config.kickstarterUrl }}" class="announcement-btn"><i class="fa-brands fa-build-awesome"></i>Subscribe to the Build Awesome Kickstarter</a>
+<a href="{{ config.kickstarterUrl }}" class="btn-brand"><i class="fa-brands fa-build-awesome"></i>Subscribe to the Build Awesome Kickstarter</a>
 
 If folks have questions about any of this, please send them my way! My DMs are open on [Mastodon](https://neighborhood.11ty.dev/@11ty) and [Bluesky](https://bsky.app/profile/11ty.dev).
 

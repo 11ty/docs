@@ -1,9 +1,9 @@
 ---js
 // <script>
-let headerTitle = "Build Awesome is a simpler static site generator";
+let headerTitle = "Build Awesome is a simpler website generator";
 let layout = "layouts/docs.njk";
 
-let searchTitle = "Build Awesome is a simpler static site generator";
+let searchTitle = "Build Awesome is a simpler website generator";
 
 let eleventyImport = {
 	collections: ["blog"]
@@ -11,7 +11,7 @@ let eleventyImport = {
 
 let eleventyComputed = {
 	social: {
-		description: () => "Build Awesome (Eleventy) is a simpler static site generator."
+		description: () => "Build Awesome (Eleventy) is a simpler website generator."
 	},
 };
 // </script>
@@ -45,12 +45,12 @@ export function randomTestimonialLink(testimonials) {
 }
 </script>
 
-<h1>Build Awesome helps you build better websites.</h1>
+<!--- <h1>Build Awesome helps you build better websites.</h1> --->
 
 <p>Build Awesome is a developer tool to help you build <a href="/docs/performance/"><strong>fast websites</strong> even faster</a>.</p>
 
 <ul>
-	<li>It’s <strong>secure</strong> and <strong>resilient</strong>: with static websites there is no runtime to fail in the middle of the night.</li>
+	<li>It’s <strong>secure</strong> and <strong>resilient</strong>: static websites let you skip the runtime and keep your uptime.</li>
 	<li>It’s <strong>lightweight</strong>: we’ve <a href="/blog/dependency-watch/">decreased our dependency count</a> with every major release since 2018.</li>
 	<li>It’s <strong>scalable</strong>: deploy with the most efficient architecture for the modern agent-heavy web.</li>
 	<li>It’s <strong>stable</strong>: stop getting burned upgrading your dependencies. We want your website to deploy <em>without headaches</em> for years to come.</li>
@@ -193,7 +193,7 @@ tags: posts
 
 	<h2>Alternatives</h2>
 
-	<p>This project aims to directly compete with all other static site generators. We encourage you to try out a few others:</p>
+	<p>This project aims to directly compete with all other website generators. We encourage you to try out a few others:</p>
 
 	<lists webc:nokeep>
 		<ul class="inlinelist">
