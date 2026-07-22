@@ -15,17 +15,17 @@
 	--elv-toc-hover-color: #dff7ff;
 	font-size: 1rem; /* Reset */
 }
-.elv-header-docs + .elv-layout .elv-toc {
+.elv-header-docs ~ .elv-layout .elv-toc {
 	--elv-toc-sticky-top: 6rem;
 }
-.elv-header-docs:has(.elv-callout) + .elv-layout .elv-toc {
+.elv-header-docs:has(.elv-callout) ~ .elv-layout .elv-toc {
 	--elv-toc-sticky-top: 13.5rem;
 }
 @media (min-width: 55em) {/* 880px */
-	.elv-header-docs + .elv-layout .elv-toc {
+	.elv-header-docs ~.elv-layout .elv-toc {
 		--elv-toc-sticky-top: 4rem;
 	}
-	.elv-header-docs:has(.elv-callout) + .elv-layout .elv-toc {
+	.elv-header-docs:has(.elv-callout) ~.elv-layout .elv-toc {
 		--elv-toc-sticky-top: 9rem;
 	}
 }
