@@ -70,3 +70,7 @@
 	{% callout "brand" %}These docs are for an upcoming version of <strong><i class="fa-brands fa-build-awesome"></i>Build Awesome</strong> — take extra care before linking here as URLs may change! Look to the <a href="https://www.11ty.dev/docs/"><i class="fa-brands fa-eleventy"></i>latest stable docs</a> instead (or the full <a href="https://build.awesome.me/docs/versions/">release history</a>).{% endcallout %}
 	{% endif -%}
 </header>
+
+{% if page.url == "/" %}
+{% include "components/build-awesome-hero.njk" %}
+{% endif %}
