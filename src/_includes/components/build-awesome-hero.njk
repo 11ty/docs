@@ -58,13 +58,13 @@
 		transition: transform .12s ease-out; }
 	.ba-hero-term-bar{ display:flex; align-items:center; gap:8px; padding:12px 14px; background:#14243b; }
 	.ba-hero-term-name{ margin-left:8px; font-family:var(--ba-hero-mono); font-size:.78rem; color:#7d90ad; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-	.ba-hero-copybtn{ margin-left:auto; flex:none; white-space:nowrap; font-family:var(--ba-hero-mono); font-size:.72rem; color:#9fb4d0; background:rgba(255,255,255,.06);
-		border:1px solid rgba(255,255,255,.12); border-radius:7px; padding:5px 10px; cursor:pointer; transition:.15s; }
-	.ba-hero-copybtn:hover{ color:#fff; background:rgba(255,255,255,.12); }
-	.ba-hero-copybtn.is-done{ color:var(--ba-hero-mint); border-color:rgba(113,244,205,.4); }
+	.ba-hero-copybtn{ border: 0; margin-left:auto; flex:none; color: #fff; white-space:nowrap; font-size:.72rem; padding:0.3125em; cursor:pointer; transition:.15s; background: transparent; }
+	.ba-hero-copybtn.is-waiting { opacity: 0; }
+	.ba-hero-copybtn.is-done{ color:var(--ba-hero-mint); }
 	.ba-hero-term-body{ padding:18px 20px 24px; font-family:var(--ba-hero-mono); font-size:.84rem; line-height:1.75; color:#cde3ff; min-height:236px; }
 	.ba-hero-ln{ white-space:pre-wrap; word-break:break-word; }
 	.ba-hero-pr{ color:var(--ba-hero-green); font-weight:700; }
+	.ba-hero-pr:before{ content: "$ "; }
 	.ba-hero-cmd{ color:var(--ba-hero-cyan); }
 	.ba-hero-path{ color:#8fd0ff; }
 	.ba-hero-dim{ color:#63789a; }
@@ -137,7 +137,7 @@
 					<div class="ba-hero-term-bar">
 						<i class="ba-hero-dot ba-hero-dot-r"></i><i class="ba-hero-dot ba-hero-dot-y"></i><i class="ba-hero-dot ba-hero-dot-g"></i>
 						<span class="ba-hero-term-name">~/my-awesome-site</span>
-						<button class="ba-hero-copybtn" type="button">Copy</button>
+						<button class="ba-hero-copybtn is-waiting" type="button"><i class="fa-regular fa-copy"></i></button>
 					</div>
 					<div class="ba-hero-term-body"></div>
 				</div>
@@ -178,6 +178,8 @@
 		const browser = root.querySelector('.ba-hero-browser');
 		const stage = root.querySelector('.ba-hero-stage');
 		const copy = root.querySelector('.ba-hero-copybtn');
+		const promptHtml = `<span class="ba-hero-pr"></span>`;
+		const cursorHtml = `<span class="ba-hero-cur"></span>`;
 		if (!term || !browser || !stage) return;
 
 		function run() {
@@ -190,18 +192,17 @@
 				if (i >= steps.length) { setTimeout(run, HOLD_MS); return; }
 				const s = steps[i];
 				if (s.cmd !== undefined) {
-					const prompt = '<span class="ba-hero-pr">$</span> ';
 					let k = 0;
 					(function typeCh() {
 						term.innerHTML = renderLines(lines) +
-							`<div class="ba-hero-ln">${prompt}<span class="ba-hero-cmd">${s.cmd.slice(0, k)}</span><span class="ba-hero-cur"></span></div>`;
+							`<div class="ba-hero-ln">${promptHtml}<span class="ba-hero-cmd">${s.cmd.slice(0, k)}</span>${cursorHtml}</div>`;
 						k++;
 						if (k <= s.cmd.length) setTimeout(typeCh, 46);
-						else { lines.push(prompt + `<span class="ba-hero-cmd">${s.cmd}</span>`); i++; setTimeout(step, 520); }
+						else { lines.push(promptHtml + `<span class="ba-hero-cmd">${s.cmd}</span>`); i++; setTimeout(step, 520); }
 					})();
 				} else {
 					lines.push(s.out);
-					term.innerHTML = renderLines(lines) + `<div class="ba-hero-ln"><span class="ba-hero-cur"></span></div>`;
+					term.innerHTML = renderLines(lines) + `<div class="ba-hero-ln">${cursorHtml}</div>`;
 					if (s.server) setTimeout(() => browser.classList.add('is-shown'), 380);
 					i++;
 					setTimeout(step, s.out ? 320 : 150);
@@ -212,7 +213,7 @@
 
 		if (reduce) {
 			const all = steps.map(s => s.cmd !== undefined
-				? `<span class="ba-hero-pr">$</span> <span class="ba-hero-cmd">${s.cmd}</span>` : s.out);
+				? `${promptHtml}<span class="ba-hero-cmd">${s.cmd}</span>` : s.out);
 			term.innerHTML = renderLines(all);
 			browser.classList.add('is-shown');
 		} else {
@@ -220,10 +221,13 @@
 		}
 
 		// copy command
+		copy?.classList.remove('is-waiting');
 		copy?.addEventListener('click', async () => {
 			try { await navigator.clipboard.writeText(CMD); } catch (e) {}
-			copy.textContent = 'Copied!'; copy.classList.add('is-done');
-			setTimeout(() => { copy.textContent = 'Copy command'; copy.classList.remove('is-done'); }, 1500);
+			let previousHtml = copy.innerHTML;
+			copy.textContent = 'Copied!';
+			copy.classList.add('is-done');
+			setTimeout(() => { copy.innerHTML = previousHtml; copy.classList.remove('is-done'); }, 1500);
 		});
 
 		// cursor parallax
