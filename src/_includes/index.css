@@ -96,6 +96,9 @@ p {
 p:empty {
 	display: none;
 }
+main heading-anchors > p:first-child {
+	margin-block-start: 0;
+}
 
 abbr {
 	text-decoration: none;
