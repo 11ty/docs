@@ -61,6 +61,12 @@
 	.ba-hero-copybtn{ border: 0; margin-left:auto; flex:none; color: #fff; white-space:nowrap; font-size:.72rem; padding:0.3125em; cursor:pointer; transition:.15s; background: transparent; }
 	.ba-hero-copybtn.is-waiting { visibility: hidden; }
 	.ba-hero-copybtn.is-done{ color:var(--ba-hero-mint); }
+	.ba-hero-copybtn.is-done .fa11ty-icon:first-child {
+		display: none;
+	}
+	.ba-hero-copybtn:not(.is-done) .fa11ty-icon:last-child {
+		display: none;
+	}
 	.ba-hero-term-body{ padding:18px 20px 24px; font-family:var(--ba-hero-mono); font-size:.84rem; line-height:1.75; color:#cde3ff; min-height:236px; }
 	.ba-hero-ln{ white-space:pre-wrap; word-break:break-word; }
 	.ba-hero-pr{ color:var(--ba-hero-green); font-weight:700; }
@@ -137,7 +143,7 @@
 					<div class="ba-hero-term-bar">
 						<i class="ba-hero-dot ba-hero-dot-r"></i><i class="ba-hero-dot ba-hero-dot-y"></i><i class="ba-hero-dot ba-hero-dot-g"></i>
 						<span class="ba-hero-term-name">~/my-awesome-site</span>
-						<button class="ba-hero-copybtn is-waiting" type="button"><i class="fa-regular fa-copy"></i></button>
+						<button class="ba-hero-copybtn is-waiting" type="button"><i class="fa-regular fa-copy"></i><i class="fa-solid fa-check"></i></button>
 					</div>
 					<div class="ba-hero-term-body"></div>
 				</div>
@@ -225,7 +231,6 @@
 		copy?.addEventListener('click', async () => {
 			try { await navigator.clipboard.writeText(CMD); } catch (e) {}
 			let previousHtml = copy.innerHTML;
-			copy.textContent = 'Copied!';
 			copy.classList.add('is-done');
 			setTimeout(() => { copy.innerHTML = previousHtml; copy.classList.remove('is-done'); }, 1500);
 		});
