@@ -8,7 +8,7 @@ eleventyNavigation:
 # Starter Projects
 
 <div class="sites-vert sites-vert--lg">
-  <div class="lo-grid" style="--fl-gap-v: 5em;">
+  <div class="lo-grid" style="--fl-gap-v: 5em; --fl-gap-h: 2vw;">
 {%- for site in starters | sortObjectByOrder %}
 {%- if site.official %}
 {%- set siteData = speedlifyStarters.data[site.demo] or speedlifyStarters.data[site.url] %}
@@ -20,7 +20,7 @@ eleventyNavigation:
 [Add your own starter project](https://github.com/11ty/docs/tree/main/src/_data/starters). Community contributions are shown in random order.
 
 <div class="sites-vert sites-vert--lg">
-  <div class="lo-grid" style="--fl-gap-v: 5em;">
+  <div class="lo-grid" style="--fl-gap-v: 5em; --fl-gap-h: 2vw;">
 {%- for site in starters | sortObjectByOrder %}
 {%- if site.disabled != true and site.featured %}
 {%- set siteData = speedlifyStarters.data[site.demo] or speedlifyStarters.data[site.url] %}

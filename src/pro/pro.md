@@ -33,7 +33,7 @@ Our [Kickstarter]({{ config.kickstarterUrl }}) was funded successfully by **{{ k
 
 ## Features
 
-<ul class="lo-grid m-8" style="--lo-grid-repeat: 2; --lo-c-minwidth: min(100%, 15rem); --fl-gap-h: 8vw; --fl-gap-v: 2em;">
+<ul class="lo-grid m-8" style="--lo-grid-repeat: 2; --lo-c-minwidth: 14em; --fl-gap-h: 8vw; --fl-gap-v: 2em;">
 	<li><strong>No installation required.</strong> Build Awesome Pro runs on our servers — Build Awesome (free) runs on yours. Skip the terminal and get straight to building.</li>
 	<li><strong>Publish on the go.</strong> Return to the office? No thank you! Add new content from any device with a web browser.</li>
 	<li><strong>Visual editing.</strong> Edit your site’s content and preview your changes live.</li>

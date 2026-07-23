@@ -3,10 +3,7 @@
 	--lo-grid-repeat: auto-fit;
 	display: grid;
 	margin: 0;
-	grid-template-columns: repeat(
-		var(--lo-grid-repeat),
-		minmax(var(--lo-c-minwidth), 1fr)
-	);
+	grid-template-columns: repeat(var(--lo-grid-repeat), minmax(min(var(--lo-c-minwidth), 100%), 1fr));
 	grid-row-gap: var(--fl-gap-v, 0);
 	grid-column-gap: var(--fl-gap-h, 0);
 }
