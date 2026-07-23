@@ -7,7 +7,11 @@
 {%- set codeBlock %}{% raw %}
 import BuildAwesome from "@awesome.me/buildawesome";
 
-let ba = new BuildAwesome();
+let ba = new BuildAwesome({
+	input: ".",				// optional
+	output: "_site",	// optional
+});
+
 await ba.write();
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -17,7 +21,11 @@ await ba.write();
 const { default: BuildAwesome } = require("@awesome.me/buildawesome");
 
 (async function () {
-	let ba = new BuildAwesome();
+	let ba = new BuildAwesome({
+		input: ".",				// optional
+		output: "_site",	// optional
+	});
+
 	await ba.write();
 })();
 {% endraw %}{%- endset %}
