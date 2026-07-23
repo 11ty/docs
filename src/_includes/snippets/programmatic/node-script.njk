@@ -14,9 +14,9 @@ await ba.write();
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
 {%- set codeBlock %}{% raw %}
-(async function () {
-	const { default: BuildAwesome } = await import("@awesome.me/buildawesome");
+const { default: BuildAwesome } = require("@awesome.me/buildawesome");
 
+(async function () {
 	let ba = new BuildAwesome();
 	await ba.write();
 })();

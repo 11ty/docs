@@ -15,9 +15,9 @@ export default function ($config) {
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
 {%- set codeBlock %}{% raw %}
-module.exports = async function ($config) {
-	const { RenderPlugin } = await import("@awesome.me/buildawesome");
+const { RenderPlugin } = require("@awesome.me/buildawesome");
 
+module.exports = function ($config) {
 	$config.addPlugin(RenderPlugin);
 };
 {% endraw %}{%- endset %}

@@ -18,9 +18,9 @@ export default function ($config) {
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
 {%- set codeBlock %}{% raw %}
-module.exports = async function ($config) {
-	const { InputPathToUrlTransformPlugin } = await import("@awesome.me/buildawesome");
+const { InputPathToUrlTransformPlugin } = require("@awesome.me/buildawesome");
 
+module.exports = function ($config) {
 	$config.addPlugin(InputPathToUrlTransformPlugin, {
 		// Comma separated list of outputPath file extensions to apply the transform
 		extensions: "html",

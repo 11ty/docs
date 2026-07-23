@@ -7,7 +7,7 @@
 {%- set codeBlock %}{% raw %}
 import BuildAwesome from "@awesome.me/buildawesome";
 
-let ba = new BuildAwesome(".", "_site", {
+let ba = new BuildAwesome({
 	config: function($config) {
 		$config.dataFilterSelectors.add("globalData.key1");
 		$config.dataFilterSelectors.add("globalData.key2");
@@ -27,10 +27,10 @@ console.log(json);
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
 {%- set codeBlock %}{% raw %}
-(async function () {
-	const { default: BuildAwesome } = await import("@awesome.me/buildawesome");
+const { default: BuildAwesome } = require("@awesome.me/buildawesome");
 
-	let ba = new BuildAwesome(".", "_site", {
+(async function () {
+	let ba = new BuildAwesome({
 		config: function($config) {
 			$config.dataFilterSelectors.add("globalData.key1");
 			$config.dataFilterSelectors.add("globalData.key2");

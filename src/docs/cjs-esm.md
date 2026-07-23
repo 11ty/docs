@@ -132,12 +132,9 @@ Note the use of `import` and `export default`.
 
 ### CommonJS Configuration
 
-If you use core bundled plugins (like [i18n](/docs/plugins/i18n/), [Render](/docs/plugins/render/), [InputPath to URL](/docs/plugins/inputpath-to-url/), [`id` Attribute](/docs/plugins/id-attribute/) or [HTML `<base>`](/docs/plugins/html-base/)), you have a few options in your [configuration file](/docs/config.md).
-
-Consider this CommonJS configuration file:
+If you use core bundled plugins (like [i18n](/docs/plugins/i18n/), [Render](/docs/plugins/render/), [InputPath to URL](/docs/plugins/inputpath-to-url/), [`id` Attribute](/docs/plugins/id-attribute/) or [HTML `<base>`](/docs/plugins/html-base/)) (or any ESM package, really), you can simply require the package directly in your [configuration file](/docs/config.md) as [`require(ESM)` is now natively supported in Node 20.19 and newer](https://nodejs.org/docs/latest/api/modules.html#loading-ecmascript-modules-using-require).
 
 {%- set codeBlock %}{% raw %}
-// This requires Node v20.19 or newer
 const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = require("@awesome.me/buildawesome");
 
 module.exports = function ($config) {
@@ -146,37 +143,7 @@ module.exports = function ($config) {
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
 
-- Read more about [`require(ESM)` in Node.js](https://nodejs.org/docs/latest/api/modules.html#loading-ecmascript-modules-using-require)
-
-If you attempt to `require("@awesome.me/buildawesome")` with Build Awesome (Eleventy) v3 in a version of Node that does not support it, we’ll throw a [very helpful error message which will provide you exact instructions on how to fix the issue](https://www.zachleat.com/web/future-friendly-esm/).
-
-#### CommonJS Configuration in Node 18
-
-For older versions of Node.js, you’ll need to use a dynamic `import()` instead of `require` (or change your configuration file to use ESM):
-
-{%- set codeBlock %}{% raw %}
-module.exports = async function ($config) {
-	const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = await import("@awesome.me/buildawesome");
-	// …
-};
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-
-Note the `async` configuration callback.
-
-#### Using ESM plugins in CommonJS Configuration
-
-_Remember, you can use `require` to import an ESM plugin in Node 20.19 and newer (and ignore this section)._
-
-But if you’re on an older version of Node, you can use ESM plugins in a CommonJS configuration file with dynamic import. Keep in mind that using default export as the plugin callback, you will need to use the special `default` property supplied from dynamic `import()`.
-
-{%- set codeBlock %}{% raw %}
-module.exports = async function ($config) {
-	const { default: myPlugin } = await import("my-plugin");
-	// …
-};
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
+If you attempt to `require("@awesome.me/buildawesome")` in a version of Node that does not support it, we’ll throw a [very helpful error message which will provide you exact instructions on how to fix the issue](https://www.zachleat.com/web/future-friendly-esm/).
 
 ### Plugins
 
@@ -202,5 +169,3 @@ You can write your [plugins](/docs/plugins.md) in CommonJS or ESM too. Which sho
 </table>
 
 _It is not recommended to use TypeScript in plugin code as type stripping is not supported in Node.js’ `node_modules` folder._
-
-Notably, the same limitations documented above for Build Awesome bundled plugins will apply to your plugin code as well!

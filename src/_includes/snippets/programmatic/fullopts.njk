@@ -7,7 +7,11 @@
 {%- set codeBlock %}{% raw %}
 import BuildAwesome from "@awesome.me/buildawesome";
 
-let ba = new BuildAwesome(".", "_site", {
+let ba = new BuildAwesome({
+	// Input and output directories
+	input: ".",
+	output: "_site",
+
 	// --quiet
 	quietMode: true,
 
@@ -26,10 +30,14 @@ let ba = new BuildAwesome(".", "_site", {
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
 {%- set codeBlock %}{% raw %}
-(async function () {
-	const { default: BuildAwesome } = await import("@awesome.me/buildawesome");
+const { default: BuildAwesome } = require("@awesome.me/buildawesome");
 
-	let ba = new BuildAwesome(".", "_site", {
+(async function () {
+	let ba = new BuildAwesome({
+		// Input and output directories
+		input: ".",
+		output: "_site",
+
 		// --quiet
 		quietMode: true,
 
