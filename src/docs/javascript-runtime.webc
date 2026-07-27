@@ -22,7 +22,7 @@ const eleventyNavigation = {
 
 <h3>Odd Numbered Versions of Node.js</h3>
 
-<p>For Node.js versions prior to 27, it is not recommended or supported (by us) to use an odd major version of Node.js (e.g. Node 19, 21, 23, or 25), per guidance on the <a href="https://nodejs.org/en/about/previous-releases">Node.js Releases documentation</a>. Our experience has found that even-numbered major versions are more reliable and we encourage folks to stick with even-numbered releases of Node.js when possible.</p>
+<p>For Node.js versions prior to 27, it is not recommended or supported (by us) to use an odd major version of Node.js (23 or 25), per guidance on the <a href="https://nodejs.org/en/about/previous-releases">Node.js Releases documentation</a>. Our experience has found that even-numbered major versions are more reliable and we encourage folks to stick with even-numbered releases of Node.js when possible.</p>
 
 <p>With <a href="https://nodejs.org/en/blog/announcements/evolving-the-nodejs-release-schedule">Node.js 27, this requirement/recommendation is no longer necessary</a> as Node’s odd-numbered release strategy will be retired.</p>
 
