@@ -71,7 +71,7 @@ const shortcodes = {
 			(linkUrl ? `</a>` : "")
 		);
 	},
-	getScreenshotHtml(alt, siteUrl, sizes, preset = "small") {
+	async getScreenshotHtml(alt, siteUrl, sizes, preset = "small") {
 		let zoom;
 		let viewport = {
 			width: 375,
@@ -120,11 +120,13 @@ const shortcodes = {
 			},
 		};
 
-		let stats = eleventyImage.statsByDimensionsSync(
+		let stats = await eleventyImage(
 			screenshotUrl,
-			viewport.width,
-			viewport.height,
-			options
+			{
+				...options,
+				statsOnly: true,
+				imageMetadataOverride: { width: viewport.width, height: viewport.height },
+			}
 		);
 
 		let attrs = {
@@ -435,7 +437,7 @@ export default async function ($config) {
 		return !!data && !("error" in data) && data.lighthouse.total === 400;
 	});
 
-	$config.addFilter("cardScreenshotHtml", function (site) {
+	$config.addFilter("cardScreenshotHtml", async function (site) {
 		let url = site.demo || site.url;
 		if(!url) {
 			return `<div class="sites-screenshot-container"><img class="sites-screenshot"></div>`;
@@ -443,7 +445,7 @@ export default async function ($config) {
 		if(site.screenshotOverride) {
 			return `<div class="sites-screenshot-container"><img alt="${site.screenshotOverride.alt}" loading="lazy" decoding="async" class="sites-screenshot" src="${site.screenshotOverride.src}" width="${site.screenshotOverride.width}" height="${site.screenshotOverride.height}"></div>`;
 		}
-		return `<div class="sites-screenshot-container">${shortcodes.getScreenshotHtml(site.fileSlug, url, null, site.screenshotSize, site.screenshotAspectRatio)}</div>`;
+		return `<div class="sites-screenshot-container">${await shortcodes.getScreenshotHtml(site.fileSlug, url, null, site.screenshotSize, site.screenshotAspectRatio)}</div>`;
 	});
 
 	$config.addFilter("speedlifyHash", function (site) {
