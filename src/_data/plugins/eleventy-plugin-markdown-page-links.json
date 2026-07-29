@@ -1,0 +1,5 @@
+{
+	"npm": "https://www.npmjs.com/package/eleventy-plugin-markdown-page-links",
+	"author": "@johnwargo",
+	"description": "Generates a list of links for a particular markdown page; offers lots of configuration options to make the implementation flxible for your site."
+}

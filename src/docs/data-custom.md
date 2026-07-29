@@ -22,7 +22,7 @@ Note that you can also add [Custom Front Matter Formats](/docs/data-frontmatter-
 {% set codeContent %}
 export default function ($config) {
 	// Receives file contents, return parsed data
-	$config.addDataExtension("yml,yaml", (contents, filePath) => {
+	$config.addDataExtension("fileExtension", (contents, filePath) => {
 		return {};
 	});
 };
