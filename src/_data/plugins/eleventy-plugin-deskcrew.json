@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-deskcrew",
+	"author": "webmilmind1",
+	"description": "Adds the DeskCrew support widget to every page: live chat, AI answers from your knowledge base, and a help center"
+}
