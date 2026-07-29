@@ -66,8 +66,6 @@ Now you can use the `image` shortcode in your templates and the appropriate HTML
 
 {% include "snippets/image/templates.njk" %}
 
-If you want to use Eleventy Image in WebC, take note that it is possible to wire up the method below in WebC. However it is **recommended to use the [provided `<eleventy-image>` WebC component](./image-webc.md) instead**.
-
 ## Advanced
 
 ### Boost Performance: Optimize Images on Request
@@ -186,38 +184,4 @@ export default function (eleventyConfig) {
 
 ### Synchronous Shortcode
 
-_Deprecated in <a href="https://github.com/11ty/eleventy-img/issues/211">Eleventy Image v4.0.0</a>._
-
-{% callout "info", "md" %}The new [Eleventy Transform](./image.md#html-transform) is now preferred for situations that are not asynchronous-friendly (Handlebars, macros in Nunjucks, et al). For asynchronous-friendly templates (e.g. Nunjucks, Liquid, JavaScript), the [Asynchronous Shortcode](#asynchronous-shortcode) is another option. If you’re using WebC, use the provided [WebC component](./image-webc.md).{% endcallout %}
-
-#### Configuration
-
-Use `Image.statsSync` to get the metadata of a source even if the image generation is not finished yet:
-
-{% set codeContent %}
-import Image from "@11ty/eleventy-img";
-
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("myImage", function imageShortcode(src, cls, alt, widths = ["auto"], sizes = "100vh") {
-		let options = {
-			widths,
-			formats: ["jpeg"],
-		};
-
-		// generate images: this is async but we don’t wait
-		Image(src, options);
-
-		let imageAttributes = {
-			class: cls,
-			alt,
-			sizes,
-			loading: "lazy",
-			decoding: "async",
-		};
-		// get metadata even if the images are not fully generated yet
-		let metadata = Image.statsSync(src, options);
-		return Image.generateHTML(metadata, imageAttributes);
-	});
-};
-{% endset %}
-{% include "snippets/configDefinition.njk" %}
+{% callout "error", "md" %}The new [Eleventy Transform](./image.md#html-transform) is now preferred for situations that are not asynchronous-friendly (Handlebars, macros in Nunjucks, et al). For asynchronous-friendly templates (e.g. Nunjucks, Liquid, JavaScript), the [Asynchronous Shortcode](#asynchronous-shortcode) is another option.{% endcallout %}
