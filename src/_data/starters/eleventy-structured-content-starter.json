@@ -1,0 +1,6 @@
+{
+  "url": "https://github.com/wernerglinka/eleventy-structured-content-starter",
+  "name": "Eleventy Structured Content Starter",
+  "description": "A component-based, structured content starter for Eleventy 3.x. Build pages by composing reusable sections defined in frontmatter rather than writing markdown body content.",
+  "demo": "https://eleventy-structured-content-starter.netlify.app/"
+}
