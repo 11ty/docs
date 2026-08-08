@@ -83,7 +83,12 @@ cmses:
     url: https://pagescms.org/
     screenshotSize: medium
     tags: [Git-based]
+  - name: Kirby CMS
+    url: https://getkirby.com
+    screenshotSize: medium
+    tags: [API]
 ---
+
 # Using a CMS
 
 {% tableofcontents %}
