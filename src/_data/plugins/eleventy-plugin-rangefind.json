@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-rangefind",
+	"author": "xjodoin",
+	"description": "adds serverless full-text search: indexes the built site into a static rangefind index (BM25F relevance, typo correction, autocomplete) that the browser queries with HTTP range requests, plus a drop-in search component shortcode."
+}
