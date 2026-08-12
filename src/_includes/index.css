@@ -318,14 +318,67 @@ footer.elv-layout {
 .elv-layout-toc {
 	padding-block-start: 0;
 }
-/* #2col */
-@media (min-width: 41.4375em) {
+.elv-local-toc {
+	position: sticky;
+	top: 3.5rem;
+	max-height: calc(100vh - 4rem);
+	overflow-y: auto;
+}
+
+/** #1col */
+.elv-layout-toc {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: minmax(1px, 1fr);
+	padding: 0 1rem 2rem 1rem;
+}
+
+.elv-layout-toc #toc {
+	order: 0;
+}
+.elv-layout-toc #local-toc {
+	order: 1;
+}
+.elv-layout-toc #skip-content {
+	order: 2;
+}
+
+/* #3col */
+@media (min-width: 36em) {
 	.elv-layout-toc {
 		--toc-sidebar-size: 12.5rem;
 		display: grid;
 		gap: 2rem;
 		grid-template-columns: var(--toc-sidebar-size) minmax(1px, 1fr);
 		padding: 1rem 1rem 2rem 1rem;
+	}
+	.elv-layout-toc #toc {
+		order: 0;
+	}
+	.elv-layout-toc #local-toc {
+		order: 1;
+	}
+	.elv-layout-toc #skip-content {
+		order: 2;
+	}
+}
+
+/* #3col */
+@media (min-width: 41.4375em) {
+	.elv-layout-toc {
+		display: grid;
+		gap: 2rem;
+		grid-template-columns: 12.5rem minmax(1px, 1fr) 12.5rem;
+		padding: 0 1rem 2rem 1rem;
+	}
+	.elv-layout-toc #toc {
+		order: 0;
+	}
+	.elv-layout-toc #skip-content {
+		order: 1;
+	}
+	.elv-layout-toc #local-toc {
+		order: 2;
 	}
 }
 
