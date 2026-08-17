@@ -79,6 +79,9 @@ classicHosts:
   - name: Orbiter
     url: https://orbiter.host
     screenshotSize: medium
+  - name: harvis
+    url: https://harvis.dev/
+    screenshotSize: medium
 webides:
   - name: Stackblitz
     url: https://stackblitz.com/
