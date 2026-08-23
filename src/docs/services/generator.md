@@ -33,8 +33,6 @@ https://v1.generator.11ty.dev/json/:url/
 
 ## Samples
 
-- See the “Built With” column on [Speedlify (Website Generators)](https://www.speedlify.dev/ssg/)
-
 {% callout "demo" %}
 
 <img src="https://v1.generator.11ty.dev/image/https%3A%2F%2Fwww.11ty.dev%2F/" alt="Site Generator logo for 11ty.dev/" loading="lazy" decoding="async" width="40" height="40" eleventy:ignore>

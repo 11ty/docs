@@ -10,11 +10,12 @@
     { "source": "/docs/getting-started/", "destination": "/docs/", "statusCode": 301 },
     { "source": "/docs/get-started/", "destination": "/docs/", "statusCode": 301 },
     { "source": "/activity/", "destination": "/firehose/", "statusCode": 301 },
-    { "source": "/docs/sites/", "destination": "/speedlify/", "statusCode": 301 },
-    { "source": "/docs/performance-leaderboard/", "destination": "/speedlify/", "statusCode": 301 },
-    { "source": "/docs/accessibility-leaderboard/", "destination": "/speedlify/", "statusCode": 301 },
-    { "source": "/leaderboard/(.*)", "destination": "/speedlify/", "statusCode": 301 },
-    { "source": "/news/:path*", "destination": "/blog/:path*", "permanent": true },
+    { "source": "/docs/sites/", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/docs/performance-leaderboard/", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/docs/accessibility-leaderboard/", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/leaderboard/(.*)", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/speedlify/(.*)", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+		{ "source": "/news/:path*", "destination": "/blog/:path*", "permanent": true },
     { "source": "/docs/how-to-support/", "destination": "/docs/community/", "statusCode": 301 },
     { "source": "/docs/plugins/cache/", "destination": "/docs/plugins/fetch/", "statusCode": 301 },
     { "source": "/docs/plugins/partial-hydration/", "destination": "/docs/plugins/is-land/", "statusCode": 301 },
@@ -25,12 +26,6 @@
     { "source": "/speedlify/", "destination": "https://www.11ty.dev/speedlify/", "permanent": false },
     { "source": "/blog/", "destination": "https://www.11ty.dev/blog/", "permanent": false },
     { "source": "/blog/:path*", "destination": "https://www.11ty.dev/blog/:path*", "permanent": false }
-  ],
-  "rewrites": [
-    {
-      "source": "/speedlify/(.*)",
-      "destination": "https://built-with-11ty-speedlify.vercel.app/speedlify/$1"
-    }
   ],
   "headers": [
     {

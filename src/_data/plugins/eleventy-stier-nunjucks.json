@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-stier-nunjucks",
+	"author": "robole",
+	"description": "Adds a powerful set of variables and filters to Nunjucks. It transforms Nunjucks into a more expressive language. Writing templates becomes more enjoyable. Templates become easier to read and maintain."
+}

@@ -1,0 +1,5 @@
+{
+    "npm": "fastcomments-11ty",
+    "author": "winrid",
+    "description": "Eleventy (11ty) plugin for FastComments, a live commenting system."
+}
