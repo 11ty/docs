@@ -10,10 +10,11 @@
     { "source": "/docs/getting-started/", "destination": "/docs/", "statusCode": 301 },
     { "source": "/docs/get-started/", "destination": "/docs/", "statusCode": 301 },
     { "source": "/activity/", "destination": "/firehose/", "statusCode": 301 },
-    { "source": "/docs/sites/", "destination": "/speedlify/", "statusCode": 301 },
-    { "source": "/docs/performance-leaderboard/", "destination": "/speedlify/", "statusCode": 301 },
-    { "source": "/docs/accessibility-leaderboard/", "destination": "/speedlify/", "statusCode": 301 },
-    { "source": "/leaderboard/(.*)", "destination": "/speedlify/", "statusCode": 301 },
+    { "source": "/docs/sites/", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/docs/performance-leaderboard/", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/docs/accessibility-leaderboard/", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/leaderboard/(.*)", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
+    { "source": "/speedlify/(.*)", "destination": "https://www.speedlify.dev/group/11ty-community/", "statusCode": 301 },
     { "source": "/news/:path*", "destination": "/blog/:path*", "statusCode": 301 },
     { "source": "/docs/how-to-support/", "destination": "/docs/community/", "statusCode": 301 },
     { "source": "/docs/plugins/cache/", "destination": "/docs/plugins/fetch/", "statusCode": 301 },
@@ -21,12 +22,6 @@
     { "source": "/docs/templates/", "destination": "/docs/projects/", "statusCode": 301 },
     { "source": "/docs/plugins/official/", "destination": "/docs/plugins/", "statusCode": 301 },
     { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 }
-  ],
-	"rewrites": [
-    {
-      "source": "/speedlify/(.*)",
-      "destination": "https://www.speedlify.dev/group/11ty-community/$1"
-    }
   ],
 	"headers": [
 		{
