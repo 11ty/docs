@@ -25,7 +25,7 @@
 	"rewrites": [
     {
       "source": "/speedlify/(.*)",
-      "destination": "https://built-with-11ty-speedlify.vercel.app/speedlify/$1"
+      "destination": "https://www.speedlify.dev/group/11ty-community/$1"
     }
   ],
 	"headers": [
