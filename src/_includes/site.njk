@@ -17,7 +17,7 @@
 		</em>
 		{%- if site.demo and showSpeedlifyScores -%}
 		<div class="list-bare-desc list-bare-desc-avatar site-score">
-			<is-land on:visible import="https://www.speedlify.dev/js/speedlify2-score.js"><speedlify2-score speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score></is-land>
+			<is-land on:visible import="https://www.speedlify.dev/js/speedlify2-score.js"><speedlify2-score no-tooltip speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score></is-land>
 		</div>
 		{%- endif -%}
 		{%- endif %}
