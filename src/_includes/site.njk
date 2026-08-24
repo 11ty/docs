@@ -16,13 +16,10 @@
 			</div>
 		</em>
 		<div class="list-bare-desc list-bare-desc-avatar site-score">
-			{%- set hash = site | speedlifyHash %}
-			{%- if hash -%}
-				<a href="https://www.11ty.dev/speedlify/#site-{{ hash }}" class="elv-externalexempt nound">
-					<is-land on:visible import="/js/speedlify-score.js">
-						<speedlify-score speedlify-url="https://www.11ty.dev/speedlify/" hash="{{ hash }}" score weight rank></speedlify-score>
-					</is-land>
-				</a>
+			{%- if site.demo and showSpeedlifyScores -%}
+			<is-land on:visible import="https://www.speedlify.dev/js/speedlify2-score.js">
+				<speedlify2-score speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score>
+			</is-land>
 			{%- endif -%}
 		</div>
 		{%- endif %}
