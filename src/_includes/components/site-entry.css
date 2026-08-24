@@ -201,8 +201,8 @@
 	position: relative;
 }
 .sites-site-vert .sites-site-lighthouse {
-	font-size: 0.6666666666667em; /* 12px /18 */
-	transform: translateY(-100%);
+	font-size: 0.5555555555556em; /* 10px /18 */
+	transform: translateY(calc(-100% - .2222222em - 2px));
 	position: absolute;
 	right: 1px;
 	display: flex;
@@ -211,7 +211,7 @@
 	border-radius: 1.4em 0 0.4em 0;
 	background: rgba(255, 255, 255, 0.9);
 	font-weight: 600;
-	padding: 4px;
+	padding: 0.2222222222222em; /* 4px /18 */
 }
 .sites-site-vert .sites-site-lighthouse .speedlify-score {
 	background-color: #fff;

@@ -15,13 +15,11 @@
 				{%- if site.source_url %}<div><a href="{{ site.source_url }}" class="elv-externalexempt">Source Code</a></div>{% endif -%}
 			</div>
 		</em>
+		{%- if site.demo and showSpeedlifyScores -%}
 		<div class="list-bare-desc list-bare-desc-avatar site-score">
-			{%- if site.demo and showSpeedlifyScores -%}
-			<is-land on:visible import="https://www.speedlify.dev/js/speedlify2-score.js">
-				<speedlify2-score speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score>
-			</is-land>
-			{%- endif -%}
+			<is-land on:visible import="https://www.speedlify.dev/js/speedlify2-score.js"><speedlify2-score speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score></is-land>
 		</div>
+		{%- endif -%}
 		{%- endif %}
 	</div>
 	<div class="sites-screenshot-container">
