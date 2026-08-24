@@ -135,3 +135,13 @@
 .facepile > a:has(img.avatar:not([src])) {
 	display: none;
 }
+
+/* /docs/supporters/ */
+.supporters-facepile .avatar {
+	max-width: 2em;
+	margin-right: 0.5em;
+}
+.supporters-facepile a[href] {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
