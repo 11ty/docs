@@ -223,7 +223,7 @@ details-force-state:not(:defined)
 
 /* Footer category navigation */
 .elv-cat-list-active {
-	font-weight: 600;
+	font-weight: 500;
 }
 
 /* Wrapper around the markdown Table of contents plugin */
@@ -323,7 +323,7 @@ details.toc[open] > summary {
 /* asterisk on languages */
 .elv-page-toc > ul > li:has(> a):after {
 	font-size: 1.25em; /* 20px /16 */
-	font-weight: 600;
+	font-weight: 500;
 }
 .elv-page-toc .fa11ty-icon {
 	margin-left: 0;

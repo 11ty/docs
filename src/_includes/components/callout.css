@@ -66,7 +66,7 @@ table .elv-callout {
 .elv-callout-label {
 	align-self: flex-start;
 	font-size: 0.9375em; /* 15px /16 */
-	font-weight: 600;
+	font-weight: 500;
 }
 .elv-callout-label,
 .elv-callout-skew:before,

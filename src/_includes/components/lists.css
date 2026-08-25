@@ -183,7 +183,7 @@ main :is(h2, h3, p) a.buzzword {
 	border-radius: 50%;
 	width: 1.75em;
 	height: 1.75em;
-	font-weight: 600;
+	font-weight: 500;
 }
 @media (prefers-color-scheme: dark) {
 	.numberflag {
@@ -230,7 +230,7 @@ h2 .numberflag:after {
 }
 :where(.inlinelist-sm) > li {
 	font-family: system-ui, sans-serif;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 /* Disabled list item */
