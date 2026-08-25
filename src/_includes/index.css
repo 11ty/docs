@@ -327,6 +327,9 @@ footer.elv-layout {
 		grid-template-columns: var(--toc-sidebar-size) minmax(1px, 1fr);
 		padding: 1rem 1rem 2rem 1rem;
 	}
+	.elv-layout-toc > * {
+		min-inline-size: 0;
+	}
 }
 
 /* Footer */

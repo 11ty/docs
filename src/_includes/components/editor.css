@@ -39,6 +39,11 @@ is-land--eleventy-editor pre:before {
 	margin: 1em -1rem;
 }
 
+/* <syntax-highlight> already full-bleeds with -1rem, don’t double it up (horizontal overflow) */
+:is(is-land--eleventy-editor, eleventy-editor:not(:defined)) :is(.syntax-highlight, syntax-highlight) pre {
+	margin-inline: 0;
+}
+
 :is(is-land--eleventy-editor, eleventy-editor:not(:defined)):after {
 	pointer-events: none;
 	position: absolute;
