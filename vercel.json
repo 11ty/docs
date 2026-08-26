@@ -1,0 +1,7 @@
+{
+	"trailingSlash": true,
+  "redirects": [
+    { "source": "/authors/", "destination": "https://www.11ty.dev/authors/", "permanent": true },
+    { "source": "/authors/(.*)", "destination": "https://www.11ty.dev/authors/", "permanent": true }
+  ]
+}
