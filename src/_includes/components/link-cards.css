@@ -73,3 +73,20 @@
 .link-card-sub code {
 	font-size: 1em;
 }
+
+/* Approximate update cadence */
+.link-card-cadence {
+	display: flex;
+	align-items: center;
+	gap: .35em;
+	margin-block-start: .35em;
+	font-size: .75em;
+	line-height: 1.2;
+	opacity: .6;
+}
+.link-card-cadence .fa11ty-icon {
+	flex: none;
+	width: 1em;
+	height: 1em;
+	margin: 0;
+}

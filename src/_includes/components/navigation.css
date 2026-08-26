@@ -22,6 +22,10 @@
 .spacer {
 	display: none;
 }
+.elv-nav-sociallink {
+	display: flex;
+	align-items: center;
+}
 .elv-nav-sociallink-text {
 	position: absolute;
 	height: 1px;

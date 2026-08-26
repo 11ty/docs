@@ -12,14 +12,17 @@ follow:
       url: https://neighborhood.11ty.dev/@11ty
       icon: fa-brands fa-mastodon
       description: "`@11ty@neighborhood.11ty.dev`"
+      cadence: A few posts a week
     - title: Bluesky
       url: https://bsky.app/profile/11ty.dev
       icon: fa-brands fa-bluesky
       description: "`@11ty.dev`"
+      cadence: A few posts a week
     - title: LinkedIn
       url: https://www.linkedin.com/company/11ty/
       icon: fa-brands fa-linkedin
       description: "The very professional `11ty`"
+      cadence: It’s an algorithmic timeline, who knows?
     - title: YouTube
       url: https://www.youtube.com/c/EleventyVideo
       icon: fa-brands fa-youtube
@@ -28,6 +31,7 @@ follow:
       url: /blog/
       icon: fa-solid fa-newspaper
       description: Big announcements, project updates, and more.
+      cadence: Roughly monthly
     - title: Release History
       url: /docs/versions/
       icon: fa-brands fa-build-awesome
@@ -63,14 +67,17 @@ follow:
       url: /firehose/?type=youtube&type=github&type=blog&type=quick-tips
       icon: fa-solid fa-fire
       description: The blog, Quick Tips, YouTube, Mastodon, and every GitHub release—in one place.
+      cadence: Several items a week
     - title: Firehose RSS
       url: /firehose/firehose.rss
       icon: fa-solid fa-square-rss
       description: "`/firehose/firehose.rss`"
+      cadence: Several items a week
     - title: Blog Posts
       url: /blog/feed.xml
       icon: fa-solid fa-square-rss
       description: "`/blog/feed.xml`"
+      cadence: Roughly monthly
     - title: All Documentation Updates
       url: /docs/feed.xml
       icon: fa-solid fa-square-rss
