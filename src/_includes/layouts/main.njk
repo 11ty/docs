@@ -28,7 +28,7 @@ layout: layouts/base.njk
 			<i class="fa-brands fa-build-awesome"></i>Build Awesome v{{ eleventy.version }}
 		</li>
 		<li>
-			<is-land import="/js/time-difference.js" on:idle><time-difference live><em><time datetime="{{ config.now | toISO }}">{{ config.now | newsDate }}</time></em></time-difference></is-land>
+			<is-land import="/js/time-difference.js" on:idle><time-difference live><em>Built <time datetime="{{ config.now | toISO }}">{{ config.now | newsDate }}</time></em></time-difference></is-land>
 		</li>
 		<li class="fl-grow"></li>
 		<li><a href="https://www.npmjs.com/org/11ty" class="nound elv-externalexempt elv-nav-sociallink"><i class="fa-brands fa-npm fa11ty-npm"></i><span class="sr-only">npm</span></a></li>
