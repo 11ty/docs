@@ -40,7 +40,7 @@ eleventyNavigation:
 
 ## <span class="numberflag"><span class="sr-only">Step</span> {{ count }}</span> Go Pro
 
-We’re going to Kickstarter to fund a suite of Pro tools for folks wanting a streamling building and content editing experience. Watch for updates to the [**Build Awesome Kickstarter**]({{ config.kickstarterUrl }}) to get notified when we launch!
+We’re going to Kickstarter to fund a suite of Pro tools for folks wanting a streamlined building and content editing experience. Watch for updates to the [**Build Awesome Kickstarter**]({{ config.kickstarterUrl }}) to get notified when we launch!
 
 <a href="{{ config.kickstarterUrl }}" class="btn-brand"><i class="fa-brands fa-build-awesome"></i>Build Awesome Pro Kickstarter</a>
 
