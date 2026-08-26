@@ -379,6 +379,19 @@ footer.elv-layout {
 	}
 }
 
+/* Brand icons at the very bottom, mirroring the header nav */
+.elv-footer-social {
+	--fl-gap-h: 1.25em;
+	align-items: center;
+	margin-block-start: var(--elv-footer-spacing);
+	padding-block-start: var(--elv-footer-spacing);
+	border-block-start: 1px solid var(--border-color);
+}
+.elv-footer-social .fa11ty-icon {
+	width: 1.5em;
+	height: 1.5em;
+}
+
 /* Definition Lists */
 dl {
 	display: grid;
@@ -544,6 +557,9 @@ filter-container:defined form {
 .fa-bluesky {
 	color: #1285fe;
 }
+.fa-linkedin {
+	color: #0a66c2;
+}
 .fa-youtube {
 	color: #f03;
 }
@@ -552,6 +568,9 @@ filter-container:defined form {
 }
 .fa11ty-icon [href="#fas-fa-square-rss"] {
 	color: #e57516;
+}
+.fa-build-awesome {
+	color: var(--brand-ba);
 }
 .fa-font-awesome {
 	color: #538cd7;

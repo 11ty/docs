@@ -7,12 +7,9 @@
 		<li><a href="/styleguide/">Style Guide</a></li>
 	</ul>
 	<ul class="list-bare">
-		<li><strong class="subhed">Built With</strong></li>
-		<li><i class="fa-brands fa-build-awesome"></i>Build Awesome v{{ eleventy.version }}</li>
-		<li><is-land import="/js/time-difference.js" on:idle><time-difference live><em>Built <time datetime="{{ config.now | toISO }}">{{ config.now | newsDate }}</time></em></time-difference></is-land></li>
 		<li><strong class="subhed">Statistics</strong></li>
 {%- if github and github.stargazers %}
-		<li><a href="https://github.com/11ty/eleventy/" class="elv-externalexempt" title="{{ github.stargazers }}"><i class="fa-solid fa-star"></i>{{ github.stargazers | humanReadableNum }} Stars</a></li>
+		<li><a href="https://github.com/11ty/buildawesome/" class="elv-externalexempt" title="{{ github.stargazers }}"><i class="fa-solid fa-star"></i>{{ github.stargazers | humanReadableNum }} Stars</a></li>
 {%- endif %}
 {%- if npm and npm.downloads %}
 		<li><i class="fa-solid fa-download"></i><abbr title="{{ npm.downloads }}">{{ npm.downloads | humanReadableNum }}</abbr> Downloads</li>

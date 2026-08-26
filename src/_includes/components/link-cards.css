@@ -1,0 +1,75 @@
+/* Link cards: icon + title + subtext, e.g. /docs/follow-along/ */
+.link-cards {
+	--lo-c-minwidth: 18em;
+	--fl-gap-v: .75em;
+	--fl-gap-h: .75em;
+	margin-block: 1.5em 2.5em;
+}
+.link-cards > li {
+	display: flex;
+}
+
+.link-card:is(:link, :visited) {
+	display: flex;
+	align-items: flex-start;
+	gap: .6em;
+	width: 100%;
+	padding: .9em 1em;
+	border: 1px solid var(--border-color);
+	border-radius: .5em;
+	box-shadow: 0 1px 2px var(--shadow-color);
+	color: var(--color);
+	text-decoration: none;
+	transition: .15s ease border-color, .15s ease box-shadow, .15s ease transform;
+}
+.link-card:is(:hover, :focus-visible) {
+	border-color: var(--brand-ba);
+	box-shadow: 0 .3em .8em var(--shadow-color);
+	transform: translateY(-2px);
+}
+@media (prefers-reduced-motion: reduce) {
+	.link-card:is(:link, :visited) {
+		transition: none;
+	}
+	.link-card:is(:hover, :focus-visible) {
+		transform: none;
+	}
+}
+
+/* Larger than the default icon size, and don’t let it squish */
+.link-card > .fa11ty-icon {
+	flex: none;
+	width: 1.6em;
+	height: 1.6em;
+	margin: 0;
+}
+
+.link-card-c {
+	display: flex;
+	flex-direction: column;
+	gap: .1em;
+	min-width: 0;
+}
+
+.link-card-hed {
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-color: var(--link-underline);
+	text-decoration-thickness: .1em;
+}
+.link-card:hover .link-card-hed {
+	text-decoration-color: rgba(255, 0, 0, .3);
+	text-decoration-thickness: .3em;
+	text-underline-offset: -.1em;
+	text-decoration-skip-ink: none;
+}
+
+.link-card-sub {
+	font-size: .8125em; /* 13px /16 */
+	line-height: 1.4;
+	opacity: .75;
+	overflow-wrap: break-word;
+}
+.link-card-sub code {
+	font-size: 1em;
+}

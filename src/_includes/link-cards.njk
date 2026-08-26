@@ -1,0 +1,17 @@
+{#- Renders `cards` (title, url, icon, description) as a grid of icon cards.
+    The whole card is the link, so descriptions must not contain links. -#}
+<ul class="lo-grid link-cards">
+{%- for card in cards %}
+	<li>
+		<a href="{{ card.url }}" class="link-card elv-externalexempt">
+			<i class="{{ card.icon }}"></i>
+			<span class="link-card-c">
+				<span class="link-card-hed">{{ card.title }}</span>
+				{%- if card.description %}
+				<span class="link-card-sub">{{ card.description | markdown | safe }}</span>
+				{%- endif %}
+			</span>
+		</a>
+	</li>
+{%- endfor %}
+</ul>
