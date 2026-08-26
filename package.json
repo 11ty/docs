@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "@11ty/logo": "2.0.6",
+    "entities": "^8.0.0",
     "instant.page": "3.0.0",
     "prismjs": "1.30.0",
     "speedlify-score": "^2.0.2"

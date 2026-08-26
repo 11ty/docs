@@ -5,6 +5,7 @@ const markdownIt = require("markdown-it");
 const loadLanguages = require("prismjs/components/");
 const slugify = require("slugify");
 const fs = require("fs-extra");
+const { escapeAttribute } = require("entities");
 
 const syntaxHighlightPlugin = require("@11ty/eleventy-plugin-syntaxhighlight");
 const navigationPlugin = require("@11ty/eleventy-navigation");
@@ -26,6 +27,7 @@ const shortcodes = {
 			return defaultAvatarHtml;
 		}
 
+		alt = escapeAttribute(alt);
 		slug = cleanName(slug).toLowerCase();
 		let mapEntry;
 		try {
