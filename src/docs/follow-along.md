@@ -5,6 +5,7 @@ eleventyNavigation:
   key: Follow Along
   pinned: true
   order: 0.5
+permalink: /how-to-follow/
 follow:
   updates:
     - title: Mastodon
