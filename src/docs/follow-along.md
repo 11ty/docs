@@ -6,6 +6,7 @@ eleventyNavigation:
   pinned: true
   order: 0.5
 permalink: /how-to-follow/
+screenshotCacheBust: 1
 follow:
   updates:
     - title: Blog
