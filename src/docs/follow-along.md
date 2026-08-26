@@ -32,10 +32,10 @@ follow:
       icon: fa-solid fa-newspaper
       description: Big announcements, project updates, and more.
       cadence: Roughly monthly
-    - title: Release History
+    - title: Full Release History
       url: /docs/versions/
       icon: fa-brands fa-build-awesome
-      description: Every release, with docs for previous versions.
+      description: Every release, with links to the docs for previous versions.
     - title: Get Notifications from GitHub
       url: https://github.com/11ty/buildawesome
       icon: fa-brands fa-github
