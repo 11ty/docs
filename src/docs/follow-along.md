@@ -71,7 +71,7 @@ follow:
       url: /blog/feed.xml
       icon: fa-solid fa-square-rss
       description: "`/blog/feed.xml`"
-    - title: Documentation Updates
+    - title: All Documentation Updates
       url: /docs/feed.xml
       icon: fa-solid fa-square-rss
       description: "`/docs/feed.xml`"
