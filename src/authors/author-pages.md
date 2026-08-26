@@ -68,24 +68,6 @@ let eleventyComputed = {
 
 ### {{ displayName }}’s Sites:
 
-{% css %}
-.site-score speedlify-score {
-flex-wrap: nowrap;
-}
-.site-score speedlify-score {
-margin-top: .5em;
-}
-.site-score .speedlify-rank {
-font-weight: 700;
-}
-.site-score .speedlify-rank:before {
-font-weight: 400;
-}
-.site-score .speedlify-rank-change.down {
-display: none;
-}
-{% endcss %}
-
 <div class="fl sites-lo" style="--fl-gap-h: 2rem; --fl-gap-v: 1rem; --fl-stackpoint: 31.25em;">
 {%- for site in author.sites %}
 	{%- set showMetadata = true %}

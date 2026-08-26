@@ -16,13 +16,11 @@
       {%- endif -%}
     </span>
     {{ site | cardScreenshotHtml | safe }}
-{%- if siteData | lighthouseGoodDataCheck %}
+		{%- if site.demo and showSpeedlifyScores -%}
     <div class="sites-site-lighthouse">
-      <is-land on:visible import="/js/speedlify-score.js">
-        <speedlify-score raw-data='{{ siteData | toJSON | safe }}'></speedlify-score>
-      </is-land>
+      <is-land on:visible import="https://www.speedlify.dev/js/speedlify2-score.js"><speedlify2-score no-tooltip speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score></is-land>
     </div>
-{%- endif %}
+		{%- endif -%}
   </a>
 
 {%- set sourceUrl = site.source_url %}

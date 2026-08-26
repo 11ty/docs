@@ -34,14 +34,9 @@
 	background-color: #222;
 	color: #fff;
 	font-weight: inherit;
-
-	@media (prefers-color-scheme: dark) {
-		background-color: #ccc;
-		color: #222;
-	}
 }
 .inlinelist > li:is(:has([aria-selected="true"]), .active) :is(:link, :visited) {
-	color: inherit;
+	color: #fff;
 }
 .inlinelist > li code {
 	background-color: transparent;
