@@ -283,7 +283,7 @@ export default async function ($config) {
 	$config.addPlugin(sidebarPlugin);
 
 	$config.addShortcode("getColorsForUrl", async (url) => {
-		if(process.env.ELEVENTY_RUN_MODE !== "build") {
+		if(process.env.BUILDAWESOME_RUN_MODE !== "build") {
 			return [];
 		}
 

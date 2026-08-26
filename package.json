@@ -9,10 +9,10 @@
   },
   "scripts": {
     "check-links": "npx check-html-links _site",
-    "build": "npx @11ty/eleventy --quiet && npm run create-search-index",
-    "build-production": "npm run get-new-data && NODE_ENV=production npx @11ty/eleventy && npm run create-search-index",
-    "start": "npx @11ty/eleventy --serve --quiet --port=8091",
-    "start-production": "NODE_ENV=production npx @11ty/eleventy --serve --quiet --port=8091",
+    "build": "npx @awesome.me/buildawesome --quiet && npm run create-search-index",
+    "build-production": "npm run get-new-data && NODE_ENV=production npx @awesome.me/buildawesome && npm run create-search-index",
+    "start": "npx @awesome.me/buildawesome --serve --quiet --port=8091",
+    "start-production": "NODE_ENV=production npx @awesome.me/buildawesome --serve --quiet --port=8091",
     "create-search-index": "npx pagefind --site \"_site\" --glob \"{docs,blog}/**/*.html\"",
     "get-new-data": "rm -rf ./src/_data/builtwith/ && npx degit github:11ty/11ty-community/built-with-eleventy src/_data/builtwith/",
     "format": "prettier --write '**/*.{js,css,html,md}'"
@@ -38,7 +38,6 @@
     ]
   },
   "devDependencies": {
-    "@11ty/eleventy": "4.0.0-alpha.10",
     "@11ty/eleventy-activity-feed": "^2.0.0",
     "@11ty/eleventy-fetch": "^5.1.3",
     "@11ty/eleventy-img": "7.0.0",
@@ -48,6 +47,7 @@
     "@11ty/eleventy-plugin-webc": "^0.12.0-beta.7",
     "@11ty/font-awesome": "^1.0.1",
     "@11ty/image-color": "^2.0.0",
+    "@awesome.me/buildawesome": "4.0.0-alpha.10",
     "@sindresorhus/slugify": "^3.0.0",
     "@tweetback/canonical": "^2.0.48",
     "comma-number": "^2.1.0",
