@@ -267,7 +267,7 @@ await Image("./test/bio-2017.jpg", {
 Development build performance improvement to [optimize images when they are requested in the browser](#optimize-images-on-request).
 
 * `transformOnRequest: false` (default)
-* `transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve"` (default for HTML Transform)
+* `transformOnRequest: process.env.BUILDAWESOME_RUN_MODE === "serve"` (default for HTML Transform)
 
 You can use [`transformOnRequest` with Shortcodes too](./image-shortcodes.md#boost-performance-optimize-images-on-request).
 

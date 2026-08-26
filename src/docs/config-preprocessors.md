@@ -50,7 +50,7 @@ You might imagine how this could be extended to add a publishing date feature to
 {% set codeContent %}
 export default function ($config) {
   $config.addPreprocessor("drafts", "*", (data, content) => {
-		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
+		if(data.draft && process.env.BUILDAWESOME_RUN_MODE === "build") {
 			return false;
 		}
 	});

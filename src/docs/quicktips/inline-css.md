@@ -21,7 +21,7 @@ import { transform } from "lightningcss";
 
 export default function ($config$) {
 	$config.addFilter("cssmin", function (inputCode) {
-		if (process.env.ELEVENTY_RUN_MODE === "build") {
+		if (process.env.BUILDAWESOME_RUN_MODE === "build") {
 			let { code } = transform({
 				// filename: undefined,
 				code: Buffer.from(inputCode),

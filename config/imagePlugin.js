@@ -4,7 +4,7 @@ import eleventyImage, { eleventyImageTransformPlugin } from "@11ty/eleventy-img"
 import config from "../src/_data/config.js";
 
 const ONE_DAY = 24*60*60*1000;
-const IS_COPY_CACHE_FOLDER = process.env.ELEVENTY_RUN_MODE === "build";
+const IS_COPY_CACHE_FOLDER = process.env.BUILDAWESOME_RUN_MODE === "build";
 
 // Warning: changing these options could impact cold-cache build-server build times
 const imageOptions = {

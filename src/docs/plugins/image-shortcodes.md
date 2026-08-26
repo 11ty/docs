@@ -89,7 +89,7 @@ import { eleventyImageOnRequestDuringServePlugin } from "@11ty/eleventy-img";
 export default function ($config) {
 	$config.addShortcode("image", async function (src, alt) {
 		let html = await Image(src, {
-			transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
+			transformOnRequest: process.env.BUILDAWESOME_RUN_MODE === "serve",
 			returnType: "html",
 			htmlOptions: {
 				imgAttributes: {

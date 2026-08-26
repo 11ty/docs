@@ -150,12 +150,12 @@ export default function($config) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
-Works great with the [`process.env.ELEVENTY_RUN_MODE` environment variable](/docs/environment-vars/#eleventy-supplied) to change how your server operates during`--serve` mode.
+Works great with the [`process.env.BUILDAWESOME_RUN_MODE` environment variable](/docs/environment-vars/#eleventy-supplied) to change how your server operates during`--serve` mode.
 
 {% set codeContent %}
 export default function($config) {
 	// Intercept all requests during --serve mode.
-	if(process.env.ELEVENTY_RUN_MODE === "serve") {
+	if(process.env.BUILDAWESOME_RUN_MODE === "serve") {
 		$config.setServerOptions({
 			onRequest: {
 				"/*": function({ url }) {

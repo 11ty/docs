@@ -1,7 +1,7 @@
 import fetch from "@11ty/eleventy-fetch";
 import "dotenv/config";
 
-const CACHE_DURATION = process.env.ELEVENTY_RUN_MODE === "serve" ? "14d" : "23h";
+const CACHE_DURATION = process.env.BUILDAWESOME_RUN_MODE === "serve" ? "14d" : "23h";
 
 export default async function() {
 	if(!process.env.BUTTONDOWN_API_KEY) {
