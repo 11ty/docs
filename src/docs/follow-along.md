@@ -8,6 +8,16 @@ eleventyNavigation:
 permalink: /how-to-follow/
 follow:
   updates:
+    - title: Blog
+      url: /blog/
+      icon: fa-solid fa-newspaper
+      description: Big announcements, project updates, and more.
+      cadence: Roughly monthly
+    - title: Firehose
+      url: /firehose/?type=youtube&type=github&type=blog&type=quick-tips
+      icon: fa-solid fa-fire
+      description: The blog, Quick Tips, YouTube, Mastodon, and every GitHub release—in one place.
+      cadence: Several items a week
     - title: Mastodon
       url: https://neighborhood.11ty.dev/@11ty
       icon: fa-brands fa-mastodon
@@ -27,11 +37,6 @@ follow:
       url: https://www.youtube.com/c/EleventyVideo
       icon: fa-brands fa-youtube
       description: Screencasts, conference talks, and community resources.
-    - title: Blog
-      url: /blog/
-      icon: fa-solid fa-newspaper
-      description: Big announcements, project updates, and more.
-      cadence: Roughly monthly
     - title: Full Release History
       url: /docs/versions/
       icon: fa-brands fa-build-awesome
@@ -63,11 +68,6 @@ follow:
     #   url: https://buttondown.email/11ty
     #   icon: fa-solid fa-inbox
     #   description: The lowest-volume option—a periodic digest of what shipped and what’s next.
-    - title: Firehose
-      url: /firehose/?type=youtube&type=github&type=blog&type=quick-tips
-      icon: fa-solid fa-fire
-      description: The blog, Quick Tips, YouTube, Mastodon, and every GitHub release—in one place.
-      cadence: Several items a week
     - title: Firehose RSS
       url: /firehose/firehose.rss
       icon: fa-solid fa-square-rss
