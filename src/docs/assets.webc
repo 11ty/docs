@@ -183,7 +183,7 @@ permalink: bundle.js
 <p>Get started with the <a href="/docs/plugins/bundle.md"><strong>Bundle plugin</strong></a> or <a href="/docs/languages/webc/"><strong>WebC</strong></a>!</p>
 
 <sites-list>
-	<!--- <site-card @url="/docs/plugins/bundle/" @name="Bundle Plugin" @date=""></site-card> --->
+	<site-card @url="/docs/plugins/bundle/" @icon-url="https://www.11ty.dev/" @name="Bundle Plugin" @date=""></site-card>
 	<site-card @url="/docs/languages/webc/" @name="WebC" @date="">
 		<img src="/img/logos/webc.png" alt="WebC Logo" width="196" class="sites-screenshot" sizes="12.25em">
 	</site-card>
