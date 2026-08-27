@@ -9,7 +9,14 @@ let scriptImportMap = {
 // For things that rely on the data cascade
 let eleventyComputed = {
 	title: function(data) {
-		return data.titleOverride || data.newstitle || data.searchTitle || data.tiptitle || data.eleventyNavigation?.key || data.title || data.headerTitle;
+		return data.titleOverride || data.newstitle || data.searchTitle || data.tiptitle || data.eleventyNavigation?.key || data.title || data.pageTitle || data.headerTitle;
+	},
+	// Pages that get a generated Open Graph card at /opengraph/?page=…
+	// Defined here so this layout and src/opengraph.njk can’t drift apart.
+	hasOpengraphCard: function(data) {
+		return Boolean(data.eleventyNavigation)
+			&& !data.excludeFromSearch
+			&& !(data.page.url || "").startsWith("/authors/");
 	},
 	social: {
 		description: function({ versions, config }) {
