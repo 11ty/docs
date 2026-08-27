@@ -1,4 +1,4 @@
-// import { decodeHTML } from "entities";
+import { decodeHTML } from "entities";
 import { escapeText } from "entities/escape";
 import activity from "../config/activity.js";
 
@@ -113,7 +113,7 @@ ${entries
 		return `<div data-filter-type="${getSlugFromTitle(
 			`${entry.sourceLabel}: ${entry.title}`
 		)}">${this.callout(
-			`<p><strong><a href="${entry.url}">${escapeText(entry.title)}</a></strong></p>`,
+			`<p><strong><a href="${entry.url}">${escapeText(decodeHTML(entry.title))}</a></strong></p>`,
 			"info",
 			"html",
 			entry.sourceLabel,
