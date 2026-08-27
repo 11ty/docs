@@ -1,4 +1,5 @@
 ---
+titleOverride: "Using Data in Templates"
 eleventyNavigation:
   parent: Eleventy Projects
   key: Using Data

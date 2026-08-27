@@ -1,4 +1,5 @@
 ---
+titleOverride: "<is-land>"
 eleventyNavigation:
   key: Partial Hydration
   title: '<i class="fa-solid fa-sailboat"></i><code>&lt;is-land&gt;</code>'

@@ -165,7 +165,6 @@ body {
 	font-size: 5.75rem; /* resized to fit by script */
 	font-weight: 700;
 	line-height: 1.02;
-	letter-spacing: -.02em;
 	text-wrap: balance;
 	text-shadow: 0 .04em .09em rgba(0,68,48,.22);
 	/* Two lines maximum; anything the shrink loop can’t fit gets an ellipsis. */
@@ -329,8 +328,10 @@ body {
 			</div>
 		</div>
 
-		{# Titles prefer eleventyNavigation.title (the label the sidebar shows) over
-		   the page title, which falls back to eleventyNavigation.key.
+		{# Titles are the page title computed in layouts/base.njk — not
+		   eleventyNavigation.title, which is written to sit in a sidebar next to its
+		   siblings and reads thin alone (“log”, “slug”). Pages where the nav label is
+		   the better standalone name set titleOverride, which wins that chain.
 		   hasOpengraphCard is computed in layouts/base.njk — the same flag that
 		   decides whether a page points og:image at this card. The homepage opts
 		   out there (it has a hand-made image) but is kept as the default card. #}
@@ -342,7 +343,7 @@ body {
 		</script>
 
 		<script type="application/json" id="og-pages">
-			[0{% for item in collections.all %}{% if item.url and (item.url == "/" or item.data.hasOpengraphCard) %},{{ [item.url, (item.data.eleventyNavigation.title | striptags) or item.data.title, item.data.eleventyNavigation.parent, item.date, item.data.eleventyNavigation.key] | dump | replace("</", "<\\/") | safe }}{% endif %}{% endfor %}]
+			[0{% for item in collections.all %}{% if item.url and (item.url == "/" or item.data.hasOpengraphCard) %},{{ [item.url, item.data.title, item.data.eleventyNavigation.parent, item.date, item.data.eleventyNavigation.key] | dump | replace("</", "<\\/") | safe }}{% endif %}{% endfor %}]
 		</script>
 
 		<script type="module">

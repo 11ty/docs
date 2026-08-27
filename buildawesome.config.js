@@ -22,7 +22,7 @@ import { getImageColors } from "@11ty/image-color";
 import imagePlugin from "./config/imagePlugin.js";
 import { addedIn, coerceVersion, greaterThan, rcompare as compareVersion } from "./config/addedin.js";
 import minificationLocalPlugin, { minifyJavaScriptFile } from "./config/minification.js";
-import { bundle, bundleModulePath } from "./config/bundleJavaScript.js";
+import { bundleModulePath } from "./config/bundleJavaScript.js";
 import cleanName from "./config/cleanAuthorName.js";
 import objectHas from "./config/object-has.js";
 import markdownPlugin from "./config/markdownPlugin.js";

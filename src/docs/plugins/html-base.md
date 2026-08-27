@@ -1,4 +1,5 @@
 ---
+titleOverride: "HTML <base>"
 eleventyNavigation:
   key: HTML Base
   title: '<i class="fa-solid fa-chess-rook"></i>HTML <code>&lt;base&gt;</code>'
