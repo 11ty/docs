@@ -407,7 +407,6 @@ export default async function ($config) {
 		// [resolveModule("@11ty/logo/assets/open-graph.jpg")]: "img/open-graph.jpg",
 		[resolveModule("@11ty/logo/img/logo-784x1093.png")]: "img/logo.png",
 		[resolveModule("@11ty/logo/img/logo-200x200.png")]: "img/logo-github.png",
-		[resolveModule("@11ty/logo/img/logo-96x96.png")]: "img/favicon.png",
 
 		[resolveModule("speedlify-score")]: "js/speedlify-score.js",
 		[resolveModule("@zachleat/seven-minute-tabs")]: "js/seven-minute-tabs.js",
@@ -428,6 +427,7 @@ export default async function ($config) {
 
 	$config.addPassthroughCopy("src/img");
 	$config.addPassthroughCopy("src/favicon.ico");
+	$config.addPassthroughCopy("src/favicon.svg");
 	$config.addPassthroughCopy({
 		"./node_modules/@awesome.me/webawesome/dist-cdn/": "/static/web-awesome/",
 	});
