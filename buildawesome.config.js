@@ -15,7 +15,7 @@ import { escapeAttribute, decodeHTML } from "entities";
 import navigationPlugin from "@11ty/eleventy-navigation";
 import eleventyImage from "@11ty/eleventy-img";
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
-import { RenderPlugin, InputPathToUrlTransformPlugin/*, PreserveClosingTagsPlugin*/ } from "@awesome.me/buildawesome";
+import { RenderPlugin, InputPathToUrlTransformPlugin/*, PreserveClosingTagsPlugin*/ } from "@11ty/eleventy";
 import fontAwesomePlugin from "@11ty/font-awesome";
 import { getImageColors } from "@11ty/image-color";
 
