@@ -14,6 +14,8 @@ let eleventyComputed = {
 		description: () => "Build Awesome (Eleventy) is a simpler website generator."
 	},
 };
+
+let opengraphCard = true;
 // </script>
 ---
 <script webc:setup>
