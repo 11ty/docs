@@ -541,11 +541,19 @@ filter-container:defined form {
 }
 
 /* Font Awesome Icons */
+/* Some Font Awesome path data draws outside its declared viewBox —
+   `fab:build-awesome` is 528 units tall in a 448×512 box, which clipped the
+   balloon knot flat. Both viewports (the <symbol> and the icon <svg> itself)
+   clip by default, so opt every icon out of clipping and let it bleed. */
+symbol {
+	overflow: visible;
+}
 .fa11ty-icon {
 	margin: 0 .25em;
 	width: 1.3em;
 	height: 1.3em;
 	vertical-align: text-bottom;
+	overflow: visible;
 }
 .util-icon-sm {
 	width: 1em;
