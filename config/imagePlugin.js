@@ -122,7 +122,9 @@ export default function($config) {
 			return getCardScreenshotUrl(url, screenshotCacheBustParam);
 		}
 
-		return bakeScreenshot(getCardScreenshotUrl(url));
+		// The cache buster has to reach the baked URL too, otherwise eleventy-fetch
+		// keeps serving its 14-day copy and the card can never be regenerated.
+		return bakeScreenshot(getCardScreenshotUrl(url, screenshotCacheBustParam));
 	});
 
 	$config.addPlugin(eleventyImageTransformPlugin, imageOptions);
