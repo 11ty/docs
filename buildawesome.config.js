@@ -10,6 +10,7 @@ import lodashGet from "lodash/get.js";
 import shortHash from "short-hash";
 import { ImportTransformer } from "esm-import-transformer";
 import { transform as tweetbackTransform } from "@tweetback/canonical";
+import { escapeAttribute, decodeHTML } from "entities";
 
 import navigationPlugin from "@11ty/eleventy-navigation";
 import eleventyImage from "@11ty/eleventy-img";
@@ -301,6 +302,12 @@ export default async function ($config) {
 
 	$config.addFilter("modulo", function (num, div) {
 		return num % div;
+	});
+
+	// Attribute-safe text. Entities are decoded first so an already-encoded value
+	// (say, an eleventyNavigation.title run through striptags) can’t double-escape.
+	$config.addFilter("escapeAttribute", function (content) {
+		return escapeAttribute(decodeHTML(String(content ?? "")));
 	});
 
 	$config.addFilter("throwErrorWhenMissing", function (arg, msg) {

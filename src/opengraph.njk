@@ -1,0 +1,640 @@
+---
+permalink: /opengraph/index.html
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Open Graph image generator</title>
+		<meta name="robots" content="noindex">
+		<link rel="preload" href="/css/fonts/cera-round-pro-bold.woff2" as="font" type="font/woff2" crossorigin>
+		<style>
+{% include "components/fonts.css" %}
+
+/* The wordmark is set in Black; components/fonts.css only ships up to 700. */
+@font-face {
+	font-family: Cera Round Pro;
+	font-weight: 900;
+	src: url("/css/fonts/cera-round-pro-black.woff2") format("woff2");
+	font-display: block;
+}
+
+:root {
+	--og-w: 1200px;
+	--og-h: 630px;
+	--og-green: #00a676;
+	--og-green-light: #00c88d;
+	--og-green-deep: #007d58;
+	--og-mint: #71f4cd;
+	--og-navy: #183153;
+}
+
+* { box-sizing: border-box; }
+
+html {
+	background-color: #e9ecef;
+	color-scheme: light;
+	/* No scrollbar: it would otherwise eat 15px off the right edge of the card
+	   in a 1200px wide screenshot. The page still scrolls to reach the editor. */
+	scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+	display: none;
+}
+body {
+	margin: 0;
+	font-family: Cera Round Pro, system-ui, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* The screenshot target. Sized exactly, positioned at the top left of the
+   viewport so a 1200×630 viewport screenshot captures it edge to edge. */
+.og {
+	position: relative;
+	overflow: hidden;
+	width: var(--og-w);
+	height: var(--og-h);
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 2.5rem;
+	padding: 4rem 4.5rem;
+	color: #fff;
+	background-color: var(--og-green);
+	background-image:
+		radial-gradient(120% 130% at 88% -20%, var(--og-green-light) 0%, transparent 55%),
+		radial-gradient(100% 120% at 0% 110%, var(--og-green-deep) 0%, transparent 60%);
+}
+
+/* Decorative dot grid + oversized ghost balloon */
+.og-dots {
+	position: absolute;
+	inset: 0;
+	background-image: radial-gradient(rgba(255,255,255,.22) 2px, transparent 2px);
+	background-size: 34px 34px;
+	mask-image: radial-gradient(65% 75% at 100% 0%, #000 0%, transparent 72%);
+}
+.og-ghost {
+	position: absolute;
+	inset-block-end: -28%;
+	inset-inline-end: -7%;
+	width: 26rem;
+	height: 29.7143rem; /* 448 × 512 icon */
+	color: rgba(255,255,255,.11);
+	transform: rotate(-14deg);
+}
+
+.og-top,
+.og-titlearea,
+.og-bottom {
+	position: relative;
+	z-index: 1;
+}
+
+/* Top row: balloon mark, wordmark, optional eyebrow */
+.og-top {
+	display: flex;
+	align-items: center;
+	gap: 1.125rem;
+}
+.og-mark {
+	flex: none;
+	width: 3.0625rem; /* 448 × 512 icon */
+	height: 3.5rem;
+	color: #fff;
+}
+.og-wordmark {
+	font-size: 2.125rem;
+	font-weight: 900;
+	line-height: 1;
+	letter-spacing: .16em; /* matches components/ba-wordmark.svg */
+	text-transform: uppercase;
+}
+.og-eyebrow {
+	margin-inline-start: auto;
+	font-size: 1.375rem;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	padding: .5em 1.1em;
+	border-radius: 100px;
+	background-color: rgba(255,255,255,.16);
+	box-shadow: inset 0 0 0 2px rgba(255,255,255,.28);
+	white-space: nowrap;
+}
+.og-eyebrow:empty {
+	display: none;
+}
+
+/* Title */
+.og-titlearea {
+	display: flex;
+	align-items: center;
+	min-height: 0;
+}
+.og-parent {
+	display: flex;
+	align-items: center;
+	gap: .45em;
+	margin: 0 0 .3em;
+	font-size: 2.25rem;
+	font-weight: 500;
+	letter-spacing: -.01em;
+	opacity: .82;
+}
+.og-parent:empty {
+	display: none;
+}
+.og-parent span {
+	display: flex;
+	align-items: center;
+	gap: .45em;
+}
+/* The arrow from components/breadcrumb.css */
+.og-parent span::after {
+	content: "";
+	width: 0;
+	height: 0;
+	border-block: .32em solid transparent;
+	border-inline-start: .32em solid currentColor;
+	opacity: .7;
+}
+.og-title {
+	margin: 0;
+	font-size: 5.75rem; /* resized to fit by script */
+	font-weight: 700;
+	line-height: 1.02;
+	letter-spacing: -.02em;
+	text-wrap: balance;
+	text-shadow: 0 .04em .09em rgba(0,68,48,.22);
+	/* Two lines maximum; anything the shrink loop can’t fit gets an ellipsis. */
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	overflow: hidden;
+}
+/* The clamp hides the overflow the fit loop needs to measure. Both properties
+   are unset here: -webkit-line-clamp is what ships today, line-clamp is what
+   replaces it, and the script must not care which one is doing the clamping. */
+.og-title.is-measuring {
+	-webkit-line-clamp: unset;
+	line-clamp: unset;
+}
+
+/* Bottom row */
+.og-bottom {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 2rem;
+	padding-block-start: 1.75rem;
+	border-block-start: 3px solid rgba(255,255,255,.28);
+	font-size: 1.625rem;
+	font-weight: 500;
+}
+.og-url {
+	letter-spacing: -.01em;
+}
+.og-tagline {
+	opacity: .92;
+}
+
+/* Editor UI, deliberately below the fold so it stays out of screenshots */
+.ui {
+	max-width: var(--og-w);
+	padding: 2.5rem 4.5rem 5rem;
+	font-size: 1rem;
+	color: #333;
+}
+.ui h2 {
+	font-size: 1.125rem;
+	margin: 0 0 .25em;
+}
+.ui :where(p) {
+	margin: 0 0 1.5em;
+	color: #666;
+}
+.ui-fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 1rem;
+}
+.ui label {
+	display: grid;
+	gap: .35em;
+	font-weight: 500;
+}
+.ui input,
+.ui select {
+	font: inherit;
+	font-family: inherit;
+	padding: .5em .65em;
+	border: 2px solid #ccc;
+	border-radius: .4em;
+	background-color: #fff;
+	min-width: 0;
+}
+.ui-note {
+	margin: 1rem 0 0;
+	color: #666;
+}
+.ui-actions {
+	margin-block-start: 1rem;
+	display: flex;
+	gap: .75rem;
+	align-items: center;
+}
+.ui button {
+	font: inherit;
+	font-weight: 500;
+	cursor: pointer;
+	padding: .55em 1.2em;
+	border: 2px solid var(--og-navy);
+	border-radius: 100px;
+	background-color: var(--og-navy);
+	color: #fff;
+}
+.ui button.--ghost {
+	background-color: transparent;
+	color: var(--og-navy);
+}
+.ui code {
+	font-family: ui-monospace, Menlo, Consolas, monospace;
+	background-color: #fff;
+	padding: .15em .4em;
+	border-radius: .3em;
+}
+		</style>
+	</head>
+	<body>
+		<div class="og" id="og">
+			<div class="og-dots"></div>
+			<i class="fa-brands fa-build-awesome og-ghost"></i>
+
+			<div class="og-top">
+				<i class="fa-brands fa-build-awesome og-mark"></i>
+				<span class="og-wordmark">Build Awesome</span>
+				<span class="og-eyebrow" id="og-eyebrow"></span>
+			</div>
+
+			<div class="og-titlearea" id="og-titlearea">
+				<div id="og-titleblock">
+					<p class="og-parent" id="og-parent"></p>
+					<h1 class="og-title" id="og-title">Build Awesome is a simpler website generator</h1>
+				</div>
+			</div>
+
+			<div class="og-bottom">
+				<span class="og-url" id="og-url">build.awesome.me</span>
+				<span class="og-tagline" id="og-tagline">A simpler website generator</span>
+			</div>
+		</div>
+
+		<div class="ui">
+			<h2>Open Graph image source</h2>
+			<p>Screenshot the top <code>1200×630</code> of this page. Everything below the card is editor UI and stays out of the shot. Titles come from the site’s own pages — <code>?page=/docs/…</code> selects one, and anything unrecognized falls back to the default.</p>
+			<div class="ui-fields">
+				<label>Page
+					<select id="field-page"></select>
+				</label>
+				<label><span>Eyebrow <em>(optional)</em></span>
+					<select id="field-eyebrow">
+						<option value="auto">Auto — from section</option>
+						<option value="none">None</option>
+						<option value="Docs">Docs</option>
+						<option value="Blog">Blog</option>
+						<option value="Community">Community</option>
+						<option value="Ecosystem">Ecosystem</option>
+						<option value="Services">Services</option>
+						<option value="Learn">Learn</option>
+						<option value="Pro">Pro</option>
+						<option value="v4">v4</option>
+					</select>
+				</label>
+				<label>Size
+					<select id="field-size">
+						<option value="1200x630">1200 × 630 — Open Graph</option>
+						<option value="1200x675">1200 × 675 — 16:9</option>
+						<option value="1600x900">1600 × 900 — Large 16:9</option>
+						<option value="1200x1200">1200 × 1200 — Square</option>
+					</select>
+				</label>
+			</div>
+			<p class="ui-note">Rendering <code id="ui-page-url"></code></p>
+			<div class="ui-actions">
+				<button type="button" id="copy-link">Copy link to this image</button>
+				<button type="button" class="--ghost" id="reset">Reset</button>
+			</div>
+		</div>
+
+		{# Titles prefer eleventyNavigation.title (the label the sidebar shows) over
+		   the page title, which falls back to eleventyNavigation.key.
+		   hasOpengraphCard is computed in layouts/base.njk — the same flag that
+		   decides whether a page points og:image at this card. The homepage opts
+		   out there (it has a hand-made image) but is kept as the default card. #}
+		{# The nav tree, as [key, label, parent]. eleventyNavigation.title on a page
+		   is its displayed label and wins over its key (same rule
+		   eleventyNavigationToHtml uses); parent lets us walk back up the tree. #}
+		<script type="application/json" id="og-nav-labels">
+			[0{% for item in collections.all %}{% if item.data.eleventyNavigation.key %},{{ [item.data.eleventyNavigation.key, item.data.eleventyNavigation.title | striptags, item.data.eleventyNavigation.parent] | dump | replace("</", "<\\/") | safe }}{% endif %}{% endfor %}]
+		</script>
+
+		<script type="application/json" id="og-pages">
+			[0{% for item in collections.all %}{% if item.url and (item.url == "/" or item.data.hasOpengraphCard) %},{{ [item.url, (item.data.eleventyNavigation.title | striptags) or item.data.title, item.data.eleventyNavigation.parent, item.date, item.data.eleventyNavigation.key] | dump | replace("</", "<\\/") | safe }}{% endif %}{% endfor %}]
+		</script>
+
+		<script type="module">
+		const card = document.getElementById("og");
+		const titleArea = document.getElementById("og-titlearea");
+		const titleBlock = document.getElementById("og-titleblock");
+		const title = document.getElementById("og-title");
+		const parentOut = document.getElementById("og-parent");
+		const eyebrowOut = document.getElementById("og-eyebrow");
+		const urlOut = document.getElementById("og-url");
+		const debugUrl = document.getElementById("ui-page-url");
+
+		const page = document.getElementById("field-page");
+		const eyebrow = document.getElementById("field-eyebrow");
+		const size = document.getElementById("field-size");
+
+		const DEFAULT_PAGE = "/";
+		const DOMAIN = "{{ config.origin }}".replace(/^https?:\/\//, "");
+		const SECTIONS = { docs: "Docs", blog: "Blog", news: "News", pro: "Pro" };
+		const GROUP_ORDER = ["Site", "Introduction", "Learn", "Guide", "Plugins", "Services", "Community", "Blog"];
+
+		// Titles are baked in at build time: the query string can only ever pick
+		// one of the site’s own pages, never supply arbitrary text.
+		const PAGES = JSON.parse(document.getElementById("og-pages").textContent)
+			.slice(1) // leading 0 keeps the comma placement simple in the template loop
+			.filter(([url, pageTitle]) => url && pageTitle);
+
+		// eleventyNavigation.title values are authored as HTML; striptags runs at
+		// build time, so only entities are left to unescape here.
+		const ENTITIES = { "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'" };
+		const NAV = new Map(JSON.parse(document.getElementById("og-nav-labels").textContent)
+			.slice(1)
+			.map(([key, label, parent]) => [key, { label, parent }]));
+
+		// Deep enough to be worth the full trail: "JavaScript" alone doesn’t say much,
+		// "Template Languages ▸ JavaScript" does.
+		const DEEP_TREES = ["Template Languages"];
+
+		// Top-level sections. These name the eyebrow instead of appearing as a crumb.
+		const SECTIONS_AS_EYEBROW = ["Community", "Blog", "Ecosystem", "Services", "Learn"];
+
+		function decodeEntities(text) {
+			return String(text).replace(/&(amp|lt|gt|quot|#39);/g, match => ENTITIES[match]);
+		}
+
+		function labelFor(key) {
+			if (!key) {
+				return "";
+			}
+
+			return decodeEntities(NAV.get(key)?.label || key);
+		}
+
+		// The immediate parent, unless the page sits under one of DEEP_TREES — then
+		// the whole trail from that ancestor down.
+		function crumbsFor(parentKey) {
+			if (!parentKey) {
+				return [];
+			}
+
+			let chain = [];
+			let key = parentKey;
+
+			while (key && !chain.includes(key)) {
+				chain.unshift(key);
+
+				if (DEEP_TREES.includes(key)) {
+					return withoutSections(chain);
+				}
+
+				key = NAV.get(key)?.parent;
+			}
+
+			return withoutSections([parentKey]);
+		}
+
+		function withoutSections(chain) {
+			return chain.filter(key => !SECTIONS_AS_EYEBROW.includes(key));
+		}
+
+		// The section a page belongs to, nearest first — shown as the eyebrow.
+		// The page’s own key counts, so a section’s index page names its own section.
+		function sectionEyebrowFor(parentKey, ownKey) {
+			return [ownKey, ...ancestorsOf(parentKey)].find(key => SECTIONS_AS_EYEBROW.includes(key)) || "";
+		}
+
+		function sectionFor(url) {
+			let segment = url.split("/")[1];
+
+			if (!segment) {
+				return "";
+			}
+
+			return SECTIONS[segment] || segment[0].toUpperCase() + segment.slice(1);
+		}
+
+		function ancestorsOf(parentKey) {
+			let chain = [];
+			let key = parentKey;
+
+			while (key && !chain.includes(key)) {
+				chain.push(key);
+				key = NAV.get(key)?.parent;
+			}
+
+			return chain;
+		}
+
+		// Group by the site’s own nav sections (Introduction, Guide, Plugins,
+		// Services, Community) — the node just below the root of the chain.
+		// Blog is checked first: it nests under Community in the nav tree.
+		function groupFor([url, , parentKey, , ownKey]) {
+			if (url.startsWith("/blog/")) {
+				return "Blog";
+			}
+
+			let chain = ancestorsOf(parentKey);
+
+			if (!chain.length) {
+				return sectionFor(url) || "Site";
+			}
+
+			// The node just below the root — or, for a section’s own index page
+			// (whose parent *is* the root), the page’s own key.
+			return labelFor(chain[chain.length - 2] || ownKey || chain[chain.length - 1]);
+		}
+
+		function entryFor(url) {
+			return PAGES.find(([pageUrl]) => pageUrl === url);
+		}
+
+		// Group the pages into the <select> by section.
+		let groups = new Map();
+
+		for (let entry of PAGES) {
+			let label = groupFor(entry);
+
+			if (!groups.has(label)) {
+				groups.set(label, []);
+			}
+
+			groups.get(label).push(entry);
+		}
+
+		let labels = GROUP_ORDER.filter(label => groups.has(label))
+			.concat(Array.from(groups.keys()).filter(label => !GROUP_ORDER.includes(label)).sort());
+
+		for (let label of labels) {
+			let entries = groups.get(label);
+			let group = document.createElement("optgroup");
+			group.label = label;
+
+			if (label === "Blog") {
+				entries.sort((a, b) => String(b[3]).localeCompare(String(a[3])));
+			} else {
+				entries.sort((a, b) => a[1].localeCompare(b[1]));
+			}
+
+			for (let [url, pageTitle] of entries) {
+				group.append(new Option(decodeEntities(pageTitle), url));
+			}
+
+			page.append(group);
+		}
+
+		// Shrink the title until it fits the available space in MAX_LINES or fewer.
+		const MAX_FONT_SIZE = 116;
+		const MIN_FONT_SIZE = 40;
+		const MAX_LINES = 2;
+
+		function titleFits() {
+			let lineHeight = parseFloat(getComputedStyle(title).lineHeight);
+
+			// +1px of slack: line boxes don’t always land on whole pixels.
+			return title.scrollHeight <= lineHeight * MAX_LINES + 1
+				&& titleBlock.scrollHeight <= titleArea.clientHeight
+				&& titleBlock.scrollWidth <= titleArea.clientWidth;
+		}
+
+		function fitTitle() {
+			let fontSize = MAX_FONT_SIZE;
+
+			title.classList.add("is-measuring");
+			title.style.fontSize = fontSize + "px";
+
+			while (fontSize > MIN_FONT_SIZE && !titleFits()) {
+				fontSize -= 2;
+				title.style.fontSize = fontSize + "px";
+			}
+
+			title.classList.remove("is-measuring");
+		}
+
+		function setSize(value) {
+			let [width, height] = String(value).split("x");
+			card.style.setProperty("--og-w", width + "px");
+			card.style.setProperty("--og-h", height + "px");
+		}
+
+		function render({ updateUrl = true } = {}) {
+			let entry = entryFor(page.value) || PAGES[0];
+
+			if (entry) {
+				title.textContent = decodeEntities(entry[1]);
+				parentOut.replaceChildren(...crumbsFor(entry[2]).map(key => {
+					let crumb = document.createElement("span");
+					crumb.textContent = labelFor(key);
+					return crumb;
+				}));
+				urlOut.textContent = DOMAIN;
+			}
+
+			let autoEyebrow = entry ? (sectionEyebrowFor(entry[2], entry[4]) || sectionFor(entry[0])) : "";
+
+			eyebrowOut.textContent = {
+				auto: autoEyebrow,
+				none: "",
+			}[eyebrow.value] ?? eyebrow.value;
+
+			debugUrl.textContent = entry ? entry[0] : "";
+
+			setSize(size.value);
+			fitTitle();
+
+			if (updateUrl) {
+				let params = new URLSearchParams();
+
+				// Only the values that differ from the defaults go in the URL.
+				if (page.value !== DEFAULT_PAGE) {
+					params.set("page", page.value);
+				}
+
+				if (eyebrow.value !== eyebrow.options[0].value) {
+					params.set("eyebrow", eyebrow.value);
+				}
+
+				if (size.value !== size.options[0].value) {
+					params.set("size", size.value);
+				}
+
+				let query = params.toString();
+				history.replaceState(null, "", query ? "?" + query : location.pathname);
+			}
+		}
+
+		// Seed from the query string: ?page=…&eyebrow=…&size=…
+		// Every value is checked against a build-time list; unknown ones are ignored.
+		let params = new URLSearchParams(location.search);
+
+		if (entryFor(params.get("page"))) {
+			page.value = params.get("page");
+		} else if (entryFor(DEFAULT_PAGE)) {
+			page.value = DEFAULT_PAGE;
+		}
+
+		for (let [key, field] of Object.entries({ eyebrow, size })) {
+			let requested = params.get(key);
+
+			if (requested && Array.from(field.options).some(option => option.value === requested)) {
+				field.value = requested;
+			}
+		}
+
+		for (let field of [page, eyebrow, size]) {
+			field.addEventListener("change", () => render());
+		}
+
+		document.getElementById("reset").addEventListener("click", function() {
+			page.value = entryFor(DEFAULT_PAGE) ? DEFAULT_PAGE : PAGES[0]?.[0];
+			eyebrow.value = eyebrow.options[0].value;
+			size.value = size.options[0].value;
+			render();
+		});
+
+		document.getElementById("copy-link").addEventListener("click", async function() {
+			await navigator.clipboard.writeText(location.href);
+			this.textContent = "Copied!";
+			setTimeout(() => this.textContent = "Copy link to this image", 1500);
+		});
+
+		render({ updateUrl: false });
+
+		// Fonts change the metrics, so measure again once they’ve loaded.
+		await document.fonts.ready;
+		fitTitle();
+
+		// Screenshot services can wait on this to avoid a mid-fit capture.
+		document.documentElement.classList.add("og-ready");
+		</script>
+
+		<div>
+			{% getBundle "fontawesome" %}
+		</div>
+	</body>
+</html>

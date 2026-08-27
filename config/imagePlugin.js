@@ -62,6 +62,16 @@ function getScreenshotUrl(urlPath, screenshotCacheBustParam = "") {
 	return `https://screenshot.11ty.app/${encodeURIComponent(fullUrl)}/opengraph/x.jpg`;
 }
 
+// Screenshot of the generated Open Graph card at /opengraph/ instead of the page itself
+function getCardScreenshotUrl(urlPath, screenshotCacheBustParam = "") {
+	let cardUrl = new URL("/opengraph/", config.origin);
+	cardUrl.searchParams.set("page", urlPath);
+
+	let fullUrl = addCacheBusterQueryParam(cardUrl.toString(), screenshotCacheBustParam);
+
+	return `https://screenshot.11ty.app/${encodeURIComponent(fullUrl)}/opengraph/x.jpg`;
+}
+
 function addCacheBusterQueryParam(fullUrl, queryParamValue) {
 	if(!queryParamValue) {
 		return fullUrl;
@@ -79,15 +89,10 @@ function isRecentPost(date) {
 export default function($config) {
 	$config.addFilter("productionUrl", productionUrl);
 
-	// Resize and transform an image format, return URL to that image
-	// Supports Font Awesome icons via protocol handler (e.g. `fas:font-awesome-flag`)
-	$config.addFilter("getOpengraphImageUrl", async function({ url, date }, screenshotCacheBustParam) {
-		// skip optimization of recent posts that have a cache buster (we don’t want to screenshot pages that aren’t deployed yet)
-		if(isRecentPost(date) && screenshotCacheBustParam) {
-			return getScreenshotUrl(url, screenshotCacheBustParam);
-		}
-
-		let stats = await optimizeImage(getScreenshotUrl(url), 1200, "png");
+	// Download the screenshot at build time, resize it, and serve it from our own
+	// domain — so og:image doesn’t depend on the screenshot service at unfurl time
+	async function bakeScreenshot(screenshotUrl) {
+		let stats = await optimizeImage(screenshotUrl, 1200, "png");
 		let outputFormat = Object.keys(stats).pop();
 		let formatStats = stats[outputFormat][0];
 
@@ -97,6 +102,27 @@ export default function($config) {
 
 		// absolute URL required for opengraph images
 		return productionUrl(formatStats.url);
+	}
+
+	// Resize and transform an image format, return URL to that image
+	// Supports Font Awesome icons via protocol handler (e.g. `fas:font-awesome-flag`)
+	$config.addFilter("getOpengraphImageUrl", async function({ url, date }, screenshotCacheBustParam) {
+		// skip optimization of recent posts that have a cache buster (we don’t want to screenshot pages that aren’t deployed yet)
+		if(isRecentPost(date) && screenshotCacheBustParam) {
+			return getScreenshotUrl(url, screenshotCacheBustParam);
+		}
+
+		return bakeScreenshot(getScreenshotUrl(url));
+	});
+
+	// Same, but screenshots the generated card at /opengraph/?page=… instead of the page
+	$config.addFilter("getOpengraphCardImageUrl", async function({ url, date }, screenshotCacheBustParam) {
+		// skip optimization of recent posts that have a cache buster (we don’t want to screenshot pages that aren’t deployed yet)
+		if(isRecentPost(date) && screenshotCacheBustParam) {
+			return getCardScreenshotUrl(url, screenshotCacheBustParam);
+		}
+
+		return bakeScreenshot(getCardScreenshotUrl(url));
 	});
 
 	$config.addPlugin(eleventyImageTransformPlugin, imageOptions);
