@@ -326,6 +326,7 @@ body {
 			<p class="ui-note">Rendering <code id="ui-page-url"></code></p>
 			<div class="ui-actions">
 				<button type="button" id="copy-link">Copy link to this image</button>
+				<button type="button" id="copy-screenshot">Copy screenshot URL</button>
 				<button type="button" class="--ghost" id="reset">Reset</button>
 			</div>
 		</div>
@@ -363,7 +364,8 @@ body {
 		const size = document.getElementById("field-size");
 
 		const DEFAULT_PAGE = "/";
-		const DOMAIN = "{{ config.origin }}".replace(/^https?:\/\//, "");
+		const ORIGIN = "{{ config.origin }}";
+		const DOMAIN = ORIGIN.replace(/^https?:\/\//, "");
 		const SECTIONS = { docs: "Docs", blog: "Blog", news: "News", pro: "Pro" };
 		const GROUP_ORDER = ["Site", "Introduction", "Learn", "Guide", "Plugins", "Services", "Community", "Blog"];
 
@@ -620,11 +622,25 @@ body {
 			render();
 		});
 
-		document.getElementById("copy-link").addEventListener("click", async function() {
-			await navigator.clipboard.writeText(location.href);
-			this.textContent = "Copied!";
-			setTimeout(() => this.textContent = "Copy link to this image", 1500);
-		});
+		// Matches getCardScreenshotUrl in config/imagePlugin.js. Always built against
+		// config.origin: the screenshot service has to fetch a public URL, so the
+		// localhost one you are looking at right now would not resolve for it.
+		function screenshotUrl() {
+			let cardUrl = new URL("/opengraph/" + location.search, ORIGIN).toString();
+
+			return "https://screenshot.11ty.app/" + encodeURIComponent(cardUrl) + "/opengraph/x.jpg";
+		}
+
+		function onCopy(id, label, getValue) {
+			document.getElementById(id).addEventListener("click", async function() {
+				await navigator.clipboard.writeText(getValue());
+				this.textContent = "Copied!";
+				setTimeout(() => this.textContent = label, 1500);
+			});
+		}
+
+		onCopy("copy-link", "Copy link to this image", () => location.href);
+		onCopy("copy-screenshot", "Copy screenshot URL", screenshotUrl);
 
 		render({ updateUrl: false });
 
