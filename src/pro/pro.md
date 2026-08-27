@@ -47,7 +47,7 @@ Our [Kickstarter]({{ config.kickstarterUrl }}) was funded successfully by **{{ k
 
 {% callout "info", "html", "" %}
 <div class="util-flex util-center">
-	<a href="{{ config.kickstarterUrl }}" class="btn-brand">Late pricing is still available for the <i class="fa-brands fa-kickstarter"></i>Kickstarter <span class="btn-tag">Funded!</span></a>
+	<a href="{{ config.kickstarterUrl }}" class="btn-brand">Check in on the <i class="fa-brands fa-kickstarter"></i>Kickstarter <span class="btn-tag">Funded!</span></a>
 </div>
 {% endcallout %}
 
