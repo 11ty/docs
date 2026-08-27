@@ -26,6 +26,19 @@
 	display: flex;
 	align-items: center;
 }
+/* Header social icons are one muted color. Hovering or focusing any one of them fades
+   the whole set to the real brand colors from index.css (the footer always shows those). */
+.elv-nav-menu .elv-nav-sociallink .fa11ty-icon use {
+	transition: .15s ease color;
+}
+.elv-nav-menu:not(:has(.elv-nav-sociallink:is(:hover, :focus-visible))) .elv-nav-sociallink .fa11ty-icon use {
+	color: color-mix(in srgb, currentColor 80%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+	.elv-nav-menu .elv-nav-sociallink .fa11ty-icon use {
+		transition: none;
+	}
+}
 .elv-nav-sociallink-text {
 	position: absolute;
 	height: 1px;

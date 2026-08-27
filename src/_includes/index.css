@@ -551,19 +551,21 @@ filter-container:defined form {
 	width: 1em;
 	height: 1em;
 }
-.fa-mastodon {
+/* Brand colors target the <use> instance (not the shared <symbol>) so individual
+   placements can opt out — see the header social icons in components/navigation.css */
+.fa11ty-icon [href="#fab-fa-mastodon"] {
 	color: #7b68da;
 }
-.fa-bluesky {
+.fa11ty-icon [href="#fab-fa-bluesky"] {
 	color: #1285fe;
 }
-.fa-linkedin {
+.fa11ty-icon [href="#fab-fa-linkedin"] {
 	color: #0a66c2;
 }
-.fa-youtube {
+.fa11ty-icon [href="#fab-fa-youtube"] {
 	color: #f03;
 }
-.fa-discord {
+.fa11ty-icon [href="#fab-fa-discord"] {
 	color: #5865f2;
 }
 .fa11ty-icon [href="#fas-fa-square-rss"] {
