@@ -14,6 +14,13 @@ let eleventyComputed = {
 	// Pages that get a generated Open Graph card at /opengraph/?page=…
 	// Defined here so this layout and src/opengraph.njk can’t drift apart.
 	hasOpengraphCard: function(data) {
+		// An explicit `opengraphCard` in front matter wins both ways: true gives a
+		// page a card without putting it in the site navigation, false keeps a page
+		// on the plain page screenshot.
+		if (data.opengraphCard !== undefined) {
+			return Boolean(data.opengraphCard);
+		}
+
 		return Boolean(data.eleventyNavigation)
 			&& !data.excludeFromSearch
 			&& !(data.page.url || "").startsWith("/authors/");
@@ -73,7 +80,7 @@ let eleventyComputed = {
 		<meta property="og:image" content="{{ ogimageOverride.src | productionUrl }}">
 		<meta property="og:image:type" content="{{ ogimageOverride.type or 'image/png' }}">
 		<meta property="og:image:alt" content="{{ ogimageOverride.alt | throwErrorWhenMissing('Missing alt image on opengraph image') }}">
-{%- elseif eleventy.env.runMode == "serve" or page.url == "/" or page.inputPath.endsWith("author-pages.md") %}
+{%- elseif eleventy.env.runMode == "serve" or page.inputPath.endsWith("author-pages.md") %}
 		<meta property="og:image" content="{{ '/img/open-graph.jpg' | productionUrl }}">
 		<meta property="og:image:type" content="image/jpeg">
 		<meta property="og:image:alt" content="A green background with an assortment of icons. Build Awesome white text in overlaid in the center and the previous 11ty logo is peaking out in the bottom right corner.">

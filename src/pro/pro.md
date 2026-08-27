@@ -1,8 +1,11 @@
 ---js
 // <script>
 let headerTitle = "Build Awesome Pro";
-let searchTitle = "Build Awesome Pro is the easiest way to launch and maintain a web site";
+let searchTitle = "Build Awesome Pro is the easiest way to launch a web site";
 let layout = "layouts/docs.njk";
+
+// Not in the docs navigation, but it should still get a generated card
+let opengraphCard = true;
 
 let eleventyComputed = {
 	social: {

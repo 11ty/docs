@@ -184,6 +184,33 @@ body {
 	line-clamp: unset;
 }
 
+/* 11ty corner flag, after the one in /img/open-graph.jpg: an isosceles triangle
+   in #222 with the wordmark inset from the corner. Scaled to 50% of the original
+   246px. Fixed px because it duplicates a fixed 1200×630 design. */
+.og-flag {
+	position: absolute;
+	inset-block-end: 0;
+	inset-inline-end: 0;
+	width: 123px;
+	height: 123px;
+	background-color: #222;
+	clip-path: polygon(100% 0, 100% 100%, 0 100%);
+	z-index: 2;
+}
+.og-flag-logo {
+	position: absolute;
+	inset-block-end: 15px;
+	inset-inline-end: 20px;
+	width: 38px;
+	height: 31px;
+	/* img/logo.svg carries a lot of empty padding in its viewBox (the mark is
+	   1130×937 inside 1569×2186), so scale up and offset to crop to the mark. */
+	background-image: url("/img/logo.svg");
+	background-size: 52.8px 73.5px;
+	background-position: -7.3px -20.7px;
+	background-repeat: no-repeat;
+}
+
 /* Bottom row */
 .og-bottom {
 	display: flex;
@@ -197,9 +224,6 @@ body {
 }
 .og-url {
 	letter-spacing: -.01em;
-}
-.og-tagline {
-	opacity: .92;
 }
 
 /* Editor UI, deliberately below the fold so it stays out of screenshots */
@@ -247,6 +271,7 @@ body {
 	gap: .75rem;
 	align-items: center;
 }
+.ui-actions a,
 .ui button {
 	font: inherit;
 	font-weight: 500;
@@ -256,6 +281,8 @@ body {
 	border-radius: 100px;
 	background-color: var(--og-navy);
 	color: #fff;
+	text-decoration: none;
+	line-height: 1;
 }
 .ui button.--ghost {
 	background-color: transparent;
@@ -273,6 +300,7 @@ body {
 		<div class="og" id="og">
 			<div class="og-dots"></div>
 			<i class="fa-brands fa-build-awesome og-ghost"></i>
+			<div class="og-flag" aria-hidden="true"><span class="og-flag-logo"></span></div>
 
 			<div class="og-top">
 				<i class="fa-brands fa-build-awesome og-mark"></i>
@@ -289,7 +317,6 @@ body {
 
 			<div class="og-bottom">
 				<span class="og-url" id="og-url">build.awesome.me</span>
-				<span class="og-tagline" id="og-tagline">A simpler website generator</span>
 			</div>
 		</div>
 
@@ -326,7 +353,7 @@ body {
 			<p class="ui-note">Rendering <code id="ui-page-url"></code></p>
 			<div class="ui-actions">
 				<button type="button" id="copy-link">Copy link to this image</button>
-				<button type="button" id="copy-screenshot">Copy screenshot URL</button>
+				<a id="open-screenshot" href="" target="_blank" rel="noopener">Open screenshot URL</a>
 				<button type="button" class="--ghost" id="reset">Reset</button>
 			</div>
 		</div>
@@ -362,12 +389,13 @@ body {
 		const page = document.getElementById("field-page");
 		const eyebrow = document.getElementById("field-eyebrow");
 		const size = document.getElementById("field-size");
+		const openScreenshot = document.getElementById("open-screenshot");
 
 		const DEFAULT_PAGE = "/";
 		const ORIGIN = "{{ config.origin }}";
 		const DOMAIN = ORIGIN.replace(/^https?:\/\//, "");
 		const SECTIONS = { docs: "Docs", blog: "Blog", news: "News", pro: "Pro" };
-		const GROUP_ORDER = ["Site", "Introduction", "Learn", "Guide", "Plugins", "Services", "Community", "Blog"];
+		const GROUP_ORDER = ["Site", "Pro", "Introduction", "Learn", "Guide", "Plugins", "Services", "Community", "Blog"];
 
 		// Titles are baked in at build time: the query string can only ever pick
 		// one of the site’s own pages, never supply arbitrary text.
@@ -572,23 +600,30 @@ body {
 			setSize(size.value);
 			fitTitle();
 
+			let params = new URLSearchParams();
+
+			// Only the values that differ from the defaults go in the URL.
+			if (page.value !== DEFAULT_PAGE) {
+				params.set("page", page.value);
+			}
+
+			if (eyebrow.value !== eyebrow.options[0].value) {
+				params.set("eyebrow", eyebrow.value);
+			}
+
+			if (size.value !== size.options[0].value) {
+				params.set("size", size.value);
+			}
+
+			let query = params.toString();
+
+			// Matches getCardScreenshotUrl in config/imagePlugin.js. Built from the
+			// canonical params against config.origin, not location: the screenshot
+			// service fetches a public URL, so a localhost one would not resolve.
+			let cardUrl = new URL("/opengraph/" + (query ? "?" + query : ""), ORIGIN);
+			openScreenshot.href = "https://screenshot.11ty.app/" + encodeURIComponent(cardUrl.toString()) + "/opengraph/x.jpg";
+
 			if (updateUrl) {
-				let params = new URLSearchParams();
-
-				// Only the values that differ from the defaults go in the URL.
-				if (page.value !== DEFAULT_PAGE) {
-					params.set("page", page.value);
-				}
-
-				if (eyebrow.value !== eyebrow.options[0].value) {
-					params.set("eyebrow", eyebrow.value);
-				}
-
-				if (size.value !== size.options[0].value) {
-					params.set("size", size.value);
-				}
-
-				let query = params.toString();
 				history.replaceState(null, "", query ? "?" + query : location.pathname);
 			}
 		}
@@ -622,25 +657,11 @@ body {
 			render();
 		});
 
-		// Matches getCardScreenshotUrl in config/imagePlugin.js. Always built against
-		// config.origin: the screenshot service has to fetch a public URL, so the
-		// localhost one you are looking at right now would not resolve for it.
-		function screenshotUrl() {
-			let cardUrl = new URL("/opengraph/" + location.search, ORIGIN).toString();
-
-			return "https://screenshot.11ty.app/" + encodeURIComponent(cardUrl) + "/opengraph/x.jpg";
-		}
-
-		function onCopy(id, label, getValue) {
-			document.getElementById(id).addEventListener("click", async function() {
-				await navigator.clipboard.writeText(getValue());
-				this.textContent = "Copied!";
-				setTimeout(() => this.textContent = label, 1500);
-			});
-		}
-
-		onCopy("copy-link", "Copy link to this image", () => location.href);
-		onCopy("copy-screenshot", "Copy screenshot URL", screenshotUrl);
+		document.getElementById("copy-link").addEventListener("click", async function() {
+			await navigator.clipboard.writeText(location.href);
+			this.textContent = "Copied!";
+			setTimeout(() => this.textContent = "Copy link to this image", 1500);
+		});
 
 		render({ updateUrl: false });
 
