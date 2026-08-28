@@ -15,6 +15,7 @@
 		font-size: clamp(1em, 2vw, 1.25em);
 	}
 }
+
 .announcement {
 	display: flex;
 	justify-content: center;

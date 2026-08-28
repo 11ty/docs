@@ -33,7 +33,7 @@ npm install @11ty/eleventy-plugin-rss
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
-* `v2` of this this plugin requires Eleventy v3.0 or newer.
+* `v2` of this plugin requires Eleventy v3.0 or newer.
 * `v1` of this plugin is compatible with Eleventy 0.11 or newer.
 
 ## Virtual Template
