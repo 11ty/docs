@@ -37,6 +37,35 @@ const eleventyNavigation = {
 <syntax-highlight language="shell">
 deno --allow-all npm:@11ty/eleventy
 deno --allow-all npm:@11ty/eleventy --serve
+
+# Or use stricter permissions
+deno --allow-env --allow-sys=homedir --allow-read=./ --allow-write=_site/ npm:@11ty/eleventy
+deno --allow-env --allow-sys=homedir --allow-read=./ --allow-write=_site/ npm:@11ty/eleventy --serve
+</syntax-highlight>
+
+<p>Alternatively, you can <a href="https://docs.deno.com/runtime/reference/deno_json/#permissions">use deno.json to configure permissions</a>:</p>
+<syntax-highlight language="js">
+// deno.json
+{
+    "$schema": "https://raw.githubusercontent.com/denoland/deno/refs/heads/main/cli/schemas/config-file.v1.json",
+    "permissions": {
+        "default": {
+            "env": true,
+            "sys": [ "homedir" ],
+            "read": [ "./" ],
+            "write": [ "_site/" ]
+        }
+    }
+}
+// Eleventy requires package.json to be readable, as well as node_modules when using serve
+
+// package.json
+{
+    "scripts": {
+        "build": "deno -P npm:@11ty/eleventy",
+        "serve": "deno -P --allow-net=0.0.0.0:8080 npm:@11ty/eleventy --serve"
+    }
+}
 </syntax-highlight>
 
 <p>Read about our plans to <a href="https://github.com/11ty/eleventy/issues/3278">move away from <code>--allow-all</code> on #3278</a>.</p>
