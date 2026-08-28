@@ -1,3 +1,5 @@
+src/_includes/snippets/pagination/**/*.js
+src/_includes/snippets/pagination/**/*.cjs
 _site/**
 src/_includes/components/auth/gotrue.js
 src/docs/versions.md
