@@ -1,0 +1,7 @@
+{
+	"url": "https://github.com/freshjuice-dev/juicydocs-11ty-starter",
+	"name": "JuicyDocs",
+	"description": "A modern, fast, and accessible documentation starter template built with Eleventy and Tailwind CSS.",
+	"author": "freshjuice-dev",
+	"demo": "https://juicydocs.freshjuice.dev/"
+}
