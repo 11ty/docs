@@ -2,6 +2,6 @@
 	"url": "https://github.com/freshjuice-dev/cyber-banana-11ty-starter",
 	"name": "Berry Blast",
 	"description": "A cyberpunk-themed developer portfolio starter with 11ty, Tailwind CSS, and vanilla JavaScript.",
-	"author": "freshjuice-dev",
+	"author": ["freshjuice-dev", "reatlat"],
 	"demo": "https://cyber-banana-starter.freshjuice.dev/"
 }
