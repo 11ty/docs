@@ -1,8 +1,8 @@
 {
-	"url": "https://github.com/anyblades/subtle",
-	"name": "Subtle",
-	"description": "The most subtle Eleventy v4 micro-starter for content-first sites. Powered by Eleventy Blades.",
-	"author": "anydigital",
-	"demo": "https://subtle.blades.ninja/",
+	"url": "https://github.com/buildawesome-one/starter",
+	"name": "One Starter",
+	"description": "Best content-first micro-starter powered by Build Awesome One kit and Blades CSS — perfect for blogs, docs, landing pages, or anything content-driven.",
+	"author": "buildawesome-one",
+	"demo": "https://starter.buildawesome.one/",
 	"npmStartScript": "start"
 }
