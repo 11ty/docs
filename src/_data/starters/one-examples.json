@@ -1,0 +1,8 @@
+{
+	"url": "https://github.com/buildawesome-one/examples",
+	"name": "All-in-One Examples",
+	"description": "Example starters showcasing Build Awesome One kit for: [1] Multisite Starter [2] Blades / Pico CSS [3] Bootstrap [4] Web Awesome [5] Sveltia CMS [6] Liquid Templates [7] Tailwind Starter [8] OG Images Starter.",
+	"author": "buildawesome-one",
+	"demo": "https://pico-blades.buildawesome.one/",
+	"npmStartScript": "start"
+}
