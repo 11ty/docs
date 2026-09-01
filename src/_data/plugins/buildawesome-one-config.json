@@ -1,5 +1,5 @@
 {
-	"npm": "@anyblades/eleventy-blades-base",
-	"author": "anydigital",
-	"description": "A ready-to-go `eleventy.config.js` for popular 11ty plugins, bundled with npm scripts in one reusable, zero-maintenance package."
+	"npm": "@buildawesome.one/config",
+	"author": "buildawesome-one",
+	"description": "A ready-to-go `buildawesome.config.js` with popular 11ty / Build Awesome plugins, bundled in one reusable, zero-maintenance package."
 }
