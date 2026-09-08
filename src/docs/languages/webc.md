@@ -256,7 +256,7 @@ Hello possum.
 
 ### Asset bundling
 
-When WebC finds `<style>`, `<link rel="stylesheet">`, or `<script>` elements a component file, WebC includes the host component tag in the output HTML by default, so you can style it or reach it from client scripts. To drop the component tag from the output, add [`webc:nokeep`](#webcnokeep) to the host component.
+When WebC finds `<style>`, `<link rel="stylesheet">`, or `<script>` elements in a component file, WebC includes the host component tag in the output HTML by default, so you can style it or reach it from client scripts. To drop the component tag from the output, add [`webc:nokeep`](#webcnokeep) to the host component.
 
 This example also shows how Eleventy automatically bundles `scripts` and `styles`, learn more about [CSS and JS in WebC](#css-and-js-bundler-mode).
 
