@@ -159,9 +159,10 @@ const shortcodes = {
 			dims = [120, 150];
 		}
 
+		// empty `alt=""` intentional
 		return `<img src="${fullUrl}" width="${dims[0]}" height="${
 			dims[1]
-		}" alt="Favicon for ${displayUrl(fullUrl)}" class="avatar avatar-indieweb${
+		}" alt="" class="avatar avatar-indieweb${
 			cls ? ` ${cls}` : ""
 		}" loading="lazy" decoding="async"${attrs ? ` ${attrs}` : ""}>`;
 	},
@@ -408,7 +409,7 @@ export default async function ($config) {
 		[resolveModule("@11ty/logo/img/logo-784x1093.png")]: "img/logo.png",
 		[resolveModule("@11ty/logo/img/logo-200x200.png")]: "img/logo-github.png",
 
-		[resolveModule("speedlify-score")]: "js/speedlify-score.js",
+		[resolveModule("speedlify2-score")]: "js/speedlify2-score.js",
 		[resolveModule("@zachleat/seven-minute-tabs")]: "js/seven-minute-tabs.js",
 		[resolveModule("@zachleat/filter-container")]: "js/filter-container.js",
 		[resolveModule("lite-youtube-embed")]: `js/lite-yt-embed.js`,
@@ -447,12 +448,12 @@ export default async function ($config) {
 	$config.addFilter("cardScreenshotHtml", async function (site) {
 		let url = site.demo || site.url;
 		if(!url) {
-			return `<div class="sites-screenshot-container"><img class="sites-screenshot"></div>`;
+			return `<div class="sites-screenshot-container"><img alt="" class="sites-screenshot"></div>`;
 		}
 		if(site.screenshotOverride) {
-			return `<div class="sites-screenshot-container"><img alt="${site.screenshotOverride.alt}" loading="lazy" decoding="async" class="sites-screenshot" src="${site.screenshotOverride.src}" width="${site.screenshotOverride.width}" height="${site.screenshotOverride.height}"></div>`;
+			return `<div class="sites-screenshot-container"><img alt="${site.screenshotOverride.alt || ""}" loading="lazy" decoding="async" class="sites-screenshot" src="${site.screenshotOverride.src}" width="${site.screenshotOverride.width}" height="${site.screenshotOverride.height}"></div>`;
 		}
-		return `<div class="sites-screenshot-container">${await shortcodes.getScreenshotHtml(site.fileSlug, url, null, site.screenshotSize, site.screenshotAspectRatio)}</div>`;
+		return `<div class="sites-screenshot-container">${await shortcodes.getScreenshotHtml("", url, null, site.screenshotSize)}</div>`;
 	});
 
 	$config.addFilter("speedlifyHash", function (site) {

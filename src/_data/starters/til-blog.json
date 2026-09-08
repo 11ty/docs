@@ -1,8 +1,0 @@
-{
-	"url": "https://glitch.com/~til-blog",
-	"name": "til-blog",
-	"description": "A project showing a basic blog with tags, based on eleventy-base-blog and optimized for Glitch.",
-	"author": "CasseyLottman",
-	"demo": "https://til-blog.glitch.me/",
-	"disabled": true
-}

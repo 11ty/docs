@@ -1,5 +1,0 @@
-{
-	"npm": "@anyblades/eleventy-blades",
-	"author": "anydigital",
-	"description": "Essential 11ty filters, pre/post-processors, and other toggleable features as a simple, configurable plugin."
-}

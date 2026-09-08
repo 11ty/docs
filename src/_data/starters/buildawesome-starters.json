@@ -1,8 +1,0 @@
-{
-	"url": "https://github.com/anyblades/buildawesome-starters",
-	"name": "Build Awesome Starter(s)",
-	"description": "Modern, lightweight Eleventy v4 multi-site starter showcasing Eleventy Blades and Tailwind CLI for: 1) Tailwind 2) Pico 3) Simple CSS.",
-	"author": "anydigital",
-	"demo": "https://tw.11ty.blades.ninja/",
-	"npmStartScript": "start"
-}

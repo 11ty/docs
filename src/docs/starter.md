@@ -7,31 +7,35 @@ eleventyNavigation:
 
 # Starter Projects
 
+## Official Starters
+
 <div class="sites-vert sites-vert--lg">
-  <div class="lo-grid" style="--fl-gap-v: 5em; --fl-gap-h: 2vw;">
+  <ul class="lo-grid" style="--fl-gap-v: 5em;">
 {%- for site in starters | sortObjectByOrder %}
 {%- if site.official %}
 	{% set showSpeedlifyScores = true %}
-  {% include "site-card.njk" %}
+  <li>{% include "site-card.njk" %}</li>
 {%- endif %}{%- endfor %}
-  </div>
+  </ul>
 </div>
+
+## Community Starters
 
 [Add your own starter project](https://github.com/11ty/docs/tree/main/src/_data/starters). Community contributions are shown in random order.
 
 <div class="sites-vert sites-vert--lg">
-  <div class="lo-grid" style="--fl-gap-v: 5em; --fl-gap-h: 2vw;">
+  <ul class="lo-grid" style="--fl-gap-v: 5em;">
 {%- for site in starters | sortObjectByOrder %}
 {%- if site.disabled != true and site.featured %}
 	{% set showSpeedlifyScores = true %}
-  {% include "site-card.njk" %}
+  <li>{% include "site-card.njk" %}</li>
 {%- endif %}{%- endfor %}
 {%- for name, site in starters | shuffle %}
 {%- if site.disabled != true and not site.official and not site.featured %}
 	{% set showSpeedlifyScores = true %}
-  {% include "site-card.njk" %}
+  <li>{% include "site-card.njk" %}</li>
 {%- endif %}{%- endfor %}
-  </div>
+  </ul>
 </div>
 
 ## Lists

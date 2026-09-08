@@ -181,7 +181,7 @@
 	--card-shadow-color: rgba(234, 0, 255, 0.747);
 	--card-shadow-size: 0.3333333333333em; /* 6px /18 */
 }
-.sites-site-vert a {
+.sites-site-vert :is(a, .sites-site-nolink) {
 	--card-shadow-color: var(--card-primary);
 }
 .sites-site-vert a:is(:focus, :hover) img,

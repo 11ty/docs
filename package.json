@@ -83,6 +83,6 @@
     "@zachleat/seven-minute-tabs": "^3.0.3",
     "artificial-chart": "^2.0.3",
     "lite-youtube-embed": "^0.3.4",
-    "speedlify-score": "^4.0.4"
+    "speedlify2-score": "^1.0.0"
   }
 }

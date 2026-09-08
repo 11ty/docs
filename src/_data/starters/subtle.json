@@ -1,8 +1,0 @@
-{
-	"url": "https://github.com/anyblades/subtle",
-	"name": "Subtle",
-	"description": "The most subtle Eleventy v4 micro-starter for content-first sites. Powered by Eleventy Blades.",
-	"author": "anydigital",
-	"demo": "https://subtle.blades.ninja/",
-	"npmStartScript": "start"
-}
