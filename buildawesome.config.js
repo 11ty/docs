@@ -33,8 +33,15 @@ import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
 // Hosts without a usable Open Graph image, use the screenshot service instead.
 const screenshotOnlyHosts = new Set([
 	"berryhouse.ca",
+	"blog.fontawesome.com",
+	"blog.glitch.com",
+	"blog.mozilla.org",
 	"chobble.com",
+	"developer.chrome.com",
+	"docs.flutter.dev",
 	"hoeser.dev",
+	"tc39.es",
+	"v8.dev",
 ]);
 
 function useScreenshotImage(url) {
@@ -152,7 +159,7 @@ const shortcodes = {
 			loading: "lazy",
 			decoding: "async",
 			sizes: sizes || "(min-width: 22em) 30vw, 100vw",
-			class: "sites-screenshot" + (isOpenGraphUrl ? ` sites-screenshot-og${isSquare ? " sites-screenshot-og-sq" : ""}` : ""),
+			class: "sites-screenshot" + (isOpenGraphUrl || preset === "opengraph" ? ` sites-screenshot-og${isSquare ? " sites-screenshot-og-sq" : ""}` : ""),
 			"eleventy:ignore": "",
 		};
 

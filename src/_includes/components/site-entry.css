@@ -25,11 +25,12 @@
 }
 .sites-screenshot-og {
 	aspect-ratio: 1200/630;
-	object-fit: contain;
-	background-color: #222;
+	object-fit: cover;
 }
 .sites-screenshot-og-sq {
 	aspect-ratio: 1/1;
+	object-fit: contain;
+	background-color: #222;
 }
 .sites-screenshot-container--icon {
 	display: flex;
@@ -122,6 +123,9 @@
 	--lo-c-minwidth: 8.5em;
 	--lo-grid-repeat: auto-fill;
 }
+.sites-vert > .lo-grid:has(.sites-screenshot-og:not(.sites-screenshot-og-sq)) {
+	--lo-c-minwidth: 14em; /* 224px /16 */
+}
 .sites-vert--md > .lo-grid,
 .sites-vert--lg > .lo-grid {
 	--lo-c-minwidth: 7em;
@@ -168,6 +172,9 @@
 	justify-content: center;
 	aspect-ratio: 1/1;
 	position: relative;
+}
+.sites-site-vert .sites-screenshot-container:has(.sites-screenshot-og:not(.sites-screenshot-og-sq)) {
+	aspect-ratio: 1200/630;
 }
 .sites-site-vert .sites-screenshot-container:after {
 	content: "";
