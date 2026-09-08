@@ -23,10 +23,13 @@
 	border-radius: .4em;
 	box-shadow: 0 0 0.125em; /* 2px /16 */
 }
-.sites-screenshot-youtube-sq {
-	aspect-ratio: 1/1;
+.sites-screenshot-og {
+	aspect-ratio: 1200/630;
 	object-fit: contain;
 	background-color: #222;
+}
+.sites-screenshot-og-sq {
+	aspect-ratio: 1/1;
 }
 .sites-screenshot-container--icon {
 	display: flex;

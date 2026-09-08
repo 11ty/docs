@@ -3,16 +3,28 @@
 	--fl-stackpoint: 37.5em; /* 600px /16 */
 	--fl-gap-v: 1em;
 }
-.business-network-sites {
-	padding-top: 1em;
-	padding-bottom: 3em;
+.business-network {
+	list-style: none;
+	padding-left: 0;
 }
-.business-network-sites:not(:last-child) {
+.business-network > li:not(:last-child) {
 	margin-bottom: 3em;
+	padding-bottom: 3em;
 	border-bottom: 1px solid #666;
 }
+.business-network-link {
+	display: block;
+	width: fit-content;
+}
+.business-network-sites {
+	display: block;
+	padding-top: 1em;
+	max-width: 16.666666666667em; /* 300px /18 */
+}
 .business-network-name {
-	font-size: 1.5em;
+	display: block;
+	font-size: 1.25em;
+	font-weight: 700;
 }
 .business-network-available {
 	padding-left: 3.230769230769em; /* 42px /13 */

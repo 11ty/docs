@@ -30,6 +30,21 @@ import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
 
+// Hosts without a usable Open Graph image, use the screenshot service instead.
+const screenshotOnlyHosts = new Set([
+	"berryhouse.ca",
+	"chobble.com",
+	"hoeser.dev",
+]);
+
+function useScreenshotImage(url) {
+	try {
+		return screenshotOnlyHosts.has(new URL(url).hostname.replace(/^www\./, ""));
+	} catch (e) {
+		return false;
+	}
+}
+
 function resolveModule(target) {
 	return fileURLToPath(import.meta.resolve(target));
 }
@@ -95,17 +110,19 @@ const shortcodes = {
 			advanced = "_wait:2";
 		}
 
-		let isYouTubeUrl = siteUrl.includes("www.youtube.com");
+		let isOpenGraphUrl =
+			(preset === "opengraph" && !useScreenshotImage(siteUrl)) ||
+			siteUrl.includes("www.youtube.com");
 		let isSquare = viewport.width === viewport.height;
 		let screenshotUrl;
 		if (siteUrl) {
-			if(isYouTubeUrl) {
+			if(isOpenGraphUrl) {
 				screenshotUrl = `https://v1.opengraph.11ty.dev/${encodeURIComponent(
 					siteUrl
 				)}/small/jpeg/`;
 
-				viewport.width = 650;
-				viewport.height = 366;
+				viewport.width = 1200;
+				viewport.height = 630;
 			} else {
 				screenshotUrl = `https://screenshot.11ty.app/${encodeURIComponent(
 					siteUrl
@@ -135,7 +152,7 @@ const shortcodes = {
 			loading: "lazy",
 			decoding: "async",
 			sizes: sizes || "(min-width: 22em) 30vw, 100vw",
-			class: "sites-screenshot" + (isYouTubeUrl ? ` sites-screenshot-youtube${isSquare ? "-sq" : ""}` : ""),
+			class: "sites-screenshot" + (isOpenGraphUrl ? ` sites-screenshot-og${isSquare ? " sites-screenshot-og-sq" : ""}` : ""),
 			"eleventy:ignore": "",
 		};
 
@@ -623,6 +640,24 @@ export default async function ($config) {
 
 	$config.addFilter("filterBusinessPeople", function (authors) {
 		return Object.values(authors).filter((entry) => !!entry.business_url);
+	});
+
+	// Their business_url, preferring the matching entry from their built sites so the screenshot is shared with the rest of the site.
+	$config.addFilter("businessSiteUrl", function (author) {
+		let host = (url) => {
+			try {
+				return new URL(url).hostname.replace(/^www\./, "");
+			} catch (e) {
+				return undefined;
+			}
+		};
+
+		let businessHost = host(author.business_url);
+		let match = (author.sites || []).find(
+			(site) => businessHost && host(site.url) === businessHost
+		);
+
+		return match ? match.url : author.business_url;
 	});
 
 	$config.addFilter("isBusinessPerson", function (supporter) {
