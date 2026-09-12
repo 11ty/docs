@@ -164,7 +164,10 @@ Note that if the current page (`page.url`) is the first or last in the set, we w
 <seven-minute-tabs autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "paged-nav-nextprev", valid: "njk,js"} %}
   <div id="paged-nav-nextprev-liquid" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
+    {%- codetitle "nextprev.liquid" %}
+    {%- highlight "liquid" %}
+    {%- include "examples/pagination/nav/nextprev.liquid" %}
+    {%- endhighlight %}
   </div>
   <div id="paged-nav-nextprev-njk" role="tabpanel">
     {%- codetitle "nextprev.njk" %}
@@ -200,7 +203,10 @@ For clarity here, we’re omitting the previous and next links from the previous
 <seven-minute-tabs autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "paged-nav-firstlast", valid: "njk,js"} %}
   <div id="paged-nav-firstlast-liquid" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
+    {%- codetitle "firstlast.liquid" %}
+    {%- highlight "liquid" %}
+    {%- include "examples/pagination/nav/firstlast.liquid" %}
+    {%- endhighlight %}
   </div>
   <div id="paged-nav-firstlast-njk" role="tabpanel">
     {%- codetitle "firstlast.njk" %}
@@ -234,7 +240,10 @@ Here’s the final pagination navigation template code, pieced together:
 <seven-minute-tabs persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "paged-nav-combined", valid: "njk,js"} %}
   <div id="paged-nav-combined-liquid" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
+    {%- codetitle "combined.liquid" %}
+    {%- highlight "liquid" %}
+    {%- include "examples/pagination/nav/combined.liquid" %}
+    {%- endhighlight %}
   </div>
   <div id="paged-nav-combined-njk" role="tabpanel">
     {%- codetitle "combined.njk" %}
