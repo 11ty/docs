@@ -1,7 +1,7 @@
 {
   "url": "https://github.com/mendhak/eleventy-satisfactory",
   "name": "Eleventy Satisfactory",
-  "description": "A simple, content-first Eleventy blog theme, with various convenience features, inspired by Hylia and SimpleCSS",
+  "description": "A simple, content-first Eleventy blog theme, with convenience features and accessibility improvements.",
   "author": "mendhak",
   "demo": "https://code.mendhak.com/eleventy-satisfactory/",
   "npmStartScript": "start"
