@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-llms-txt",
+	"author": "LostInBrittany",
+	"description": "An Eleventy plugin that generates a `llms.txt` file to expose your site's content to Large Language Models (LLMs) in a structured format."
+}
