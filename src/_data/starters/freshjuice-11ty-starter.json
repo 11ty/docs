@@ -2,6 +2,6 @@
 	"url": "https://github.com/freshjuice-dev/freshjuice-11ty-starter",
 	"name": "Snappy Lemon",
 	"description": "Modern 11ty v3 starter with TailwindCSS v4, Alpine.js, CloudCannon CMS integration, Bookshop visual editing, Pagefind search, and accessibility-first design",
-	"author": "freshjuice-dev",
+	"author": ["freshjuice-dev", "reatlat"],
 	"demo": "https://snappy-lemon-starter.freshjuice.dev/"
 }
