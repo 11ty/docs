@@ -1,0 +1,5 @@
+{
+  "npm": "eleventy-plugin-search",
+  "author": "wernerglinka",
+  "description": "HTML-first Eleventy search plugin with Fuse.js and Cheerio. Processes final rendered HTML files after templates for accurate search indexing."
+}
