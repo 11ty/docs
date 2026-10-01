@@ -1,8 +1,7 @@
 {
 	"url": "https://codeberg.org/impalcature/poetry",
 	"name": "Poetry",
-	"description": "A simple, minimalist, and performance-oriented starter kit for Eleventy, designed to help you build a fast and elegant blog.",
+	"description": "Poetry was created to help people develop and publish their own static websites. Enjoy the work along the way!",
 	"author": "impalcature",
 	"demo": "https://impalcature.codeberg.page/poetry/"
 }
-
