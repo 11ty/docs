@@ -39,9 +39,9 @@ npm install @11ty/eleventy-plugin-rss
 
 ## Upgrading from v2
 
-* Version 3 is ESM and requires Eleventy v3 or newer. It does not require ESM projects or an ESM config file.
+* Version 3 of this plugin is ESM and requires Eleventy v3 or newer. It does not require ESM projects or an ESM config file.
 * CommonJS configuration files on Node 20.19+ must use `require("@11ty/eleventy-plugin-rss").default`. Older versions of Node need [dynamic `import()`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
-* The helper functions (`feedPlugin`, `dateToRfc3339`, `dateToRfc822`, `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls`) are only available as named exports. v3.1.0 did re-add these to the default export but named imports (e.g. `import { dateToRfc3339 } from "@11ty/eleventy-plugin-rss"`) are preferred.
+* Breaking change in v3.0: The helper functions (`feedPlugin`, `dateToRfc3339`, `dateToRfc822`, `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls`) are only available as named exports (not as properties of the default export).
 
 ## Virtual Template
 
