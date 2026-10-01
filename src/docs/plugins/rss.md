@@ -104,10 +104,10 @@ This configuration is the only step for the Virtual Template method. If you need
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
 {% set codeContent %}
-import pluginRss from "@11ty/eleventy-plugin-rss";
+import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginRss);
+	eleventyConfig.addPlugin(rssPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -122,10 +122,10 @@ export default function (eleventyConfig) {
 {% addedin "RSS 1.1.0" %} Advanced control of [PostHTML rendering options](https://github.com/posthtml/posthtml-render#options) via `posthtmlRenderOptions`.
 
 {% set codeContent %}
-import pluginRss from "@11ty/eleventy-plugin-rss";
+import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(pluginRss, {
+	eleventyConfig.addPlugin(rssPlugin, {
 		posthtmlRenderOptions: {
 			closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
 		},
