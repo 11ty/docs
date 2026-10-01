@@ -61,6 +61,7 @@ export default function (eleventyConfig) {
 		collection: {
 			name: "posts", // iterate over `collections.posts`
 			limit: 10,     // 0 means no limit
+			sort: "auto",  // or "descending", "ascending"
 		},
 		metadata: {
 			language: "en",
@@ -87,6 +88,10 @@ This configuration is the only step for the Virtual Template method. If you need
 * `inputPath`: (optional, default based on `metadata.title`) Change where the virtual template pretends to live on the file system (e.g. if you want project directory data files to apply via the [Data Cascade](/docs/data-cascade/))
 * `collection.name`: Collection entries to iterate over to populate your feed (e.g. `name: "posts"` for `collections.posts`)
 * `collection.limit`: Number of entries to include. (Use `0` for no limit.)
+* `collection.sort`: {% addedin "RSS 3.1.0" %} (optional) Order of feed entries, applied before `collection.limit`. Any other value throws an error.
+	* `"auto"` (default): Reverses the collection, assuming Eleventy’s default oldest-first order.
+	* `"descending"`: Sorts by `date`, newest first, regardless of the collection’s order. Use this for custom collections already sorted newest-first, which otherwise produce a feed of your oldest posts.
+	* `"ascending"`: Sorts by `date`, oldest first.
 * `metadata`: Content used to populate the feed boilerplate. `metadata.subtitle` is used for the feed description.
 * `metadata.icon`, `metadata.logo`: {% addedin "RSS 3.0.0" %} (optional) URLs to a feed icon and logo.
 * `stylesheet`: URL to an XSL stylesheet to change how the feed is rendered in the browser (only for Atom and RSS feeds).
