@@ -102,6 +102,41 @@ This configuration is the only step for the Virtual Template method. If you need
 
 </details>
 
+### Virtual Template with `addTemplate`
+
+{% addedin "RSS 3.1.0" %} `getFeedTemplate` returns the `content` and `data` for the same feed `feedPlugin` creates, for use with [`$config.addTemplate`](/docs/virtual-templates.md). This unlocks unlimited feeds of the same type. The feed template uses filters from the main plugin, make sure you add the plugin (via `rssPlugin`) first.
+
+{% set codeContent %}
+import { rssPlugin, getFeedTemplate } from "@11ty/eleventy-plugin-rss";
+
+export default function ($config) {
+	$config.addPlugin(rssPlugin);
+
+	let { content, data } = getFeedTemplate({
+		type: "atom", // or "rss", "json"
+		outputPath: "/posts.xml",
+		collection: {
+			name: "posts",
+			limit: 10,
+		},
+		metadata: {
+			language: "en",
+			title: "Blog Title",
+			subtitle: "This is a longer description about your blog.",
+			base: "https://example.com/",
+			author: {
+				name: "Your Name",
+			},
+		},
+	});
+
+	$config.addTemplate("feeds/posts.njk", content, data);
+};
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
+`getFeedTemplate` accepts the same options as the [Virtual Template](#virtual-template) method, except `inputPath`: pass the path as the first argument to `addTemplate` instead. You can extend `data` before passing it in, e.g. `{ ...data, eleventyNavigation: { key: "Feed" } }`.
+
 ## Manual Template
 
 ### Configuration
