@@ -1,0 +1,8 @@
+{
+	"url": "https://github.com/rothsandro/eleventy-notes",
+	"name": "Eleventy Notes",
+	"description": "A template for Eleventy to publish your personal notes or docs.",
+	"author": "rothsandro",
+	"demo": "https://eleventy-notes.sandroroth.com/",
+	"featured": true
+}
