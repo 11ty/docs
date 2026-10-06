@@ -2,6 +2,5 @@
 	"url": "https://github.com/clenemt/eleventy-webpack",
 	"name": "eleventy-webpack",
 	"description": "A barebone Eleventy and Webpack boilerplate 🎈",
-	"author": "clenemt",
-	"demo": "https://eleventy-webpack.netlify.app/"
+	"author": "clenemt"
 }

@@ -2,6 +2,5 @@
 	"url": "https://github.com/StaticMania/roxo-eleventy",
 	"name": "roxo-eleventy",
 	"description": "Roxo is an 11ty starter project for creative agencies, freelancers, graphic designers, photographers",
-	"author": "static_mania",
-	"demo": "https://roxo-eleventy.staticmania.com/"
+	"author": "static_mania"
 }

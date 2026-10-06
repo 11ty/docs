@@ -1,0 +1,8 @@
+{
+	"url": "https://github.com/buildawesome-one/starter",
+	"name": "One Starter",
+	"description": "Best content-first micro-starter powered by Build Awesome One kit and Blades CSS — perfect for blogs, docs, landing pages, or anything content-driven.",
+	"author": "buildawesome-one",
+	"demo": "https://starter.buildawesome.one/",
+	"npmStartScript": "start"
+}

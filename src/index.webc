@@ -155,7 +155,7 @@ tags: posts
 	<h2>Built With Eleventy</h2>
 
 	<sites-list>
-		<site-card :show-icons="true" webc:for="(key, site) in shuffle($data.builtwith)" webc:if="!site.disabled && site.featured" :featured="site.featured" :url="site.demo || site.url" :iconUrl="site.iconUrl" :name="site.name" :date="false"></site-card>
+		<site-card :show-icons="true" size="opengraph" webc:for="(key, site) in shuffle($data.builtwith)" webc:if="!site.disabled && site.featured" :featured="site.featured" :url="site.demo || site.url" :iconUrl="site.iconUrl" :name="site.name" :date="false"></site-card>
 	</sites-list>
 
 	<is-land on:visible on:save-data="false">

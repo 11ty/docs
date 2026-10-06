@@ -3,6 +3,5 @@
 	"name": "Fundamenty",
 	"description": "Multi-language support, SEO-friendly, GitHub/GitLab Pages-ready. TailwindCSS+Webpack.",
 	"author": "ysahnpark",
-	"demo": "https://fundamenty.netlify.app/",
-	"excludedFromLeaderboards": true
+	"demo": "https://fundamenty.netlify.app/"
 }

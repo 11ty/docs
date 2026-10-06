@@ -6,28 +6,27 @@ layout: layouts/docs.njk
 
 <p>Welcome to all people that are willing to spend money in exchange for business services! The <strong>Eleventy Super Professional Business Network</strong> is a very professional network of web developers in the Eleventy community that are available for hire! You can see the Eleventy web sites they have built and click the business button to do very professional business with them. <em>The order below is random.</em></p>
 
-<div class="business-network">
+<p><strong><a href="/blog/espbn/">Want to be on this list?</a></strong></p>
+
+<ul class="business-network" role="list">
 {%- for author in authors | filterBusinessPeople | shuffle %}
 {%- set supporter = opencollective.supporters | isSupporter(author.name, author.opencollective) -%}
 {%- if supporter | isBusinessPerson %}
-  <div class="business-network-primary fl">
-    <div>
-      <a href="{{ author.business_url }}" class="business-network-name nowrap">{% indieavatar author.business_url, "avatar-large" %}{{ author.business_name or author.name }}</a>
+{%- set businessName = author.business_name or author.name %}
+{%- set siteUrl = author | businessSiteUrl %}
+  <li>
+    <div class="business-network-primary fl">
+      <div>
+        <a href="{{ author.business_url }}" class="business-network-link elv-externalexempt">
+          <span class="business-network-name nowrap">{% indieavatar author.business_url, "avatar-large" %}{{ businessName }}</span>
+          <span class="business-network-sites">{%- getScreenshotHtml "", siteUrl, "300px", "opengraph" -%}</span>
+        </a>
+      </div>
+      <div class="business-network-hire">
+        <a href="{{ author.business_url }}" class="btn-primary btn-primary-nogrow benchnine rainbow-active rainbow-active-noanim elv-externalexempt">Let’s Do Business<span class="sr-only"> with {{ businessName }}</span></a>
+      </div>
     </div>
-    <div class="business-network-hire">
-      <a href="{{ author.business_url }}" class="btn-primary btn-primary-nogrow benchnine rainbow-active rainbow-active-noanim elv-externalexempt">Let’s Do Business</a>
-    </div>
-  </div>
-  <div>
-  {%- if author.sites.length %}
-  <div class="business-network-sites lo-grid lo-grid-fill" style="--fl-gap-h: .25rem; --fl-gap-v: .25rem; --lo-c-minwidth: 75px;">
-  {%- for site in author.sites %}
-    <div><a href="{{ site.url }}" class="elv-externalexempt">{%- getScreenshotHtml "", site.url, "80px" -%}</a></div>
-  {%- endfor %}
-  </div>
-  {%- endif %}
+  </li>
 {%- endif %}
 {%- endfor %}
-</div>
-
-<p><strong><a href="/blog/espbn/">Want to be on this list?</a></strong></p>
+</ul>

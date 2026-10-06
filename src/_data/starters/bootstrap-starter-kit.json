@@ -1,7 +1,0 @@
-{
-	"url": "https://github.com/webpixels/bootstrap-starter-kit",
-	"name": "Bootstrap Starter Kit",
-	"description": "Minimal starter template for websites using Bootstrap 5 and Webpixels CSS next to the Eleventy static site generator.",
-	"author": "webpixels",
-	"demo": "https://webpixels-bootstrap-starter-kit.netlify.app/"
-}

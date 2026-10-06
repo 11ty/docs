@@ -3,6 +3,5 @@
 	"name": "eleventy-shortcomps",
 	"description": "Starter project for static site by Adam Duncan, using Eleventy and shortcode components pattern.",
 	"author": "duncanadam",
-	"demo": "https://eleventy-shortcomps.netlify.app/",
-	"excludedFromLeaderboards": true
+	"demo": "https://eleventy-shortcomps.netlify.app/"
 }

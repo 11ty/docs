@@ -1,7 +1,8 @@
 {%- set siteUrl = site.demo or site.url %}
+{%- set siteLabel = site.name or (site.url | displayUrl if site.url else "") %}
 <div class="sites-site-vert{% if site.official %} sites-site-official{% endif %}{% if site.class %} {{ site.class }}{% endif %}" data-filter-tags="{% if siteData | lighthousePerfectScore %}perfectlh{% endif %}">
-  <a {% if siteUrl %}href="{{ site.demo or site.url }}"{% endif %} class="elv-externalexempt" title="{{ site.name }}">
-    <span class="sites-site-name">
+  {% if siteUrl %}<a href="{{ siteUrl }}" class="elv-externalexempt">{% else %}<span class="sites-site-nolink">{% endif %}
+    <span class="sites-site-name"{% if site.name %} title="{{ site.name }}"{% endif %}>
       {%- if not site.skipIcon %}
         {%- if site.iconUrl or site.url %}
           {%- indieavatar site.iconUrl or site.url, "avatar-large" %}
@@ -9,19 +10,15 @@
           {%- communityavatar site.opened_by %}
         {%- endif %}
       {%- endif %}
-      {%- if site.name -%}
-        {{ site.name }}
-      {%- else -%}
-        {{ site.url | displayUrl }}
-      {%- endif -%}
+      {{- siteLabel -}}
     </span>
     {{ site | cardScreenshotHtml | safe }}
-		{%- if site.demo and showSpeedlifyScores -%}
-    <div class="sites-site-lighthouse">
-      <is-land on:visible import="https://www.speedlify.dev/js/speedlify2-score.js"><speedlify2-score no-tooltip speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score></is-land>
-    </div>
-		{%- endif -%}
-  </a>
+  {% if siteUrl %}</a>{% else %}</span>{% endif %}
+{%- if site.demo and showSpeedlifyScores %}
+  <div class="sites-site-lighthouse">
+    <is-land on:visible import="/js/speedlify2-score.js"><speedlify2-score speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score></is-land>
+  </div>
+{%- endif %}
 
 {%- set sourceUrl = site.source_url %}
 {%- if not sourceUrl and site.url and (site.url.startsWith("https://github.com/") or site.url.startsWith("https://gitlab.com/")) %}
@@ -31,7 +28,7 @@
 {%- if not hideRelatedLinks %}
 <ul class="inlinelist inlinelist-sm">
   {%- if sourceUrl %}
-  <li><a href="{{ sourceUrl }}" class="elv-externalexempt">Source code</a></li>
+  <li><a href="{{ sourceUrl }}" class="elv-externalexempt">Source code{% if siteLabel %}<span class="sr-only"> for {{ siteLabel }}</span>{% endif %}</a></li>
   {%- endif %}
 </ul>
 {%- endif %}

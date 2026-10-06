@@ -29,6 +29,28 @@ import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
 
+// Hosts without a usable Open Graph image, use the screenshot service instead.
+const screenshotOnlyHosts = new Set([
+	"berryhouse.ca",
+	"blog.fontawesome.com",
+	"blog.glitch.com",
+	"blog.mozilla.org",
+	"chobble.com",
+	"developer.chrome.com",
+	"docs.flutter.dev",
+	"hoeser.dev",
+	"tc39.es",
+	"v8.dev",
+]);
+
+function useScreenshotImage(url) {
+	try {
+		return screenshotOnlyHosts.has(new URL(url).hostname.replace(/^www\./, ""));
+	} catch (e) {
+		return false;
+	}
+}
+
 function resolveModule(target) {
 	return fileURLToPath(import.meta.resolve(target));
 }
@@ -94,17 +116,19 @@ const shortcodes = {
 			advanced = "_wait:2";
 		}
 
-		let isYouTubeUrl = siteUrl.includes("www.youtube.com");
+		let isOpenGraphUrl =
+			(preset === "opengraph" && !useScreenshotImage(siteUrl)) ||
+			siteUrl.includes("www.youtube.com");
 		let isSquare = viewport.width === viewport.height;
 		let screenshotUrl;
 		if (siteUrl) {
-			if(isYouTubeUrl) {
+			if(isOpenGraphUrl) {
 				screenshotUrl = `https://v1.opengraph.11ty.dev/${encodeURIComponent(
 					siteUrl
 				)}/small/jpeg/`;
 
-				viewport.width = 650;
-				viewport.height = 366;
+				viewport.width = 1200;
+				viewport.height = 630;
 			} else {
 				screenshotUrl = `https://screenshot.11ty.app/${encodeURIComponent(
 					siteUrl
@@ -134,7 +158,7 @@ const shortcodes = {
 			loading: "lazy",
 			decoding: "async",
 			sizes: sizes || "(min-width: 22em) 30vw, 100vw",
-			class: "sites-screenshot" + (isYouTubeUrl ? ` sites-screenshot-youtube${isSquare ? "-sq" : ""}` : ""),
+			class: "sites-screenshot" + (isOpenGraphUrl || preset === "opengraph" ? ` sites-screenshot-og${isSquare ? " sites-screenshot-og-sq" : ""}` : ""),
 			"eleventy:ignore": "",
 		};
 
@@ -158,9 +182,10 @@ const shortcodes = {
 			dims = [120, 150];
 		}
 
+		// empty `alt=""` intentional
 		return `<img src="${fullUrl}" width="${dims[0]}" height="${
 			dims[1]
-		}" alt="Favicon for ${displayUrl(fullUrl)}" class="avatar avatar-indieweb${
+		}" alt="" class="avatar avatar-indieweb${
 			cls ? ` ${cls}` : ""
 		}" loading="lazy" decoding="async"${attrs ? ` ${attrs}` : ""}>`;
 	},
@@ -404,7 +429,7 @@ export default async function (eleventyConfig) {
 		[resolveModule("@11ty/logo/img/logo-200x200.png")]: "img/logo-github.png",
 		[resolveModule("@11ty/logo/img/logo-96x96.png")]: "img/favicon.png",
 
-		[resolveModule("speedlify-score")]: "js/speedlify-score.js",
+		[resolveModule("speedlify2-score")]: "js/speedlify2-score.js",
 		[resolveModule("@zachleat/seven-minute-tabs")]: "js/seven-minute-tabs.js",
 		[resolveModule("@zachleat/filter-container")]: "js/filter-container.js",
 		[resolveModule("lite-youtube-embed")]: `js/lite-yt-embed.js`,
@@ -444,12 +469,12 @@ export default async function (eleventyConfig) {
 	eleventyConfig.addFilter("cardScreenshotHtml", async function (site) {
 		let url = site.demo || site.url;
 		if(!url) {
-			return `<div class="sites-screenshot-container"><img class="sites-screenshot"></div>`;
+			return `<div class="sites-screenshot-container"><img alt="" class="sites-screenshot"></div>`;
 		}
 		if(site.screenshotOverride) {
-			return `<div class="sites-screenshot-container"><img alt="${site.screenshotOverride.alt}" loading="lazy" decoding="async" class="sites-screenshot" src="${site.screenshotOverride.src}" width="${site.screenshotOverride.width}" height="${site.screenshotOverride.height}"></div>`;
+			return `<div class="sites-screenshot-container"><img alt="${site.screenshotOverride.alt || ""}" loading="lazy" decoding="async" class="sites-screenshot" src="${site.screenshotOverride.src}" width="${site.screenshotOverride.width}" height="${site.screenshotOverride.height}"></div>`;
 		}
-		return `<div class="sites-screenshot-container">${await shortcodes.getScreenshotHtml(site.fileSlug, url, null, site.screenshotSize, site.screenshotAspectRatio)}</div>`;
+		return `<div class="sites-screenshot-container">${await shortcodes.getScreenshotHtml("", url, null, site.screenshotSize)}</div>`;
 	});
 
 	eleventyConfig.addFilter("speedlifyHash", function (site) {
@@ -619,6 +644,24 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addFilter("filterBusinessPeople", function (authors) {
 		return Object.values(authors).filter((entry) => !!entry.business_url);
+	});
+
+	// Their business_url, preferring the matching entry from their built sites so the screenshot is shared with the rest of the site.
+	eleventyConfig.addFilter("businessSiteUrl", function (author) {
+		let host = (url) => {
+			try {
+				return new URL(url).hostname.replace(/^www\./, "");
+			} catch (e) {
+				return undefined;
+			}
+		};
+
+		let businessHost = host(author.business_url);
+		let match = (author.sites || []).find(
+			(site) => businessHost && host(site.url) === businessHost
+		);
+
+		return match ? match.url : author.business_url;
 	});
 
 	eleventyConfig.addFilter("isBusinessPerson", function (supporter) {
@@ -806,6 +849,13 @@ export default async function (eleventyConfig) {
 		}
 		return arr.sort((a, b) => {
 			return (b.order || 0) - (a.order || 0);
+		});
+	});
+
+	// Ranked sites first (lowest rank wins), unranked sites after in random order.
+	eleventyConfig.addFilter("sortBySpeedlifyRank", (obj, ranks = {}) => {
+		return randomizeArray(Object.values(obj)).sort((a, b) => {
+			return (ranks[a.demo] ?? Infinity) - (ranks[b.demo] ?? Infinity) || 0;
 		});
 	});
 
