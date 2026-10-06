@@ -3,5 +3,5 @@
 	"name": "Fernfolio Redux",
 	"description": "A semi-minimalist portfolio/blog starter forked from the OG Fernfolio",
 	"author": "jasonad123",
-	"demo": "https://fernfolio-redux.pages.dev/"
+	"demo": "https://fernfolio-redux.netlify.app/"
 }
