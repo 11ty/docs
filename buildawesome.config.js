@@ -855,6 +855,13 @@ export default async function ($config) {
 		});
 	});
 
+	// Ranked sites first (lowest rank wins), unranked sites after in random order.
+	eleventyConfig.addFilter("sortBySpeedlifyRank", (obj, ranks = {}) => {
+		return randomizeArray(Object.values(obj)).sort((a, b) => {
+			return (ranks[a.demo] ?? Infinity) - (ranks[b.demo] ?? Infinity) || 0;
+		});
+	});
+
 	// Case insensitive check an object for a key
 	$config.addFilter("has", objectHas);
 

@@ -10,6 +10,9 @@ cmses:
   - name: GitCMS
     url: https://gitcms.blog/
     tags: [Git-based]
+  - name: CMS Brew
+    url: https://cmsbrew.com/?utm_source=11ty-docs
+    tags: [Git-based]
   - name: WordPress REST API
     url: https://developer.wordpress.org/rest-api/
     screenshotSize: medium

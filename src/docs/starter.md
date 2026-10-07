@@ -21,7 +21,7 @@ eleventyNavigation:
 
 ## Community Starters
 
-[Add your own starter project](https://github.com/11ty/docs/tree/main/src/_data/starters). Community contributions are shown in random order.
+[Add your own starter project](https://github.com/11ty/docs/tree/main/src/_data/starters). Community contributions are sorted by their Speedlify rank.
 
 <div class="sites-vert sites-vert--lg">
   <ul class="lo-grid" style="--fl-gap-v: 5em;">
@@ -30,7 +30,7 @@ eleventyNavigation:
 	{% set showSpeedlifyScores = true %}
   <li>{% include "site-card.njk" %}</li>
 {%- endif %}{%- endfor %}
-{%- for name, site in starters | shuffle %}
+{%- for site in starters | sortBySpeedlifyRank(starterRanks) %}
 {%- if site.disabled != true and not site.official and not site.featured %}
 	{% set showSpeedlifyScores = true %}
   <li>{% include "site-card.njk" %}</li>

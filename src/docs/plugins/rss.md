@@ -12,11 +12,11 @@ eleventyNavigation:
 
 A pack of plugins for generating an RSS (or Atom or JSON) feed using the _Nunjucks_ templating syntax.
 
-- [GitHub](https://github.com/11ty/eleventy-plugin-rss).
+- [GitHub](https://github.com/11ty/plugin-rss).
 
 ## Feature highlights
 
-* URLs are normalized to absolute URLs, pointing to your hosted domain for maximum feed reader compatibility. Read more about [the dangers of relative URLs in your feeds on CSS Tricks](https://css-tricks.com/working-with-web-feeds-its-more-than-rss/#aa-beware-of-relative-urls) (Related: [#36](https://github.com/11ty/eleventy-plugin-rss/issues/36)).
+* URLs are normalized to absolute URLs, pointing to your hosted domain for maximum feed reader compatibility. Read more about [the dangers of relative URLs in your feeds on CSS Tricks](https://css-tricks.com/working-with-web-feeds-its-more-than-rss/#aa-beware-of-relative-urls) (Related: [#36](https://github.com/11ty/plugin-rss/issues/36)).
 * Existing project [Transforms](/docs/transforms/) are applied to feed entries (e.g. [Image HTML Transform](/docs/plugins/image/#html-transform), [`<base>`](/docs/plugins/html-base/), [InputPath to URL](/docs/plugins/inputpath-to-url/), etc.) If you’re using a [`--pathprefix`](/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix) in your project, the URLs in your feed content are normalized for you.
 
 Since RSS Plugin v2.0, this plugin offers two options to create feeds in your project:
@@ -33,15 +33,22 @@ npm install @11ty/eleventy-plugin-rss
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
+* `v3` of this plugin is ESM-only and requires Eleventy v3.0 or newer.
 * `v2` of this plugin requires Eleventy v3.0 or newer.
 * `v1` of this plugin is compatible with Eleventy 0.11 or newer.
+
+## Upgrading from v2
+
+* Version 3 of this plugin is ESM and requires Eleventy v3 or newer. It does not require ESM projects or an ESM config file.
+* CommonJS configuration files on Node 20.19+ must use `require("@11ty/eleventy-plugin-rss").default`. Older versions of Node need [dynamic `import()`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
+* Breaking change in v3.0: The helper functions (`feedPlugin`, `dateToRfc3339`, `dateToRfc822`, `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls`) are only available as named exports (not as properties of the default export).
 
 ## Virtual Template
 
 {% addedin "v3.0.0-alpha.13" %}{% addedin "RSS 2.0.0" %} This method creates a feed template directly from your plugin configuration, without requiring additional files in your project. The default template uses Nunjucks, so make sure `njk` is included `templateFormats` in your [Eleventy config](/docs/config/#template-formats). Read more about [Virtual Templates](/docs/virtual-templates.md).
 
 {% callout "info", "md" %}
-{% addedin "RSS 3.0.0" %}[Version 3 of this plugin](https://github.com/11ty/eleventy-plugin-rss/releases/tag/v3.0.0) is now using ESM. This requires Eleventy v3 or newer. Additionally, if you’re using a CommonJS configuration file and an [older version of Node (&lt; 20.19), you’ll need to use dynamic `import()` instead of `require`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
+{% addedin "RSS 3.0.0" %}[Version 3 of this plugin](https://github.com/11ty/plugin-rss/releases/tag/v3.0.0) is now using ESM. This requires Eleventy v3 or newer. If you’re using a CommonJS configuration file on Node 20.19 or newer, use `require("@11ty/eleventy-plugin-rss").default`. On [older versions of Node (&lt; 20.19), you’ll need to use dynamic `import()` instead of `require`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
 {% endcallout %}
 
 {% set codeContent %}
@@ -54,6 +61,7 @@ export default function ($config) {
 		collection: {
 			name: "posts", // iterate over `collections.posts`
 			limit: 10,     // 0 means no limit
+			sort: "auto",  // or "descending", "ascending"
 		},
 		metadata: {
 			language: "en",
@@ -75,16 +83,59 @@ This configuration is the only step for the Virtual Template method. If you need
 <details>
 <summary>Expand for full options list</summary>
 
-* `type`: (required) One of `"atom"` (default), `"rss"`, or `"json"`
+* `type`: (optional) One of `"atom"` (default), `"rss"`, or `"json"`
 * `outputPath`: (required, default: `/feed.xml`) Where to write the template in the output directory.
 * `inputPath`: (optional, default based on `metadata.title`) Change where the virtual template pretends to live on the file system (e.g. if you want project directory data files to apply via the [Data Cascade](/docs/data-cascade/))
 * `collection.name`: Collection entries to iterate over to populate your feed (e.g. `name: "posts"` for `collections.posts`)
 * `collection.limit`: Number of entries to include. (Use `0` for no limit.)
-* `metadata`: Content used to populate the feed boilerplate.
+* `collection.sort`: {% addedin "RSS 3.1.0" %} (optional) Order of feed entries, applied before `collection.limit`. Any other value throws an error.
+	* `"auto"` (default): Reverses the collection, assuming Eleventy’s default oldest-first order.
+	* `"descending"`: Sorts by `date`, newest first, regardless of the collection’s order. Use this for custom collections already sorted newest-first, which otherwise produce a feed of your oldest posts.
+	* `"ascending"`: Sorts by `date`, oldest first.
+* `metadata`: Content used to populate the feed boilerplate. `metadata.subtitle` is used for the feed description.
+* `metadata.icon`, `metadata.logo`: {% addedin "RSS 3.0.0" %} (optional) URLs to a feed icon and logo.
 * `stylesheet`: URL to an XSL stylesheet to change how the feed is rendered in the browser (only for Atom and RSS feeds).
+* `script`: {% addedin "RSS 3.0.0" %} URL to an XSLT polyfill script, injected into Atom and RSS feeds.
 * `templateData`, defaults to `{}`: Additional data to apply to the template (e.g. to add your feed to the [Navigation plugin](/docs/plugins/navigation/))
 
+{% addedin "RSS 3.0.0" %} Use `summary` in a post’s data (`post.data.summary`) to populate the entry `<summary>` (Atom) or `<description>` (RSS).
+
 </details>
+
+### Virtual Template with `addTemplate`
+
+{% addedin "RSS 3.1.0" %} `getFeedTemplate` returns the `content` and `data` for the same feed `feedPlugin` creates, for use with [`$config.addTemplate`](/docs/virtual-templates.md). This unlocks unlimited feeds of the same type. The feed template uses filters from the main plugin, make sure you add the plugin (via `rssPlugin`) first.
+
+{% set codeContent %}
+import { rssPlugin, getFeedTemplate } from "@11ty/eleventy-plugin-rss";
+
+export default function ($config) {
+	$config.addPlugin(rssPlugin);
+
+	let { content, data } = getFeedTemplate({
+		type: "atom", // or "rss", "json"
+		outputPath: "/posts.xml",
+		collection: {
+			name: "posts",
+			limit: 10,
+		},
+		metadata: {
+			language: "en",
+			title: "Blog Title",
+			subtitle: "This is a longer description about your blog.",
+			base: "https://example.com/",
+			author: {
+				name: "Your Name",
+			},
+		},
+	});
+
+	$config.addTemplate("feeds/posts.njk", content, data);
+};
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
+`getFeedTemplate` accepts the same options as the [Virtual Template](#virtual-template) method, except `inputPath`: pass the path as the first argument to `addTemplate` instead. You can extend `data` before passing it in, e.g. `{ ...data, eleventyNavigation: { key: "Feed" } }`.
 
 ## Manual Template
 
@@ -93,16 +144,16 @@ This configuration is the only step for the Virtual Template method. If you need
 Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
 {% set codeContent %}
-import pluginRss from "@11ty/eleventy-plugin-rss";
+import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.addPlugin(pluginRss);
+	$config.addPlugin(rssPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}
-{% addedin "RSS 3.0.0" %}[Version 3 of this plugin](https://github.com/11ty/eleventy-plugin-rss/releases/tag/v3.0.0) is now using ESM. This requires Eleventy v3 or newer. Additionally, if you’re using a CommonJS configuration file and an [older version of Node (&lt; 20.19), you’ll need to use dynamic `import()` instead of `require`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
+{% addedin "RSS 3.0.0" %}[Version 3 of this plugin](https://github.com/11ty/plugin-rss/releases/tag/v3.0.0) is now using ESM. This requires Eleventy v3 or newer. If you’re using a CommonJS configuration file on Node 20.19 or newer, use `require("@11ty/eleventy-plugin-rss").default`. On [older versions of Node (&lt; 20.19), you’ll need to use dynamic `import()` instead of `require`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
 {% endcallout %}
 
 <details>
@@ -111,10 +162,10 @@ export default function ($config) {
 {% addedin "RSS 1.1.0" %} Advanced control of [PostHTML rendering options](https://github.com/posthtml/posthtml-render#options) via `posthtmlRenderOptions`.
 
 {% set codeContent %}
-import pluginRss from "@11ty/eleventy-plugin-rss";
+import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.addPlugin(pluginRss, {
+	$config.addPlugin(rssPlugin, {
 		posthtmlRenderOptions: {
 			closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
 		},
@@ -134,7 +185,7 @@ export default function ($config) {
 #### Less Important Filters
 
 - **Deprecated** `absoluteUrl`: _For performance reasons, the [`renderTransforms` filter](/docs/filters/render-transforms/) is recommended instead, making use of the HTML `<base>` plugin._ Converts a single URL (relative or absolute path) to a full absolute URL including protocol, domain, full path.
-- **Deprecated** `htmlToAbsoluteUrls`: _For performance reasons, the [`renderTransforms` filter](/docs/filters/render-transforms/) is recommended instead, making use of the HTML `<base>` plugin._ (async) Transforms all of the URLs in a block of HTML with `absoluteUrl` above. Uses [posthtml-urls](https://github.com/11ty/posthtml-urls) with `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and [a whole bunch more](https://github.com/11ty/eleventy-posthtml-urls/blob/6e064c8a03174835eb15afbb5b759fecd696f901/lib/defaultOptions.js#L12-L33).
+- **Deprecated** `htmlToAbsoluteUrls`: _For performance reasons, the [`renderTransforms` filter](/docs/filters/render-transforms/) is recommended instead, making use of the HTML `<base>` plugin._ (async) Transforms all of the URLs in a block of HTML with `absoluteUrl` above. Uses [posthtml-urls](https://github.com/11ty/posthtml-urls) with `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and [a whole bunch more](https://github.com/11ty/posthtml-urls/blob/6e064c8a03174835eb15afbb5b759fecd696f901/lib/defaultOptions.js#L12-L33).
 - **⚠️ Removed in RSS v2.0.0** `rssLastUpdatedDate`, poorly named (works with Atom and JSON feeds, not RSS). Use `getNewestCollectionItemDate | dateToRfc3339` instead.
 - **⚠️ Removed in RSS v2.0.0** `rssDate`, poorly named (works with Atom and JSON feeds, not RSS). Use `dateToRfc3339` instead.
 
@@ -143,13 +194,13 @@ export default function ($config) {
 {% addedin "RSS 1.1.0" %} This plugin exports `dateToRfc3339`, `dateToRfc822` ({% addedin "RSS 1.2.0" %}), `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls` functions so you can use with your own filters. For example:
 
 {% set codeContent %}
-import pluginRss from "@11ty/eleventy-plugin-rss";
+import { dateToRfc3339, dateToRfc822 } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.addLiquidFilter("dateToRfc3339", pluginRss.dateToRfc3339);
+	$config.addLiquidFilter("dateToRfc3339", dateToRfc3339);
 
 	// New in RSS 1.2.0
-	$config.addLiquidFilter("dateToRfc822", pluginRss.dateToRfc822);
+	$config.addLiquidFilter("dateToRfc822", dateToRfc822);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
