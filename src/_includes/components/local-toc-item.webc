@@ -1,0 +1,3 @@
+<li :class="`level-${level}`">
+	<a :href="href" @text="text" />
+</li>
