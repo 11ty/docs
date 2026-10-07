@@ -1,7 +1,7 @@
 {
 	"url": "https://github.com/alanmosely/teatime-starter",
 	"name": "TEAtime Starter",
-	"description": "A simple stylish Eleventy starter project using Tailwind CSS and Alpine.js that deploys to Netlify",
+	"description": "A low-code website starter using the TEA stack: Tailwind CSS 4 (CSS-first config), Eleventy 3 and Alpine.js. Includes image optimisation, SEO meta tags, dynamic sitemap and robots.txt, HTML/CSS minification, one-click Netlify deploy and an AGENTS.md guide for AI coding agents.",
 	"author": "alanmosely",
 	"demo": "https://teatime-starter.netlify.app"
 }
