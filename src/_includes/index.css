@@ -507,6 +507,10 @@ filter-container:defined form {
 	height: 1.3em;
 	vertical-align: text-bottom;
 }
+.fa11ty-icon,
+symbol {
+	overflow: visible;
+}
 .fa-mastodon {
 	color: #7b68da;
 }
