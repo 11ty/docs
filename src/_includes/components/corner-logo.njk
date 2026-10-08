@@ -1,0 +1,50 @@
+{#- 11ty corner flag, after the one in /img/open-graph.jpg (see also .og-flag in opengraph.njk). #}
+{%- set cornerLogoCss %}
+:host {
+	display: block;
+	position: fixed;
+	inset-block-end: 0;
+	inset-inline-end: 0;
+	width: 92px;
+	height: 92px;
+	background-color: #222;
+	clip-path: polygon(100% 0, 100% 100%, 0 100%);
+	z-index: 1;
+	transition: background-color .2s ease-out;
+}
+:host(:hover),
+:host(:focus-within) {
+	background-color: var(--brand-ba, #00a776);
+}
+/* Only when the viewport is wide enough to keep it clear of the 70rem layout. */
+@media (max-width: 85.9375em) {
+	:host {
+		display: none;
+	}
+}
+::slotted(a) {
+	position: absolute;
+	inset: 0;
+}
+.logo {
+	position: absolute;
+	inset-block-end: 11px;
+	inset-inline-end: 15px;
+	width: 28.5px;
+	height: 23.25px;
+	/* Crops the padding out of the logo.svg viewBox. */
+	background-image: url("/img/logo.svg");
+	background-size: 39.6px 55.1px;
+	background-position: -5.5px -15.5px;
+	background-repeat: no-repeat;
+	pointer-events: none;
+}
+{% endset %}
+<corner-logo>
+	<template shadowrootmode="open">
+		<style>{{ cornerLogoCss | cssmin | safe }}</style>
+		<slot></slot>
+		<span class="logo"></span>
+	</template>
+	<a href="https://www.11ty.dev/" class="nound elv-externalexempt"><span class="sr-only">11ty</span></a>
+</corner-logo>
