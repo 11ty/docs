@@ -424,6 +424,7 @@ export default async function ($config) {
 		"src/css/type/*": "css/fonts/", // cera round pro
 		"src/_includes/components/throbber.js": "js/throbber.js",
 		"src/_includes/components/throbber.css": "css/throbber.css",
+		"src/_includes/components/possum-mascot.js": "js/possum-mascot.js",
 		"src/opensearch.xml": "opensearch.xml",
 	});
 

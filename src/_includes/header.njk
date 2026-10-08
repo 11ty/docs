@@ -48,13 +48,11 @@
 	</div>
 
 	<div class="elv-nav-header">
-		<is-land class="elv-possum-island" on:visible on:idle on:load on:save-data="false" on:media="(prefers-reduced-motion: no-preference)">
+		<is-land class="elv-possum-island" on:visible on:idle on:load on:save-data="false" on:media="(prefers-reduced-motion: no-preference)" import="/js/possum-mascot.js">
 			<template data-island>
-				<a href="/blog/awesome-possum/" class="elv-possum-anchor elv-externalexempt">
-					<div class="elv-possum-pic">
-						<img src="/img/mascots/awesome-possum-balloon-smile-sm.svg" alt="The possum is Eleventy’s mascot" eleventy:widths="222" class="elv-possum" loading="eager">
-					</div>
-				</a>
+				<possum-mascot idle-timeout="10">
+					<img src="/img/mascots/awesome-possum-balloon-smile-sm.svg" alt="The possum is Eleventy’s mascot" eleventy:widths="222" class="elv-possum" loading="eager">
+				</possum-mascot>
 			</template>
 		</is-land>
 	</div>

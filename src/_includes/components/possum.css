@@ -1,9 +1,6 @@
-.elv-possum-anchor {
-	display: block;
-}
 .elv-possum {
 	position: absolute;
-	right: 0;
+	right: .5rem;
 	top: 0.5rem;
 	transition: 0.3s opacity ease-out;
 	filter: drop-shadow(3px 3px #0006);
