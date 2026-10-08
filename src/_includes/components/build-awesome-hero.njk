@@ -62,8 +62,8 @@
 
 	/* browser preview */
 	.ba-hero-browser{ background:#fff; box-shadow:0 0 0 1px rgba(24,49,83,.15), 6px 6px 0 rgba(24,49,83,.08); overflow:hidden; }
-	.ba-hero-browser .ba-hero-bbody { opacity:0; transition: opacity .3s ease; }
-	.ba-hero-browser.is-shown .ba-hero-bbody{ opacity:1; }
+	.ba-hero-bbody{ transition: opacity .3s ease; }
+	.ba-hero-browser.is-hidden .ba-hero-bbody{ opacity:0; }
 	.ba-hero-bbar{ display:flex; align-items:center; gap:8px; padding:10px 12px; background:#f1f3f6; border-bottom:1px solid #e6e9ef; }
 	.ba-hero-url{ flex:1; background:#fff; border:1px solid #e6e9ef; border-radius:7px; padding:5px 10px;
 		font-family:var(--ba-hero-mono); font-size:.72rem; color:#6d7c90; }
@@ -100,7 +100,7 @@
 	<div class="ba-hero-grid">
 		<div class="ba-hero-copy">
 			<h1 class="ba-hero-title">Go build something<br><span class="ba-hero-accent">awesome.</span></h1>
-			<p class="ba-hero-sub">A simpler website generator. Point it at a folder of Markdown files and get a fast static website back.</p>
+			<p class="ba-hero-sub">A simpler website generator. Point it at a folder of Markdown files to create a fast static website.</p>
 			<div class="ba-hero-actions">
 				<a class="btn-brand" href="/docs/">Get started<i class="fa-solid fa-arrow-right"></i></a>
 				<a class="btn-brand --ghost" href="https://github.com/11ty/buildawesome">View on GitHub</a>
@@ -114,7 +114,15 @@
 						<span class="ba-hero-term-name">~/my-awesome-site</span>
 						<button class="ba-hero-copybtn is-waiting" type="button"><i class="fa-regular fa-copy"></i><i class="fa-solid fa-check"></i></button>
 					</div>
-					<div class="ba-hero-term-body"></div>
+					<div class="ba-hero-term-body">
+						<div class="ba-hero-ln" data-cmd><span class="ba-hero-pr"></span><span class="ba-hero-cmd">npx @awesome.me/buildawesome --serve</span></div>
+						<div class="ba-hero-ln">&nbsp;</div>
+						<div class="ba-hero-ln">Writing <span class="ba-hero-path">_site/index.html</span> from <span class="ba-hero-path">./index.md</span> <span class="ba-hero-dim">(liquid)</span></div>
+						<div class="ba-hero-ln">Wrote <b>1 file</b> in <span class="ba-hero-ok">0.03 seconds</span> <span class="ba-hero-dim">(v4.0.0)</span></div>
+						<div class="ba-hero-ln">Watching…</div>
+						<div class="ba-hero-ln" data-server>Server at <span class="ba-hero-link">http://localhost:8080/</span></div>
+						<div class="ba-hero-ln"><span class="ba-hero-cur"></span></div>
+					</div>
 				</div>
 			</div>
 			<div class="ba-hero-floaty ba-hero-floaty-browser">
@@ -134,16 +142,6 @@
 	<script type="module">
 	const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const HOLD_MS = 9000; // how long the finished build + preview stays visible before replaying
-	const CMD = 'npx @awesome.me/buildawesome --serve';
-
-	const steps = [
-		{ cmd: CMD },
-		{ out: '' },
-		{ out: 'Writing <span class="ba-hero-path">_site/index.html</span> from <span class="ba-hero-path">./index.md</span> <span class="ba-hero-dim">(liquid)</span>' },
-		{ out: 'Wrote <b>1 file</b> in <span class="ba-hero-ok">0.03 seconds</span> <span class="ba-hero-dim">(v4.0.0)</span>' },
-		{ out: 'Watching…' },
-		{ out: 'Server at <span class="ba-hero-link">http://localhost:8080/</span>', server: true },
-	];
 
 	const renderLines = ls => ls.map(l => `<div class="ba-hero-ln">${l || '&nbsp;'}</div>`).join('');
 
@@ -155,9 +153,15 @@
 		const cursorHtml = `<span class="ba-hero-cur"></span>`;
 		if (!term || !browser) return;
 
+		// Replay the server-rendered terminal output
+		const steps = [...term.children].filter(el => !el.querySelector('.ba-hero-cur')).map(el => el.hasAttribute('data-cmd')
+			? { cmd: el.querySelector('.ba-hero-cmd').textContent }
+			: { out: el.textContent.trim() ? el.innerHTML : '', server: el.hasAttribute('data-server') });
+		const CMD = steps.find(s => s.cmd !== undefined)?.cmd;
+
 		function run() {
 			let lines = [];
-			browser.classList.remove('is-shown');
+			browser.classList.add('is-hidden');
 			term.innerHTML = '';
 			let i = 0;
 
@@ -176,7 +180,7 @@
 				} else {
 					lines.push(s.out);
 					term.innerHTML = renderLines(lines) + `<div class="ba-hero-ln">${cursorHtml}</div>`;
-					if (s.server) setTimeout(() => browser.classList.add('is-shown'), 380);
+					if (s.server) setTimeout(() => browser.classList.remove('is-hidden'), 380);
 					i++;
 					setTimeout(step, s.out ? 320 : 150);
 				}
@@ -184,13 +188,8 @@
 			step();
 		}
 
-		if (reduce) {
-			const all = steps.map(s => s.cmd !== undefined
-				? `${promptHtml}<span class="ba-hero-cmd">${s.cmd}</span>` : s.out);
-			term.innerHTML = renderLines(all);
-			browser.classList.add('is-shown');
-		} else {
-			setTimeout(run, 500);
+		if (!reduce) {
+			run();
 		}
 
 		// copy command
