@@ -564,7 +564,8 @@ symbol {
 }
 /* Brand colors target the <use> instance (not the shared <symbol>) so individual
    placements can opt out — see the header social icons in components/navigation.css */
-.fa11ty-icon [href="#fab-fa-mastodon"] {
+.fa11ty-icon [href="#fab-fa-mastodon"],
+.fa-mastodon {
 	color: #7b68da;
 }
 .fa11ty-icon [href="#fab-fa-bluesky"] {
