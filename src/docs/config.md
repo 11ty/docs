@@ -25,7 +25,7 @@ There are a few different ways to [shape your configuration file](/docs/config-s
 - Add [Filters](/docs/filters/).
 - Add [Shortcodes](/docs/shortcodes/).
 - Add [Custom Tags](/docs/custom-tags/).
-- Add [JavaScript Template Functions](/docs/languages/javascript/#javascript-template-functions) {% addedin "0.7.0" %}
+- Add [JavaScript Template Functions](/docs/languages/javascript/#java-script-template-functions) {% addedin "0.7.0" %}
 - Add custom [Collections](/docs/collections/) and use [Advanced Collection Filtering and Sorting](/docs/collections/#advanced-custom-filtering-and-sorting).
 - Add [Plugins](/docs/plugins/).
 

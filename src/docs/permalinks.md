@@ -238,7 +238,7 @@ permalink: "subdir/{{ title | slugify }}/index.html"
 
 Writes to `_site/subdir/this-is-a-new-path/index.html`.
 
-{% callout "info", "md" %}Using the [data cascade](/docs/data-cascade.md) you have the power to change the default behavior for permalinks for all content in your project. Learn more about the special `page` variables useful for permalinks to see examples of this behavior: [`page.fileSlug`](/docs/data-eleventy-supplied/#fileslug) and [`page.filePathStem`](/docs/data-eleventy-supplied/#filepathstem).{% endcallout %}
+{% callout "info", "md" %}Using the [data cascade](/docs/data-cascade.md) you have the power to change the default behavior for permalinks for all content in your project. Learn more about the special `page` variables useful for permalinks to see examples of this behavior: [`page.fileSlug`](/docs/data-eleventy-supplied/#file-slug) and [`page.filePathStem`](/docs/data-eleventy-supplied/#file-path-stem).{% endcallout %}
 
 Here’s another example using Liquid’s <code>date</code> filter:
 

@@ -51,7 +51,7 @@ Markdown files are pre-processed as Liquid templates by default—any shortcodes
 
 Read more about using shortcodes on the individual Template Language documentation pages:
 
-- [JavaScript `*.11ty.js`](/docs/languages/javascript/#javascript-template-functions) (async-friendly)
+- [JavaScript `*.11ty.js`](/docs/languages/javascript/#java-script-template-functions) (async-friendly)
 - [Liquid `*.liquid`](/docs/languages/liquid/#shortcodes) (async-friendly)
 - [Nunjucks `*.njk`](/docs/languages/nunjucks/#shortcodes) (async-friendly)
 - [Handlebars `*.hbs`](/docs/languages/handlebars/#shortcodes) (sync only)
@@ -90,7 +90,7 @@ Markdown files are pre-processed as Liquid templates by default—any shortcodes
 
 Read more about using paired shortcodes on the individual Template Language documentation pages:
 
-- [JavaScript `*.11ty.js`](/docs/languages/javascript/#javascript-template-functions) (async-friendly)
+- [JavaScript `*.11ty.js`](/docs/languages/javascript/#java-script-template-functions) (async-friendly)
 - [Liquid `*.liquid`](/docs/languages/liquid/#shortcodes) (async-friendly)
 - [Nunjucks `*.njk`](/docs/languages/nunjucks/#shortcodes) (async-friendly)
 - [Handlebars `*.hbs`](/docs/languages/handlebars/#shortcodes) (sync only)
@@ -165,7 +165,7 @@ Markdown files are pre-processed as Liquid templates by default—any shortcodes
 
 ### Async Friendly Per-Engine Shortcodes
 
-Learn more about these on the individual template engine pages for [Nunjucks](/docs/languages/nunjucks/#asynchronous-shortcodes), [Liquid](/docs/languages/liquid/#asynchronous-shortcodes), and [`11ty.js` JavaScript](/docs/languages/javascript/#asynchronous-javascript-template-functions).
+Learn more about these on the individual template engine pages for [Nunjucks](/docs/languages/nunjucks/#asynchronous-shortcodes), [Liquid](/docs/languages/liquid/#asynchronous-shortcodes), and [`11ty.js` JavaScript](/docs/languages/javascript/#asynchronous-java-script-template-functions).
 
 {% set codeContent %}
 export default function (eleventyConfig) {

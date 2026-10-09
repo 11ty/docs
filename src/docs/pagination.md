@@ -426,7 +426,7 @@ You can do anything in this `before` callback. Maybe a custom `.sort()`, `.filte
 
 #### Use JavaScript Template Functions here
 
-{% addedin "2.0.0-canary.16" %}[JavaScript Template Functions](/docs/languages/javascript/#javascript-template-functions) (which are also populated by universal filters and shortcodes) are available in the `before` callback.
+{% addedin "2.0.0-canary.16" %}[JavaScript Template Functions](/docs/languages/javascript/#java-script-template-functions) (which are also populated by universal filters and shortcodes) are available in the `before` callback.
 
 {%- set codeBlock %}{% raw %}
 // …

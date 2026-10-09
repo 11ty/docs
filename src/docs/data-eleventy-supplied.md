@@ -160,7 +160,7 @@ const eleventy = {
 };
 ```
 
-* {% addedin "v3.0.0-alpha.6" %}`eleventy.directories` contains project-root relative normalized paths for the important Eleventy directories: [`input`](/docs/config.md#input-directory),  [`includes`](/docs/config.md#directory-for-includes),  [`layouts`](/docs/config.md##directory-for-layouts-(optional)) (if used),  [`data`](/docs/config.md##directory-for-global-data-files), and [`output`](/docs/config.md#output-directory).
+* {% addedin "v3.0.0-alpha.6" %}`eleventy.directories` contains project-root relative normalized paths for the important Eleventy directories: [`input`](/docs/config.md#input-directory),  [`includes`](/docs/config.md#directory-for-includes),  [`layouts`](/docs/config.md#directory-for-layouts-optional) (if used),  [`data`](/docs/config.md#directory-for-global-data-files), and [`output`](/docs/config.md#output-directory).
 
 ### Feature Availability
 

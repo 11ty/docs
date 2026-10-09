@@ -117,7 +117,7 @@ Make special note of the `this.config.dir.includes` folder above. Declaring your
 
 Eleventy includes two features to improve the performance of custom template compilation:
 
-1. A compilation cache, which you can optionally disable with [`compileOptions.cache`](#compileoptions.cache-for-advanced-control-of-caching)
+1. A compilation cache, which you can optionally disable with [`compileOptions.cache`](#compile-options-cache-for-advanced-control-of-caching)
 2. Hooks for incremental builds (via the `--incremental` command line flag)
 
 To facilitate these features, if a template syntax allows use of other templates (think `@use` in Sass or `webc:import` in WebC), Eleventy needs to know about the dependencies a template file relies on. This is heavily dependent on each template compiler.
@@ -161,7 +161,7 @@ compile: async function (inputContent, inputPath) {
 // …
 ```
 
-Note that files inside of the `_includes` folder are left out of processing by default, so if you store your sass `@use`, `@forward`, and `@import` files in there you’ll get this for free (see the [Using `inputPath` example](#using-inputpath) above)!
+Note that files inside of the `_includes` folder are left out of processing by default, so if you store your sass `@use`, `@forward`, and `@import` files in there you’ll get this for free (see the [Using `inputPath` example](#using-input-path) above)!
 
 This functionality is more-or-less identical to the [`compileOptions` `permalink: false` overrides](#compile-options-permalink-to-override-permalink-compilation), documented later on this page.
 
@@ -303,7 +303,7 @@ When the output file is written to the file system, what file extension should b
 
 An async-friendly function that runs _once_ (no matter how many files use the extension) for any additional setup at the beginning before any compilation or rendering.
 
-Note that `init` will **not** re-run on watch/serve mode. If you’d like something that runs before _every_ build, use the [`eleventy.before` event](/docs/events/#eleventy.before).
+Note that `init` will **not** re-run on watch/serve mode. If you’d like something that runs before _every_ build, use the [`eleventy.before` event](/docs/events/#eleventy-before).
 
 ```js
 	// some configuration truncated …
@@ -467,7 +467,7 @@ This provides another way to implement Sass’ underscore convention to skip wri
 
 - _Optional_: Defaults to `false`
 
-Enable to use Eleventy to spider and watch files `require`’d in these templates. This allows you to control the [Watch JavaScript Dependencies](/docs/watch-serve/#watch-javascript-dependencies) feature on a per-template language basis. Most template languages will want the default here and keep this feature disabled.
+Enable to use Eleventy to spider and watch files `require`’d in these templates. This allows you to control the [Watch JavaScript Dependencies](/docs/watch-serve/#watch-java-script-dependencies) feature on a per-template language basis. Most template languages will want the default here and keep this feature disabled.
 
 #### `compileOptions.cache` for advanced control of caching
 
