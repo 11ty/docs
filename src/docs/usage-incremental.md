@@ -17,8 +17,8 @@ Let’s check in on the current capabilities and the roadmap:
   - If you create/update a template file, Eleventy will run the build for that file and only that file.
   - **Layouts** {% addedin "2.0.0-canary.21" %}: When you change a layout file, any templates using that layout file are rebuilt.
   - **Template Dependencies** {% addedin "2.0.0-canary.19" %}Any templates using a dependency mapped via [the `addDependencies` method](/docs/languages/custom/#registering-dependencies) will be rebuilt when those dependencies change.
-    - {% addedin "1.0.0" %}This feature was previously exposed as part of the API for [Custom template extensions](/docs/languages/custom/#isincrementalmatch) via the `isIncrementalMatch` function.
-    - _Exceptions for Includes_: If the created/updated file is in your [Includes](/docs/config/#directory-for-includes) or [Layouts](</docs/config/#directory-for-layouts-(optional)>) directories, a full build will run (unless a known Eleventy layout file {% addedin "2.0.0-canary.21" %}).
+    - {% addedin "1.0.0" %}This feature was previously exposed as part of the API for [Custom template extensions](/docs/languages/custom/#is-incremental-match) via the `isIncrementalMatch` function.
+    - _Exceptions for Includes_: If the created/updated file is in your [Includes](/docs/config/#directory-for-includes) or [Layouts](</docs/config/#directory-for-layouts-optional>) directories, a full build will run (unless a known Eleventy layout file {% addedin "2.0.0-canary.21" %}).
   - **Collections** {% addedin "2.0.0-canary.21" %}: When you add or delete a tag from a template, any templates using that collection tag (as declared by [`pagination.data`](/docs/pagination/) or [`eleventyImport.collections`](/docs/collections/#declare-your-collections-for-incremental-builds)) will be rebuilt.
 - [**Passthrough Copy**](/docs/copy/) (Incremental passthrough copy) {% addedin "0.11.0" %}:
 	- Only copy a passthrough copy file when it actively changed. Don’t run a template or full build if only a passthrough copy file has changed.
