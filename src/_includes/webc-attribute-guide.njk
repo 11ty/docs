@@ -1,5 +1,14 @@
-{% callout "info", "md-block", "Comparing WebC Attribute Data Types" -%}
-1. [Attributes](#attributes-and-webcroot): HTML attribute strings.
-1. [Properties](#props-(properties)): server-only private HTML attribute strings (not rendered to output).
-1. [Dynamic Attributes and Properties](#dynamic-attributes-and-properties): evaluate as JavaScript (any data type, not just strings).
-{% endcallout %}
+#### Which one to use
+
+Attributes and props pass values into a component and are available inside it as variables by name (camelCased). Slots pass child markup. They differ in how the value is evaluated and whether it reaches the output HTML.
+
+| Syntax                                                  | Value                | In output | Use when                                                                              |
+| ------------------------------------------------------- | -------------------- | --------- | ------------------------------------------------------------------------------------- |
+| [Attribute](#attributes-and-webcroot)                   | String               | Yes\*     | The value belongs on an element in the output, such as `id`, `class`, or `data-*`.    |
+| [Prop](#props-properties)                               | String               | No        | The component needs the value but it should not appear in the HTML.                   |
+| [Dynamic attribute](#dynamic-attributes-and-properties) | Any JavaScript value | Yes\*     | The attribute value comes from page data or an expression.                            |
+| [Dynamic prop](#dynamic-attributes-and-properties)      | Any JavaScript value | No        | Pass page data or a non-string value (number, object, array) into the component.      |
+| [Slot](#slots)                                          | HTML                 | Yes\*\*   | The page supplies markup, not just a value, or the component wraps arbitrary content. |
+
+\* Rendered when the host tag is kept in the output, or when the component places them with [`webc:root`](#attributes-and-webcroot) or [`@attributes`](#attributes).<br>
+\*\* Rendered where the component places its `<slot>`.
