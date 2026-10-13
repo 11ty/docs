@@ -30,6 +30,10 @@ Let’s check in on the current capabilities and the roadmap:
     - [Global data files](/docs/data-global/): only templates that read the file’s top-level key are rebuilt (e.g. `_data/site.json` or `_data/site/meta.json` rebuild templates using `site`). Reads are tracked as templates use their data, including in layouts.
     - A full build runs when a data file is new, deleted, or unused by any template.
     - Global data used outside of template data (e.g. imported directly in a JavaScript file, or captured by a plugin) isn’t tracked.
+  - [**Render Plugin**](/docs/plugins/render/) {% addedin "4.0.0-alpha.11" %}:
+    - `{% raw %}{% renderFile %}{% endraw %}`: when the rendered file changes (including files outside the input directory), only templates rendering it are rebuilt, along with the rendered file’s own includes.
+    - `{% raw %}{% renderTemplate %}{% endraw %}`: templates using it are rebuilt when an include or component used inside a `renderTemplate` block of the same template language changes (e.g. a Nunjucks include or a WebC component).
+    - Files outside your input directory still need to be watched (e.g. via [`addWatchTarget`](/docs/watch-serve/#add-your-own-watch-targets)).
   - **Collections** {% addedin "2.0.0-canary.21" %}: When you add or delete a tag from a template, any templates using that collection tag (as declared by [`pagination.data`](/docs/pagination/) or [`eleventyImport.collections`](/docs/collections/#declare-your-collections-for-incremental-builds)) will be rebuilt. {% addedin "4.0.0-alpha.11" %}This also applies when a data file change adds or removes a tag.
 - [**Passthrough Copy**](/docs/copy/) (Incremental passthrough copy) {% addedin "0.11.0" %}:
 	- Only copy a passthrough copy file when it actively changed. Don’t run a template or full build if only a passthrough copy file has changed.
@@ -52,5 +56,4 @@ The previously stated incremental features are implemented in Eleventy core and 
 - **Cold Start Incremental**: `--incremental` does a full build to start out to provide a fresh starting point to work from. This feature would save the state of the build to the file system for faster cold starts. [#984](https://github.com/11ty/eleventy/issues/984)
 - **Incremental on a Build Server**: Cache the output folder between builds on a CI server like Netlify and only process/write templates that have changed since the last build. [#2775](https://github.com/11ty/eleventy/issues/2775)
 - Collections dependencies improvements: while we have `eleventyImport.collections` to declaratively log collections dependencies, we may be able to dive deeper into template syntax APIs to find the symbols in use. [#1615](https://github.com/11ty/eleventy/issues/1615) Alternatively we may be able to change the collections API to use Proxies to get smarter about this in an easier way (though previous experiments with this for `eleventyComputed` failed in some languages).
-- [Render plugin](/docs/plugins/render/): `{% raw %}{% renderFile %}{% endraw %}` dependencies
 - _Stretch goal_: Pagination-level incremental that operates on a subset of data [#1087](https://github.com/11ty/eleventy/issues/1087)
