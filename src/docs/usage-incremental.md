@@ -21,7 +21,10 @@ Let’s check in on the current capabilities and the roadmap:
   - **Includes** {% addedin "4.0.0-alpha.11" %}: When you change an include, any templates using it (directly or through other includes) are rebuilt.
     - Nunjucks: `{% raw %}{% include %}{% endraw %}`, `{% raw %}{% import %}{% endraw %}`, `{% raw %}{% from %}{% endraw %}`, and `{% raw %}{% extends %}{% endraw %}`.
     - Liquid: `{% raw %}{% include %}{% endraw %}`, `{% raw %}{% render %}{% endraw %}`, and `{% raw %}{% layout %}{% endraw %}`, including in Liquid-preprocessed Markdown.
-    - A full build runs instead when no template uses the file, before the first full build finishes (e.g. with `--ignore-initial`), after a failed build, when the file was deleted, or for JavaScript files that aren’t layouts.
+    - A full build runs instead when no template uses the file, before the first full build finishes (e.g. with `--ignore-initial`), after a failed build, or when the file was deleted.
+  - **JavaScript Dependencies** {% addedin "4.0.0-alpha.11" %}: When you change a JavaScript module imported by a [JavaScript template](/docs/languages/javascript/) (`.11ty.js` and the other JavaScript template extensions, e.g. `.11ty.mjs`, `.11ty.ts`, `.server.js`) or by a JavaScript layout, only templates using that module are rebuilt.
+    - A full build runs instead when the module is also imported by your configuration file or a data file.
+    - Requires [`watchJavaScriptDependencies`](/docs/watch-serve/#watch-javascript-dependencies) (enabled by default) and only applies to `--watch`/`--serve`.
   - **Data Files** {% addedin "4.0.0-alpha.11" %}:
     - [Template and directory data files](/docs/data-template-dir/): only templates using that data file are rebuilt.
     - [Global data files](/docs/data-global/): only templates that read the file’s top-level key are rebuilt (e.g. `_data/site.json` or `_data/site/meta.json` rebuild templates using `site`). Reads are tracked as templates use their data, including in layouts.
@@ -48,8 +51,6 @@ The previously stated incremental features are implemented in Eleventy core and 
 
 - **Cold Start Incremental**: `--incremental` does a full build to start out to provide a fresh starting point to work from. This feature would save the state of the build to the file system for faster cold starts. [#984](https://github.com/11ty/eleventy/issues/984)
 - **Incremental on a Build Server**: Cache the output folder between builds on a CI server like Netlify and only process/write templates that have changed since the last build. [#2775](https://github.com/11ty/eleventy/issues/2775)
-- Template types
-  - `11ty.js`: Map JavaScript dependencies
 - Collections dependencies improvements: while we have `eleventyImport.collections` to declaratively log collections dependencies, we may be able to dive deeper into template syntax APIs to find the symbols in use. [#1615](https://github.com/11ty/eleventy/issues/1615) Alternatively we may be able to change the collections API to use Proxies to get smarter about this in an easier way (though previous experiments with this for `eleventyComputed` failed in some languages).
 - [Render plugin](/docs/plugins/render/): `{% raw %}{% renderFile %}{% endraw %}` dependencies
 - _Stretch goal_: Pagination-level incremental that operates on a subset of data [#1087](https://github.com/11ty/eleventy/issues/1087)
