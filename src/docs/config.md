@@ -479,7 +479,7 @@ This will now include a `data` property in your JSON output that includes the `p
 This may enable some extra autocomplete features in your IDE (where supported).
 
 {% set codeContent %}
-/** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
+/** @param {import("@11ty/eleventy/UserConfig").default} eleventyConfig */
 export default function (eleventyConfig) {
 	// …
 };
