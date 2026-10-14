@@ -419,7 +419,6 @@ export default async function (eleventyConfig) {
 		"src/css/fonts/BenchNine-Bold-kern-latin.woff2": "css/fonts/benchnine-bold.woff2",
 		"src/css/fonts/RobotoMono-Regular-kern-latin.woff2": "css/fonts/robotomono-regular.woff2",
 		"src/css/fonts/RobotoMono-Regular-kern-latinext.woff2": "css/fonts/robotomono-regular-ext.woff2",
-		"src/opensearch.xml": "opensearch.xml",
 	});
 
 	eleventyConfig.addPassthroughCopy({
