@@ -23,9 +23,11 @@
 {%- endcallout %}
 
 <details-force-state class="elv-toc-c" data-force-closed="(max-width: 41.375em)" id="skip-nav">
+	<nav>
 	{%- if eleventyNavigation -%}
 		{%- set navKey = eleventyNavigation.key -%}
 	{%- endif -%}
 	{{ "Eleventy Documentation,Ecosystem" | navFiltered | eleventyNavigationToHtml({ activeKey: navKey, listClass: 'elv-toc-list', activeListItemClass: 'elv-toc-active', useTopLevelDetails: true, anchorElementWithoutHref: "span" }) | safe }}
+	</nav>
 </details-force-state>
 </div>
