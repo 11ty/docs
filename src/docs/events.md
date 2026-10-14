@@ -75,7 +75,7 @@ export default function(eleventyConfig) {
 {% include "snippets/configDefinition.njk" %}
 
 - `directories`: an object with normalized project directory paths, set in your in [your configuration file](/docs/config/#input-directory) (or populated with Eleventy defaults).
-	- Included properties: `input`, `inputFile`, `inputGlob`, `data`, `includes`, `layouts`, and `output`. Works best with a [named `config` export](./config-shapes.md#optional-export-config-object) in your configuration file.
+	- Included properties: `input`, `inputFile`, `inputGlob`, `data`, `includes`, `layouts`, and `output`. Works best with a [named `config` export](./config-shapes.md#callback-function) in your configuration file.
 - `dir` (deprecated, use `directories` instead):
 	- Included properties: `input` (default `"."`), `output` (default `"_site"`), `includes` (default `"_includes"`), `data` (default `"_data"`), and `layouts` (no default value).
 - `outputMode`: a string representing the value of [`--to` on the command line](/docs/usage/#to-can-output-json)

@@ -5,7 +5,7 @@ eleventyNavigation:
   order: 4
 relatedLinks:
   /docs/config/#change-file-suffix-for-data-files: Change the file suffix `.11tydata` for Data Files
-  /docs/watch-serve/#watch-javascript-dependencies: Watch JavaScript Dependencies
+  /docs/watch-serve/#watch-java-script-dependencies: Watch JavaScript Dependencies
 ---
 
 # JavaScript Data Files {% addedin "0.5.3" %}
@@ -73,7 +73,7 @@ export default function (configData) {
 
 ## Examples
 
-- [Example: Using GraphQL](#example-using-graphql)
+- [Example: Using GraphQL](#example-using-graph-ql)
 - [Example: Exposing Environment Variables](#example-exposing-environment-variables)
 - [Fetch GitHub star counts](/docs/quicktips/cache-api-requests/)
 - [Caching remote images, Google Fonts CSS, and more on the Eleventy Fetch plugin docs](/docs/plugins/fetch/#more-examples)

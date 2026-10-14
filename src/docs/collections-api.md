@@ -57,7 +57,7 @@ export default function (eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
-Note that while Array `.reverse()` mutates the array _in-place_, all Eleventy Collection API methods return new copies of collection arrays and can be modified without side effects to other collections. You can also use `.toReversed()` if you want to avoid mutations (Node 20+). However, <a href="/docs/collections.md#do-not-use-array-reverse()">you do need to <strong>be careful when using Array `.reverse()`</strong> in templates!</a>
+Note that while Array `.reverse()` mutates the array _in-place_, all Eleventy Collection API methods return new copies of collection arrays and can be modified without side effects to other collections. You can also use `.toReversed()` if you want to avoid mutations (Node 20+). However, <a href="/docs/collections.md#do-not-use-array-reverse">you do need to <strong>be careful when using Array `.reverse()`</strong> in templates!</a>
 
 #### Example: `getAllSorted().filter()`
 
@@ -162,7 +162,7 @@ export default function (eleventyConfig) {
 Returns an array. Will match an arbitrary glob (or an array of globs) against the input file’s full `inputPath` (including the input directory).
 
 {% callout "info" %}
-<strong>Note</strong>: <code>getFilteredByGlob</code> filters results returned from <a href="#getallsorted()"><code>getAllSorted</code></a>. It will not search the file system for new templates. It will not match files in your <a href="/docs/config.md#directory-for-includes">Includes directory</a> or anything excluded by <code>eleventyExcludeFromCollections</code>.
+<strong>Note</strong>: <code>getFilteredByGlob</code> filters results returned from <a href="#get-all-sorted"><code>getAllSorted</code></a>. It will not search the file system for new templates. It will not match files in your <a href="/docs/config.md#directory-for-includes">Includes directory</a> or anything excluded by <code>eleventyExcludeFromCollections</code>.
 {% endcallout %}
 
 {% callout "info" %}

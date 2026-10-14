@@ -17,7 +17,7 @@ Let’s check in on the current capabilities and the roadmap:
   - If you create/update a template file, Eleventy will run the build for that file and only that file.
   - **Layouts** {% addedin "2.0.0-canary.21" %}: When you change a layout file, any templates using that layout file are rebuilt.
   - **Template Dependencies** {% addedin "2.0.0-canary.19" %}Any templates using a dependency mapped via [the `addDependencies` method](/docs/languages/custom/#registering-dependencies) will be rebuilt when those dependencies change.
-    - {% addedin "1.0.0" %}This feature was previously exposed as part of the API for [Custom template extensions](/docs/languages/custom/#isincrementalmatch) via the `isIncrementalMatch` function.
+    - {% addedin "1.0.0" %}This feature was previously exposed as part of the API for [Custom template extensions](/docs/languages/custom/#is-incremental-match) via the `isIncrementalMatch` function.
   - **Includes** {% addedin "4.0.0-alpha.11" %}: When you change an include, any templates using it (directly or through other includes) are rebuilt.
     - Nunjucks: `{% raw %}{% include %}{% endraw %}`, `{% raw %}{% import %}{% endraw %}`, `{% raw %}{% from %}{% endraw %}`, and `{% raw %}{% extends %}{% endraw %}`.
     - Liquid: `{% raw %}{% include %}{% endraw %}`, `{% raw %}{% render %}{% endraw %}`, and `{% raw %}{% layout %}{% endraw %}`, including in Liquid-preprocessed Markdown.
