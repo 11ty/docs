@@ -129,7 +129,7 @@ export default function (eleventyConfig) {
 A few Eleventy-specific data properties are available to filter callbacks.
 
 - `this.page` {% addedin "2.0.0-canary.19" %} (Learn about [`page`](/docs/data-eleventy-supplied.md#page-variable))
-- `this.eleventy` {% addedin "2.0.0-canary.19" %} (Learn about [`eleventy`](/docs/data-eleventy-supplied.md##eleventy-variable))
+- `this.eleventy` {% addedin "2.0.0-canary.19" %} (Learn about [`eleventy`](/docs/data-eleventy-supplied.md#eleventy-variable))
 - `this.env` (Nunjucks-specific) {% addedin "3.0.0-canary.5" %}
 - `this.ctx` (Nunjucks-specific) {% addedin "3.0.0-canary.5" %}
 

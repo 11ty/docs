@@ -165,7 +165,7 @@ Some Jamstack providers have additional features to persist this folder between 
 
 - [**Cloudflare Pages**](https://developers.cloudflare.com/pages/configuration/build-caching/#frameworks): now preserves the `.cache` folder by default! _(shipped April 2024)_
 - **Vercel**: zero-configuration support (when the [Eleventy framework is detected](https://vercel.com/docs/deployments/configure-a-build#framework-preset), [source](https://github.com/vercel/vercel/blob/20237d4f7b55b0697b57db15636c11204cb0dc39/packages/frameworks/src/frameworks.ts#L363)).
-- **GitHub Pages**: use the [`cache` action](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#using-the-cache-action). [Mini-tutorial included below](#deploy-an-eleventy-project-to-github-pages).
+- **GitHub Pages**: use the [`cache` action](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#using-the-cache-action). [Mini-tutorial included below](#deploy-an-eleventy-project-to-git-hub-pages).
 - **Netlify**: use [`netlify-plugin-cache`](https://www.npmjs.com/package/netlify-plugin-cache). [Mini-tutorial included below](#using-netlify-plugin-cache-to-persist-cache). [Video on YouTube](https://www.youtube.com/watch?v=JCQQgtOcjH4&t=322s).
 - **CloudCannon**: use [Preserved paths](https://cloudcannon.com/documentation/articles/caching-specific-folders-to-reduce-build-times/#preserved-paths). [Tutorial on YouTube](https://www.youtube.com/watch?v=ULwVlFMth1U).
 

@@ -71,7 +71,7 @@ The above JavaScript code will log a JavaScript object like this:
 
 ### Return HTML
 
-Use the `returnType: "html"` option to return HTML. [Learn more about `returnType` and `htmlOptions`](./image.md#returntype-and-htmloptions).
+Use the `returnType: "html"` option to return HTML. [Learn more about `returnType` and `htmlOptions`](./image.md#return-type-and-html-options).
 
 {% include "snippets/image/intro-html.njk" %}
 
