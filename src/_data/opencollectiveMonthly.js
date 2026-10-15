@@ -3,49 +3,19 @@ import getOpenCollectiveData from "./opencollective.js";
 const opencollective = await getOpenCollectiveData();
 
 export default async function () {
-	let backers = opencollective.supporters.filter((supporter) => {
-		return (
-			(supporter.frequency === "MONTHLY" || supporter.frequency === "YEARLY") &&
-			supporter.status === "ACTIVE"
-		);
-	});
-
-	let count = 0;
-	let sorted = [];
-	let buckets = {};
-	let bucketNames = {};
-	let monthlyDonations = 0;
-	for (let backer of backers) {
-		let amount = backer.amount.value;
-		if (backer.frequency === "YEARLY") {
-			amount = amount / 12;
+	let recurringAmount = 0;
+	for (let supporter of opencollective.supporters) {
+		if (supporter.status !== "ACTIVE") {
+			continue;
 		}
-		sorted.push(amount);
-		monthlyDonations += amount;
-		count++;
-
-		if (!buckets[amount]) {
-			buckets[amount] = 0;
+		if (supporter.frequency === "MONTHLY") {
+			recurringAmount += supporter.amount.value;
+		} else if (supporter.frequency === "YEARLY") {
+			recurringAmount += supporter.amount.value / 12;
 		}
-		buckets[amount]++;
-
-		if (!bucketNames[amount]) {
-			bucketNames[amount] = [];
-		}
-		bucketNames[amount].push(backer.name);
 	}
 
-	sorted.sort((a, b) => a - b);
-
 	return {
-		contributorCount: count,
-		recurringAmount: monthlyDonations,
-		stats: {
-			median: sorted[Math.floor(sorted.length / 2)],
-			mean: monthlyDonations / count,
-		},
-		list: sorted,
-		buckets: buckets,
-		names: bucketNames,
+		recurringAmount,
 	};
 }

@@ -252,10 +252,7 @@ function findBy(data, path, value) {
 export default async function (eleventyConfig) {
 	eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
-	if (process.env.NODE_ENV === "production") {
-		// Skip on production
-		eleventyConfig.ignores.add("src/admin.md");
-	} else {
+	if (process.env.NODE_ENV !== "production") {
 		// Skip on local dev
 		eleventyConfig.ignores.add("src/api/*");
 		eleventyConfig.ignores.add("src/authors/author-pages.md");
@@ -507,14 +504,6 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addFilter("commaNumber", function (num) {
 		return commaNumber(num);
-	});
-
-	eleventyConfig.addFilter("displayPrice", function (num) {
-		return new Intl.NumberFormat("en-US", {
-			style: "currency",
-			currency: "USD",
-			minimumFractionDigits: 0,
-		}).format(num);
 	});
 
 	eleventyConfig.addFilter("displayUrl", displayUrl);
