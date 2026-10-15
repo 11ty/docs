@@ -1,0 +1,5 @@
+{
+  "npm": "eleventy-plugin-components-bundler",
+  "author": "wernerglinka",
+  "description": "An Eleventy plugin that automatically discovers and bundles CSS and JavaScript files from component-based architectures using esbuild"
+}

@@ -1,0 +1,5 @@
+{
+  "npm": "eleventy-plugin-normalized-collections",
+  "author": "wernerglinka",
+  "description": "Normalize collections to work with 'nunjucks-components.com' library."
+}
