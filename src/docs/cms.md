@@ -8,7 +8,7 @@ cmses:
     url: https://cloudcannon.com/eleventy-cms/?utm_campaign=11ty-partner&utm_source=official-sponsor
     tags: [Git-based]
   - name: GitCMS
-    url: https://gitcms.blog/
+    url: https://gitcms.dev/
     tags: [Git-based]
   - name: CMS Brew
     url: https://cmsbrew.com/?utm_source=11ty-docs
