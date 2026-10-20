@@ -45,7 +45,7 @@
     "@11ty/eleventy-navigation": "^1.0.5",
     "@11ty/eleventy-plugin-rss": "^3.1.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
-    "@11ty/eleventy-plugin-webc": "^0.12.0-beta.7",
+    "@11ty/eleventy-plugin-webc": "^0.12.0-beta.8",
     "@11ty/font-awesome": "^2.0.0",
     "@11ty/image-color": "^2.0.0",
     "@sindresorhus/slugify": "^3.0.1",
@@ -56,7 +56,6 @@
     "entities": "^8.1.0",
     "esbuild": "^0.28.2",
     "esm-import-transformer": "^3.0.5",
-    "fast-glob": "^3.3.3",
     "fs-extra": "^11.4.1",
     "human-readable-numbers": "0.9.5",
     "lightningcss": "^1.33.0",
@@ -68,7 +67,8 @@
     "prettier": "^3.9.9",
     "semver": "^7.8.5",
     "short-hash": "^1.0.0",
-    "terser": "^5.51.2"
+    "terser": "^5.51.2",
+    "tinyglobby": "^0.2.17"
   },
   "dependencies": {
     "@11ty/client": "4.0.0-alpha.10",
@@ -84,5 +84,8 @@
     "artificial-chart": "^2.0.3",
     "lite-youtube-embed": "^0.3.4",
     "speedlify2-score": "^1.1.0"
+  },
+  "overrides": {
+    "@11ty/import": "^2.0.1"
   }
 }

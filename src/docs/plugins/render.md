@@ -46,7 +46,7 @@ Use the `renderTemplate` paired shortcode to render a template string.
 
 The content inside of the shortcode will be rendered using Markdown (`"md"`). Front matter is not yet supported.
 
-The first argument to `renderTemplate` can be any valid [`templateEngineOverride`](/docs/languages/#templateengineoverride-examples) value. You can even use `"liquid,md"` to preprocess markdown with liquid. You can use [custom template types](/docs/languages/custom/) here too.
+The first argument to `renderTemplate` can be any valid [`templateEngineOverride`](/docs/template-overrides/#template-engine-override-examples) value. You can even use `"liquid,md"` to preprocess markdown with liquid. You can use [custom template types](/docs/languages/custom/) here too.
 
 {% callout "info", "md" %}The one exception here is that `{% raw %}{% renderTemplate "11ty.js" %}{% endraw %}` JavaScript string templates are not yet supported—use `renderFile` below instead.{% endcallout %}
 
@@ -76,7 +76,7 @@ Both the [`eleventy`](/docs/data-eleventy-supplied/#eleventy-variable) and [`pag
 
 #### Override the target file syntax
 
-The syntax is normally inferred using the file extension, but it can be overridden using a third argument. It can be any valid [`templateEngineOverride`](/docs/languages/#templateengineoverride-examples) value. You can even use `"liquid,md"` to preprocess markdown with liquid.
+The syntax is normally inferred using the file extension, but it can be overridden using a third argument. It can be any valid [`templateEngineOverride`](/docs/template-overrides/#template-engine-override-examples) value. You can even use `"liquid,md"` to preprocess markdown with liquid.
 
 {% include "snippets/plugins/renderfileoverride.njk" %}
 

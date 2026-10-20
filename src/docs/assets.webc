@@ -178,7 +178,7 @@ permalink: bundle.js
 
 <p>Eleventy also provides an optional plaintext <a href="/docs/plugins/bundle.md"><strong>Bundle plugin</strong></a> that allows you to populate bundles with code from content pages. This allows you to make the CSS and JavaScript content-driven. The bundle plugin can be used in Nunjucks, Liquid, Handlebars, 11ty.js, and WebC templates and is provided for free with the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> Starter Project</a>.</p>
 
-<p>Furthermore, <em>the bundle plugin is used by <a href="/docs/languages/webc/#css-and-js-(bundler-mode)">WebC to create minimal bundles</a> that are comprised only of CSS and JavaScript from components used on each WebC page</em>. Using WebC in this way provides the best and least-effort investment in the long-term maintenance of a page. When components on the page change, the JavaScript and CSS bundles are automatically streamlined and will not contain extra code from previous designs.</p>
+<p>Furthermore, <em>the bundle plugin is used by <a href="/docs/languages/webc/#css-and-js-bundler-mode">WebC to create minimal bundles</a> that are comprised only of CSS and JavaScript from components used on each WebC page</em>. Using WebC in this way provides the best and least-effort investment in the long-term maintenance of a page. When components on the page change, the JavaScript and CSS bundles are automatically streamlined and will not contain extra code from previous designs.</p>
 
 <p>Get started with the <a href="/docs/plugins/bundle.md"><strong>Bundle plugin</strong></a> or <a href="/docs/languages/webc/"><strong>WebC</strong></a>!</p>
 

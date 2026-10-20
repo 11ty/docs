@@ -20,7 +20,7 @@ permalink: theme.css
 
 That’s an easy way to concatenate files and control the include order.
 
-You might imagine creating an `include-all` [Shortcode](/docs/shortcodes/) that uses [`fast-glob`](https://www.npmjs.com/package/fast-glob) to include a glob of files like `{% raw %}{% include-all "components/*.css" %}{% endraw %}`, but that’s an exercise left to the reader!
+You might imagine creating an `include-all` [Shortcode](/docs/shortcodes/) that uses [`tinyglobby`](https://www.npmjs.com/package/tinyglobby) to include a glob of files like `{% raw %}{% include-all "components/*.css" %}{% endraw %}`, but that’s an exercise left to the reader!
 
 ## Capture and Minify
 

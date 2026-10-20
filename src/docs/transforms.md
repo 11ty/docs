@@ -47,7 +47,7 @@ $config.addTransform("third", () => {});
 
 ### Plugins
 
-Transforms added via plugins are inserted via the [second configuration stage for plugins](/docs/plugins/#creating-a-plugin).
+Transforms added via plugins are inserted via the [second configuration stage for plugins](/docs/create-plugin/#creating-a-plugin).
 
 ```js
 $config.addPlugin($config => {

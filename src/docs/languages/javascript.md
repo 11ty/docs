@@ -12,7 +12,7 @@ tags:
   - related-filters
   - related-shortcodes
 relatedLinks:
-  /docs/config/#watch-javascript-dependencies: Watch JavaScript Dependencies
+  /docs/config/#watch-java-script-dependencies: Watch JavaScript Dependencies
 communityLinksKey: javascript
 layout: layouts/langs.njk
 ---

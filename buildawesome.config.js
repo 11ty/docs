@@ -235,13 +235,15 @@ function findBy(data, path, value) {
 			return false;
 		}
 
-		if (typeof value === "string") {
-			let valueLower = value.toLowerCase();
-			let dataLower = gotten.toLowerCase();
-			if (valueLower === dataLower) {
-				return true;
+		if (Array.isArray(gotten)) {
+			if (typeof value === "string") {
+				return gotten.some((item) => typeof item === "string" && item.localeCompare(value, undefined, { sensitivity: "base" }) === 0);
 			}
-			return false;
+			return gotten.includes(value);
+		}
+
+		if (typeof value === "string") {
+			return gotten.localeCompare(value, undefined, {sensitivity: "base"}) === 0;
 		}
 
 		return value === gotten;
@@ -251,10 +253,7 @@ function findBy(data, path, value) {
 export default async function ($config) {
 	$config.setServerPassthroughCopyBehavior("passthrough");
 
-	if (process.env.NODE_ENV === "production") {
-		// Skip on production
-		$config.ignores.add("src/admin.md");
-	} else {
+	if (process.env.NODE_ENV !== "production") {
 		// Skip on local dev
 		$config.ignores.add("src/api/*");
 		$config.ignores.add("src/authors/author-pages.md");
@@ -510,14 +509,6 @@ export default async function ($config) {
 
 	$config.addFilter("commaNumber", function (num) {
 		return commaNumber(num);
-	});
-
-	$config.addFilter("displayPrice", function (num) {
-		return new Intl.NumberFormat("en-US", {
-			style: "currency",
-			currency: "USD",
-			minimumFractionDigits: 0,
-		}).format(num);
 	});
 
 	$config.addFilter("displayUrl", displayUrl);

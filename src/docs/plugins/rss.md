@@ -324,6 +324,7 @@ The following feed samples **require RSS Plugin v2.0** or newer. [Samples for RS
 {
   "permalink": "feed.json",
   "eleventyExcludeFromCollections": true,
+  "layout": false,
   "metadata": {
     "title": "My Blog about Boats",
     "description": "I am writing about my experiences as a naval navel-gazer.",

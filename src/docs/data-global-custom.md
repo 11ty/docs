@@ -61,7 +61,7 @@ export default function ($config) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
-The above is important to know when using this API with [Computed Data](/docs/data-computed/#using-javascript):
+The above is important to know when using this API with [Computed Data](/docs/data-computed/#using-java-script):
 
 {% set codeContent %}
 export default function ($config) {

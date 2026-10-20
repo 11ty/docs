@@ -87,7 +87,7 @@ The `watchIgnores` Set starts with a default `**/node_modules/**` entry.
 
 ## Watch JavaScript Dependencies {% addedin "0.7.0" %}
 
-When in `--watch` mode, Build Awesome will spider the dependencies of your [JavaScript Templates](/docs/languages/javascript/) (`.11ty.js`), [JavaScript Data Files](/docs/data-js/) (`.11tydata.js` or `_data/**/*.js`), or Configuration File (usually `buildawesome.config.js`) to watch those files too. Files in `node_modules` directories are ignored. This feature is _enabled by default_.
+When in `--watch` mode, Build Awesome will spider the dependencies of your [JavaScript Templates](/docs/languages/javascript/) (`.11ty.js`; {% addedin "4.0.0-alpha.11" %}all JavaScript template extensions, e.g. `.11ty.mjs`, `.11ty.ts`, `.server.js`), [JavaScript Data Files](/docs/data-js/) (`.11tydata.js` or `_data/**/*.js`), or Configuration File (usually `buildawesome.config.js`) to watch those files too. Files in `node_modules` directories are ignored. This feature is _enabled by default_.
 
 {% set codeContent %}
 export default function($config) {
