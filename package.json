@@ -84,5 +84,8 @@
     "artificial-chart": "^2.0.3",
     "lite-youtube-embed": "^0.3.4",
     "speedlify2-score": "^1.1.0"
+  },
+  "overrides": {
+    "@11ty/import": "^2.0.1"
   }
 }
