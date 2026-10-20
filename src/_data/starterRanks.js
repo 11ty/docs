@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import fastglob from "fast-glob";
+import { glob } from "tinyglobby";
 import EleventyFetch from "@11ty/eleventy-fetch";
 
 const GROUP_URL = "https://www.speedlify.dev/api/group/11ty-starters.json";
@@ -36,7 +36,7 @@ export default async function () {
 	}
 
 	let ranks = {};
-	for (let file of await fastglob("./src/_data/starters/*.json")) {
+	for (let file of await glob("./src/_data/starters/*.json")) {
 		let { demo, disabled } = JSON.parse(fs.readFileSync(file, "utf8"));
 		let rank = demo && !disabled ? byUrl[normalize(demo)] : undefined;
 		if (rank !== undefined) {

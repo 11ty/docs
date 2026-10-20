@@ -1,11 +1,11 @@
-import fastglob from "fast-glob";
+import { glob } from "tinyglobby";
 import getAuthors from "../../config/getAuthorsFromSites.js";
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 
 export default async function () {
-	let sites = await fastglob("./src/_data/builtwith/*.json", {
+	let sites = await glob("./src/_data/builtwith/*.json", {
 		caseSensitiveMatch: false,
 	});
 
