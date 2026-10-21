@@ -55,5 +55,14 @@ export default async function () {
 		);
 	}
 
+	// Skip entries that start with <del>
+	let getEntries = feed.getEntries.bind(feed);
+	feed.getEntries = async () => {
+		let entries = await getEntries();
+		return entries.filter(entry => {
+			return !(entry.title || "").trim().startsWith("<del>") && !(entry.content || "").trim().startsWith("<del>");
+		});
+	};
+
 	return feed;
 }
