@@ -1,0 +1,13 @@
+
+{% raw %}
+<nav aria-labelledby="my-pagination">
+  <h2 id="my-pagination">This is my Pagination</h2>
+  <ol>
+    <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">First</a>{% else %}First{% endif %}</li>
+{%- for pageEntry in pagination.pages %}
+    <li><a href="{{ pagination.hrefs[ forloop.index0 ] }}"{% if page.url == pagination.hrefs[ forloop.index0 ] %} aria-current="page"{% endif %}>Page {{ forloop.index }}</a></li>
+{%- endfor %}
+    <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">Last</a>{% else %}Last{% endif %}</li>
+  </ol>
+</nav>
+{% endraw %}
