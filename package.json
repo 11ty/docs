@@ -15,7 +15,8 @@
     "start-production": "NODE_ENV=production npx @11ty/eleventy --serve --quiet --port=8091",
     "create-search-index": "npx pagefind --site \"_site\" --glob \"{docs,blog}/**/*.html\"",
     "get-new-data": "rm -rf ./src/_data/builtwith/ && npx degit github:11ty/11ty-community/built-with-eleventy src/_data/builtwith/",
-    "format": "prettier --write '**/*.{js,css,html,md}'"
+    "get-new-supporters": "eleventy && node node-supporters",
+    "format": "prettier . --write"
   },
   "repository": {
     "type": "git",
