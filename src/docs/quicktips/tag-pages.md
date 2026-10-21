@@ -79,6 +79,25 @@ permalink: /tags/{{ tag }}/
 
 Now Eleventy will only generate a `/tags/personal/` template and `tech` will be ignored.
 
+## Include all Tag Pages in the `all` Collection
+
+By default, only the first page generated with pagination will be added to the `all` collection. Ordinarily, this is not a problem, but with how we are using pagination in this unconventional manner to generate Tag Pages, you will likely want each Tag Page to be added to the `all` collection (very helpful to later generate a sitemap.xml file). Pages must opt-in to change this behavior by setting `addAllPagesToCollections` to `true` like this:
+
+{% raw %}
+```markdown
+---
+pagination:
+  addAllPagesToCollections: true
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - tech
+permalink: /tags/{{ tag }}/
+---
+```
+{% endraw %}
+
 ## In Practice
 
 This is currently in use on the [`eleventy-base-blog` sample project](https://github.com/11ty/eleventy-base-blog). Check out source code in the [`tags.njk` template](https://github.com/11ty/eleventy-base-blog/blob/main/content/tags.njk) and [see a live demo](https://demo-base-blog.11ty.dev/tags/another-tag/).
