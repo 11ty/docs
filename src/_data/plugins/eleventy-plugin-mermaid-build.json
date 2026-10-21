@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-mermaid-build",
+	"author": "octipus",
+	"description": "renders Mermaid markdown code fences as accessible inline SVG at build time"
+}
