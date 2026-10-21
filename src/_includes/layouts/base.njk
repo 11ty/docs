@@ -156,12 +156,12 @@ let eleventyComputed = {
 			<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'async' %}" fetchpriority="low">
 		</noscript>
 {%- elseif config.env === "production" %}
-	<link rel="stylesheet" href="/css/async.css" media="print" onload="this.media='all'" fetchpriority="low">
+	<link rel="stylesheet" href="/dist/css/async.css" media="print" onload="this.media='all'" fetchpriority="low">
 	<noscript>
-		<link rel="stylesheet" href="/css/async.css" fetchpriority="low">
+		<link rel="stylesheet" href="/dist/css/async.css" fetchpriority="low">
 	</noscript>
 {%- else %}
-	<link rel="stylesheet" href="/css/async.css" fetchpriority="low">
+	<link rel="stylesheet" href="/dist/css/async.css" fetchpriority="low">
 {%- endif %}
 
 		<script type="module">
@@ -180,7 +180,7 @@ let eleventyComputed = {
 		<script type="module" src="{% getBundleFileUrl 'js' %}"></script>
 		<script type="module" src="{% getBundleFileUrl 'js', 'async' %}"></script>
 {%- else %}
-		<script src="/js/eleventy.js" type="module"></script>
+		<script src="/dist/js/eleventy.js" type="module"></script>
 {%- endif %}
 
 {#

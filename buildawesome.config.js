@@ -1,6 +1,3 @@
-import "dotenv/config";
-
-import path from "node:path";
 import { fileURLToPath } from "node:url";
 import memoize from "memoize";
 import { DateTime } from "luxon";
@@ -29,6 +26,15 @@ import markdownPlugin from "./config/markdownPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
+
+// Load .env if present (absent in production).
+try {
+	process.loadEnvFile();
+} catch (e) {
+	if (e.code !== "ENOENT") {
+		throw e;
+	}
+}
 
 // Hosts without a usable Open Graph image, use the screenshot service instead.
 const screenshotOnlyHosts = new Set([
@@ -257,8 +263,6 @@ export default async function ($config) {
 		// Skip on local dev
 		$config.ignores.add("src/api/*");
 		$config.ignores.add("src/authors/author-pages.md");
-		$config.ignores.add("src/firehose.11ty.js");
-		$config.ignores.add("src/firehose-feed.11ty.js");
 	}
 
 	$config.setServerOptions({
@@ -295,6 +299,9 @@ export default async function ($config) {
 			// "npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc",
 			"npm:@11ty/eleventy-img/*.webc",
 		],
+		bundlePluginOptions: {
+			toFileDirectory: "dist",
+		},
 	});
 
 	// Feeds (only in production)
@@ -445,10 +452,14 @@ export default async function ($config) {
 
 	// Eleventy Editor
 	// Minification only happens in production
-	await minifyJavaScriptFile(resolveModule("@11ty/client"), path.join($config.directories.output, "js/eleventy.core.browser.js"));
-	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), path.join($config.directories.output, "js/eleventy.engine-md.browser.js"));
-	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), path.join($config.directories.output, "js/eleventy.engine-liquid.browser.js"));
-	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", path.join($config.directories.output, "js/wa-copy-button.js"));
+	await minifyJavaScriptFile(resolveModule("@11ty/client"), "dist/js/eleventy.core.browser.js");
+	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), "dist/js/eleventy.engine-md.browser.js");
+	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), "dist/js/eleventy.engine-liquid.browser.js");
+	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", "dist/js/wa-copy-button.js");
+
+	$config.addPassthroughCopy({
+		"dist/": "/",
+	});
 
 	$config.addPassthroughCopy("src/img");
 	$config.addPassthroughCopy("src/favicon.ico");

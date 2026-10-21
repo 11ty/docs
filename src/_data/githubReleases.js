@@ -1,4 +1,3 @@
-import "dotenv/config";
 import semver from "semver";
 import EleventyFetch from "@11ty/eleventy-fetch";
 

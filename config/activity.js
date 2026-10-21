@@ -1,4 +1,3 @@
-import "dotenv/config";
 import Fetch from "@11ty/eleventy-fetch";
 import { ActivityFeed } from "@11ty/eleventy-activity-feed";
 
