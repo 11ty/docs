@@ -1,5 +1,3 @@
-import "dotenv/config";
-
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import memoize from "memoize";
@@ -28,6 +26,15 @@ import markdownPlugin from "./config/markdownPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
+
+// Load .env if present (absent in production).
+try {
+	process.loadEnvFile();
+} catch (e) {
+	if (e.code !== "ENOENT") {
+		throw e;
+	}
+}
 
 // Hosts without a usable Open Graph image, use the screenshot service instead.
 const screenshotOnlyHosts = new Set([

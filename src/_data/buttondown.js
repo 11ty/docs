@@ -1,5 +1,4 @@
 import fetch from "@11ty/eleventy-fetch";
-import "dotenv/config";
 
 const CACHE_DURATION = process.env.ELEVENTY_RUN_MODE === "serve" ? "14d" : "23h";
 
