@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-skiplink",
+	"author": "davidmoll.net",
+	"description": "Automatically insert a skiplink on your 11ty-page to improve accessibility for readers who navigate with a keyboard."
+}
