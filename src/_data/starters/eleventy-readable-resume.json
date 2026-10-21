@@ -1,0 +1,8 @@
+{
+	"url": "https://github.com/supertj/eleventy-readable-resume",
+	"name": "Readable Resume",
+	"description": "A one-page resume you write in YAML that prints to a clean PDF. Serif type, centered section headings, one column, no JavaScript.",
+	"author": "supertj",
+	"demo": "https://readableresume.com/eleventy-resume-template",
+	"npmStartScript": "start"
+}
