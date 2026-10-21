@@ -4,6 +4,15 @@ import activity from "../config/activity.js";
 
 const html = String.raw;
 
+const ICONS = {
+	blog: "fa-solid fa-newspaper",
+	"quick-tips": "fa-solid fa-lightbulb",
+	youtube: "fa-brands fa-youtube",
+	mastodon: "fa-brands fa-mastodon",
+	bluesky: "fa-brands fa-bluesky",
+	github: "fa-brands fa-github",
+};
+
 function getSlugFromTitle(str) {
 	if (str.startsWith("GitHub Releases [")) {
 		return "github";
@@ -45,19 +54,9 @@ export async function render({ entries }) {
 <hr>
 
 <style>
-.activity-feed .elv-callout-box { max-width: 35em; }
 .activity-feed .filter-type--hide { display: none; }
 .activity-feed form { margin: 1em 0; }
-.activity-feed a[href] {
-	-ms-word-break: break-all;
-	word-break: break-all;
-	word-break: break-word;
-
-	/* Disable hyphenation */
-	-webkit-hyphens: manual;
-	-ms-hyphens: manual;
-	hyphens: manual;
-}
+.activity-feed .link-card-hed { overflow-wrap: break-word; }
 </style>
 
 <div class="activity-feed">
@@ -92,35 +91,23 @@ export async function render({ entries }) {
 				Quick Tips
 			</label>
 		</form>
+		<ul class="lo-grid link-cards">
 ${entries
 	.map((entry) => {
-		// Only show content on Mastodon
-		let content = entry.sourceLabel === "Mastodon" || entry.sourceLabel === "Bluesky"
-			? entry.content || ""
-			: "";
-
-		if (
-			entry.sourceLabel.startsWith("YouTube") &&
-			entry.url.startsWith("https://www.youtube.com/watch?v=")
-		) {
-			// TODO support startTime in URL
-			let slug = entry.url.slice("https://www.youtube.com/watch?v=".length);
-
-			let startTime = 0;
-			content = this.youtubeEmbed(slug, entry.title, startTime);
-		}
-
-		return `<div data-filter-type="${getSlugFromTitle(
-			`${entry.sourceLabel}: ${entry.title}`
-		)}">${this.callout(
-			`<p><strong><a href="${entry.url}">${escapeText(decodeHTML(entry.title))}</a></strong></p>`,
-			"info",
-			"html",
-			entry.sourceLabel,
-		)}</div>`;
+		let type = getSlugFromTitle(`${entry.sourceLabel}: ${entry.title}`);
+		return html`<li data-filter-type="${type}">
+			<a href="${entry.url}" class="link-card elv-externalexempt">
+				<i class="${ICONS[type] || "fa-solid fa-fire"}"></i>
+				<span class="link-card-c">
+					<span class="link-card-hed">${escapeText(decodeHTML(entry.title))}</span>
+					<span class="link-card-sub">${escapeText(entry.sourceLabel)}</span>
+					<span class="link-card-cadence"><i class="fa-regular fa-clock"></i><time datetime="${this.toISO(entry.date)}">${this.newsDate(entry.date)}</time></span>
+				</span>
+			</a>
+		</li>`;
 	})
 	.join("\n")}
-
+		</ul>
 	</filter-container>
 </div>`;
 }
