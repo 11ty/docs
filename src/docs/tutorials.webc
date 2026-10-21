@@ -46,6 +46,7 @@ feedUrl: /docs/quicktips/feed.xml
 	<site-card @url="https://keepinguptodate.com/pages/2019/06/creating-blog-with-eleventy/" @name="Creating a Blog with Eleventy" @date="2019-06-01"></site-card>
 	<site-card @url="https://shivjm.blog/colophon/how-i-create-an-article-series-in-eleventy/" @name="How I Create an Article Series in Eleventy" @date="2021-07-14"></site-card>
 	<site-card @url="https://5balloons.info/guide-tailwindcss-eleventy-static-site/" @name="Detailed Guide to build an 11ty / eleventy & Tailwind CSS static site" @date="2022-08-18"></site-card>
+	<site-card @url="https://echothread.io/docs/guides/eleventy" @name="Eleventy Guide on EchoThread" @date="2026-04-08"></site-card>
 </sites-list>
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
