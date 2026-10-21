@@ -12,6 +12,7 @@ yarn.lock
 
 # App-specific
 _site/
+dist/
 node-supporters/
 src/_data/builtwith/
 

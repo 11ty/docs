@@ -4,3 +4,4 @@ src/docs/versions.md
 src/authors/author-pages.md
 src/docs/plugins/community.md
 src/docs/quicktips.md
+dist/**

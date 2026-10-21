@@ -1,4 +1,3 @@
-import path from "node:path";
 import { fileURLToPath } from "node:url";
 import memoize from "memoize";
 import { DateTime } from "luxon";
@@ -19,7 +18,7 @@ import { getImageColors } from "@11ty/image-color";
 import imagePlugin from "./config/imagePlugin.js";
 import { addedIn, coerceVersion, greaterThan } from "./config/addedin.js";
 import minificationLocalPlugin, { minifyJavaScriptFile } from "./config/minification.js";
-import { bundle, bundleModulePath } from "./config/bundleJavaScript.js";
+import { bundleModulePath } from "./config/bundleJavaScript.js";
 import cleanName from "./config/cleanAuthorName.js";
 import objectHas from "./config/object-has.js";
 import markdownPlugin from "./config/markdownPlugin.js";
@@ -301,6 +300,9 @@ export default async function (eleventyConfig) {
 			// "npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc",
 			"npm:@11ty/eleventy-img/*.webc",
 		],
+		bundlePluginOptions: {
+			toFileDirectory: "dist",
+		},
 	});
 
 	// Feeds (only in production)
@@ -446,10 +448,14 @@ export default async function (eleventyConfig) {
 
 	// Eleventy Editor
 	// Minification only happens in production
-	await minifyJavaScriptFile(resolveModule("@11ty/client"), path.join(eleventyConfig.directories.output, "js/eleventy.core.browser.js"));
-	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), path.join(eleventyConfig.directories.output, "js/eleventy.engine-md.browser.js"));
-	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), path.join(eleventyConfig.directories.output, "js/eleventy.engine-liquid.browser.js"));
-	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", path.join(eleventyConfig.directories.output, "js/wa-copy-button.js"));
+	await minifyJavaScriptFile(resolveModule("@11ty/client"), "dist/js/eleventy.core.browser.js");
+	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), "dist/js/eleventy.engine-md.browser.js");
+	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), "dist/js/eleventy.engine-liquid.browser.js");
+	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", "dist/js/wa-copy-button.js");
+
+	eleventyConfig.addPassthroughCopy({
+		"dist/": "/",
+	});
 
 	eleventyConfig.addPassthroughCopy("src/img");
 	eleventyConfig.addPassthroughCopy("src/blog/*.png");
