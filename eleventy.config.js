@@ -262,8 +262,6 @@ export default async function (eleventyConfig) {
 		// Skip on local dev
 		eleventyConfig.ignores.add("src/api/*");
 		eleventyConfig.ignores.add("src/authors/author-pages.md");
-		eleventyConfig.ignores.add("src/firehose.11ty.js");
-		eleventyConfig.ignores.add("src/firehose-feed.11ty.js");
 	}
 
 	eleventyConfig.setServerOptions({
