@@ -238,6 +238,53 @@ export default function (eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
+{% codetitle ".eleventy.js" %}
+
+```js
+const path = require('path')
+const { minify: jsMinify } = require("terser")
+const duplexify = require('duplexify')
+const concatStream = require('concat-stream')
+const from2String = require('from2-string')
+module.exports = function (eleventyConfig) {
+	async function minify(ext, raw) {
+		switch (ext) {
+			case ".js": {
+				const minified = await jsMinify(raw, {});
+				return minified.code;
+			}
+			default:
+				return raw;
+		}
+	}
+	let copyOptions = {
+		// transform files: minify all .js files
+		transform: function(src, dest, stats) {
+			const ext = path.extname(src)
+			switch (ext) {
+				case '.js': {
+					break
+				}
+				default: return null
+			}
+			const stream = duplexify()
+			const writer = concatStream({ encoding: 'string' }, function (raw) {
+				minify(ext, raw)
+					.then(minified => {
+						stream.setReadable(from2String(minified))
+					})
+					.catch(e => {
+						stream.emit('error', e)
+					})
+			})
+			stream.setWritable(writer)
+			return stream
+		}
+	};
+	eleventyConfig.addPassthroughCopy({ "./static/": "/" }, copyOptions);
+};
+```
+
 Review the [full list of options on the `recursive-copy` GitHub repository](https://github.com/timkendrick/recursive-copy#usage).
 
 <div class="youtube-related">
