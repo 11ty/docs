@@ -63,7 +63,7 @@
 	.elv-toc-c > nav {
 		flex-grow: 1;
 	}
-	.elv-toc-list:has(a[href="/docs/projects/"] + details:not([open])) {
+	.elv-toc-list:has(a[href="/docs/projects/"] + details) {
 		position: sticky;
 		top: var(--elv-toc-sticky-top);
 	}
