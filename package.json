@@ -60,7 +60,7 @@
     "lightningcss": "^1.33.0",
     "lodash": "^4.18.1",
     "luxon": "^3.7.2",
-    "markdown-it-table-of-contents": "^0.9.0",
+    "markdown-it-table-of-contents": "^1.2.0",
     "memoize": "^11.0.0",
     "pagefind": "^1.5.2",
     "prettier": "^3.9.10",
