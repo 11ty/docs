@@ -15,14 +15,15 @@
 						<summary>Versions</summary>
 						<div>
 							<ul class="list-bare">
+{%- set v3Url = sisterSiteUrl if sisterSite.version == "v3" %}
 								<li><a href="/docs/"><code>v4</code> <small>Pre-release</small></a></li>
-								<li><a href="https://www.11ty.dev/docs/" class="elv-externalexempt"><code>v3</code> <small>Stable</small></a></li>
+								<li><a href="{{ v3Url or 'https://www.11ty.dev/docs/' }}" class="elv-externalexempt"><span><code>v3</code></span> <small>Stable</small>{% if v3Url and page.url != "/" %}<code class="elv-popover-sub">{{ page.url }}</code>{% endif %}</a></li>
 								<li><a href="https://v2.11ty.dev/docs/" class="elv-externalexempt"><code>v2</code></a></li>
 								<li><a href="https://v1.11ty.dev/docs/" class="elv-externalexempt"><code>v1</code></a></li>
 								<li><a href="https://v0.11ty.dev/docs/" class="elv-externalexempt"><code>v0</code></a></li>
 								<li><a href="/docs/versions/">History</a></li>
 								<li><a href="/firehose/">Firehose</a></li>
-							</dl>
+							</ul>
 						</div>
 					</details>
 				</details-utils>

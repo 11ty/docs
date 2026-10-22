@@ -1,5 +1,4 @@
 {#- 11ty corner flag, after the one in /img/open-graph.jpg (see also .og-flag in opengraph.njk), links to the matching page when the sister sitemap has one. #}
-{%- set cornerMatched = page.url in sisterSite.urls %}
 {%- set cornerLogoCss %}
 :host {
 	display: block;
@@ -58,14 +57,14 @@
 	pointer-events: none;
 }
 {% endset %}
-<corner-logo{% if cornerMatched %} matched{% endif %}>
+<corner-logo{% if sisterSiteUrl %} matched{% endif %}>
 	<template shadowrootmode="open">
 		<style>{{ cornerLogoCss | cssmin | safe }}</style>
 		<slot></slot>
-		{%- if cornerMatched %}
+		{%- if sisterSiteUrl %}
 		<span class="label" aria-hidden="true">This page in v3 →</span>
 		{%- endif %}
 		<span class="logo"></span>
 	</template>
-	<a href="{{ sisterSite.origin }}{{ page.url if cornerMatched else '/' }}" class="nound elv-externalexempt"><span class="sr-only">{% if cornerMatched %}This page on 11ty{% else %}11ty{% endif %}</span></a>
+	<a href="{{ sisterSiteUrl or sisterSite.origin + '/' }}" class="nound elv-externalexempt"><span class="sr-only">{% if sisterSiteUrl %}This page on 11ty{% else %}11ty{% endif %}</span></a>
 </corner-logo>

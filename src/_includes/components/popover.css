@@ -11,6 +11,21 @@ details.elv-popover summary + * {
 	padding: .5rem;
 	box-shadow: 0 0 0 .3rem var(--shadow-color);
 }
+/* Below the summary, shifted horizontally to stay inside the full-width menu bar (unsafe keeps it from shifting up over the summary) */
+@supports (anchor-name: --elv-popover) {
+	details.elv-popover {
+		position: static;
+		anchor-scope: --elv-popover;
+	}
+	details.elv-popover summary {
+		anchor-name: --elv-popover;
+	}
+	details.elv-popover summary + * {
+		position-anchor: --elv-popover;
+		position-area: block-end span-inline-end;
+		align-self: unsafe start;
+	}
+}
 details.elv-popover * {
 	white-space: nowrap;
 }
@@ -19,6 +34,20 @@ details.elv-popover * {
 	text-decoration: none;
 	padding-inline: .5rem;
 	margin-inline: -.5rem;
+}
+/* Line up the sub with the label text after the version (the version code is wrapped so it stays inline height) */
+.elv-popover a:has(.elv-popover-sub) {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: baseline;
+	column-gap: .3em;
+}
+.elv-popover-sub {
+	grid-column: 2;
+	justify-self: start;
+	font-size: .75em;
+	line-height: 1;
+	margin-block-end: .5em;
 }
 .elv-popover a:hover,
 .elv-popover a:focus {
