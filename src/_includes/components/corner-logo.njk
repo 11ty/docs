@@ -1,5 +1,4 @@
 {#- Build Awesome corner flag, links to the matching page when the sister sitemap has one. #}
-{%- set cornerMatched = page.url in sisterSite.urls %}
 {%- set cornerLogoCss %}
 :host {
 	display: block;
@@ -59,14 +58,14 @@
 	height: 100%;
 }
 {% endset %}
-<corner-logo{% if cornerMatched %} matched{% endif %}>
+<corner-logo{% if sisterSiteUrl %} matched{% endif %}>
 	<template shadowrootmode="open">
 		<style>{{ cornerLogoCss | cssmin | safe }}</style>
 		<slot></slot>
-		{%- if cornerMatched %}
+		{%- if sisterSiteUrl %}
 		<span class="label" aria-hidden="true">This page in v4 →</span>
 		{%- endif %}
 		<span class="logo">{% include "components/ba-balloon.svg" %}</span>
 	</template>
-	<a href="{{ sisterSite.origin }}{{ page.url if cornerMatched else '/' }}" class="nound elv-externalexempt"><span class="sr-only">{% if cornerMatched %}This page on Build Awesome{% else %}Build Awesome{% endif %}</span></a>
+	<a href="{{ sisterSiteUrl or sisterSite.origin + '/' }}" class="nound elv-externalexempt"><span class="sr-only">{% if sisterSiteUrl %}This page on Build Awesome{% else %}Build Awesome{% endif %}</span></a>
 </corner-logo>

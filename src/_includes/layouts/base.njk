@@ -15,6 +15,12 @@ let eleventyComputed = {
 		description: function({ versions, config }) {
 			return `A docs page for Eleventy, a simpler static site generator.`;
 		}
+	},
+	// This page on the sister site, when its sitemap has it
+	sisterSiteUrl: function({ page, sisterSite }) {
+		if(sisterSite?.urls.includes(page.url)) {
+			return sisterSite.origin + page.url;
+		}
 	}
 };
 ---
