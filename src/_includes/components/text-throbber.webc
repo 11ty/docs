@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="throbber.css">
+<link rel="stylesheet" href="throbber.css" webc:bucket="default">
 <script src="throbber.js"></script>
 <script webc:type="js">
 export default function({ duration }) {
