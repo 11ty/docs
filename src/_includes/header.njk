@@ -67,11 +67,12 @@
 		</a>
 {%- endif %}
 
-		<is-land class="elv-possum-island" on:visible on:idle on:load on:save-data="false" on:media="(prefers-reduced-motion: no-preference)" import="/js/possum-mascot.js">
+{%- set possumTag = "possum-mascot-home" if page.url == "/" else "possum-mascot" %}
+		<is-land class="elv-possum-island" on:visible on:idle on:load on:save-data="false" on:media="(prefers-reduced-motion: no-preference)" import="/js/{{ possumTag }}.js">
 			<template data-island>
-				<possum-mascot idle-timeout="10">
+				<{{ possumTag }} idle-timeout="{{ 0 if page.url == '/' else 10 }}">
 					<img src="/img/mascots/awesome-possum-balloon-smile-sm.svg" alt="The possum is Eleventy’s mascot" {% if isDocs %}eleventy:widths="222"{% else %}eleventy:widths="222,350" sizes="20vh"{% endif %} class="elv-possum" loading="eager">
-				</possum-mascot>
+				</{{ possumTag }}>
 			</template>
 		</is-land>
 	</div>
