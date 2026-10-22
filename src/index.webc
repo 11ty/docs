@@ -45,9 +45,6 @@ export function randomTestimonialLink(testimonials) {
 }
 </script>
 
-<!--- css-only components --->
-<possum variant="home" webc:nokeep></possum>
-
 <!--- this is a workaround for the layout used in the header --->
 <flex-luthor webc:nokeep></flex-luthor>
 
