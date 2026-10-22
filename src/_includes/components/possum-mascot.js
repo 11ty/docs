@@ -94,6 +94,15 @@ customElements.define(
 			return this.getAttribute("variant") === "home";
 		}
 
+		// sticky="false" scrolls the flying possum with the page instead of pinning it to the viewport
+		get isSticky() {
+			return this.getAttribute("sticky") !== "false";
+		}
+
+		get scrollOffset() {
+			return this.isSticky ? 0 : this.scrollStart - scrollY;
+		}
+
 		get state() {
 			return this.getAttribute("state") || undefined;
 		}
@@ -145,7 +154,7 @@ customElements.define(
 		}
 
 		render() {
-			this.flier.style.transform = `translate(${this.x}px, ${this.y}px) rotate(${this.tilt}deg)`;
+			this.flier.style.transform = `translate(${this.x}px, ${this.y + this.scrollOffset}px) rotate(${this.tilt}deg)`;
 		}
 
 		float() {
@@ -236,6 +245,7 @@ customElements.define(
 			}
 
 			this.home = rect;
+			this.scrollStart = scrollY;
 			this.x = 0;
 			this.y = 0;
 			this.tilt = 0;
@@ -289,7 +299,7 @@ customElements.define(
 				this.render();
 				this.flier.style.opacity = Math.max(0, 1 - t / duration);
 
-				if(t < duration && this.home.top + this.y < innerHeight) {
+				if(t < duration && this.home.top + this.y + this.scrollOffset < innerHeight) {
 					return;
 				}
 
@@ -309,7 +319,7 @@ customElements.define(
 
 			let flier = this.flier;
 			flier.style.transition = "transform .8s cubic-bezier(.3,.7,.3,1)";
-			flier.style.transform = "translate(0, 0) rotate(0)";
+			flier.style.transform = `translate(0, ${this.scrollOffset}px) rotate(0)`;
 
 			let done = () => {
 				if(this.state === "landing") {

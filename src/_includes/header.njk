@@ -69,7 +69,7 @@
 
 		<is-land class="elv-possum-island" on:visible on:idle on:load on:save-data="false" on:media="(prefers-reduced-motion: no-preference)" import="/js/possum-mascot.js">
 			<template data-island>
-				<possum-mascot {% if page.url == "/" %}variant="home" idle-timeout="0" speed="30"{% else %}idle-timeout="10"{% endif %}>
+				<possum-mascot {% if page.url == "/" %}variant="home" idle-timeout="0" speed="30" sticky="false"{% else %}idle-timeout="10"{% endif %}>
 					<img src="/img/mascots/awesome-possum-balloon-smile-sm.svg" alt="The possum is Eleventy’s mascot" {% if isDocs %}eleventy:widths="222"{% else %}eleventy:widths="222,350" sizes="20vh"{% endif %} class="elv-possum" loading="eager">
 				</possum-mascot>
 			</template>
