@@ -59,7 +59,8 @@ customElements.define(
 				this.flier = shadow.querySelector(".possum");
 			}
 
-			this.timeoutMs = (parseFloat(this.getAttribute("idle-timeout")) || 20) * 1000;
+			let timeout = parseFloat(this.getAttribute("idle-timeout"));
+			this.timeoutMs = (isNaN(timeout) ? 20 : timeout) * 1000;
 			this.onActivity = (e) => this.activity(e);
 			this.onVisibility = () => document.hidden ? this.land() : this.wake();
 			this.onClick = () => this.pop();
@@ -82,6 +83,17 @@ customElements.define(
 			cancelAnimationFrame(this.frame);
 		}
 
+		// variant="home" flies across the hero once instead of wandering
+		// px per second
+		get speed() {
+			let speed = parseFloat(this.getAttribute("speed"));
+			return isNaN(speed) ? 40 : speed;
+		}
+
+		get isHome() {
+			return this.getAttribute("variant") === "home";
+		}
+
 		get state() {
 			return this.getAttribute("state") || undefined;
 		}
@@ -95,7 +107,7 @@ customElements.define(
 		}
 
 		activity(e) {
-			if(this.state === "falling") {
+			if(this.state === "falling" || this.isHome && this.state) {
 				return;
 			}
 			if(this.state === "floating") {
@@ -137,6 +149,10 @@ customElements.define(
 		}
 
 		float() {
+			if(!this.img.complete) {
+				this.img.addEventListener("load", () => this.float(), { once: true });
+				return;
+			}
 			if(this.state || document.hidden) {
 				return;
 			}
@@ -146,9 +162,14 @@ customElements.define(
 			}
 
 			this.state = "floating";
+			if(this.isHome) {
+				this.flyAcross();
+				return;
+			}
+
 			let driftY = 0;
 			let angle = Math.random() * Math.PI * 2;
-			let speed = 40; // px per second
+			let speed = this.speed;
 			let vx = Math.cos(angle) * speed;
 			let vy = -Math.abs(Math.sin(angle) * speed); // start by drifting up and away
 
@@ -177,6 +198,33 @@ customElements.define(
 				this.y = driftY + Math.sin(t * 1.6) * 6;
 				this.tilt = Math.sin(t * 0.9) * 6;
 				this.render();
+			});
+		}
+
+		// From off viewport at the hero’s bottom left up and out past the top right of the viewport
+		flyAcross() {
+			let hero = (this.closest(".elv-nav-header") || document.body).getBoundingClientRect();
+			let { left, top, width, height } = this.home;
+			let x0 = -left - width;
+			let y0 = hero.bottom - height - top;
+			let x1 = innerWidth - left;
+			let y1 = -top - height;
+			let duration = Math.hypot(x1 - x0, y1 - y0) / this.speed;
+
+			this.animate((dt, t) => {
+				let p = Math.min(t / duration, 1);
+				this.x = x0 + (x1 - x0) * p;
+				this.y = y0 + (y1 - y0) * p + Math.sin(t * 1.6) * 6;
+				this.tilt = Math.sin(t * 0.9) * 6;
+				this.render();
+
+				if(p < 1) {
+					return;
+				}
+
+				this.hidden = true;
+				this.disconnectedCallback();
+				return false;
 			});
 		}
 
@@ -252,7 +300,7 @@ customElements.define(
 		}
 
 		land() {
-			if(this.state !== "floating") {
+			if(this.state !== "floating" || this.isHome) {
 				return;
 			}
 

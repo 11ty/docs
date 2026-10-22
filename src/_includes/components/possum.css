@@ -9,6 +9,10 @@
 :root {
 	--possum-margin: 5rem;
 }
+.elv-header-default .elv-possum {
+	width: auto;
+	height: 20vh;
+}
 .elv-header-docs .elv-possum {
 	width: calc(var(--possum-margin) - .5rem);
 	height: auto;
