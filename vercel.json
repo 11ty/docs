@@ -23,9 +23,7 @@
     { "source": "/docs/plugins/official/", "destination": "/docs/plugins/", "statusCode": 301 },
     { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 },
 
-    { "source": "/speedlify/", "destination": "https://www.11ty.dev/speedlify/", "permanent": false },
-    { "source": "/blog/", "destination": "https://www.11ty.dev/blog/", "permanent": false },
-    { "source": "/blog/:path*", "destination": "https://www.11ty.dev/blog/:path*", "permanent": false }
+    { "source": "/speedlify/", "destination": "https://www.11ty.dev/speedlify/", "permanent": false }
   ],
   "headers": [
     {
