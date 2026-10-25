@@ -79,6 +79,9 @@ classicHosts:
   - name: Orbiter
     url: https://orbiter.host
     screenshotSize: medium
+  - name: Webly
+    url: https://webly.ai
+    screenshotSize: medium
 webides:
   - name: Stackblitz
     url: https://stackblitz.com/
