@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/Omega-JS-Stack/brand-template",
+  "name": "OMEGA",
+  "description": "Brand starter for OMEGA, a framework built on Eleventy 3. A short setup wizard writes one config file and boots the site, which can later grow a backend, desktop app and browser extension.",
+  "author": "Omega-JS-Stack",
+  "demo": "https://omegajs.dev",
+  "npmStartScript": "start"
+}
