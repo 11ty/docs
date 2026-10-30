@@ -1,6 +1,7 @@
 {
-	"url": "https://github.com/Andrewrico/shoppi",
+	"url": "https://shoppi-homepage.netlify.app/",
 	"name": "Shoppi",
 	"description": "Headless ecommerce and affiliate starter with a cart, HTML chat and accessibility tools.",
-	"author": "Andrew Rico"
+	"author": "Andrew Rico",
+	"source_url": "https://github.com/Andrewrico/shoppi"
 }
