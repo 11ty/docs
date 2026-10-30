@@ -20,19 +20,35 @@ function isHostnameMatchTo(websiteUrl, filteredList = []) {
 const ACTIVE_MINIMUM = 1.00000001;
 
 const CUMULATIVE_MINIMIUM = {
-	INDIVIDUAL: 55, // minimum total amount to show inactive logo
+	INDIVIDUAL: 55, // minimum total amount to show (active or inactive)
 	DEFAULT_AVATAR: 200, // minimum amount for default avatar (previously never shown)
-	ORGANIZATION: 999999, // minimum total amount to show inactive logo
+	ORGANIZATION: 110, // minimum total amount to show (active only)
 };
 
 // see also filterSupportersActive filter in config file
-const ALLOWED_EXCEPTIONS_OPENCOLLECTIVE_SLUGS = [];
+const ALLOWED_EXCEPTIONS_OPENCOLLECTIVE_SLUGS = [
+	"citadoo",
+	"chudovo",
+	"discount-agent",
+	"mymoneycomparison",
+	"ausmalzeit1",
+	"network-tools",
+	"calculators",
+	"wallpapers-com",
+	"retroplayonline",
+	"upfling-host",
+	"g-certification-course",
+	"viennahotels",
+	"spatial-workflow",
+	"rechnercenter",
+];
 
 // These hostnames are not *linked to* but profiles are still shown.
 const BYPASSED_HOSTNAME_LINKS = [
 	"example.com",
 	"x.com",
 	"twitter.com",
+	"arabafiyatlistesi.com", // petinya, site does not exist
 ];
 
 // Not shown at all
@@ -164,9 +180,8 @@ export default async function () {
 					`https://images.opencollective.com/${order.slug}/avatar.png`;
 
 				order.showOnFacepile = ALLOWED_EXCEPTIONS_OPENCOLLECTIVE_SLUGS.includes(order.slug) ||
-					order.isActive && order.amount.value >= ACTIVE_MINIMUM ||
-					order.accountType === "INDIVIDUAL" && order.totalAmountDonated > CUMULATIVE_MINIMIUM.INDIVIDUAL ||
-					order.accountType === "ORGANIZATION" && order.totalAmountDonated > CUMULATIVE_MINIMIUM.ORGANIZATION;
+					order.accountType === "INDIVIDUAL" && order.totalAmountDonated >= CUMULATIVE_MINIMIUM.INDIVIDUAL ||
+					order.accountType !== "INDIVIDUAL" && order.isActive && order.amount.value >= ACTIVE_MINIMUM && order.totalAmountDonated >= (CUMULATIVE_MINIMIUM[order.accountType] || 0);
 
 				// Active orders usually *must* have an avatar (or a website)
 				if(order.showOnFacepile && order.accountType === "INDIVIDUAL" && order.hasDefaultAvatar && !order.website) {
