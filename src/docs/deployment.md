@@ -79,6 +79,9 @@ classicHosts:
   - name: Orbiter
     url: https://orbiter.host
     screenshotSize: medium
+  - name: deed.page
+    url: https://deed.page
+    screenshotSize: medium
 webides:
   - name: Stackblitz
     url: https://stackblitz.com/
