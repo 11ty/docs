@@ -2,7 +2,7 @@
 	<li><img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr></li>
 	<li><img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern</li>
 	<li><img webc:is="indieweb-avatar" url="https://tc39.es/">TC39</li>
-	<li><img webc:is="indieweb-avatar" url="https://www.w3.org/">W3C</li>
+	<li><img src="/img/logos/w3c.png" width="150" height="150" alt="" class="avatar" loading="lazy" decoding="async">W3C</li>
 	<li><img webc:is="indieweb-avatar" url="https://about.google/">Google</li>
 	<li><img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft</li>
 	<li><img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla</li>
