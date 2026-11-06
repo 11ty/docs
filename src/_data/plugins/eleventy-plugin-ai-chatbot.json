@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-ai-chatbot",
+	"url": "https://asyntai.com/documentation/integrations/eleventy/",
+	"description": "Add an AI chatbot to your site. It answers visitor questions from your own content, in 80+ languages."
+}
