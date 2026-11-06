@@ -48,6 +48,100 @@ export function randomTestimonialLink(testimonials) {
 <!--- this is a workaround for the layout used in the header --->
 <flex-luthor webc:nokeep></flex-luthor>
 
+<div class="home-stats">
+	<div class="home-stats-item">
+		<div class="elv-callout">
+			<div class="elv-callout-c">
+				<download-counter :@value="npmProjectDownloads.downloads" :per-year="npmProjectDownloads.downloadsLastYear" :generated-at="npmProjectDownloads.generatedAt">Downloads all time<br>All npm packages</download-counter>
+			</div>
+		</div>
+		<p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.downloadsLastYear)"></span><span>Downloads last year</span></p>
+	</div>
+	<!-- <div class="home-stats-item">
+		<div class="elv-callout">
+			<div class="elv-callout-c">
+				<download-counter :@value="npmProjectDownloads.stars" :per-year="npmProjectDownloads.starsPerYear" :generated-at="npmProjectDownloads.generatedAt" icon="star">GitHub<br>stars</download-counter>
+			</div>
+		</div>
+		<p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.closedIssues + npmProjectDownloads.closedPRs)"></span><span><i class="fa-solid fa-circle-check"></i><span class="sr-only">Closed </span>issues and PRs</span></p>
+	</div> -->
+	<div class="home-stats-item">
+		<div class="elv-callout">
+			<a href="https://osv.dev/list?ecosystem=npm&q=%4011ty%2Feleventy" class="elv-callout-c home-stats-link elv-externalexempt">
+				<i class="fa-solid fa-shield-halved download-counter-icon"></i>
+				<span class="download-counter-num">0</span>
+				<span class="download-counter-label">Security advisories<br>on core since 2017</span>
+			</a>
+		</div>
+	</div>
+</div>
+<style>
+.home-stats {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: .5em 1em;
+	margin-block: 1em;
+	margin-inline: -1rem;
+}
+.home-stats > * {
+	flex-grow: 1;
+	margin: 0;
+}
+/* Subgrid columns (icon, count, label) line up the all-time row with the counter inside the callout. */
+.home-stats-link {
+	display: flex;
+	align-items: center;
+	gap: .75em;
+	color: inherit;
+	text-decoration: none;
+}
+/* Keeps the taller rings from stretching the callout past the others. */
+speedlify2-median {
+	margin-block: -.5em;
+}
+/* Reserves the size of the five rings until the element is defined. */
+speedlify2-median:not(:defined) {
+	display: inline-block;
+	width: 13.535em;
+	height: 2.467em;
+}
+.home-stats-item {
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	column-gap: .75em;
+}
+.home-stats-item > *,
+.home-stats-item .elv-callout-c,
+.home-stats-item download-counter {
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-column: 1 / -1;
+}
+.home-stats-item > .elv-callout {
+	margin: 0;
+}
+.home-stats-sub {
+	align-items: baseline;
+	margin: .25em 0 0;
+	font-size: .6666666667em;
+	opacity: .7;
+}
+.home-stats-sub > span:first-of-type {
+	grid-column: 2;
+	font-family: Roboto Mono, monospace;
+	font-size: 1.375em;
+	text-align: end;
+}
+.home-stats-sub .fa11ty-icon {
+	margin-inline-start: 0;
+}
+.home-stats-sub > :last-child {
+	text-transform: uppercase;
+	letter-spacing: .1em;
+}
+</style>
+
 <quick-start></quick-start>
 
 <div webc:bucket="async">
@@ -120,6 +214,9 @@ tags: posts
 			<blockquote>
 				<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.design/"> Eric Bailey</a></p>
 			</blockquote>
+		</li>
+		<li>
+			Eleventy is <strong>secure</strong>. Across our 48 published npm packages, there have been <a href="https://osv.dev/list?ecosystem=npm&q=%4011ty%2Feleventy">zero security advisories filed against our code</a> since 2017. We strive to reduce dependencies and keep our dependencies updated and audit free: <a href="https://zachleat.github.io/prototype-pollution-report/">compare <code>npm audit</code> results in the Prototype Pollution Report</a>.
 		</li>
 		<li>
 			Eleventy <strong>doesn’t track you</strong>. We <a href="https://www.zachleat.com/web/site-generator-review/#telemetry">don’t have or use telemetry nor require you to opt-out of data collection</a>.

@@ -10,9 +10,8 @@ layout: layouts/docs.njk
 	margin: 2em 0;
 }
 .styleguide-component {
+	display: block;
 	padding: 1.5em;
-	border: 1px solid var(--border-color);
-	border-radius: 1em;
 }
 </style>
 <h2>Specialized Components</h2>
@@ -121,7 +120,7 @@ layout: layouts/docs.njk
 
 <h2>Lists</h2>
 
-<div class="styleguide-component">
+<div class="elv-callout styleguide-component">
 <ul class="list-bare">
   <li><a href="/docs/glossary/#static-sites">Static Sites</a></li>
   <li><a href="/docs/glossary/#jamstack">Jamstack</a></li>
@@ -130,7 +129,7 @@ layout: layouts/docs.njk
 
 <h3>Inline List</h3>
 
-<div class="styleguide-component">
+<div class="elv-callout styleguide-component">
 <ul class="inlinelist">
   <li><a href="/docs/glossary/#static-sites">Static Sites</a></li>
   <li><a href="/docs/glossary/#jamstack">Jamstack</a></li>
@@ -139,7 +138,7 @@ layout: layouts/docs.njk
 
 <h3>Number Flags</h3>
 
-<div class="styleguide-component">
+<div class="elv-callout styleguide-component">
 <span class="numberflag">1</span>
 <span class="numberflag">2</span>
 <span class="numberflag">3</span>
@@ -152,7 +151,7 @@ layout: layouts/docs.njk
 </div>
 
 <h4>Number Flags in Headings</h4>
-<div class="styleguide-component">
+<div class="elv-callout styleguide-component">
 <h2><span class="numberflag"><span class="sr-only">Step</span> 1</span> Notice how the border disappears under the flag</h2>
 <h3><span class="numberflag"><span class="sr-only">Step</span> 2</span> Do a thing</h3>
 <h4><span class="numberflag"><span class="sr-only">Step</span> 3</span> Do a thing</h4>
@@ -161,7 +160,7 @@ layout: layouts/docs.njk
 
 <h2>Blockquotes</h2>
 
-<div class="styleguide-component">
+<div class="elv-callout styleguide-component">
     <blockquote>“Seriously can't remember enjoying using a Static Site Generator this much. Yes Hugo is rapid, but this is all so logical. It feels like it was designed by someone who has been through lots of pain and success using other SSGs.”—<a href="https://www.hawksworx.com/">{% communityavatar "philhawksworth" %}Phil Hawksworth</a></blockquote>
 </div>
 
@@ -169,7 +168,7 @@ layout: layouts/docs.njk
 
 <h3>Inline Buzzwords</h3>
 
-<div class="styleguide-component">
+<div class="elv-callout styleguide-component">
 <h2>This <a href="#" class="buzzword">Buzzword</a> is in a header</h2>
 <h3>This <a href="#" class="buzzword">Buzzword</a> is in a header</h3>
 <div><a href="#" class="buzzword">Buzzword</a></div>
@@ -194,11 +193,11 @@ layout: layouts/docs.njk
 
 Use the <code>elv-callout-sticky</code> class to affix to the top of the viewport while scrolling.
 
-<!-- <div class="styleguide-component">
+<!-- <div class="elv-callout styleguide-component">
     <div class="elv-callout elv-callout-info">This documentation is for an upcoming version of Eleventy. Go to the <a href="/docs/">latest stable version of Eleventy docs</a> or check out the <a href="/docs/versions/">full release history.</a></div>
 </div>
 
-<div class="styleguide-component">
+<div class="elv-callout styleguide-component">
     <div class="elv-callout elv-callout-warn">This documentation is for an older version. Go to the <a href="/docs/">newest Eleventy docs</a> or check out the <a href="/docs/versions/">full release history.</a></div>
 </div> -->
 

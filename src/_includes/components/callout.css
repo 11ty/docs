@@ -1,5 +1,15 @@
-/* Warning */
 .elv-callout {
+	--callout-primary: var(--border-color);
+	--callout-primarytext: var(--color);
+	--callout-secondary: var(--background-color);
+
+	line-height: 1.5;
+	margin-inline: -1rem;
+	margin-block: 1em;
+	background-color: var(--callout-secondary);
+	border: 1.5px solid var(--callout-primary);
+}
+.elv-callout:is(.elv-callout-info, .elv-callout-error, .elv-callout-warn, .elv-callout-skew) {
 	--callout-primary: hsl(var(--callout-hue), 86%, 70%);
 	--callout-primarytext: hsl(var(--callout-hue), 100%, 0%);
 	--callout-secondary: hsl(var(--callout-hue), 86%, 94%);
@@ -7,12 +17,6 @@
 	--callout-sidebartext: hsl(var(--callout-hue), 86%, 35%);
 	--callout-code: hsla(var(--callout-hue), 86%, 70%, .25);
 	--callout-label-skew: 11deg;
-
-	line-height: 1.5;
-	margin-inline: -1rem;
-	margin-block: 1em;
-	background-color: var(--callout-secondary);
-	border: 1.5px solid var(--callout-primary);
 }
 details .elv-callout {
 	margin-left: 0;
@@ -27,7 +31,7 @@ details .elv-callout {
 }
 
 @media (prefers-color-scheme: dark) {
-	.elv-callout {
+	.elv-callout:is(.elv-callout-info, .elv-callout-error, .elv-callout-warn, .elv-callout-skew) {
 		--callout-primary: hsl(var(--callout-hue), 100%, 22%);
 		--callout-secondary: hsl(var(--callout-hue), 100%, 12%);
 		--callout-primarytext: hsl(var(--callout-hue), 100%, 100%);
