@@ -37,6 +37,8 @@ export default function ($config) {
 * Returning `false` will ignores the template in the same way as using [`$config.ignores` or `.eleventyignore`](/docs/ignores.md)
 * Returning nothing or `undefined` has no effect (unlike [Transforms](/docs/transforms.md))
 
+{% callout "info", "md" %}Preprocessors run before most [Computed Data](/docs/data-computed.md) is resolved, so `eleventyComputed` values are not available in the `data` argument.{% endcallout %}
+
 _Originally [GitHub Issue #188](https://github.com/11ty/eleventy/issues/188#issuecomment-2224060755)._
 
 ## Example: Drafts

@@ -18,6 +18,7 @@ permalink: /imports/logo-cloud.html
 <li><img webc:is="indieweb-avatar" url="https://css-tricks.com/">CSS Tricks</li>
 <li><img webc:is="indieweb-avatar" url="https://www.catchpoint.com/webpagetest">WebPageTest</li>
 <li><img webc:is="indieweb-avatar" url="https://www.a11yproject.com/">A11Y Project</li>
+<li><img src="/img/logos/w3c.png" width="150" height="150" alt="" class="avatar" loading="lazy" decoding="async"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr></li>
 <li><img webc:is="indieweb-avatar" url="https://eslint.org/">ESLint</li>
 <li><img webc:is="indieweb-avatar" url="https://www.noaa.gov/"><abbr title="National Oceanic and Atmospheric Administration">NOAA</abbr></li>
 <li><img webc:is="indieweb-avatar" url="https://18f.org/">18F</li>
