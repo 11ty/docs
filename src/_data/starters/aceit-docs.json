@@ -1,0 +1,7 @@
+{
+  "url": "https://github.com/t4sh/aceit-docs",
+  "name": "Aceit Docs",
+  "description": "Eleventy documentation starter with plain Markdown, offline search, and theme presets.",
+  "author": "t4sh",
+  "demo": "https://aceit-docs.vercel.app/"
+}
