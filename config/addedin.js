@@ -92,7 +92,7 @@ function addedIn(version, tag, extraClass) {
 	}
 	tag = tag || "span";
 
-	return `<${tag} data-pagefind-ignore eleventy:id-ignore class="minilink minilink-addedin${
+	return `<${tag} data-toc-exclude data-pagefind-ignore eleventy:id-ignore class="minilink minilink-addedin${
 		extraClass ? ` ${extraClass}` : ""
 	}" data-uncoerced-version="${version}">${beforeText}${coerceVersion.call(
 		this,

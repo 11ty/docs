@@ -331,6 +331,17 @@ footer.elv-layout {
 		min-inline-size: 0;
 	}
 }
+/* #3col */
+@media (min-width: 72em) {
+	.elv-layout-toc:has(.elv-headings-toc) {
+		--page-toc-size: 11rem;
+		grid-template-columns: var(--toc-sidebar-size) minmax(1px, 1fr) var(--page-toc-size);
+	}
+	.elv-layout-toc > .elv-headings-toc {
+		grid-column: 3;
+		grid-row: 1;
+	}
+}
 
 /* Footer */
 .elv-footer-wrap {

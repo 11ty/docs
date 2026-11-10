@@ -7,15 +7,17 @@
 	<span class="page-authors-updated">Updated {{ pageLastModified | newsDate("LLLL d, yyyy") }}</span>
 	{%- endif %}
 	{%- if pageAuthorsList.length %}
-	<span class="page-authors-label">Contributors</span>
-	<span class="page-authors-faces">
-		{%- for author in pageAuthorsList | head(12) %}
-		<a href="{{ author.url }}" class="elv-externalexempt">{% communityavatar author.name %}</a>
-		{%- endfor %}
+	<span class="page-authors-line">
+		<span class="page-authors-label">Contributors</span>
+		<span class="page-authors-faces">
+			{%- for author in pageAuthorsList | head(12) %}
+			<a href="{{ author.url }}" class="elv-externalexempt">{% communityavatar author.name %}</a>
+			{%- endfor %}
+		</span>
+		{%- if pageAuthorsList.length > 12 %}
+		<span class="page-authors-more">and {{ pageAuthorsList.length - 12 }} more</span>
+		{%- endif %}
 	</span>
-	{%- if pageAuthorsList.length > 12 %}
-	<span class="page-authors-more">and {{ pageAuthorsList.length - 12 }} more</span>
-	{%- endif %}
 	{%- endif %}
 </div>
 {%- endif %}

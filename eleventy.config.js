@@ -438,6 +438,7 @@ export default async function (eleventyConfig) {
 		[resolveModule("speedlify2-score")]: "js/speedlify2-score.js",
 		[resolveModule("@zachleat/seven-minute-tabs")]: "js/seven-minute-tabs.js",
 		[resolveModule("@zachleat/filter-container")]: "js/filter-container.js",
+		[resolveModule("@zachleat/table-of-contents")]: "js/table-of-contents.js",
 		[resolveModule("lite-youtube-embed")]: `js/lite-yt-embed.js`,
 		"node_modules/artificial-chart/artificial-chart.{css,js}": `static/`,
 

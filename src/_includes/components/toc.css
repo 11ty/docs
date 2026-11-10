@@ -333,3 +333,95 @@ details.toc[open] > summary {
 .elv-page-toc .fa11ty-icon {
 	margin-left: 0;
 }
+
+/* “On this page” sidebar, right column */
+.elv-headings-toc {
+	--elv-headings-toc-sticky-top: 1rem;
+	/* Gap between a border and its text, so nested rules line up under the level above */
+	--elv-headings-toc-gutter: 0.5em;
+	/* Shown only when there’s room for a column of its own */
+	display: none;
+}
+/* Clears the sticky docs header, like the left column */
+.elv-header-docs + .elv-layout .elv-headings-toc {
+	--elv-headings-toc-sticky-top: 5rem;
+}
+.elv-headings-toc-hed {
+	padding-inline-start: calc(var(--elv-headings-toc-gutter) + 2px);
+	font-family: system-ui, sans-serif;
+	font-size: 1.077em; /* 14px /13 */
+	font-weight: bold;
+	margin: 0 0 0.75em;
+	border: none;
+}
+.elv-headings-toc table-of-contents {
+	display: block;
+}
+.elv-headings-toc ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+/* The global `li { padding: 0.5em 0 }` would double up with the link padding */
+.elv-headings-toc li {
+	margin-block: 0;
+	padding-block: 0;
+	border-inline-start: 2px solid transparent;
+	border-start-end-radius: 0.25em;
+	border-end-end-radius: 0.25em;
+}
+/* Nesting is shown by indentation, lined up under the text above */
+.elv-headings-toc ol ol {
+	padding-inline-start: var(--elv-headings-toc-gutter);
+}
+.elv-headings-toc a {
+	display: block;
+	/* Spacing lives on the link, so the active background covers the whole row */
+	padding-block: 0.25em;
+	padding-inline: var(--elv-headings-toc-gutter) 0.25em;
+	color: #666;
+	line-height: 1.25;
+	text-decoration: none;
+}
+.elv-headings-toc a:hover,
+.elv-headings-toc a:focus {
+	text-decoration: underline;
+}
+.elv-headings-toc li:has(a.toc-in-view) {
+	border-inline-start-color: currentColor;
+	background-color: #f7f7f7;
+}
+/* Deeper markers sit behind the one for the section they belong to */
+.elv-headings-toc ol ol li:has(a.toc-in-view) {
+	border-inline-start-color: color-mix(in srgb, currentColor 55%, transparent);
+}
+.elv-headings-toc a.toc-in-view {
+	color: inherit;
+}
+@media (prefers-color-scheme: dark) {
+	.elv-headings-toc a {
+		color: #adadad;
+	}
+	.elv-headings-toc li:has(a.toc-in-view) {
+		background-color: #262626;
+	}
+}
+@media (min-width: 72em) {
+	.elv-headings-toc {
+		display: block;
+		position: sticky;
+		inset-block-start: var(--elv-headings-toc-sticky-top);
+		align-self: start;
+		max-block-size: calc(100vh - var(--elv-headings-toc-sticky-top) - 1rem);
+		overflow-y: auto;
+		font-size: 0.8125em; /* 13px /16 */
+	}
+	/* The component hides itself when the page has no headings */
+	.elv-headings-toc:has(table-of-contents[hidden]) {
+		display: none;
+	}
+	/* Redundant beside the sidebar */
+	details.toc {
+		display: none;
+	}
+}

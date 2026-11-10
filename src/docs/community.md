@@ -14,7 +14,7 @@ eleventyNavigation:
 
 {% set count = count + 1 %}
 
-## <span class="numberflag"><span class="sr-only">Step</span> {{ count }}</span> Participate
+## <span class="numberflag" data-toc-exclude><span class="sr-only">Step</span> {{ count }}</span> Participate
 
 - **Build something**—join the [{{ builtwithAuthors | length }} developers building with Eleventy](/authors/).
   - Want to brave the [Eleventy Leaderboards](/speedlify/) and track the Lighthouse scores of your web site over time? [Add your site to the `11ty-community` repo](/docs/leaderboards-add/)!
@@ -27,7 +27,7 @@ eleventyNavigation:
 
 {% set count = count + 1 %}
 
-## <span class="numberflag"><span class="sr-only">Step</span> {{ count }}</span> Stay up-to-date
+## <span class="numberflag" data-toc-exclude><span class="sr-only">Step</span> {{ count }}</span> Stay up-to-date
 
 - [Follow @11ty@neighborhood.11ty.dev on **Mastodon**](https://neighborhood.11ty.dev/@11ty)
 - Read the [Eleventy **Blog**](/blog/)
@@ -38,7 +38,7 @@ eleventyNavigation:
 
 {% set count = count + 1 %}
 
-## <span class="numberflag"><span class="sr-only">Step</span> {{ count }}</span> Go Pro
+## <span class="numberflag" data-toc-exclude><span class="sr-only">Step</span> {{ count }}</span> Go Pro
 
 We’re going to Kickstarter to fund a suite of Pro tools for folks wanting a streamling building and content editing experience. Subscribe to the pre-launch of the [**Build Awesome Kickstarter**]({{ config.kickstarterUrl }}) to get notified when the Kickstarter launches.
 
@@ -46,7 +46,7 @@ We’re going to Kickstarter to fund a suite of Pro tools for folks wanting a st
 
 {% set count = count + 1 %}
 
-## <span class="numberflag"><span class="sr-only">Step</span> {{ count }}</span> Donate
+## <span class="numberflag" data-toc-exclude><span class="sr-only">Step</span> {{ count }}</span> Donate
 
 Eleventy is supported by [folks <strong>like {% emoji "👋" %} you</strong>](/docs/supporters/) that want to invest in better, longer lasting tools to create on the web.
 

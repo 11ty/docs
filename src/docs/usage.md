@@ -13,6 +13,8 @@ eleventyNavigation:
 1. Have you already [installed Eleventy](/docs/#step-2-install-eleventy)?
 {% endcallout %}
 
+## Starter Commands
+
 Here’s the first command you can enter in your Terminal application to run Eleventy:
 
 {% set usageCode %}
@@ -61,6 +63,26 @@ npx @11ty/eleventy --help
 
 * The default for `--formats=` changed in {{ "3.0.0-alpha.7" | coerceVersion }} from an alias of `*` to an empty set.
 
+
+### `--quiet` if the Output is Too Noisy
+
+{% set usageQuietCode %}
+# Shhhhh—Don’t log so much to the console
+npx @11ty/eleventy --quiet
+{% endset %}
+<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
+	<div role="tablist" aria-label="Choose your Package Manager">
+		<a href="#usage-quiet-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
+		<a href="#usage-quiet-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
+		<a href="#usage-quiet-yarn" role="tab" data-tabs-persist="pkgmgr:yarn">yarn</a>
+	</div>
+	<div id="usage-quiet-npm" role="tabpanel">{{ usageQuietCode | packageManagerCodeTransform("npm") | highlight("bash") | safe }}</div>
+	<div id="usage-quiet-pnpm" role="tabpanel">{{ usageQuietCode | packageManagerCodeTransform("pnpm") | highlight("bash") | safe }}</div>
+	<div id="usage-quiet-yarn" role="tabpanel">{{ usageQuietCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
+</seven-minute-tabs>
+
+## More Command Line Flags
+
 ### Re-run Eleventy when you save
 
 {% set usageServeCode %}
@@ -83,42 +105,6 @@ npx @11ty/eleventy --watch
 	<div id="usage-serve-npm" role="tabpanel">{{ usageServeCode | packageManagerCodeTransform("npm") | highlight("bash") | safe }}</div>
 	<div id="usage-serve-pnpm" role="tabpanel">{{ usageServeCode | packageManagerCodeTransform("pnpm") | highlight("bash") | safe }}</div>
 	<div id="usage-serve-yarn" role="tabpanel">{{ usageServeCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
-</seven-minute-tabs>
-
-### `--quiet` if the Output is Too Noisy
-
-{% set usageQuietCode %}
-# Shhhhh—Don’t log so much to the console
-npx @11ty/eleventy --quiet
-{% endset %}
-<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
-	<div role="tablist" aria-label="Choose your Package Manager">
-		<a href="#usage-quiet-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
-		<a href="#usage-quiet-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
-		<a href="#usage-quiet-yarn" role="tab" data-tabs-persist="pkgmgr:yarn">yarn</a>
-	</div>
-	<div id="usage-quiet-npm" role="tabpanel">{{ usageQuietCode | packageManagerCodeTransform("npm") | highlight("bash") | safe }}</div>
-	<div id="usage-quiet-pnpm" role="tabpanel">{{ usageQuietCode | packageManagerCodeTransform("pnpm") | highlight("bash") | safe }}</div>
-	<div id="usage-quiet-yarn" role="tabpanel">{{ usageQuietCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
-</seven-minute-tabs>
-
-### `--dryrun` to do a Little Testing
-
-Runs without writing to the file system. Useful when [debugging](/docs/debugging/).
-
-{% set usageDryCode %}
-# Run Eleventy but don’t write any files
-npx @11ty/eleventy --dryrun
-{% endset %}
-<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
-	<div role="tablist" aria-label="Choose your Package Manager">
-		<a href="#usage-dry-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
-		<a href="#usage-dry-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
-		<a href="#usage-dry-yarn" role="tab" data-tabs-persist="pkgmgr:yarn">yarn</a>
-	</div>
-	<div id="usage-dry-npm" role="tabpanel">{{ usageDryCode | packageManagerCodeTransform("npm") | highlight("bash") | safe }}</div>
-	<div id="usage-dry-pnpm" role="tabpanel">{{ usageDryCode | packageManagerCodeTransform("pnpm") | highlight("bash") | safe }}</div>
-	<div id="usage-dry-yarn" role="tabpanel">{{ usageDryCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
 
 ### `--config` to Change the Config file name
@@ -166,6 +152,8 @@ npx @11ty/eleventy --to=fs
 </seven-minute-tabs>
 
 Read more about [ndjson](https://github.com/ndjson/ndjson-spec).
+
+## Incremental Builds
 
 ### `--incremental` for Partial Incremental Builds
 
@@ -217,6 +205,27 @@ npx @11ty/eleventy --serve --incremental --ignore-initial
 	<div id="usage-initial-yarn" role="tabpanel">{{ usageInitialCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
 
+## Debugging
+
+### `--dryrun` to do a Little Testing
+
+Runs without writing to the file system. Useful when [debugging](/docs/debugging/).
+
+{% set usageDryCode %}
+# Run Eleventy but don’t write any files
+npx @11ty/eleventy --dryrun
+{% endset %}
+<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
+	<div role="tablist" aria-label="Choose your Package Manager">
+		<a href="#usage-dry-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
+		<a href="#usage-dry-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
+		<a href="#usage-dry-yarn" role="tab" data-tabs-persist="pkgmgr:yarn">yarn</a>
+	</div>
+	<div id="usage-dry-npm" role="tabpanel">{{ usageDryCode | packageManagerCodeTransform("npm") | highlight("bash") | safe }}</div>
+	<div id="usage-dry-pnpm" role="tabpanel">{{ usageDryCode | packageManagerCodeTransform("pnpm") | highlight("bash") | safe }}</div>
+	<div id="usage-dry-yarn" role="tabpanel">{{ usageDryCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
+</seven-minute-tabs>
+
 ### Deeper insight into Eleventy Internals
 
 You can use the `DEBUG` [environment variable](./environment-vars.md) to enable the [special debug log output](./debugging.md), allowing deeper insight into Eleventy’s internals. For simplicity this example is using the [`cross-env`](https://github.com/kentcdodds/cross-env) package.
@@ -233,6 +242,8 @@ You can use the `DEBUG` [environment variable](./environment-vars.md) to enable 
 </seven-minute-tabs>
 
 Learn more about [Eleventy’s Debug Mode log output](./debugging.md).
+
+## Advanced Usage
 
 ### Using the Same Input and Output
 

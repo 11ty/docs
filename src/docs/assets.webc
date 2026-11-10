@@ -23,7 +23,7 @@ filter-container:defined .filter-code--hide {
 
 <script type="module" src="/js/filter-container.js" webc:keep></script>
 <filter-container oninit leave-url-alone>
-	<h2 id="copy-files"><number-flag>1</number-flag> Copy <span data-filter-code="css">CSS</span><span data-filter-code="font">Web Font</span><span data-filter-code="js">JavaScript</span> Files</h2>
+	<h2 id="copy-files"><number-flag>1</number-flag> Copy <span data-toc-exclude data-filter-code="css">CSS</span><span data-toc-exclude data-filter-code="font">Web Font</span><span data-toc-exclude data-filter-code="js">JavaScript</span> Files</h2>
 
 	<p>This is the simplest approach and is great for beginners and/or with small projects. It’s great because it <em>doesn’t require a bundler or any external dependencies</em>.</p>
 
