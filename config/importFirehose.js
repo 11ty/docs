@@ -23,16 +23,6 @@ importer.addSource("atom", {
 	label: "Quick Tips",
 	url: "https://www.11ty.dev/docs/quicktips/feed.xml",
 });
-importer.addSource("fediverse", {
-	label: "Mastodon",
-	url: "@eleventy@fosstodon.org",
-});
-importer.addSource("fediverse", {
-	label: "Mastodon",
-	url: "@11ty@neighborhood.11ty.dev",
-});
-importer.addSource("bluesky", { label: "Bluesky", url: "@11ty.dev" });
-
 // Warning: at time of writing Eleventy has 51 repos, beware if this grows beyond the max of 100
 const PER_PAGE = 100; // max: 100
 let githubOrgRepos = await Fetch(

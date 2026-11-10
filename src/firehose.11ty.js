@@ -28,7 +28,7 @@ export async function render({ firehose = [] }) {
 	return `
 <h1>Eleventy Firehose</h1>
 
-<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, <a href="https://11ty.dev/mastodon">Mastodon account</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
+<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>
@@ -61,14 +61,6 @@ export async function render({ firehose = [] }) {
 		<form>
 			<strong>Filter:</strong>
 			<label>
-				<input type="checkbox" value="mastodon" data-filter-key="type">
-				Mastodon
-			</label>
-			<label>
-				<input type="checkbox" value="bluesky" data-filter-key="type">
-				Bluesky
-			</label>
-			<label>
 				<input type="checkbox" value="youtube" data-filter-key="type" checked>
 				YouTube
 			</label>
@@ -87,10 +79,8 @@ export async function render({ firehose = [] }) {
 		</form>
 ${firehose
 	.map((entry) => {
-		// Only show content on Mastodon
-		let content = entry.sourceLabel === "Mastodon" || entry.sourceLabel === "Bluesky"
-			? entry.content || ""
-			: "";
+		// Only videos render their content, as an embed
+		let content = "";
 
 		if (
 			entry.sourceLabel.startsWith("YouTube") &&
