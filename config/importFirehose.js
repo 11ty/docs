@@ -3,6 +3,8 @@ import Fetch from "@11ty/eleventy-fetch";
 import { Importer } from "@11ty/import";
 
 const OUTPUT_PATH = "src/_data/firehose.json";
+// Newest entries kept, the page and the feed render all of them
+const LIMIT = 50;
 
 let importer = new Importer();
 // Entries are saved to the data file, never written as posts
@@ -58,6 +60,8 @@ let data = entries
 			!(entry.content || "").trim().startsWith("<del>")
 		);
 	})
+	// Entries arrive newest first
+	.slice(0, LIMIT)
 	// Only the fields the page and the feed render, `source` is a class instance
 	.map(({ sourceLabel, title, url, content, date, authors }) => {
 		return {
