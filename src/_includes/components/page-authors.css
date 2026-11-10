@@ -1,6 +1,6 @@
 /* Commit authors for a single page, sits under the page title */
 .page-authors {
-	--page-authors-avatar-size: 1.846em; /* 24px /13 */
+	--page-authors-avatar-size: 2.462em; /* 32px /13 */
 	--page-authors-offset: 0.25em;
 	display: flex;
 	flex-wrap: wrap;
@@ -8,8 +8,7 @@
 	gap: 0.25em 0.75em;
 	font-family: system-ui, sans-serif;
 	font-size: 0.8125em; /* 13px /16 */
-	/* Pull up under the title, which has its own bottom margin */
-	margin-block: -1em 2.5em;
+	margin-block: 2em 0;
 	color: #666;
 }
 @media (prefers-color-scheme: dark) {

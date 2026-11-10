@@ -824,6 +824,9 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addFilter("cleanAuthorName", cleanName);
 
+	// Logins left out of page contributor lists, on top of bots
+	const hiddenPageAuthors = new Set(["zachleat"]);
+
 	// GitHub authors from a page’s imported git history, oldest contribution first
 	eleventyConfig.addFilter("pageAuthors", (authors) => {
 		if (!Array.isArray(authors)) {
@@ -834,9 +837,23 @@ export default async function (eleventyConfig) {
 			// Only the api import route has a login (and therefore an avatar)
 			return (
 				author?.url?.startsWith("https://github.com/") &&
-				!author.name.endsWith("[bot]")
+				!author.name.endsWith("[bot]") &&
+				!hiddenPageAuthors.has(author.name)
 			);
 		});
+	});
+
+	// Newest commit date from a page’s imported git history
+	eleventyConfig.addFilter("pageLastModified", (commits) => {
+		if (!Array.isArray(commits)) {
+			return;
+		}
+
+		return commits
+			.map((commit) => commit.date)
+			.filter(Boolean)
+			.sort()
+			.pop();
 	});
 
 	eleventyConfig.addFilter("head", (arr, num) => {
