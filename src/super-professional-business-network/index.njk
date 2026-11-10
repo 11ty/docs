@@ -9,7 +9,7 @@ layout: layouts/docs.njk
 <p><strong><a href="/blog/espbn/">Want to be on this list?</a></strong></p>
 
 <ul class="business-network" role="list">
-{%- for author in authors | filterBusinessPeople | shuffle %}
+{%- for author in builtwithAuthors | filterBusinessPeople | shuffle %}
 {%- set supporter = opencollective.supporters | isSupporter(author.name, author.opencollective) -%}
 {%- if supporter | isBusinessPerson %}
 {%- set businessName = author.business_name or author.name %}

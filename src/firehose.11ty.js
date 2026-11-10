@@ -37,7 +37,7 @@ export async function render({ entries }) {
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>
-	<li>Built using <a href="https://github.com/11ty/eleventy-activity-feed"><code>eleventy-activity-feed</code></a>.</li>
+	<li>Built using <a href="https://github.com/11ty/import"><code>@11ty/import</code></a>.</li>
 </ul>
 
 <hr>

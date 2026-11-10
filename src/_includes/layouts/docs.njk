@@ -10,6 +10,7 @@ isDocs: true
 </nav>
 {% endif %}
 {% if pageTitle %}<h1>{{ pageTitle | safe }}</h1>{% endif %}
+{% include "components/page-authors.njk" %}
 
 {{ content | safe }}
 

@@ -1,6 +1,6 @@
 ---js
 let pagination = {
-	data: "authors",
+	data: "builtwithAuthors",
 	size: 1,
 	alias: "author",
 	resolve: "values",

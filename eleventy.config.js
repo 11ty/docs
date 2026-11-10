@@ -266,7 +266,7 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.setServerOptions({
 		showVersion: false,
-		domDiff: false,
+		domDiff: true,
 	});
 
 	/* Plugins */
@@ -823,6 +823,21 @@ export default async function (eleventyConfig) {
 	});
 
 	eleventyConfig.addFilter("cleanAuthorName", cleanName);
+
+	// GitHub authors from a page’s imported git history, oldest contribution first
+	eleventyConfig.addFilter("pageAuthors", (authors) => {
+		if (!Array.isArray(authors)) {
+			return [];
+		}
+
+		return authors.filter((author) => {
+			// Only the api import route has a login (and therefore an avatar)
+			return (
+				author?.url?.startsWith("https://github.com/") &&
+				!author.name.endsWith("[bot]")
+			);
+		});
+	});
 
 	eleventyConfig.addFilter("head", (arr, num) => {
 		return num ? arr.slice(0, num) : arr;

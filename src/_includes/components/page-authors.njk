@@ -1,0 +1,14 @@
+{%- set pageAuthorsList = authors | pageAuthors %}
+{%- if pageAuthorsList.length %}
+<div class="page-authors" data-pagefind-ignore>
+	<span class="page-authors-label">Contributors</span>
+	<span class="page-authors-faces">
+		{%- for author in pageAuthorsList | head(12) %}
+		<a href="{{ author.url }}" class="elv-externalexempt">{% communityavatar author.name %}</a>
+		{%- endfor %}
+	</span>
+	{%- if pageAuthorsList.length > 12 %}
+	<span class="page-authors-more">and {{ pageAuthorsList.length - 12 }} more</span>
+	{%- endif %}
+</div>
+{%- endif %}
