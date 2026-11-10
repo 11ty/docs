@@ -1,6 +1,5 @@
 // import { decodeHTML } from "entities";
 import { escapeText } from "entities/escape";
-import activity from "../config/activity.js";
 
 function getSlugFromTitle(str) {
 	if (str.startsWith("GitHub Releases [")) {
@@ -13,13 +12,9 @@ function getSlugFromTitle(str) {
 	return "";
 }
 
-export async function data() {
-	const feed = await activity();
-	const entries = await feed.getEntries();
-
+export function data() {
 	return {
 		headerTitle: "Eleventy Community",
-		entries: entries,
 		layout: "layouts/docs.njk",
 		eleventyNavigation: {
 			key: "Firehose",
@@ -29,7 +24,7 @@ export async function data() {
 	};
 }
 
-export async function render({ entries }) {
+export async function render({ firehose = [] }) {
 	return `
 <h1>Eleventy Firehose</h1>
 
@@ -90,7 +85,7 @@ export async function render({ entries }) {
 				Quick Tips
 			</label>
 		</form>
-${entries
+${firehose
 	.map((entry) => {
 		// Only show content on Mastodon
 		let content = entry.sourceLabel === "Mastodon" || entry.sourceLabel === "Bluesky"
@@ -111,7 +106,7 @@ ${entries
 		return `<div data-filter-type="${getSlugFromTitle(
 			`${entry.sourceLabel}: ${entry.title}`
 		)}">${this.callout(
-			`<p><strong><a href="${entry.url}">${escapeText(entry.title)}</a></strong></p>`,
+			`<p><strong><a href="${entry.url}">${escapeText(entry.title)}</a></strong></p>${content}`,
 			"info",
 			"html",
 			entry.sourceLabel,
