@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "158a608760c49cfb7a876e05ca891dbe1e9db130",
+			"url": "https://github.com/11ty/docs/commit/158a608760c49cfb7a876e05ca891dbe1e9db130",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2026-04-22T16:54:42.000Z",
+			"message": "Blog layout improvements",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "FilipChalupa",
+			"url": "https://github.com/FilipChalupa",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/1045362?v=4"
+		}
+	]
+}

@@ -1,0 +1,41 @@
+{
+	"commits": [
+		{
+			"id": "f6a4de61a460bf5e668eebceca20fe302cade88a",
+			"url": "https://github.com/11ty/docs/commit/f6a4de61a460bf5e668eebceca20fe302cade88a",
+			"author": {
+				"name": "tmcw",
+				"url": "https://github.com/tmcw",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+			},
+			"date": "2026-01-27T17:38:25.000Z",
+			"message": "Excerpts",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "Al Idian"
+		},
+		{
+			"name": "BenDMyers",
+			"url": "https://github.com/BenDMyers",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/18060369?v=4"
+		},
+		{
+			"name": "AndiKod",
+			"url": "https://github.com/AndiKod",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/128460?v=4"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+		}
+	]
+}

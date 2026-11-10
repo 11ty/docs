@@ -1,0 +1,38 @@
+{
+	"commits": [
+		{
+			"id": "c7d0dad73ddc9d3ff94d0f019ea5ea9c0316a961",
+			"url": "https://github.com/11ty/docs/commit/c7d0dad73ddc9d3ff94d0f019ea5ea9c0316a961",
+			"author": {
+				"name": "tmcw",
+				"url": "https://github.com/tmcw",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+			},
+			"date": "2026-01-25T16:21:13.000Z",
+			"message": "Merge pull request #1779 from johnhunter/aria-current-option",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "CanIGetaPR",
+			"url": "https://github.com/CanIGetaPR",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/45294513?v=4"
+		},
+		{
+			"name": "johnhunter",
+			"url": "https://github.com/johnhunter",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/219160?v=4"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+		}
+	]
+}

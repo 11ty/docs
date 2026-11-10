@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "9ddeb837018656f06ea4adffe2f5f1a8cbcaae69",
+			"url": "https://github.com/11ty/docs/commit/9ddeb837018656f06ea4adffe2f5f1a8cbcaae69",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-03-27T16:32:03.000Z",
+			"message": "Current status",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25517624?v=4"
+		}
+	]
+}

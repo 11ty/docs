@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "96d407d85be8faac53b5f6755bf4199f9b9db552",
+			"url": "https://github.com/11ty/docs/commit/96d407d85be8faac53b5f6755bf4199f9b9db552",
+			"author": {
+				"name": "lko3001",
+				"url": "https://github.com/lko3001",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/61661685?v=4"
+			},
+			"date": "2025-10-11T10:26:18.000Z",
+			"message": "Update inline-js.md | Fix jsmin filter example to use correct async syntax",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "lko3001",
+			"url": "https://github.com/lko3001",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/61661685?v=4"
+		}
+	]
+}

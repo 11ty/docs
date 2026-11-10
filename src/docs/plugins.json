@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "d4331adb868f598733b43948f17ca38f1e128d1b",
+			"url": "https://github.com/11ty/docs/commit/d4331adb868f598733b43948f17ca38f1e128d1b",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-03-28T17:36:58.000Z",
+			"message": "Better mobile nav, bunch more cleanup",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25517624?v=4"
+		},
+		{
+			"name": "NJAldwin",
+			"url": "https://github.com/NJAldwin",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/145036?v=4"
+		}
+	]
+}

@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "d375e5ca0a18e01e49da79651bc7a2bd98e6b852",
+			"url": "https://github.com/11ty/docs/commit/d375e5ca0a18e01e49da79651bc7a2bd98e6b852",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2024-09-30T19:48:32.000Z",
+			"message": "Sidebar navigation changes",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "Zearin",
+			"url": "https://github.com/Zearin",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/630124?v=4"
+		}
+	]
+}

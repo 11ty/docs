@@ -1,0 +1,96 @@
+{
+	"commits": [
+		{
+			"id": "369b8431e92c1ba327159088102f4ebda0ba8907",
+			"url": "https://github.com/11ty/docs/commit/369b8431e92c1ba327159088102f4ebda0ba8907",
+			"author": {
+				"name": "SatvikMishra08",
+				"url": "https://github.com/SatvikMishra08",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/89024979?v=4"
+			},
+			"date": "2026-10-14T13:44:11.000Z",
+			"message": "Fix broken heading anchor links in docs (#2371)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "cfjedimaster",
+			"url": "https://github.com/cfjedimaster",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/393660?v=4"
+		},
+		{
+			"name": "deining",
+			"url": "https://github.com/deining",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/18169566?v=4"
+		},
+		{
+			"name": "nielsbom",
+			"url": "https://github.com/nielsbom",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/327080?v=4"
+		},
+		{
+			"name": "Zearin",
+			"url": "https://github.com/Zearin",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/630124?v=4"
+		},
+		{
+			"name": "CanIGetaPR",
+			"url": "https://github.com/CanIGetaPR",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/45294513?v=4"
+		},
+		{
+			"name": "sc0ttes",
+			"url": "https://github.com/sc0ttes",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/5059325?v=4"
+		},
+		{
+			"name": "pdehaan",
+			"url": "https://github.com/pdehaan",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/557895?v=4"
+		},
+		{
+			"name": "Alexander Chudesnov"
+		},
+		{
+			"name": "Snapstromegon",
+			"url": "https://github.com/Snapstromegon",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/18480654?v=4"
+		},
+		{
+			"name": "refactorized",
+			"url": "https://github.com/refactorized",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/282710?v=4"
+		},
+		{
+			"name": "jamesnw",
+			"url": "https://github.com/jamesnw",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/167908?v=4"
+		},
+		{
+			"name": "harrislapiroff",
+			"url": "https://github.com/harrislapiroff",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/296631?v=4"
+		},
+		{
+			"name": "caseywatts",
+			"url": "https://github.com/caseywatts",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/273653?v=4"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+		},
+		{
+			"name": "SatvikMishra08",
+			"url": "https://github.com/SatvikMishra08",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/89024979?v=4"
+		}
+	]
+}

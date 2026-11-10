@@ -1,0 +1,76 @@
+{
+	"commits": [
+		{
+			"id": "8504be350ddff7ef6c377c741849e9428292939a",
+			"url": "https://github.com/11ty/docs/commit/8504be350ddff7ef6c377c741849e9428292939a",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2026-11-09T17:13:04.000Z",
+			"message": "Removes shut down host",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "jchengjr77",
+			"url": "https://github.com/jchengjr77",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/50639799?v=4"
+		},
+		{
+			"name": "palmiak",
+			"url": "https://github.com/palmiak",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/2342458?v=4"
+		},
+		{
+			"name": "eldemcan",
+			"url": "https://github.com/eldemcan",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/2489876?v=4"
+		},
+		{
+			"name": "pcarrier",
+			"url": "https://github.com/pcarrier",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/8641?v=4"
+		},
+		{
+			"name": "andrewshell",
+			"url": "https://github.com/andrewshell",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/144136?v=4"
+		},
+		{
+			"name": "osbre",
+			"url": "https://github.com/osbre",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/23292709?v=4"
+		},
+		{
+			"name": "Justin Hunter"
+		},
+		{
+			"name": "GeoSegun",
+			"url": "https://github.com/GeoSegun",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/91230297?v=4"
+		},
+		{
+			"name": "adamdjbrett",
+			"url": "https://github.com/adamdjbrett",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/22662978?v=4"
+		},
+		{
+			"name": "facundofarias",
+			"url": "https://github.com/facundofarias",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/2700564?v=4"
+		},
+		{
+			"name": "SatvikMishra08",
+			"url": "https://github.com/SatvikMishra08",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/89024979?v=4"
+		}
+	]
+}

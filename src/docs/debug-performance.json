@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "7c0cace265fb22249533f4c6ded9ee9c2404490c",
+			"url": "https://github.com/11ty/docs/commit/7c0cace265fb22249533f4c6ded9ee9c2404490c",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-10-23T20:07:21.000Z",
+			"message": "Minor copy tweaks for build performance",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		}
+	]
+}

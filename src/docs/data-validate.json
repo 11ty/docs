@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "a9c830ddaa30ff638547efdf4b69fb7f5dea3d68",
+			"url": "https://github.com/11ty/docs/commit/a9c830ddaa30ff638547efdf4b69fb7f5dea3d68",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2026-06-30T21:47:39.000Z",
+			"message": "Fix zod changes upstream (via eleventy-base-blog)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		}
+	]
+}

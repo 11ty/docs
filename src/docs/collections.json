@@ -1,0 +1,78 @@
+{
+	"commits": [
+		{
+			"id": "e6a729d8c6f944c172852e4ef8cd6eee45c88b49",
+			"url": "https://github.com/11ty/docs/commit/e6a729d8c6f944c172852e4ef8cd6eee45c88b49",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-10-29T16:02:57.000Z",
+			"message": "info blocks cleanup",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "neo7-studio-web",
+			"url": "https://github.com/neo7-studio-web",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/18073828?v=4"
+		},
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "kaisermann",
+			"url": "https://github.com/kaisermann",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/12702016?v=4"
+		},
+		{
+			"name": "SiarheiBobryk",
+			"url": "https://github.com/SiarheiBobryk",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/33809585?v=4"
+		},
+		{
+			"name": "AramZS",
+			"url": "https://github.com/AramZS",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/748069?v=4"
+		},
+		{
+			"name": "TomerAberbach",
+			"url": "https://github.com/TomerAberbach",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/23299544?v=4"
+		},
+		{
+			"name": "andrealeardini",
+			"url": "https://github.com/andrealeardini",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25171375?v=4"
+		},
+		{
+			"name": "qorbani",
+			"url": "https://github.com/qorbani",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/771382?v=4"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25517624?v=4"
+		},
+		{
+			"name": "Zearin",
+			"url": "https://github.com/Zearin",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/630124?v=4"
+		},
+		{
+			"name": "danburzo",
+			"url": "https://github.com/danburzo",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/205375?v=4"
+		},
+		{
+			"name": "breyman",
+			"url": "https://github.com/breyman",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/44279058?v=4"
+		}
+	]
+}

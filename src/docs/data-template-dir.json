@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "996a9777eae3a6b8b8cf6511553d0a8674112ddb",
+			"url": "https://github.com/11ty/docs/commit/996a9777eae3a6b8b8cf6511553d0a8674112ddb",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-10-15T21:59:10.000Z",
+			"message": "Add wa-copy-button",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "alihardan",
+			"url": "https://github.com/alihardan",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/4679877?v=4"
+		}
+	]
+}

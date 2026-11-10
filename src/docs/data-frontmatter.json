@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "5de94940cc209d4a4089d087dfe8a1580e0d41f0",
+			"url": "https://github.com/11ty/docs/commit/5de94940cc209d4a4089d087dfe8a1580e0d41f0",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2026-03-25T18:50:37.000Z",
+			"message": "Copy improvements to JS front matter",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "clottman",
+			"url": "https://github.com/clottman",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/4480480?v=4"
+		},
+		{
+			"name": "deining",
+			"url": "https://github.com/deining",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/18169566?v=4"
+		}
+	]
+}

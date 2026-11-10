@@ -1,0 +1,56 @@
+{
+	"commits": [
+		{
+			"id": "369b8431e92c1ba327159088102f4ebda0ba8907",
+			"url": "https://github.com/11ty/docs/commit/369b8431e92c1ba327159088102f4ebda0ba8907",
+			"author": {
+				"name": "SatvikMishra08",
+				"url": "https://github.com/SatvikMishra08",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/89024979?v=4"
+			},
+			"date": "2026-10-14T13:44:11.000Z",
+			"message": "Fix broken heading anchor links in docs (#2371)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25517624?v=4"
+		},
+		{
+			"name": "daviddarnes",
+			"url": "https://github.com/daviddarnes",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/1177460?v=4"
+		},
+		{
+			"name": "sjml",
+			"url": "https://github.com/sjml",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/1638331?v=4"
+		},
+		{
+			"name": "noelforte",
+			"url": "https://github.com/noelforte",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/2560683?v=4"
+		},
+		{
+			"name": "Christophe"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+		},
+		{
+			"name": "SatvikMishra08",
+			"url": "https://github.com/SatvikMishra08",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/89024979?v=4"
+		}
+	]
+}

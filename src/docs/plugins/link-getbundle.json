@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "35f0efec596dd0da8875d6c5e37bd592c97f0222",
+			"url": "https://github.com/11ty/docs/commit/35f0efec596dd0da8875d6c5e37bd592c97f0222",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2024-09-30T17:58:08.000Z",
+			"message": "Docs for https://github.com/11ty/eleventy/issues/3268",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		}
+	]
+}

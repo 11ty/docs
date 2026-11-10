@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "4777c077ee73d13ec2516528447ae6fceaddaaa4",
+			"url": "https://github.com/11ty/docs/commit/4777c077ee73d13ec2516528447ae6fceaddaaa4",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-10-28T17:45:46.000Z",
+			"message": "Use CSS highlights API to syntax highlight Eleventy shell output",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		}
+	]
+}

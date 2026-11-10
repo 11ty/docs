@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "072f1d5d9a83829a4bc5ff79477d2ce99f1fc147",
+			"url": "https://github.com/11ty/docs/commit/072f1d5d9a83829a4bc5ff79477d2ce99f1fc147",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-11-06T23:30:15.000Z",
+			"message": "ESM/CJS mishap",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "Snapstromegon",
+			"url": "https://github.com/Snapstromegon",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/18480654?v=4"
+		}
+	]
+}

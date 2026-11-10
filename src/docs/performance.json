@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "2bef7e641f2cbe3d5a370162ade656e96fb9bb6b",
+			"url": "https://github.com/11ty/docs/commit/2bef7e641f2cbe3d5a370162ade656e96fb9bb6b",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-12-02T23:01:57.000Z",
+			"message": "Add link to Fetch utility from build performance docs",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		}
+	]
+}

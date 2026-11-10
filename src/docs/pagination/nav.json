@@ -1,0 +1,31 @@
+{
+	"commits": [
+		{
+			"id": "ca1d8624e7678daf0d621c0180d3f482d38cd805",
+			"url": "https://github.com/11ty/docs/commit/ca1d8624e7678daf0d621c0180d3f482d38cd805",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-11-04T22:12:57.000Z",
+			"message": "Adds autoheight feature to maintain consistent tab heights when switching tabs",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25517624?v=4"
+		},
+		{
+			"name": "Phil Hawksworth"
+		}
+	]
+}

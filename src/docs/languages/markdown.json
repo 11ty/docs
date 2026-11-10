@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "f43a1ef3938a53c87580d7f3d48a387f9a7a4417",
+			"url": "https://github.com/11ty/docs/commit/f43a1ef3938a53c87580d7f3d48a387f9a7a4417",
+			"author": {
+				"name": "tmcw",
+				"url": "https://github.com/tmcw",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+			},
+			"date": "2026-01-29T01:37:16.000Z",
+			"message": "Write markdown documentation page intro",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "pbannister",
+			"url": "https://github.com/pbannister",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/213543?v=4"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+		}
+	]
+}

@@ -1,0 +1,38 @@
+{
+	"commits": [
+		{
+			"id": "d85ca0a424fb3d1de4e8a4ace14e4ebb4a5f6883",
+			"url": "https://github.com/11ty/docs/commit/d85ca0a424fb3d1de4e8a4ace14e4ebb4a5f6883",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2026-07-01T21:19:13.000Z",
+			"message": "Renamed repo to `docs`",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "tcope25",
+			"url": "https://github.com/tcope25",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/1182460?v=4"
+		},
+		{
+			"name": "deining",
+			"url": "https://github.com/deining",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/18169566?v=4"
+		},
+		{
+			"name": "devndevs",
+			"url": "https://github.com/devndevs",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/67359053?v=4"
+		}
+	]
+}

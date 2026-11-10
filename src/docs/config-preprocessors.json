@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "da9a5a2ab4adc2ace1cd96de0bcbff2d62400fa6",
+			"url": "https://github.com/11ty/docs/commit/da9a5a2ab4adc2ace1cd96de0bcbff2d62400fa6",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2026-11-05T14:53:11.000Z",
+			"message": "Warning about computed data in preprocessors",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		}
+	]
+}

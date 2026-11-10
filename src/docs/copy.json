@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "72cf959e4dc229568a21dd9f699ca6bb6327d270",
+			"url": "https://github.com/11ty/docs/commit/72cf959e4dc229568a21dd9f699ca6bb6327d270",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-07-30T20:34:26.000Z",
+			"message": "Upgrade to use v4.0.0 canary",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "tarastockford",
+			"url": "https://github.com/tarastockford",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/1721916?v=4"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/25517624?v=4"
+		}
+	]
+}

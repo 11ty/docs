@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "9d2fd3082b31b09c47beadcc193aa2037eb36d3a",
+			"url": "https://github.com/11ty/docs/commit/9d2fd3082b31b09c47beadcc193aa2037eb36d3a",
+			"author": {
+				"name": "tmcw",
+				"url": "https://github.com/tmcw",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+			},
+			"date": "2026-02-07T22:56:56.000Z",
+			"message": "Template language prose batch",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/32314?v=4"
+		}
+	]
+}

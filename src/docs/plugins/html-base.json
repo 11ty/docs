@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "7cd4080dd005ce6bb8356820b0394cc7216a9b70",
+			"url": "https://github.com/11ty/docs/commit/7cd4080dd005ce6bb8356820b0394cc7216a9b70",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			},
+			"date": "2025-05-13T20:41:04.000Z",
+			"message": "Add docs for html relative passthrough file copy https://github.com/11ty/eleventy/pull/3573",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+		}
+	]
+}
