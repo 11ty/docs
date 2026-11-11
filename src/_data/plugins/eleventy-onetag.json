@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-onetag",
+	"author": "fengyiqicoder",
+	"description": "Writes llms.txt and llms-full.txt from your built site and adds an Ask AI box that answers from it."
+}
