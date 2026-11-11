@@ -338,7 +338,7 @@ footer.elv-layout {
 		--page-toc-size: 11rem;
 		grid-template-columns: var(--toc-sidebar-size) minmax(1px, 1fr) var(--page-toc-size);
 	}
-	.elv-layout-toc > .elv-headings-toc {
+	.elv-layout-toc:has(table-of-contents:defined) > .elv-headings-toc {
 		grid-column: 3;
 		grid-row: 1;
 	}

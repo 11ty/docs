@@ -407,7 +407,7 @@ details.toc[open] > summary {
 	}
 }
 @media (min-width: 72em) {
-	.elv-headings-toc {
+	.elv-layout-toc:has(table-of-contents:defined) .elv-headings-toc {
 		display: block;
 		position: sticky;
 		inset-block-start: var(--elv-headings-toc-sticky-top);
