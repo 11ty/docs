@@ -11,7 +11,7 @@
 		<span class="page-authors-label">Contributors</span>
 		<span class="page-authors-faces">
 			{%- for author in pageAuthorsList | head(12) %}
-			<a href="{{ author.url }}" class="elv-externalexempt">{% communityavatar author.name %}</a>
+			<a href="{{ author.url }}" class="elv-externalexempt">{% authoravatar author %}</a>
 			{%- endfor %}
 		</span>
 		{%- if pageAuthorsList.length > 12 %}
