@@ -1,15 +1,15 @@
 {
 	"commits": [
 		{
-			"id": "4022d7512dde04f7a3e11fbb5eadf5096f6192c5",
-			"url": "https://github.com/11ty/docs/commit/4022d7512dde04f7a3e11fbb5eadf5096f6192c5",
+			"id": "6a586156868c23128fdb87ecaa318ebbfab3458f",
+			"url": "https://github.com/11ty/docs/commit/6a586156868c23128fdb87ecaa318ebbfab3458f",
 			"author": {
 				"name": "zachleat",
 				"url": "https://github.com/zachleat",
-				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
 			},
-			"date": "2026-03-06T23:42:06.000Z",
-			"message": "Build Awesome blog post",
+			"date": "2026-11-10T23:35:46.000Z",
+			"message": "Adds a table of contents sidebar",
 			"via": "git"
 		}
 	],
@@ -17,12 +17,12 @@
 		{
 			"name": "zachleat",
 			"url": "https://github.com/zachleat",
-			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
 		},
 		{
 			"name": "AngelGuerra",
 			"url": "https://github.com/AngelGuerra",
-			"avatarUrl": "https://avatars.githubusercontent.com/u/7241024?v=4"
+			"avatarUrl": "/img/docs-avatars/7241024-CFcHssVpVesj.jpeg"
 		}
 	]
 }

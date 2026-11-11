@@ -77,4 +77,7 @@
 			</template>
 		</is-land>
 	</div>
+{%- if not isDocs %}
+	<h1 class="elv-hed">{{ headerTitle | safe }}</h1>
+{%- endif %}
 </header>

@@ -89,8 +89,18 @@ table .numeric {
 		color: #ddd;
 	}
 }
-h2 + table {
+h2 + table,
+h2 + .table-scroller {
 	margin-top: -0.625em; /* -10px /16 */
+}
+
+/* Wide tables scroll sideways instead of stretching the page */
+.table-scroller {
+	overflow-x: auto;
+	margin-bottom: 2em;
+}
+.table-scroller > table {
+	margin-bottom: 0;
 }
 
 @media (min-width: 37.5em) {

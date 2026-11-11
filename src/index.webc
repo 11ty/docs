@@ -55,7 +55,7 @@ export function randomTestimonialLink(testimonials) {
 				<download-counter :@value="npmProjectDownloads.downloads" :per-year="npmProjectDownloads.downloadsLastYear" :generated-at="npmProjectDownloads.generatedAt">Downloads all time<br>All npm packages</download-counter>
 			</div>
 		</div>
-		<p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.downloadsLastYear)"></span><span>Downloads last year</span></p>
+		<!-- <p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.downloadsLastYear)"></span><span>Downloads last year</span></p> -->
 	</div>
 	<!-- <div class="home-stats-item">
 		<div class="elv-callout">
@@ -65,7 +65,7 @@ export function randomTestimonialLink(testimonials) {
 		</div>
 		<p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.closedIssues + npmProjectDownloads.closedPRs)"></span><span><i class="fa-solid fa-circle-check"></i><span class="sr-only">Closed </span>issues and PRs</span></p>
 	</div> -->
-	<div class="home-stats-item">
+	<!-- <div class="home-stats-item">
 		<div class="elv-callout">
 			<a href="https://osv.dev/list?ecosystem=npm&q=%4011ty%2Feleventy" class="elv-callout-c home-stats-link elv-externalexempt">
 				<i class="fa-solid fa-shield-halved download-counter-icon"></i>
@@ -73,7 +73,7 @@ export function randomTestimonialLink(testimonials) {
 				<span class="download-counter-label">Security advisories<br>on core since 2017</span>
 			</a>
 		</div>
-	</div>
+	</div> -->
 </div>
 <style>
 .home-stats {
@@ -81,7 +81,7 @@ export function randomTestimonialLink(testimonials) {
 	flex-wrap: wrap;
 	align-items: flex-start;
 	gap: .5em 1em;
-	margin-block: 1em;
+	margin-block: 0 1em;
 	margin-inline: -1rem;
 }
 .home-stats > * {
@@ -120,6 +120,13 @@ speedlify2-median:not(:defined) {
 }
 .home-stats-item > .elv-callout {
 	margin: 0;
+	/* The callout paints --callout-secondary, which defaults to the page background */
+	--callout-secondary: #f7f7f7;
+}
+@media (prefers-color-scheme: dark) {
+	.home-stats-item > .elv-callout {
+		--callout-secondary: #262626;
+	}
 }
 .home-stats-sub {
 	align-items: baseline;
@@ -144,7 +151,7 @@ speedlify2-median:not(:defined) {
 
 <quick-start></quick-start>
 
-<div webc:bucket="async">
+<div webc:bucket="async" webc:nokeep>
 	<h2>Try Eleventy in Your Browser</h2>
 	<p>Next try editing one of the three files in this Eleventy project. Change the <code>title</code> in front matter on a blog post and watch the list update on the index page!</p>
 	<is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js">
@@ -259,6 +266,16 @@ tags: posts
 	</is-land>
 
 	<p>A random sample taken from <a href="/authors/"><code><span @text="Object.keys($data.builtwithAuthors).length"></span></code> authors</a>. Check out the <a href="/speedlify/">fastest of their <code><span @text="getsize(objectFilterNot(builtwith, 'disabled'))" webc:nokeep></span></code> web sites</a>.</p>
+
+	<h2>Docs Contributors</h2>
+
+	<is-land on:visible on:save-data="false">
+		<facepile>
+			<html-fetch src="/imports/docs-facepile.html"></html-fetch>
+		</facepile>
+	</is-land>
+
+	<p>Thank you to the <code><span @text="docsAuthors.length"></span></code> folks who have contributed to <a href="/docs/">the documentation</a>.</p>
 
 	<h2>Don’t take my word for it <emoji @char="🌈" @alt="Rainbow"></emoji></h2>
 

@@ -46,7 +46,7 @@ The first configuration file found is used. The others are ignored.
   {%- youtubeEmbed "hJAtWQ9nmKU", "Additions to the default config filename list (Changelog №17)", "431" -%}
 </div>
 
-## Configuration Options
+## Directories
 
 ### Input Directory
 
@@ -212,6 +212,8 @@ export default function(eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
+## Template Engines
+
 ### Default template engine for Markdown files
 
 Markdown files run through this template engine before transforming to HTML.
@@ -283,6 +285,8 @@ export default function (eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
+## Build Options
+
 ### Enable Quiet Mode to Reduce Console Noise
 
 In order to maximize user-friendliness to beginners, Eleventy will show each file it processes and the output file. To disable this noisy console output, use quiet mode!
@@ -324,6 +328,8 @@ Deploy to https://11ty.github.io/eleventy-base-blog/ on GitHub pages without mod
 ```bash
 npx @11ty/eleventy --pathprefix=eleventy-base-blog
 ```
+
+## Data Files
 
 ### Change Base File Name for Data Files
 
@@ -390,6 +396,8 @@ export default function (eleventyConfig) {
 {% include "snippets/configDefinition.njk" %}
 
 </details>
+
+## Transforms and Linters
 
 ### Transforms
 
@@ -458,7 +466,7 @@ export default function (eleventyConfig) {
 
 </details>
 
-### Data Filter Selectors
+## Data Filter Selectors
 
 {% addedin "1.0.0" %}<!-- Beta 4 -->
 
@@ -474,7 +482,7 @@ export default function (eleventyConfig) {
 
 This will now include a `data` property in your JSON output that includes the `page` variable for each matching template.
 
-### TypeScript Type Definitions
+## TypeScript Type Definitions
 
 This may enable some extra autocomplete features in your IDE (where supported).
 
@@ -488,36 +496,36 @@ export default function (eleventyConfig) {
 
 - Related: [GitHub #2091](https://github.com/11ty/eleventy/pull/2091) and [GitHub #3097](https://github.com/11ty/eleventy/issues/3097)
 
-### Removed Features
+## Removed Features
 
-#### Change exception case suffix for HTML files
+### Change exception case suffix for HTML files
 
 {% callout "warn", "", "Feature Removal" %}The <code>htmlOutputSuffix</code> feature was removed in Eleventy 3.0. You can read about the feature on the <a href="https://v2-0-1.11ty.dev/docs/config/#change-exception-case-suffix-for-html-files">v2 documentation</a>. Related: <a href="https://github.com/11ty/eleventy/issues/3327">GitHub #3327</a>.{% endcallout %}
 
-### Documentation Moved to Dedicated Pages
+## Documentation Moved to Dedicated Pages
 
 <a id="{{ 'Copy Files to Output using Pass-through File Copy' | slugify }}"></a>
 
-#### Copy Files to Output using Passthrough File Copy
+### Copy Files to Output using Passthrough File Copy
 
 Files found (that don’t have a valid template engine) from opt-in file extensions in `templateFormats` will passthrough to the output directory. Read more about [Passthrough Copy](/docs/copy/).
 
-#### Customize Front Matter Parsing Options {% addedin "0.9.0" %}
+### Customize Front Matter Parsing Options {% addedin "0.9.0" %}
 
 - Documented at [Customize Front Matter Parsing](/docs/data-frontmatter-customize/).
 
-#### Watch JavaScript Dependencies {% addedin "0.7.0" %}
+### Watch JavaScript Dependencies {% addedin "0.7.0" %}
 
 - Documented at [Watch and Serve Configuration](/docs/watch-serve/).
 
-#### Add Your Own Watch Targets {% addedin "0.10.0" %}
+### Add Your Own Watch Targets {% addedin "0.10.0" %}
 
 - Documented at [Watch and Serve Configuration](/docs/watch-serve/).
 
-#### Override Browsersync Server Options {% addedin "0.7.0" %}
+### Override Browsersync Server Options {% addedin "0.7.0" %}
 
 - Documented at [Watch and Serve Configuration](/docs/watch-serve/).
 
-#### Transforms
+### Transforms
 
 - Documented at [Transforms](/docs/transforms.md).

@@ -25,6 +25,7 @@ import markdownPlugin from "./config/markdownPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
+import hiddenAuthors from "./config/hiddenAuthors.js";
 
 // Load .env if present (absent in production).
 try {
@@ -397,6 +398,15 @@ export default async function (eleventyConfig) {
 	}));
 
 	eleventyConfig.addShortcode("communityavatar", shortcodes.communityAvatar);
+
+	// Avatar downloaded by the git import, falling back to the GitHub CDN
+	eleventyConfig.addShortcode("authoravatar", function (author) {
+		if (!author?.avatarUrl) {
+			return shortcodes.communityAvatar(author?.name);
+		}
+
+		return `<img src="${author.avatarUrl}" width="66" height="66" alt="GitHub Avatar for ${author.name}" class="avatar avatar-large" loading="lazy" decoding="async">`;
+	});
 	eleventyConfig.addShortcode(
 		"opencollectiveavatar",
 		shortcodes.getOpenCollectiveAvatarHtml
@@ -825,9 +835,6 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addFilter("cleanAuthorName", cleanName);
 
-	// Logins left out of page contributor lists, on top of bots
-	const hiddenPageAuthors = new Set(["zachleat"]);
-
 	// GitHub authors from a page’s imported git history, oldest contribution first
 	eleventyConfig.addFilter("pageAuthors", (authors) => {
 		if (!Array.isArray(authors)) {
@@ -839,7 +846,7 @@ export default async function (eleventyConfig) {
 			return (
 				author?.url?.startsWith("https://github.com/") &&
 				!author.name.endsWith("[bot]") &&
-				!hiddenPageAuthors.has(author.name)
+				!hiddenAuthors.has(author.name)
 			);
 		});
 	});

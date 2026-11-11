@@ -1,14 +1,18 @@
 import { glob } from "tinyglobby";
 import { Importer } from "@11ty/import";
 
-let paths = await glob("src/docs/**/*.md");
+// Relative to the folder targeted below
+let paths = (await glob("src/docs/**/*.md")).map((filePath) =>
+	filePath.slice("src/".length)
+);
 
 let importer = new Importer();
-importer.setOutputFolder(".");
-// Avatars are rendered from the GitHub login at build, not downloaded here
-importer.setAvatarReferenceType("disabled");
+// Targeting `src` keeps both the data files and the downloaded avatars inside it
+importer.setOutputFolder("src");
+importer.setAssetsFolder("img/docs-avatars");
+importer.setAvatarReferenceType("absolute");
 importer.addSource("git", {
-	url: ".",
+	url: "src",
 	// Only the api route has GitHub logins (and avatars), `git log` has commit names
 	route: "api",
 	path: paths,

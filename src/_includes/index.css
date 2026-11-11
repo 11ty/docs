@@ -333,11 +333,12 @@ footer.elv-layout {
 }
 /* #3col */
 @media (min-width: 72em) {
-	.elv-layout-toc:has(.elv-headings-toc) {
+	/* Only once the component is upgraded */
+	.elv-layout-toc:has(table-of-contents:defined) {
 		--page-toc-size: 11rem;
 		grid-template-columns: var(--toc-sidebar-size) minmax(1px, 1fr) var(--page-toc-size);
 	}
-	.elv-layout-toc > .elv-headings-toc {
+	.elv-layout-toc:has(table-of-contents:defined) > .elv-headings-toc {
 		grid-column: 3;
 		grid-row: 1;
 	}
