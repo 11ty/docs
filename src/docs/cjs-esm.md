@@ -21,6 +21,7 @@ Eleventy works with many different flavors of JavaScript:
 
 Eleventy is **compatible with ESM, CommonJS, and TypeScript** (with some runtime limitations). Note the following:
 
+<div class="table-scroller" tabindex="0" role="region" aria-label="Compatibility">
 <table>
 	<thead>
 		<tr>
@@ -102,6 +103,7 @@ Eleventy is **compatible with ESM, CommonJS, and TypeScript** (with some runtime
 		</tr>
 	</tbody>
 </table>
+</div>
 
 You can mix and match different flavors when using the following Eleventy project files and features:
 
@@ -117,6 +119,8 @@ Eleventy has goals to broadly support the same module formats as your chosen [Ja
 ### Node.js and Deno
 
 CommonJS, ESM, and TypeScript are supported in Node.js and Deno.
+
+{% callout "info", "md" %}Deno’s runtime development is winding down: the Deno team [joined Cloudflare](https://deno.com/blog/cloudflare) in October 2026 and Deno will receive bug fixes and security updates for about a year before Deno-led development ends. The runtime remains open source.{% endcallout %}
 
 If you want to use ESM (in JavaScript or TypeScript) in your Eleventy (v3+) project, you can do this project-wide or incrementally on a per-file basis:
 

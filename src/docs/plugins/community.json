@@ -1,15 +1,15 @@
 {
 	"commits": [
 		{
-			"id": "d85ca0a424fb3d1de4e8a4ace14e4ebb4a5f6883",
-			"url": "https://github.com/11ty/docs/commit/d85ca0a424fb3d1de4e8a4ace14e4ebb4a5f6883",
+			"id": "17fc223542d537ec55e36e83502ecd77a7cf7799",
+			"url": "https://github.com/11ty/docs/commit/17fc223542d537ec55e36e83502ecd77a7cf7799",
 			"author": {
 				"name": "zachleat",
 				"url": "https://github.com/zachleat",
-				"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
 			},
-			"date": "2026-07-01T21:19:13.000Z",
-			"message": "Renamed repo to `docs`",
+			"date": "2026-11-10T22:11:05.000Z",
+			"message": "Swap to `@11ty/import` and adds author facepiles on docs",
 			"via": "git"
 		}
 	],
@@ -17,12 +17,12 @@
 		{
 			"name": "j-f1",
 			"url": "https://github.com/j-f1",
-			"avatarUrl": "https://avatars.githubusercontent.com/u/25517624?v=4"
+			"avatarUrl": "/img/docs-avatars/25517624-O2aASR5gZm4n.png"
 		},
 		{
 			"name": "zachleat",
 			"url": "https://github.com/zachleat",
-			"avatarUrl": "https://avatars.githubusercontent.com/u/39355?v=4"
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
 		}
 	]
 }
