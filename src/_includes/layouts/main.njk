@@ -20,9 +20,6 @@ headerClass: elv-header-default
 	{% include "components/docs-toc.njk" %}
 	{% include "components/page-toc.njk" %}
 	<div id="skip-content">
-		{%- if not isDocs %}
-		<h1 class="elv-hed">{{ headerTitle | safe }}</h1>
-		{%- endif %}
 		<heading-anchors selector="h2,h3,h4">{{ content | safe }}</heading-anchors>
 	</div>
 </main>

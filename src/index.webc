@@ -81,7 +81,7 @@ export function randomTestimonialLink(testimonials) {
 	flex-wrap: wrap;
 	align-items: flex-start;
 	gap: .5em 1em;
-	margin-block: 1em;
+	margin-block: 0 1em;
 	margin-inline: -1rem;
 }
 .home-stats > * {
@@ -120,6 +120,13 @@ speedlify2-median:not(:defined) {
 }
 .home-stats-item > .elv-callout {
 	margin: 0;
+	/* The callout paints --callout-secondary, which defaults to the page background */
+	--callout-secondary: #f7f7f7;
+}
+@media (prefers-color-scheme: dark) {
+	.home-stats-item > .elv-callout {
+		--callout-secondary: #262626;
+	}
 }
 .home-stats-sub {
 	align-items: baseline;

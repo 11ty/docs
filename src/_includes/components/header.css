@@ -27,12 +27,6 @@
 	width: 100%;
 	margin: 0 auto;
 }
-/* #2col */
-@media (min-width: 41.4375em) {
-	.elv-header-default .elv-nav-header {
-		margin-block-end: 3.5rem;
-	}
-}
 .elv-nav-menu {
 	padding: 1rem;
 	margin-inline: auto;
@@ -245,9 +239,11 @@ a[href].elv-hero-11ty:visited {
 
 /* Header Heading */
 .elv-hed {
+	/* Matches .elv-layout, which no longer wraps it */
+	padding-inline: 1rem;
 	font-size: 3.125em; /* 50px /16 */
 	line-height: 1.2;
-	margin-block-end: 1em;
+	margin-block: 2rem 1em;
 	text-align: center;
 	text-transform: none;
 	text-wrap: balance;

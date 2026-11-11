@@ -3,6 +3,6 @@ permalink: /imports/docs-facepile.html
 ---
 <div class="facepile">
 {%- for author in docsAuthors %}
-	<a href="{{ author.url }}">{% authoravatar author %}<span class="sr-only">{{ author.name }}</span></a>
+	<a href="{{ author.url }}" class="elv-externalexempt">{% authoravatar author %}<span class="sr-only">{{ author.name }}</span></a>
 {%- endfor %}
 </div>
