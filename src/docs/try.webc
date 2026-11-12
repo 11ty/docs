@@ -1,0 +1,72 @@
+---
+eleventyNavigation:
+  parent: Introduction
+  key: Try in Your Browser
+  order: 2
+  excerpt: Edit a three-file Eleventy project and watch it build, without installing anything.
+searchTitle: Try Eleventy in Your Browser
+# The editors and previews want the full width
+excludePageToc: true
+---
+<script type="module" src="/js/browser-window.js" webc:keep></script>
+
+<h1>Try Eleventy in Your Browser</h1>
+<p>This is a real Eleventy build, running in this page. Edit any of the three files below and watch the output update—change the <code>title</code> in front matter on a blog post and the list on the index page follows.</p>
+
+<is-land on:visible import="/js/eleventy-editor.js">
+	<div class="try-columns">
+		<p class="try-filename"><code>index.md</code></p>
+		<p class="try-filename"><code>_site/index.html</code></p>
+		<eleventy-editor focus group="try" output="external" data-editor-filename="index.md">
+			<syntax-highlight language="liquid" :copy-button-enabled="false">---
+subject: World
+---
+# Hello {{ subject }}
+
+You can type here!
+
+- [Markdown](/docs/languages/markdown/)
+- [Liquid](/docs/languages/liquid/)
+
+## Posts
+
+{%- for post in collections.posts %}
+- [{{ post.data.title }}]({{ post.url}})
+{%- endfor %}
+
+_Built with {{ eleventy.generator }}_</syntax-highlight>
+		</eleventy-editor>
+		<browser-window fill url="https://example.com/">
+			<eleventy-output group="try" data-editor-filename="index.md"></eleventy-output>
+		</browser-window>
+
+		<p class="try-filename"><code>post1.md</code></p>
+		<p class="try-filename"><code>_site/post1/index.html</code></p>
+		<eleventy-editor group="try" output="external" data-editor-filename="post1.md">
+			<syntax-highlight language="liquid" :copy-button-enabled="false">---
+title: First blog post ⬅️
+tags: posts
+---
+# {{ title }}</syntax-highlight>
+		</eleventy-editor>
+		<browser-window fill url="https://example.com/post1/">
+			<eleventy-output group="try" data-editor-filename="post1.md"></eleventy-output>
+		</browser-window>
+
+		<p class="try-filename"><code>post2.md</code></p>
+		<p class="try-filename"><code>_site/post2/index.html</code></p>
+		<eleventy-editor group="try" output="external" data-editor-filename="post2.md">
+			<syntax-highlight language="liquid" :copy-button-enabled="false">---
+title: Second blog post
+tags: posts
+---
+# {{ title }}</syntax-highlight>
+		</eleventy-editor>
+		<browser-window fill url="https://example.com/post2/">
+			<eleventy-output group="try" data-editor-filename="post2.md"></eleventy-output>
+		</browser-window>
+
+		<h2 class="try-span">Build output</h2>
+		<eleventy-build-output class="try-span" group="try"></eleventy-build-output>
+	</div>
+</is-land>

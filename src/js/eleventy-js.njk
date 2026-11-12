@@ -11,6 +11,8 @@ eleventyExcludeFromCollections: true
 {% include "../../node_modules/@zachleat/heading-anchors/heading-anchors.js" %}
 {% include "../../node_modules/@zachleat/details-utils/details-utils.js" %}
 {% include "components/eleventy-shell-syntax.js" %}
+{# <text-throbber>, used by build-comparison and install-comparison, which are no longer only on the home page #}
+{% include "components/throbber.js" %}
 
 {% include "components/search.js" %}
 {% endset %}

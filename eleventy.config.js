@@ -454,6 +454,7 @@ export default async function (eleventyConfig) {
 
 		// Eleventy Editor
 		[resolveModule("@zachleat/line-numbers")]: "js/line-numbers.js",
+		[resolveModule("@zachleat/browser-window")]: "js/browser-window.js",
 	});
 
 	// Eleventy Editor

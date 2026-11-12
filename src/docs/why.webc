@@ -1,0 +1,88 @@
+---
+eleventyNavigation:
+  parent: Introduction
+  key: Why Eleventy?
+  order: 1
+  excerpt: The case for Eleventy, from build speed to what it refuses to do.
+searchTitle: Why should you use Eleventy?
+---
+<script webc:setup>
+export function randomTestimonialLink(testimonials) {
+	let featuredOnly = testimonials.filter(entry => entry.featured && !entry.filteredFromRandomPick);
+	let random = randompick(featuredOnly);
+	let slug = slugify(random.name);
+
+	return `What is <a href="/docs/testimonials/#${slug}">${testimonialNameHtml(random)} saying about Eleventy?</a>`;
+}
+</script>
+<h1>Why should you use Eleventy?</h1>
+
+<h2>Fast builds, faster sites</h2>
+
+<p>Read more about <a href="/docs/performance/">Eleventy’s performance</a>.</p>
+
+<is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
+	<build-comparison></build-comparison>
+</is-land>
+
+<h2>Production ready</h2>
+
+<p>Eleventy is trusted by:</p>
+
+<is-land on:visible on:save-data="false">
+	<logo-cloud></logo-cloud>
+</is-land>
+
+<p>Eleventy has been downloaded <span @text="commaNumber($data.npm.downloads)"></span> times and is used on <a href="https://github.com/11ty/eleventy/network/dependents?package_id=UGFja2FnZS00NjY3NjEyNjg%3D">88,000+ repositories on GitHub</a>.</p>
+
+<h2>Full control</h2>
+
+<p><a href="https://www.youtube.com/watch?v=b4frtsT4Cgo">We don’t inject our own markup into your pages</a>.</p>
+
+<h2>A lovely community</h2>
+
+<p>Eleventy has a <a href="/docs/community/">lovely community of folks</a> that really care about what they build. <em @html="randomTestimonialLink(testimonials)"></em></p>
+
+<h2>Stable</h2>
+
+<p>We’ve shipped <span @text="versions.length"></span> releases going back to the first version in December 2017 and only three of those releases have had Eleventy-specific changes requiring developer changes. Read more about <a href="/blog/stability/">Eleventy’s stability</a>.</p>
+
+<blockquote>
+	<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.design/"> Eric Bailey</a></p>
+</blockquote>
+
+<h2>Secure</h2>
+
+<p>Across our 48 published npm packages, there have been <a href="https://osv.dev/list?ecosystem=npm&q=%4011ty%2Feleventy">zero security advisories filed against our code</a> since 2017. We strive to reduce dependencies and keep our dependencies updated and audit free: <a href="https://zachleat.github.io/prototype-pollution-report/">compare <code>npm audit</code> results in the Prototype Pollution Report</a>.</p>
+
+<h2>No tracking</h2>
+
+<p>We <a href="https://www.zachleat.com/web/site-generator-review/#telemetry">don’t have or use telemetry nor require you to opt-out of data collection</a>.</p>
+
+<h2>Zero-config</h2>
+
+<p>Eleventy is <a href="/docs/glossary/#zero-config" class="buzzword">zero-config</a> to start and can be extended with flexible configuration options.</p>
+
+<h2>Multiple template languages</h2>
+
+<p>You can pick one or use them all together in a single project:</p>
+
+<lists webc:nokeep><template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>{% templatelangs templatetypes, page %}</template></lists>
+
+<h2>Independent template languages</h2>
+
+<p>We don’t want to hold your content hostage with a custom format. If you decide to use a different syntax later, having your content decoupled in this way will make migration easier.</p>
+
+<h2>No JavaScript framework required</h2>
+
+<p>Eleventy doesn’t require a JavaScript framework—that means <em>zero client-side JavaScript by default across the board</em>. We’re <strong>thinking long-term</strong> to opt-out of the framework rat race. The tool chain, modules, and components you use in your front end stack are decoupled from this tool. Work from a solid foundation of <a href="/docs/glossary/#pre-rendered-templates-by-default" class="buzzword">pre-rendered templates</a> that suit your project’s <a href="/docs/glossary/#progressive-enhancement" class="buzzword">progressive enhancement</a> baseline requirements.</p>
+
+<h2>Any directory structure</h2>
+
+<p>The tool doesn’t require an <code>app</code> directory or a <code>pages</code> directory. Use the structure that you want.</p>
+
+<h2>Incremental adoption</h2>
+
+<p>We only <a href="/docs/config/#template-formats">look for the files</a> and <a href="/docs/config/#input-directory">directories</a> you specify. Further, with even more precision you can <a href="/docs/ignores/">opt-out or ignore specific files</a> in your project. You don’t need to start an Eleventy project from scratch. Eleventy is flexible enough to allow conversion of only a few templates at a time. Migrate as fast or as slow as you’d like.</p>
+
+<p><a href="/docs/"><strong>Get started with Eleventy today!</strong></a> or read more about <a href="https://www.zachleat.com/web/introducing-eleventy/">Eleventy’s project goals</a>.</p>

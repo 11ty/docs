@@ -90,4 +90,5 @@ title: Heading
 <ul>
 	<li>Read our full <a href="/docs/"><strong>Get Started guide</strong></a> on the docs.</li>
 	<li>Watch <a href="https://www.youtube.com/watch?v=kzf9A9tkkl4"><strong>6 minutes to Build a Blog from Scratch</strong></a>.</li>
+	<li><a href="/docs/try/"><strong>Try it out in your browser</strong></a>: edit a three-file project and watch it build live.</p>
 </ul>

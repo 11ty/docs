@@ -36,7 +36,7 @@ is-land--eleventy-editor pre:before {
 
 :is(is-land--eleventy-editor, eleventy-editor:not(:defined)) pre {
 	position: relative;
-	margin: 1em -1rem;
+	margin-block: 0;
 }
 
 /* <syntax-highlight> already full-bleeds with -1rem, don’t double it up (horizontal overflow) */
@@ -63,8 +63,9 @@ is-land--eleventy-editor pre:before {
 	content: attr(label);
 }
 
+/* Spacing comes from the grid the editors sit in */
 eleventy-editor:defined {
-	margin: 1em -1rem;
+	margin: 0;
 }
 /* #2col */
 @media (max-width: 41.375em) {
@@ -82,4 +83,71 @@ eleventy-editor:not(:defined)[label]:after {
 /* No copy button on editors */
 :is(is-land--eleventy-editor, eleventy-editor) :is(is-land--syntax-highlight, syntax-highlight) > is-land {
 	display: none;
+}
+
+/* The editors and built pages on /docs/try/ */
+.try-columns {
+	--try-gap: 2em;
+	--try-column-gap: 1em;
+	--try-label-gap: 0.25em;
+	display: grid;
+	/* minmax, so a long log line can’t set the column’s width and push the page sideways */
+	grid-template-columns: minmax(0, 1fr);
+	/* Labels are a row of their own, so a label sits close to its box and the boxes line up */
+	column-gap: var(--try-column-gap);
+	row-gap: var(--try-label-gap);
+	margin-block: 1em;
+}
+/* Two columns only once each one has room to be read. Below that a file stacks over its output. */
+@media (min-width: 57.5em) { /* 920px */
+	.try-columns {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	/* The log reports the whole build, so it runs under both columns */
+	.try-span {
+		grid-column: 1 / -1;
+	}
+}
+eleventy-output {
+	display: block;
+}
+.try-filename {
+	margin-block: 0;
+}
+
+/* With fill, the window and the page in it take the row height the editor beside them sets */
+.try-columns eleventy-output,
+.eleventy-output-frame {
+	block-size: 100%;
+}
+
+/* The space between one file and the next, rather than between a label and its box */
+.try-columns > :is(eleventy-editor, browser-window) {
+	margin-block-end: calc(var(--try-gap) - var(--try-label-gap));
+}
+/* A built page is shown in its own document, so its markup can’t inherit this page’s styles */
+.eleventy-output-frame {
+	display: block;
+	inline-size: 100%;
+	border: none;
+	background-color: #fff;
+}
+eleventy-build-output {
+	display: block;
+	/* Overrides the automatic minimum size a grid item takes from its content */
+	min-inline-size: 0;
+}
+/* Reads like the terminal you’d run this build in */
+.eleventy-build-output-log {
+	margin-block: 0;
+	border-radius: 0.3em;
+	padding: 0.75em 1em;
+	/* Barely see-through, so it reads as sitting over the page it reports on */
+	background-color: color-mix(in srgb, #1c1c1c 96%, transparent);
+	color: #e6e6e6;
+	font-size: 0.8125em;
+	line-height: 1.6;
+	/* Long Writing lines scroll rather than wrap, so each log line stays one line */
+	white-space: pre;
+	overflow-x: auto;
 }

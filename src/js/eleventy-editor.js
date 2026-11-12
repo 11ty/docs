@@ -2,6 +2,7 @@ import "/js/line-numbers.js";
 
 //! <eleventy-editor>
 const css = String.raw;
+const debugError = (...args) => console.warn("Eleventy Demo Runner:", ...args);
 
 // TODO set input font to match original <pre> font
 // TODO dynamic selection of engine
@@ -282,11 +283,22 @@ html {
 
 		// render all of the other initialized editors in the group (Eleventy build happens once per group)
 		let results = await elev.toJSON();
+
+		// Eleventy composes this line itself (counts, timing, version); it only logs it when it
+		// writes to the file system, so a JSON build has to ask for it.
+		let summary;
+		try {
+			summary = elev.logFinished();
+		} catch(e) {
+			debugError("Could not read the build summary:", e);
+		}
 		for(let {editor} of inputs) {
 			if(editor !== this && typeof editor.render === "function") {
 				editor.render(results);
 			}
 		}
+
+		Editor.renderGroupOutputs(groupName, results, summary);
 
 		return results;
 	}
@@ -327,11 +339,16 @@ html {
 		return this.getAttribute("output") === "iframe";
 	}
 
+	// The editor is input-only: <eleventy-output> elements in the group show the built files.
+	isExternalOutput() {
+		return this.getAttribute("output") === "external";
+	}
+
 	setOutput(content) {
 		if(this.isIframeOutput()) {
 			this.outputEl.setAttribute("srcdoc", `<style>${Editor.defaultIframeStyle}</style>${content}`);
 			this.outputEl.classList.remove(Editor.classes.plaintext);
-		} else if(this.viewSourceEl.checked) {
+		} else if(this.viewSourceEl?.checked) {
 			this.outputEl.textContent = content;
 
 			this.outputEl.classList.add(Editor.classes.plaintext);
@@ -364,11 +381,15 @@ html {
 	}
 
 	resetOutputSize() {
-		this.outputContainerEl.style.maxWidth = "";
+		if(this.outputContainerEl) {
+			this.outputContainerEl.style.maxWidth = "";
+		}
 	}
 
 	sizeOutput() {
-		this.outputContainerEl.style.maxWidth = `${this.outputContainerEl.offsetWidth}px`;
+		if(this.outputContainerEl) {
+			this.outputContainerEl.style.maxWidth = `${this.outputContainerEl.offsetWidth}px`;
+		}
 	}
 
 	getInputContent() {
@@ -393,17 +414,25 @@ html {
 			let json = resultsOverride ?? await this.getEleventyProjectResults(groupName);
 			let [result] = json.filter(entry => entry.inputPath === filename);
 
-			this.errorEl.textContent = "";
-			this.outputFilenameEl.innerHTML = typeof result?.outputPath === "string" ? this.cleanFilename(result?.outputPath) : "<em>(skipped)</em>";
+			if(this.errorEl) {
+				this.errorEl.textContent = "";
+			}
+			if(this.outputFilenameEl) {
+				this.outputFilenameEl.innerHTML = typeof result?.outputPath === "string" ? this.cleanFilename(result?.outputPath) : "<em>(skipped)</em>";
+			}
 
 			requestAnimationFrame(() => {
-				this.setOutput(result?.content);
+				if(this.outputEl) {
+					this.setOutput(result?.content);
+				}
 				this.renderNumberLines();
 			});
 		} catch(e) {
 			// Development mode
 			console.error( "Eleventy Demo Runner error:", e.originalError || e );
-			this.errorEl.textContent = e.originalError?.message || e.message;
+			if(this.errorEl) {
+				this.errorEl.textContent = e.originalError?.message || e.message;
+			}
 		}
 	}
 
@@ -437,7 +466,7 @@ html {
 		template.innerHTML = `<line-numbers manual-render class="input-c" obtrusive>
 		<textarea class="input" spellcheck="false">${this.originalSourceContent}</textarea>
 	</line-numbers>
-	<div class="output-c${isReversed ? " reverse" : ""}">
+	${this.isExternalOutput() ? "" : `<div class="output-c${isReversed ? " reverse" : ""}">
 	${hasToolbar ? `<div class="toolbar">
 		<div class="filename filename--input"></div>
 		<div class="filename filename--output"></div>
@@ -445,17 +474,17 @@ html {
 	</div>` : ""}
 	${iframeOutput ? `<iframe class="output"></iframe>` : `<output class="output"></output>`}
 	<output class="error"></output>
-</div>`;
+</div>`}`;
 		shadowroot.appendChild(template.content.cloneNode(true));
 
 		let inputFilename = this.getInputFilename();
-		if(inputFilename) {
+		if(inputFilename && this.inputFilenameEl) {
 			this.inputFilenameEl.textContent = this.cleanFilename(inputFilename);
 		}
 
 		this.sizeInputToContent();
 
-		if(viewSourceDefault) {
+		if(viewSourceDefault && this.viewSourceEl) {
 			this.viewSourceEl.checked = true;
 		}
 
@@ -467,7 +496,7 @@ html {
 			await this.render();
 		})
 
-		this.viewSourceEl.addEventListener("input", async () => {
+		this.viewSourceEl?.addEventListener("input", async () => {
 			await this.render();
 		});
 
@@ -501,6 +530,121 @@ html {
 	}
 }
 
+//! <eleventy-output>
+// One built file, shown outside its editor so it can sit inside <browser-window>.
+class EditorOutput extends HTMLElement {
+	static tagName = "eleventy-output";
+	static preinitTagName = "is-land--eleventy-output";
+
+	static define(registry = window.customElements) {
+		if(!registry.get(this.tagName)) {
+			registry.define(this.tagName, this);
+		}
+	}
+
+	get groupName() {
+		return this.getAttribute(Editor.attrs.groupName);
+	}
+
+	getInputFilename() {
+		let filename = this.getAttribute(Editor.attrs.filename);
+		if(!filename) {
+			return;
+		}
+		return (!filename.startsWith("./") ? "./" : "") + filename;
+	}
+
+	connectedCallback() {
+		if(this.frameEl) {
+			return;
+		}
+
+		let frame = document.createElement("iframe");
+		frame.className = "eleventy-output-frame";
+		frame.setAttribute("title", `Preview of ${this.getAttribute(Editor.attrs.filename) || "the build"}`);
+		frame.setAttribute("loading", "lazy");
+		this.appendChild(frame);
+	}
+
+	get frameEl() {
+		return this.querySelector(".eleventy-output-frame");
+	}
+
+	render(results) {
+		let filename = this.getInputFilename();
+		let [result] = (results || []).filter(entry => entry.inputPath === filename);
+		if(!this.frameEl) {
+			return;
+		}
+
+		// A page with no output (permalink: false, say) still gets a frame, so the layout holds.
+		this.frameEl.setAttribute("srcdoc", `<style>${Editor.defaultIframeStyle}</style>${result?.content ?? ""}`);
+		this.setAttribute("data-output-path", result?.outputPath ? result.outputPath.replace(/^\.\//, "") : "");
+	}
+}
+
+//! <eleventy-build-output>
+// What the build wrote, listed from the same results the previews use.
+class EditorBuildOutput extends HTMLElement {
+	static tagName = "eleventy-build-output";
+	static preinitTagName = "is-land--eleventy-build-output";
+
+	static define(registry = window.customElements) {
+		if(!registry.get(this.tagName)) {
+			registry.define(this.tagName, this);
+		}
+	}
+
+	get groupName() {
+		return this.getAttribute(Editor.attrs.groupName);
+	}
+
+	render(results, summary) {
+		let written = (results || []).filter(entry => typeof entry.outputPath === "string");
+		let lines = [`$ ${this.getAttribute("command") || "npx @11ty/eleventy"}`];
+
+		// A JSON build logs nothing per template, so these are read back off the results.
+		for(let entry of written) {
+			let from = entry.inputPath?.replace(/^\.\//, "") ?? "";
+			lines.push(`[11ty] Writing ${entry.outputPath.replace(/^\.\//, "")} from ${from}`);
+		}
+
+		if(summary) {
+			lines.push(`[11ty] ${summary}`);
+		}
+
+		let pre = this.pre;
+		if(!pre) {
+			pre = document.createElement("pre");
+			pre.className = "eleventy-build-output-log";
+			this.appendChild(pre);
+		}
+
+		// textContent, so a built file name can’t be read as markup
+		pre.textContent = lines.join("\n");
+	}
+
+	get pre() {
+		return this.querySelector(".eleventy-build-output-log");
+	}
+}
+
+// Both tag names: inside an <is-land> these are renamed until the island hydrates.
+Editor.renderGroupOutputs = function(groupName, results, summary) {
+	let selectors = [EditorOutput, EditorBuildOutput].map(ctor => {
+		let suffix = groupName ? `[${Editor.attrs.groupName}="${groupName}"]` : "";
+		return `${ctor.tagName}${suffix}, ${ctor.preinitTagName}${suffix}`;
+	});
+
+	for(let el of document.documentElement.querySelectorAll(selectors.join(", "))) {
+		if(typeof el.render === "function") {
+			el.render(results, summary);
+		}
+	}
+};
+
 if(!(new URL(import.meta.url)).searchParams.has("nodefine")) {
 	Editor.define();
+	EditorOutput.define();
+	EditorBuildOutput.define();
 }

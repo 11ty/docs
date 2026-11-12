@@ -2,7 +2,7 @@
 eleventyNavigation:
   parent: Introduction
   key: Starter Projects
-  order: 2
+  order: 5
 ---
 
 # Starter Projects

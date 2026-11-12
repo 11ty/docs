@@ -49,181 +49,198 @@
 		margin-block-end: 2.5em;
 	}
 }
-/* #2col × 700px */
-@media (min-width: 41.4375em) and (min-height: 43.75em) {
-	.elv-toc {
-		display: flex;
-		flex-direction: column;
-	}
+/* #2col — the callouts scroll away with the page and the list below them holds its place,
+   scrolling on its own once the open section is taller than the window. The column itself is left
+   stretched to the row’s height, which is what the list sticks within. */
+@media (min-width: 41.4375em) {
 	.elv-toc-c {
-		flex-grow: 1;
-		display: flex;
-		flex-direction: column;
-	}
-	.elv-toc-c > nav {
-		flex-grow: 1;
-	}
-	.elv-toc-list:has(a[href="/docs/projects/"] + details:not([open])) {
 		position: sticky;
-		top: var(--elv-toc-sticky-top);
+		inset-block-start: var(--elv-toc-sticky-top);
+		max-block-size: calc(100dvh - var(--elv-toc-sticky-top) - 1em);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: thin;
+		/* Room for the scrollbar without shifting the rows under it */
+		padding-inline-end: 0.25em;
+		margin-inline-end: -0.25em;
 	}
 }
 
-.elv-toc-list details,
-.elv-toc-list details[open] > summary {
+/* Undoes the panel styling `main details` gives every details inside the page */
+.elv-toc-list .elv-toc-section,
+.elv-toc-list .elv-toc-section[open] > summary {
 	margin: 0;
-}
-.elv-toc-list {
-	justify-content: space-between;
-	padding-inline: 0;
-	margin: 0 0 2.5em;
-	list-style: "";
-}
-.elv-toc-list li {
-	font-size: 0.9375em; /* 15px /16 */
-	line-height: 1.466666666667; /* 22px /15 */
-}
-/* Nested lists */
-.elv-toc-list ul {
-	padding: 0;
-	margin: 0;
-	list-style: "";
-}
-/* First-order nested list */
-.elv-toc-list > li > details > ul {
-	margin-block: var(--elv-toc-spacing);
-}
-/* List items with deeply nested lists inside */
-.elv-toc-list > li > details > ul > li:has(ul ul) {
-	margin-block: var(--elv-toc-spacing);
 }
 
-/* Menus nested exact 2 levels deep */
+.elv-toc-list,
+.elv-toc-list ul {
+	padding-inline: 0;
+	margin: 0;
+	list-style: "";
+}
 .elv-toc-list {
 	--toc-border-color: rgba(0, 0, 0, 0.06);
+	margin-block-end: 2.5em;
 }
 @media (prefers-color-scheme: dark) {
 	.elv-toc-list {
 		--toc-border-color: rgba(255, 255, 255, 0.06);
 	}
 }
-.elv-toc-list > li > details > ul > li > ul > li {
-	border-inline-start: 2px solid var(--toc-border-color);
-}
-.elv-toc-list
-	> li
-	> details
-	> ul
-	> li
-	> ul
-	> li:is(.elv-toc-active, :has(.elv-toc-active)) {
-	--toc-border-color: #63e6be;
-	--toc-border-width: 2px;
-}
-.elv-toc-list > li > details > ul > li > ul > li > a {
-	padding-inline: 0.5em;
-}
-.elv-toc-list ul ul {
-	margin-inline-start: 0.25em;
-}
-.elv-toc-list ul ul ul {
-	margin-inline-start: 1.5em; /* 24px /16 */
-}
-
-/* List items */
-.elv-toc-list a,
-.elv-toc-list span:where(:has(+ ul)) {
-	display: block;
-	padding: 0.15em 0.25em;
-}
-/* #2col */
-@media (max-width: 41.375em) {
-	.elv-toc-list a,
-	.elv-toc-list span:where(:has(+ ul)) {
-		padding-block: 0.5em;
-	}
-}
-.elv-toc-list a:hover {
-	text-underline-offset: 0.1em;
-}
-.elv-toc-list > li details a[href] {
-	color: var(--elv-toc-link-color);
-}
-.elv-toc-list > li > a[href] {
-	text-decoration-line: underline;
-}
-.elv-toc-list > li > details a[href]:hover {
-	background-color: var(--elv-toc-hover-color);
-}
-.elv-toc-list > li > details a[href]:not(:hover) {
-	text-decoration-line: none;
-}
-.elv-toc-list > li > details > ul > li > a {
-	font-weight: 500;
-}
-.elv-toc-list > li > details > ul > li > a[href]:not(:hover) {
-	text-decoration-line: underline;
-}
 .elv-toc-list li {
 	margin: 0;
 	padding: 0;
+	font-size: 0.9375em; /* 15px /16 */
+	line-height: 1.466666666667; /* 22px /15 */
+}
+
+/* Nested levels read as depth off a rail */
+.elv-toc-list ul {
+	margin-inline-start: 0.5em;
+	border-inline-start: 2px solid var(--toc-border-color);
+	padding-inline-start: 0.375em;
+}
+/* A top-level section’s own children sit flush: its bold row is the separator */
+.elv-toc-list > li > .elv-toc-section > ul {
+	margin-block: var(--elv-toc-spacing);
+	margin-inline-start: 0;
+	border-inline-start: 0;
+	padding-inline-start: 0;
+}
+/* The rail of the branch holding the current page */
+.elv-toc-list ul:has(> li > a[aria-current="page"]) {
+	--toc-border-color: #63e6be;
+}
+
+/* Rows. Every row — a link, a section heading, or the toggle beside a section’s link — is one
+   .elv-toc-row box with the same lead, so rows are the same height whichever it is. The triangle
+   hangs into the gutter the row’s indent leaves, lining its left edge up with the text of a row
+   that has no triangle. */
+.elv-toc-list {
+	--elv-toc-row-padding: 0.25em;
+	--elv-toc-arrow-size: 0.5em;
+	--elv-toc-arrow-gap: 0.25em;
+	--elv-toc-arrow-column: calc(var(--elv-toc-arrow-size) + var(--elv-toc-arrow-gap));
+	--elv-toc-row-lead: var(--elv-toc-spacing);
+}
+.elv-toc-list ul {
+	--elv-toc-row-lead: 0.3em;
+}
+.elv-toc-list li {
+	position: relative;
+}
+.elv-toc-row,
+.elv-toc-summary-toggle {
+	display: block;
+	border-radius: 0.2em;
+	padding-block: var(--elv-toc-row-lead);
+	padding-inline: var(--elv-toc-row-padding);
+}
+.elv-toc-summary {
+	list-style: none; /* replaced by the triangle below */
+}
+.elv-toc-summary::-webkit-details-marker {
+	display: none;
+}
+/* The triangle rides the text baseline, so it sits the same way on every kind of row */
+.elv-toc-summary::before {
+	content: "";
+	display: inline-block;
+	inline-size: var(--elv-toc-arrow-size);
+	block-size: var(--elv-toc-arrow-size);
+	margin-inline-end: var(--elv-toc-arrow-gap);
+	background-color: currentColor;
+	clip-path: polygon(15% 0%, 15% 100%, 85% 50%);
+	opacity: 0.5;
+}
+.elv-toc-section[open] > .elv-toc-summary::before {
+	rotate: 90deg;
+}
+.elv-toc-summary:hover::before {
+	opacity: 1;
+}
+
+/* Rows with a triangle: the label clears the gutter, and a label that wraps lines up under itself
+   rather than under the triangle. */
+.elv-toc-summary.elv-toc-row,
+.elv-toc-list a:has(+ .elv-toc-section) {
+	padding-inline-start: calc(var(--elv-toc-row-padding) + var(--elv-toc-arrow-column));
+}
+.elv-toc-summary.elv-toc-row {
+	text-indent: calc(-1 * var(--elv-toc-arrow-column));
+}
+
+/* A section with a page of its own: the link is the row, and the summary is only the toggle in
+   that row’s gutter — the link can’t go in the summary, which takes no interactive content. Its
+   lead matches the link’s, so the triangle lands on the link’s first line. */
+.elv-toc-summary-toggle {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	padding-inline-end: 0;
+}
+/* Names the toggle without showing the label twice */
+.elv-toc-summary-toggle > .elv-toc-summary-text {
+	position: absolute;
+	clip-path: inset(50%);
+	inline-size: 1px;
+	block-size: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/* Top level */
+.elv-toc-list > li > .elv-toc-row,
+.elv-toc-list > li > .elv-toc-section > .elv-toc-row {
+	color: var(--color);
+	font-weight: 700;
+}
+.elv-toc-list > li > a[href] {
+	text-decoration-line: underline;
 }
 /* #2col */
 @media (min-width: 41.4375em) {
 	.elv-toc-list > li:not(:first-child) {
 		border-top: 1px solid var(--border-color);
 	}
-
 	.elv-toc-list > li:last-child {
 		margin-bottom: var(--elv-toc-spacing);
 	}
 }
 
-/* Top level links */
-.elv-toc-list > li > details > summary,
-.elv-toc-list > li > a {
-	font-weight: 700;
-	padding-block: var(--elv-toc-spacing);
-	color: var(--color);
+/* Second level */
+.elv-toc-list > li > .elv-toc-section > ul > li > .elv-toc-row,
+.elv-toc-list > li > .elv-toc-section > ul > li > .elv-toc-section > .elv-toc-row {
+	font-weight: 500;
 }
-
-/* Active links */
-.elv-toc-list li.elv-toc-active > a,
-.elv-toc-list li.elv-toc-active > details > summary,
-.elv-toc-list > li > a:hover,
-.elv-toc-list > li > details > summary:hover {
+/* Links below the top level */
+.elv-toc-list ul a[href] {
+	color: var(--elv-toc-link-color);
+}
+.elv-toc-list ul a[href]:not(:hover, [aria-current="page"]) {
+	text-decoration-line: none;
+}
+.elv-toc-list a:hover {
+	background-color: var(--elv-toc-hover-color);
+	text-underline-offset: 0.1em;
+}
+/* A section with no page of its own highlights on hover like a link would */
+.elv-toc-summary:not(.elv-toc-summary-toggle):hover {
 	background-color: var(--elv-toc-hover-color);
 }
 
-/* Hide top level summary when JS and there is a sibling link */
-details-force-state:defined .elv-toc-list > li {
-	position: relative;
-}
-details-force-state:defined .elv-toc-list > li > a:has(+ details) {
-	position: absolute;
-	margin-left: 0.8125em; /* 13px /16 */
-	padding-inline: 0 0.5em; /* 8px /16 */
-	background-color: var(--elv-toc-bg, var(--background-color));
-}
-details-force-state:defined
-	.elv-toc-list
-	> li.elv-toc-active
-	> a:has(+ details),
-details-force-state:defined .elv-toc-list > li > a:has(+ details):hover,
-details-force-state:defined .elv-toc-list > li > a:hover + details > summary,
-details-force-state:defined
-	.elv-toc-list
-	> li
-	> a:has(+ details > summary:hover) {
+/* The current page. Its weight is left alone: bolding a row would reflow its label and change
+   the row’s height. */
+.elv-toc-list a[aria-current="page"] {
 	background-color: var(--elv-toc-hover-color);
 }
-details-force-state:not(:defined)
-	.elv-toc-list
-	> li
-	> a:has(+ details)
-	+ details
-	> summary:after {
-	content: " Menu";
+
+/* #2col */
+@media (max-width: 41.375em) {
+	.elv-toc-list,
+	.elv-toc-list ul {
+		--elv-toc-row-lead: 0.5em;
+	}
 }
 
 /* Footer category navigation */
@@ -406,19 +423,22 @@ details.toc[open] > summary {
 		background-color: #262626;
 	}
 }
-@media (min-width: 72em) {
-	.elv-layout-toc:has(table-of-contents:defined) .elv-headings-toc {
+/* Shown once the layout itself is wide enough for a third column, whatever the window is.
+   A container query resolves em against the container’s own font size, and this container is
+   <main> at 1.125em, so these are 18px units: the column arrives on text width, not pixels. */
+@container elv-layout-toc (min-width: 54.5em) { /* 981px, at main’s 18px */
+	/* Only once the component is upgraded, and only when it found headings to list */
+	.elv-layout-toc:has(table-of-contents:defined)
+		.elv-headings-toc:not(:has(table-of-contents[hidden])) {
 		display: block;
+		grid-column: 3;
+		grid-row: 1;
 		position: sticky;
 		inset-block-start: var(--elv-headings-toc-sticky-top);
 		align-self: start;
-		max-block-size: calc(100vh - var(--elv-headings-toc-sticky-top) - 1rem);
+		max-block-size: calc(100dvh - var(--elv-headings-toc-sticky-top) - 1rem);
 		overflow-y: auto;
 		font-size: 0.8125em; /* 13px /16 */
-	}
-	/* The component hides itself when the page has no headings */
-	.elv-headings-toc:has(table-of-contents[hidden]) {
-		display: none;
 	}
 	/* Redundant beside the sidebar */
 	details.toc {

@@ -2,6 +2,6 @@
 eleventyNavigation:
   parent: Introduction
   key: Learn
-  order: 1
+  order: 3
 permalink: false
 ---

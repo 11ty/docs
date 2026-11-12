@@ -1,0 +1,29 @@
+{#- A page’s link, or a heading for a section that has no page of its own. #}
+{%- macro navLabel(entry, activeKey) -%}
+{%- if entry.url -%}
+<a class="elv-toc-row" href="{{ entry.url }}"{% if entry.key == activeKey %} aria-current="page"{% endif %}>{{ entry.title | safe }}</a>
+{%- else -%}
+<span class="elv-toc-heading elv-toc-row">{{ entry.title | safe }}</span>
+{%- endif -%}
+{%- endmacro -%}
+
+{#- Every level with children collapses, so a deep branch is one row until it’s opened. A section
+	with a page of its own puts that link beside the details rather than inside the summary, which
+	can’t hold interactive content; its summary is then only the toggle beside the link. #}
+{%- macro navList(entries, activeKey, activeKeys, listClass = "") -%}
+<ul{% if listClass %} class="{{ listClass }}"{% endif %}>
+{%- for entry in entries -%}
+<li>
+{%- if entry.children.length -%}
+{%- if entry.url %}{{ navLabel(entry, activeKey) }}{% endif -%}
+<details class="elv-toc-section"{% if entry.key in activeKeys %} open{% endif %}>
+<summary class="elv-toc-summary {% if entry.url %}elv-toc-summary-toggle{% else %}elv-toc-row{% endif %}"><span class="elv-toc-summary-text">{{ entry.title | safe }}</span></summary>
+{{ navList(entry.children, activeKey, activeKeys) }}
+</details>
+{%- else -%}
+{{ navLabel(entry, activeKey) }}
+{%- endif -%}
+</li>
+{%- endfor -%}
+</ul>
+{%- endmacro -%}
