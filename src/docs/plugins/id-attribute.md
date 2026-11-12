@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Id Attribute {% addedin "3.0.0-beta.1" %}
 
-{% tableofcontents %}
-
 The Id Attribute plugin adds `id` attributes to headings on your page (`<h1>` through `<h6>`). This was added to allow deep linking to different sections of blog posts and is compatible with all template languages in Eleventy that output HTML. Related [GitHub #3363](https://github.com/11ty/eleventy/issues/3363).
 
 * Existing `id` attributes on your page will **not** be modified.

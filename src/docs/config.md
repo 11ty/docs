@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Configuration
 
-{% tableofcontents %}
-
 Configuration files are optional. Add an `eleventy.config.js` file to the root directory of your project (read more about [default configuration filenames](#default-filenames)) to configure Eleventy to your own project’s needs. It might look like this:
 
 {% set codeContent %}

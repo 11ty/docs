@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Major Version Upgrade Helper
 
-{% tableofcontents %}
-
 - [Source code on GitHub](https://github.com/11ty/eleventy-upgrade-help)
 - [Sample project using the Upgrade Helper plugin](https://github.com/11ty/demo-eleventy-upgrade-help)
 

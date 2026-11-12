@@ -7,8 +7,6 @@ eleventyNavigation:
 communityLinksKey: api-services-avatar
 ---
 
-{% tableofcontents %}
-
 Feed this runtime service a URL and it will extract an avatar image using these sources:
 
 1. `<link rel="apple-touch-icon">`

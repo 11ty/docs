@@ -1,13 +1,3 @@
-.toc ul {
-	list-style: none;
-	padding-left: 0;
-	margin-left: 1em;
-}
-.toc li::before {
-	content: "•";
-	margin-right: 0.4em; /* Adjust this for bullet-text spacing */
-}
-
 .elv-toc {
 	--elv-toc-sticky-top: 0;
 	--elv-toc-spacing: 0.75em;
@@ -21,7 +11,8 @@
 @media (min-width: 55em) {
 	/* 880px */
 	.elv-header-docs + .elv-layout .elv-toc {
-		--elv-toc-sticky-top: 4rem;
+		/* Clears the border too, so the column’s top edge isn’t tucked under the header */
+		--elv-toc-sticky-top: 4.25rem;
 	}
 }
 @media (prefers-color-scheme: dark) {
@@ -54,15 +45,15 @@
    stretched to the row’s height, which is what the list sticks within. */
 @media (min-width: 41.4375em) {
 	.elv-toc-c {
+		/* <details-force-state> is an unknown element until its JS runs, so it starts out inline,
+		   where overflow and the border below have nothing to apply to */
+		display: block;
 		position: sticky;
 		inset-block-start: var(--elv-toc-sticky-top);
 		max-block-size: calc(100dvh - var(--elv-toc-sticky-top) - 1em);
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scrollbar-width: thin;
-		/* Room for the scrollbar without shifting the rows under it */
-		padding-inline-end: 0.25em;
-		margin-inline-end: -0.25em;
 	}
 }
 
@@ -80,7 +71,6 @@
 }
 .elv-toc-list {
 	--toc-border-color: rgba(0, 0, 0, 0.06);
-	margin-block-end: 2.5em;
 }
 @media (prefers-color-scheme: dark) {
 	.elv-toc-list {
@@ -96,8 +86,7 @@
 
 /* Nested levels read as depth off a rail */
 .elv-toc-list ul {
-	margin-inline-start: 0.5em;
-	border-inline-start: 2px solid var(--toc-border-color);
+	border-inline-start: 4px solid var(--toc-border-color);
 	padding-inline-start: 0.375em;
 }
 /* A top-level section’s own children sit flush: its bold row is the separator */
@@ -119,8 +108,11 @@
 .elv-toc-list {
 	--elv-toc-row-padding: 0.25em;
 	--elv-toc-arrow-size: 0.5em;
-	--elv-toc-arrow-gap: 0.25em;
-	--elv-toc-arrow-column: calc(var(--elv-toc-arrow-size) + var(--elv-toc-arrow-gap));
+	/* Holds the triangle off the column’s border rather than letting it sit flush against it */
+	--elv-toc-arrow-inset: 0.25em;
+	--elv-toc-arrow-gap: 0.35em;
+	/* Inset and gap trade against each other, so nudging the triangle leaves the labels put */
+	--elv-toc-arrow-column: calc(var(--elv-toc-arrow-inset) + var(--elv-toc-arrow-size) + var(--elv-toc-arrow-gap));
 	--elv-toc-row-lead: var(--elv-toc-spacing);
 }
 .elv-toc-list ul {
@@ -132,7 +124,6 @@
 .elv-toc-row,
 .elv-toc-summary-toggle {
 	display: block;
-	border-radius: 0.2em;
 	padding-block: var(--elv-toc-row-lead);
 	padding-inline: var(--elv-toc-row-padding);
 }
@@ -167,7 +158,7 @@
 	padding-inline-start: calc(var(--elv-toc-row-padding) + var(--elv-toc-arrow-column));
 }
 .elv-toc-summary.elv-toc-row {
-	text-indent: calc(-1 * var(--elv-toc-arrow-column));
+	text-indent: calc(-1 * (var(--elv-toc-arrow-column) - var(--elv-toc-arrow-inset)));
 }
 
 /* A section with a page of its own: the link is the row, and the summary is only the toggle in
@@ -177,7 +168,15 @@
 	position: absolute;
 	inset-block-start: 0;
 	inset-inline-start: 0;
-	padding-inline-end: 0;
+	/* Reaches to where the link begins, so the target is the whole gutter rather than the
+	   triangle sitting in it */
+	padding-inline-end: var(--elv-toc-arrow-gap);
+	/* Lands its triangle on the same line as the triangles drawn by rows that are their own summary */
+	padding-inline-start: calc(var(--elv-toc-row-padding) + var(--elv-toc-arrow-inset));
+}
+/* No label follows the triangle here, so its gap would push the box over the link’s first letter */
+.elv-toc-summary-toggle::before {
+	margin-inline-end: 0;
 }
 /* Names the toggle without showing the label twice */
 .elv-toc-summary-toggle > .elv-toc-summary-text {
@@ -194,6 +193,15 @@
 .elv-toc-list > li > .elv-toc-section > .elv-toc-row {
 	color: var(--color);
 	font-weight: 700;
+	/* The triangle column is the whole indent here, so every top-level label starts where that
+	   column ends — 1.1em of 15px, the 1em inset of the callouts above at 16px — and the triangles
+	   hang at the list’s left edge instead of pushing their labels past that line. */
+	padding-inline-start: var(--elv-toc-arrow-column);
+}
+/* The toggle beside a section’s own link draws its triangle after its own padding, so without this
+   it lands a row-padding right of the triangles on the sections that have no link. */
+.elv-toc-list > li > .elv-toc-section > .elv-toc-summary-toggle {
+	padding-inline-start: var(--elv-toc-arrow-inset);
 }
 .elv-toc-list > li > a[href] {
 	text-decoration-line: underline;
@@ -202,9 +210,6 @@
 @media (min-width: 41.4375em) {
 	.elv-toc-list > li:not(:first-child) {
 		border-top: 1px solid var(--border-color);
-	}
-	.elv-toc-list > li:last-child {
-		margin-bottom: var(--elv-toc-spacing);
 	}
 }
 
@@ -228,6 +233,15 @@
 .elv-toc-summary:not(.elv-toc-summary-toggle):hover {
 	background-color: var(--elv-toc-hover-color);
 }
+/* Where the toggle is only the gutter, hovering either half lights the whole row, so the arrow
+   and the link read as one thing */
+.elv-toc-summary-toggle:hover,
+.elv-toc-list li:has(> .elv-toc-section > .elv-toc-summary-toggle:hover) > a {
+	background-color: var(--elv-toc-hover-color);
+}
+.elv-toc-list li:has(> a:hover) > .elv-toc-section > .elv-toc-summary-toggle::before {
+	opacity: 1;
+}
 
 /* The current page. Its weight is left alone: bolding a row would reflow its label and change
    the row’s height. */
@@ -246,35 +260,6 @@
 /* Footer category navigation */
 .elv-cat-list-active {
 	font-weight: 500;
-}
-
-/* Wrapper around the markdown Table of contents plugin */
-details.toc {
-	border-radius: 0.4em;
-	padding: 0.5rem;
-	margin-inline: -0.5rem;
-	/* padding: 0.5rem 0.5rem 0 0.5rem; */
-	/* margin: 0 -0.5rem 3em -0.5rem; */
-}
-h1 + details.toc {
-	margin-top: -1.444444444444em; /* -26px /18 */
-}
-/* Overrides */
-details.toc,
-details.toc[open] {
-	border: 2px solid #ccc;
-	box-shadow: none;
-}
-details.toc[open] {
-	background-color: #f7f7f7;
-}
-@media (prefers-color-scheme: dark) {
-	details.toc[open] {
-		background-color: #292929;
-	}
-}
-details.toc[open] > summary {
-	font-weight: bold;
 }
 
 /* Markdown table of contents plugin */
@@ -439,9 +424,5 @@ details.toc[open] > summary {
 		max-block-size: calc(100dvh - var(--elv-headings-toc-sticky-top) - 1rem);
 		overflow-y: auto;
 		font-size: 0.8125em; /* 13px /16 */
-	}
-	/* Redundant beside the sidebar */
-	details.toc {
-		display: none;
 	}
 }

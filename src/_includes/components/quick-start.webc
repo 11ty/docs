@@ -1,4 +1,4 @@
-<h2 class="mt-0" id="quick-start">Quick Start</h2>
+<h2 id="quick-start">Quick Start</h2>
 
 <p>Eleventy requires a way to <a href="docs/javascript-runtime.webc">run JavaScript</a> on your computer and we recommend Node.js (version <node-minimum></node-minimum> or newer). You can check whether or not you have Node.js installed by running <code>node --version</code> in a Terminal. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If <code>node</code> is not found or it reports a version number below <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">install Node.js</a> before moving on.</p>
 
@@ -76,19 +76,26 @@ yarn dlx @11ty/eleventy --serve
 <p>The <code>--serve</code> option also starts a <a href="/docs/dev-server/">local development server</a>. Open up <code>http://localhost:8080/</code> in your favorite web browser to view your web site.</p>
 <p>If you’d like to experiment further with different template syntax, edit the following sample <code>index.md</code> file in your browser. <a href="/docs/data-frontmatter/">Front Matter</a>, <a href="/docs/languages/liquid/">Liquid</a> and <a href="/docs/languages/markdown/">Markdown</a> are in use.</p>
 
-<is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js">
-	<eleventy-editor focus label="Edit index.md" data-editor-filename="index.md">
-		<syntax-highlight language="markdown">
+<script type="module" src="/js/browser-window.js" webc:keep></script>
+
+<is-land on:visible import="/js/eleventy-editor.js">
+	<div class="editor-layout">
+		<p class="editor-filename"><code>index.md</code></p>
+		<p class="editor-filename"><code>_site/index.html</code></p>
+		<eleventy-editor group="quickstart" output="external" data-editor-filename="index.md">
+			<syntax-highlight language="markdown">
 ---
 title: Heading
 ---
 # {{ title }}
-		</syntax-highlight>
-	</eleventy-editor>
+			</syntax-highlight>
+		</eleventy-editor>
+		<browser-window fill url="https://example.com/"><eleventy-output group="quickstart" data-editor-filename="index.md"></eleventy-output></browser-window>
+	</div>
 </is-land>
 
 <ul>
 	<li>Read our full <a href="/docs/"><strong>Get Started guide</strong></a> on the docs.</li>
 	<li>Watch <a href="https://www.youtube.com/watch?v=kzf9A9tkkl4"><strong>6 minutes to Build a Blog from Scratch</strong></a>.</li>
-	<li><a href="/docs/try/"><strong>Try it out in your browser</strong></a>: edit a three-file project and watch it build live.</p>
+	<li><a href="/docs/try/"><strong>Try it out in your browser</strong></a>: edit project files and see the output live.</li>
 </ul>

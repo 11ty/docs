@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Front Matter Data
 
-{% tableofcontents %}
-
 Add data in your template front matter, like this:
 
 {% codetitle "YAML", "Syntax" %}

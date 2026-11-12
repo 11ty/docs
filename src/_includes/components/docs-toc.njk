@@ -26,7 +26,7 @@
 <details-force-state class="elv-toc-c" data-force-closed="(max-width: 41.375em)" id="skip-nav">
 	<nav>
 	{%- set navKey = eleventyNavigation.key if eleventyNavigation else "" -%}
-	{{ navList("Eleventy Documentation,Ecosystem" | navFiltered, navKey, navKey | navActiveKeys, "elv-toc-list") }}
+	{{ navList("Eleventy Documentation,Ecosystem" | navFiltered, navKey, navKey | navActiveKeys, page.url, "elv-toc-list") }}
 	</nav>
 </details-force-state>
 </div>

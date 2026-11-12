@@ -224,22 +224,18 @@ body > .elv-callout-sticky .elv-callout-c {
 		flex-wrap: wrap;
 	}
 	.elv-toc .elv-callout:first-child:has(+ .elv-callout) .elv-callout-c {
-		padding-inline-start: 1rem;
 		padding-block: .5rem;
 	}
+	/* Flush with the column, so the callouts start on the same line as the nav below rather than
+	   bleeding a rem past it */
 	.elv-toc .elv-callout {
-		margin-right: 0;
-		margin-left: -1rem;
+		margin-inline: 0;
 		font-size: 0.875em; /* 14px /16 */
 		line-height: 2;
 	}
-}
-
-/* #2col × 1130px */
-@media (min-width: 41.4375em) and (max-width: 70.625em) {
-	.elv-toc .elv-callout {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
+	/* The callouts are 14px, so their own 1em inset would land short of the nav’s */
+	.elv-toc .elv-callout-c {
+		padding-inline: 1rem;
 	}
 }
 

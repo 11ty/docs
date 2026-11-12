@@ -5,8 +5,6 @@ eleventyNavigation:
   key: Collections API
   excerpt: Advanced control over collections.
 ---
-{% tableofcontents %}
-
 To get fancier with your collections (and even do a bit of your own custom filtering, if you’d like), you can use our Configuration API.
 
 Inside of your `eleventy.config.js` config file, you can use the `addCollection` method:

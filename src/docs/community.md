@@ -1,14 +1,14 @@
 ---
 eleventyNavigation:
-  parent: Community
-  key: How can I contribute?
+  parent: Ecosystem
+  key: Community
   pinned: true
-  order: 0
+  order: 2
+# The sidebar keeps the short label; the page itself asks the question it answers.
+searchTitle: "How can I contribute?"
 ---
 
-# Community
-
-{% tableofcontents %}
+# How can I contribute?
 
 {% set count = 0 %}
 
@@ -24,6 +24,12 @@ eleventyNavigation:
 - {% include "star-on-github.njk" %}
 - Join us at the [**11ty Conference**](https://conf.11ty.dev/) or the [**Eleventy Meetup**](https://www.11tymeetup.dev/)!
 - Looking to **Hire an Eleventy developer**? Browse the [Eleventy Super Professional Business Network 💼](/super-professional-business-network/)
+
+Thank you to the <code>{{ docsAuthors.length }}</code> folks who have contributed to [our documentation](/docs/):
+
+<is-land on:visible on:save-data="false">
+	<html-fetch src="/imports/docs-facepile.html"></html-fetch>
+</is-land>
 
 {% set count = count + 1 %}
 

@@ -1,4 +1,30 @@
 <style webc:scoped>
+/* The same card as <build-comparison>, which this sits beside on /docs/why/ */
+:host {
+	display: block;
+	padding: .5em 1rem;
+	border-radius: .3em;
+	border: 1px solid var(--border-color);
+	margin-block: .5em;
+	/* Lines up with .elv-callout, which full-bleeds by the same amount in docs content */
+	margin-inline: -1rem;
+}
+:host table {
+	width: 100%;
+	margin-bottom: 0;
+}
+:host th {
+	text-transform: none;
+}
+:host td {
+	border-color: transparent;
+}
+:host tr:first-child td {
+	border-top: none;
+}
+:host tr:last-child td {
+	border-bottom: none;
+}
 :host td:last-child {
 	width: 100%;
 }

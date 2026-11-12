@@ -10,8 +10,6 @@ overrideCommunityLinks: true
 
 # `<is-land>` for Islands Architecture
 
-{% tableofcontents %}
-
 {% callout "info", "md-block" %}
 _This documentation is for [`<is-land>` v5.0.0](https://github.com/11ty/is-land/releases/tag/v5.0.0) and newer._
 {% endcallout %}

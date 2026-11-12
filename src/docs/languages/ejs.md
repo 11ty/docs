@@ -9,8 +9,6 @@ layout: layouts/langs.njk
 
 [EJS](https://ejs.co/), short for _Embedded JavaScript_, is a template language that emphasizes the use of plain JavaScript instead of having its own template syntax. It can be really convenient if you're fluent in JavaScript. As opposed to languages like [Mustache](/docs/languages/mustache/) that bill themselves as 'logic-less', EJS lets you use as much logic as you'd like.
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                |
 | ------------------- | -------------- | ------------------------------------------ |
 | `ejs`               | `.ejs`         | [`ejs`](https://www.npmjs.com/package/ejs) |

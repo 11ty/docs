@@ -6,8 +6,6 @@ eleventyNavigation:
 
 # Vite {% indieavatar "https://vite.dev/" %}
 
-{% tableofcontents %}
-
 - [`eleventy-plugin-vite` on GitHub](https://github.com/11ty/eleventy-plugin-vite)
 
 A plugin to use [Vite](https://vite.dev/) with Eleventy 2.0+.

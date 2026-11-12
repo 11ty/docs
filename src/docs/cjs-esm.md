@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # CommonJS, ESM, and TypeScript
 
-{% tableofcontents %}
-
 * Related: [JavaScript Modules on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 
 Eleventy works with many different flavors of JavaScript:

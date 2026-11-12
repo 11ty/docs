@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Environment Variables
 
-{% tableofcontents %}
-
 You can set and use your own environment variables in your projects. They will be available in your code via [Node.js’ `process.env` property](https://nodejs.org/api/process.html#process_process_env).
 
 These are typically used for setting your deployment context and private API keys. This is also the approach used to [enable `DEBUG` mode](/docs/debugging/).

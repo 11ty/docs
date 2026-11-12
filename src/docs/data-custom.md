@@ -9,8 +9,6 @@ relatedLinks:
 
 # Custom Data File Formats {% addedin "0.10.0" %}
 
-{% tableofcontents %}
-
 Out of the box, Eleventy supports arbitrary JavaScript and JSON for both [template and directory data files](/docs/data-template-dir/) as well as [global data](/docs/data-global/).
 
 Maybe you want to add support for TOML or YAML too! Any text format will do.

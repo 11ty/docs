@@ -9,8 +9,6 @@ relatedKey: pagination
 
 # Pagination
 
-{% tableofcontents %}
-
 Pagination allows you to iterate over a data set and create multiple files from a single template. The input data can be in the form of an array or object defined in your frontmatter or in [global data](/docs/data-global/), or you can paginate a collection to make an easily digestible list of your posts.
 
 ## Paging an Array

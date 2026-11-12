@@ -21,7 +21,8 @@
     { "source": "/docs/plugins/partial-hydration/", "destination": "/docs/plugins/is-land/", "statusCode": 301 },
     { "source": "/docs/templates/", "destination": "/docs/projects/", "statusCode": 301 },
     { "source": "/docs/plugins/official/", "destination": "/docs/plugins/", "statusCode": 301 },
-    { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 }
+    { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 },
+    { "source": "/docs/performance/", "destination": "/docs/why/", "statusCode": 301 }
   ],
 	"headers": [
 		{

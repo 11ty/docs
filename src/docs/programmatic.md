@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Programmatic API {% addedin "1.0.0" %}<!-- Beta 10 or Canary 50 -->
 
-{% tableofcontents %}
-
 You can run Eleventy in any arbitrary Node script.
 
 ## Write to the file system

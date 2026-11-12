@@ -9,8 +9,6 @@ layout: layouts/langs.njk
 
 [MDX](https://mdxjs.com/) is an extension of [Markdown](/docs/languages/markdown/) that adds JavaScript support and embedded components using [JSX syntax](/docs/languages/jsx/). It can be a powerful language for writing content if you intend to include interactive components or intermix text with elements.
 
-<!-- {% tableofcontents "open" %} -->
-
 | Eleventy Short Name | File Extension | npm Package |
 | ------------------- | -------------- | ----------- |
 | `mdx`          | `.mdx`         | [`@mdx-js/mdx`](https://mdxjs.com/packages/mdx/) |

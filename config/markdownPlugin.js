@@ -101,16 +101,4 @@ export default function (eleventyConfig) {
 			return `<div class="elv-callout${classLevel ? ` ${classLevel}` : ""}">${labelHtml}${contentHtml}</div>`;
 		}
 	);
-
-	eleventyConfig.addShortcode("tableofcontents", function (isOpen) {
-		// Markdown only.
-		if (this.page.inputPath.endsWith("md")) {
-			return `<details class="toc"${isOpen ? " open" : ""}>
-<summary>On this page</summary>
-
-[[toc]]
-
-</details>`;
-		}
-	});
 }

@@ -9,8 +9,6 @@ communityLinksKey: syntaxrender
 
 # Render {% addedin "1.0.0" %}<!-- Beta 7 -->
 
-{% tableofcontents %}
-
 {{ eleventyNavigation.excerpt }}
 
 ## Template Compatibility

@@ -9,8 +9,6 @@ eleventyNavigation:
 
 # Get Next or Previous Collection Item Universal Filters
 
-{% tableofcontents %}
-
 ## `getPreviousCollectionItem` and `getNextCollectionItem` {% addedin "0.11.0" %}
 
 Fetch the previous and next items in a collection when you pass in the current `page` object.

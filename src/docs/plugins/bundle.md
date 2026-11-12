@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Bundle {% addedin "3.0.0-alpha.10" %}
 
-{% tableofcontents %}
-
 The Bundle plugin is a plain-text bundler unlocking minimal per-page or app-level bundles of CSS, JavaScript, or HTML to be included in your Eleventy project.
 
 Makes it easy to implement Critical CSS, in-use-only CSS/JS bundles, SVG icon libraries, or secondary HTML content to load via XHR.

@@ -10,8 +10,6 @@ communityLinksKey: plugins
 
 # Create or use Plugins
 
-{% tableofcontents %}
-
 ## Plugins are Configuration
 
 At their simplest, Eleventy plugins are a function passed to the `addPlugin` method. If you’re familiar with [Eleventy configuration files](/docs/config/), this will look and feel very similar!

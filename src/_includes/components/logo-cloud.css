@@ -1,0 +1,138 @@
+/* Was scoped to <logo-cloud> and the home page; site-wide now that the footer marquee uses it too. */
+
+/* With [marquee], the list renders twice so an animation can shift by exactly one copy and loop
+   without a seam. The second copy is hidden from assistive tech. */
+.logo-marquee {
+	display: flex;
+	inline-size: max-content;
+}
+.logo-marquee-c {
+	display: block;
+	overflow: hidden;
+	/* The logos are the link; nothing here should read as body copy */
+	color: inherit;
+	text-decoration: none;
+}
+/* Roughly the width of one copy; below it the row runs on past both edges */
+@container (max-width: 58em) {
+	.logo-marquee-c {
+		mask-image: linear-gradient(to right, transparent, #000 4em, #000 calc(100% - 4em), transparent);
+	}
+	.logo-marquee {
+		animation: logo-marquee 240s linear infinite;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.logo-marquee {
+		animation: none;
+	}
+}
+@keyframes logo-marquee {
+	to {
+		translate: -50% 0;
+	}
+}
+
+.logos-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	list-style: none;
+	/* The card around this is an .elv-callout, so the list itself is only a layout */
+	margin: 0;
+	padding: 0;
+	gap: 1em;
+}
+
+/* List items */
+.logos-list li {
+	padding: 0;
+	white-space: nowrap;
+}
+.logos-list-more {
+	font-style: italic;
+}
+@media (max-width: 62.4375em) { /* 999px */
+	.logos-list li:nth-child(n+18):not(.logos-list-more) {
+		display: none;
+	}
+}
+
+/* Header */
+.logos-list .avatar {
+	width: 1.6em;
+	height: 1.6em;
+	margin-right: .5em;
+	opacity: .9;
+	object-fit: contain;
+}
+/* A single-color mark in an <img>, which can’t take the page’s text color, so dark mode flips it */
+@media (prefers-color-scheme: dark) {
+	.logos-list .avatar-mark {
+		filter: invert(1);
+	}
+}
+/* The Font Awesome icons do follow it */
+.logos-list .fa11ty-icon {
+	width: 1.6em;
+	height: 1.6em;
+	margin-right: .5em;
+	opacity: .9;
+}
+.logos-list .avatar-tall {
+	aspect-ratio: 8 / 10;
+	width: auto;
+}
+
+/* Shared by every marquee: the row is clipped by its container rather than wrapped or squeezed */
+.logo-marquee .logos-list {
+	gap: .75em;
+	font-size: .8333333333em; /* 15px /18 */
+	flex-wrap: nowrap;
+	/* Carried by each copy, so one copy’s width is the exact distance to shift */
+	padding-inline-end: .75em;
+}
+/* Each keeps its own width; the container clips the row rather than squeezing the names */
+.logo-marquee .logos-list li {
+	flex-shrink: 0;
+}
+/* Neither says anything at this size */
+.logo-marquee .logos-list :is(.logos-list-more, li:has(html-fetch)) {
+	display: none;
+}
+
+/* Full viewport width in the footer, where the doubled row always overruns the window, so it needs
+   no container query to decide whether to move. */
+.elv-logo-marquee {
+	/* Centers the row in whatever height the strip ends up with, rather than letting it sit against
+	   the top border */
+	display: flex;
+	align-items: center;
+	padding-block: 1.5rem;
+	/* Most of the way past the mask’s fade below, so the first logo starts close to full strength.
+	   Only the starting offset: overflow clips at the padding box, so the row still travels through
+	   this space once it moves. */
+	padding-inline-start: 3em;
+	/* Sits behind the footer links rather than beside them */
+	opacity: .5;
+	mask-image: linear-gradient(to right, transparent, #000 4em, #000 calc(100% - 4em), transparent);
+}
+/* It’s a link, so it comes forward when someone is actually pointed at it */
+.elv-logo-marquee:is(:hover, :focus-visible) {
+	opacity: 1;
+}
+/* Declared under no-preference rather than switched off after, so it never outranks the global
+   reduced-motion rule on its own higher specificity. */
+@media (prefers-reduced-motion: no-preference) {
+	.elv-logo-marquee .logo-marquee {
+		animation: logo-marquee 600s linear infinite;
+	}
+}
+.elv-logo-marquee .logos-list {
+	/* The logos and the gaps below are both em, so this one value scales the whole row */
+	font-size: 1.25em;
+	/* Full width has room the home card doesn’t. The trailing padding matches the gap, so the copy
+	   the animation shifts by is exactly one list plus one gap and the loop stays seamless. */
+	gap: 1.5em;
+	padding-inline-end: 1.5em;
+}

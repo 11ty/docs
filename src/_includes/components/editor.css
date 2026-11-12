@@ -16,51 +16,42 @@ is-land--eleventy-editor pre:before {
 	background-color: var(--edit-curtain);
 }
 
-/* pre-JS and no-JS */
+/* pre-JS and no-JS: the same box the upgraded editor draws, so nothing shifts when it swaps in */
 :is(is-land--eleventy-editor, eleventy-editor:not(:defined)) {
-	--edit-bg: rgba(0,0,0,.4);
-	--edit-color: #fff;
 	display: block;
 	position: relative;
+	margin: 0;
+	border-radius: .3em;
+	overflow: clip;
 }
 
-:is(is-land--eleventy-editor, eleventy-editor:not(:defined)):hover {
+/* Clicking the editor and clicking the window’s button both hydrate the one island, so the colors
+   live on the layout they share and hovering either lights both. Gated on the island being
+   un-hydrated, since that is when the click still has something to do. */
+.editor-layout {
+	--edit-color: #fff;
+}
+.editor-layout:has(is-land--eleventy-editor):is(:hover, :focus-within) {
 	--edit-curtain: rgba(255,255,255,.1);
 	--edit-bg: rgb(255, 216, 72);
 	--edit-color: #000;
 }
-
-:is(is-land--eleventy-editor, eleventy-editor:not(:defined)):hover pre {
+.editor-layout:has(is-land--eleventy-editor):is(:hover, :focus-within) is-land--eleventy-editor pre {
 	outline: 4px solid var(--edit-bg);
 }
 
 :is(is-land--eleventy-editor, eleventy-editor:not(:defined)) pre {
 	position: relative;
 	margin-block: 0;
+	/* The upgraded editor rounds its own host instead */
+	border-radius: 0;
 }
 
-/* <syntax-highlight> already full-bleeds with -1rem, don’t double it up (horizontal overflow) */
+/* <syntax-highlight> full-bleeds by -1rem on its own; inside an editor that hasn’t upgraded, the
+   editor is the box, so neither it nor its pre should reach past the column */
+:is(is-land--eleventy-editor, eleventy-editor:not(:defined)) :is(.syntax-highlight, syntax-highlight),
 :is(is-land--eleventy-editor, eleventy-editor:not(:defined)) :is(.syntax-highlight, syntax-highlight) pre {
 	margin-inline: 0;
-}
-
-:is(is-land--eleventy-editor, eleventy-editor:not(:defined)):after {
-	pointer-events: none;
-	position: absolute;
-	content: "Run";
-	top: 0;
-	right: -1rem;
-	font-weight: 500;
-	line-height: 1;
-	padding: .75rem;
-	background-color: var(--edit-bg);
-	color: var(--edit-color);
-	border-top-right-radius: .3em;
-	border-bottom-left-radius: .3em;
-}
-
-:is(is-land--eleventy-editor, eleventy-editor:not(:defined))[label]:after {
-	content: attr(label);
 }
 
 /* Spacing comes from the grid the editors sit in */
@@ -74,10 +65,23 @@ eleventy-editor:defined {
 	}
 }
 
-/* No-JS */
-eleventy-editor:not(:defined):after,
-eleventy-editor:not(:defined)[label]:after {
-	content: "Run requires JavaScript"
+/* No JS at all: is-land never renames the editor, so this is the one state where nothing on the
+   page can ever run. The window and its button are hidden, so say why the code block is inert. */
+eleventy-editor:not(:defined):after {
+	pointer-events: none;
+	position: absolute;
+	content: "Playground requires JavaScript";
+	top: 0;
+	right: 0;
+	font-weight: 500;
+	line-height: 1;
+	padding: .75em;
+	/* Unset until hover, so each surface keeps its own resting color: black at 40% deepens the code
+	   block under this badge, where an opaque dark would disappear into it. */
+	background-color: var(--edit-bg, rgba(0,0,0,.4));
+	color: var(--edit-color);
+	border-top-right-radius: .3em;
+	border-bottom-left-radius: .3em;
 }
 
 /* No copy button on editors */
@@ -86,45 +90,123 @@ eleventy-editor:not(:defined)[label]:after {
 }
 
 /* The editors and built pages on /docs/try/ */
-.try-columns {
-	--try-gap: 2em;
-	--try-column-gap: 1em;
-	--try-label-gap: 0.25em;
+/* Sits in the empty window until the editor upgrades: clicking it is what hydrates the island,
+   so each playground builds when it’s asked to rather than on scroll. */
+.editor-run {
+	display: none;
+	margin: 1em auto;
+	border: 0;
+	border-radius: 0.3em;
+	padding: 0.5em 1.5em;
+	/* Opaque, because the same translucent black washes out to low-contrast gray on the light callout */
+	background-color: var(--edit-bg, #1c1c1c);
+	color: var(--edit-color);
+	font: inherit;
+	font-size: 0.875em;
+	font-weight: 500;
+	cursor: pointer;
+}
+/* is-land renames the editor until it hydrates, so this matches only while its JS has run and the
+   click still has something to do: no JS means no button, and a hydrated editor means no button. */
+.editor-layout:has(is-land--eleventy-editor) .editor-run {
+	display: block;
+}
+
+/* The callout already holds the content away from the page, so the layout doesn’t bleed inside it */
+.elv-callout .editor-layout {
+	margin: 0;
+}
+.editor-layout {
+	/* .codetitle floats; a grid container won’t wrap around one, so drop below it for full width */
+	clear: both;
+	--editor-gap: 2em;
+	--editor-column-gap: 1em;
+	--editor-label-gap: 0.25em;
 	display: grid;
 	/* minmax, so a long log line can’t set the column’s width and push the page sideways */
 	grid-template-columns: minmax(0, 1fr);
 	/* Labels are a row of their own, so a label sits close to its box and the boxes line up */
-	column-gap: var(--try-column-gap);
-	row-gap: var(--try-label-gap);
+	column-gap: var(--editor-column-gap);
+	row-gap: var(--editor-label-gap);
 	margin-block: 1em;
+	/* Lines up with the code blocks and callouts around it, which full-bleed by the same amount */
+	margin-inline: -1rem;
 }
 /* Two columns only once each one has room to be read. Below that a file stacks over its output. */
 @media (min-width: 57.5em) { /* 920px */
-	.try-columns {
+	.editor-layout {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
+	/* Output under its input, for pages where the two read as one sequence */
+	.editor-layout.editor-layout-stacked {
+		grid-template-columns: minmax(0, 1fr);
+	}
 	/* The log reports the whole build, so it runs under both columns */
-	.try-span {
+	.editor-layout-span {
 		grid-column: 1 / -1;
 	}
 }
 eleventy-output {
 	display: block;
 }
-.try-filename {
+.editor-filename {
 	margin-block: 0;
 }
 
+/* A class-level display beats the UA [hidden] rule, so say it again for anything hidden here */
+.editor-layout [hidden] {
+	display: none;
+}
+
+/* Before browser-window.js upgrades it the element has no chrome and no height, so hold its
+   place with a frame the same shape as the window that replaces it. As a stretched grid item it
+   takes the row height, which the editor beside it sets. Inside an island the element is renamed
+   until it hydrates, so both names: unrenamed is no JS, renamed is JS that hasn’t run the build. */
+:is(is-land--browser-window, browser-window:not(:defined)) {
+	display: block;
+	border: 1px solid var(--border-color);
+	border-radius: .5em;
+}
+
+/* Stacked, there’s no editor beside the window to take a row height from, so an empty frame is a
+   flat line. is-land renames the window until it hydrates, so this draws only the one holding the
+   Run button that fills it: a second window waits its turn, and no JS means no rename and no frame. */
+.editor-layout-stacked :is(is-land--browser-window, browser-window:not(:defined)) {
+	display: none;
+}
+.editor-layout-stacked is-land--browser-window:has(.editor-run) {
+	display: block;
+}
+
 /* With fill, the window and the page in it take the row height the editor beside them sets */
-.try-columns eleventy-output,
+.editor-layout eleventy-output,
 .eleventy-output-frame {
 	block-size: 100%;
 }
 
 /* The space between one file and the next, rather than between a label and its box */
-.try-columns > :is(eleventy-editor, browser-window) {
-	margin-block-end: calc(var(--try-gap) - var(--try-label-gap));
+.editor-layout > :is(eleventy-editor, is-land--eleventy-editor, browser-window, is-land--browser-window) {
+	margin-block-end: calc(var(--editor-gap) - var(--editor-label-gap));
 }
+/* Stacked, the window is the editor’s own output and sits right under it */
+.editor-layout-stacked {
+	row-gap: .5em;
+}
+.editor-layout-stacked > :is(eleventy-editor, is-land--eleventy-editor, browser-window, is-land--browser-window) {
+	margin-block-end: 0;
+}
+/* Source output: the generated markup as text on the window’s own surface, rather than the dark
+   code block the global pre rule would give it */
+pre.eleventy-output-frame {
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	background-color: transparent;
+	color: inherit;
+	white-space: pre;
+	overflow-x: auto;
+}
+
 /* A built page is shown in its own document, so its markup can’t inherit this page’s styles */
 .eleventy-output-frame {
 	display: block;
@@ -132,22 +214,48 @@ eleventy-output {
 	border: none;
 	background-color: #fff;
 }
+/* The build log, and the error that replaces it when a build throws.
+
+   The log is a <pre>, and the global pre rule dresses every one of those as a code block in prose:
+   a -1rem bleed, its own padding, radius and colours. Rather than undo those one at a time, this
+   declares the whole box. Heights run the full chain — host, then log — because browser-window’s
+   fill stretches the pane around them and anything left at content height shows chrome beneath. */
 eleventy-build-output {
 	display: block;
 	/* Overrides the automatic minimum size a grid item takes from its content */
 	min-inline-size: 0;
+	block-size: 100%;
 }
-/* Reads like the terminal you’d run this build in */
-.eleventy-build-output-log {
-	margin-block: 0;
+/* pre, so this outweighs .elv-callout pre, which these sit inside on /docs/permalinks/ */
+pre.eleventy-build-output-log {
+	box-sizing: border-box;
+	block-size: 100%;
+	margin: 0;
+	border: 0;
 	border-radius: 0.3em;
 	padding: 0.75em 1em;
-	/* Barely see-through, so it reads as sitting over the page it reports on */
-	background-color: color-mix(in srgb, #1c1c1c 96%, transparent);
+	background-color: #1c1c1c;
 	color: #e6e6e6;
 	font-size: 0.8125em;
 	line-height: 1.6;
 	/* Long Writing lines scroll rather than wrap, so each log line stays one line */
 	white-space: pre;
 	overflow-x: auto;
+}
+/* The window’s own chrome is the frame here */
+browser-window pre.eleventy-build-output-log {
+	border-radius: 0;
+}
+.eleventy-editor-error {
+	margin-block: 0;
+	font-family: Roboto Mono, Consolas, Monaco, monospace;
+	font-size: 0.8125em;
+	line-height: 1.5;
+	white-space: pre-wrap;
+	color: #b40000;
+}
+@media (prefers-color-scheme: dark) {
+	.eleventy-editor-error {
+		color: #ff9a9a;
+	}
 }

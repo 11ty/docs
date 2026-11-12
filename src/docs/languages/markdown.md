@@ -22,8 +22,6 @@ tables, and more.
 {% endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                                |
 | ------------------- | -------------- | ---------------------------------------------------------- |
 | `md`                | `.md`          | [`markdown-it`](https://www.npmjs.com/package/markdown-it) |

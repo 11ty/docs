@@ -7,8 +7,6 @@ eleventyNavigation:
 communityLinksKey: api-builtwith
 ---
 
-{% tableofcontents %}
-
 A runtime service to return the metadata (hosting provider) about any given web site URL. Source code at [`11ty/api-built-with` on GitHub](https://github.com/11ty/api-built-with).
 
 With support for:

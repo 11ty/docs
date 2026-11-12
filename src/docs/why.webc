@@ -1,88 +1,127 @@
 ---
 eleventyNavigation:
-  parent: Introduction
+  parent: Home
   key: Why Eleventy?
   order: 1
   excerpt: The case for Eleventy, from build speed to what it refuses to do.
 searchTitle: Why should you use Eleventy?
 ---
-<script webc:setup>
-export function randomTestimonialLink(testimonials) {
-	let featuredOnly = testimonials.filter(entry => entry.featured && !entry.filteredFromRandomPick);
-	let random = randompick(featuredOnly);
-	let slug = slugify(random.name);
-
-	return `What is <a href="/docs/testimonials/#${slug}">${testimonialNameHtml(random)} saying about Eleventy?</a>`;
-}
-</script>
 <h1>Why should you use Eleventy?</h1>
 
-<h2>Fast builds, faster sites</h2>
+<h2>Stable, secure, privacy-focused</h2>
 
-<p>Read more about <a href="/docs/performance/">Eleventy’s performance</a>.</p>
-
-<is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
-	<build-comparison></build-comparison>
-</is-land>
-
-<h2>Production ready</h2>
-
-<p>Eleventy is trusted by:</p>
-
-<is-land on:visible on:save-data="false">
-	<logo-cloud></logo-cloud>
-</is-land>
-
-<p>Eleventy has been downloaded <span @text="commaNumber($data.npm.downloads)"></span> times and is used on <a href="https://github.com/11ty/eleventy/network/dependents?package_id=UGFja2FnZS00NjY3NjEyNjg%3D">88,000+ repositories on GitHub</a>.</p>
-
-<h2>Full control</h2>
-
-<p><a href="https://www.youtube.com/watch?v=b4frtsT4Cgo">We don’t inject our own markup into your pages</a>.</p>
-
-<h2>A lovely community</h2>
-
-<p>Eleventy has a <a href="/docs/community/">lovely community of folks</a> that really care about what they build. <em @html="randomTestimonialLink(testimonials)"></em></p>
-
-<h2>Stable</h2>
-
-<p>We’ve shipped <span @text="versions.length"></span> releases going back to the first version in December 2017 and only three of those releases have had Eleventy-specific changes requiring developer changes. Read more about <a href="/blog/stability/">Eleventy’s stability</a>.</p>
+<p>We’ve shipped <span @text="versions.length"></span> releases of core going back to the first version in December 2017 and only three of those releases have had Eleventy-specific changes requiring developer changes. Read more about <a href="/blog/stability/">Eleventy’s stability</a>.</p>
 
 <blockquote>
 	<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.design/"> Eric Bailey</a></p>
 </blockquote>
 
-<h2>Secure</h2>
+<p>There have been <a href="https://osv.dev/">zero security advisories</a> filed against all <span @text="commaNumber(npmProjectDownloads.publishCount)"></span> releases of our <span @text="npmProjectDownloads.publishedPackages"></span> official npm packages.</p>
 
-<p>Across our 48 published npm packages, there have been <a href="https://osv.dev/list?ecosystem=npm&q=%4011ty%2Feleventy">zero security advisories filed against our code</a> since 2017. We strive to reduce dependencies and keep our dependencies updated and audit free: <a href="https://zachleat.github.io/prototype-pollution-report/">compare <code>npm audit</code> results in the Prototype Pollution Report</a>.</p>
-
-<h2>No tracking</h2>
+<p>We strive to reduce dependencies and keep our dependencies updated and audit free: <a href="https://zachleat.github.io/prototype-pollution-report/">compare <code>npm audit</code> results in the Prototype Pollution Report</a>.</p>
 
 <p>We <a href="https://www.zachleat.com/web/site-generator-review/#telemetry">don’t have or use telemetry nor require you to opt-out of data collection</a>.</p>
 
-<h2>Zero-config</h2>
+<h2>Production ready</h2>
 
-<p>Eleventy is <a href="/docs/glossary/#zero-config" class="buzzword">zero-config</a> to start and can be extended with flexible configuration options.</p>
+<div class="elv-callout">
+	<div class="elv-callout-c">
+		<download-counter :@value="npmProjectDownloads.downloads" :per-year="npmProjectDownloads.downloadsLastYear" :generated-at="npmProjectDownloads.generatedAt">Downloads<br>All npm packages</download-counter>
+	</div>
+</div>
 
-<h2>Multiple template languages</h2>
+<p>Eleventy is trusted by:</p>
 
-<p>You can pick one or use them all together in a single project:</p>
+<div class="elv-callout">
+	<div class="elv-callout-c">
+		<is-land on:visible on:save-data="false">
+			<logo-cloud></logo-cloud>
+		</is-land>
+	</div>
+</div>
 
-<lists webc:nokeep><template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>{% templatelangs templatetypes, page %}</template></lists>
+<p>Eleventy is used on <a href="https://github.com/11ty/eleventy/network/dependents?package_id=UGFja2FnZS00NjY3NjEyNjg%3D">88,000+ repositories on GitHub</a>.</p>
 
-<h2>Independent template languages</h2>
+<h2>Fast builds</h2>
 
-<p>We don’t want to hold your content hostage with a custom format. If you decide to use a different syntax later, having your content decoupled in this way will make migration easier.</p>
+<p><strong>Eleventy offers best-in-class build performance for JavaScript site generators.</strong> Data taken from <a href="https://www.zachleat.com/web/build-benchmark/#benchmark-results"><em>Which Generator Builds Markdown the Fastest?</em> (July 2022)</a>.</p>
 
-<h2>No JavaScript framework required</h2>
+<is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
+	<build-comparison @show-all></build-comparison>
+</is-land>
+
+<h2>Full control means fast sites</h2>
+
+<p>We don’t inject our own markup into your pages.</p>
+
+<div class="youtube-related">
+	<template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
+	{%- youtubeEmbed "b4frtsT4Cgo", "Full Control over HTML" -%}
+	</template>
+</div>
+
+<p>Sites are fast because you keep full control over the output: we add no runtime JavaScript bundle of our own. Sites on the <a href="/speedlify/">Eleventy Leaderboards</a> are tested and ranked about monthly—you can <a href="/docs/leaderboards-add/">add your site</a> to them. Building a <a href="/docs/single-page-applications/">single page application</a> instead?</p>
+
+<ul class="video-cards">
+	<li><a href="https://youtube.com/watch?v=dIa2Y4zesnw" class="video-card elv-externalexempt">
+		<img src="https://i.ytimg.com/vi/dIa2Y4zesnw/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<span>Add your site to the Leaderboards (Weekly №6)</span>
+	</a></li>
+</ul>
+
+<h3>No JavaScript framework required</h3>
 
 <p>Eleventy doesn’t require a JavaScript framework—that means <em>zero client-side JavaScript by default across the board</em>. We’re <strong>thinking long-term</strong> to opt-out of the framework rat race. The tool chain, modules, and components you use in your front end stack are decoupled from this tool. Work from a solid foundation of <a href="/docs/glossary/#pre-rendered-templates-by-default" class="buzzword">pre-rendered templates</a> that suit your project’s <a href="/docs/glossary/#progressive-enhancement" class="buzzword">progressive enhancement</a> baseline requirements.</p>
 
-<h2>Any directory structure</h2>
+<h3>Any directory structure</h3>
 
 <p>The tool doesn’t require an <code>app</code> directory or a <code>pages</code> directory. Use the structure that you want.</p>
 
-<h2>Incremental adoption</h2>
+<h3>Incremental adoption</h3>
 
 <p>We only <a href="/docs/config/#template-formats">look for the files</a> and <a href="/docs/config/#input-directory">directories</a> you specify. Further, with even more precision you can <a href="/docs/ignores/">opt-out or ignore specific files</a> in your project. You don’t need to start an Eleventy project from scratch. Eleventy is flexible enough to allow conversion of only a few templates at a time. Migrate as fast or as slow as you’d like.</p>
 
+<h3>Independent template languages</h3>
+
+<p>Every one of these is a syntax that stands on its own. You can pick one or use them all together in a single project:</p>
+
+<lists webc:nokeep><template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>{% templatelangs templatetypes, page %}</template></lists>
+
+<p>We don’t want to hold your content hostage with a custom format. If you decide to use a different syntax later, having your content decoupled in this way will make migration easier.</p>
+
+<h2>A lovely community</h2>
+
+<p>Eleventy has a <a href="/docs/community/">lovely community of folks</a> that really care about what they build. Listen to what these <a href="/docs/testimonials/">happy developers</a> are saying about Eleventy:</p>
+
+<testimonials-list :@testimonials="testimonials"></testimonials-list>
+
+<p><a href="/docs/testimonials/">…and many more!</a></p>
+
+<h2>Fast installs</h2>
+
+<p>Don’t get stuck waiting for installation! Data taken from <a href="https://www.zachleat.com/web/site-generator-review/"><em>The JavaScript Site Generator Review, 2023</em> (February 2023)</a>.</p>
+
+<is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
+	<install-comparison></install-comparison>
+</is-land>
+
+<ul class="video-cards">
+	<li><a href="https://youtube.com/watch?v=KETQ4zS9Yp4&amp;t=30" class="video-card elv-externalexempt">
+		<img src="https://i.ytimg.com/vi/KETQ4zS9Yp4/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<span>28% build time performance improvement for Google’s web.dev (Weekly №1)
+		<span class="video-card-time"><code>▶0m30s</code></span></span>
+	</a></li>
+	<li><a href="https://youtube.com/watch?v=kUC87Zr0dKg&amp;t=344" class="video-card elv-externalexempt">
+		<img src="https://i.ytimg.com/vi/kUC87Zr0dKg/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<span>Eleventy Build went from 54s to 17s—Pagination Memory/Performance Wins 🏆 (Weekly №10)
+		<span class="video-card-time"><code>▶5m44s</code></span></span>
+	</a></li>
+	<li><a href="https://youtube.com/watch?v=sfPNgt3joWI&amp;t=1566" class="video-card elv-externalexempt">
+		<img src="https://i.ytimg.com/vi/sfPNgt3joWI/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<span>Markdown Benchmarks (Weekly №16)
+		<span class="video-card-time"><code>▶26m6s</code></span></span>
+	</a></li>
+</ul>
+
 <p><a href="/docs/"><strong>Get started with Eleventy today!</strong></a> or read more about <a href="https://www.zachleat.com/web/introducing-eleventy/">Eleventy’s project goals</a>.</p>
+

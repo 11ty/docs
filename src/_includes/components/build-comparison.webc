@@ -5,6 +5,8 @@
 	border-radius: .3em;
 	border: 1px solid var(--border-color);
 	margin-block: .5em;
+	/* Lines up with .elv-callout, which full-bleeds by the same amount in docs content */
+	margin-inline: -1rem;
 }
 :host table {
 	width: 100%;

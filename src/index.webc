@@ -5,6 +5,12 @@ let layout = "layouts/main.njk";
 
 let searchTitle = "Eleventy is a simpler static site generator";
 
+let eleventyNavigation = {
+	parent: "Eleventy Documentation",
+	key: "Home",
+	pinned: true,
+};
+
 let eleventyImport = {
 	collections: ["blog"]
 };
@@ -24,14 +30,17 @@ export function getHighlightedBlogPostContent(collection) {
 	}
 	posts.reverse();
 
+	// Only the most recent few here; everything else is a link away in the archives.
+	let shown = posts.slice(0, 6);
+
 	let content = [];
 	let index = 0;
-	for(let post of posts) {
+	for(let post of shown) {
 		content.push(`<li><a href="${post.url}">${index === 0 ? `<strong>` : ""}${post.data.newstitle}${index === 0 ? `</strong>` : ""}</a> (<em>${newsDate(post.date)}</em>)</li>`);
 		index++;
 	}
 	// 10 hardcoded posts on the blog
-	content.push(`<li>…and <a href="/blog/">${collection.length + 10 - posts.length} more on the <strong>blog archives</strong></a>.</li>`)
+	content.push(`<li>…and <a href="/blog/">${collection.length + 10 - shown.length} more on the <strong>blog archives</strong></a>.</li>`)
 
 	return `${content.join("")}`;
 }
@@ -40,34 +49,55 @@ export function getHighlightedBlogPostContent(collection) {
 <!--- this is a workaround for the layout used in the header --->
 <flex-luthor webc:nokeep></flex-luthor>
 
+<p class="home-intro">Eleventy takes a directory of content (Markdown, HTML, or any custom file type) and quickly builds it into a fast website. Eleventy is stable, secure, and privacy-focused: giving you full control of the output.</p>
+
+<div class="home-intro-actions">
+	<p><a href="/docs/why/"><strong>Not yet convinced?</strong></a></p>
+	<a href="/docs/" class="announcement-btn home-intro-cta">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+
 <div class="home-stats">
 	<div class="home-stats-item">
 		<div class="elv-callout">
 			<div class="elv-callout-c">
-				<download-counter :@value="npmProjectDownloads.downloads" :per-year="npmProjectDownloads.downloadsLastYear" :generated-at="npmProjectDownloads.generatedAt">Downloads all time<br>All npm packages</download-counter>
+				<download-counter :@value="npmProjectDownloads.downloads" :per-year="npmProjectDownloads.downloadsLastYear" :generated-at="npmProjectDownloads.generatedAt">Downloads<br>npm packages</download-counter>
 			</div>
 		</div>
 		<!-- <p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.downloadsLastYear)"></span><span>Downloads last year</span></p> -->
 	</div>
-	<!-- <div class="home-stats-item">
-		<div class="elv-callout">
-			<div class="elv-callout-c">
-				<download-counter :@value="npmProjectDownloads.stars" :per-year="npmProjectDownloads.starsPerYear" :generated-at="npmProjectDownloads.generatedAt" icon="star">GitHub<br>stars</download-counter>
-			</div>
-		</div>
-		<p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.closedIssues + npmProjectDownloads.closedPRs)"></span><span><i class="fa-solid fa-circle-check"></i><span class="sr-only">Closed </span>issues and PRs</span></p>
-	</div> -->
-	<!-- <div class="home-stats-item">
-		<div class="elv-callout">
-			<a href="https://osv.dev/list?ecosystem=npm&q=%4011ty%2Feleventy" class="elv-callout-c home-stats-link elv-externalexempt">
-				<i class="fa-solid fa-shield-halved download-counter-icon"></i>
-				<span class="download-counter-num">0</span>
-				<span class="download-counter-label">Security advisories<br>on core since 2017</span>
-			</a>
-		</div>
-	</div> -->
 </div>
 <style>
+/* The one paragraph that introduces the project, so it reads a step above body copy */
+.home-intro {
+	margin-block: 0 .5em;
+	font-size: 1.3333333333em; /* 24px /18 */
+	text-wrap: pretty;
+}
+/* The button and the way out, on one line */
+.home-intro-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+	gap: .5em 1.5em;
+	margin-block-end: 3.5em;
+}
+/* The button carries its own margins for the announcement bar; none wanted here */
+.home-intro-actions > .announcement-btn {
+	margin: 0;
+}
+.home-intro-actions p {
+	margin: 0;
+}
+/* Sized to its own text rather than filling the row */
+.home-intro-cta {
+	display: inline-flex;
+}
+/* The arrow reads as punctuation after the label, not a second element */
+.home-intro-cta .fa11ty-icon {
+	font-size: .75em;
+}
+
 .home-stats {
 	display: flex;
 	flex-wrap: wrap;
@@ -97,18 +127,6 @@ speedlify2-median:not(:defined) {
 	display: inline-block;
 	width: 13.535em;
 	height: 2.467em;
-}
-.home-stats-item {
-	display: grid;
-	grid-template-columns: auto auto 1fr;
-	column-gap: .75em;
-}
-.home-stats-item > *,
-.home-stats-item .elv-callout-c,
-.home-stats-item download-counter {
-	display: grid;
-	grid-template-columns: subgrid;
-	grid-column: 1 / -1;
 }
 .home-stats-item > .elv-callout {
 	margin: 0;
@@ -144,9 +162,6 @@ speedlify2-median:not(:defined) {
 <quick-start></quick-start>
 
 <div webc:bucket="async" webc:nokeep>
-	<h2>Why should you use Eleventy?</h2>
-	<p>Fast builds, full control over your output, no client-side JavaScript by default, and no telemetry. <a href="/docs/why/"><strong>Read the full case for Eleventy</strong></a>.</p>
-
 	<h2>News from the Blog</h2>
 	<ul @html="getHighlightedBlogPostContent(collections.blog)"></ul>
 
@@ -166,16 +181,6 @@ speedlify2-median:not(:defined) {
 	</is-land>
 
 	<p>A random sample taken from <a href="/authors/"><code><span @text="Object.keys($data.builtwithAuthors).length"></span></code> authors</a>. Check out the <a href="/speedlify/">fastest of their <code><span @text="getsize(objectFilterNot(builtwith, 'disabled'))" webc:nokeep></span></code> web sites</a>.</p>
-
-	<h2>Docs Contributors</h2>
-
-	<is-land on:visible on:save-data="false">
-		<facepile>
-			<html-fetch src="/imports/docs-facepile.html"></html-fetch>
-		</facepile>
-	</is-land>
-
-	<p>Thank you to the <code><span @text="docsAuthors.length"></span></code> folks who have contributed to <a href="/docs/">the documentation</a>.</p>
 
 	<h2>Don’t take my word for it <emoji @char="🌈" @alt="Rainbow"></emoji></h2>
 

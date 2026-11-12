@@ -7,8 +7,6 @@ eleventyNavigation:
 communityLinksKey: api-services-opengraph
 ---
 
-{% tableofcontents %}
-
 Feed this runtime service a URL and it will extract an optimized OpenGraph image using these sources:
 
 1. `<meta name="og:image:secure_url">`

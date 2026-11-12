@@ -17,8 +17,6 @@ communityLinksKey: javascript
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | Version Added |
 | ------------------- | -------------- | ----------- |
 | `11ty.js`           | `.11ty.js`     | `*` |

@@ -12,6 +12,7 @@ export default async function () {
 		let packages = report.projects.filter(p => p.owner === "11ty");
 		// Workspace packages share a repo, so count each repo once.
 		let repos = [...new Map(packages.map(p => [p.nameWithOwner, p])).values()];
+		let published = packages.filter(p => p.published);
 		let generatedAt = Date.parse(report.generatedAt);
 		const YEAR = 365 * 24 * 60 * 60 * 1000;
 
@@ -28,6 +29,9 @@ export default async function () {
 			closedIssues: repos.reduce((sum, p) => sum + (p.closedIssues || 0), 0),
 			// Report splits merged from closed-unmerged, GitHub's "closed" count includes both.
 			closedPRs: repos.reduce((sum, p) => sum + (p.closedPRs || 0) + (p.mergedPRs || 0), 0),
+			// Packages that made it to npm, and every version published across them.
+			publishedPackages: published.length,
+			publishCount: published.reduce((sum, p) => sum + (p.publishCount || 0), 0),
 			generatedAt: report.generatedAt,
 		};
 	} catch (e) {
@@ -43,6 +47,8 @@ export default async function () {
 			starsPerYear: 0,
 			closedIssues: 0,
 			closedPRs: 0,
+			publishedPackages: 0,
+			publishCount: 0,
 		};
 	}
 }
