@@ -16,8 +16,6 @@ headerClass: elv-header-default
 <div class="elv-callout-sticky">{% callout "info" %}These docs are for an upcoming version of Eleventy and <em>subject to change</em>—take extra care before linking here! Look to the <a href="https://www.11ty.dev/docs/">latest docs</a> instead (or full <a href="https://www.11ty.dev/docs/versions/">release history</a>).{% endcallout %}</div>
 {% endif -%}
 
-{% if page.url == '/' %}{% include "logo-cloud.njk" %}{% endif %}
-
 <main class="elv-layout elv-layout-toc{% if classAdditions.main %} {{ classAdditions.main }}{% endif %}" {% if not excludeFromSearch %} data-pagefind-body{% endif %}>
 	{% include "components/docs-toc.njk" %}
 	{%- if not excludePageToc %}{% include "components/page-toc.njk" %}{% endif %}
