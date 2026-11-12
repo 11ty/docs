@@ -385,6 +385,11 @@ footer.elv-layout {
 		text-align: right;
 	}
 }
+/* A second stat group stacked in one footer column needs separation */
+.elv-footer-nav li:not(:first-child) > .subhed {
+	display: inline-block;
+	margin-block-start: 1em;
+}
 
 /* Brand icons at the very bottom, mirroring the header nav */
 .elv-footer-social {

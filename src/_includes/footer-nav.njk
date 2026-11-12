@@ -7,12 +7,16 @@
 		<li><a href="/styleguide/">Style Guide</a></li>
 	</ul>
 	<ul class="list-bare">
-		<li><strong class="subhed">Statistics</strong></li>
-{%- if github and github.stargazers %}
-		<li><a href="https://github.com/11ty/buildawesome/" class="elv-externalexempt" title="{{ github.stargazers }}"><i class="fa-solid fa-star"></i>{{ github.stargazers | humanReadableNum }} Stars</a></li>
+		<li><strong class="subhed">npm Downloads</strong></li>
+{%- if npmProjectDownloads and npmProjectDownloads.downloads %}
+		<li><i class="fa-solid fa-download"></i><abbr title="{{ npmProjectDownloads.downloads }}">{{ npmProjectDownloads.downloads | humanReadableNum }}</abbr> All Packages</li>
 {%- endif %}
 {%- if npm and npm.downloads %}
-		<li><i class="fa-solid fa-download"></i><abbr title="{{ npm.downloads }}">{{ npm.downloads | humanReadableNum }}</abbr> Downloads</li>
+		<li><i class="fa-solid fa-download"></i><abbr title="{{ npm.downloads }}">{{ npm.downloads | humanReadableNum }}</abbr> Core</li>
+{%- endif %}
+{%- if github and github.stargazers %}
+		<li><strong class="subhed">Statistics</strong></li>
+		<li><a href="https://github.com/11ty/buildawesome/" class="elv-externalexempt" title="{{ github.stargazers }}"><i class="fa-solid fa-star"></i>{{ github.stargazers | humanReadableNum }} Stars</a></li>
 {%- endif %}
 	</ul>
 	<ul class="list-bare">
