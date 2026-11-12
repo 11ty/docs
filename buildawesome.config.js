@@ -730,11 +730,10 @@ export default async function ($config) {
 
 	$config.addFilter("newsDate", (dateObj, format = "yyyy LLLL dd") => {
 		if (typeof dateObj === "string") {
-			return DateTime.fromISO(dateObj).toFormat(format);
-		} else if (typeof dateObj === "number") {
-			dateObj = new Date(dateObj);
+			dateObj = parseDateString(dateObj);
 		}
-		return DateTime.fromJSDate(dateObj).toFormat(format);
+		// UTC so date-only strings keep the calendar date they were authored with
+		return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(format);
 	});
 
 	$config.addFilter("objectFilterNot", (obj, compareKey) => {
