@@ -15,6 +15,7 @@ import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
 import { RenderPlugin, InputPathToUrlTransformPlugin/*, PreserveClosingTagsPlugin*/ } from "@11ty/eleventy";
 import fontAwesomePlugin from "@11ty/font-awesome";
 import { getImageColors } from "@11ty/image-color";
+import { parse as parseDateString } from "@11ty/parse-date-strings";
 
 import imagePlugin from "./config/imagePlugin.js";
 import { addedIn, coerceVersion, greaterThan, rcompare as compareVersion } from "./config/addedin.js";
@@ -720,6 +721,10 @@ export default async function ($config) {
 	);
 
 	$config.addFilter("toISO", (dateObj) => {
+		// JSON data files (e.g. firehose.json) hand us date strings, not Date objects
+		if (typeof dateObj === "string") {
+			dateObj = parseDateString(dateObj);
+		}
 		return dateObj.toISOString();
 	});
 
