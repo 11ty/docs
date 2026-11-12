@@ -7,8 +7,6 @@ eleventyNavigation:
 excludeFromSidebar: true
 ---
 
-{% tableofcontents %}
-
 {% include "image-usage.njk" %}
 
 We can use the [Image JavaScript API](./image-js.md) and wire it up to a [Universal Shortcode](../shortcodes.md).

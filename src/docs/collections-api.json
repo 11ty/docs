@@ -1,0 +1,38 @@
+{
+	"commits": [
+		{
+			"id": "369b8431e92c1ba327159088102f4ebda0ba8907",
+			"url": "https://github.com/11ty/docs/commit/369b8431e92c1ba327159088102f4ebda0ba8907",
+			"author": {
+				"name": "SatvikMishra08",
+				"url": "https://github.com/SatvikMishra08",
+				"avatarUrl": "/img/docs-avatars/89024979-9dFJ985jbYMU.png"
+			},
+			"date": "2026-10-14T13:44:11.000Z",
+			"message": "Fix broken heading anchor links in docs (#2371)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "/img/docs-avatars/32314-BWvl9mNPWtbN.jpeg"
+		},
+		{
+			"name": "jgravois",
+			"url": "https://github.com/jgravois",
+			"avatarUrl": "/img/docs-avatars/3011734-p0rdNHCOEoF3.jpeg"
+		},
+		{
+			"name": "SatvikMishra08",
+			"url": "https://github.com/SatvikMishra08",
+			"avatarUrl": "/img/docs-avatars/89024979-9dFJ985jbYMU.png"
+		}
+	]
+}

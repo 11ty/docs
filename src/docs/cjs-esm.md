@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # CommonJS, ESM, and TypeScript
 
-{% tableofcontents %}
-
 * Related: [JavaScript Modules on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 
 Build Awesome works with many different flavors of JavaScript:
@@ -21,6 +19,7 @@ Build Awesome works with many different flavors of JavaScript:
 
 Build Awesome is **compatible with ESM, CommonJS, and TypeScript** (with some runtime limitations). Note that Node defaults to CommonJS and Deno defaults to ESM:
 
+<div class="table-scroller" tabindex="0" role="region" aria-label="Compatibility">
 <table>
 	<thead>
 		<tr>
@@ -81,6 +80,7 @@ Build Awesome is **compatible with ESM, CommonJS, and TypeScript** (with some ru
 		</tr> -->
 	</tbody>
 </table>
+</div>
 
 You can override the default flavor for `.js` and `.ts` files using a `type` property in your `package.json` file.
 
@@ -98,6 +98,8 @@ Build Awesome has goals to broadly support the same module formats as your chose
 ### Node.js and Deno
 
 CommonJS, ESM, and TypeScript are supported in Node.js and Deno.
+
+{% callout "info", "md" %}Deno’s runtime development is winding down: the Deno team [joined Cloudflare](https://deno.com/blog/cloudflare) in October 2026 and Deno will receive bug fixes and security updates for about a year before Deno-led development ends. The runtime remains open source.{% endcallout %}
 
 If you want to use ESM (in JavaScript or TypeScript) in your project, you can do this project-wide or incrementally on a per-file basis:
 

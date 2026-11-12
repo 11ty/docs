@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Content Dates
 
-{% tableofcontents %}
-
 ## Setting a Content Date in Front Matter
 
 Add a `date` key to your front matter to override the default date (file creation) and customize how the file is sorted in a collection.

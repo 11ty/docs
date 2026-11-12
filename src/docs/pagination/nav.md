@@ -9,8 +9,6 @@ relatedTitle: Create a list of Navigation Links for your Pagination.
 
 # Pagination Navigation
 
-{% tableofcontents %}
-
 How to create a list of links to every paginated page on a pagination template.
 
 ## Paginating over an Array

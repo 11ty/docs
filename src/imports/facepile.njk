@@ -2,7 +2,7 @@
 permalink: /imports/facepile.html
 ---
 <div class="facepile">
-{%- for author in authors | values | shuffle(63) %}
+{%- for author in builtwithAuthors | values | shuffle(63) %}
 	<a href="/authors/{{ author.name | slugify }}/">{% communityavatar author.name %}<span class="sr-only">{{ author.name }}</span></a>
 {%- endfor %}
 </div>

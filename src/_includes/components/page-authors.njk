@@ -1,0 +1,23 @@
+{%- set pageAuthorsList = authors | pageAuthors %}
+{%- set pageLastModified = commits | pageLastModified %}
+{%- if pageAuthorsList.length or pageLastModified %}
+<hr>
+<div class="page-authors" data-pagefind-ignore>
+	{%- if pageLastModified %}
+	<span class="page-authors-updated">Updated {{ pageLastModified | newsDate("LLLL d, yyyy") }}</span>
+	{%- endif %}
+	{%- if pageAuthorsList.length %}
+	<span class="page-authors-line">
+		<span class="page-authors-label">Contributors</span>
+		<span class="page-authors-faces">
+			{%- for author in pageAuthorsList | head(12) %}
+			<a href="{{ author.url }}" class="elv-externalexempt">{% authoravatar author %}</a>
+			{%- endfor %}
+		</span>
+		{%- if pageAuthorsList.length > 12 %}
+		<span class="page-authors-more">and {{ pageAuthorsList.length - 12 }} more</span>
+		{%- endif %}
+	</span>
+	{%- endif %}
+</div>
+{%- endif %}

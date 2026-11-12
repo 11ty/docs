@@ -1,6 +1,5 @@
 import { decodeHTML } from "entities";
 import { escapeText } from "entities/escape";
-import activity from "../config/activity.js";
 
 const html = String.raw;
 
@@ -24,13 +23,9 @@ function getSlugFromTitle(str) {
 	return "";
 }
 
-export async function data() {
-	const feed = await activity();
-	const entries = await feed.getEntries();
-
+export function data() {
 	return {
 		headerTitle: "Eleventy Community",
-		entries: entries,
 		layout: "layouts/docs.njk",
 		eleventyNavigation: {
 			key: "Firehose",
@@ -40,15 +35,15 @@ export async function data() {
 	};
 }
 
-export async function render({ entries }) {
+export async function render({ firehose = [] }) {
 	return html`
 <h1>Build Awesome Firehose</h1>
 
-<p>This page shows activity from the <a href="https://www.11ty.dev/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://build.awesome.me/youtube">YouTube channel</a>, <a href="https://build.awesome.me/mastodon">Mastodon account</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
+<p>This page shows activity from the <a href="https://www.11ty.dev/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://build.awesome.me/youtube">YouTube channel</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>
-	<li>Built using <a href="https://github.com/11ty/eleventy-activity-feed"><code>eleventy-activity-feed</code></a>.</li>
+	<li>Built using <a href="https://github.com/11ty/import"><code>@11ty/import</code></a>.</li>
 </ul>
 
 <hr>
@@ -67,14 +62,6 @@ export async function render({ entries }) {
 		<form>
 			<strong>Filter:</strong>
 			<label>
-				<input type="checkbox" value="mastodon" data-filter-key="type">
-				Mastodon
-			</label>
-			<label>
-				<input type="checkbox" value="bluesky" data-filter-key="type">
-				Bluesky
-			</label>
-			<label>
 				<input type="checkbox" value="youtube" data-filter-key="type" checked>
 				YouTube
 			</label>
@@ -92,7 +79,7 @@ export async function render({ entries }) {
 			</label>
 		</form>
 		<ul class="lo-grid link-cards">
-${entries
+${firehose
 	.map((entry) => {
 		let type = getSlugFromTitle(`${entry.sourceLabel}: ${entry.title}`);
 		return html`<li data-filter-type="${type}">

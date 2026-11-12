@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "34aa6c387af4dccfda6b23cf8aafebbdbd134267",
+			"url": "https://github.com/11ty/docs/commit/34aa6c387af4dccfda6b23cf8aafebbdbd134267",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-04-17T19:16:14.000Z",
+			"message": "Fixes https://github.com/11ty/eleventy/issues/408",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

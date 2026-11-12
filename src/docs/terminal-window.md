@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Opening a Terminal
 
-{% tableofcontents %}
-
 Build Awesome runs in a [Terminal application](https://en.wikipedia.org/wiki/Terminal_emulator) (Don’t want to learn this? Build Awesome Pro bypasses this altogether!). If you’re not familiar with Terminal applications, they’re used to run typed commands (and programs) on your computer. A Terminal application is mostly synonymous with terms like Command Line Interface (CLI) or shell prompt.
 
 Here’s how to open a Terminal in various operating systems:

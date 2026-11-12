@@ -9,8 +9,6 @@ eleventyNavigation:
 
 # HTML `<base>` {% addedin "2.0.0-canary.15" %}
 
-{% tableofcontents %}
-
 A build-time application of `<base>` to HTML (without relying on `<base>`) by modifying `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]`, and more.
 
 - Read about [HTML’s `<base>` element on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)

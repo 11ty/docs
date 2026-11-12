@@ -1,5 +1,15 @@
-/* Warning */
 .elv-callout {
+	--callout-primary: var(--border-color);
+	--callout-primarytext: var(--color);
+	--callout-secondary: var(--background-color);
+
+	line-height: 1.5;
+	margin-inline: 0;
+	margin-block: 1em;
+	background-color: var(--callout-secondary);
+	border: 1.5px solid var(--callout-primary);
+}
+.elv-callout:is(.elv-callout-info, .elv-callout-error, .elv-callout-warn, .elv-callout-skew) {
 	--callout-primary: hsl(var(--callout-hue), 86%, 70%);
 	--callout-primarytext: hsl(var(--callout-hue), 100%, 0%);
 	--callout-secondary: hsl(var(--callout-hue), 86%, 94%);
@@ -7,12 +17,6 @@
 	--callout-sidebartext: hsl(var(--callout-hue), 86%, 35%);
 	--callout-code: hsla(var(--callout-hue), 86%, 70%, .25);
 	--callout-label-skew: 11deg;
-
-	line-height: 1.5;
-	margin-inline: 0;
-	margin-block: 1em;
-	background-color: var(--callout-secondary);
-	border: 1.5px solid var(--callout-primary);
 }
 header .elv-callout {
 	margin: 0;
@@ -41,7 +45,7 @@ details .elv-callout {
 }
 
 @media (prefers-color-scheme: dark) {
-	.elv-callout {
+	.elv-callout:is(.elv-callout-info, .elv-callout-error, .elv-callout-warn, .elv-callout-skew) {
 		--callout-primary: hsl(var(--callout-hue), 100%, 22%);
 		--callout-secondary: hsl(var(--callout-hue), 100%, 12%);
 		--callout-primarytext: hsl(var(--callout-hue), 100%, 100%);
@@ -208,22 +212,18 @@ table .elv-callout {
 		flex-wrap: wrap;
 	}
 	.elv-toc .elv-callout:first-child:has(+ .elv-callout) .elv-callout-c {
-		padding-inline-start: 1rem;
 		padding-block: .5rem;
 	}
+	/* Flush with the column, so the callouts start on the same line as the nav below rather than
+	   bleeding a rem past it */
 	.elv-toc .elv-callout {
-		margin-right: 0;
-		margin-left: -1rem;
+		margin-inline: 0;
 		font-size: 0.875em; /* 14px /16 */
 		line-height: 2;
 	}
-}
-
-/* #2col × 1130px */
-@media (min-width: 41.4375em) and (max-width: 70.625em) {
-	.elv-toc .elv-callout {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
+	/* The callouts are 14px, so their own 1em inset would land short of the nav’s */
+	.elv-toc .elv-callout-c {
+		padding-inline: 1rem;
 	}
 }
 

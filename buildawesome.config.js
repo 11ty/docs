@@ -26,6 +26,7 @@ import markdownPlugin from "./config/markdownPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
+import hiddenAuthors from "./config/hiddenAuthors.js";
 
 // Load .env if present (absent in production).
 try {
@@ -267,7 +268,7 @@ export default async function ($config) {
 
 	$config.setServerOptions({
 		showVersion: false,
-		domDiff: false,
+		domDiff: true,
 	});
 
 	/* Plugins */
@@ -404,6 +405,15 @@ export default async function ($config) {
 	}));
 
 	$config.addShortcode("communityavatar", shortcodes.communityAvatar);
+
+	// Avatar downloaded by the git import, falling back to the GitHub CDN
+	$config.addShortcode("authoravatar", function (author) {
+		if (!author?.avatarUrl) {
+			return shortcodes.communityAvatar(author?.name);
+		}
+
+		return `<img src="${author.avatarUrl}" width="66" height="66" alt="GitHub Avatar for ${author.name}" class="avatar avatar-large" loading="lazy" decoding="async">`;
+	});
 	$config.addShortcode(
 		"opencollectiveavatar",
 		shortcodes.getOpenCollectiveAvatarHtml
@@ -443,11 +453,13 @@ export default async function ($config) {
 		[resolveModule("speedlify2-score")]: "js/speedlify2-score.js",
 		[resolveModule("@zachleat/seven-minute-tabs")]: "js/seven-minute-tabs.js",
 		[resolveModule("@zachleat/filter-container")]: "js/filter-container.js",
+		[resolveModule("@zachleat/table-of-contents")]: "js/table-of-contents.js",
 		[resolveModule("lite-youtube-embed")]: `js/lite-yt-embed.js`,
 		"node_modules/artificial-chart/artificial-chart.{css,js}": `static/`,
 
 		// Eleventy Editor
 		[resolveModule("@zachleat/line-numbers")]: "js/line-numbers.js",
+		[resolveModule("@zachleat/browser-window")]: "js/browser-window.js",
 	});
 
 	// Eleventy Editor
@@ -827,6 +839,35 @@ export default async function ($config) {
 	});
 
 	$config.addFilter("cleanAuthorName", cleanName);
+
+	// GitHub authors from a page’s imported git history, oldest contribution first
+	$config.addFilter("pageAuthors", (authors) => {
+		if (!Array.isArray(authors)) {
+			return [];
+		}
+
+		return authors.filter((author) => {
+			// Only the api import route has a login (and therefore an avatar)
+			return (
+				author?.url?.startsWith("https://github.com/") &&
+				!author.name.endsWith("[bot]") &&
+				!hiddenAuthors.has(author.name)
+			);
+		});
+	});
+
+	// Newest commit date from a page’s imported git history
+	$config.addFilter("pageLastModified", (commits) => {
+		if (!Array.isArray(commits)) {
+			return;
+		}
+
+		return commits
+			.map((commit) => commit.date)
+			.filter(Boolean)
+			.sort()
+			.pop();
+	});
 
 	$config.addFilter("head", (arr, num) => {
 		return num ? arr.slice(0, num) : arr;

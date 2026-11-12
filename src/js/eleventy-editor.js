@@ -13,6 +13,11 @@ import { Markdown } from "/js/eleventy.engine-md.browser.js";
 import { Liquid } from "/js/eleventy.engine-liquid.browser.js";
 // import { Nunjucks } from "/js/eleventy.engine-njk.browser.js";
 
+// One definition of the message, for the editor's own output and the external ones alike.
+function getErrorMessage(error) {
+	return String(error.originalError?.message || error.message);
+}
+
 class Editor extends HTMLElement {
 	#initialHeight;
 
@@ -97,9 +102,14 @@ class Editor extends HTMLElement {
 .input {
 	scrollbar-color: #aaa transparent;
 }
-.input,
 .output-c {
 	width: 100%;
+}
+/* A flex item beside the line-number gutter: take what’s left rather than the whole width, or the
+   textarea overhangs the pane by the gutter and that much of every line is unreachable. */
+.input {
+	flex: 1;
+	min-inline-size: 0;
 }
 .input-c {
 	--uln-lh: 1.5;
@@ -282,11 +292,14 @@ html {
 
 		// render all of the other initialized editors in the group (Eleventy build happens once per group)
 		let results = await elev.toJSON();
+
 		for(let {editor} of inputs) {
 			if(editor !== this && typeof editor.render === "function") {
 				editor.render(results);
 			}
 		}
+
+		Editor.renderGroupOutputs(groupName, results);
 
 		return results;
 	}
@@ -327,11 +340,16 @@ html {
 		return this.getAttribute("output") === "iframe";
 	}
 
+	// The editor is input-only: <eleventy-output> elements in the group show the built files.
+	isExternalOutput() {
+		return this.getAttribute("output") === "external";
+	}
+
 	setOutput(content) {
 		if(this.isIframeOutput()) {
 			this.outputEl.setAttribute("srcdoc", `<style>${Editor.defaultIframeStyle}</style>${content}`);
 			this.outputEl.classList.remove(Editor.classes.plaintext);
-		} else if(this.viewSourceEl.checked) {
+		} else if(this.viewSourceEl?.checked) {
 			this.outputEl.textContent = content;
 
 			this.outputEl.classList.add(Editor.classes.plaintext);
@@ -364,11 +382,15 @@ html {
 	}
 
 	resetOutputSize() {
-		this.outputContainerEl.style.maxWidth = "";
+		if(this.outputContainerEl) {
+			this.outputContainerEl.style.maxWidth = "";
+		}
 	}
 
 	sizeOutput() {
-		this.outputContainerEl.style.maxWidth = `${this.outputContainerEl.offsetWidth}px`;
+		if(this.outputContainerEl) {
+			this.outputContainerEl.style.maxWidth = `${this.outputContainerEl.offsetWidth}px`;
+		}
 	}
 
 	getInputContent() {
@@ -393,17 +415,28 @@ html {
 			let json = resultsOverride ?? await this.getEleventyProjectResults(groupName);
 			let [result] = json.filter(entry => entry.inputPath === filename);
 
-			this.errorEl.textContent = "";
-			this.outputFilenameEl.innerHTML = typeof result?.outputPath === "string" ? this.cleanFilename(result?.outputPath) : "<em>(skipped)</em>";
+			if(this.errorEl) {
+				this.errorEl.textContent = "";
+			}
+			if(this.outputFilenameEl) {
+				this.outputFilenameEl.innerHTML = typeof result?.outputPath === "string" ? this.cleanFilename(result?.outputPath) : "<em>(skipped)</em>";
+			}
 
 			requestAnimationFrame(() => {
-				this.setOutput(result?.content);
+				if(this.outputEl) {
+					this.setOutput(result?.content);
+				}
 				this.renderNumberLines();
 			});
 		} catch(e) {
 			// Development mode
 			console.error( "Eleventy Demo Runner error:", e.originalError || e );
-			this.errorEl.textContent = e.originalError?.message || e.message;
+			if(this.errorEl) {
+				this.errorEl.textContent = getErrorMessage(e);
+			}
+			// A build that throws never reaches renderGroupOutputs, so the error is reported here:
+			// for an editor showing its output elsewhere, this is the only place it can surface.
+			Editor.renderGroupOutputs(this.getAttribute(Editor.attrs.groupName), [], e);
 		}
 	}
 
@@ -437,7 +470,7 @@ html {
 		template.innerHTML = `<line-numbers manual-render class="input-c" obtrusive>
 		<textarea class="input" spellcheck="false">${this.originalSourceContent}</textarea>
 	</line-numbers>
-	<div class="output-c${isReversed ? " reverse" : ""}">
+	${this.isExternalOutput() ? "" : `<div class="output-c${isReversed ? " reverse" : ""}">
 	${hasToolbar ? `<div class="toolbar">
 		<div class="filename filename--input"></div>
 		<div class="filename filename--output"></div>
@@ -445,17 +478,17 @@ html {
 	</div>` : ""}
 	${iframeOutput ? `<iframe class="output"></iframe>` : `<output class="output"></output>`}
 	<output class="error"></output>
-</div>`;
+</div>`}`;
 		shadowroot.appendChild(template.content.cloneNode(true));
 
 		let inputFilename = this.getInputFilename();
-		if(inputFilename) {
+		if(inputFilename && this.inputFilenameEl) {
 			this.inputFilenameEl.textContent = this.cleanFilename(inputFilename);
 		}
 
 		this.sizeInputToContent();
 
-		if(viewSourceDefault) {
+		if(viewSourceDefault && this.viewSourceEl) {
 			this.viewSourceEl.checked = true;
 		}
 
@@ -467,7 +500,7 @@ html {
 			await this.render();
 		})
 
-		this.viewSourceEl.addEventListener("input", async () => {
+		this.viewSourceEl?.addEventListener("input", async () => {
 			await this.render();
 		});
 
@@ -501,6 +534,185 @@ html {
 	}
 }
 
+//! Shared by <eleventy-output> and <eleventy-build-output>
+// A failed build has neither a page to preview nor a log to print, so both report it the same way:
+// the window is hidden and the message stands on its own, like the examples that force an error.
+class EditorOutputBase extends HTMLElement {
+	static define(registry = window.customElements) {
+		if(!registry.get(this.tagName)) {
+			registry.define(this.tagName, this);
+		}
+	}
+
+	get groupName() {
+		return this.getAttribute(Editor.attrs.groupName);
+	}
+
+	// Shown in place of the window, which has nothing to frame when the build fails.
+	setError(message) {
+		let frame = this.closest("browser-window");
+		let errorEl = this.errorEl;
+
+		if(!message) {
+			errorEl?.remove();
+			if(frame) {
+				frame.hidden = false;
+			}
+			return;
+		}
+
+		if(!errorEl) {
+			errorEl = document.createElement("p");
+			errorEl.className = "eleventy-editor-error";
+			// Outside the window, so hiding the chrome doesn’t hide the message with it.
+			(frame ?? this).after(errorEl);
+		}
+		errorEl.textContent = message;
+		if(frame) {
+			frame.hidden = true;
+		}
+	}
+
+	// A preview and a log for one group share a layout, so they find and reuse the one message
+	// rather than each adding its own.
+	get errorEl() {
+		return (this.closest("browser-window") ?? this).parentElement?.querySelector(".eleventy-editor-error");
+	}
+
+}
+
+//! <eleventy-output>
+// One built file, shown outside its editor so it can sit inside <browser-window>.
+class EditorOutput extends EditorOutputBase {
+	static tagName = "eleventy-output";
+	static preinitTagName = "is-land--eleventy-output";
+
+	getInputFilename() {
+		let filename = this.getAttribute(Editor.attrs.filename);
+		if(!filename) {
+			return;
+		}
+		return (!filename.startsWith("./") ? "./" : "") + filename;
+	}
+
+	// Shows the generated source instead of rendering it, like the editor’s own html mode.
+	isSourceOutput() {
+		return this.hasAttribute(Editor.attrs.viewSourceMode);
+	}
+
+	connectedCallback() {
+		if(this.bodyEl) {
+			return;
+		}
+
+		let body;
+		if(this.isSourceOutput()) {
+			body = document.createElement("pre");
+		} else {
+			body = document.createElement("iframe");
+			body.setAttribute("title", `Preview of ${this.getAttribute(Editor.attrs.filename) || "the build"}`);
+			body.setAttribute("loading", "lazy");
+		}
+		body.classList.add("eleventy-output-frame");
+		this.appendChild(body);
+	}
+
+	get bodyEl() {
+		return this.querySelector(".eleventy-output-frame");
+	}
+
+	render(results, error) {
+		if(error) {
+			this.setError(getErrorMessage(error));
+			return;
+		}
+
+		this.setError(null);
+
+		let filename = this.getInputFilename();
+		let [result] = (results || []).filter(entry => entry.inputPath === filename);
+		if(!this.bodyEl) {
+			return;
+		}
+
+		// Carried as an attribute for anything that wants it, but not drawn inside the window.
+		this.setAttribute("data-output-path", typeof result?.outputPath === "string" ? result.outputPath.replace(/^\.\//, "") : "");
+
+		if(this.isSourceOutput()) {
+			// textContent, so the generated markup is shown rather than run.
+			this.bodyEl.textContent = result?.content ?? "";
+			return;
+		}
+
+		// A page with no output (permalink: false, say) still gets a frame, so the layout holds.
+		this.bodyEl.setAttribute("srcdoc", `<style>${Editor.defaultIframeStyle}</style>${result?.content ?? ""}`);
+	}
+}
+
+//! <eleventy-build-output>
+// What the build wrote, listed from the same results the previews use.
+class EditorBuildOutput extends EditorOutputBase {
+	static tagName = "eleventy-build-output";
+	static preinitTagName = "is-land--eleventy-build-output";
+
+	render(results, error) {
+		let written = (results || []).filter(entry => typeof entry.outputPath === "string");
+		let lines = [`$ ${this.getAttribute("command") || "npx @11ty/eleventy"}`];
+
+		// A failed build writes nothing, so there is no log to show: the message stands on its own
+		// rather than being dressed up as terminal output that never happened.
+		if(error) {
+			this.setError(getErrorMessage(error));
+			return;
+		}
+
+		this.setError(null);
+
+		// A JSON build logs nothing per template, so these are read back off the results.
+		for(let entry of written) {
+			let from = entry.inputPath?.replace(/^\.\//, "") ?? "";
+			lines.push(`[11ty] Writing ${entry.outputPath.replace(/^\.\//, "")} from ${from}`);
+		}
+
+		// Counted from the same results as the Writing lines above, so the two always agree.
+		lines.push(`[11ty] Wrote ${written.length} file${written.length === 1 ? "" : "s"}`);
+
+		this.setLog(lines);
+	}
+
+	setLog(lines) {
+		let pre = this.pre;
+		if(!pre) {
+			pre = document.createElement("pre");
+			pre.className = "eleventy-build-output-log";
+			this.appendChild(pre);
+		}
+
+		// textContent, so a built file name can’t be read as markup
+		pre.textContent = lines.join("\n");
+	}
+
+	get pre() {
+		return this.querySelector(".eleventy-build-output-log");
+	}
+}
+
+// Both tag names: inside an <is-land> these are renamed until the island hydrates.
+Editor.renderGroupOutputs = function(groupName, results, error) {
+	let selectors = [EditorOutput, EditorBuildOutput].map(ctor => {
+		let suffix = groupName ? `[${Editor.attrs.groupName}="${groupName}"]` : "";
+		return `${ctor.tagName}${suffix}, ${ctor.preinitTagName}${suffix}`;
+	});
+
+	for(let el of document.documentElement.querySelectorAll(selectors.join(", "))) {
+		if(typeof el.render === "function") {
+			el.render(results, error);
+		}
+	}
+};
+
 if(!(new URL(import.meta.url)).searchParams.has("nodefine")) {
 	Editor.define();
+	EditorOutput.define();
+	EditorBuildOutput.define();
 }

@@ -1,0 +1,39 @@
+<i :class="`fa-solid fa-${icon || 'download'} download-counter-icon`"></i>
+<span class="download-counter-num">
+	<span aria-hidden="true" @text="commaNumber(value)"></span>
+	<data :value="value" @text="commaNumber(value)"></data>
+</span>
+<span class="download-counter-label"><slot></slot></span>
+<style>
+download-counter {
+	display: flex;
+	align-items: center;
+	gap: .75em;
+}
+.download-counter-icon {
+	font-size: 1em;
+	opacity: .6;
+}
+.download-counter-num {
+	display: inline-grid;
+	font-family: Roboto Mono, monospace;
+	font-size: 1.5em;
+	line-height: 1;
+}
+/* Stacks the final value invisibly underneath so the width never shifts while counting. */
+.download-counter-num > * {
+	grid-area: 1 / 1;
+	text-align: end;
+}
+.download-counter-num > [aria-hidden] {
+	visibility: hidden;
+}
+.download-counter-label {
+	font-size: .6666666667em;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+	line-height: 1.3;
+	opacity: .7;
+}
+</style>
+<script src="download-counter.js"></script>

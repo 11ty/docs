@@ -335,10 +335,17 @@ footer.elv-layout {
 /* #2col */
 @media (min-width: 41.4375em) {
 	.elv-layout-toc {
-		--toc-sidebar-size: 12.5rem;
+		--toc-sidebar-size: 14rem;
+		--page-toc-size: 11rem;
+		/* The headings column asks this element how much room it has, instead of asking the
+		   window, so --layout-max is accounted for */
+		container: elv-layout-toc / inline-size;
 		display: grid;
 		gap: 2rem;
 		grid-template-columns: var(--toc-sidebar-size) minmax(1px, 1fr);
+		/* #3col: the third track is implicit, so it exists only while the headings list is a
+		   grid item — no empty column and no gap for it when it’s hidden */
+		grid-auto-columns: var(--page-toc-size);
 		padding: 1.5rem 1rem 2rem 1rem;
 	}
 	.elv-layout-toc > * {
@@ -349,7 +356,6 @@ footer.elv-layout {
 /* Footer */
 .elv-footer-wrap {
 	--elv-footer-spacing: clamp(1rem, 5vw, 3rem);
-	margin-block-start: var(--elv-footer-spacing);
 	background-color: #f4f4f4;
 	border-block-start: 1px solid #999;
 }
@@ -472,9 +478,6 @@ filter-container:defined form {
 }
 .ta-c {
 	text-align: center;
-}
-.mt-0:first-of-type {
-	margin-block-start: 0;
 }
 .mt-1 {
 	margin-block-start: 0.5em;

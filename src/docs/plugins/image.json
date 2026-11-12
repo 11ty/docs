@@ -1,0 +1,61 @@
+{
+	"commits": [
+		{
+			"id": "ff21b3747c8e92f589226eb2fbc1a57772531640",
+			"url": "https://github.com/11ty/docs/commit/ff21b3747c8e92f589226eb2fbc1a57772531640",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-07-29T17:14:06.000Z",
+			"message": "Image v7 docs",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "brycewray",
+			"url": "https://github.com/brycewray",
+			"avatarUrl": "/img/docs-avatars/14099446-fp6RXWijaRIC.png"
+		},
+		{
+			"name": "EatonZ",
+			"url": "https://github.com/EatonZ",
+			"avatarUrl": "/img/docs-avatars/3020941-7ZrTTPHveueR.png"
+		},
+		{
+			"name": "Fershad"
+		},
+		{
+			"name": "mrassili",
+			"url": "https://github.com/mrassili",
+			"avatarUrl": "/img/docs-avatars/25288435-n93MSbqbaXGd.png"
+		},
+		{
+			"name": "stuartlangridge",
+			"url": "https://github.com/stuartlangridge",
+			"avatarUrl": "/img/docs-avatars/4356350-V6Hi3XQW9J4c.png"
+		},
+		{
+			"name": "DougReeder",
+			"url": "https://github.com/DougReeder",
+			"avatarUrl": "/img/docs-avatars/378430-49uqg4ZhIHmz.jpeg"
+		},
+		{
+			"name": "w0whitaker",
+			"url": "https://github.com/w0whitaker",
+			"avatarUrl": "/img/docs-avatars/2779730-EgKIcNJxDwWg.png"
+		},
+		{
+			"name": "Snapstromegon",
+			"url": "https://github.com/Snapstromegon",
+			"avatarUrl": "/img/docs-avatars/18480654-QQ3tgyMiSCEV.png"
+		}
+	]
+}

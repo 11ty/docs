@@ -7,8 +7,6 @@ excludeFromSidebar: true
 
 # Browsersync
 
-{% tableofcontents %}
-
 {% callout "info", "md" -%}
 Starting with Eleventy 2.0, the [Eleventy Dev Server](/docs/dev-server/) is now the default stock development server in Eleventy core. This section of documentation only applies to Eleventy 1.x and 0.x and will be removed when Eleventy 2.0 is stable. If you want to use Browsersync with Eleventy 2.0, learn how to swap [back to Browsersync](/docs/dev-server/#swap-back-to-browsersync).
 {%- endcallout %}

@@ -1,0 +1,24 @@
+{
+	"commits": [
+		{
+			"id": "409f16526612d0e027f142eb8963612bed8a10e8",
+			"url": "https://github.com/11ty/docs/commit/409f16526612d0e027f142eb8963612bed8a10e8",
+			"author": {
+				"name": "W. Evan Sheehan"
+			},
+			"date": "2025-07-11T18:12:21.000Z",
+			"message": "Note that Eleventy special keys can't be in computed data",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "W. Evan Sheehan"
+		}
+	]
+}

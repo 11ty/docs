@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Syntax Highlighting Plugin
 
-{% tableofcontents %}
-
 A pack of Eleventy plugins for PrismJS syntax highlighting. No browser/client JavaScript here, these highlight transformations are all done at build-time. Supports individual line highlighting.
 
 - This documentation applies to `eleventy-plugin-syntaxhighlight` `v3.2.0` and newer.

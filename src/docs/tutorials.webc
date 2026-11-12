@@ -1,8 +1,8 @@
 ---
 eleventyNavigation:
-  parent: Introduction
+  parent: Home
   key: Tutorials
-  order: 3
+  order: 5
 feedTitle: Quick Tips RSS Feed
 feedUrl: /docs/quicktips/feed.xml
 ---

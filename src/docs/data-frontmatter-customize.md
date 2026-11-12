@@ -8,8 +8,6 @@ relatedLinks:
 
 # Custom Front Matter Options {% addedin "0.9.0" %}
 
-{% tableofcontents %}
-
 Eleventy uses the [`gray-matter` npm package](https://www.npmjs.com/package/gray-matter) for parsing front matter. `gray-matter` allows additional options that aren’t available by default in Eleventy.
 
 Check out the [full list of available `gray-matter` options](https://www.npmjs.com/package/gray-matter#options). By default, Eleventy uses `gray-matter`’s default options.

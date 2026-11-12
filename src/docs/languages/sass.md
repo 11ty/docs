@@ -9,8 +9,6 @@ layout: layouts/langs.njk
 logoImage: "/img/logos/sass.svg"
 ---
 
-<!-- {% tableofcontents "open" %} -->
-
 [Sass](https://sass-lang.com/) is a CSS extension language: it implements extra features not found in CSS directly. You can use Sass as a template language and 11ty will transform it into CSS for you.
 
 You don't have to use Sass to style your site: [Eleventy supports normal CSS as well as other assets assets.](/docs/assets) Also, consider that CSS has added many of the features of Sass, like nested styles and variables, so it's no longer as necessary to use Sass.

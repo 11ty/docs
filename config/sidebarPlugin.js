@@ -23,6 +23,14 @@ const navFilteredFn = memoize(function(key) {
 const navBreadcrumbsFn = memoize(function(key) {
 	return navigation.findBreadcrumbs(this.ctx.collections.all, key, {includeSelf: true})
 });
+// The keys of the current page and its ancestors, so the sidebar opens that branch at build time.
+// Breadcrumbs work for pages left out of the sidebar too, which have no entry of their own.
+const navActiveKeysFn = memoize(function(key) {
+	if(!key) {
+		return [];
+	}
+	return navBreadcrumbsFn.call(this, key).map(entry => entry.key);
+});
 
 export default function($config) {
 
@@ -30,8 +38,10 @@ export default function($config) {
 		memoizeClear(navFn);
 		memoizeClear(navFilteredFn);
 		memoizeClear(navBreadcrumbsFn);
+		memoizeClear(navActiveKeysFn);
 	})
 	$config.addFilter("nav", navFn);
 	$config.addFilter("navFiltered", navFilteredFn);
 	$config.addFilter("navBreadcrumbs", navBreadcrumbsFn);
+	$config.addFilter("navActiveKeys", navActiveKeysFn);
 };

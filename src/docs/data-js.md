@@ -10,8 +10,6 @@ relatedLinks:
 
 # JavaScript Data Files {% addedin "0.5.3" %}
 
-{% tableofcontents %}
-
 The following applies to both:
 
 - [Global Data Files](/docs/data-global/) (`*.js` inside of your `_data` directory)

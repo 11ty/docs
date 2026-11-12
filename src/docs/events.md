@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Events
 
-{% tableofcontents %}
-
 You may want to run some custom JavaScript code in your configuration file at varying times during Eleventy’s build process. _Configuration events_ unlock this ability.
 
 [[toc]]

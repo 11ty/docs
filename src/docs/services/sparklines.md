@@ -7,8 +7,6 @@ eleventyNavigation:
 communityLinksKey: api-services-sparkline
 ---
 
-{% tableofcontents %}
-
 {% callout "error", "md", "Deprecated" %}The runtime service for Sparkline SVG is deprecated and will likely go away at some future date. Please switch to use a build-time SVG package directly (e.g. [`sparkline-svg`](https://www.npmjs.com/package/sparkline-svg)). Sample code shown below. If you’re using [Web Awesome](https://webawesome.com/), they have a [Sparkline](https://webawesome.com/docs/components/sparkline) too!{% endcallout %}
 
 {%- highlight "js" %}

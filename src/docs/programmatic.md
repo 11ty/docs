@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Programmatic API {% addedin "1.0.0" %}<!-- Beta 10 or Canary 50 -->
 
-{% tableofcontents %}
-
 Instead of running Build Awesome from the command line, you can import it and run it from any Node script — useful for custom build tooling, running Build Awesome as part of a larger process, or retrieving your rendered content as data without writing any files.
 
 Don’t forget to [install Build Awesome into your local project first](/docs/#step-2-install-build-awesome)!

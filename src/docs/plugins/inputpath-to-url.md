@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # InputPath to URL {% addedin "v3.0.0-alpha.5" %}
 
-{% tableofcontents %}
-
 This plugin allows you to use file system paths in your HTML and they will be automatically transformed to their output URLs. Very useful for robust hyperlinking allowing you to change your output URLs without breaking content links! Works out of the box with [`permalink` remapping](/docs/permalinks/), the [HTML `<base>` plugin](/docs/plugins/html-base/), etc.
 
 {% callout "info", "md" -%}

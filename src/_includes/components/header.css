@@ -215,9 +215,11 @@ a[href].elv-hero-11ty:visited {
 
 /* Header Heading */
 .elv-hed {
+	/* Matches .elv-layout, which no longer wraps it */
+	padding-inline: 1rem;
 	font-size: 3.125em; /* 50px /16 */
 	line-height: 1.2;
-	margin-block-end: 1em;
+	margin-block: 2rem;
 	text-align: center;
 	text-transform: none;
 	text-wrap: balance;

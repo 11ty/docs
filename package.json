@@ -10,11 +10,13 @@
   "scripts": {
     "check-links": "npx check-html-links _site",
     "build": "npx @11ty/eleventy --quiet && npm run create-search-index",
-    "build-production": "npm run get-new-data && NODE_ENV=production npx @11ty/eleventy && npm run create-search-index",
+    "build-production": "npm run get-new-data && npm run get-firehose && NODE_ENV=production npx @11ty/eleventy && npm run create-search-index",
     "start": "npx @11ty/eleventy --serve --quiet --port=8091",
     "start-production": "NODE_ENV=production npx @11ty/eleventy --serve --quiet --port=8091",
     "create-search-index": "npx pagefind --site \"_site\" --glob \"{docs,blog}/**/*.html\"",
     "get-new-data": "rm -rf ./src/_data/builtwith/ && npx degit github:11ty/11ty-community/built-with-eleventy src/_data/builtwith/",
+    "get-firehose": "node config/importFirehose.js",
+    "get-page-authors": "node config/importPageAuthors.js",
     "format": "prettier --write '**/*.{js,css,html,md}'"
   },
   "repository": {
@@ -39,7 +41,6 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "4.0.0-alpha.10",
-    "@11ty/eleventy-activity-feed": "^2.0.0",
     "@11ty/eleventy-fetch": "^6.0.1",
     "@11ty/eleventy-img": "7.1.1",
     "@11ty/eleventy-navigation": "^1.0.5",
@@ -48,6 +49,7 @@
     "@11ty/eleventy-plugin-webc": "^0.12.0-beta.8",
     "@11ty/font-awesome": "^2.0.0",
     "@11ty/image-color": "^2.1.0",
+    "@11ty/import": "^3.0.0-beta.13",
     "@sindresorhus/slugify": "^3.0.1",
     "@tweetback/canonical": "^2.0.49",
     "comma-number": "^2.1.0",
@@ -74,17 +76,16 @@
     "@11ty/is-land": "^5.0.1",
     "@11ty/logo": "^3.0.0",
     "@awesome.me/webawesome": "^3.14.0",
+    "@zachleat/browser-window": "^3.1.0",
     "@zachleat/details-utils": "^3.0.0",
     "@zachleat/filter-container": "^4.0.0",
     "@zachleat/flex-luthor": "^4.0.2",
     "@zachleat/heading-anchors": "^1.0.5",
     "@zachleat/line-numbers": "^1.0.3",
     "@zachleat/seven-minute-tabs": "^3.0.3",
+    "@zachleat/table-of-contents": "^2.2.0",
     "artificial-chart": "^2.0.3",
     "lite-youtube-embed": "^0.3.4",
     "speedlify2-score": "^1.1.0"
-  },
-  "overrides": {
-    "@11ty/import": "^2.0.1"
   }
 }

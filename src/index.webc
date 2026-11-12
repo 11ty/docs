@@ -5,6 +5,12 @@ let layout = "layouts/docs.njk";
 
 let searchTitle = "Build Awesome is a simpler website generator";
 
+let eleventyNavigation = {
+	parent: "Eleventy Documentation",
+	key: "Home",
+	pinned: true,
+};
+
 let eleventyImport = {
 	collections: ["blog"]
 };
@@ -26,24 +32,19 @@ export function getHighlightedBlogPostContent(collection) {
 	}
 	posts.reverse();
 
+	// Only the most recent few here; everything else is a link away in the archives.
+	let shown = posts.slice(0, 6);
+
 	let content = [];
 	let index = 0;
-	for(let post of posts) {
+	for(let post of shown) {
 		content.push(`<li><a href="${post.url}">${index === 0 ? `<strong>` : ""}${post.data.newstitle}${index === 0 ? `</strong>` : ""}</a> (<em>${newsDate(post.date)}</em>)</li>`);
 		index++;
 	}
 	// 10 hardcoded posts on the blog
-	content.push(`<li>…and <a href="/blog/">${collection.length + 10 - posts.length} more on the <strong>blog archives</strong></a>.</li>`)
+	content.push(`<li>…and <a href="/blog/">${collection.length + 10 - shown.length} more on the <strong>blog archives</strong></a>.</li>`)
 
 	return `${content.join("")}`;
-}
-
-export function randomTestimonialLink(testimonials) {
-	let featuredOnly = testimonials.filter(entry => entry.featured && !entry.filteredFromRandomPick);
-	let random = randompick(featuredOnly);
-	let slug = slugify(random.name);
-
-	return `What is <a href="/docs/testimonials/#${slug}">${testimonialNameHtml(random)} saying about Build Awesome and Eleventy?</a>`;
 }
 </script>
 
@@ -70,103 +71,121 @@ export function randomTestimonialLink(testimonials) {
 	<li>Build Awesome Pro: run on our computers. (coming soon!)</li>
 </li> --->
 
+<p class="home-intro">Eleventy takes a directory of content (Markdown, HTML, or any custom file type) and quickly builds it into a fast website. Eleventy is stable, secure, and privacy-focused: giving you full control of the output.</p>
+
+<div class="home-intro-actions">
+	<p><a href="/docs/why/"><strong>Not yet convinced?</strong></a></p>
+	<a href="/docs/" class="announcement-btn home-intro-cta">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+
+<div class="home-stats">
+	<div class="home-stats-item">
+		<div class="elv-callout">
+			<div class="elv-callout-c">
+				<download-counter :@value="npmProjectDownloads.downloads" :per-year="npmProjectDownloads.downloadsLastYear" :generated-at="npmProjectDownloads.generatedAt">Downloads<br>npm packages</download-counter>
+			</div>
+		</div>
+		<!-- <p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.downloadsLastYear)"></span><span>Downloads last year</span></p> -->
+	</div>
+</div>
+<style>
+/* The one paragraph that introduces the project, so it reads a step above body copy */
+.home-intro {
+	margin-block: 0 .5em;
+	font-size: 1.3333333333em; /* 24px /18 */
+	text-wrap: pretty;
+}
+/* The button and the way out, on one line */
+.home-intro-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+	gap: .5em 1.5em;
+	margin-block-end: 3.5em;
+}
+/* The button carries its own margins for the announcement bar; none wanted here */
+.home-intro-actions > .announcement-btn {
+	margin: 0;
+}
+.home-intro-actions p {
+	margin: 0;
+}
+/* Sized to its own text rather than filling the row */
+.home-intro-cta {
+	display: inline-flex;
+}
+/* The arrow reads as punctuation after the label, not a second element */
+.home-intro-cta .fa11ty-icon {
+	font-size: .75em;
+}
+
+.home-stats {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: .5em 1em;
+	margin-block: 0 1em;
+	margin-inline: -1rem;
+}
+.home-stats > * {
+	flex-grow: 1;
+	margin: 0;
+}
+/* Subgrid columns (icon, count, label) line up the all-time row with the counter inside the callout. */
+.home-stats-link {
+	display: flex;
+	align-items: center;
+	gap: .75em;
+	color: inherit;
+	text-decoration: none;
+}
+/* Keeps the taller rings from stretching the callout past the others. */
+speedlify2-median {
+	margin-block: -.5em;
+}
+/* Reserves the size of the five rings until the element is defined. */
+speedlify2-median:not(:defined) {
+	display: inline-block;
+	width: 13.535em;
+	height: 2.467em;
+}
+.home-stats-item > .elv-callout {
+	margin: 0;
+	/* The callout paints --callout-secondary, which defaults to the page background */
+	--callout-secondary: #f7f7f7;
+}
+@media (prefers-color-scheme: dark) {
+	.home-stats-item > .elv-callout {
+		--callout-secondary: #262626;
+	}
+}
+.home-stats-sub {
+	align-items: baseline;
+	margin: .25em 0 0;
+	font-size: .6666666667em;
+	opacity: .7;
+}
+.home-stats-sub > span:first-of-type {
+	grid-column: 2;
+	font-family: Roboto Mono, monospace;
+	font-size: 1.375em;
+	text-align: end;
+}
+.home-stats-sub .fa11ty-icon {
+	margin-inline-start: 0;
+}
+.home-stats-sub > :last-child {
+	text-transform: uppercase;
+	letter-spacing: .1em;
+}
+</style>
+
 <quick-start></quick-start>
 
-<div webc:bucket="async">
-	<h2>Try Build Awesome in Your Browser</h2>
-	<p>Now try editing one of the three files in this project. You can make use of <a href="/docs/data-frontmatter/">Front Matter</a>, <a href="/docs/languages/liquid/">Liquid</a> and <a href="/docs/languages/markdown/">Markdown</a> template syntax. Change the <code>title</code> in front matter on a blog post and watch the list update on the index page!</p>
-	<is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js">
-		<eleventy-editor focus group="group1" label="Edit index.md" data-editor-filename="index.md">
-			<syntax-highlight language="liquid" :copy-button-enabled="false">---
-subject: World
----
-# Hello {{ subject }}
-
-You can type here!
-
-- [Markdown](/docs/languages/markdown/)
-- [Liquid](/docs/languages/liquid/)
-
-## Posts
-
-{%- for post in collections.posts %}
-- [{{ post.data.title }}]({{ post.url}})
-{%- endfor %}
-
-_Built with {{ buildawesome.generator }}_</syntax-highlight>
-		</eleventy-editor>
-
-		<eleventy-editor group="group1" label="Edit post1.md" data-editor-filename="post1.md">
-			<syntax-highlight language="liquid" :copy-button-enabled="false">---
-title: First blog post ⬅️
-tags: posts
----
-# {{ title }}</syntax-highlight>
-		</eleventy-editor>
-
-		<eleventy-editor group="group1" label="Edit post2.md" data-editor-filename="post2.md">
-			<syntax-highlight language="liquid" :copy-button-enabled="false">---
-title: Second blog post
-tags: posts
----
-# {{ title }}</syntax-highlight>
-		</eleventy-editor>
-	</is-land>
-
+<div webc:bucket="async" webc:nokeep>
 	<h2>News from the Blog</h2>
 	<ul @html="getHighlightedBlogPostContent(collections.blog)"></ul>
-
-	<h2>Why should you use Build Awesome?</h2>
-	<ul>
-		<li>
-			Build Awesome has <a href="/docs/performance/"><strong>fast builds and even faster websites</strong></a>.
-			<is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
-				<build-comparison></build-comparison>
-			</is-land>
-		</li>
-		<li>
-			Build Awesome is <strong>production ready</strong> and trusted by:
-			<is-land on:visible on:save-data="false">
-				<logo-cloud></logo-cloud>
-			</is-land>
-			<small>Build Awesome has been downloaded <span @text="commaNumber($data.npm.downloads)"></span> times and is used on <a href="https://github.com/11ty/eleventy/network/dependents?package_id=UGFja2FnZS00NjY3NjEyNjg%3D">88,000+ repositories on GitHub</a></a>.</small>
-		</li>
-		<li>
-			Build Awesome offers <strong>full control over your project’s output</strong>. <a href="https://www.youtube.com/watch?v=b4frtsT4Cgo">We don’t inject our own markup into your pages</a>.
-		</li>
-		<li>
-			Build Awesome has a <a href="/docs/community/">lovely community of folks</a> that really care about what they build. <em @html="randomTestimonialLink(testimonials)"></em>
-		</li>
-		<li>
-			<a href="/blog/stability/">Build Awesome and it’s predecessor Eleventy are <strong>stable</strong></a>. We’ve shipped <span @text="versions.length"></span> releases going back to the first version in December 2017 and only three of those releases have required developer intervention.
-			<blockquote>
-				<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.design/"> Eric Bailey</a></p>
-			</blockquote>
-		</li>
-		<li>
-			Build Awesome <strong>doesn’t track you</strong>. We <a href="https://www.zachleat.com/web/site-generator-review/#telemetry">don’t have or use telemetry nor require you to opt-out of data collection</a>.
-		</li>
-		<li>
-			Build Awesome is <strong><a href="/docs/glossary/#zero-config" class="buzzword">zero-config</a></strong> to start and can be extended with flexible configuration options.
-		</li>
-		<li>
-			Build Awesome <strong>works with multiple template languages</strong>. You can pick one or use them all together in a single project: <lists webc:nokeep><template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>{% templatelangs templatetypes, page %}</template></lists>
-		</li>
-		<li>
-			Build Awesome uses <strong>independent template languages</strong>. We don’t want to hold your content hostage with a custom format. If you decide to use a different syntax later, having your content decoupled in this way will make migration easier.
-		</li>
-		<li>
-			Build Awesome does <strong>not require that you use a JavaScript framework</strong>—that means <em>zero client-side JavaScript by default across the board</em>. We’re <strong>thinking long-term</strong> to opt-out of the framework rat race. The tool chain, modules, and components you use in your front end stack are decoupled from this tool. Work from a solid foundation of <a href="/docs/glossary/#pre-rendered-templates-by-default" class="buzzword">pre-rendered templates</a> that suit your project’s <a href="/docs/glossary/#progressive-enhancement" class="buzzword">progressive enhancement</a> baseline requirements.
-		</li>
-		<li>
-			Build Awesome <strong>works with your project’s existing directory structure</strong>. The tool doesn’t require an <code>app</code> directory or a <code>pages</code> directory. Use the structure that you want.
-		</li>
-		<li>
-			Build Awesome allows <strong>incremental adoption</strong>. We only <a href="/docs/config/#template-formats">look for the files</a> and <a href="/docs/config/#input-directory">directories</a> you specify. Further, with even more precision you can <a href="/docs/ignores/">opt-out or ignore specific files</a> in your project. You don’t need to start a Build Awesome project from scratch. Build Awesome is flexible enough to allow conversion of only a few templates at a time. Migrate as fast or as slow as you’d like.
-		</li>
-	</ul>
-
-	<p><a href="/docs/"><strong>Get started with Build Awesome today!</strong></a> or read more about its predecessor <a href="https://www.zachleat.com/web/introducing-eleventy/">Eleventy’s project goals (from 2018)</a>.</p>
 
 	<giant-docs-button></giant-docs-button>
 	<giant-docs-button-subtext></giant-docs-button-subtext>
@@ -183,7 +202,7 @@ tags: posts
 		</facepile>
 	</is-land>
 
-	<p>A random sample taken from <a href="/authors/"><code><span @text="Object.keys($data.authors).length"></span></code> authors</a>. Check out the <a href="/speedlify/">fastest of their <code><span @text="getsize(objectFilterNot(builtwith, 'disabled'))" webc:nokeep></span></code> websites</a>.</p>
+	<p>A random sample taken from <a href="/authors/"><code><span @text="Object.keys($data.builtwithAuthors).length"></span></code> authors</a>. Check out the <a href="/speedlify/">fastest of their <code><span @text="getsize(objectFilterNot(builtwith, 'disabled'))" webc:nokeep></span></code> websites</a>.</p>
 
 	<h2>Don’t take my word for it <emoji @char="🌈" @alt="Rainbow"></emoji></h2>
 

@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "54c6772639fa30c8bfdea4c640498d3c8e5ef998",
+			"url": "https://github.com/11ty/docs/commit/54c6772639fa30c8bfdea4c640498d3c8e5ef998",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-10-16T22:13:27.000Z",
+			"message": "Standardize on `bash` instead of `sh` via https://github.com/11ty/11ty-website/pull/1847#discussion_r2435117307",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "clottman",
+			"url": "https://github.com/clottman",
+			"avatarUrl": "/img/docs-avatars/4480480-7U4qMfXFqlRo.jpeg"
+		},
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "tarastockford",
+			"url": "https://github.com/tarastockford",
+			"avatarUrl": "/img/docs-avatars/1721916-s8Z33vIgpCE7.png"
+		}
+	]
+}

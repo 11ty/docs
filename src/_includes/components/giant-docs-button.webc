@@ -24,6 +24,12 @@ a.btn-primary:hover {
 		transform: none;
 	}
 }
+/* The content column stops growing once the headings sidebar appears */
+@media (min-width: 72em) {
+	a.btn-primary {
+		font-size: min(6vw, 4.5rem);
+	}
+}
 </style>
 
 <a href="/docs/" class="btn-primary brand-typeface rainbow-active">Documentation</a>

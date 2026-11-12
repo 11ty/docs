@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "f27a2b2fc7f71243e1ad28a8e73034e4a7f5dfb1",
+			"url": "https://github.com/11ty/docs/commit/f27a2b2fc7f71243e1ad28a8e73034e4a7f5dfb1",
+			"author": {
+				"name": "tmcw",
+				"url": "https://github.com/tmcw",
+				"avatarUrl": "/img/docs-avatars/32314-BWvl9mNPWtbN.jpeg"
+			},
+			"date": "2026-01-27T17:52:01.000Z",
+			"message": "Write excerpts for each template language",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "BenDMyers",
+			"url": "https://github.com/BenDMyers",
+			"avatarUrl": "/img/docs-avatars/18060369-rOWxiIaIuXzb.jpeg"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "/img/docs-avatars/32314-BWvl9mNPWtbN.jpeg"
+		}
+	]
+}

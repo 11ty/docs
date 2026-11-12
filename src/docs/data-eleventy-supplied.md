@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Eleventy Supplied Data
 
-{% tableofcontents %}
-
 Here are a few data values we supply to your page that you can use in your templates:
 
 - `pkg`: The local project’s `package.json` values.

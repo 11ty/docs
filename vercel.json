@@ -23,7 +23,8 @@
     { "source": "/docs/plugins/official/", "destination": "/docs/plugins/", "statusCode": 301 },
     { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 },
 
-    { "source": "/speedlify/", "destination": "https://www.11ty.dev/speedlify/", "permanent": false }
+    { "source": "/speedlify/", "destination": "https://www.11ty.dev/speedlify/", "permanent": false },
+    { "source": "/docs/performance/", "destination": "/docs/why/", "statusCode": 301 }
   ],
   "headers": [
     {

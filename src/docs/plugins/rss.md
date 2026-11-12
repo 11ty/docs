@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # RSS Plugin
 
-{% tableofcontents %}
-
 A pack of plugins for generating an RSS (or Atom or JSON) feed using the _Nunjucks_ templating syntax.
 
 - [GitHub](https://github.com/11ty/plugin-rss).

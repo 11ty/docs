@@ -9,8 +9,6 @@ eleventyNavigation:
 
 # Fetch
 
-{% tableofcontents %}
-
 _This documentation is written for Eleventy Fetch v5.0+, requiring **Node 18** or newer._
 
 - [`11ty/eleventy-fetch`](https://github.com/11ty/eleventy-fetch) on GitHub

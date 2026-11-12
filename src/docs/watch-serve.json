@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "b66bafe8867851cec9a754b7c031822756bdeaa5",
+			"url": "https://github.com/11ty/docs/commit/b66bafe8867851cec9a754b7c031822756bdeaa5",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-10-13T21:26:05.000Z",
+			"message": "New incremental fixes coming to v4.0.0-alpha.11",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "ollicle",
+			"url": "https://github.com/ollicle",
+			"avatarUrl": "/img/docs-avatars/63586-tVWunvb3uYiL.jpeg"
+		}
+	]
+}

@@ -58,6 +58,10 @@
 		</is-land>
 	</div>
 
+	{%- if not isDocs %}
+	<h1 class="elv-hed">{{ headerTitle | safe }}</h1>
+	{%- endif %}
+
 	{% if config.outdated -%}
 	{% callout "warn" %}This is an <strong>older version of Build Awesome</strong>. Go to the <a href="https://build.awesome.me/docs/">newest Eleventy docs</a> (current path: <a href="https://build.awesome.me{{ page.url }}"><code>{{ page.url }}</code></a>) or the <a href="https://build.awesome.me/docs/versions/">full release history</a>.{% endcallout %}
 	{% elseif config.prerelease -%}

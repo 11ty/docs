@@ -10,8 +10,6 @@ communityLinksKey: image
 overrideCommunityLinks: true
 ---
 
-{% tableofcontents %}
-
 {% renderTemplate "webc" %}<div class="build-cost-inline"><a href="#build-cost"><build-cost cost="3"></build-cost></a></div>{% endrenderTemplate %}
 
 Utility to perform build-time image transformations for both vector and raster images: output multiple image sizes, multiple formats, and cache remote images locally. Uses the [sharp](https://sharp.pixelplumbing.com/) image processor.

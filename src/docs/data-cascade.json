@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "a2994f5f03237e30e7a010c6dc42a10af8dd83ff",
+			"url": "https://github.com/11ty/docs/commit/a2994f5f03237e30e7a010c6dc42a10af8dd83ff",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-10-24T14:12:24.000Z",
+			"message": "Docs for https://github.com/11ty/eleventy/issues/3937",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "32d35bd178b0fc0e3f72e165f43777756025ee54",
+			"url": "https://github.com/11ty/docs/commit/32d35bd178b0fc0e3f72e165f43777756025ee54",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-03-27T22:31:50.000Z",
+			"message": "Item organization",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "tannerdolby",
+			"url": "https://github.com/tannerdolby",
+			"avatarUrl": "/img/docs-avatars/48612525-szr6nZNZkE2N.jpeg"
+		},
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "deining",
+			"url": "https://github.com/deining",
+			"avatarUrl": "/img/docs-avatars/18169566-BW6ZbhTe4D7n.png"
+		}
+	]
+}

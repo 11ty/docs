@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "292a9130b3208c312409f1526668675a98d7ed46",
+			"url": "https://github.com/11ty/docs/commit/292a9130b3208c312409f1526668675a98d7ed46",
+			"author": {
+				"name": "adamwolf",
+				"url": "https://github.com/adamwolf",
+				"avatarUrl": "/img/docs-avatars/35681-h9jyRNmbSh09.jpeg"
+			},
+			"date": "2026-01-19T18:46:01.000Z",
+			"message": "Add missing \"must\"",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "adamwolf",
+			"url": "https://github.com/adamwolf",
+			"avatarUrl": "/img/docs-avatars/35681-h9jyRNmbSh09.jpeg"
+		}
+	]
+}

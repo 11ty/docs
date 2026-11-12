@@ -14,7 +14,7 @@ headerClass: elv-header-docs
 
 {%- if not overrideCommunityLinks and (communityLinks or communityLinksKey) %}
 <div class="elv-community" id="community-resources">
-  <h2>From the Community</h2>
+  <h2 data-ha-exclude>From the Community</h2>
   {%- include "community-contributed.njk" -%}
 </div>
 {%- endif %}
@@ -44,7 +44,7 @@ headerClass: elv-header-docs
 
 {% if relatedLinks or (relatedKey and collections[ "related-" + relatedKey ].length) %}
 <hr>
-<h3>Related Docs</h3>
+<h3 data-ha-exclude>Related Docs</h3>
 <ul>
 {% for related in collections[ "related-" + relatedKey ] %}
 	<li><a href="{{ related.url }}">{{ related.data.relatedTitle or related.data.title }}</a></li>
@@ -54,3 +54,5 @@ headerClass: elv-header-docs
 {% endfor %}
 </ul>
 {% endif %}
+
+{% include "components/page-authors.njk" %}

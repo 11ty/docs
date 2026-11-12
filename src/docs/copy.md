@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Passthrough File Copy {% addedin "0.2.14" %}
 
-{% tableofcontents %}
-
 If we want to copy additional files that are not Eleventy templates, we use a feature called Passthrough File Copy to tell Eleventy to copy things to our output folder for us.
 
 ## Configuration API Method

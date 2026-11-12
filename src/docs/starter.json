@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "5f90a384fd48e231a71d49450d6ab26409b626fa",
+			"url": "https://github.com/11ty/docs/commit/5f90a384fd48e231a71d49450d6ab26409b626fa",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-10-03T00:59:59.000Z",
+			"message": "Sort non-featured starters by speedlify rank",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

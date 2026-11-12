@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "09f1cbedc876d3db7b05826acb93326fc6e48bb3",
+			"url": "https://github.com/11ty/docs/commit/09f1cbedc876d3db7b05826acb93326fc6e48bb3",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-03-27T18:16:31.000Z",
+			"message": "Consistent sidebar- file name convention",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

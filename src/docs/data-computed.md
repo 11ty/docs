@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Computed Data {% addedin "0.11.0" %}
 
-{% tableofcontents %}
-
 At the end of the Data Cascade you may want to inject Data properties into your data object that are based on other data values. To do that you can use the new `eleventyComputed` feature.
 
 {% callout "info" %}It is important to note that Computed Data is computed right before templates are rendered. Therefore Computed Data cannot be used to modify the <a href="/docs/data-configuration/">special data properties used to configure templates</a> (e.g. <code>layout</code>, <code>pagination</code>, <code>tags</code> etc.).<!--  One notable exception here is <code>permalink</code>, which can be set in computed data. --> These restrictions may be relaxed over time.{% endcallout %}

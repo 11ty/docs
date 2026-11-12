@@ -30,6 +30,8 @@ const eleventyNavigation = {
 
 <p>Build Awesome runs great on <a href="https://deno.com/">Deno</a>. We support the latest major version of Deno. This can also be a great way to use <a href="/docs/languages/typescript/">TypeScript</a> and <a href="/docs/languages/jsx/">JSX</a> in your projects.</p>
 
+<div class="elv-callout elv-callout-info"><div class="elv-callout-c">Deno’s runtime development is winding down: the Deno team <a href="https://deno.com/blog/cloudflare">joined Cloudflare</a> in October 2026 and Deno will receive bug fixes and security updates for about a year before Deno-led development ends. The runtime remains open source.</div></div>
+
 <p>You can check whether or not you have Deno installed by running <code>deno --version</code> in a terminal application. (<a href="/docs/terminal-window/">Well, wait—what is a Terminal?</a>)</p>
 
 <p>You’ll run Build Awesome on Deno using one of these commands:</p>

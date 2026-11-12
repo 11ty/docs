@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "a80314c407e8b844a8a24c5a81882f4084e3ad98",
+			"url": "https://github.com/11ty/docs/commit/a80314c407e8b844a8a24c5a81882f4084e3ad98",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2024-06-12T20:08:30.000Z",
+			"message": "Move quick tips and blog to use new virtual template feeds",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

@@ -228,15 +228,22 @@ We’ve now compiled our two content templates in the current directory into the
 If you’d like to experiment further with [template file syntax](/docs/languages/), edit the following sample `README.md` file in your browser. [Front Matter](/docs/data-frontmatter/), [Liquid](/docs/languages/liquid/) and [Markdown](/docs/languages/markdown/) syntax are in use.
 </template>
 
-<is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js">
-	<eleventy-editor focus label="Edit README.md" data-editor-filename="README.md">
-		<syntax-highlight language="markdown" :copy-button-enabled="false">
+<script type="module" src="/js/browser-window.js" webc:keep></script>
+
+<is-land on:visible import="/js/eleventy-editor.js">
+	<div class="editor-layout">
+		<p class="editor-filename"><code>README.md</code></p>
+		<p class="editor-filename"><code>_site/README/index.html</code></p>
+		<eleventy-editor focus group="get-started" output="external" data-editor-filename="README.md">
+			<syntax-highlight language="markdown" :copy-button-enabled="false">
 ---
 title: Heading
 ---
 # {{ title }}
-		</syntax-highlight>
-	</eleventy-editor>
+			</syntax-highlight>
+		</eleventy-editor>
+		<browser-window fill url="/README/"><eleventy-output group="get-started" data-editor-filename="README.md"></eleventy-output></browser-window>
+	</div>
 </is-land>
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>

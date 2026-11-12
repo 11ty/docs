@@ -7,8 +7,6 @@ eleventyNavigation:
 communityLinksKey: api-services-screenshot
 ---
 
-{% tableofcontents %}
-
 Feed this runtime service a URL and it returns a fully rendered screenshot image from that page (using Puppeteer)
 
 <div class="youtube-related">

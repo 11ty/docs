@@ -1,0 +1,56 @@
+{
+	"commits": [
+		{
+			"id": "5f9c410e9e6d0d25183f15eb8ea97218c8a8f47c",
+			"url": "https://github.com/11ty/docs/commit/5f9c410e9e6d0d25183f15eb8ea97218c8a8f47c",
+			"author": {
+				"name": "crystalsolenoid",
+				"url": "https://github.com/crystalsolenoid",
+				"avatarUrl": "/img/docs-avatars/8132415-BUXZDkH5fPev.png"
+			},
+			"date": "2026-10-14T16:04:12.000Z",
+			"message": "Reset layout data in rss.md example (#1626)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "aarongustafson",
+			"url": "https://github.com/aarongustafson",
+			"avatarUrl": "/img/docs-avatars/75736-rypeDU3MlJCM.jpeg"
+		},
+		{
+			"name": "Vadim Makeev"
+		},
+		{
+			"name": "GingerKiwi",
+			"url": "https://github.com/GingerKiwi",
+			"avatarUrl": "/img/docs-avatars/71160864-pvLBxatqk43l.png"
+		},
+		{
+			"name": "dave-kennedy",
+			"url": "https://github.com/dave-kennedy",
+			"avatarUrl": "/img/docs-avatars/13735532-ACv977T26Iij.png"
+		},
+		{
+			"name": "Zearin",
+			"url": "https://github.com/Zearin",
+			"avatarUrl": "/img/docs-avatars/630124-BrXMC5aYJNrH.png"
+		},
+		{
+			"name": "eknathdj",
+			"url": "https://github.com/eknathdj",
+			"avatarUrl": "/img/docs-avatars/180817810-vz3YPPwIe30H.png"
+		},
+		{
+			"name": "crystalsolenoid",
+			"url": "https://github.com/crystalsolenoid",
+			"avatarUrl": "/img/docs-avatars/8132415-BUXZDkH5fPev.png"
+		}
+	]
+}

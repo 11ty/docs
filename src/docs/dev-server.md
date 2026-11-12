@@ -7,8 +7,6 @@ eleventyNavigation:
 
 # Eleventy Dev Server {% addedin "2.0.0" %}
 
-{% tableofcontents %}
-
 Eleventy includes its own hot-reloading development server.
 
 - [`11ty/eleventy-dev-server` on GitHub](https://github.com/11ty/eleventy-dev-server).

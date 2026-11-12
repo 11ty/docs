@@ -10,8 +10,6 @@ relatedTitle: Template Language—Custom
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package |
 | ------------------- | -------------- | ----------- |
 | _(Any)_             | `.*` _(Any)_   | _(Any)_     |

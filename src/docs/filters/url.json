@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "3f83b14cdc8cfd0409bd1895bc0843648134a3f3",
+			"url": "https://github.com/11ty/docs/commit/3f83b14cdc8cfd0409bd1895bc0843648134a3f3",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2024-03-26T15:46:32.000Z",
+			"message": "Fixes #1670",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "Emmaccen",
+			"url": "https://github.com/Emmaccen",
+			"avatarUrl": "/img/docs-avatars/58217705-lfWDQ5tHvxF2.jpeg"
+		}
+	]
+}

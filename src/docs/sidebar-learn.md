@@ -1,7 +1,7 @@
 ---
 eleventyNavigation:
-  parent: Introduction
+  parent: Home
   key: Learn
-  order: 1
+  order: 4
 permalink: false
 ---

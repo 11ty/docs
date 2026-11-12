@@ -1,3 +1,4 @@
+{%- from "components/docs-nav.njk" import navList -%}
 <div class="elv-toc" data-pagefind-ignore>
 {# {%- set proCtaTitle %}<a href="/pro/"><i class="fa-brands fa-build-awesome util-icon-sm"></i><strong>Build Awesome Pro</strong></a>{% endset %}
 {%- callout "box", "html", proCtaTitle %}
@@ -30,10 +31,8 @@
 
 <details-force-state class="elv-toc-c" data-force-closed="(max-width: 41.375em)" id="skip-nav">
 	<nav>
-	{%- if eleventyNavigation -%}
-		{%- set navKey = eleventyNavigation.key -%}
-	{%- endif -%}
-	{{ "Eleventy Documentation,Ecosystem" | navFiltered | eleventyNavigationToHtml({ activeKey: navKey, listClass: 'elv-toc-list', activeListItemClass: 'elv-toc-active', useTopLevelDetails: true, anchorElementWithoutHref: "span" }) | safe }}
+	{%- set navKey = eleventyNavigation.key if eleventyNavigation else "" -%}
+	{{ navList("Eleventy Documentation,Ecosystem" | navFiltered, navKey, navKey | navActiveKeys, page.url, "elv-toc-list") }}
 	</nav>
 </details-force-state>
 </div>

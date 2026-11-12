@@ -7,8 +7,6 @@ relatedTitle: Template Language—TypeScript
 layout: layouts/langs.njk
 ---
 
-<!-- {% tableofcontents "open" %} -->
-
 | Eleventy Short Name                       | File Extension | npm Package                       |
 | ----------------------------------------- | -------------- | --------------------------------- |
 | `11ty.ts`                                 | `.11ty.ts`     | [`tsx`]({{ externalLinks.tsxNodeUse }})  |

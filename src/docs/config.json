@@ -1,0 +1,63 @@
+{
+	"commits": [
+		{
+			"id": "170b059e57515a0be5d17daf9d2693697706d325",
+			"url": "https://github.com/11ty/docs/commit/170b059e57515a0be5d17daf9d2693697706d325",
+			"author": {
+				"name": "Sparragus",
+				"url": "https://github.com/Sparragus",
+				"avatarUrl": "/img/docs-avatars/80982-o8GtVl5TtSTI.png"
+			},
+			"date": "2026-10-14T18:16:24.000Z",
+			"message": "Fix import path of TypeScript type definitions for the config (#1881)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "shawnbot",
+			"url": "https://github.com/shawnbot",
+			"avatarUrl": "/img/docs-avatars/113896-m07fT1yb62yq.jpeg"
+		},
+		{
+			"name": "tannerdolby",
+			"url": "https://github.com/tannerdolby",
+			"avatarUrl": "/img/docs-avatars/48612525-szr6nZNZkE2N.jpeg"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "/img/docs-avatars/25517624-O2aASR5gZm4n.png"
+		},
+		{
+			"name": "mathertel",
+			"url": "https://github.com/mathertel",
+			"avatarUrl": "/img/docs-avatars/1087895-1o4pT7gjF8uu.png"
+		},
+		{
+			"name": "spereverde",
+			"url": "https://github.com/spereverde",
+			"avatarUrl": "/img/docs-avatars/1117575-gQvzBGmnxSkl.jpeg"
+		},
+		{
+			"name": "genesis-writing",
+			"url": "https://github.com/genesis-writing",
+			"avatarUrl": "/img/docs-avatars/93626701-f4XlOeAfH9oQ.jpeg"
+		},
+		{
+			"name": "SatvikMishra08",
+			"url": "https://github.com/SatvikMishra08",
+			"avatarUrl": "/img/docs-avatars/89024979-9dFJ985jbYMU.png"
+		},
+		{
+			"name": "Sparragus",
+			"url": "https://github.com/Sparragus",
+			"avatarUrl": "/img/docs-avatars/80982-o8GtVl5TtSTI.png"
+		}
+	]
+}

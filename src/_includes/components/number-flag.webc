@@ -1,4 +1,4 @@
-<span class="numberflag">
+<span class="numberflag" data-toc-exclude>
 	<span class="sr-only">Step</span>
 	<slot></slot>
 </span>

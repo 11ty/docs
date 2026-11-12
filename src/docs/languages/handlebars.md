@@ -13,8 +13,6 @@ layout: layouts/langs.njk
 
 [Handlebars](https://handlebarsjs.com/) is a template language that emphasizes simplicity and speed. As the name suggests, it's inspired by and a superset of the [Mustache](/docs/languages/mustache/) template language. It adds [several features](https://github.com/handlebars-lang/handlebars.js#differences-between-handlebarsjs-and-mustache) that Mustache doesn't have, like nested paths: you can refer to `{% raw %}{{variable.member}}{% endraw %}` in Handlebars, but not in Mustache.
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                                |
 | ------------------- | -------------- | ---------------------------------------------------------- |
 | `hbs`               | `.hbs`         | [`handlebars`](https://github.com/wycats/handlebars.js) |

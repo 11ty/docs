@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "1d063c1859448f4c42d46aaf755393d52703d509",
+			"url": "https://github.com/11ty/docs/commit/1d063c1859448f4c42d46aaf755393d52703d509",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-08-27T19:16:28.000Z",
+			"message": "Clarity around https://github.com/11ty/eleventy-img/issues/305",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "j9t",
+			"url": "https://github.com/j9t",
+			"avatarUrl": "/img/docs-avatars/1700772-HVurZ2vonQwC.jpeg"
+		}
+	]
+}

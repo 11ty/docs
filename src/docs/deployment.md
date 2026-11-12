@@ -77,9 +77,6 @@ classicHosts:
   - name: Tiiny Host
     url: https://tiiny.host
     screenshotSize: medium
-  - name: Orbiter
-    url: https://orbiter.host
-    screenshotSize: medium
 webides:
   - name: Stackblitz
     url: https://stackblitz.com/
@@ -88,8 +85,6 @@ webides:
 ---
 
 # Deployment
-
-{% tableofcontents %}
 
 Now that you’ve built a website with Eleventy _(even if it’s one HTML page!)_ you might be ready to put it on the web for everyone to see! There are a bunch of different ways to do it!
 

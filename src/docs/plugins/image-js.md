@@ -7,8 +7,6 @@ eleventyNavigation:
 excludeFromSidebar: true
 ---
 
-{% tableofcontents %}
-
 {% include "image-usage.njk" %}
 
 ## Usage

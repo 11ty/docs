@@ -11,8 +11,6 @@ layout: layouts/langs.njk
 
 If you're interested in the HTML shorthand style, the [Pug template language](/docs/languages/pug/) is likely a better option for new projects because it is more actively maintained and adopted.
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                |
 | ------------------- | -------------- | ------------------------------------------ |
 | `haml`              | `.haml`        | [`hamljs`](https://github.com/tj/haml.js) |

@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "727c26bba8b9ce79b84777b869ae357255ca4754",
+			"url": "https://github.com/11ty/docs/commit/727c26bba8b9ce79b84777b869ae357255ca4754",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-10-20T17:46:05.000Z",
+			"message": "Swap `tinyglobby` for `fast-glob` in quicktip",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "chriskirknielsen",
+			"url": "https://github.com/chriskirknielsen",
+			"avatarUrl": "/img/docs-avatars/6561758-UMHnckpddWJY.jpeg"
+		}
+	]
+}

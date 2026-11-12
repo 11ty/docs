@@ -9,8 +9,6 @@ eleventyNavigation:
 
 # Preprocessors {% addedin "3.0.0-alpha.17" %}
 
-{% tableofcontents %}
-
 The Preprocessor Configuration API allows you to intercept and modify the content in template files (_not_ [Layouts](/docs/layouts.md)) before they’re processed and rendered by Eleventy.
 
 {% set codeContent %}

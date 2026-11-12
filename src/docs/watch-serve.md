@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Watch Files and use Development Servers
 
-{% tableofcontents %}
-
 <div id="browsersync"></div>
 <div id="swap-back-to-browsersync"></div>
 
