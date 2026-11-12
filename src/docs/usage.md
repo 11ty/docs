@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Command Line Usage
   pinned: true
   order: -1

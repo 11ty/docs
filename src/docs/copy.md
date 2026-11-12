@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Passthrough File Copy
   title: Copy Files to Output
   order: 0
@@ -172,7 +172,7 @@ With an output directory of `_site`:
 
 ## Emulate Passthrough Copy During `--serve` {% addedin "2.0.0-canary.12" %}
 
-The [Eleventy Dev Server](/docs/watch-serve/#eleventy-dev-server) includes a great build-performance feature that will _emulate_ passthrough file copy.
+The [Dev Server](/docs/watch-serve/#dev-server) includes a great build-performance feature that will _emulate_ passthrough file copy.
 
 Practically speaking, this means that (during `--serve` only!) files are referenced directly and _**will not**_ be copied to your output folder. Changes to passthrough file copies will not trigger an Eleventy build but _will_ live reload appropriately in the dev server.
 
@@ -189,7 +189,7 @@ export default function ($config) {
 This behavior will revert to `"copy"` in your project automatically if:
 
 1. If you are running Eleventy without `--serve` (a standard build or via `--watch`)
-2. You change from the default development server: [Eleventy Dev Server](/docs/dev-server/) (e.g. [swap back to Browsersync](/docs/dev-server/#swap-back-to-browsersync))
+2. You change from the default development server: [Dev Server](/docs/dev-server/) (e.g. [swap back to Browsersync](/docs/dev-server/#swap-back-to-browsersync))
 
 {% callout "info", "md" %}_For 2.0 canary users, note that this behavior spent a fair bit of time as the default and required opt-out from `2.0.0-canary.12` through `2.0.0-canary.30`. It was changed to opt-in in `2.0.0-canary.31`._{% endcallout %}
 

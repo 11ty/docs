@@ -48,8 +48,6 @@ export function getHighlightedBlogPostContent(collection) {
 }
 </script>
 
-<!--- <h1>Build Awesome helps you build better websites.</h1> --->
-
 <p>Build Awesome is a developer tool to help you build <a href="/docs/performance/"><strong>fast websites</strong> even faster</a>.</p>
 
 <ul>
@@ -57,7 +55,7 @@ export function getHighlightedBlogPostContent(collection) {
 	<li>It’s <strong>lightweight</strong>: we’ve <a href="/blog/dependency-watch/">decreased our dependency count</a> with every major release since 2018.</li>
 	<li>It’s <strong>scalable</strong>: deploy with the most efficient architecture for the modern agent-heavy web.</li>
 	<li>It’s <strong>stable</strong>: stop getting burned upgrading your dependencies. We want your website to deploy <em>without headaches</em> for years to come.</li>
-	<li>It’s <a href="#why-should-you-use-build-awesome"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</li>
+	<li>It’s <a href="/docs/why/"><strong>trusted</strong></a> by folks at <img webc:is="indieweb-avatar" url="https://www.nasa.gov/"><abbr title="National Aeronautics and Space Administration">NASA</abbr> <img webc:is="indieweb-avatar" url="https://home.web.cern.ch/">Cern <img webc:is="indieweb-avatar" url="https://tc39.es/">TC39 <img webc:is="indieweb-avatar" url="https://about.google/">Google <img webc:is="indieweb-avatar" url="https://www.microsoft.com/">Microsoft <img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare <img webc:is="indieweb-avatar" url="https://www.mozilla.org/">Mozilla (and more).</li>
 </ul>
 
 <p><strong>You should have a website</strong> and Build Awesome can help you create your very own home on the web. <a href="/docs/">Get started!</a></p>
@@ -70,116 +68,6 @@ export function getHighlightedBlogPostContent(collection) {
 	<li>Build Awesome: runs on your computer.</li>
 	<li>Build Awesome Pro: run on our computers. (coming soon!)</li>
 </li> --->
-
-<p class="home-intro">Eleventy takes a directory of content (Markdown, HTML, or any custom file type) and quickly builds it into a fast website. Eleventy is stable, secure, and privacy-focused: giving you full control of the output.</p>
-
-<div class="home-intro-actions">
-	<p><a href="/docs/why/"><strong>Not yet convinced?</strong></a></p>
-	<a href="/docs/" class="announcement-btn home-intro-cta">Get Started <i class="fa-solid fa-arrow-right"></i></a>
-</div>
-
-<div class="home-stats">
-	<div class="home-stats-item">
-		<div class="elv-callout">
-			<div class="elv-callout-c">
-				<download-counter :@value="npmProjectDownloads.downloads" :per-year="npmProjectDownloads.downloadsLastYear" :generated-at="npmProjectDownloads.generatedAt">Downloads<br>npm packages</download-counter>
-			</div>
-		</div>
-		<!-- <p class="home-stats-sub"><span @text="commaNumber(npmProjectDownloads.downloadsLastYear)"></span><span>Downloads last year</span></p> -->
-	</div>
-</div>
-<style>
-/* The one paragraph that introduces the project, so it reads a step above body copy */
-.home-intro {
-	margin-block: 0 .5em;
-	font-size: 1.3333333333em; /* 24px /18 */
-	text-wrap: pretty;
-}
-/* The button and the way out, on one line */
-.home-intro-actions {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: flex-end;
-	gap: .5em 1.5em;
-	margin-block-end: 3.5em;
-}
-/* The button carries its own margins for the announcement bar; none wanted here */
-.home-intro-actions > .announcement-btn {
-	margin: 0;
-}
-.home-intro-actions p {
-	margin: 0;
-}
-/* Sized to its own text rather than filling the row */
-.home-intro-cta {
-	display: inline-flex;
-}
-/* The arrow reads as punctuation after the label, not a second element */
-.home-intro-cta .fa11ty-icon {
-	font-size: .75em;
-}
-
-.home-stats {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: flex-start;
-	gap: .5em 1em;
-	margin-block: 0 1em;
-	margin-inline: -1rem;
-}
-.home-stats > * {
-	flex-grow: 1;
-	margin: 0;
-}
-/* Subgrid columns (icon, count, label) line up the all-time row with the counter inside the callout. */
-.home-stats-link {
-	display: flex;
-	align-items: center;
-	gap: .75em;
-	color: inherit;
-	text-decoration: none;
-}
-/* Keeps the taller rings from stretching the callout past the others. */
-speedlify2-median {
-	margin-block: -.5em;
-}
-/* Reserves the size of the five rings until the element is defined. */
-speedlify2-median:not(:defined) {
-	display: inline-block;
-	width: 13.535em;
-	height: 2.467em;
-}
-.home-stats-item > .elv-callout {
-	margin: 0;
-	/* The callout paints --callout-secondary, which defaults to the page background */
-	--callout-secondary: #f7f7f7;
-}
-@media (prefers-color-scheme: dark) {
-	.home-stats-item > .elv-callout {
-		--callout-secondary: #262626;
-	}
-}
-.home-stats-sub {
-	align-items: baseline;
-	margin: .25em 0 0;
-	font-size: .6666666667em;
-	opacity: .7;
-}
-.home-stats-sub > span:first-of-type {
-	grid-column: 2;
-	font-family: Roboto Mono, monospace;
-	font-size: 1.375em;
-	text-align: end;
-}
-.home-stats-sub .fa11ty-icon {
-	margin-inline-start: 0;
-}
-.home-stats-sub > :last-child {
-	text-transform: uppercase;
-	letter-spacing: .1em;
-}
-</style>
 
 <quick-start></quick-start>
 

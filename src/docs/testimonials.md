@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Why Eleventy?
+  parent: Why Build Awesome?
   key: Testmonials
 excludeFromSidebar: true
 ---

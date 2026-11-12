@@ -382,7 +382,7 @@ Per the Nunjucks documentation, [Nunjucks macros are not async-friendly](https:/
 
 <div id="access-to-page-data-values"></div>
 
-## Access to Eleventy supplied data
+## Access to core supplied data
 
 You can access `page`, `eleventy`, `ctx`, and `env` in filters and shortcodes. Read more on the [Shortcodes](/docs/shortcodes/#scoped-data-in-shortcodes) and [Filters](/docs/filters/#scoped-data-in-filters) documentation.
 

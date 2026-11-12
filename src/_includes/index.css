@@ -187,7 +187,6 @@ h2,
 h3,
 h4,
 h5,
-.elv-hed,
 .elv-h2,
 .elv-h3 {
 	font-family: Cera Round Pro, system-ui, sans-serif;
@@ -198,7 +197,6 @@ h1 {
 	margin: 0 0 .5em;
 }
 h1,
-.elv-hed,
 .elv-type1 {
 	font-size: 2.666666666667em; /* 48px /18 */
 }

@@ -41,9 +41,20 @@
 	&.--ghost {
 		background-color: transparent;
 		color: inherit;
+		/* Quiet beside the primary button: no frame, just the label. Transparent rather than none,
+		   so the box keeps its size and the two stay aligned in the row. */
+		border-color: transparent;
+		box-shadow: none;
+		/* With no frame left, the underline marks it as a link. Only the line is restored, so the
+		   color, thickness and the pink hover thickening all still come from the global a[href]
+		   rules and this reads like every other link on the site. */
+		text-decoration-line: underline;
+		transition: opacity .2s;
 
-		@media (prefers-color-scheme: dark) {
-			--btn-shadow-color: var(--shadow-color);
+		/* The shared press drops the button onto its shadow; this one has none, so it dims instead */
+		&:active {
+			transform: none;
+			opacity: .6;
 		}
 	}
 

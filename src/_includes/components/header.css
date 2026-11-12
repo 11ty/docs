@@ -22,7 +22,6 @@
 	position: relative;
 	z-index: 2;
 }
-.elv-hed,
 .elv-nav-header {
 	width: 100%;
 	margin: 0 auto;
@@ -39,7 +38,6 @@
 		white-space: nowrap;
 	}
 }
-.elv-hed,
 .elv-nav-header,
 .elv-nav-menu {
 	max-width: calc(var(--layout-max));
@@ -211,21 +209,6 @@ a[href].elv-hero-11ty:visited {
 		width: 4em; /* 64px /16 */
 		height: 4em; /* 64px /16 */
 	}
-}
-
-/* Header Heading */
-.elv-hed {
-	/* Matches .elv-layout, which no longer wraps it */
-	padding-inline: 1rem;
-	font-size: 3.125em; /* 50px /16 */
-	line-height: 1.2;
-	margin-block: 2rem;
-	text-align: center;
-	text-transform: none;
-	text-wrap: balance;
-}
-main h1.elv-hed {
-	border: none;
 }
 
 .elv-mascot-image {

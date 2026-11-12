@@ -2,7 +2,8 @@
 layout: layouts/main.njk
 headerClass: elv-header-docs
 ---
-{% if eleventyNavigation and eleventyNavigation.parent %}
+{# The home page sits under Documentation in the nav tree, but has nothing to crumb back to #}
+{% if eleventyNavigation and eleventyNavigation.parent and page.url != "/" %}
 <nav class="breadcrumb" aria-labelledby="breadcrumb">
   <div class="sr-only" id="breadcrumb">Breadcrumbs: </div>
   {{ eleventyNavigation.parent | navBreadcrumbs | eleventyNavigationToHtml({ listClass: 'fl fl-inline', activeListItemClass: 'breadcrumb-active' }) | safe }}

@@ -1,11 +1,11 @@
 ---
 eleventyNavigation:
   parent: Using Data
-  key: Eleventy Supplied Data
+  key: Core Supplied Data
   order: 2
 ---
 
-# Eleventy Supplied Data
+# Core Supplied Data
 
 Here are a few data values we supply to your page that you can use in your templates:
 

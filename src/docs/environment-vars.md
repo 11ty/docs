@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Environment Variables
   order: 6
 ---

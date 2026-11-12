@@ -15,9 +15,11 @@ async function getPagedGitHubData(url, pageIndex = 1) {
 				directory: ".cache/eleventy-fetch/",
 				dryRun: false,
 				fetchOptions: {
-					headers: {
-						Authorization: `bearer ${process.env.GITHUB_READ_TOKEN}`,
-					},
+					// These endpoints are public, so an unset token sends no header rather than
+					// `bearer undefined`, which GitHub answers with a 401
+					headers: process.env.GITHUB_READ_TOKEN
+						? { Authorization: `bearer ${process.env.GITHUB_READ_TOKEN}` }
+						: {},
 				},
 			}
 		);

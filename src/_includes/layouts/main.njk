@@ -8,8 +8,6 @@ layout: layouts/base.njk
 
 {% include "header.njk" %}
 
-{% if page.url == '/' %}{% include "logo-cloud.njk" %}{% endif %}
-
 <main class="elv-layout elv-layout-toc{% if classAdditions.main %} {{ classAdditions.main }}{% endif %}" {% if not excludeFromSearch %} data-pagefind-body{% endif %}>
 	{% include "components/docs-toc.njk" %}
 	{%- if not excludePageToc %}{% include "components/page-toc.njk" %}{% endif %}

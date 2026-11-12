@@ -1,11 +1,11 @@
 ---
 eleventyNavigation:
-  key: Eleventy Dev Server
+  key: Dev Server
   parent: Watch and Serve
   pinned: true
 ---
 
-# Eleventy Dev Server {% addedin "2.0.0" %}
+# Dev Server {% addedin "2.0.0" %}
 
 Eleventy includes its own hot-reloading development server.
 
@@ -173,7 +173,7 @@ Access to advanced `chokidar` configuration is available via the [`$config.setCh
 
 ## Swap back to Browsersync {% addedin "2.0.0" %}
 
-You can swap back to Eleventy Dev Server using the `setServerOptions` configuration API and the [`@11ty/eleventy-server-browsersync` package](https://github.com/11ty/eleventy-server-browsersync).
+You can swap back to Dev Server using the `setServerOptions` configuration API and the [`@11ty/eleventy-server-browsersync` package](https://github.com/11ty/eleventy-server-browsersync).
 
 First, install it:
 

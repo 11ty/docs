@@ -3,7 +3,7 @@ eleventyNavigation:
   parent: Home
   key: Playground
   order: 3
-  excerpt: Edit a three-file Eleventy project and watch it build, without installing anything.
+  excerpt: Edit a three-file Build Awesome project and watch it build, without installing anything.
 searchTitle: Playground
 # The editors and previews want the full width
 excludePageToc: true
@@ -11,7 +11,7 @@ excludePageToc: true
 <script type="module" src="/js/browser-window.js" webc:keep></script>
 
 <h1>Playground</h1>
-<p>This is a real Eleventy build, running in this page. Edit any of the three files below and watch the output update—change the <code>title</code> in front matter on a blog post and the list on the index page follows.</p>
+<p>This is a real Build Awesome build, running in this page. Edit any of the three files below and watch the output update—change the <code>title</code> in front matter on a blog post and the list on the index page follows.</p>
 
 <is-land on:visible import="/js/eleventy-editor.js">
 	<div class="editor-layout">
@@ -34,7 +34,7 @@ You can type here!
 - [{{ post.data.title }}]({{ post.url}})
 {%- endfor %}
 
-_Built with {{ eleventy.generator }}_</syntax-highlight>
+_Built with {{ buildawesome.generator }}_</syntax-highlight>
 		</eleventy-editor>
 		<browser-window fill url="/"><eleventy-output group="try" data-editor-filename="index.md"></eleventy-output></browser-window>
 

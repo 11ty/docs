@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Importing Content
   order: 0.2
 ---

@@ -1,7 +1,7 @@
 ---
 titleOverride: "Add a Configuration File"
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Configuration
   title: Add a Configuration File
   pinned: true

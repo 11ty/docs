@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Configure Templates with Data
   order: 1
 ---

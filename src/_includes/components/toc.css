@@ -350,8 +350,13 @@
 	display: none;
 }
 /* Clears the sticky docs header, like the left column */
-.elv-header-docs + .elv-layout .elv-headings-toc {
+.elv-header-docs ~ .elv-layout .elv-headings-toc {
 	--elv-headings-toc-sticky-top: 5rem;
+}
+/* The version callout is inside the sticky header, so the column clears that too. Same 4.75rem
+   the left column adds, since this third column only ever appears at the wider breakpoint. */
+.elv-header-docs:has(.elv-callout) ~ .elv-layout .elv-headings-toc {
+	--elv-headings-toc-sticky-top: 9.75rem;
 }
 .elv-headings-toc-hed {
 	padding-inline-start: calc(var(--elv-headings-toc-gutter) + 2px);

@@ -1,12 +1,12 @@
 ---
 eleventyNavigation:
   parent: Home
-  key: Why Eleventy?
+  key: Why Build Awesome?
   order: 1
-  excerpt: The case for Eleventy, from build speed to what it refuses to do.
-searchTitle: Why should you use Eleventy?
+  excerpt: The case for Build Awesome, from build speed to what it refuses to do.
+searchTitle: Why should you use Build Awesome?
 ---
-<h1>Why should you use Eleventy?</h1>
+<h1>Why should you use Build Awesome?</h1>
 
 <h2>Stable, secure, privacy-focused</h2>
 
@@ -30,7 +30,7 @@ searchTitle: Why should you use Eleventy?
 	</div>
 </div>
 
-<p>Eleventy is trusted by:</p>
+<p>Build Awesome is trusted by:</p>
 
 <div class="elv-callout">
 	<div class="elv-callout-c">
@@ -40,11 +40,11 @@ searchTitle: Why should you use Eleventy?
 	</div>
 </div>
 
-<p>Eleventy is used on <a href="https://github.com/11ty/eleventy/network/dependents?package_id=UGFja2FnZS00NjY3NjEyNjg%3D">88,000+ repositories on GitHub</a>.</p>
+<p>Build Awesome is used on <a href="https://github.com/11ty/eleventy/network/dependents?package_id=UGFja2FnZS00NjY3NjEyNjg%3D">88,000+ repositories on GitHub</a>.</p>
 
 <h2>Fast builds</h2>
 
-<p><strong>Eleventy offers best-in-class build performance for JavaScript site generators.</strong> Data taken from <a href="https://www.zachleat.com/web/build-benchmark/#benchmark-results"><em>Which Generator Builds Markdown the Fastest?</em> (July 2022)</a>.</p>
+<p><strong>Build Awesome offers best-in-class build performance for JavaScript site generators.</strong> Data taken from <a href="https://www.zachleat.com/web/build-benchmark/#benchmark-results"><em>Which Generator Builds Markdown the Fastest?</em> (July 2022)</a>.</p>
 
 <is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
 	<build-comparison @show-all></build-comparison>
@@ -71,7 +71,7 @@ searchTitle: Why should you use Eleventy?
 
 <h3>No JavaScript framework required</h3>
 
-<p>Eleventy doesn’t require a JavaScript framework—that means <em>zero client-side JavaScript by default across the board</em>. We’re <strong>thinking long-term</strong> to opt-out of the framework rat race. The tool chain, modules, and components you use in your front end stack are decoupled from this tool. Work from a solid foundation of <a href="/docs/glossary/#pre-rendered-templates-by-default" class="buzzword">pre-rendered templates</a> that suit your project’s <a href="/docs/glossary/#progressive-enhancement" class="buzzword">progressive enhancement</a> baseline requirements.</p>
+<p>Build Awesome doesn’t require a JavaScript framework—that means <em>zero client-side JavaScript by default across the board</em>. We’re <strong>thinking long-term</strong> to opt-out of the framework rat race. The tool chain, modules, and components you use in your front end stack are decoupled from this tool. Work from a solid foundation of <a href="/docs/glossary/#pre-rendered-templates-by-default" class="buzzword">pre-rendered templates</a> that suit your project’s <a href="/docs/glossary/#progressive-enhancement" class="buzzword">progressive enhancement</a> baseline requirements.</p>
 
 <h3>Any directory structure</h3>
 
@@ -79,7 +79,7 @@ searchTitle: Why should you use Eleventy?
 
 <h3>Incremental adoption</h3>
 
-<p>We only <a href="/docs/config/#template-formats">look for the files</a> and <a href="/docs/config/#input-directory">directories</a> you specify. Further, with even more precision you can <a href="/docs/ignores/">opt-out or ignore specific files</a> in your project. You don’t need to start an Eleventy project from scratch. Eleventy is flexible enough to allow conversion of only a few templates at a time. Migrate as fast or as slow as you’d like.</p>
+<p>We only <a href="/docs/config/#template-formats">look for the files</a> and <a href="/docs/config/#input-directory">directories</a> you specify. Further, with even more precision you can <a href="/docs/ignores/">opt-out or ignore specific files</a> in your project. You don’t need to start a Build Awesome project from scratch. Build Awesome is flexible enough to allow conversion of only a few templates at a time. Migrate as fast or as slow as you’d like.</p>
 
 <h3>Independent template languages</h3>
 
@@ -91,7 +91,7 @@ searchTitle: Why should you use Eleventy?
 
 <h2>A lovely community</h2>
 
-<p>Eleventy has a <a href="/docs/community/">lovely community of folks</a> that really care about what they build. Listen to what these <a href="/docs/testimonials/">happy developers</a> are saying about Eleventy:</p>
+<p>Build Awesome has a <a href="/docs/community/">lovely community of folks</a> that really care about what they build. Listen to what these <a href="/docs/testimonials/">happy developers</a> are saying about Build Awesome and Eleventy:</p>
 
 <testimonials-list :@testimonials="testimonials"></testimonials-list>
 
@@ -123,5 +123,5 @@ searchTitle: Why should you use Eleventy?
 	</a></li>
 </ul>
 
-<p><a href="/docs/"><strong>Get started with Eleventy today!</strong></a> or read more about <a href="https://www.zachleat.com/web/introducing-eleventy/">Eleventy’s project goals</a>.</p>
+<p><a href="/docs/"><strong>Get started with Build Awesome today!</strong></a> or read more about its predecessor <a href="https://www.zachleat.com/web/introducing-eleventy/">Eleventy’s project goals (from 2018)</a>.</p>
 

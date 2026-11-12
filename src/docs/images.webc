@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Add Images
   order: .1
   excerpt: Add images to your Eleventy project.

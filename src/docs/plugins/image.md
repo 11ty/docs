@@ -131,7 +131,7 @@ Image optimization is likely one of the costlier pieces of your Eleventy build. 
 
 ### Optimize Images on Request
 
-{% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}When using the [Image HTML transform](#html-transform) during local development, image processing is removed from the build for extra performance. Instead, they are processed when requested by the browser using a special middleware built-in to the Eleventy Dev Server. This is enabled or disabled using the [`transformOnRequest` option](#transform-on-request).
+{% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}When using the [Image HTML transform](#html-transform) during local development, image processing is removed from the build for extra performance. Instead, they are processed when requested by the browser using a special middleware built-in to the Dev Server. This is enabled or disabled using the [`transformOnRequest` option](#transform-on-request).
 
 <div id="caching"></div>
 

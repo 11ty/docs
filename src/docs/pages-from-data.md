@@ -54,7 +54,7 @@ permalink: "possums/{{ possum.name | slugify }}/"
 
 This template will generate four files, one for each possum, where the filename is based on the possum's name passed through the [`slugify`](/docs/filters/slugify/) function. For example, fluffy's page will be at `/possums/fluffy`. As possums are added and edited the resultant possum details page will be updated automatically.
 
-{% callout "info" %}Note that <code>page</code> is a reserved word so you cannot use <code>alias: page</code>. Read about Eleventy’s reserved data names in <a href="/docs/data-eleventy-supplied/">Eleventy Supplied Data</a>.{% endcallout %}
+{% callout "info" %}Note that <code>page</code> is a reserved word so you cannot use <code>alias: page</code>. Read about Eleventy’s reserved data names in <a href="/docs/data-eleventy-supplied/">Core Supplied Data</a>.{% endcallout %}
 
 ## Related
 

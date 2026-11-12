@@ -56,4 +56,4 @@ ErrorDocument 404 /404.html
 
 ## With `--serve`
 
-If you’re using the new [Eleventy Dev Server](/docs/watch-serve/#eleventy-dev-server) {% addedin "2.0.0" %}, the `404.html` convention is now provided to you for free!
+If you’re using the new [Dev Server](/docs/watch-serve/#dev-server) {% addedin "2.0.0" %}, the `404.html` convention is now provided to you for free!

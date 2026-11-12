@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Getting Started
   title: Get Started
   pinned: true
@@ -9,6 +9,10 @@ communityLinksKey: getting-started
 overrideCommunityLinks: true
 ---
 <h1>Get Started</h1>
+
+<template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
+{% include "pro-cta.njk" %}
+</template>
 
 <template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
 {% callout "brand" %}
@@ -21,10 +25,6 @@ overrideCommunityLinks: true
 <p>You can check whether or not you have Node.js installed by running <code>node --version</code> in a terminal application. (<a href="/docs/terminal-window/">Well, wait—what is a Terminal?</a>)</p>
 
 <p>Build Awesome <eleventy-version></eleventy-version> requires Node version <node-minimum></node-minimum> or higher. If the <code>node</code> command is not found or it reports a number lower than <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">download and install Node.js</a> before moving on to the next step. It’s encouraged to use an <a href="javascript-runtime.webc#odd-numbered-versions-of-node-js">even numbered version of Node.js (22, 24, 26)</a>.</p>
-
-<template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>
-{% include "pro-cta.njk" %}
-</template>
 
 <p>Prefer to watch videos instead? Check out <a href="https://www.youtube.com/watch?v=kzf9A9tkkl4"><strong>6 minutes to Build a Blog from Scratch</strong></a>.</p>
 
@@ -288,7 +288,7 @@ Your command line might look something like:
 [buildawesome] Server at http://localhost:8080/
 ```
 
-Open `http://localhost:8080/` or `http://localhost:8080/README/` in your favorite web browser to see your website live! When you save your template files—Eleventy will refresh the browser with your new changes automatically!
+Open `http://localhost:8080/` or `http://localhost:8080/README/` in your favorite web browser to see your website live! When you save your template files—Build Awesome will refresh the browser with your new changes automatically!
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 6</span> Put it online (optional)
 
@@ -300,10 +300,10 @@ Congratulations—you made something with Build Awesome! Now put it to work:
 
 1. Add more content! In the above tutorial we used [HTML](/docs/languages/html/) and [Markdown](/docs/languages/markdown/). Why not [JavaScript](/docs/languages/javascript/) or [WebC](/docs/languages/webc/) (for components) next? [Nunjucks](/docs/languages/nunjucks/) and [Liquid](/docs/languages/liquid/) are also very popular. Maybe you’re feeling super adventurous and want to [add your own custom type?](/docs/languages/custom/).
 1. Use [a layout file so that you don’t have to repeat boilerplate on every template](/docs/layouts/).
-1. Add a [configuration file](/docs/config/) to unlock advanced Eleventy capabilities!
+1. Add a [configuration file](/docs/config/) to unlock advanced Build Awesome capabilities!
 1. Add [CSS, JavaScript, or Web Fonts](/docs/assets/) to your project.
 1. It’s super easy to add automated [Image optimization](/docs/plugins/image/) too!
-1. Learn more of the [command line options for Eleventy](/docs/usage/).
+1. Learn more of the [command line options for Build Awesome](/docs/usage/).
 1. Perhaps you’d like to [consume data from third party APIs](/docs/data-js/) in your project?
 </template>
 

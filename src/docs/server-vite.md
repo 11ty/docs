@@ -10,7 +10,7 @@ eleventyNavigation:
 
 A plugin to use [Vite](https://vite.dev/) with Eleventy 2.0+.
 
-- Runs Vite as Middleware in [Eleventy Dev Server](/docs/dev-server/) (try with Eleventy’s `--incremental`)
+- Runs Vite as Middleware in [Dev Server](/docs/dev-server/) (try with Eleventy’s `--incremental`)
 - Runs Vite build to postprocess your Eleventy build output
 
 <div class="youtube-related">
@@ -51,7 +51,7 @@ export default function ($config) {
 	$config.addPlugin(EleventyVitePlugin, {
     tempFolderName: ".11ty-vite", // Default name of the temp folder
 
-    // Options passed to the Eleventy Dev Server
+    // Options passed to the Dev Server
     // e.g. domdiff, enabled, etc.
 
     // Added in Vite plugin v2.0.0

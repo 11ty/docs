@@ -26,6 +26,12 @@
 	.ba-hero-accent{ color:var(--ba-hero-green); }
 	.ba-hero-sub{ font-size:clamp(1.05rem,1.6vw,1.3rem); line-height:1.5; max-width:46ch; margin:22px 0 30px; }
 	.ba-hero-actions{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+	/* Sits under the buttons and counts up. The grid stacks the final value invisibly beneath the
+	   live one, so the line never changes width while it runs. */
+	.ba-hero-downloads{ display:flex; align-items:baseline; gap:.5em; margin-block-start:1.75em; color:var(--ba-hero-muted); font-size:.9rem; }
+	.ba-hero-downloads .download-counter-num{ display:inline-grid; font-weight:700; font-variant-numeric:tabular-nums; color:var(--ba-hero-navy); }
+	.ba-hero-downloads .download-counter-num > *{ grid-area:1 / 1; text-align:end; }
+	.ba-hero-downloads .download-counter-num > [aria-hidden]{ visibility:hidden; }
 
 	/* stage */
 	.ba-hero-stage{ position:relative; z-index:2; height: clamp(420px, 40vw, 500px);margin-inline-end: clamp(1em,5vw,2em); }
@@ -100,11 +106,19 @@
 	<div class="ba-hero-grid">
 		<div class="ba-hero-copy">
 			<h1 class="ba-hero-title">Go build something<br><span class="ba-hero-accent">awesome.</span></h1>
-			<p class="ba-hero-sub">A simpler website generator. Point it at a folder of Markdown files to create a fast static website.</p>
+			<p class="ba-hero-sub">A simpler website generator. Point at a directory of content (Markdown, HTML, anything!) and quickly build a fast, stable, secure, privacy-focused website.</p>
 			<div class="ba-hero-actions">
 				<a class="btn-brand" href="/docs/">Get started<i class="fa-solid fa-arrow-right"></i></a>
-				<a class="btn-brand --ghost" href="https://github.com/11ty/buildawesome">View on GitHub</a>
+				<a class="btn-brand --ghost" href="/docs/why/">Not convinced?</a>
 			</div>
+			{%- js %}{% include "components/download-counter.js" %}{% endjs %}
+			<download-counter class="ba-hero-downloads" per-year="{{ npmProjectDownloads.downloadsLastYear }}" generated-at="{{ npmProjectDownloads.generatedAt }}">
+				<span class="download-counter-num">
+					<span aria-hidden="true">{{ npmProjectDownloads.downloads | commaNumber }}</span>
+					<data value="{{ npmProjectDownloads.downloads }}">{{ npmProjectDownloads.downloads | commaNumber }}</data>
+				</span>
+				<span>npm package downloads</span>
+			</download-counter>
 		</div>
 
 		<div class="ba-hero-stage">

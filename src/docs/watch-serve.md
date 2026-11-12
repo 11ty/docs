@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Watch and Serve
   title: Watch Files and Dev Servers
   order: 9
@@ -17,7 +17,7 @@ Running Eleventy with [`--serve`](./usage.md#re-run-eleventy-when-you-save) star
 
 A development server is optional! Using [`--watch`](./usage.md#re-run-eleventy-when-you-save) will run Eleventy (and re-run when you save your files) without a server.
 
-## Eleventy Dev Server {% addedin "2.0.0" %}
+## Dev Server {% addedin "2.0.0" %}
 
 Eleventy bundles its own [dedicated Development Server](/docs/dev-server/). In versions prior to v2, we used [Browsersync, which you can still use with Eleventy if you’d like](/docs/server-browsersync/).
 
@@ -56,7 +56,7 @@ export default function($config) {
 
 ### Reload without running a build
 
-Use the [`watch` option configurable with Eleventy Dev Server](/docs/dev-server/#options) to refresh your local browser when local files change _without_ triggering an Eleventy build. This is useful to decouple build processes outside of Eleventy.
+Use the [`watch` option configurable with Dev Server](/docs/dev-server/#options) to refresh your local browser when local files change _without_ triggering an Eleventy build. This is useful to decouple build processes outside of Eleventy.
 
 ## Ignore Watching Files
 

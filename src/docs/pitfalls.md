@@ -1,6 +1,6 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Projects
   key: Common Pitfalls
   order: 10
   excerpt: Some common problems that people run into.
