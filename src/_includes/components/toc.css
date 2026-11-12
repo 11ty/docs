@@ -360,7 +360,6 @@
 }
 .elv-headings-toc-hed {
 	padding-inline-start: calc(var(--elv-headings-toc-gutter) + 2px);
-	font-family: system-ui, sans-serif;
 	font-size: 1.077em; /* 14px /13 */
 	font-weight: bold;
 	margin: 0 0 0.75em;
