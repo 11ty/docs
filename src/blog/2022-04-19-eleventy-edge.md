@@ -5,11 +5,13 @@ eleventyNavigation:
   key: Eleventy Edge
 ---
 
+{% callout "error", "md-block", "Feature Removed" %}Per the <a href="/blog/community-survey-results/#which-official-plugins-do-you-use-in-your-projects">results of our Eleventy Community Survey 2023</a> (and announced in our <a href="/blog/canary-eleventy-v3/">first alpha</a> and <a href="/blog/three-point-oh-beta-one/">beta releases</a>), this feature was removed in Eleventy 3.0. You can go back to the <a href="https://v2.11ty.dev/docs/plugins/edge/">v2 documentation</a> or create your <a href="/docs/programmatic/">own bundle using the Eleventy programmatic API</a>.{% endcallout %}
+
 I am very proud to introduce a brand new addition to Eleventy: Eleventy Edge.
 
 Eleventy Edge is an exciting new way to add dynamic content to your Eleventy templates. With a simple Eleventy shortcode you can opt-in a part of your Eleventy template to run on an Edge server, allowing your site to use dynamic, user-specific content!
 
-- **[Eleventy Edge Plugin documentation](/docs/plugins/edge/)**
+- **[Eleventy Edge Plugin documentation](https://v2.11ty.dev/docs/plugins/edge/)**
 - **[Eleventy Edge Demos](https://demo-eleventy-edge.netlify.app/)**
 - **[`demo-eleventy-edge` Source Code on GitHub](https://github.com/11ty/demo-eleventy-edge)**
 

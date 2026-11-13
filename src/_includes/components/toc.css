@@ -442,9 +442,11 @@
    A container query resolves em against the container’s own font size, and this container is
    <main> at 1.125em, so these are 18px units: the column arrives on text width, not pixels. */
 @container elv-layout-toc (min-width: 54.5em) { /* 981px, at main’s 18px */
-	/* Only once the component is upgraded, and only when it found headings to list */
-	.elv-layout-toc:has(table-of-contents:defined)
-		.elv-headings-toc:not(:has(table-of-contents[hidden])) {
+	/* Once the build-time list is in the markup or the component is upgraded, and only while it
+	   has headings to list. `:has()` can’t be nested, so both cases go in one argument list. */
+	.elv-headings-toc:has(table-of-contents:defined, table-of-contents > ol):not(
+			:has(table-of-contents[hidden])
+		) {
 		display: block;
 		grid-column: 3;
 		grid-row: 1;

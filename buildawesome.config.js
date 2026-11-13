@@ -24,6 +24,7 @@ import { bundleModulePath } from "./config/bundleJavaScript.js";
 import cleanName from "./config/cleanAuthorName.js";
 import objectHas from "./config/object-has.js";
 import markdownPlugin from "./config/markdownPlugin.js";
+import pageTocPlugin from "./config/pageTocPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
@@ -283,6 +284,7 @@ export default async function ($config) {
 
 	$config.addPlugin(imagePlugin);
 	$config.addPlugin(markdownPlugin);
+	$config.addPlugin(pageTocPlugin);
 
 	$config.addPlugin(minificationLocalPlugin);
 	$config.addPlugin(RenderPlugin);
