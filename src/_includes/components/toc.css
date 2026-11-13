@@ -117,13 +117,15 @@
 	--elv-toc-arrow-size: 0.5em;
 	/* Holds the triangle off the column’s border rather than letting it sit flush against it */
 	--elv-toc-arrow-inset: 0.25em;
-	--elv-toc-arrow-gap: 0.35em;
+	/* Wide enough at the top level that the toggle beside a section’s link reaches the 24px minimum target */
+	--elv-toc-arrow-gap: 0.85em;
 	/* Inset and gap trade against each other, so nudging the triangle leaves the labels put */
 	--elv-toc-arrow-column: calc(var(--elv-toc-arrow-inset) + var(--elv-toc-arrow-size) + var(--elv-toc-arrow-gap));
 	--elv-toc-row-lead: var(--elv-toc-spacing);
 }
 .elv-toc-list ul {
 	--elv-toc-row-lead: 0.3em;
+	--elv-toc-arrow-gap: 0.35em;
 }
 .elv-toc-list li {
 	position: relative;
@@ -160,9 +162,13 @@
 
 /* Rows with a triangle: the label clears the gutter, and a label that wraps lines up under itself
    rather than under the triangle. */
-.elv-toc-summary.elv-toc-row,
-.elv-toc-list a:has(+ .elv-toc-section) {
+.elv-toc-summary.elv-toc-row {
 	padding-inline-start: calc(var(--elv-toc-row-padding) + var(--elv-toc-arrow-column));
+}
+/* Margin rather than padding, so the link doesn’t sit under the toggle and shrink its touch target */
+.elv-toc-list li > a:has(+ .elv-toc-section) {
+	margin-inline-start: var(--elv-toc-toggle-edge);
+	padding-inline-start: 0;
 }
 .elv-toc-summary.elv-toc-row {
 	text-indent: calc(-1 * (var(--elv-toc-arrow-column) - var(--elv-toc-arrow-inset)));
@@ -171,15 +177,23 @@
 /* A section with a page of its own: the link is the row, and the summary is only the toggle in
    that row’s gutter — the link can’t go in the summary, which takes no interactive content. Its
    lead matches the link’s, so the triangle lands on the link’s first line. */
+.elv-toc-list li {
+	--elv-toc-toggle-edge: calc(var(--elv-toc-row-padding) + var(--elv-toc-arrow-column));
+}
+.elv-toc-list > li {
+	--elv-toc-toggle-edge: var(--elv-toc-arrow-column);
+}
+/* Ends where the link begins and is at least 24px wide, reaching left into the nested list’s indent
+   when the gutter is narrower; its triangle stays right-aligned in the same spot. */
 .elv-toc-summary-toggle {
+	--elv-toc-toggle-size: max(1.6em, var(--elv-toc-toggle-edge));
 	position: absolute;
 	inset-block-start: 0;
-	inset-inline-start: 0;
-	/* Reaches to where the link begins, so the target is the whole gutter rather than the
-	   triangle sitting in it */
-	padding-inline-end: var(--elv-toc-arrow-gap);
-	/* Lands its triangle on the same line as the triangles drawn by rows that are their own summary */
-	padding-inline-start: calc(var(--elv-toc-row-padding) + var(--elv-toc-arrow-inset));
+	inset-inline-start: calc(var(--elv-toc-toggle-edge) - var(--elv-toc-toggle-size));
+	box-sizing: border-box;
+	inline-size: var(--elv-toc-toggle-size);
+	padding-inline: 0 var(--elv-toc-arrow-gap);
+	text-align: end;
 }
 /* No label follows the triangle here, so its gap would push the box over the link’s first letter */
 .elv-toc-summary-toggle::before {
@@ -201,14 +215,8 @@
 	color: var(--color);
 	font-weight: 700;
 	/* The triangle column is the whole indent here, so every top-level label starts where that
-	   column ends — 1.1em of 15px, the 1em inset of the callouts above at 16px — and the triangles
-	   hang at the list’s left edge instead of pushing their labels past that line. */
+	   column ends and the triangles hang at the list’s left edge. */
 	padding-inline-start: var(--elv-toc-arrow-column);
-}
-/* The toggle beside a section’s own link draws its triangle after its own padding, so without this
-   it lands a row-padding right of the triangles on the sections that have no link. */
-.elv-toc-list > li > .elv-toc-section > .elv-toc-summary-toggle {
-	padding-inline-start: var(--elv-toc-arrow-inset);
 }
 .elv-toc-list > li > a[href] {
 	text-decoration-line: underline;
@@ -241,8 +249,11 @@
 	background-color: var(--elv-toc-hover-color);
 }
 /* Where the toggle is only the gutter, hovering either half lights the whole row, so the arrow
-   and the link read as one thing */
+   and the link read as one thing. The gradient keeps the part reaching into the indent unlit. */
 .elv-toc-summary-toggle:hover,
+.elv-toc-list li:has(> a:is(:hover, [aria-current="page"])) > .elv-toc-section > .elv-toc-summary-toggle {
+	background-image: linear-gradient(to left, var(--elv-toc-hover-color) var(--elv-toc-toggle-edge), transparent 0);
+}
 .elv-toc-list li:has(> .elv-toc-section > .elv-toc-summary-toggle:hover) > a {
 	background-color: var(--elv-toc-hover-color);
 }
