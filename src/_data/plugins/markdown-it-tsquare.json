@@ -1,0 +1,5 @@
+{
+	"npm": "markdown-it-tsquare",
+	"author": "David Vogeleer",
+	"description": "Turns tsquare code blocks in Markdown into UI wireframe images at build time."
+}
