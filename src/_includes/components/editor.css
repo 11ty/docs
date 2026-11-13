@@ -127,7 +127,6 @@ eleventy-editor:not(:defined):after {
 .editor-layout {
 	/* .codetitle floats; a grid container won’t wrap around one, so drop below it for full width */
 	clear: both;
-	--editor-gap: 2em;
 	--editor-column-gap: 1em;
 	--editor-label-gap: 0.25em;
 	display: grid;
@@ -144,8 +143,14 @@ eleventy-editor:not(:defined):after {
 /* Single column, a label row written for two columns moves its second label down to sit over the output */
 @media (width < 57.5em) {
 	.editor-filename + .editor-filename,
-	.editor-filename + .editor-filename ~ :is(browser-window, is-land--browser-window) {
+	.editor-filename
+		+ .editor-filename
+		~ :is(browser-window, is-land--browser-window):not(.editor-layout-span) {
 		order: 1;
+	}
+	/* Moved after the outputs above, so the build log stays last */
+	.editor-layout-span {
+		order: 2;
 	}
 }
 /* Two columns only once each one has room to be read. Below that a file stacks over its output. */
@@ -203,11 +208,6 @@ eleventy-output {
 	block-size: 100%;
 }
 
-/* The space between one file and the next, rather than between a label and its box */
-.editor-layout
-	> :is(eleventy-editor, is-land--eleventy-editor, browser-window, is-land--browser-window) {
-	margin-block-end: calc(var(--editor-gap) - var(--editor-label-gap));
-}
 /* Stacked, the window is the editor’s own output and sits right under it */
 .editor-layout-stacked {
 	row-gap: 0.5em;
@@ -267,20 +267,16 @@ pre.eleventy-build-output-log {
 browser-window pre.eleventy-build-output-log {
 	border-radius: 0;
 }
+/* A grid item in the layout, so it fills its cell rather than bleeding like a prose callout */
 .eleventy-editor-error {
-	margin-block: 0;
+	margin: 0;
+}
+.eleventy-editor-error .elv-callout-c {
 	font-family:
 		Roboto Mono,
 		Consolas,
 		Monaco,
 		monospace;
 	font-size: 0.8125em;
-	line-height: 1.5;
 	white-space: pre-wrap;
-	color: #b40000;
-}
-@media (prefers-color-scheme: dark) {
-	.eleventy-editor-error {
-		color: #ff9a9a;
-	}
 }

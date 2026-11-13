@@ -446,7 +446,12 @@ class Editor extends HTMLElement {
 			}
 			// A build that throws never reaches renderGroupOutputs, so the error is reported here:
 			// for an editor showing its output elsewhere, this is the only place it can surface.
-			Editor.renderGroupOutputs(this.getAttribute(Editor.attrs.groupName), [], e);
+			Editor.renderGroupOutputs(
+				this.getAttribute(Editor.attrs.groupName),
+				[],
+				e,
+				this.getInputFilename(),
+			);
 		}
 	}
 
@@ -553,8 +558,8 @@ class Editor extends HTMLElement {
 }
 
 //! Shared by <eleventy-output> and <eleventy-build-output>
-// A failed build has neither a page to preview nor a log to print, so both report it the same way:
-// the window is hidden and the message stands on its own, like the examples that force an error.
+// A failed build reports its error only in place of the window paired with the editor that ran it;
+// every other window is left blank.
 class EditorOutputBase extends HTMLElement {
 	static define(registry = window.customElements) {
 		if (!registry.get(this.tagName)) {
@@ -580,23 +585,22 @@ class EditorOutputBase extends HTMLElement {
 		}
 
 		if (!errorEl) {
-			errorEl = document.createElement("p");
-			errorEl.className = "eleventy-editor-error";
+			errorEl = document.createElement("div");
+			errorEl.className = "elv-callout elv-callout-error eleventy-editor-error";
+			errorEl.innerHTML = `<div class="elv-callout-label">ERROR:</div><div class="elv-callout-c"></div>`;
 			// Outside the window, so hiding the chrome doesn’t hide the message with it.
 			(frame ?? this).after(errorEl);
 		}
-		errorEl.textContent = message;
+		errorEl.querySelector(".elv-callout-c").textContent = message;
 		if (frame) {
 			frame.hidden = true;
 		}
 	}
 
-	// A preview and a log for one group share a layout, so they find and reuse the one message
-	// rather than each adding its own.
+	// One per window, so each hidden window keeps its grid cell filled and the labels stay in place.
 	get errorEl() {
-		return (this.closest("browser-window") ?? this).parentElement?.querySelector(
-			".eleventy-editor-error",
-		);
+		let next = (this.closest("browser-window") ?? this).nextElementSibling;
+		return next?.classList.contains("eleventy-editor-error") ? next : null;
 	}
 }
 
@@ -643,15 +647,15 @@ class EditorOutput extends EditorOutputBase {
 		return this.querySelector(".eleventy-output-frame");
 	}
 
-	render(results, error) {
-		if (error) {
+	render(results, error, errorFilename) {
+		let filename = this.getInputFilename();
+		if (error && filename === errorFilename) {
 			this.setError(getErrorMessage(error));
 			return;
 		}
 
 		this.setError(null);
 
-		let filename = this.getInputFilename();
 		let [result] = (results || []).filter((entry) => entry.inputPath === filename);
 		if (!this.bodyEl) {
 			return;
@@ -687,14 +691,13 @@ class EditorBuildOutput extends EditorOutputBase {
 		let written = (results || []).filter((entry) => typeof entry.outputPath === "string");
 		let lines = [`$ ${this.getAttribute("command") || "npx @11ty/eleventy"}`];
 
-		// A failed build writes nothing, so there is no log to show: the message stands on its own
-		// rather than being dressed up as terminal output that never happened.
+		this.setError(null);
+
+		// A failed build writes nothing, so the log is left blank rather than faking terminal output.
 		if (error) {
-			this.setError(getErrorMessage(error));
+			this.setLog([]);
 			return;
 		}
-
-		this.setError(null);
 
 		// A JSON build logs nothing per template, so these are read back off the results.
 		for (let entry of written) {
@@ -726,7 +729,7 @@ class EditorBuildOutput extends EditorOutputBase {
 }
 
 // Both tag names: inside an <is-land> these are renamed until the island hydrates.
-Editor.renderGroupOutputs = function (groupName, results, error) {
+Editor.renderGroupOutputs = function (groupName, results, error, errorFilename) {
 	let selectors = [EditorOutput, EditorBuildOutput].map((ctor) => {
 		let suffix = groupName ? `[${Editor.attrs.groupName}="${groupName}"]` : "";
 		return `${ctor.tagName}${suffix}, ${ctor.preinitTagName}${suffix}`;
@@ -734,7 +737,7 @@ Editor.renderGroupOutputs = function (groupName, results, error) {
 
 	for (let el of document.documentElement.querySelectorAll(selectors.join(", "))) {
 		if (typeof el.render === "function") {
-			el.render(results, error);
+			el.render(results, error, errorFilename);
 		}
 	}
 };
