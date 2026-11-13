@@ -1,0 +1,8 @@
+{
+	"url": "https://github.com/fengyiqicoder/eleventy-ai-starter",
+	"name": "Eleventy AI Starter",
+	"description": "A blog starter with an Ask AI box that answers from your posts, plus llms.txt and llms-full.txt. Lighthouse 100.",
+	"author": "fengyiqicoder",
+	"demo": "https://fengyiqicoder.github.io/eleventy-ai-starter/",
+	"npmStartScript": "start"
+}
