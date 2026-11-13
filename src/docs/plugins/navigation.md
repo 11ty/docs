@@ -22,20 +22,26 @@ A plugin for creating infinite-depth hierarchical navigation in Eleventy project
 
 Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-navigation).
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-navigation
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(eleventyNavigationPlugin);
+	eleventyConfig.addPlugin(eleventyNavigationPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Read more about [Eleventy plugins.](/docs/plugins/)
@@ -193,7 +199,9 @@ Template languages that support [universal filters](/docs/filters/) are supporte
 {% raw %}
 
 ```html
-<nav @html="eleventyNavigationToHtml(eleventyNavigation($data.collections.all))"></nav>
+<nav
+	@html="eleventyNavigationToHtml(eleventyNavigation($data.collections.all))"
+></nav>
 ```
 
 {% endraw %}
@@ -248,7 +256,9 @@ Template languages that support [universal filters](/docs/filters/) are supporte
 {% raw %}
 
 ```html
-<nav @html="eleventyNavigationToMarkdown(eleventyNavigation($data.collections.all))"></nav>
+<nav
+	@html="eleventyNavigationToMarkdown(eleventyNavigation($data.collections.all))"
+></nav>
 ```
 
 {% endraw %}

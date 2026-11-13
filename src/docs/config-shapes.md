@@ -21,27 +21,33 @@ You can learn more about the [default file names for configuration files](/docs/
 
 Instead of exporting a `config` object with your static options, you _can_ return this same object in your configuration callback (though it is **not preferred** for order-of-operations reasons).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default async function(eleventyConfig) {
-return {
-dir: {
-input: "views",
-output: "dist"
-}
-};
+	return {
+    dir: {
+      input: "views",
+      output: "dist"
+    }
+  };
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Export Default Object
 
 You _can_ export your static options as the top level default export too, though configuration **[callback functions](#callback-function) are preferred** as they allow you to access the full Configuration API.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default {
-dir: {
-input: "views"
-}
+	dir: {
+		input: "views"
+	}
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

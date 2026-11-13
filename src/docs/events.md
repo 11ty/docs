@@ -21,15 +21,18 @@ Asynchronous callback function support added in v1.0.
 
 The `eleventy.before` event runs every time Eleventy starts building, so it will run before the start of each stand-alone build, as well as each time building starts as either part of `--watch` or `--serve`. To use it, attach the event handler to your Eleventy config:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Async-friendly in 1.0+
-// Arguments added in 2.0+
-eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
-// Run me before the build starts
-});
+	// Async-friendly in 1.0+
+	// Arguments added in 2.0+
+	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
+		// Run me before the build starts
+	});
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## `eleventy.after` {% addedin "1.0.0" %}
@@ -38,39 +41,44 @@ eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }
 
 The `eleventy.after` event runs every time Eleventy finishes building, so it will run after the end of each stand-alone build, as well as each time building ends as either part of `--watch` or `--serve`. To use it, attach the event handler to your Eleventy config:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Async-friendly in 1.0+
-// Arguments added in 2.0+
-eleventyConfig.on(
-"eleventy.after",
-async ({ directories, results, runMode, outputMode }) => {
-// Run me after the build ends
-}
-);
+	// Async-friendly in 1.0+
+	// Arguments added in 2.0+
+	eleventyConfig.on(
+		"eleventy.after",
+		async ({ directories, results, runMode, outputMode }) => {
+			// Run me after the build ends
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Event arguments {% addedin "2.0.0" %}
 
 Eleventy now provides an object with metadata on the build as an argument to the `eleventy.before` and `eleventy.after` event callbacks.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
-// Read more below
-});
+	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
+		// Read more below
+	});
 
-    eleventyConfig.on(
-    	"eleventy.after",
-    	async ({ directories, results, runMode, outputMode }) => {
-    		// Read more below
-    	}
-    );
-
+	eleventyConfig.on(
+		"eleventy.after",
+		async ({ directories, results, runMode, outputMode }) => {
+			// Read more below
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 - `directories`: an object with normalized project directory paths, set in your in [your configuration file](/docs/config/#input-directory) (or populated with Eleventy defaults).
@@ -96,56 +104,68 @@ eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }
 
 The `eleventy.beforeConfig` runs before your configuration is initialized and was added as an escape hatch for folks unable to update their top-level configuration callback to be `async` (usually due to some limitation in a third-party tool or a requirement to use CommonJS). You probably won’t need this.
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 // sync configuration callback
 module.exports = function (eleventyConfig) {
-// async-friendly event
-eleventyConfig.on("eleventy.beforeConfig", async function (eleventyConfig) {
-const { HtmlBasePlugin } = await import("@11ty/eleventy");
-eleventyConfig.addPlugin(HtmlBasePlugin);
-});
+	// async-friendly event
+  eleventyConfig.on("eleventy.beforeConfig", async function (eleventyConfig) {
+    const { HtmlBasePlugin } = await import("@11ty/eleventy");
+		eleventyConfig.addPlugin(HtmlBasePlugin);
+  });
 };
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 ## `eleventy.beforeWatch` {% addedin "1.0.0" %}
 
 The `eleventy.beforeWatch` event runs before a build _only_ if it's a re-run during `--watch` or `--serve`. This means it will not run during the initial build nor during stand-alone builds.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Async-friendly
-eleventyConfig.on("eleventy.beforeWatch", async (changedFiles) => {
-// Run me before --watch or --serve re-runs
-// changedFiles is an array of files that changed
-// to trigger the watch/serve build
-});
+	// Async-friendly
+	eleventyConfig.on("eleventy.beforeWatch", async (changedFiles) => {
+		// Run me before --watch or --serve re-runs
+		// changedFiles is an array of files that changed
+		// to trigger the watch/serve build
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## `eleventy.contentMap` {% addedin "2.0.0" %}
 
 This event facilitates the [i18n plugin](/docs/plugins/i18n/) (but is available independent of it).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Async-friendly
-eleventyConfig.on("eleventy.contentMap", async ({ inputPathToUrl, urlToInputPath }) => {
-// inputPathToUrl is an object mapping input file paths to output URLs
-// urlToInputPath is an object mapping output URLs to input file paths
-});
+	// Async-friendly
+	eleventyConfig.on("eleventy.contentMap", async ({ inputPathToUrl, urlToInputPath }) => {
+		// inputPathToUrl is an object mapping input file paths to output URLs
+		// urlToInputPath is an object mapping output URLs to input file paths
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Emitter Modes
 
 Currently Eleventy triggers event callbacks in parallel. If you need to run the event callbacks sequentially, you can do so with the `setEventEmitterMode` configuration API method. Related [GitHub #3415](https://github.com/11ty/eleventy/issues/3415).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig){
-eleventyConfig.setEventEmitterMode("sequential");
+	eleventyConfig.setEventEmitterMode("sequential");
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

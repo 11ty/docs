@@ -21,37 +21,39 @@ Using Eleventy Image in [WebC](/docs/languages/webc.md) offers all the same grea
 
 First, add the following to your project’s configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
 import { eleventyImagePlugin } from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-// WebC
-eleventyConfig.addPlugin(eleventyWebcPlugin, {
-components: [
-// …
-// Add as a global WebC component
-"npm:@11ty/eleventy-img/*.webc",
-],
-});
+	// WebC
+	eleventyConfig.addPlugin(eleventyWebcPlugin, {
+		components: [
+			// …
+			// Add as a global WebC component
+			"npm:@11ty/eleventy-img/*.webc",
+		],
+	});
 
-    // Image plugin
-    eleventyConfig.addPlugin(eleventyImagePlugin, {
-    	// Set global default options
-    	formats: ["webp", "jpeg"],
-    	urlPath: "/img/",
+	// Image plugin
+	eleventyConfig.addPlugin(eleventyImagePlugin, {
+		// Set global default options
+		formats: ["webp", "jpeg"],
+		urlPath: "/img/",
 
-    	// Notably `outputDir` is resolved automatically
-    	// to the project output directory
+		// Notably `outputDir` is resolved automatically
+		// to the project output directory
 
-    	defaultAttributes: {
-    		loading: "lazy",
-    		decoding: "async",
-    	},
-    });
-
+		defaultAttributes: {
+			loading: "lazy",
+			decoding: "async",
+		},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}During local development (when using `--serve`), `<eleventy-image>` images are _not_ processed at build time and instead are optimized when requested in the browser. Read more about [`transformOnRequest`](./image.md#optimize-images-on-request).
@@ -63,7 +65,7 @@ Now you can use the `<eleventy-image>` WebC component in your templates.
 ### Template Usage
 
 ```html
-<img webc:is="eleventy-image" src="cat.jpg" alt="photo of my tabby cat" />
+<img webc:is="eleventy-image" src="cat.jpg" alt="photo of my tabby cat">
 ```
 
 ```html
@@ -72,28 +74,17 @@ Now you can use the `<eleventy-image>` WebC component in your templates.
 
 ```html
 <!-- Specify widths: -->
-<img webc:is="eleventy-image" width="100, 200" src="cat.jpg" alt="photo of my tabby cat" />
-<img webc:is="eleventy-image" :width="[100, 200]" src="cat.jpg" alt="photo of my tabby cat" />
+<img webc:is="eleventy-image" width="100, 200" src="cat.jpg" alt="photo of my tabby cat">
+<img webc:is="eleventy-image" :width="[100, 200]" src="cat.jpg" alt="photo of my tabby cat">
 ```
 
 ```html
 <!-- Specify formats (overriding defaults set via the configuration) -->
-<img webc:is="eleventy-image" formats="avif, png" src="cat.jpg" alt="photo of my tabby cat" />
-<img
-	webc:is="eleventy-image"
-	:formats="['avif', 'png']"
-	src="cat.jpg"
-	alt="photo of my tabby cat"
-/>
+<img webc:is="eleventy-image" formats="avif, png" src="cat.jpg" alt="photo of my tabby cat">
+<img webc:is="eleventy-image" :formats="['avif', 'png']" src="cat.jpg" alt="photo of my tabby cat">
 ```
 
 ```html
 <!-- Change the url path or output dir (overriding defaults set via the configuration above) -->
-<img
-	webc:is="eleventy-image"
-	url-path="/some-dir/"
-	output-dir="_site/some-dir/"
-	src="cat.jpg"
-	alt="photo of my tabby cat"
-/>
+<img webc:is="eleventy-image" url-path="/some-dir/" output-dir="_site/some-dir/" src="cat.jpg" alt="photo of my tabby cat">
 ```

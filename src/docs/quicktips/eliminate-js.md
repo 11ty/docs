@@ -21,23 +21,26 @@ This is a bit different from our client-side implementation because this data is
   - Related [Quick Tip: Cache Data Requests](/docs/quicktips/cache-api-requests.md)
 
 <div class="codetitle codetitle-right-md">_data/github.js</div>
+
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import fetch from "node-fetch";
 
 export default async function () {
-console.log("Fetching new github stargazers count…");
+	console.log("Fetching new github stargazers count…");
 
-    // GitHub API: https://developer.github.com/v3/repos/#get
-    let res = await fetch("https://api.github.com/repos/11ty/eleventy");
-    let json = await res.json();
+	// GitHub API: https://developer.github.com/v3/repos/#get
+	let res = await fetch("https://api.github.com/repos/11ty/eleventy");
+	let json = await res.json();
 
-    // prune the data to return only what we want
-    return {
-    	stargazers: json.stargazers_count,
-    };
-
+	// prune the data to return only what we want
+	return {
+		stargazers: json.stargazers_count,
+	};
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 Now in your templates you can output the stargazers count with:

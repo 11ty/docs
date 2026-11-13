@@ -68,46 +68,54 @@ relatedLinks:
 
 It’s on [npm at `@11ty/eleventy-plugin-webc`](https://www.npmjs.com/package/@11ty/eleventy-plugin-webc)!
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-webc
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 To add support for `.webc` files in Eleventy, add the plugin in your Eleventy configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function(eleventyConfig) {
-eleventyConfig.addPlugin(pluginWebc);
+	eleventyConfig.addPlugin(pluginWebc);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 <details>
 <summary><strong>Full options list</strong> (defaults shown)</summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(pluginWebc, {
-// Glob to find no-import global components
-// (The default changed from `false` in Eleventy WebC v0.7.0)
-components: "_components/**/*.webc",
+	eleventyConfig.addPlugin(pluginWebc, {
+		// Glob to find no-import global components
+		// (The default changed from `false` in Eleventy WebC v0.7.0)
+		components: "_components/**/*.webc",
 
-    	// Adds an Eleventy WebC transform to process all HTML output
-    	useTransform: false,
+		// Adds an Eleventy WebC transform to process all HTML output
+		useTransform: false,
 
-    	// Additional global data used in the Eleventy WebC transform
-    	transformData: {},
+		// Additional global data used in the Eleventy WebC transform
+		transformData: {},
 
-    	// Options passed to @11ty/eleventy-plugin-bundle
-    	bundlePluginOptions: {},
-    });
-
+		// Options passed to @11ty/eleventy-plugin-bundle
+		bundlePluginOptions: {},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 View the [full options list for the Bundle plugin](/docs/plugins/bundle.md). As an example, you can use the [`transforms` array to modify bundle content with postcss](/docs/plugins/bundle.md#postprocess-the-bundle-output).
@@ -169,15 +177,18 @@ A few drawbacks to the transform method:
 <details>
 <summary>The transform is disabled by default, you will need to use the <code>useTransform</code> option to enable it.</summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(pluginWebc, {
-useTransform: true,
-});
+	eleventyConfig.addPlugin(pluginWebc, {
+		useTransform: true,
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -313,7 +324,10 @@ WebC will expand any component it finds using known components. You can also use
 {% addedin "@11ty/webc@0.6.2" %}You can import directly from an installed npm package. Eleventy will begin to supply WebC components with existing plugins. The Syntax Highlighter (`4.2.0` or newer) supplies one that you can use today:
 
 ```html
-<syntax-highlight language="js" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight
+	language="js"
+	webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight"
+>
 	function myFunction() { return true; }
 </syntax-highlight>
 ```
@@ -389,7 +403,10 @@ Note the use of `in` instead of `of`.
 <div webc:for="(key, value, index) in { a: 1, b: 2 }" @text="index"></div>
 
 <!-- name these whatever you’d like -->
-<div webc:for="(myKey, myValue, myIndex) in { a: 1, b: 2 }" @text="myIndex"></div>
+<div
+	webc:for="(myKey, myValue, myIndex) in { a: 1, b: 2 }"
+	@text="myIndex"
+></div>
 
 <!-- use `Object.values` or `Object.keys`, sure -->
 <div webc:for="value of Object.values({ a: 1, b: 2 })"></div>
@@ -407,7 +424,8 @@ Child content optionally precompiles using `<slot>` and `[slot]` too. This examp
 {% codetitle "page.webc" %}
 
 ```html
-<my-component></my-component> <my-component>This is the default slot</my-component>
+<my-component></my-component>
+<my-component>This is the default slot</my-component>
 ```
 
 {% codetitle "components/my-component.webc" %}
@@ -502,7 +520,9 @@ It’s worth noting also that `webc:root` can be nested inside of other content�
 ```html
 <div>
 	<div>
-		<template webc:root="override" class="another-class"> Some component content </template>
+		<template webc:root="override" class="another-class">
+			Some component content
+		</template>
 	</div>
 </div>
 ```
@@ -579,7 +599,8 @@ You can use this to render an arbitrary object as attributes too (note the paren
 We surface a special `@html` [prop](#props-properties) to override any tag content with custom JavaScript.
 
 ```html
-<template @html="'Template HTML'"></template> <template @html="dataProperty"></template>
+<template @html="'Template HTML'"></template>
+<template @html="dataProperty"></template>
 ```
 
 ```html
@@ -772,7 +793,10 @@ You can also transform individual element content using `webc:type`. In addition
 {% codetitle "page.webc" %}
 
 ```html
-<img src="my-image.jpeg" alt="An excited Zach is trying to finish this documentation" />
+<img
+	src="my-image.jpeg"
+	alt="An excited Zach is trying to finish this documentation"
+/>
 ```
 
 {% codetitle "components/img.webc" %}
@@ -791,8 +815,8 @@ You can also transform individual element content using `webc:type`. In addition
 
 ```html
 <script webc:type="render">
-	export default function () {
-		if (!this.alt) {
+	export default function() {
+		if(!this.alt) {
 			throw new Error("oh no you didn’t");
 		}
 		// Free idea: use the Eleventy Image plugin to return optimized markup
@@ -820,7 +844,7 @@ Or use a JavaScript render function to generate some CSS:
 ```html
 <template webc:is="style" webc:root="override">
 	<script webc:type="js">
-		export default function ({ license }) {
+		export default function({ license }) {
 			return `/* ${license} */`;
 		}
 	</script>
@@ -834,7 +858,7 @@ Or use a JavaScript render function to generate some CSS:
 ```html
 <template webc:is="style" webc:root="override">
 	<script webc:type="render">
-		export default function () {
+		export default function() {
 			return `/* ${this.license} */`;
 		}
 	</script>
@@ -851,13 +875,13 @@ Note that you can also use `webc:if`!
 
 ```html
 <script webc:type="js">
-	export default function ({ src, alt }) {
-		if (alt) {
-			return `<img src="${src}" alt="${alt}">`;
-		} else {
-			return `<a href="${src}">Your image didn’t have an alt so you get this link instead.</a>`;
-		}
+export default function({ src, alt }) {
+	if (alt) {
+		return `<img src="${src}" alt="${alt}">`;
+	} else {
+		return `<a href="${src}">Your image didn’t have an alt so you get this link instead.</a>`;
 	}
+}
 </script>
 ```
 
@@ -971,18 +995,20 @@ This includes [`url`, `slugify`, `log`, and others](/docs/filters/#eleventy-prov
 
 #### Supply your own Helper
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-// via Universal Filter
-eleventyConfig.addFilter("alwaysRed", () => "Red");
+	// via Universal Filter
+	eleventyConfig.addFilter("alwaysRed", () => "Red");
 
-    // or via JavaScript Template Function directly
-    eleventyConfig.addJavaScriptFunction("alwaysBlue", () => "Blue");
+	// or via JavaScript Template Function directly
+	eleventyConfig.addJavaScriptFunction("alwaysBlue", () => "Blue");
 
-    // Don’t forget to add the WebC plugin in your config file too!
-
+	// Don’t forget to add the WebC plugin in your config file too!
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ```html
@@ -1043,7 +1069,9 @@ The above example assumes the existence of `_includes/my-layout.webc` (an [Eleve
 ...
 <my-table>
 	<x webc:is="tr">
-		<x webc:is="td"> My Table Content </x>
+		<x webc:is="td">
+			My Table Content
+		</x>
 	</x>
 </my-table>
 ...
@@ -1132,26 +1160,28 @@ We accept:
 - Array (of file paths or globs) [{% addedin "@11ty/eleventy-plugin-webc@0.9.2" %}](https://github.com/11ty/eleventy-plugin-webc/releases/tag/v0.9.2)
 - [`npm:` prefix aliases](#webcimport) [{% addedin "@11ty/eleventy-plugin-webc@0.9.2" %}](https://github.com/11ty/eleventy-plugin-webc/releases/tag/v0.9.2)
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(pluginWebc, {
-// Glob to find no-import global components
-// This path is relative to the project-root!
-// The default value is shown:
-components: "_components/**/*.webc",
+	eleventyConfig.addPlugin(pluginWebc, {
+		// Glob to find no-import global components
+		// This path is relative to the project-root!
+		// The default value is shown:
+		components: "_components/**/*.webc",
 
-    	// or an Array (Eleventy WebC v0.9.2+)
-    	components: [
-    		"_components/**/*.webc",
-    		"npm:@11ty/is-land/*.webc",
-    		"npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc",
-    	],
-    });
-
+		// or an Array (Eleventy WebC v0.9.2+)
+		components: [
+			"_components/**/*.webc",
+			"npm:@11ty/is-land/*.webc",
+			"npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc",
+		],
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Notably, the path for `components` is relative to your project root (**not** your [project’s `input` directory](/docs/config/#input-directory)).
@@ -1203,7 +1233,7 @@ For example, if you have this in `_data/site.json`:
 
 ```json
 {
-	"title": "My Site Title"
+  "title": "My Site Title"
 }
 ```
 

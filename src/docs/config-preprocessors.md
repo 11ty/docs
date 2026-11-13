@@ -11,22 +11,24 @@ eleventyNavigation:
 
 The Preprocessor Configuration API allows you to intercept and modify the content in template files (_not_ [Layouts](/docs/layouts.md)) before they’re processed and rendered by Eleventy.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.addPreprocessor("drafts", "njk,md,liquid", (data, content) => {
-if(data.draft) {
-// Ignore this file.
-return false;
-}
+  eleventyConfig.addPreprocessor("drafts", "njk,md,liquid", (data, content) => {
+		if(data.draft) {
+			// Ignore this file.
+			return false;
+		}
 
-    	// You can also modify the raw input of the template here too, be careful!
-    	return `${content}<!-- Template file: {% raw %}{{ page.inputPath }}{% endraw %} -->`;
+		// You can also modify the raw input of the template here too, be careful!
+		return `${content}<!-- Template file: {% raw %}{{ page.inputPath }}{% endraw %} -->`;
 
-    	// If you return nothing or `undefined`, no changes will be made to this template.
-    });
-
+		// If you return nothing or `undefined`, no changes will be made to this template.
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 - The first argument is an arbitrary `name` (`String`) used for error messaging.
@@ -48,13 +50,16 @@ Set `draft: true` anywhere in a file’s [data cascade](/docs/data-cascade/) and
 
 You might imagine how this could be extended to add a publishing date feature too: to exclude content from builds before a specific date set in a post’s front matter (or elsewhere in the data cascade).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
-if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
-return false;
-}
-});
+  eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
+		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
+			return false;
+		}
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

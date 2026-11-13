@@ -13,6 +13,8 @@ Assume you have data files named `links.json` and `copyrights.json`, and you onl
 The corresponding `eleventyComputed.js` file contents can look like the following:
 
 <div class="codetitle codetitle-right-md">_data/eleventyComputed.js</div>
+
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default {
 	myCopyrights: (data) => {
@@ -23,4 +25,6 @@ export default {
 	},
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}

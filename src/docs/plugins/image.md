@@ -27,9 +27,12 @@ Published as [`@11ty/eleventy-img`](https://www.npmjs.com/package/@11ty/eleventy
 
 _Image v7.0.0 requires Node 22+ (and is [ESM](/docs/cjs-esm/))._
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-img
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 ## Usage
@@ -51,13 +54,16 @@ There are a few different ways to use Eleventy image:
 
 <br><br>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(eleventyImageTransformPlugin);
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 That’s it! All `<img>` and `<picture>` elements will be processed for you by Eleventy Image.
@@ -91,29 +97,31 @@ You can configure individual `<img>` elements with per-instance overrides:
 
 Any of the [configuration options](#options) can be defined when you add the plugin:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-// output image formats
-formats: ["avif", "webp", "jpeg"],
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		// output image formats
+		formats: ["avif", "webp", "jpeg"],
 
-    	// output image widths
-    	widths: ["auto"],
+		// output image widths
+		widths: ["auto"],
 
-    	// optional, attributes assigned on <img> nodes override these values
-    	htmlOptions: {
-    		imgAttributes: {
-    			loading: "lazy",
-    			decoding: "async",
-    		},
-    		pictureAttributes: {}
-    	},
-    });
-
+		// optional, attributes assigned on <img> nodes override these values
+		htmlOptions: {
+			imgAttributes: {
+				loading: "lazy",
+				decoding: "async",
+			},
+			pictureAttributes: {}
+		},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 - {% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}During local development (when using `--serve`), images are optimized when requested in the browser. Read more about [`transformOnRequest`](#optimize-images-on-request).
@@ -421,7 +429,7 @@ Use the `transform` callback to access anything in the [Sharp API](https://sharp
 	// …
 	transform: (sharp, { width, height, format }) => {
 		sharp.keepExif();
-	};
+	}
 }
 ```
 

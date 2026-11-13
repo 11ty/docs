@@ -13,16 +13,18 @@ Your layouts can also use a layout! Add the same `layout` front matter data to y
 To chain a layout, let’s look at an example:
 
 {% codetitle "layout-chain-example.md" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
-
 layout: mainlayout.njk
 title: My Rad Blog
 ---
 
 # My Rad Markdown Blog Post
-
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 We want to add a main element around our post’s content because we like accessibility.
@@ -30,14 +32,20 @@ We want to add a main element around our post’s content because we like access
 Here’s what `mainlayout.njk` would look like:
 
 {% codetitle "_includes/mainlayout.njk" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {% include "snippets/layout-chaining/mainlayout.njk" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 This layout would then be itself wrapped in the same `mylayout.njk` we used in our previous example:
 
 {% codetitle "_includes/mylayout.njk" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +59,8 @@ This layout would then be itself wrapped in the same `mylayout.njk` we used in o
 	</body>
 </html>
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 Used together, this would output:
@@ -59,6 +69,7 @@ Used together, this would output:
 
 {% codetitle "_site/layout-chain-example/index.html", "Output Filename" %}
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 <!doctype html>
 <html lang="en">
@@ -74,6 +85,8 @@ Used together, this would output:
   </body>
 </html>
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 {% endcallout %}

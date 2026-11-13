@@ -17,15 +17,16 @@ eleventyNavigation:
 
 Here’s the first command you can enter in your Terminal application to run Eleventy:
 
+<!-- prettier-ignore-start -->
 {% set usageCode %}
 # Searches the current directory, outputs to ./_site
-
 npx @11ty/eleventy
 
 # `npx @11ty/eleventy` is the same as:
-
 npx @11ty/eleventy --input=. --output=_site
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <script type="module" src="/js/seven-minute-tabs.js"></script>
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -42,19 +43,19 @@ Read more about [`--input`](/docs/config/#input-directory) and [`--output`](/doc
 
 A hypothetical `template.md` in the current directory would be rendered to `_site/template/index.html`. Read more at [Permalinks](/docs/permalinks/).
 
+<!-- prettier-ignore-start -->
 {% set usageFormatsCode %}
 # Use only a subset of template types
-
 npx @11ty/eleventy --formats=md,html,ejs
 
 # Don’t process any formats
-
 npx @11ty/eleventy --formats=
 
 # Find out the most up-to-date list of commands (there are more)
-
 npx @11ty/eleventy --help
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-formats-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -70,11 +71,13 @@ npx @11ty/eleventy --help
 
 ### `--quiet` if the Output is Too Noisy
 
+<!-- prettier-ignore-start -->
 {% set usageQuietCode %}
 # Shhhhh—Don’t log so much to the console
-
 npx @11ty/eleventy --quiet
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-quiet-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -90,21 +93,20 @@ npx @11ty/eleventy --quiet
 
 ### Re-run Eleventy when you save
 
+<!-- prettier-ignore-start -->
 {% set usageServeCode %}
 # Add a web server to apply changes and
-
 # refresh automatically. We’ll also --watch for you.
-
 npx @11ty/eleventy --serve
 
 # Change the web server’s port—use localhost:8081
-
 npx @11ty/eleventy --serve --port=8081
 
 # Watch and re-run when files change, without the web server.
-
 npx @11ty/eleventy --watch
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-serve-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -118,11 +120,13 @@ npx @11ty/eleventy --watch
 
 ### `--config` to Change the Config file name
 
+<!-- prettier-ignore-start -->
 {% set usageCfgCode %}
 # Override the default eleventy project config filename (.eleventy.js)
-
 npx @11ty/eleventy --config=myeleventyconfig.js
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-cfg-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -140,19 +144,19 @@ Read more about [Configuration files](/docs/config.md).
 
 ### `--to` can output JSON {% addedin "1.0.0" %}
 
+<!-- prettier-ignore-start -->
 {% set usageJsonCode %}
 # Output a JSON structure (does not write to the file system)
-
 npx @11ty/eleventy --to=json
 
 # Output a Newline Deliminated JSON structure (does not write to the file system)
-
 npx @11ty/eleventy --to=ndjson
 
 # Default behavior (Output to file system)
-
 npx @11ty/eleventy --to=fs
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-json-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -170,22 +174,21 @@ Read more about [ndjson](https://github.com/ndjson/ndjson-spec).
 
 ### `--incremental` for Partial Incremental Builds
 
+<!-- prettier-ignore-start -->
 {% set usageIncrementalCode %}
-# _Repeat_ builds only operate on files that have changed
-
+# *Repeat* builds only operate on files that have changed
 npx @11ty/eleventy --watch --incremental
 npx @11ty/eleventy --serve --incremental
 
 # Skip the initial full build with `--ignore-initial`
-
 npx @11ty/eleventy --serve --incremental --ignore-initial
 
 # Pass in a template path, watch/serve not required
-
 # Added in {{ "3.0.0-alpha.14" | coerceVersion }}
-
 npx @11ty/eleventy --incremental=myfile.md
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-inc-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -203,16 +206,17 @@ Read more about [incremental builds](/docs/usage/incremental/). Related [GitHub 
 
 Be wary of any file changes that happened while Eleventy wasn’t running!
 
+<!-- prettier-ignore-start -->
 {% set usageInitialCode %}
 # Don’t build when Eleventy starts, only build on file changes
-
 npx @11ty/eleventy --watch --ignore-initial
 npx @11ty/eleventy --serve --ignore-initial
 
 # Works great with Incremental
-
 npx @11ty/eleventy --serve --incremental --ignore-initial
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-initial-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -230,11 +234,13 @@ npx @11ty/eleventy --serve --incremental --ignore-initial
 
 Runs without writing to the file system. Useful when [debugging](/docs/debugging/).
 
+<!-- prettier-ignore-start -->
 {% set usageDryCode %}
 # Run Eleventy but don’t write any files
-
 npx @11ty/eleventy --dryrun
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-dry-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -269,11 +275,13 @@ Learn more about [Eleventy’s Debug Mode log output](./debugging.md).
 
 Yes, you can use the same `input` and `output` directories, like so:
 
+<!-- prettier-ignore-start -->
 {% set usageSameDirsCode %}
 # Parse and write Markdown to HTML, respecting directory structure.
-
 npx @11ty/eleventy --input=. --output=. --formats=md
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-same-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>

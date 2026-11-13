@@ -17,18 +17,24 @@ You may also be interested in [config global data](/docs/data-global-custom/){% 
 
 Consider a JSON data file located at `_data/userList.json` with the following content:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ["user1", "user2"];
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 This data will be available to your templates under the `userList` key like this:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 {
-userList: ["user1", "user2"];
+	userList: ["user1", "user2"];
 }
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 ### Folders
@@ -37,13 +43,16 @@ If a data file is in a folder, the folder name will inform your global data obje
 
 Our data will be now available to your templates under a `users` key like so:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 {
-users: {
-userList: ["user1", "user2"];
-}
+	users: {
+		userList: ["user1", "user2"];
+	}
 }
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 ### Using JavaScript instead of JSON

@@ -36,27 +36,33 @@ Rather than constantly fixing outdated documentation, [find `getLiquidOptions` i
 
 Surprising to JavaScript developers—in [LiquidJS both `""` and `0` are truthy values](https://liquidjs.com/tutorials/truthy-and-falsy.html)! If you’d like to switch to use more JS-familiar conventions, use the Liquid option `jsTruthy: true` in your Eleventy config:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.setLiquidOptions({
-jsTruthy: true,
-});
+	eleventyConfig.setLiquidOptions({
+		jsTruthy: true,
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Use your own options {% addedin "0.2.15" %}
 
 It’s recommended to use the Configuration API to override the default options above.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.setLiquidOptions({
-dynamicPartials: false,
-strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
-});
+	eleventyConfig.setLiquidOptions({
+		dynamicPartials: false,
+		strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Optional: Set your own Library instance {% addedin "0.3.0" %}
@@ -65,21 +71,23 @@ As an escape mechanism for advanced usage, pass in your own instance of the Liqu
 
 {% callout "warn" %}Not compatible with <code>setLiquidOptions</code> above—this method will <em>override</em> any configuration set there.{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { Liquid } from "liquidjs";
 
 export default function (eleventyConfig) {
-let options = {
-extname: ".liquid",
-dynamicPartials: false,
-strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
-root: ["_includes"],
-};
+	let options = {
+		extname: ".liquid",
+		dynamicPartials: false,
+		strictFilters: false, // renamed from `strict_filters` in Eleventy 1.0
+		root: ["_includes"],
+	};
 
-    eleventyConfig.setLibrary("liquid", new Liquid(options));
-
+	eleventyConfig.setLibrary("liquid", new Liquid(options));
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
@@ -119,18 +127,21 @@ Read more about [LiquidJS Filter syntax](https://liquidjs.com/tutorials/register
 
 Note that Liquid supports asynchronous filters out of the box (without any additional code or API method changes).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Liquid Filter
-eleventyConfig.addLiquidFilter("myLiquidFilter", function(myVariable) { /* … */ });
+  // Liquid Filter
+  eleventyConfig.addLiquidFilter("myLiquidFilter", function(myVariable) { /* … */ });
 
-// Async-friendly too
-eleventyConfig.addLiquidFilter("myAsyncLiquidFilter", async function(myVariable) { /* … */ });
+  // Async-friendly too
+  eleventyConfig.addLiquidFilter("myAsyncLiquidFilter", async function(myVariable) { /* … */ });
 
-// Universal filters (Adds to Liquid, Nunjucks, 11ty.js)
-eleventyConfig.addFilter("myFilter", function(myVariable) { /* … */ });
+  // Universal filters (Adds to Liquid, Nunjucks, 11ty.js)
+  eleventyConfig.addFilter("myFilter", function(myVariable) { /* … */ });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Usage
@@ -145,17 +156,20 @@ eleventyConfig.addFilter("myFilter", function(myVariable) { /* … */ });
 
 ### Multiple Filter Arguments
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-// Liquid Filter
-eleventyConfig.addLiquidFilter(
-"concatThreeStrings",
-function (arg1, arg2, arg3) {
-return arg1 + arg2 + arg3;
-}
-);
+	// Liquid Filter
+	eleventyConfig.addLiquidFilter(
+		"concatThreeStrings",
+		function (arg1, arg2, arg3) {
+			return arg1 + arg2 + arg3;
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -172,21 +186,24 @@ Shortcodes are basically reusable bits of content. You can add Liquid specific s
 
 ### Shortcode
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Liquid Shortcode
-// These can be async functions too
-eleventyConfig.addLiquidShortcode("user", function(name, twitterUsername) { /* … */ });
+  // Liquid Shortcode
+  // These can be async functions too
+  eleventyConfig.addLiquidShortcode("user", function(name, twitterUsername) { /* … */ });
 
-// Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-eleventyConfig.addShortcode("user", function(name, twitterUsername) {
-return `<div class="user">
+  // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
+  eleventyConfig.addShortcode("user", function(name, twitterUsername) {
+    return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 </div>`;
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 `liquidjs` is already `Promise`-based internally, so an `async function` for a shortcode function works out of the box here.
@@ -215,15 +232,16 @@ return `<div class="user">
 
 ### Paired Shortcode
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Liquid Shortcode
-// These can be async functions too
-eleventyConfig.addPairedLiquidShortcode("user2", function(bioContent, name, twitterUsername) { /* … */ });
+  // Liquid Shortcode
+  // These can be async functions too
+  eleventyConfig.addPairedLiquidShortcode("user2", function(bioContent, name, twitterUsername) { /* … */ });
 
-// Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-eleventyConfig.addPairedShortcode("user2", function(bioContent, name, twitterUsername) {
-return `<div class="user">
+  // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
+  eleventyConfig.addPairedShortcode("user2", function(bioContent, name, twitterUsername) {
+    return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 <div class="user_bio">${bioContent}</div>
@@ -231,6 +249,8 @@ return `<div class="user">
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 `liquidjs` is already `Promise`-based internally, so an `async function` for a shortcode function works out of the box here.
@@ -242,8 +262,8 @@ Note that you can put any Liquid tags or content inside the `{% raw %}{% user %}
 {% raw %}
 
 ```html
-{% user2 "Zach Leatherman" "zachleat" %} Zach likes to take long walks on Nebraska beaches. {%
-enduser2 %}
+{% user2 "Zach Leatherman" "zachleat" %} Zach likes to take long walks on
+Nebraska beaches. {% enduser2 %}
 ```
 
 {% endraw %}
@@ -262,24 +282,26 @@ enduser2 %}
 
 Liquid is already promise-based internally so `async` functions with `await` work fine out of the box.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.addLiquidShortcode(
-"user",
-async function (name, twitterUsername) {
-return await fetchAThing();
-}
-);
+	eleventyConfig.addLiquidShortcode(
+		"user",
+		async function (name, twitterUsername) {
+			return await fetchAThing();
+		}
+	);
 
-    eleventyConfig.addPairedShortcode(
-    	"user2",
-    	async function (content, name, twitterUsername) {
-    		return await fetchAThing();
-    	}
-    );
-
+	eleventyConfig.addPairedShortcode(
+		"user2",
+		async function (content, name, twitterUsername) {
+			return await fetchAThing();
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Usage
@@ -289,8 +311,8 @@ return await fetchAThing();
 {% raw %}
 
 ```html
-{% user "Zach Leatherman" "zachleat" %} {% user2 "Zach Leatherman" "zachleat" %} Zach likes to take
-long walks on Nebraska beaches. {% enduser2 %}
+{% user "Zach Leatherman" "zachleat" %} {% user2 "Zach Leatherman" "zachleat" %}
+Zach likes to take long walks on Nebraska beaches. {% enduser2 %}
 ```
 
 {% endraw %}
@@ -299,34 +321,38 @@ long walks on Nebraska beaches. {% enduser2 %}
 
 Eleventy’s includes its own parameter parsing implementation for shortcodes. To swap to a more robust, Liquid-native solution, use the `setLiquidParameterParsing` Configuration API method. This will likely be enabled by default in a future major version of Eleventy. Related [GitHub #2679](https://github.com/11ty/eleventy/issues/2679).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-// Current default:
-// eleventyConfig.setLiquidParameterParsing("legacy");
+	// Current default:
+	// eleventyConfig.setLiquidParameterParsing("legacy");
 
-    // Liquid-native
-    eleventyConfig.setLiquidParameterParsing("builtin");
-
+	// Liquid-native
+	eleventyConfig.setLiquidParameterParsing("builtin");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Access to `page` data values {% addedin "0.11.0" %}
 
 If you aren’t using an arrow function, Liquid Shortcodes (and Nunjucks and 11ty.js JavaScript Functions) will have access to Eleventy [`page` data values](/docs/data-eleventy-supplied/#page-variable-contents) without needing to pass them in as arguments.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.addLiquidShortcode("myShortcode", function () {
-// Available in 0.11.0 and above
-console.log(this.page);
+	eleventyConfig.addLiquidShortcode("myShortcode", function () {
+		// Available in 0.11.0 and above
+		console.log(this.page);
 
-    	// For example:
-    	console.log(this.page.url);
-    	console.log(this.page.inputPath);
-    	console.log(this.page.fileSlug);
-    });
-
+		// For example:
+		console.log(this.page.url);
+		console.log(this.page.inputPath);
+		console.log(this.page.fileSlug);
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

@@ -10,11 +10,14 @@ eleventyNavigation:
 
 Configuration files are optional. Add an `eleventy.config.js` file to the root directory of your project (read more about [default configuration filenames](#default-filenames)) to configure Eleventy to your own project’s needs. It might look like this:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default async function(eleventyConfig) {
-// Configure Eleventy
+	// Configure Eleventy
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinitionEager.njk" %}
 
 There are a few different ways to [shape your configuration file](/docs/config-shapes/). {% addedin "3.0.0-alpha.1" %}Eleventy v3 added support for both ESM and Asynchronous callbacks.
@@ -59,23 +62,22 @@ Controls the top level directory/file/glob that we’ll use to look for template
 
 #### Command Line
 
+<!-- prettier-ignore-start -->
 {% set codeBlock %}
 # The current directory
-
 npx @11ty/eleventy --input=.
 
 # A single file
-
 npx @11ty/eleventy --input=README.md
 
 # A glob of files
-
 npx @11ty/eleventy --input=*.md
 
 # A subdirectory
-
 npx @11ty/eleventy --input=views
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 #### Configuration
@@ -86,12 +88,15 @@ Via named export (order doesn’t matter). Note that there are many [different s
 
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Order matters, put this at the top of your configuration file.
-eleventyConfig.setInputDirectory("views");
+	// Order matters, put this at the top of your configuration file.
+  eleventyConfig.setInputDirectory("views");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Directory for Includes
@@ -112,13 +117,16 @@ Via named export (order doesn’t matter). Note that there are many [different s
 
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Order matters, put this at the top of your configuration file.
-// This is relative to your input directory!
-eleventyConfig.setIncludesDirectory("my_includes");
+	// Order matters, put this at the top of your configuration file.
+	// This is relative to your input directory!
+  eleventyConfig.setIncludesDirectory("my_includes");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Directory for Layouts (Optional) {% addedin "0.8.0" %}
@@ -145,13 +153,16 @@ Via named export (order doesn’t matter). Note that there are many [different s
 
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Order matters, put this at the top of your configuration file.
-// This is relative to your input directory!
-eleventyConfig.setLayoutsDirectory("_layouts");
+	// Order matters, put this at the top of your configuration file.
+	// This is relative to your input directory!
+  eleventyConfig.setLayoutsDirectory("_layouts");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Directory for Global Data Files
@@ -172,12 +183,15 @@ Via named export (order doesn’t matter). Note that there are many [different s
 
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Order matters, put this at the top of your configuration file.
-eleventyConfig.setDataDirectory("lore");
+	// Order matters, put this at the top of your configuration file.
+  eleventyConfig.setDataDirectory("lore");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Output Directory
@@ -204,12 +218,15 @@ Via named export (order doesn’t matter). Note that there are many [different s
 
 Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
-// Order matters, put this at the top of your configuration file.
-eleventyConfig.setOutputDirectory("dist");
+	// Order matters, put this at the top of your configuration file.
+  eleventyConfig.setOutputDirectory("dist");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Template Engines
@@ -270,20 +287,22 @@ There are many [different shapes of configuration file](/docs/config-shapes.md).
 
 #### Configuration API
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-// Reset to this value
-eleventyConfig.setTemplateFormats("html,liquid,njk");
+	// Reset to this value
+	eleventyConfig.setTemplateFormats("html,liquid,njk");
 
-    // Additive to existing
-    eleventyConfig.addTemplateFormats("pug,haml");
+	// Additive to existing
+	eleventyConfig.addTemplateFormats("pug,haml");
 
-    // Or:
-    // eleventyConfig.setTemplateFormats([ "html", "liquid", "njk" ]);
-    // eleventyConfig.addTemplateFormats([ "pug", "haml" ]);
-
+	// Or:
+	// eleventyConfig.setTemplateFormats([ "html", "liquid", "njk" ]);
+	// eleventyConfig.addTemplateFormats([ "pug", "haml" ]);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Build Options
@@ -298,11 +317,14 @@ In order to maximize user-friendliness to beginners, Eleventy will show each fil
 | _Valid Options_         | `true` or `false` |
 | _Command Line Override_ | `--quiet`         |
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.setQuietMode(true);
+	eleventyConfig.setQuietMode(true);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 The command line will override any setting in configuration:
@@ -343,12 +365,15 @@ npx @11ty/eleventy --pathprefix=eleventy-base-blog
 | _Valid Options_         | String                |
 | _Command Line Override_ | _None_                |
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-// Looks for index.json and index.11tydata.json instead of using folder names
-eleventyConfig.setDataFileBaseName("index");
+	// Looks for index.json and index.11tydata.json instead of using folder names
+	eleventyConfig.setDataFileBaseName("index");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Change File Suffix for Data Files
@@ -368,19 +393,21 @@ This feature can also be used to disable Template and Directory Data Files altog
 
 Read more about [Template and Directory Specific Data Files](/docs/data-template-dir/).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-// e.g. file.json and file.11tydata.json
-eleventyConfig.setDataFileSuffixes([".11tydata", ""]);
+	// e.g. file.json and file.11tydata.json
+	eleventyConfig.setDataFileSuffixes([".11tydata", ""]);
 
-    // e.g. file.11tydata.json
-    eleventyConfig.setDataFileSuffixes([".11tydata"]);
+	// e.g. file.11tydata.json
+	eleventyConfig.setDataFileSuffixes([".11tydata"]);
 
-    // No data files are used.
-    eleventyConfig.setDataFileSuffixes([]);
-
+	// No data files are used.
+	eleventyConfig.setDataFileSuffixes([]);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 <details>
@@ -388,13 +415,16 @@ eleventyConfig.setDataFileSuffixes([".11tydata", ""]);
 
 Prior to {{ "2.0.0-canary.19" | coerceVersion }} this feature was exposed using a `jsDataFileSuffix` property in the configuration return object. When the `setDataFileSuffixes` method has not been used, Eleventy maintains backwards compatibility for old projects by using this property as a fallback.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-return {
-jsDataFileSuffix: ".11tydata",
-};
+	return {
+		jsDataFileSuffix: ".11tydata",
+	};
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -416,20 +446,22 @@ Similar to Transforms, Linters are provided to analyze a template’s output wit
 | _Valid Options_         | Callback function |
 | _Command Line Override_ | _None_            |
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-// Sync or async
-eleventyConfig.addLinter("linter-name", async function (content) {
-console.log(this.inputPath);
-console.log(this.outputPath);
+	// Sync or async
+	eleventyConfig.addLinter("linter-name", async function (content) {
+		console.log(this.inputPath);
+		console.log(this.outputPath);
 
-    	// Eleventy 2.0+ has full access to Eleventy’s `page` variable
-    	console.log(this.page.inputPath);
-    	console.log(this.page.outputPath);
-    });
-
+		// Eleventy 2.0+ has full access to Eleventy’s `page` variable
+		console.log(this.page.inputPath);
+		console.log(this.page.outputPath);
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 <details>
@@ -443,21 +475,28 @@ This example has been packaged as a plugin in [`eleventy-plugin-inclusive-langua
 
 ```js
 export default function (eleventyConfig) {
-	eleventyConfig.addLinter("inclusive-language", function (content, inputPath, outputPath) {
-		let words =
-			"simply,obviously,basically,of course,clearly,just,everyone knows,however,easy".split(",");
+	eleventyConfig.addLinter(
+		"inclusive-language",
+		function (content, inputPath, outputPath) {
+			let words =
+				"simply,obviously,basically,of course,clearly,just,everyone knows,however,easy".split(
+					","
+				);
 
-		// Eleventy 1.0+: use this.inputPath and this.outputPath instead
-		if (inputPath.endsWith(".md")) {
-			for (let word of words) {
-				let regexp = new RegExp("\\b(" + word + ")\\b", "gi");
-				if (content.match(regexp)) {
-					console.warn(`Inclusive Language Linter (${inputPath}) Found: ${word}`);
+			// Eleventy 1.0+: use this.inputPath and this.outputPath instead
+			if (inputPath.endsWith(".md")) {
+				for (let word of words) {
+					let regexp = new RegExp("\\b(" + word + ")\\b", "gi");
+					if (content.match(regexp)) {
+						console.warn(
+							`Inclusive Language Linter (${inputPath}) Found: ${word}`
+						);
+					}
 				}
 			}
 		}
-	});
-}
+	);
+};
 ```
 
 </details>
@@ -468,12 +507,15 @@ export default function (eleventyConfig) {
 
 A `Set` of [`lodash` selectors](https://lodash.com/docs/4.17.15#get) that allow you to include data from the data cascade in the output from `--to=json`, `--to=ndjson`.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-eleventyConfig.dataFilterSelectors.add("page");
-eleventyConfig.dataFilterSelectors.delete("page");
+	eleventyConfig.dataFilterSelectors.add("page");
+	eleventyConfig.dataFilterSelectors.delete("page");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 This will now include a `data` property in your JSON output that includes the `page` variable for each matching template.
@@ -482,12 +524,15 @@ This will now include a `data` property in your JSON output that includes the `p
 
 This may enable some extra autocomplete features in your IDE (where supported).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 /** @param {import("@11ty/eleventy/UserConfig").default} eleventyConfig */
 export default function (eleventyConfig) {
-// …
+	// …
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 - Related: [GitHub #2091](https://github.com/11ty/eleventy/pull/2091) and [GitHub #3097](https://github.com/11ty/eleventy/issues/3097)

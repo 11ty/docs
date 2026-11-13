@@ -25,27 +25,29 @@ But, after all that, you can still add a Custom Tag using the [Configuration API
 
 - [LiquidJS: Tags](https://liquidjs.com/tutorials/register-filters-tags.html)
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-{% raw %} // Usage: {% uppercase myVar %} where myVar has a value of "alice"
-// Usage: {% uppercase "alice" %}{% endraw %}
-eleventyConfig.addLiquidTag("uppercase", function (liquidEngine) {
-return {
-parse: function (tagToken, remainingTokens) {
-this.str = tagToken.args; // myVar or "alice"
-},
-render: async function (scope, hash) {
-// Resolve variables
-var str = await this.liquid.evalValue(this.str, scope); // "alice"
+{% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
+  // Usage: {% uppercase "alice" %}{% endraw %}
+  eleventyConfig.addLiquidTag("uppercase", function (liquidEngine) {
+    return {
+      parse: function (tagToken, remainingTokens) {
+        this.str = tagToken.args; // myVar or "alice"
+      },
+      render: async function (scope, hash) {
+        // Resolve variables
+        var str = await this.liquid.evalValue(this.str, scope); // "alice"
 
         // Do the uppercasing
         return str.toUpperCase(); // "ALICE"
       },
     };
-
-});
+  });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 See all of the [built-in tag implementations for LiquidJS](https://liquidjs.com/tags/overview.html).
@@ -54,13 +56,14 @@ See all of the [built-in tag implementations for LiquidJS](https://liquidjs.com/
 
 - [Nunjucks: Custom Tags](https://mozilla.github.io/nunjucks/api.html#custom-tags)
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
-{% raw %} // Usage: {% uppercase myVar %} where myVar has a value of "alice"
-// Usage: {% uppercase "alice" %}{% endraw %}
-eleventyConfig.addNunjucksTag("uppercase", function (nunjucksEngine) {
-return new (function () {
-this.tags = ["uppercase"];
+{% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
+  // Usage: {% uppercase "alice" %}{% endraw %}
+  eleventyConfig.addNunjucksTag("uppercase", function (nunjucksEngine) {
+    return new (function () {
+      this.tags = ["uppercase"];
 
       this.parse = function (parser, nodes, lexer) {
         var tok = parser.nextToken();
@@ -78,8 +81,9 @@ this.tags = ["uppercase"];
         callback(null, ret);
       };
     })();
-
-});
+  });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

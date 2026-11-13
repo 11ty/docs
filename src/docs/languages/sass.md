@@ -27,49 +27,54 @@ The following configuration will read and render `*.scss` files as `.css` files 
 
 Install the `sass` plugin from npm:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install sass
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Next add your configuration:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import path from "node:path";
 import * as sass from "sass";
 
 export default function (eleventyConfig) {
-eleventyConfig.addExtension("scss", {
-outputFileExtension: "css",
+	eleventyConfig.addExtension("scss", {
+		outputFileExtension: "css",
 
-    	// opt-out of Eleventy Layouts
-    	useLayouts: false,
+		// opt-out of Eleventy Layouts
+		useLayouts: false,
 
-    	compile: async function (inputContent, inputPath) {
-    		let parsed = path.parse(inputPath);
-    		// Don’t compile file names that start with an underscore
-    		if(parsed.name.startsWith("_")) {
-    			return;
-    		}
+		compile: async function (inputContent, inputPath) {
+			let parsed = path.parse(inputPath);
+			// Don’t compile file names that start with an underscore
+			if(parsed.name.startsWith("_")) {
+				return;
+			}
 
-    		let result = sass.compileString(inputContent, {
-    			loadPaths: [
-    				parsed.dir || ".",
-    				this.config.dir.includes,
-    			]
-    		});
+			let result = sass.compileString(inputContent, {
+				loadPaths: [
+					parsed.dir || ".",
+					this.config.dir.includes,
+				]
+			});
 
-    		// Map dependencies for incremental builds
-    		this.addDependencies(inputPath, result.loadedUrls);
+			// Map dependencies for incremental builds
+			this.addDependencies(inputPath, result.loadedUrls);
 
-    		return async (data) => {
-    			return result.css;
-    		};
-    	},
-    });
-
+			return async (data) => {
+				return result.css;
+			};
+		},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Now run Eleventy and tell it to process `scss` files:

@@ -26,9 +26,12 @@ Since RSS Plugin v2.0, this plugin offers two options to create feeds in your pr
 
 Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-plugin-rss).
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-rss
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 - `v3` of this plugin is ESM-only and requires Eleventy v3.0 or newer.
@@ -49,31 +52,34 @@ npm install @11ty/eleventy-plugin-rss
 {% addedin "RSS 3.0.0" %}[Version 3 of this plugin](https://github.com/11ty/plugin-rss/releases/tag/v3.0.0) is now using ESM. This requires Eleventy v3 or newer. If you’re using a CommonJS configuration file on Node 20.19 or newer, use `require("@11ty/eleventy-plugin-rss").default`. On [older versions of Node (&lt; 20.19), you’ll need to use dynamic `import()` instead of `require`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
 {% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(feedPlugin, {
-type: "atom", // or "rss", "json"
-outputPath: "/feed.xml",
-collection: {
-name: "posts", // iterate over `collections.posts`
-limit: 10, // 0 means no limit
-sort: "auto", // or "descending", "ascending"
-},
-metadata: {
-language: "en",
-title: "Blog Title",
-subtitle: "This is a longer description about your blog.",
-base: "https://example.com/",
-author: {
-name: "Your Name",
-email: "", // Optional
-}
-}
-});
+	eleventyConfig.addPlugin(feedPlugin, {
+		type: "atom", // or "rss", "json"
+		outputPath: "/feed.xml",
+		collection: {
+			name: "posts", // iterate over `collections.posts`
+			limit: 10,     // 0 means no limit
+			sort: "auto",  // or "descending", "ascending"
+		},
+		metadata: {
+			language: "en",
+			title: "Blog Title",
+			subtitle: "This is a longer description about your blog.",
+			base: "https://example.com/",
+			author: {
+				name: "Your Name",
+				email: "", // Optional
+			}
+		}
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 This configuration is the only step for the Virtual Template method. If you need additional control over the template output, you can use the [Manual Template](#manual-template) method.
@@ -104,34 +110,36 @@ This configuration is the only step for the Virtual Template method. If you need
 
 {% addedin "RSS 3.1.0" %} `getFeedTemplate` returns the `content` and `data` for the same feed `feedPlugin` creates, for use with [`$config.addTemplate`](/docs/virtual-templates.md). This unlocks unlimited feeds of the same type. The feed template uses filters from the main plugin, make sure you add the plugin (via `rssPlugin`) first.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { rssPlugin, getFeedTemplate } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-$config.addPlugin(rssPlugin);
+	$config.addPlugin(rssPlugin);
 
-    let { content, data } = getFeedTemplate({
-    	type: "atom", // or "rss", "json"
-    	outputPath: "/posts.xml",
-    	collection: {
-    		name: "posts",
-    		limit: 10,
-    	},
-    	metadata: {
-    		language: "en",
-    		title: "Blog Title",
-    		subtitle: "This is a longer description about your blog.",
-    		base: "https://example.com/",
-    		author: {
-    			name: "Your Name",
-    		},
-    	},
-    });
+	let { content, data } = getFeedTemplate({
+		type: "atom", // or "rss", "json"
+		outputPath: "/posts.xml",
+		collection: {
+			name: "posts",
+			limit: 10,
+		},
+		metadata: {
+			language: "en",
+			title: "Blog Title",
+			subtitle: "This is a longer description about your blog.",
+			base: "https://example.com/",
+			author: {
+				name: "Your Name",
+			},
+		},
+	});
 
-    $config.addTemplate("feeds/posts.njk", content, data);
-
+	$config.addTemplate("feeds/posts.njk", content, data);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 `getFeedTemplate` accepts the same options as the [Virtual Template](#virtual-template) method, except `inputPath`: pass the path as the first argument to `addTemplate` instead. You can extend `data` before passing it in, e.g. `{ ...data, eleventyNavigation: { key: "Feed" } }`.
@@ -142,13 +150,16 @@ $config.addPlugin(rssPlugin);
 
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(rssPlugin);
+	eleventyConfig.addPlugin(rssPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}
@@ -160,17 +171,20 @@ eleventyConfig.addPlugin(rssPlugin);
 
 {% addedin "RSS 1.1.0" %} Advanced control of [PostHTML rendering options](https://github.com/posthtml/posthtml-render#options) via `posthtmlRenderOptions`.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(rssPlugin, {
-posthtmlRenderOptions: {
-closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
-},
-});
+	eleventyConfig.addPlugin(rssPlugin, {
+		posthtmlRenderOptions: {
+			closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
+		},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -192,17 +206,19 @@ closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
 
 {% addedin "RSS 1.1.0" %} This plugin exports `dateToRfc3339`, `dateToRfc822` ({% addedin "RSS 1.2.0" %}), `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls` functions so you can use with your own filters. For example:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { dateToRfc3339, dateToRfc822 } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-$config.addLiquidFilter("dateToRfc3339", dateToRfc3339);
+	$config.addLiquidFilter("dateToRfc3339", dateToRfc3339);
 
-    // New in RSS 1.2.0
-    $config.addLiquidFilter("dateToRfc822", dateToRfc822);
-
+	// New in RSS 1.2.0
+	$config.addLiquidFilter("dateToRfc822", dateToRfc822);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}Do keep in mind that _escaping_ HTML content is a feature provided as [part of Nunjucks](https://mozilla.github.io/nunjucks/templating.html#autoescaping). Moving to another template language may require a different option for escaping (for example, [`html-entities`](https://www.npmjs.com/package/html-entities)).{% endcallout %}
@@ -242,30 +258,27 @@ The following feed samples **require RSS Plugin v2.0** or newer. [Samples for RS
   }
 }
 ---
-
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
-	<title>{{ metadata.title }}</title>
-	<subtitle>{{ metadata.description }}</subtitle>
-	<link href="{{ permalink | htmlBaseUrl(metadata.base) }}" rel="self" />
-	<link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
-	<updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
-	<id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
-	<author>
-		<name>{{ metadata.author.name }}</name>
-	</author>
-	{%- for post in collections.posts | reverse %} {%- set absolutePostUrl %}{{ post.url |
-	htmlBaseUrl(metadata.base) }}{% endset %}
-	<entry>
-		<title>{{ post.data.title }}</title>
-		<link href="{{ absolutePostUrl }}" />
-		<updated>{{ post.date | dateToRfc3339 }}</updated>
-		<id>{{ absolutePostUrl }}</id>
-		<content type="html"
-			>{{ post.content | renderTransforms(post.data.page, metadata.base) }}</content
-		>
-	</entry>
-	{%- endfor %}
+  <title>{{ metadata.title }}</title>
+  <subtitle>{{ metadata.description }}</subtitle>
+  <link href="{{ permalink | htmlBaseUrl(metadata.base) }}" rel="self" />
+  <link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
+  <updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  <id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
+  <author>
+    <name>{{ metadata.author.name }}</name>
+  </author>
+  {%- for post in collections.posts | reverse %}
+  {%- set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.base) }}{% endset %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}" />
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <content type="html">{{ post.content | renderTransforms(post.data.page, metadata.base) }}</content>
+  </entry>
+  {%- endfor %}
 </feed>
 ```
 

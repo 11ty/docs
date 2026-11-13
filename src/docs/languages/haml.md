@@ -31,35 +31,44 @@ The `haml` templating language was moved out of Eleventy core in v3 and now requ
 
 - [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-haml
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import hamlPlugin from "@11ty/eleventy-plugin-haml";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(hamlPlugin);
+	eleventyConfig.addPlugin(hamlPlugin);
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Use more options:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import haml from "hamljs";
 import hamlPlugin from "@11ty/eleventy-plugin-haml";
 
 export default function (eleventyConfig) {
-eleventyConfig.addPlugin(hamlPlugin, {
-// Override the `haml` library instance
-eleventyLibraryOverride: haml,
-});
+	eleventyConfig.addPlugin(hamlPlugin, {
+		// Override the `haml` library instance
+		eleventyLibraryOverride: haml,
+	});
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features

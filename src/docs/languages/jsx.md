@@ -22,28 +22,31 @@ layout: layouts/langs.njk
 {% addedin "3.0.0-alpha.11" %}Here we use [`tsx`]({{ externalLinks.tsxNodeUse }}) to process JSX files. If you’re looking for TypeScript only, there are [simpler methods in Node.js](/docs/languages/typescript/).
 
 <div class="codetitle">eleventy.config.js</div>
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
 
 export default function (eleventyConfig) {
-// We can add support for TypeScript too, at the same time:
-eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
-key: "11ty.js",
-compile: function () {
-return async function (data) {
-let content = await this.defaultRenderer(data);
-return renderToStaticMarkup(content);
-};
-},
-});
+	// We can add support for TypeScript too, at the same time:
+	eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+		key: "11ty.js",
+		compile: function () {
+			return async function (data) {
+				let content = await this.defaultRenderer(data);
+				return renderToStaticMarkup(content);
+			};
+		},
+	});
 
-    // Add to --formats via Configuration
-    // or via CLI: --formats=11ty.jsx,11ty.ts,11ty.tsx
-    eleventyConfig.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
-
+	// Add to --formats via Configuration
+	// or via CLI: --formats=11ty.jsx,11ty.ts,11ty.tsx
+	eleventyConfig.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
 }
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 Now Eleventy will find and process `**/*.11ty.{jsx,ts,tsx}` files.
@@ -61,23 +64,30 @@ If you’d like an approach that works with CommonJS and Eleventy 2.0, you can u
 Your config file might look like this:
 
 {% codetitle "eleventy.config.js (CommonJS)" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 const { register } = require("esbuild-register/dist/node");
 
 register();
 
 module.exports = function(eleventyConfig) {
-// We can add support for TypeScript too, at the same time:
-eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
-key: "11ty.js",
-});
+	// We can add support for TypeScript too, at the same time:
+	eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+		key: "11ty.js",
+	});
 };
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 Now run Eleventy and tell it to process `11ty.jsx` and `11ty.tsx` files:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npx @11ty/eleventy --formats=11ty.jsx,11ty.tsx
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
