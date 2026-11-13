@@ -23,6 +23,12 @@
 		--elv-toc-sticky-top: 9rem;
 	}
 }
+/* The home menu wraps search onto its own row until it stops wrapping at 930px */
+@media (min-width: 41.4375em) and (max-width: 58.0625em) {
+	.elv-header-default + .elv-layout .elv-toc {
+		--elv-toc-sticky-top: 6.75em;
+	}
+}
 @media (prefers-color-scheme: dark) {
 	.elv-toc {
 		--elv-toc-link-color: #86d0fb;
