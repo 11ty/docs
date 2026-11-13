@@ -1,0 +1,7 @@
+{
+	"url": "https://github.com/ello-lithuania/steadfast-eleventy",
+	"name": "Steadfast",
+	"description": "A one-page site for small service businesses: services, pricing, reviews, FAQ and contact, with light and dark modes. All content in one data file. Bootstrap 5 and Nunjucks.",
+	"author": "ello-lithuania",
+	"demo": "https://ello-lithuania.github.io/steadfast-eleventy/"
+}
