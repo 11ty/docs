@@ -5,14 +5,20 @@
 	--elv-toc-hover-color: #dff7ff;
 	font-size: 1rem; /* Reset */
 }
-.elv-header-docs + .elv-layout .elv-toc {
+.elv-header + .elv-layout .elv-toc {
 	--elv-toc-sticky-top: 5.625rem;
 }
 @media (min-width: 55em) {
 	/* 880px */
-	.elv-header-docs + .elv-layout .elv-toc {
+	.elv-header + .elv-layout .elv-toc {
 		/* Clears the border too, so the column’s top edge isn’t tucked under the header */
 		--elv-toc-sticky-top: 4.25rem;
+	}
+}
+/* The home menu wraps search onto its own row until it stops wrapping at 930px */
+@media (min-width: 41.4375em) and (max-width: 58.0625em) {
+	.elv-header-default + .elv-layout .elv-toc {
+		--elv-toc-sticky-top: 6.75em;
 	}
 }
 @media (prefers-color-scheme: dark) {
@@ -354,8 +360,8 @@
 	/* Shown only when there’s room for a column of its own */
 	display: none;
 }
-/* Clears the sticky docs header, like the left column */
-.elv-header-docs + .elv-layout .elv-headings-toc {
+/* Clears the sticky header, like the left column */
+.elv-header + .elv-layout .elv-headings-toc {
 	--elv-headings-toc-sticky-top: 5rem;
 }
 .elv-headings-toc-hed {

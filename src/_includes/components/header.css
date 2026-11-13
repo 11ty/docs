@@ -66,16 +66,21 @@
 /* Sticky, #2col × 600px */
 @media (min-width: 41.4375em) and (min-height: 43.75em) {
 	/* Take care with the sticky toc too */
-	.elv-header.elv-header-docs {
+	.elv-header.elv-header-docs,
+	.elv-header.elv-header-default .elv-menu {
 		position: sticky;
 		top: 0;
 		z-index: 2;
 	}
-	:root:has(.elv-header.elv-header-docs, :target) {
+	/* Only the menu sticks on the home page, so it needs the page rather than the header as its container */
+	.elv-header.elv-header-default {
+		display: contents;
+	}
+	:root:has(.elv-header, :target) {
 		scroll-padding-top: 3.75em; /* 60px /16 */
 	}
 	/* Leave extra room for tabs links */
-	:root:has(.elv-header.elv-header-docs, [role="tabpanel"]:target) {
+	:root:has(.elv-header, [role="tabpanel"]:target) {
 		scroll-padding-top: 6em;
 	}
 }
