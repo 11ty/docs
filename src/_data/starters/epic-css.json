@@ -2,6 +2,6 @@
 	"url": "https://github.com/jeremyfaucher/epic-css-11ty-theme",
 	"name": "Epic CSS",
 	"description": "Built in utility-first, Sass UI library 11ty theme and Epic CSS. Starter blog loop, categories and subcategories, breadcrumbs and all-in-one SEO file.",
-  "author": "jeremyfaucher",
+	"author": "jeremyfaucher",
 	"demo": "https://epic-css-11ty-theme.netlify.app/"
 }

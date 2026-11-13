@@ -12,6 +12,7 @@ Add data in your template front matter, like this:
 {% codetitle "YAML", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 title: My page title
 ---
 
@@ -52,7 +53,7 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 {%- set codeBlock %}{% raw %}
 ---json
 {
-  "title": "My page title"
+"title": "My page title"
 }
 ---
 
@@ -73,7 +74,7 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 const title = "My page title";
 
 function currentDate() {
-	return (new Date()).toLocaleString();
+return (new Date()).toLocaleString();
 }
 ---
 
@@ -83,7 +84,6 @@ function currentDate() {
 {{ codeBlock | highlight("jinja2") | safe }}
 
 _Warning: while Nunjucks and Liquid syntax are similar, the above example will **not** work in Liquid. Liquid does not allow function execution in output (e.g. `{% raw %}{{ currentDate() }}{% endraw %}`)._
-
 
 <details>
 <summary><strong>More Advanced Examples of JavaScript Front Matter</strong></summary>
@@ -103,7 +103,9 @@ const { noop } = await import("@zachleat/noop");
 // access Node.js globals like console.log
 console.log({ noop });
 ---
+
 <!-- The template content goes here -->
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
 
@@ -117,11 +119,11 @@ console.log({ noop });
 {%- set codeBlock %}{% raw %}
 ---js
 {
-  title: "My page title",
-  currentDate: function() {
-    // You can have a JavaScript function here!
-    return (new Date()).toLocaleString();
-  }
+title: "My page title",
+currentDate: function() {
+// You can have a JavaScript function here!
+return (new Date()).toLocaleString();
+}
 }
 ---
 

@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-drawio",
-  "author": "kev4ev",
-  "description": "embed diagrams.net (.drawio) diagrams in your pages"
+	"npm": "eleventy-plugin-drawio",
+	"author": "kev4ev",
+	"description": "embed diagrams.net (.drawio) diagrams in your pages"
 }

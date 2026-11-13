@@ -17,9 +17,9 @@ Useful if you want to change or override the default Browsersync configuration. 
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setBrowserSyncConfig({
-		notify: true,
-	});
+eleventyConfig.setBrowserSyncConfig({
+notify: true,
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -30,9 +30,9 @@ New in [`browser-sync@2.27.1`](https://github.com/BrowserSync/browser-sync/issue
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setBrowserSyncConfig({
-		snippet: false,
-	});
+eleventyConfig.setBrowserSyncConfig({
+snippet: false,
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

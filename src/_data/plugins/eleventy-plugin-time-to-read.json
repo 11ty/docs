@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-time-to-read",
-  "author": "jkc_codes",
-  "description": "A reading time calculator supporting output in hundreds of languages."
+	"npm": "eleventy-plugin-time-to-read",
+	"author": "jkc_codes",
+	"description": "A reading time calculator supporting output in hundreds of languages."
 }

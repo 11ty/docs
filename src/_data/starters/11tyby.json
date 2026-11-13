@@ -2,6 +2,6 @@
 	"url": "https://github.com/jahilldev/11tyby",
 	"name": "11tyby",
 	"description": "11tyby tries to emulate the great DX of Gatsby, but with 11ty! It's setup with TypeScript, SASS, CSS Modules, Webpack, Preact and more. All optimised for performance.",
-  	"author": "jahilldev",
-  	"demo": "https://11tyby.netlify.app/"
+	"author": "jahilldev",
+	"demo": "https://11tyby.netlify.app/"
 }

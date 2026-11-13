@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-inline-link-favicon",
-  "author": "bmuenzenmeyer",
-  "description": "Add an inline favicon image to a link."
+	"npm": "eleventy-plugin-inline-link-favicon",
+	"author": "bmuenzenmeyer",
+	"description": "Add an inline favicon image to a link."
 }

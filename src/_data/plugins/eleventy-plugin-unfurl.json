@@ -1,5 +1,5 @@
 {
-   "npm": "eleventy-plugin-unfurl",
-   "author": "DavidDarnes",
-   "description": "Unfurl links into rich 'cards', as seen in places like Slack and Twitter"
- }
+	"npm": "eleventy-plugin-unfurl",
+	"author": "DavidDarnes",
+	"description": "Unfurl links into rich 'cards', as seen in places like Slack and Twitter"
+}

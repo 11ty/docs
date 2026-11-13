@@ -7,7 +7,7 @@ eleventyNavigation:
 
 # CommonJS, ESM, and TypeScript
 
-* Related: [JavaScript Modules on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- Related: [JavaScript Modules on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 
 Eleventy works with many different flavors of JavaScript:
 
@@ -144,7 +144,7 @@ Your [configuration file](/docs/config.md) using ESM can use Eleventy bundled pl
 import { I18nPlugin, RenderPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
-	// …
+// …
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -162,7 +162,7 @@ Consider this CommonJS configuration file:
 const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function (eleventyConfig) {
-	// …
+// …
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -177,8 +177,8 @@ For older versions of Node.js, you’ll need to use a dynamic `import()` instead
 
 {%- set codeBlock %}{% raw %}
 module.exports = async function (eleventyConfig) {
-	const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = await import("@11ty/eleventy");
-	// …
+const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = await import("@11ty/eleventy");
+// …
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -193,8 +193,8 @@ But if you’re on an older version of Node, you can use ESM plugins in a Common
 
 {%- set codeBlock %}{% raw %}
 module.exports = async function (eleventyConfig) {
-	const { default: myPlugin } = await import("my-eleventy-plugin");
-	// …
+const { default: myPlugin } = await import("my-eleventy-plugin");
+// …
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}

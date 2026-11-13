@@ -1,6 +1,6 @@
 .elv-possum {
 	position: absolute;
-	right: .5rem;
+	right: 0.5rem;
 	top: 0.5rem;
 	transition: 0.3s opacity ease-out;
 	filter: drop-shadow(3px 3px #0006);
@@ -14,7 +14,7 @@
 	height: 20vh;
 }
 .elv-header-docs .elv-possum {
-	width: calc(var(--possum-margin) - .5rem);
+	width: calc(var(--possum-margin) - 0.5rem);
 	height: auto;
 	aspect-ratio: 790 / 2125;
 	filter: drop-shadow(1px 1px #0006);
@@ -26,7 +26,8 @@
 		display: none;
 	}
 }
-@media (min-width: 41.4375em) and (max-width: 78.125em) { /* 663px-1250px */
+@media (min-width: 41.4375em) and (max-width: 78.125em) {
+	/* 663px-1250px */
 	.elv-header-docs:has(.announcement) .products-max {
 		padding-right: calc(var(--possum-margin) - 1em); /* subtract link padding */
 	}

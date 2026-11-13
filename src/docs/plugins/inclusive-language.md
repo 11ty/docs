@@ -44,7 +44,7 @@ Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPl
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(inclusiveLangPlugin);
+eleventyConfig.addPlugin(inclusiveLangPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -59,13 +59,14 @@ Optionally pass in an options object as the second argument to `addPlugin` to fu
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(inclusiveLangPlugin, {
-		templateFormats: ["md"], // default, add more file extensions here
+eleventyConfig.addPlugin(inclusiveLangPlugin, {
+templateFormats: ["md"], // default, add more file extensions here
 
-		// accepts an array or a comma-delimited string
-		words:
-			"simply,obviously,basically,of course,clearly,just,everyone knows,however,easy",
-	});
+    	// accepts an array or a comma-delimited string
+    	words:
+    		"simply,obviously,basically,of course,clearly,just,everyone knows,however,easy",
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

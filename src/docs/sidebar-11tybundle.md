@@ -7,4 +7,3 @@ eleventyNavigation:
   excerpt: All of the 11ty resources, curated by Bob Monsour!
 permalink: false
 ---
-

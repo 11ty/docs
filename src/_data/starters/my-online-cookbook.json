@@ -3,5 +3,5 @@
 	"name": "My Online Cookbook",
 	"description": "An easily customisable starter kit to create your own cookbook of online recipes, using Netlify CMS.",
 	"demo": "https://myonlinecookbook.netlify.app/",
-  "author": "maeligg"
+	"author": "maeligg"
 }

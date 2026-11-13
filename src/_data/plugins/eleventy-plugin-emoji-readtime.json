@@ -1,5 +1,5 @@
 {
-  "npm": "@11tyrocks/eleventy-plugin-emoji-readtime",
-  "author": "5t3ph",
-  "description": "provides a configurable filter to display an estimated read time for Eleventy content, optionally with an emoji visual indicator."
+	"npm": "@11tyrocks/eleventy-plugin-emoji-readtime",
+	"author": "5t3ph",
+	"description": "provides a configurable filter to display an estimated read time for Eleventy content, optionally with an emoji visual indicator."
 }

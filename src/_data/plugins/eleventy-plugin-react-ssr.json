@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-react-ssr",
-  "author": "@scinos",
-  "description": "Write your static content using React SSR (JSX) and transform it using Babel"
+	"npm": "eleventy-plugin-react-ssr",
+	"author": "@scinos",
+	"description": "Write your static content using React SSR (JSX) and transform it using Babel"
 }

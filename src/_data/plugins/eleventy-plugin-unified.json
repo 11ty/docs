@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-unified",
-  "author": "NickColley",
-  "description": "Use the unified ecosystem in Eleventy with remark and rehype."
+	"npm": "eleventy-plugin-unified",
+	"author": "NickColley",
+	"description": "Use the unified ecosystem in Eleventy with remark and rehype."
 }

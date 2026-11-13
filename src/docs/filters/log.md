@@ -44,7 +44,7 @@ eleventyNavigation:
 export default function (data) {
 	// Caveat: you have access to `console.log` here, so probably use that.
 	return this.log("My Title");
-};
+}
 ```
 
 {% endraw %}

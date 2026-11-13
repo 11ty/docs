@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-mtos",
-  "author": "satireven",
-  "description": "A plugin for Eleventy that turns your site into a single page application."
+	"npm": "eleventy-plugin-mtos",
+	"author": "satireven",
+	"description": "A plugin for Eleventy that turns your site into a single page application."
 }

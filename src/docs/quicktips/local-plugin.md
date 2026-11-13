@@ -24,7 +24,7 @@ Next, use the `addPlugin` method:
 import localPlugin from "./config/local-plugin.js";
 
 export default function(eleventyConfig) {
-	eleventyConfig.addPlugin(localPlugin);
+eleventyConfig.addPlugin(localPlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

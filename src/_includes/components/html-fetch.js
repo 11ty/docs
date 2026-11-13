@@ -52,11 +52,7 @@ class HtmlFetch extends HTMLElement {
 
 			// remove attribute so we don’t reprocess it
 			this.removeAttribute(this.attrs.src);
-			this.inject(
-				this.getTarget(),
-				text,
-				this.hasAttribute(this.attrs.replace)
-			);
+			this.inject(this.getTarget(), text, this.hasAttribute(this.attrs.replace));
 		} catch (e) {
 			console.log("html-fetch failed", e);
 		}

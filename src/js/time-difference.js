@@ -3,14 +3,14 @@ class TimeDifference extends HTMLElement {
 
 	// Order of these keys in important
 	static UNITS = {
-		milliseconds: .001,
-		seconds:  1,
-		minutes:  60,
-		hours:    60 * 60,
-		days:     60 * 60 * 24,
-		weeks:    60 * 60 * 24 * 7,
-		months:   60 * 60 * 24 * (365/12),
-		years:    60 * 60 * 24 * 365,
+		milliseconds: 0.001,
+		seconds: 1,
+		minutes: 60,
+		hours: 60 * 60,
+		days: 60 * 60 * 24,
+		weeks: 60 * 60 * 24 * 7,
+		months: 60 * 60 * 24 * (365 / 12),
+		years: 60 * 60 * 24 * 365,
 	};
 
 	static MINIMUM_ROUND_UP = 0.8;
@@ -44,12 +44,12 @@ class TimeDifference extends HTMLElement {
 	get intervalTimeout() {
 		// numeric override (seconds)
 		let attr = this.getAttribute("interval");
-		if(attr) {
+		if (attr) {
 			return parseInt(attr, 10) * 1000;
 		}
 
 		// use units if specified
-		if(this.units) {
+		if (this.units) {
 			return TimeDifference.UNITS[this.units] * 1000;
 		}
 
@@ -60,8 +60,8 @@ class TimeDifference extends HTMLElement {
 	static getUnits(date1, date2) {
 		let diff = Math.abs(date1 - date2) / 1000;
 		let prev;
-		for(let unit in TimeDifference.UNITS) {
-			if(diff < TimeDifference.UNITS[unit]) {
+		for (let unit in TimeDifference.UNITS) {
+			if (diff < TimeDifference.UNITS[unit]) {
 				return prev || unit;
 			}
 			prev = unit;
@@ -80,46 +80,46 @@ class TimeDifference extends HTMLElement {
 		let modes = (mode || "").split(",");
 
 		let date1;
-		if(!isNaN(Date.parse(dateStr))) {
+		if (!isNaN(Date.parse(dateStr))) {
 			date1 = Date.parse(dateStr);
 		} else {
 			// Timestamp
 			date1 = new Date(parseInt(dateStr, 10));
 		}
 		let date2 = Date.now();
-		if(!date1 || !date2) {
+		if (!date1 || !date2) {
 			return;
 		}
 
 		units = units || this.getUnits(date1, date2);
 		let divisor = TimeDifference.getDivisor(units);
 		let diff = (date1 - date2) / divisor;
-		let amountDiff = diff/Math.round(diff);
+		let amountDiff = diff / Math.round(diff);
 		// stops at 0
-		if(modes.includes("countdown")) {
+		if (modes.includes("countdown")) {
 			diff = Math.max(Math.floor(diff), 0); // minimum 0
 		}
 		let str = "";
-		if(units === "milliseconds") {
+		if (units === "milliseconds") {
 			// milliseconds are not supported by RelativeTimeFormat
 			let numFormat = new Intl.NumberFormat();
 			str = `${diff > 0 ? "in " : ""}${numFormat.format(diff)} milliseconds`;
 		} else {
 			let rtf = new Intl.RelativeTimeFormat(locale, { numeric: "always" });
 			// super close to next whole unit, round up
-			if( amountDiff < 1 && amountDiff > this.MINIMUM_ROUND_UP ) {
+			if (amountDiff < 1 && amountDiff > this.MINIMUM_ROUND_UP) {
 				str = rtf.format(Math.round(diff), units);
-			} else if(diff < 0) {
+			} else if (diff < 0) {
 				str = rtf.format(Math.ceil(diff), units);
 			} else {
 				str = rtf.format(Math.floor(diff), units);
 			}
 		}
 
-		if(modes.includes("strip-prefix") && str?.toLowerCase().startsWith("in ")) {
+		if (modes.includes("strip-prefix") && str?.toLowerCase().startsWith("in ")) {
 			str = str.slice(3);
 		}
-		if(modes.includes("strip-suffix") && str?.toLowerCase().endsWith(" ago")) {
+		if (modes.includes("strip-suffix") && str?.toLowerCase().endsWith(" ago")) {
 			str = str.slice(0, -4);
 		}
 
@@ -131,14 +131,14 @@ class TimeDifference extends HTMLElement {
 	}
 
 	update() {
-		if(this.isPaused()) {
+		if (this.isPaused()) {
 			return;
 		}
 
 		requestAnimationFrame(() => {
-			this.time.forEach(timeEl => {
+			this.time.forEach((timeEl) => {
 				let dateStr = timeEl.getAttribute("datetime");
-				if(!dateStr) {
+				if (!dateStr) {
 					// For Shadow DOM method, using a global <template>
 					dateStr = this.getAttribute("date");
 				}
@@ -151,16 +151,17 @@ class TimeDifference extends HTMLElement {
 					prefix: this.prefix,
 					suffix: this.suffix,
 				});
-			})
+			});
 		});
 	}
 
 	async getInterval() {
 		let min = 40;
 
-		if("getBattery" in navigator) {
+		if ("getBattery" in navigator) {
 			let battery = await navigator.getBattery();
-			if(battery.level <= .5) { // Bump the interval on lower-battery
+			if (battery.level <= 0.5) {
+				// Bump the interval on lower-battery
 				min = 1000;
 			}
 		}
@@ -171,14 +172,14 @@ class TimeDifference extends HTMLElement {
 	async connectedCallback() {
 		this.update();
 
-		this.time.forEach(timeEl => {
+		this.time.forEach((timeEl) => {
 			timeEl.style["font-variant-numeric"] = "tabular-nums";
 		});
 
-		if(this.live) {
+		if (this.live) {
 			// Minimum 40 milliseconds
 			let interval = await this.getInterval();
-			if(this.#interval) {
+			if (this.#interval) {
 				clearInterval(this.#interval);
 			}
 			this.#interval = setInterval(this.update.bind(this), interval);
@@ -186,6 +187,6 @@ class TimeDifference extends HTMLElement {
 	}
 }
 
-if(("customElements" in window) && Date.parse && ("Intl" in window) && Intl.RelativeTimeFormat) {
+if ("customElements" in window && Date.parse && "Intl" in window && Intl.RelativeTimeFormat) {
 	window.customElements.define("time-difference", TimeDifference);
 }

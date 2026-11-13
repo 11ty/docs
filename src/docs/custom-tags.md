@@ -27,22 +27,23 @@ But, after all that, you can still add a Custom Tag using the [Configuration API
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-{% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
-  // Usage: {% uppercase "alice" %}{% endraw %}
-  eleventyConfig.addLiquidTag("uppercase", function (liquidEngine) {
-    return {
-      parse: function (tagToken, remainingTokens) {
-        this.str = tagToken.args; // myVar or "alice"
-      },
-      render: async function (scope, hash) {
-        // Resolve variables
-        var str = await this.liquid.evalValue(this.str, scope); // "alice"
+{% raw %} // Usage: {% uppercase myVar %} where myVar has a value of "alice"
+// Usage: {% uppercase "alice" %}{% endraw %}
+eleventyConfig.addLiquidTag("uppercase", function (liquidEngine) {
+return {
+parse: function (tagToken, remainingTokens) {
+this.str = tagToken.args; // myVar or "alice"
+},
+render: async function (scope, hash) {
+// Resolve variables
+var str = await this.liquid.evalValue(this.str, scope); // "alice"
 
         // Do the uppercasing
         return str.toUpperCase(); // "ALICE"
       },
     };
-  });
+
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -55,11 +56,11 @@ See all of the [built-in tag implementations for LiquidJS](https://liquidjs.com/
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-{% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
-  // Usage: {% uppercase "alice" %}{% endraw %}
-  eleventyConfig.addNunjucksTag("uppercase", function (nunjucksEngine) {
-    return new (function () {
-      this.tags = ["uppercase"];
+{% raw %} // Usage: {% uppercase myVar %} where myVar has a value of "alice"
+// Usage: {% uppercase "alice" %}{% endraw %}
+eleventyConfig.addNunjucksTag("uppercase", function (nunjucksEngine) {
+return new (function () {
+this.tags = ["uppercase"];
 
       this.parse = function (parser, nodes, lexer) {
         var tok = parser.nextToken();
@@ -77,7 +78,8 @@ export default function (eleventyConfig) {
         callback(null, ret);
       };
     })();
-  });
+
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -9,6 +9,7 @@ ogimageOverride:
   alt: The Font Awesome logo + the 11ty logo
   type: image/png
 ---
+
 <div class="opengraph-card"><a href="https://blog.fontawesome.com/eleventy-joins-font-awesome/" class="elv-externalexempt"><img src="./fa-2.png" alt="Font Awesome + 11ty logos"></a></div>
 
 Today—I’m delighted to announce that 11ty is joining the excellent team at [<i class="fa-brands fa-font-awesome"></i>_Font Awesome_](https://fontawesome.com/).
@@ -17,9 +18,9 @@ _Read more on [Blog Awesome: Eleventy joins Font Awesome](https://blog.fontaweso
 
 You’re probably already familiar with the folks at Font Awesome.
 
-* Maybe you’ve used their excellent open source [icon library](https://fontawesome.com/icons).
-* Perhaps you’ve used the newly minted open source web components library [Web Awesome](https://blog.fontawesome.com/introducing-web-awesome/) (a.k.a. Shoelace).
-* But surely you remember one of the [legendary promo videos from their wildly successful Kickstarter campaigns](https://www.youtube.com/playlist?list=PLd3CSqexVW6fZv3VTnquaZPmY1XOC9A9h).
+- Maybe you’ve used their excellent open source [icon library](https://fontawesome.com/icons).
+- Perhaps you’ve used the newly minted open source web components library [Web Awesome](https://blog.fontawesome.com/introducing-web-awesome/) (a.k.a. Shoelace).
+- But surely you remember one of the [legendary promo videos from their wildly successful Kickstarter campaigns](https://www.youtube.com/playlist?list=PLd3CSqexVW6fZv3VTnquaZPmY1XOC9A9h).
 
 ## What does this mean for Eleventy?
 

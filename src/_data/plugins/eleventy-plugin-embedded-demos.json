@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-embedded-demos",
-  "author": "CodeFoodPixels",
-  "description": "A plugin for eleventy that allows you to have embedded demos using HTML, CSS and JavaScript, as well as having the code from those demos displayed in the page."
+	"npm": "eleventy-plugin-embedded-demos",
+	"author": "CodeFoodPixels",
+	"description": "A plugin for eleventy that allows you to have embedded demos using HTML, CSS and JavaScript, as well as having the code from those demos displayed in the page."
 }

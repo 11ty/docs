@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-purgecss",
-  "author": "proog",
-  "description": "will remove unused CSS using PurgeCSS."
+	"npm": "eleventy-plugin-purgecss",
+	"author": "proog",
+	"description": "will remove unused CSS using PurgeCSS."
 }

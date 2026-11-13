@@ -15,8 +15,8 @@ The first value of `addGlobalData` is the key that will be available to your tem
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Values can be static:
-	eleventyConfig.addGlobalData("myString", "myValue");
+// Values can be static:
+eleventyConfig.addGlobalData("myString", "myValue");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -27,11 +27,10 @@ The first argument can be any [lodash-set compatible path](https://lodash.com/do
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("myNestedObject.myString", "myValue");
+eleventyConfig.addGlobalData("myNestedObject.myString", "myValue");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
-
 
 ## Functions
 
@@ -39,9 +38,10 @@ Importantly, passing a `function` to `addGlobalData` will evaluate that function
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("myDate", () => new Date());
+eleventyConfig.addGlobalData("myDate", () => new Date());
 
-	// myDate’s value will be a Date instance
+    // myDate’s value will be a Date instance
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -50,11 +50,12 @@ If you want a `function` returned, make sure you nest it:
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("myFunction", () => {
-		return () => new Date();
-	});
+eleventyConfig.addGlobalData("myFunction", () => {
+return () => new Date();
+});
 
-	// myFunction’s value will be a function that returns a Date instance
+    // myFunction’s value will be a function that returns a Date instance
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -63,11 +64,12 @@ The above is important to know when using this API with [Computed Data](/docs/da
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addGlobalData("eleventyComputed.myString", () => {
-		return (data) => "This is a string!";
-	});
+eleventyConfig.addGlobalData("eleventyComputed.myString", () => {
+return (data) => "This is a string!";
+});
 
-	// myString’s value will be "This is a string!"
+    // myString’s value will be "This is a string!"
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -76,17 +78,18 @@ export default function (eleventyConfig) {
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// or a promise:
-	eleventyConfig.addGlobalData("myFunctionPromise", () => {
-		return new Promise((resolve) => {
-			setTimeout(resolve, 100, "foo");
-		});
-	});
+// or a promise:
+eleventyConfig.addGlobalData("myFunctionPromise", () => {
+return new Promise((resolve) => {
+setTimeout(resolve, 100, "foo");
+});
+});
 
-	// or async:
-	eleventyConfig.addGlobalData("myAsyncFunction", async () => {
-		return Promise.resolve("hi");
-	});
+    // or async:
+    eleventyConfig.addGlobalData("myAsyncFunction", async () => {
+    	return Promise.resolve("hi");
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

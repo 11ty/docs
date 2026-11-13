@@ -26,8 +26,7 @@ tables, and more.
 | ------------------- | -------------- | ---------------------------------------------------------- |
 | `md`                | `.md`          | [`markdown-it`](https://www.npmjs.com/package/markdown-it) |
 
-* Related languages: [MDX](/docs/languages/mdx/)
-
+- Related languages: [MDX](/docs/languages/mdx/)
 
 {% callout "info" %}
 Markdown files are by default pre-processed as Liquid templates. <a href="/docs/config/#default-template-engine-for-markdown-files">You can change this default in your configuration file</a> (or disable it altogether). To change this for a single template and not globally, read <a href="/docs/template-overrides/">Changing a Template’s Rendering Engine</a>.
@@ -51,13 +50,14 @@ Pass in your own instance of the Markdown library using the Configuration API. S
 import markdownIt from "markdown-it";
 
 export default function (eleventyConfig) {
-	let options = {
-		html: true,
-		breaks: true,
-		linkify: true,
-	};
+let options = {
+html: true,
+breaks: true,
+linkify: true,
+};
 
-	eleventyConfig.setLibrary("md", markdownIt(options));
+    eleventyConfig.setLibrary("md", markdownIt(options));
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -68,7 +68,7 @@ Run your own callback on the provided Library instance (the default _or_ any pro
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.enable("code"));
+eleventyConfig.amendLibrary("md", (mdLib) => mdLib.enable("code"));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -84,7 +84,7 @@ Pass in your own `markdown-it` plugins using the `amendLibrary` (Eleventy &gt;= 
 import { full as emoji } from "markdown-it-emoji";
 
 export default function (eleventyConfig) {
-	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(emoji));
+eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(emoji));
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -204,13 +204,14 @@ The truth is, **you can** return markdown inside shortcodes (as long as the file
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.addPairedShortcode("myShortcode", function (content) {
-		// Method A: ✅ This works fine
-		return content;
+eleventyConfig.addPairedShortcode("myShortcode", function (content) {
+// Method A: ✅ This works fine
+return content;
 
-		// Method B: ⚠️ Careful when wrapping with HTML
-		return `<div>${content}</div>`;
-	});
+    	// Method B: ⚠️ Careful when wrapping with HTML
+    	return `<div>${content}</div>`;
+    });
+
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -230,9 +231,9 @@ export default function(eleventyConfig) {
 
 ## Module versions
 
-| Eleventy version | `markdown-it` version |
-| --- | --- |
-| `@11ty/eleventy@0.x` | `markdown-it@10.x` |
-| `@11ty/eleventy@1.x` | `markdown-it@12.x` |
-| `@11ty/eleventy@2.x` | `markdown-it@13.x` |
-| `@11ty/eleventy@3.x` | `markdown-it@14.x` |
+| Eleventy version     | `markdown-it` version |
+| -------------------- | --------------------- |
+| `@11ty/eleventy@0.x` | `markdown-it@10.x`    |
+| `@11ty/eleventy@1.x` | `markdown-it@12.x`    |
+| `@11ty/eleventy@2.x` | `markdown-it@13.x`    |
+| `@11ty/eleventy@3.x` | `markdown-it@14.x`    |

@@ -20,7 +20,7 @@ export function data() {
 			key: "Firehose",
 			parent: "Community",
 			order: 1.1,
-		}
+		},
 	};
 }
 
@@ -94,7 +94,7 @@ ${firehose
 		}
 
 		return `<div data-filter-type="${getSlugFromTitle(
-			`${entry.sourceLabel}: ${entry.title}`
+			`${entry.sourceLabel}: ${entry.title}`,
 		)}">${this.callout(
 			`<p><strong><a href="${entry.url}">${escapeText(entry.title)}</a></strong></p>${content}`,
 			"info",

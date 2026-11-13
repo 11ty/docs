@@ -27,19 +27,16 @@ importer.addSource("atom", {
 });
 // Warning: at time of writing Eleventy has 51 repos, beware if this grows beyond the max of 100
 const PER_PAGE = 100; // max: 100
-let githubOrgRepos = await Fetch(
-	`https://api.github.com/orgs/11ty/repos?per_page=${PER_PAGE}`,
-	{
-		type: "json",
-		duration: "12h",
-		directory: ".cache/eleventy-fetch/",
-		fetchOptions: {
-			headers: {
-				Authorization: `bearer ${process.env.GITHUB_READ_TOKEN}`,
-			},
+let githubOrgRepos = await Fetch(`https://api.github.com/orgs/11ty/repos?per_page=${PER_PAGE}`, {
+	type: "json",
+	duration: "12h",
+	directory: ".cache/eleventy-fetch/",
+	fetchOptions: {
+		headers: {
+			Authorization: `bearer ${process.env.GITHUB_READ_TOKEN}`,
 		},
-	}
-);
+	},
+});
 
 for (let repository of githubOrgRepos) {
 	if (repository.visibility === "public") {

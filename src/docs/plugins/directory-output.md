@@ -26,8 +26,8 @@ Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPl
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
 export default function (eleventyConfig) {
-	eleventyConfig.setQuietMode(true);
-	eleventyConfig.addPlugin(dirOutputPlugin);
+eleventyConfig.setQuietMode(true);
+eleventyConfig.addPlugin(dirOutputPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -42,17 +42,18 @@ Read more about [Eleventy plugins.](/docs/plugins/)
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
 export default function (eleventyConfig) {
-	eleventyConfig.setQuietMode(true);
-	eleventyConfig.addPlugin(dirOutputPlugin, {
-		// Customize columns
-		columns: {
-			filesize: true, // Use `false` to disable
-			benchmark: true, // Use `false` to disable
-		},
+eleventyConfig.setQuietMode(true);
+eleventyConfig.addPlugin(dirOutputPlugin, {
+// Customize columns
+columns: {
+filesize: true, // Use `false` to disable
+benchmark: true, // Use `false` to disable
+},
 
-		// Will show in yellow if greater than this number of bytes
-		warningFileSize: 400 * 1000,
-	});
+    	// Will show in yellow if greater than this number of bytes
+    	warningFileSize: 400 * 1000,
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -2,9 +2,7 @@ import { glob } from "tinyglobby";
 import { Importer } from "@11ty/import";
 
 // Relative to the folder targeted below
-let paths = (await glob("src/docs/**/*.md")).map((filePath) =>
-	filePath.slice("src/".length)
-);
+let paths = (await glob("src/docs/**/*.md")).map((filePath) => filePath.slice("src/".length));
 
 let importer = new Importer();
 // Targeting `src` keeps both the data files and the downloaded avatars inside it

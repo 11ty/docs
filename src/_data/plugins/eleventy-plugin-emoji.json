@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-emoji",
-  "author": "snmcp",
-  "description": "An accessible emoji shortcode and filter for your Eleventy projects"
+	"npm": "eleventy-plugin-emoji",
+	"author": "snmcp",
+	"description": "An accessible emoji shortcode and filter for your Eleventy projects"
 }

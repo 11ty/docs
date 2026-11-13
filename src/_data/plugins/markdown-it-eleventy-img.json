@@ -1,5 +1,5 @@
 {
-  "npm": "markdown-it-eleventy-img",
-  "author": "@huot_mathieu",
-  "description": "A markdown-it plugin that process images through the eleventy-img plugin. Can be used in any projects that use markdown-it. Fully compatible with Eleventy!"
+	"npm": "markdown-it-eleventy-img",
+	"author": "@huot_mathieu",
+	"description": "A markdown-it plugin that process images through the eleventy-img plugin. Can be used in any projects that use markdown-it. Fully compatible with Eleventy!"
 }

@@ -1,6 +1,6 @@
 {
-  "url": "https://github.com/shadowtime2000/11ty-notes",
-  "name": "11ty-notes",
-  "description": "11ty-notes is an Eleventy starter to manage your notes so you don't forget stuff",
-  "demo": "https://11ty-notes.vercel.app"
+	"url": "https://github.com/shadowtime2000/11ty-notes",
+	"name": "11ty-notes",
+	"description": "11ty-notes is an Eleventy starter to manage your notes so you don't forget stuff",
+	"demo": "https://11ty-notes.vercel.app"
 }

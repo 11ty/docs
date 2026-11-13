@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-nbsp-filter",
-  "author": "jeremenichelli",
-  "description": "Filter for Eleventy to replace spaces between words with &nbsp; characters."
+	"npm": "eleventy-nbsp-filter",
+	"author": "jeremenichelli",
+	"description": "Filter for Eleventy to replace spaces between words with &nbsp; characters."
 }

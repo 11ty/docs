@@ -1,7 +1,7 @@
 {
-  "url": "https://github.com/tskarhed/captains-log",
-  "name": "Captain's Log",
-  "description": "An old timey blog theme with blog posts that looks like old letters.",
-  "author": "tskarhed",
-  "demo": "https://captain-log.netlify.app/"
+	"url": "https://github.com/tskarhed/captains-log",
+	"name": "Captain's Log",
+	"description": "An old timey blog theme with blog posts that looks like old letters.",
+	"author": "tskarhed",
+	"demo": "https://captain-log.netlify.app/"
 }

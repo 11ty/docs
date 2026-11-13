@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-metagen",
-    "author": "tannerdolby",
-    "description": "will generate metadata for Open Graph, Twitter card, generic meta tags and a canonical link."
+	"npm": "eleventy-plugin-metagen",
+	"author": "tannerdolby",
+	"description": "will generate metadata for Open Graph, Twitter card, generic meta tags and a canonical link."
 }

@@ -6,7 +6,7 @@
 	color: #fff;
 	font-weight: 500;
 	padding: 0.25em 1em;
-	gap: .5em;
+	gap: 0.5em;
 }
 @media (min-width: 48em) {
 	/* 768px */
@@ -43,19 +43,19 @@
 	justify-content: center;
 	text-align: center;
 	flex-wrap: wrap;
-	gap: .5em;
-	padding: .5em 2em;
+	gap: 0.5em;
+	padding: 0.5em 2em;
 	text-decoration: none;
-	border-radius: .5em;
-	margin: .25em .25em .5em .25em;
-	border: .125rem solid var(--btn-shadow-color);
+	border-radius: 0.5em;
+	margin: 0.25em 0.25em 0.5em 0.25em;
+	border: 0.125rem solid var(--btn-shadow-color);
 }
 .announcement > a,
 .announcement > a:visited,
 .announcement > a:any-link {
 	background-color: var(--btn-bg);
 	color: var(--btn-color);
-	box-shadow: 0 .375rem 0 var(--btn-shadow-color);
+	box-shadow: 0 0.375rem 0 var(--btn-shadow-color);
 }
 .announcement-btn,
 .announcement-btn:visited,
@@ -65,9 +65,10 @@
 .announcement > a:any-link {
 	background-color: var(--btn-bg);
 	color: var(--btn-color);
-	box-shadow: 0 .375rem 0 var(--btn-shadow-color);
+	box-shadow: 0 0.375rem 0 var(--btn-shadow-color);
 }
-@media (max-width: 31.1875em) { /* 499px */
+@media (max-width: 31.1875em) {
+	/* 499px */
 	.announcement > a > span > b {
 		display: none;
 	}
@@ -103,11 +104,11 @@
 	background-color: color-mix(in oklab, var(--background-color), var(--btn-bg) 85%);
 }
 .announcement .announcement-tag {
-	font-size: .75em;
+	font-size: 0.75em;
 	text-transform: uppercase;
-	padding: .25em .75em;
-	border-radius: .25em;
-	background-color: rgba(0,0,0,.4);
+	padding: 0.25em 0.75em;
+	border-radius: 0.25em;
+	background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Progress bar */
@@ -121,7 +122,7 @@
 
 .announcement-progress {
 	--fundraise-accent-color: var(--brand-ba);
-	--fundraise-bg: rgba(255,255,255,.4);
+	--fundraise-bg: rgba(255, 255, 255, 0.4);
 	display: block;
 	position: absolute;
 	left: 0;
@@ -131,7 +132,7 @@
 	accent-color: var(--fundraise-accent-color);
 	width: 100%;
 	height: 100%;
-	border-radius: .4em;
+	border-radius: 0.4em;
 	overflow: hidden;
 	appearance: none;
 	pointer-events: none;
@@ -141,7 +142,7 @@
 @media (prefers-color-scheme: dark) {
 	.announcement-progress {
 		--fundraise-accent-color: #183153;
-		--fundraise-bg: rgba(0,0,0,.2);
+		--fundraise-bg: rgba(0, 0, 0, 0.2);
 	}
 }
 .announcement-progress::-webkit-progress-value {

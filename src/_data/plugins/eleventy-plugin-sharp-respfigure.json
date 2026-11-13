@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-sharp-respfigure",
-    "author": "tannerdolby",
-    "description": "will perform build-time image transformations with Sharp and generate responsive image markup inside <figure> tags."
+	"npm": "eleventy-plugin-sharp-respfigure",
+	"author": "tannerdolby",
+	"description": "will perform build-time image transformations with Sharp and generate responsive image markup inside <figure> tags."
 }

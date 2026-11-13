@@ -6,10 +6,10 @@ import fetchGitHubReleases from "./githubReleases.js";
 const STABLE_DOCS_URL = "https://www.11ty.dev/docs/";
 
 const NODE_MINIMUMS = {
-	"4": 22,
-	"3": 18,
-	"2": 14,
-	"1": 12,
+	4: 22,
+	3: 18,
+	2: 14,
+	1: 12,
 };
 
 const HARDCODED_VERSIONS = [
@@ -161,16 +161,16 @@ const HARDCODED_VERSIONS = [
 
 let githubReleases = await fetchGitHubReleases();
 
-for(let version of HARDCODED_VERSIONS) {
+for (let version of HARDCODED_VERSIONS) {
 	let key = version.tag.slice(1);
-	if(githubReleases[key]) {
+	if (githubReleases[key]) {
 		githubReleases[key] = {
 			...githubReleases[key],
 			...version,
-		}
+		};
 	} else {
 		githubReleases[key] = {
-			...version
+			...version,
 		};
 	}
 
@@ -183,11 +183,11 @@ let versions = Object.values(githubReleases);
 // Add tag for latest stable
 let latestStableMajor;
 
-for(let version of versions) {
-	if( version.channel && version.channel !== "latest" ) {
+for (let version of versions) {
+	if (version.channel && version.channel !== "latest") {
 		continue;
 	}
-	if( !config.prerelease && version.prerelease ) {
+	if (!config.prerelease && version.prerelease) {
 		continue;
 	}
 	version.latestStableRelease = true;
@@ -197,30 +197,30 @@ for(let version of versions) {
 }
 
 // Add docs_url and minimumNodeVersion
-for(let version of versions) {
+for (let version of versions) {
 	let versionMajor = semver.major(version.tag);
-	if(versionMajor === latestStableMajor) {
+	if (versionMajor === latestStableMajor) {
 		version.docs_url = STABLE_DOCS_URL;
-	} else if(version.docs_link_to_github) {
+	} else if (version.docs_link_to_github) {
 		version.docs_url = `https://github.com/11ty/eleventy/blob/${version.tag}/README.md`;
 	} else {
 		version.docs_url = `https://v${versionMajor}.11ty.dev/docs/`;
 	}
 
-	let nodeMin = NODE_MINIMUMS[""+versionMajor];
-	if(nodeMin) {
+	let nodeMin = NODE_MINIMUMS["" + versionMajor];
+	if (nodeMin) {
 		version.minimumNodeVersion = nodeMin;
 	}
 }
 
 versions.sort((a, b) => {
-	if(semver.gt(a.tag, b.tag)) {
+	if (semver.gt(a.tag, b.tag)) {
 		return -1;
 	}
-	if(semver.lt(a.tag, b.tag)) {
+	if (semver.lt(a.tag, b.tag)) {
 		return 1;
 	}
 	return 0;
-})
+});
 
 export default versions;

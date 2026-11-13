@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-green-links",
-  "author": "fershad",
-  "description": "Checks all links on a website and returns those which are hosted on verified green hosting providers from The Green Web Foundation's Green Web dataset."
+	"npm": "eleventy-plugin-green-links",
+	"author": "fershad",
+	"description": "Checks all links on a website and returns those which are hosted on verified green hosting providers from The Green Web Foundation's Green Web dataset."
 }

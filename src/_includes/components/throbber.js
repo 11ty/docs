@@ -25,10 +25,7 @@ window.customElements.define(
 
 					let timeDiff = Date.now() - startTime.getTime() - perInterval;
 
-					if (
-						timeDiff > perInterval * bar.length &&
-						bar.length < duration / 1000
-					) {
+					if (timeDiff > perInterval * bar.length && bar.length < duration / 1000) {
 						bar.push("=");
 					}
 
@@ -40,5 +37,5 @@ window.customElements.define(
 				});
 			}, animationSpeed);
 		}
-	}
+	},
 );

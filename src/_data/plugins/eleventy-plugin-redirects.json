@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-redirects",
-  "author": "@type__error",
-  "description": "Automatically generate a Netlify _redirects file, a Vercel vercel.json config file, or pages with client-side redirects from frontmatter aliases."
+	"npm": "eleventy-plugin-redirects",
+	"author": "@type__error",
+	"description": "Automatically generate a Netlify _redirects file, a Vercel vercel.json config file, or pages with client-side redirects from frontmatter aliases."
 }

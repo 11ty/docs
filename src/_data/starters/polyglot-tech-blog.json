@@ -1,6 +1,6 @@
 {
-  "url": "https://gitlab.com/florent_tassy/polyglot-tech-blog",
-  "name": "Polyglot Tech Blog",
-  "description": "An 11ty starter project for multilingual personal pages and blogs.",
-  "demo": "https://polyglot-tech-blog.netlify.app/"
+	"url": "https://gitlab.com/florent_tassy/polyglot-tech-blog",
+	"name": "Polyglot Tech Blog",
+	"description": "An 11ty starter project for multilingual personal pages and blogs.",
+	"demo": "https://polyglot-tech-blog.netlify.app/"
 }

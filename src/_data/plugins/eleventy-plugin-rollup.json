@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-rollup",
-  "author": "Snapstromegon",
-  "description": "Allows you to build js bundles directly from your templates using rollup."
+	"npm": "eleventy-plugin-rollup",
+	"author": "Snapstromegon",
+	"description": "Allows you to build js bundles directly from your templates using rollup."
 }

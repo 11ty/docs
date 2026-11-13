@@ -31,15 +31,16 @@ This code is currently in use on the Eleventy web site to display GitHub stars i
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
-	// https://developer.github.com/v3/repos/#get
-	let json = await Fetch("https://api.github.com/repos/11ty/eleventy", {
-		duration: "1d", // 1 day
-		type: "json", // also supports "text" or "buffer"
-	});
+// https://developer.github.com/v3/repos/#get
+let json = await Fetch("https://api.github.com/repos/11ty/eleventy", {
+duration: "1d", // 1 day
+type: "json", // also supports "text" or "buffer"
+});
 
-	return {
-		stargazers: json.stargazers_count,
-	};
+    return {
+    	stargazers: json.stargazers_count,
+    };
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -56,25 +57,26 @@ Wrap the above code in a nice `try catch` allows you to return a fake data set i
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
-	try {
-		// https://developer.github.com/v3/repos/#get
-		let json = await Fetch(
-			"https://api.github.com/repos/11ty/eleventy",
-			{
-				duration: "1d", // 1 day
-				type: "json", // also supports "text" or "buffer"
-			}
-		);
+try {
+// https://developer.github.com/v3/repos/#get
+let json = await Fetch(
+"https://api.github.com/repos/11ty/eleventy",
+{
+duration: "1d", // 1 day
+type: "json", // also supports "text" or "buffer"
+}
+);
 
-		return {
-			stargazers: json.stargazers_count,
-		};
-	} catch (e) {
-		console.log("Failed getting GitHub stargazers count, returning 0");
-		return {
-			stargazers: 0,
-		};
-	}
+    	return {
+    		stargazers: json.stargazers_count,
+    	};
+    } catch (e) {
+    	console.log("Failed getting GitHub stargazers count, returning 0");
+    	return {
+    		stargazers: 0,
+    	};
+    }
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}

@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-webmentions",
-  "author": "CodeFoodPixels",
-  "description": "A plugin for eleventy to fetch and filter webmentions from Webmention.io."
+	"npm": "eleventy-plugin-webmentions",
+	"author": "CodeFoodPixels",
+	"description": "A plugin for eleventy to fetch and filter webmentions from Webmention.io."
 }

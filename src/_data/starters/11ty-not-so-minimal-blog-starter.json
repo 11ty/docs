@@ -1,7 +1,7 @@
 {
-  "url": "https://github.com/Mangamaui/eleventy-not-so-minimal-blog-starter",
-  "name": "Eleventy Not So Minimal Blog Starter",
-  "description": "A blog starter including some key features such as RSS, a sitemap, meta tags for Twitter & OG, image-optimization(eleventy-image), SVG-icon-sprites, Sass and more...",
-  "author": "mangamaui",
-  "demo": "https://eleventy-not-so-minimal-blog-starter.netlify.app/"
+	"url": "https://github.com/Mangamaui/eleventy-not-so-minimal-blog-starter",
+	"name": "Eleventy Not So Minimal Blog Starter",
+	"description": "A blog starter including some key features such as RSS, a sitemap, meta tags for Twitter & OG, image-optimization(eleventy-image), SVG-icon-sprites, Sass and more...",
+	"author": "mangamaui",
+	"demo": "https://eleventy-not-so-minimal-blog-starter.netlify.app/"
 }

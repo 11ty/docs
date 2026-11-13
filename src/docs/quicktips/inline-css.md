@@ -20,19 +20,20 @@ Add the following `cssmin` filter to your Eleventy Config file:
 import { transform } from "lightningcss";
 
 export default function ($config$) {
-	$config.addFilter("cssmin", function (inputCode) {
-		if (process.env.ELEVENTY_RUN_MODE === "build") {
-			let { code } = transform({
-				// filename: undefined,
-				code: Buffer.from(inputCode),
-				minify: true,
-				sourceMap: false
-			});
-			return code;
-		}
+$config.addFilter("cssmin", function (inputCode) {
+if (process.env.ELEVENTY_RUN_MODE === "build") {
+let { code } = transform({
+// filename: undefined,
+code: Buffer.from(inputCode),
+minify: true,
+sourceMap: false
+});
+return code;
+}
 
-		return `/* [buildawesome] cssmin skipped during --watch and --serve */\n${inputCode}`;
-	});
+    	return `/* [buildawesome] cssmin skipped during --watch and --serve */\n${inputCode}`;
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -82,21 +83,21 @@ import path from "node:path";
 import { transform } from "lightningcss";
 
 export default async function (data) {
-	return `<style>
-	  ${await fs
-			.readFile(path.resolve(__dirname, "./sample.css"))
-			.then(inputCode => {
-				let { code } = transform({
-					// filename: undefined,
-					code: Buffer.from(inputCode),
-					minify: true,
-					sourceMap: false
-				});
+return `<style>
+${await fs
+.readFile(path.resolve(__dirname, "./sample.css"))
+.then(inputCode => {
+let { code } = transform({
+// filename: undefined,
+code: Buffer.from(inputCode),
+minify: true,
+sourceMap: false
+});
 
-				return code;
-			})}
-	</style>`;
+    			return code;
+    		})}
+    </style>`;
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
-

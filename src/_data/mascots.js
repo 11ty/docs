@@ -39,7 +39,7 @@ export default [
 		image: "/img/mascots/lynn-fisher.png",
 		name: "A Single Div",
 		author: "Lynn Fisher",
-		description: "October 2022. From a.singlediv.com."
+		description: "October 2022. From a.singlediv.com.",
 	},
 	{
 		url: "/blog/mascot-david/",

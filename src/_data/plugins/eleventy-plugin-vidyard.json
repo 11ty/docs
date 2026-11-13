@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-vidyard",
-    "author": "reatlat",
-    "description": "generate embeds responsive Vidyard videos from share URLs."
+	"npm": "eleventy-plugin-vidyard",
+	"author": "reatlat",
+	"description": "generate embeds responsive Vidyard videos from share URLs."
 }

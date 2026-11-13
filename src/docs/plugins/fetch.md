@@ -23,7 +23,7 @@ This plugin can save _any_ kind of asset—JSON, HTML, images, videos, etc.
 - If the remote server goes down or linkrots away—we keep and continue to use the local asset. _Save remote images!_
 - If a network connection fails (or if you’re offline), Fetch will continue to use the cached request (even if the cache is expired) and make a new request when the network connectivity is restored.
 - Concurrency limits to avoid making too many network requests simultaneously.
-- Uses built-in `fetch`  {% addedin "Fetch 5.0" %} (previously [`node-fetch`](https://www.npmjs.com/package/node-fetch))
+- Uses built-in `fetch` {% addedin "Fetch 5.0" %} (previously [`node-fetch`](https://www.npmjs.com/package/node-fetch))
 - Supports and caches HTTP verbs separately (think `POST` versus `GET`) {% addedin "Fetch 5.0" %}
 
 ## Installation
@@ -36,7 +36,6 @@ npm install @11ty/eleventy-fetch
 {{ codeBlock | highlight("bash") | safe }}
 
 This plugin was formerly known as [`@11ty/eleventy-cache-assets`](https://www.npmjs.com/package/@11ty/eleventy-cache-assets) and was renamed to `@11ty/eleventy-fetch` with v3: [Video Changelog](https://www.youtube.com/watch?v=JCQQgtOcjH4&t=246s).
-
 
 {% callout "warn" %}<strong>Important Security and Privacy Notice</strong>
 
@@ -58,14 +57,15 @@ Consider the following example, perhaps in an Eleventy [Global Data File](/docs/
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
-	let url = "https://api.github.com/repos/11ty/eleventy";
+let url = "https://api.github.com/repos/11ty/eleventy";
 
-	let json = await Fetch(url, {
-		duration: "1d", // save for 1 day
-		type: "json", // we’ll parse JSON for you
-	});
+    let json = await Fetch(url, {
+    	duration: "1d", // save for 1 day
+    	type: "json", // we’ll parse JSON for you
+    });
 
-	return json;
+    return json;
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -127,19 +127,20 @@ Consider the following [global data file](/docs/data-global/) in Eleventy (e.g. 
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
-	try {
-		let url = "https://api.github.com/repos/11ty/eleventy";
+try {
+let url = "https://api.github.com/repos/11ty/eleventy";
 
-		/* This returns a promise */
-		return Fetch(url, {
-			duration: "1d",
-			type: "json",
-		});
-	} catch (e) {
-		return {
-			// my failure fallback data
-		};
-	}
+    	/* This returns a promise */
+    	return Fetch(url, {
+    		duration: "1d",
+    		type: "json",
+    	});
+    } catch (e) {
+    	return {
+    		// my failure fallback data
+    	};
+    }
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -159,8 +160,8 @@ import Fetch from "@11ty/eleventy-fetch";
 
 let url = "https://www.zachleat.com/img/avatar-2017-big.png";
 let imageBuffer = await Fetch(url, {
-	duration: "1d",
-	type: "buffer",
+duration: "1d",
+type: "buffer",
 });
 // Use imageBuffer as an input to the `sharp` plugin, for example
 
@@ -177,15 +178,15 @@ import Fetch from "@11ty/eleventy-fetch";
 
 let url = "https://fonts.googleapis.com/css?family=Roboto+Mono:400&display=swap";
 let fontCss = await Fetch(url, {
-	duration: "1d",
-	type: "text",
-	fetchOptions: {
-		headers: {
-			// lol
-			"user-agent":
-				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-		},
-	},
+duration: "1d",
+type: "text",
+fetchOptions: {
+headers: {
+// lol
+"user-agent":
+"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+},
+},
 });
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -204,9 +205,9 @@ Use `AbortSignal` to supply a timeout for the request. Read more about [`AbortSi
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch("https://…", {
-	fetchOptions: {
-		signal: AbortSignal.timeout(5000)
-	},
+fetchOptions: {
+signal: AbortSignal.timeout(5000)
+},
 });
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -221,7 +222,7 @@ The `directory` option let’s you change where the cache is stored. It is **str
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch("https://…", {
-	directory: ".cache",
+directory: ".cache",
 });
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -238,10 +239,10 @@ If you want to use this utility inside of a Netlify Function (or AWS Lambda), us
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch(
-	"https://www.zachleat.com/img/avatar-2017-big.png?Get=rid&of=these",
-	{
-		removeUrlQueryParams: true,
-	}
+"https://www.zachleat.com/img/avatar-2017-big.png?Get=rid&of=these",
+{
+removeUrlQueryParams: true,
+}
 );
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -256,10 +257,10 @@ This controls the name of the files inside your [cache directory](#cache-directo
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch("https://…", {
-	filenameFormat: function(cacheKey, hash) {
-		// do not include the file extension
-		return `custom-name-${cacheKey}-${hash}`
-	}
+filenameFormat: function(cacheKey, hash) {
+// do not include the file extension
+return `custom-name-${cacheKey}-${hash}`
+}
 });
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -274,15 +275,16 @@ await Fetch("https://…", {
 import Fetch from "@11ty/eleventy-fetch";
 
 export default function() {
-	return Fetch(async function() {
-		// do some expensive operation here, this is simplified for brevity
-		let fakeTwitterApiContents = { followerCount: 1000 };
+return Fetch(async function() {
+// do some expensive operation here, this is simplified for brevity
+let fakeTwitterApiContents = { followerCount: 1000 };
 
-		return fakeTwitterApiContents;
-	}, {
-		// must supply a unique id for the callback
-		requestId: "zachleat_twitter_followers"
-	});
+    	return fakeTwitterApiContents;
+    }, {
+    	// must supply a unique id for the callback
+    	requestId: "zachleat_twitter_followers"
+    });
+
 }
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -295,22 +297,23 @@ export default function() {
 import { AssetCache } from "@11ty/eleventy-fetch";
 
 export default async function () {
-	// Pass in your unique custom cache key
-	// (normally this would be tied to your API URL)
-	let asset = new AssetCache("zachleat_twitter_followers");
+// Pass in your unique custom cache key
+// (normally this would be tied to your API URL)
+let asset = new AssetCache("zachleat_twitter_followers");
 
-	// check if the cache is fresh within the last day
-	if (asset.isCacheValid("1d")) {
-		// return cached data.
-		return asset.getCachedValue(); // a promise
-	}
+    // check if the cache is fresh within the last day
+    if (asset.isCacheValid("1d")) {
+    	// return cached data.
+    	return asset.getCachedValue(); // a promise
+    }
 
-	// do some expensive operation here, this is simplified for brevity
-	let fakeTwitterApiContents = { followerCount: 1000 };
+    // do some expensive operation here, this is simplified for brevity
+    let fakeTwitterApiContents = { followerCount: 1000 };
 
-	await asset.save(fakeTwitterApiContents, "json");
+    await asset.save(fakeTwitterApiContents, "json");
 
-	return fakeTwitterApiContents;
+    return fakeTwitterApiContents;
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}

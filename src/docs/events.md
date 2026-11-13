@@ -23,11 +23,11 @@ The `eleventy.before` event runs every time Eleventy starts building, so it will
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Async-friendly in 1.0+
-	// Arguments added in 2.0+
-	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
-		// Run me before the build starts
-	});
+// Async-friendly in 1.0+
+// Arguments added in 2.0+
+eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
+// Run me before the build starts
+});
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -40,14 +40,14 @@ The `eleventy.after` event runs every time Eleventy finishes building, so it wil
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Async-friendly in 1.0+
-	// Arguments added in 2.0+
-	eleventyConfig.on(
-		"eleventy.after",
-		async ({ directories, results, runMode, outputMode }) => {
-			// Run me after the build ends
-		}
-	);
+// Async-friendly in 1.0+
+// Arguments added in 2.0+
+eleventyConfig.on(
+"eleventy.after",
+async ({ directories, results, runMode, outputMode }) => {
+// Run me after the build ends
+}
+);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -58,24 +58,25 @@ Eleventy now provides an object with metadata on the build as an argument to the
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
-		// Read more below
-	});
+eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
+// Read more below
+});
 
-	eleventyConfig.on(
-		"eleventy.after",
-		async ({ directories, results, runMode, outputMode }) => {
-			// Read more below
-		}
-	);
+    eleventyConfig.on(
+    	"eleventy.after",
+    	async ({ directories, results, runMode, outputMode }) => {
+    		// Read more below
+    	}
+    );
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 - `directories`: an object with normalized project directory paths, set in your in [your configuration file](/docs/config/#input-directory) (or populated with Eleventy defaults).
-	- Included properties: `input`, `inputFile`, `inputGlob`, `data`, `includes`, `layouts`, and `output`. Works best with a [named `config` export](./config-shapes.md#callback-function) in your configuration file.
+  - Included properties: `input`, `inputFile`, `inputGlob`, `data`, `includes`, `layouts`, and `output`. Works best with a [named `config` export](./config-shapes.md#callback-function) in your configuration file.
 - `dir` (deprecated, use `directories` instead):
-	- Included properties: `input` (default `"."`), `output` (default `"_site"`), `includes` (default `"_includes"`), `data` (default `"_data"`), and `layouts` (no default value).
+  - Included properties: `input` (default `"."`), `output` (default `"_site"`), `includes` (default `"_includes"`), `data` (default `"_data"`), and `layouts` (no default value).
 - `outputMode`: a string representing the value of [`--to` on the command line](/docs/usage/#to-can-output-json)
   - `fs` (default)
   - `json`
@@ -98,11 +99,11 @@ The `eleventy.beforeConfig` runs before your configuration is initialized and wa
 {%- set codeBlock %}
 // sync configuration callback
 module.exports = function (eleventyConfig) {
-	// async-friendly event
-  eleventyConfig.on("eleventy.beforeConfig", async function (eleventyConfig) {
-    const { HtmlBasePlugin } = await import("@11ty/eleventy");
-		eleventyConfig.addPlugin(HtmlBasePlugin);
-  });
+// async-friendly event
+eleventyConfig.on("eleventy.beforeConfig", async function (eleventyConfig) {
+const { HtmlBasePlugin } = await import("@11ty/eleventy");
+eleventyConfig.addPlugin(HtmlBasePlugin);
+});
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -113,12 +114,12 @@ The `eleventy.beforeWatch` event runs before a build _only_ if it's a re-run dur
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Async-friendly
-	eleventyConfig.on("eleventy.beforeWatch", async (changedFiles) => {
-		// Run me before --watch or --serve re-runs
-		// changedFiles is an array of files that changed
-		// to trigger the watch/serve build
-	});
+// Async-friendly
+eleventyConfig.on("eleventy.beforeWatch", async (changedFiles) => {
+// Run me before --watch or --serve re-runs
+// changedFiles is an array of files that changed
+// to trigger the watch/serve build
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -129,11 +130,11 @@ This event facilitates the [i18n plugin](/docs/plugins/i18n/) (but is available 
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Async-friendly
-	eleventyConfig.on("eleventy.contentMap", async ({ inputPathToUrl, urlToInputPath }) => {
-		// inputPathToUrl is an object mapping input file paths to output URLs
-		// urlToInputPath is an object mapping output URLs to input file paths
-	});
+// Async-friendly
+eleventyConfig.on("eleventy.contentMap", async ({ inputPathToUrl, urlToInputPath }) => {
+// inputPathToUrl is an object mapping input file paths to output URLs
+// urlToInputPath is an object mapping output URLs to input file paths
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -144,7 +145,7 @@ Currently Eleventy triggers event callbacks in parallel. If you need to run the 
 
 {% set codeContent %}
 export default function(eleventyConfig){
-	eleventyConfig.setEventEmitterMode("sequential");
+eleventyConfig.setEventEmitterMode("sequential");
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

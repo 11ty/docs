@@ -14,12 +14,12 @@ A pack of plugins for generating an RSS (or Atom or JSON) feed using the _Nunjuc
 
 ## Feature highlights
 
-* URLs are normalized to absolute URLs, pointing to your hosted domain for maximum feed reader compatibility. Read more about [the dangers of relative URLs in your feeds on CSS Tricks](https://css-tricks.com/working-with-web-feeds-its-more-than-rss/#aa-beware-of-relative-urls) (Related: [#36](https://github.com/11ty/plugin-rss/issues/36)).
-* Existing project [Transforms](/docs/transforms/) are applied to feed entries (e.g. [Image HTML Transform](/docs/plugins/image/#html-transform), [`<base>`](/docs/plugins/html-base/), [InputPath to URL](/docs/plugins/inputpath-to-url/), etc.) If you’re using a [`--pathprefix`](/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix) in your project, the URLs in your feed content are normalized for you.
+- URLs are normalized to absolute URLs, pointing to your hosted domain for maximum feed reader compatibility. Read more about [the dangers of relative URLs in your feeds on CSS Tricks](https://css-tricks.com/working-with-web-feeds-its-more-than-rss/#aa-beware-of-relative-urls) (Related: [#36](https://github.com/11ty/plugin-rss/issues/36)).
+- Existing project [Transforms](/docs/transforms/) are applied to feed entries (e.g. [Image HTML Transform](/docs/plugins/image/#html-transform), [`<base>`](/docs/plugins/html-base/), [InputPath to URL](/docs/plugins/inputpath-to-url/), etc.) If you’re using a [`--pathprefix`](/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix) in your project, the URLs in your feed content are normalized for you.
 
 Since RSS Plugin v2.0, this plugin offers two options to create feeds in your project:
 
-1. **Virtual templates** let you create a feed with a few lines of configuration.  _(This is easier, more abstracted.)_
+1. **Virtual templates** let you create a feed with a few lines of configuration. _(This is easier, more abstracted.)_
 1. **Manual templates** need more configuration and a template file. _(This requires more setup, but offers more control.)_
 
 ## Installation
@@ -31,15 +31,15 @@ npm install @11ty/eleventy-plugin-rss
 {%- endset %}
 {{ codeBlock | highlight("bash") | safe }}
 
-* `v3` of this plugin is ESM-only and requires Eleventy v3.0 or newer.
-* `v2` of this plugin requires Eleventy v3.0 or newer.
-* `v1` of this plugin is compatible with Eleventy 0.11 or newer.
+- `v3` of this plugin is ESM-only and requires Eleventy v3.0 or newer.
+- `v2` of this plugin requires Eleventy v3.0 or newer.
+- `v1` of this plugin is compatible with Eleventy 0.11 or newer.
 
 ## Upgrading from v2
 
-* Version 3 of this plugin is ESM and requires Eleventy v3 or newer. It does not require ESM projects or an ESM config file.
-* CommonJS configuration files on Node 20.19+ must use `require("@11ty/eleventy-plugin-rss").default`. Older versions of Node need [dynamic `import()`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
-* Breaking change in v3.0: The helper functions (`feedPlugin`, `dateToRfc3339`, `dateToRfc822`, `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls`) are only available as named exports (not as properties of the default export).
+- Version 3 of this plugin is ESM and requires Eleventy v3 or newer. It does not require ESM projects or an ESM config file.
+- CommonJS configuration files on Node 20.19+ must use `require("@11ty/eleventy-plugin-rss").default`. Older versions of Node need [dynamic `import()`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
+- Breaking change in v3.0: The helper functions (`feedPlugin`, `dateToRfc3339`, `dateToRfc822`, `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls`) are only available as named exports (not as properties of the default export).
 
 ## Virtual Template
 
@@ -53,25 +53,25 @@ npm install @11ty/eleventy-plugin-rss
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(feedPlugin, {
-		type: "atom", // or "rss", "json"
-		outputPath: "/feed.xml",
-		collection: {
-			name: "posts", // iterate over `collections.posts`
-			limit: 10,     // 0 means no limit
-			sort: "auto",  // or "descending", "ascending"
-		},
-		metadata: {
-			language: "en",
-			title: "Blog Title",
-			subtitle: "This is a longer description about your blog.",
-			base: "https://example.com/",
-			author: {
-				name: "Your Name",
-				email: "", // Optional
-			}
-		}
-	});
+eleventyConfig.addPlugin(feedPlugin, {
+type: "atom", // or "rss", "json"
+outputPath: "/feed.xml",
+collection: {
+name: "posts", // iterate over `collections.posts`
+limit: 10, // 0 means no limit
+sort: "auto", // or "descending", "ascending"
+},
+metadata: {
+language: "en",
+title: "Blog Title",
+subtitle: "This is a longer description about your blog.",
+base: "https://example.com/",
+author: {
+name: "Your Name",
+email: "", // Optional
+}
+}
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -81,20 +81,20 @@ This configuration is the only step for the Virtual Template method. If you need
 <details>
 <summary>Expand for full options list</summary>
 
-* `type`: (optional) One of `"atom"` (default), `"rss"`, or `"json"`
-* `outputPath`: (required, default: `/feed.xml`) Where to write the template in the output directory.
-* `inputPath`: (optional, default based on `metadata.title`) Change where the virtual template pretends to live on the file system (e.g. if you want project directory data files to apply via the [Data Cascade](/docs/data-cascade/))
-* `collection.name`: Collection entries to iterate over to populate your feed (e.g. `name: "posts"` for `collections.posts`)
-* `collection.limit`: Number of entries to include. (Use `0` for no limit.)
-* `collection.sort`: {% addedin "RSS 3.1.0" %} (optional) Order of feed entries, applied before `collection.limit`. Any other value throws an error.
-	* `"auto"` (default): Reverses the collection, assuming Eleventy’s default oldest-first order.
-	* `"descending"`: Sorts by `date`, newest first, regardless of the collection’s order. Use this for custom collections already sorted newest-first, which otherwise produce a feed of your oldest posts.
-	* `"ascending"`: Sorts by `date`, oldest first.
-* `metadata`: Content used to populate the feed boilerplate. `metadata.subtitle` is used for the feed description.
-* `metadata.icon`, `metadata.logo`: {% addedin "RSS 3.0.0" %} (optional) URLs to a feed icon and logo.
-* `stylesheet`: URL to an XSL stylesheet to change how the feed is rendered in the browser (only for Atom and RSS feeds).
-* `script`: {% addedin "RSS 3.0.0" %} URL to an XSLT polyfill script, injected into Atom and RSS feeds.
-* `templateData`, defaults to `{}`: Additional data to apply to the template (e.g. to add your feed to the [Navigation plugin](/docs/plugins/navigation/))
+- `type`: (optional) One of `"atom"` (default), `"rss"`, or `"json"`
+- `outputPath`: (required, default: `/feed.xml`) Where to write the template in the output directory.
+- `inputPath`: (optional, default based on `metadata.title`) Change where the virtual template pretends to live on the file system (e.g. if you want project directory data files to apply via the [Data Cascade](/docs/data-cascade/))
+- `collection.name`: Collection entries to iterate over to populate your feed (e.g. `name: "posts"` for `collections.posts`)
+- `collection.limit`: Number of entries to include. (Use `0` for no limit.)
+- `collection.sort`: {% addedin "RSS 3.1.0" %} (optional) Order of feed entries, applied before `collection.limit`. Any other value throws an error.
+  - `"auto"` (default): Reverses the collection, assuming Eleventy’s default oldest-first order.
+  - `"descending"`: Sorts by `date`, newest first, regardless of the collection’s order. Use this for custom collections already sorted newest-first, which otherwise produce a feed of your oldest posts.
+  - `"ascending"`: Sorts by `date`, oldest first.
+- `metadata`: Content used to populate the feed boilerplate. `metadata.subtitle` is used for the feed description.
+- `metadata.icon`, `metadata.logo`: {% addedin "RSS 3.0.0" %} (optional) URLs to a feed icon and logo.
+- `stylesheet`: URL to an XSL stylesheet to change how the feed is rendered in the browser (only for Atom and RSS feeds).
+- `script`: {% addedin "RSS 3.0.0" %} URL to an XSLT polyfill script, injected into Atom and RSS feeds.
+- `templateData`, defaults to `{}`: Additional data to apply to the template (e.g. to add your feed to the [Navigation plugin](/docs/plugins/navigation/))
 
 {% addedin "RSS 3.0.0" %} Use `summary` in a post’s data (`post.data.summary`) to populate the entry `<summary>` (Atom) or `<description>` (RSS).
 
@@ -108,27 +108,28 @@ This configuration is the only step for the Virtual Template method. If you need
 import { rssPlugin, getFeedTemplate } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.addPlugin(rssPlugin);
+$config.addPlugin(rssPlugin);
 
-	let { content, data } = getFeedTemplate({
-		type: "atom", // or "rss", "json"
-		outputPath: "/posts.xml",
-		collection: {
-			name: "posts",
-			limit: 10,
-		},
-		metadata: {
-			language: "en",
-			title: "Blog Title",
-			subtitle: "This is a longer description about your blog.",
-			base: "https://example.com/",
-			author: {
-				name: "Your Name",
-			},
-		},
-	});
+    let { content, data } = getFeedTemplate({
+    	type: "atom", // or "rss", "json"
+    	outputPath: "/posts.xml",
+    	collection: {
+    		name: "posts",
+    		limit: 10,
+    	},
+    	metadata: {
+    		language: "en",
+    		title: "Blog Title",
+    		subtitle: "This is a longer description about your blog.",
+    		base: "https://example.com/",
+    		author: {
+    			name: "Your Name",
+    		},
+    	},
+    });
 
-	$config.addTemplate("feeds/posts.njk", content, data);
+    $config.addTemplate("feeds/posts.njk", content, data);
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -145,7 +146,7 @@ Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPl
 import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(rssPlugin);
+eleventyConfig.addPlugin(rssPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -163,11 +164,11 @@ export default function (eleventyConfig) {
 import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(rssPlugin, {
-		posthtmlRenderOptions: {
-			closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
-		},
-	});
+eleventyConfig.addPlugin(rssPlugin, {
+posthtmlRenderOptions: {
+closingSingleTag: "default", // opt-out of <img/>-style XHTML single tags
+},
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -195,10 +196,11 @@ export default function (eleventyConfig) {
 import { dateToRfc3339, dateToRfc822 } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.addLiquidFilter("dateToRfc3339", dateToRfc3339);
+$config.addLiquidFilter("dateToRfc3339", dateToRfc3339);
 
-	// New in RSS 1.2.0
-	$config.addLiquidFilter("dateToRfc822", dateToRfc822);
+    // New in RSS 1.2.0
+    $config.addLiquidFilter("dateToRfc822", dateToRfc822);
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -240,27 +242,30 @@ The following feed samples **require RSS Plugin v2.0** or newer. [Samples for RS
   }
 }
 ---
+
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
-  <title>{{ metadata.title }}</title>
-  <subtitle>{{ metadata.description }}</subtitle>
-  <link href="{{ permalink | htmlBaseUrl(metadata.base) }}" rel="self" />
-  <link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
-  <updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
-  <id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
-  <author>
-    <name>{{ metadata.author.name }}</name>
-  </author>
-  {%- for post in collections.posts | reverse %}
-  {%- set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.base) }}{% endset %}
-  <entry>
-    <title>{{ post.data.title }}</title>
-    <link href="{{ absolutePostUrl }}" />
-    <updated>{{ post.date | dateToRfc3339 }}</updated>
-    <id>{{ absolutePostUrl }}</id>
-    <content type="html">{{ post.content | renderTransforms(post.data.page, metadata.base) }}</content>
-  </entry>
-  {%- endfor %}
+	<title>{{ metadata.title }}</title>
+	<subtitle>{{ metadata.description }}</subtitle>
+	<link href="{{ permalink | htmlBaseUrl(metadata.base) }}" rel="self" />
+	<link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
+	<updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+	<id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
+	<author>
+		<name>{{ metadata.author.name }}</name>
+	</author>
+	{%- for post in collections.posts | reverse %} {%- set absolutePostUrl %}{{ post.url |
+	htmlBaseUrl(metadata.base) }}{% endset %}
+	<entry>
+		<title>{{ post.data.title }}</title>
+		<link href="{{ absolutePostUrl }}" />
+		<updated>{{ post.date | dateToRfc3339 }}</updated>
+		<id>{{ absolutePostUrl }}</id>
+		<content type="html"
+			>{{ post.content | renderTransforms(post.data.page, metadata.base) }}</content
+		>
+	</entry>
+	{%- endfor %}
 </feed>
 ```
 

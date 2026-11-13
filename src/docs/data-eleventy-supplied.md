@@ -108,8 +108,10 @@ If you want a file extension in your URL, you might use it like this:
 {% codetitle "YAML Front Matter", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 permalink: "{{ page.filePathStem }}.html"
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 
@@ -124,7 +126,6 @@ This example output uses the above permalink value.
 
 ```js
 const eleventy = {
-
 	// Eleventy version
 	version: "1.0.1",
 
@@ -149,16 +150,15 @@ const eleventy = {
 
 	// Project root-relative normalized paths, new in {{ "3.0.0-alpha.6" | coerceVersion }}
 	directories: {
-		"input": "./",
-		"includes": "./_includes/",
-		"data": "./_data/",
-		"output": "./_site/"
+		input: "./",
+		includes: "./_includes/",
+		data: "./_data/",
+		output: "./_site/",
 	},
-
 };
 ```
 
-* {% addedin "v3.0.0-alpha.6" %}`eleventy.directories` contains project-root relative normalized paths for the important Eleventy directories: [`input`](/docs/config.md#input-directory),  [`includes`](/docs/config.md#directory-for-includes),  [`layouts`](/docs/config.md#directory-for-layouts-optional) (if used),  [`data`](/docs/config.md#directory-for-global-data-files), and [`output`](/docs/config.md#output-directory).
+- {% addedin "v3.0.0-alpha.6" %}`eleventy.directories` contains project-root relative normalized paths for the important Eleventy directories: [`input`](/docs/config.md#input-directory), [`includes`](/docs/config.md#directory-for-includes), [`layouts`](/docs/config.md#directory-for-layouts-optional) (if used), [`data`](/docs/config.md#directory-for-global-data-files), and [`output`](/docs/config.md#output-directory).
 
 ### Feature Availability
 
@@ -201,7 +201,7 @@ You can temporarily opt-out of the behavior using:
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setFreezeReservedData(false);
+eleventyConfig.setFreezeReservedData(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

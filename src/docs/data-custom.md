@@ -19,10 +19,10 @@ Note that you can also add [Custom Front Matter Formats](/docs/data-frontmatter-
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Receives file contents, return parsed data
-	eleventyConfig.addDataExtension("fileExtension", (contents, filePath) => {
-		return {};
-	});
+// Receives file contents, return parsed data
+eleventyConfig.addDataExtension("fileExtension", (contents, filePath) => {
+return {};
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -34,14 +34,15 @@ export default function (eleventyConfig) {
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// or with options (new in 2.0)
-	eleventyConfig.addDataExtension("fileExtension", {
-		parser: (contents, filePath) => ({}),
+// or with options (new in 2.0)
+eleventyConfig.addDataExtension("fileExtension", {
+parser: (contents, filePath) => ({}),
 
-		// defaults are shown:
-		read: true,
-		encoding: "utf8",
-	});
+    	// defaults are shown:
+    	read: true,
+    	encoding: "utf8",
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -60,7 +61,7 @@ Here we’re using the [`yaml` package](https://www.npmjs.com/package/yaml). Don
 import YAML from "yaml";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("yaml", (contents) => YAML.parse(contents));
+eleventyConfig.addDataExtension("yaml", (contents) => YAML.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -73,7 +74,7 @@ Here we’re using the [`@iarna/toml` package](https://www.npmjs.com/package/@ia
 import toml from "@iarna/toml";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
+eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -86,7 +87,7 @@ export default function (eleventyConfig) {
 import JSON5 from "json5";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("json5", (contents) => JSON5.parse(contents));
+eleventyConfig.addDataExtension("json5", (contents) => JSON5.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -95,7 +96,7 @@ export default function (eleventyConfig) {
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("geojson", (contents) => JSON.parse(contents));
+eleventyConfig.addDataExtension("geojson", (contents) => JSON.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -110,19 +111,20 @@ Note that the second argument is an object with a `parser` function.
 import exifr from "exifr";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("png,jpeg", {
-		parser: async (file) => {
-			let exif = await exifr.parse(file);
+eleventyConfig.addDataExtension("png,jpeg", {
+parser: async (file) => {
+let exif = await exifr.parse(file);
 
-			return {
-				exif,
-			};
-		},
+    		return {
+    			exif,
+    		};
+    	},
 
-		// Using `read: false` changes the parser argument to
-		// a file path instead of file contents.
-		read: false,
-	});
+    	// Using `read: false` changes the parser argument to
+    	// a file path instead of file contents.
+    	read: false,
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -143,11 +145,12 @@ import toml from "@iarna/toml";
 import yaml from "js-yaml";
 
 export default function (eleventyConfig) {
-	// Lower priority
-	eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
+// Lower priority
+eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
 
-	// Higher priority
-	eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
+    // Higher priority
+    eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

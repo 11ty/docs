@@ -29,7 +29,7 @@ The `addWatchTarget` config method allows you to manually add a file or director
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.addWatchTarget("./src/scss/");
+eleventyConfig.addWatchTarget("./src/scss/");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -46,10 +46,10 @@ To reset your configuration for a specific watch target, use the `resetConfig` o
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// You probably don’t need this
-	eleventyConfig.addWatchTarget("./_config/**", {
-		resetConfig: true
-	});
+// You probably don’t need this
+eleventyConfig.addWatchTarget("./_config/**", {
+resetConfig: true
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -72,11 +72,12 @@ New in {{ "2.0.0-canary.18" | coerceVersion }}, watch target ignores now have th
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Do not rebuild when README.md changes (You can use a glob here too)
-	eleventyConfig.watchIgnores.add("README.md");
+// Do not rebuild when README.md changes (You can use a glob here too)
+eleventyConfig.watchIgnores.add("README.md");
 
-	// Or delete entries too
-	eleventyConfig.watchIgnores.delete("README.md");
+    // Or delete entries too
+    eleventyConfig.watchIgnores.delete("README.md");
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -89,8 +90,8 @@ When in `--watch` mode, Eleventy will spider the dependencies of your [JavaScrip
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Enabled by default
-	eleventyConfig.setWatchJavaScriptDependencies(false);
+// Enabled by default
+eleventyConfig.setWatchJavaScriptDependencies(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -101,8 +102,8 @@ A hardcoded amount of time Eleventy will wait before triggering a new build when
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// default is 0
-	eleventyConfig.setWatchThrottleWaitTime(100); // in milliseconds
+// default is 0
+eleventyConfig.setWatchThrottleWaitTime(100); // in milliseconds
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -113,10 +114,10 @@ Advanced [`chokidar` options](https://github.com/paulmillr/chokidar) can be defi
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setChokidarConfig({
-		usePolling: true,
-		interval: 500,
-	});
+eleventyConfig.setChokidarConfig({
+usePolling: true,
+interval: 500,
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

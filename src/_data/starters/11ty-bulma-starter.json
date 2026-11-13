@@ -1,6 +1,6 @@
 {
-  "url": "https://11ty-bulma-starter.netlify.app/",
-  "name": "11ty-bulma-starter",
-  "description": "11ty-bulma starter with sass enabled.",
-  "source_url": "https://github.com/J-Filip/11ty-bulma-starter"
+	"url": "https://11ty-bulma-starter.netlify.app/",
+	"name": "11ty-bulma-starter",
+	"description": "11ty-bulma starter with sass enabled.",
+	"source_url": "https://github.com/J-Filip/11ty-bulma-starter"
 }

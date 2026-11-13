@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-target-safe",
-  "author": "gingerchew",
-  "description": "Link tags with the target attribute may need a rel attribute. This plugin does that for you automatically."
+	"npm": "eleventy-plugin-target-safe",
+	"author": "gingerchew",
+	"description": "Link tags with the target attribute may need a rel attribute. This plugin does that for you automatically."
 }

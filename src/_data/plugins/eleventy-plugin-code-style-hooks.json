@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-code-style-hooks",
-  "author": "jkc_codes",
-  "description": "Syntax highlighter supporting CSS colour previews in all template languages with no client side JS."
+	"npm": "eleventy-plugin-code-style-hooks",
+	"author": "jkc_codes",
+	"description": "Syntax highlighter supporting CSS colour previews in all template languages with no client side JS."
 }

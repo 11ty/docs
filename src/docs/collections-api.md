@@ -5,17 +5,18 @@ eleventyNavigation:
   key: Collections API
   excerpt: Advanced control over collections.
 ---
+
 To get fancier with your collections (and even do a bit of your own custom filtering, if you’d like), you can use our Configuration API.
 
 Inside of your `eleventy.config.js` config file, you can use the `addCollection` method:
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// async-friendly
-	eleventyConfig.addCollection("myCollectionName", async (collectionsApi) => {
-		// get items
-		return collectionsApi.getAllSorted();
-	});
+// async-friendly
+eleventyConfig.addCollection("myCollectionName", async (collectionsApi) => {
+// get items
+return collectionsApi.getAllSorted();
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -34,10 +35,10 @@ Returns an array of items sorted by the [default sorting algorithm](/docs/collec
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Use the default sorting algorithm (ascending by date, filename tiebreaker)
-	eleventyConfig.addCollection("allMySortedContent", function (collectionsApi) {
-		return collectionsApi.getAllSorted();
-	});
+// Use the default sorting algorithm (ascending by date, filename tiebreaker)
+eleventyConfig.addCollection("allMySortedContent", function (collectionsApi) {
+return collectionsApi.getAllSorted();
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -46,11 +47,11 @@ export default function (eleventyConfig) {
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Use the default sorting algorithm in reverse (descending dir, date, filename)
-	// Note that using a template engine’s `reverse` filter might be easier here
-	eleventyConfig.addCollection("myPostsReverse", function (collectionsApi) {
-		return collectionsApi.getAllSorted().reverse();
-	});
+// Use the default sorting algorithm in reverse (descending dir, date, filename)
+// Note that using a template engine’s `reverse` filter might be easier here
+eleventyConfig.addCollection("myPostsReverse", function (collectionsApi) {
+return collectionsApi.getAllSorted().reverse();
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -61,14 +62,14 @@ Note that while Array `.reverse()` mutates the array _in-place_, all Eleventy Co
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Filter using `Array.filter`
-	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
-		return collectionsApi.getAllSorted().filter(function (item) {
-			// Only return content that was originally a markdown file
-			let extension = item.inputPath.split(".").pop();
-			return extension === "md";
-		});
-	});
+// Filter using `Array.filter`
+eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
+return collectionsApi.getAllSorted().filter(function (item) {
+// Only return content that was originally a markdown file
+let extension = item.inputPath.split(".").pop();
+return extension === "md";
+});
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -79,10 +80,10 @@ Returns an array of items in arbitrary order. This is marginally faster than `ge
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Unsorted items (in whatever order they were added)
-	eleventyConfig.addCollection("allMyContent", function (collectionsApi) {
-		return collectionsApi.getAll();
-	});
+// Unsorted items (in whatever order they were added)
+eleventyConfig.addCollection("allMyContent", function (collectionsApi) {
+return collectionsApi.getAll();
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -91,13 +92,13 @@ export default function (eleventyConfig) {
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Filter using `Array.filter`
-	eleventyConfig.addCollection("keyMustExistInData", function (collectionsApi) {
-		return collectionsApi.getAll().filter(function (item) {
-			// Side-step tags and do your own filtering
-			return "myCustomDataKey" in item.data;
-		});
-	});
+// Filter using `Array.filter`
+eleventyConfig.addCollection("keyMustExistInData", function (collectionsApi) {
+return collectionsApi.getAll().filter(function (item) {
+// Side-step tags and do your own filtering
+return "myCustomDataKey" in item.data;
+});
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -106,15 +107,15 @@ export default function (eleventyConfig) {
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Sort with `Array.sort`
-	eleventyConfig.addCollection("myCustomSort", function (collectionsApi) {
-		return collectionsApi.getAll().sort(function (a, b) {
-			//return a.date - b.date; // sort by date - ascending
-			return b.date - a.date; // sort by date - descending
-			//return a.inputPath.localeCompare(b.inputPath); // sort by path - ascending
-			//return b.inputPath.localeCompare(a.inputPath); // sort by path - descending
-		});
-	});
+// Sort with `Array.sort`
+eleventyConfig.addCollection("myCustomSort", function (collectionsApi) {
+return collectionsApi.getAll().sort(function (a, b) {
+//return a.date - b.date; // sort by date - ascending
+return b.date - a.date; // sort by date - descending
+//return a.inputPath.localeCompare(b.inputPath); // sort by path - ascending
+//return b.inputPath.localeCompare(a.inputPath); // sort by path - descending
+});
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -123,17 +124,16 @@ Curious where the date is coming from? [Read more about Content Dates](/docs/dat
 
 Note that the last example adding the `myCustomSort` collection will be available in your templates as `collections.myCustomSort`.
 
-
 ### getFilteredByTag( tagName )
 
 Returns a sorted array.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Get only content that matches a tag
-	eleventyConfig.addCollection("myPosts", function (collectionsApi) {
-		return collectionsApi.getFilteredByTag("post");
-	});
+// Get only content that matches a tag
+eleventyConfig.addCollection("myPosts", function (collectionsApi) {
+return collectionsApi.getFilteredByTag("post");
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -144,13 +144,13 @@ Retrieve content that includes _all_ of the tags passed in. Returns a sorted arr
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Get only content that matches a tag
-	eleventyConfig.addCollection(
-		"myTravelPostsWithPhotos",
-		function (collectionsApi) {
-			return collectionsApi.getFilteredByTags("post", "travel", "photo");
-		}
-	);
+// Get only content that matches a tag
+eleventyConfig.addCollection(
+"myTravelPostsWithPhotos",
+function (collectionsApi) {
+return collectionsApi.getFilteredByTags("post", "travel", "photo");
+}
+);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -169,18 +169,19 @@ Returns an array. Will match an arbitrary glob (or an array of globs) against th
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
-		return collectionsApi.getFilteredByGlob("**/*.md");
-	});
+eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
+return collectionsApi.getFilteredByGlob("**/*.md");
+});
 
-	eleventyConfig.addCollection("posts", function (collectionsApi) {
-		return collectionsApi.getFilteredByGlob("_posts/*.md");
-	});
+    eleventyConfig.addCollection("posts", function (collectionsApi) {
+    	return collectionsApi.getFilteredByGlob("_posts/*.md");
+    });
 
-	eleventyConfig.addCollection("posts", function (collectionsApi) {
-		// Also accepts an array of globs!
-		return collectionsApi.getFilteredByGlob(["posts/*.md", "notes/*.md"]);
-	});
+    eleventyConfig.addCollection("posts", function (collectionsApi) {
+    	// Also accepts an array of globs!
+    	return collectionsApi.getFilteredByGlob(["posts/*.md", "notes/*.md"]);
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -26,8 +26,8 @@ _Heavily inspired by [Phil Hawksworth’s work on RSS Jamstack]({{ "https://twit
 
 Here are a few options to trigger your build hook:
 
-* Use [cron-job.org](https://cron-job.org/) to dynamically trigger your build hook.
-* Use [IFTTT](https://ifttt.com/) (mini-tutorial below).
+- Use [cron-job.org](https://cron-job.org/) to dynamically trigger your build hook.
+- Use [IFTTT](https://ifttt.com/) (mini-tutorial below).
 
 ## Mini-Tutorials
 

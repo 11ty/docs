@@ -1,7 +1,7 @@
 {
-  "url": "https://github.com/TigersWay/fruits-express",
-  "name": "Fruits Express",
-  "description": "Simple sample with Eleventy & TailwindCSS",
-  "author": "tigerswaynet",
-  "demo": "https://fruits-express.netlify.app/"
+	"url": "https://github.com/TigersWay/fruits-express",
+	"name": "Fruits Express",
+	"description": "Simple sample with Eleventy & TailwindCSS",
+	"author": "tigerswaynet",
+	"demo": "https://fruits-express.netlify.app/"
 }

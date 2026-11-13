@@ -20,6 +20,7 @@ For a blog site, your individual post files may use a tag called `post`, but it 
 {% codetitle "Markdown", "Syntax" %}
 {% set codeBlock %}
 ---
+
 tags: post
 title: Hot Take—Social Media is Considered Harmful
 ---
@@ -65,6 +66,7 @@ In front matter (or further upstream in the data cascade), set the `eleventyExcl
 {% codetitle "excluded.md" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 eleventyExcludeFromCollections: true
 tags: post
 ---
@@ -77,6 +79,7 @@ This will not be available in `collections.all` or `collections.post`.
 
 {%- set codeBlock %}{% raw %}
 ---
+
 eleventyExcludeFromCollections: ["post"]
 ---
 
@@ -92,8 +95,10 @@ You can use a single tag, as in the above example OR you can use any number of t
 
 {%- set codeBlock %}{% raw %}
 ---
+
 tags: cat
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -103,8 +108,10 @@ This content would show up in the template data inside of `collections.cat`.
 
 {%- set codeBlock %}{% raw %}
 ---
+
 tags: cat and dog
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -114,8 +121,10 @@ If you use multiple words for one tag you can access the content by the followin
 
 {%- set codeBlock %}{% raw %}
 ---
+
 tags: ["cat", "dog"]
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -125,10 +134,14 @@ This content would show up in the template data inside of `collections.cat` and 
 
 {%- set codeBlock %}{% raw %}
 ---
+
 tags:
-  - cat
-  - dog
+
+- cat
+- dog
+
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -140,8 +153,10 @@ As of Eleventy 1.0, the [Data Cascade](/docs/data-cascade/) is combined using [d
 
 {%- set codeBlock %}{% raw %}
 ---
+
 override:tags: []
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -160,17 +175,17 @@ Note in the above example that we output the `post.data.title` value? Similarly,
 
 {%- set codeBlock %}
 {
-  page: {
-    inputPath: './test1.md',
-    url: '/test1/',
-    date: new Date(),
-    // … and everything else in Eleventy’s `page`
-  },
-  data: { title: 'Test Title', tags: ['tag1', 'tag2'], date: 'Last Modified', /* … */ },
-  content: '<h1>Test Title</h1>\n\n<p>This is text content…',
+page: {
+inputPath: './test1.md',
+url: '/test1/',
+date: new Date(),
+// … and everything else in Eleventy’s `page`
+},
+data: { title: 'Test Title', tags: ['tag1', 'tag2'], date: 'Last Modified', /* … */ },
+content: '<h1>Test Title</h1>\n\n<p>This is text content…',
 
-  // Available in {{ "3.0.0-alpha.1" | coerceVersion }} and newer:
-{% raw %}  rawInput: '<h1>{{ title }}</h1>\n\n<p>This is text content…',{% endraw %}
+// Available in {{ "3.0.0-alpha.1" | coerceVersion }} and newer:
+{% raw %} rawInput: '<h1>{{ title }}</h1>\n\n<p>This is text content…',{% endraw %}
 }
 {%- endset %}
 {{ codeBlock | highlight("json") | safe }}
@@ -225,20 +240,20 @@ This applies any time you use <code>reverse</code>, for example in a custom shor
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("myShortcode", function (aCollection){
-	  // WARNING
-	  aCollection.reverse();
-	})
+eleventyConfig.addShortcode("myShortcode", function (aCollection){
+// WARNING
+aCollection.reverse();
+})
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Instead of `reverse` use:
 
-* <a href="https://doesitmutate.xyz/toreversed/">JavaScript’s <code>.toReversed()</code> method</a> (Node 20+)
-* Create your own new array using <a href="https://doesitmutate.xyz/toreversed/">JavaScript <code>.filter(entry => entry).reverse()</code></a>
-* <a href="https://liquidjs.com/filters/reverse.html">Liquid’s <code>reverse</code> filter</a>
-* <a href="https://mozilla.github.io/nunjucks/templating.html#reverse">Nunjucks’ <code>reverse</code> filter</a>
+- <a href="https://doesitmutate.xyz/toreversed/">JavaScript’s <code>.toReversed()</code> method</a> (Node 20+)
+- Create your own new array using <a href="https://doesitmutate.xyz/toreversed/">JavaScript <code>.filter(entry => entry).reverse()</code></a>
+- <a href="https://liquidjs.com/filters/reverse.html">Liquid’s <code>reverse</code> filter</a>
+- <a href="https://mozilla.github.io/nunjucks/templating.html#reverse">Nunjucks’ <code>reverse</code> filter</a>
 
 ### Overriding Content Dates
 
@@ -246,8 +261,10 @@ You can modify how a piece of content is sorted in a collection by changing its 
 
 {%- set codeBlock %}{% raw %}
 ---
+
 date: 2016-01-01
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 

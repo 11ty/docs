@@ -11,9 +11,9 @@ Eleventy includes its own hot-reloading development server.
 
 - [`11ty/eleventy-dev-server` on GitHub](https://github.com/11ty/eleventy-dev-server).
 - 🏋🏻‍♀️ Minimal footprint: `1.4 MB` node_modules
-	- Helped Eleventy `node_modules` drop from `155 MB` to `34.3 MB`
-	- Faster Eleventy `npm install` times (`30.5%` faster)
-	- Reduced Eleventy dependency count from `311` to `211`
+  - Helped Eleventy `node_modules` drop from `155 MB` to `34.3 MB`
+  - Faster Eleventy `npm install` times (`30.5%` faster)
+  - Reduced Eleventy dependency count from `311` to `211`
 - 📦 Bundler Decoupled
 - 🚄 Fast ~2ms startup times
 - ⚡️ WebSockets-based Live reload
@@ -29,49 +29,50 @@ You can configure the server with the new `setServerOptions` Configuration API m
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
-		// Default values are shown:
+eleventyConfig.setServerOptions({
+// Default values are shown:
 
-		// Whether the live reload snippet is used
-		liveReload: true,
+    	// Whether the live reload snippet is used
+    	liveReload: true,
 
-		// Whether DOM diffing updates are applied where possible instead of page reloads
-		domDiff: true,
+    	// Whether DOM diffing updates are applied where possible instead of page reloads
+    	domDiff: true,
 
-		// The starting port number
-		// Will increment up to (configurable) 10 times if a port is already in use.
-		port: 8080,
+    	// The starting port number
+    	// Will increment up to (configurable) 10 times if a port is already in use.
+    	port: 8080,
 
-		// Additional files to watch that will trigger server updates
-		// Accepts an Array of file paths or globs (passed to `chokidar.watch`).
-		// Works great with a separate bundler writing files to your output folder.
-		// e.g. `watch: ["_site/**/*.css"]`
-		watch: [],
+    	// Additional files to watch that will trigger server updates
+    	// Accepts an Array of file paths or globs (passed to `chokidar.watch`).
+    	// Works great with a separate bundler writing files to your output folder.
+    	// e.g. `watch: ["_site/**/*.css"]`
+    	watch: [],
 
-		// Show local network IP addresses for device testing
-		showAllHosts: false,
+    	// Show local network IP addresses for device testing
+    	showAllHosts: false,
 
-		// Use a local key/certificate to opt-in to local HTTP/2 with https
-		https: {
-			// key: "./localhost.key",
-			// cert: "./localhost.cert",
-		},
+    	// Use a local key/certificate to opt-in to local HTTP/2 with https
+    	https: {
+    		// key: "./localhost.key",
+    		// cert: "./localhost.cert",
+    	},
 
-		// Change the default file encoding for reading/serving files
-		encoding: "utf-8",
+    	// Change the default file encoding for reading/serving files
+    	encoding: "utf-8",
 
-		// Show the dev server version number on the command line
-		showVersion: false,
+    	// Show the dev server version number on the command line
+    	showVersion: false,
 
-		// Added in Dev Server 2.0+
-		// The default file name to show when a directory is requested.
-		indexFileName: "index.html",
+    	// Added in Dev Server 2.0+
+    	// The default file name to show when a directory is requested.
+    	indexFileName: "index.html",
 
-		// Added in Dev Server 2.0+
-		// An object mapping a URLPattern pathname to a callback function
-		// for on-request processing (read more below).
-		onRequest: {},
-	});
+    	// Added in Dev Server 2.0+
+    	// An object mapping a URLPattern pathname to a callback function
+    	// for on-request processing (read more below).
+    	onRequest: {},
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -81,22 +82,23 @@ export default function(eleventyConfig) {
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
-		// Change the name of the folder name used for injected scripts
-		injectedScriptsFolder: ".11ty",
+eleventyConfig.setServerOptions({
+// Change the name of the folder name used for injected scripts
+injectedScriptsFolder: ".11ty",
 
-		// Number of times to increment a port is already in use
-		portReassignmentRetryCount: 10,
+    	// Number of times to increment a port is already in use
+    	portReassignmentRetryCount: 10,
 
-		// Alias for backwards compatibility, renamed to `injectedScriptsFolder` in Dev Server 1.0+
-		folder: ".11ty",
+    	// Alias for backwards compatibility, renamed to `injectedScriptsFolder` in Dev Server 1.0+
+    	folder: ".11ty",
 
-		// Alias for backwards compatibility, renamed to `liveReload` in Dev Server 1.0+
-		enabled: true,
+    	// Alias for backwards compatibility, renamed to `liveReload` in Dev Server 1.0+
+    	enabled: true,
 
-		// Alias for backwards compatibility, renamed to `domDiff` in Dev Server 1.0+
-		domdiff: true,
-	});
+    	// Alias for backwards compatibility, renamed to `domDiff` in Dev Server 1.0+
+    	domdiff: true,
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -123,27 +125,27 @@ Try out the [`devcert-cli`](https://github.com/davewasmer/devcert-cli) package t
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
-		onRequest: {
-			"/": function({ url }) {
-				// will fallback to serve static files if we return any falsy value other than ""
-			},
-			"/empty": function({ url }) {
-				// render an empty page
-				return "";
-			},
-			"/foo/:name": function({ url, pattern, patternGroups }) {
-				// patternGroups will include URLPattern matches e.g. /foo/zach => { name: "zach" }
-				return {
-					status: 200,
-					headers: {
-						"Content-Type": "text/html",
-					},
-					body: "Hello."
-				};
-			}
-		}
-	});
+eleventyConfig.setServerOptions({
+onRequest: {
+"/": function({ url }) {
+// will fallback to serve static files if we return any falsy value other than ""
+},
+"/empty": function({ url }) {
+// render an empty page
+return "";
+},
+"/foo/:name": function({ url, pattern, patternGroups }) {
+// patternGroups will include URLPattern matches e.g. /foo/zach => { name: "zach" }
+return {
+status: 200,
+headers: {
+"Content-Type": "text/html",
+},
+body: "Hello."
+};
+}
+}
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -152,17 +154,17 @@ Works great with the [`process.env.ELEVENTY_RUN_MODE` environment variable](/doc
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Intercept all requests during --serve mode.
-	if(process.env.ELEVENTY_RUN_MODE === "serve") {
-		eleventyConfig.setServerOptions({
-			onRequest: {
-				"/*": function({ url }) {
-					// Don’t return any static files, only show a help message
-					return "Help I am trapped in the computer.";
-				},
-			}
-		});
-	}
+// Intercept all requests during --serve mode.
+if(process.env.ELEVENTY_RUN_MODE === "serve") {
+eleventyConfig.setServerOptions({
+onRequest: {
+"/*": function({ url }) {
+// Don’t return any static files, only show a help message
+return "Help I am trapped in the computer.";
+},
+}
+});
+}
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -186,19 +188,20 @@ Then, enable it in your configuration file:
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.setServerOptions({
-		module: "@11ty/eleventy-server-browsersync",
+eleventyConfig.setServerOptions({
+module: "@11ty/eleventy-server-browsersync",
 
-		// Default Browsersync options shown:
-		port: 8080,
-		open: false,
-		notify: false,
-		ui: false,
-		ghostMode: false,
+    	// Default Browsersync options shown:
+    	port: 8080,
+    	open: false,
+    	notify: false,
+    	ui: false,
+    	ghostMode: false,
 
-		// Opt-out of the Browsersync snippet
-		// snippet: false,
-	});
+    	// Opt-out of the Browsersync snippet
+    	// snippet: false,
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

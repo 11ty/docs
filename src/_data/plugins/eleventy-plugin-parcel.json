@@ -1,5 +1,5 @@
 {
-  "npm": "@kitschpatrol/eleventy-plugin-parcel",
-  "author": "kitschpatrol",
-  "description": "Integrates the Parcel build tool and dev server with Eleventy."
+	"npm": "@kitschpatrol/eleventy-plugin-parcel",
+	"author": "kitschpatrol",
+	"description": "Integrates the Parcel build tool and dev server with Eleventy."
 }

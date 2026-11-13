@@ -15,16 +15,17 @@ Transforms can modify a template’s output. For example, use a transform to for
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	// Can be sync or async
-	eleventyConfig.addTransform("transform-name", async function (content) {
-		console.log(this.page.inputPath);
+// Can be sync or async
+eleventyConfig.addTransform("transform-name", async function (content) {
+console.log(this.page.inputPath);
 
-		// Caution: this could be `false` (from permalink)
-		console.log(this.page.outputPath);
+    	// Caution: this could be `false` (from permalink)
+    	console.log(this.page.outputPath);
 
-		// No changes made, return as-is
-		return content;
-	});
+    	// No changes made, return as-is
+    	return content;
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -50,7 +51,7 @@ eleventyConfig.addTransform("third", () => {});
 Transforms added via plugins are inserted via the [second configuration stage for plugins](/docs/create-plugin/#creating-a-plugin).
 
 ```js
-eleventyConfig.addPlugin(eleventyConfig => {
+eleventyConfig.addPlugin((eleventyConfig) => {
 	eleventyConfig.addTransform("third", () => {});
 });
 eleventyConfig.addTransform("first", () => {});
@@ -65,21 +66,22 @@ eleventyConfig.addTransform("second", () => {});
 import htmlmin from "html-minifier-terser";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addTransform("htmlmin", function (content) {
-		// String conversion to handle `permalink: false`
-		if ((this.page.outputPath || "").endsWith(".html")) {
-			let minified = htmlmin.minify(content, {
-				useShortDoctype: true,
-				removeComments: true,
-				collapseWhitespace: true,
-			});
+eleventyConfig.addTransform("htmlmin", function (content) {
+// String conversion to handle `permalink: false`
+if ((this.page.outputPath || "").endsWith(".html")) {
+let minified = htmlmin.minify(content, {
+useShortDoctype: true,
+removeComments: true,
+collapseWhitespace: true,
+});
 
-			return minified;
-		}
+    		return minified;
+    	}
 
-		// If not an HTML output, return content as-is
-		return content;
-	});
+    	// If not an HTML output, return content as-is
+    	return content;
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

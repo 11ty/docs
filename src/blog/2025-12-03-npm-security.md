@@ -4,6 +4,7 @@ eleventyNavigation:
   parent: Blog
 blogHighlight: true
 ---
+
 As we harden our release practices in the wake of numerous recent vulnerabilities in npm packages amongst high profile authors, it seems worthwhile to celebrate a major milestone for 11ty core and our official suite of plugins: _we are now npm Access Token-free!_
 
 The `@11ty/*` ecosystem on npm is now fully migrated to [Trusted Publishers](https://docs.npmjs.com/trusted-publishers).

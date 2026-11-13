@@ -6,6 +6,7 @@ eleventyNavigation:
 blogHighlight: true
 screenshotCacheBust: 1
 ---
+
 <a href="https://blog.fontawesome.com/new-build-awesome-sponsorship-tiers/" style="display: block; max-width: 16em;" class="elv-externalexempt">{% getScreenshotHtml "New Sponsorship Tiers for the Build Awesome Kickstarter", "https://blog.fontawesome.com/new-build-awesome-sponsorship-tiers/" %}</a>
 
 We’ve added a bit more [information about the new sponsorship tiers for the Build Awesome Kickstarter](https://blog.fontawesome.com/new-build-awesome-sponsorship-tiers/).

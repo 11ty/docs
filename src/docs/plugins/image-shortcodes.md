@@ -30,28 +30,27 @@ The examples below require an [async-friendly shortcodes](/docs/shortcodes/#asyn
 import Image from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt, widths = [300, 600], sizes = "") {
-		return Image(src, {
-			widths,
-			formats: ["avif", "jpeg"],
-			returnType: "html",    // new in v6.0
-			htmlOptions: {         // new in v6.0
-				imgAttributes: {
-					alt,               // required, though "" works fine
-					sizes,             // required with more than one width, optional if single width output
-					loading: "lazy",   // optional
-					decoding: "async", // optional
-				}
-			}
-		});
-	});
+eleventyConfig.addShortcode("image", async function (src, alt, widths = [300, 600], sizes = "") {
+return Image(src, {
+widths,
+formats: ["avif", "jpeg"],
+returnType: "html", // new in v6.0
+htmlOptions: { // new in v6.0
+imgAttributes: {
+alt, // required, though "" works fine
+sizes, // required with more than one width, optional if single width output
+loading: "lazy", // optional
+decoding: "async", // optional
+}
+}
+});
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 - Read the [**full options list**](./image.md#options).
 - _HTML Tip:_ Read more about the special (and very useful) [`loading`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading) and [`decoding`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-decoding) HTML attributes.
-
 
 #### More about Shortcodes
 
@@ -85,22 +84,23 @@ import Image from "@11ty/eleventy-img";
 import { eleventyImageOnRequestDuringServePlugin } from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
-		let html = await Image(src, {
-			transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
-			returnType: "html",
-			htmlOptions: {
-				imgAttributes: {
-					alt, // required
-				},
-			}
-		});
+eleventyConfig.addShortcode("image", async function (src, alt) {
+let html = await Image(src, {
+transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
+returnType: "html",
+htmlOptions: {
+imgAttributes: {
+alt, // required
+},
+}
+});
 
-		return html;
-	});
+    	return html;
+    });
 
-	// Add the dev server middleware manually
-	eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin);
+    // Add the dev server middleware manually
+    eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin);
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -113,19 +113,20 @@ If you’re using an Image Shortcode or the WebC component in a project and you�
 import Image from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
-		let html = await Image(src, {
-			returnType: "html",
-			htmlOptions: {
-				imgAttributes: {
-					alt, // required
-					"eleventy:ignore": ""
-				}
-			}
-		});
+eleventyConfig.addShortcode("image", async function (src, alt) {
+let html = await Image(src, {
+returnType: "html",
+htmlOptions: {
+imgAttributes: {
+alt, // required
+"eleventy:ignore": ""
+}
+}
+});
 
-		return html;
-	});
+    	return html;
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -136,22 +137,22 @@ export default function (eleventyConfig) {
 import Image from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
-		let metadata = await Image(src, {
-			widths: [600],
-			formats: ["jpeg"],
-		});
+eleventyConfig.addShortcode("image", async function (src, alt) {
+let metadata = await Image(src, {
+widths: [600],
+formats: ["jpeg"],
+});
 
-		return Image.generateHTML(metadata, {
-			alt, // required
-		});
-	});
+    	return Image.generateHTML(metadata, {
+    		alt, // required
+    	});
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### Make your own markup
-
 
 If you have an advanced use case and don’t want to use `returnType: "html"` or `Image.generateHTML` to create image markup, you can do it yourself!
 
@@ -162,20 +163,21 @@ import { escapeAttribute } from "entities";
 import Image from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("image", async function (src, alt) {
-		if (alt === undefined) {
-			// You bet we throw an error on missing alt (alt="" works okay)
-			throw new Error(`Missing \`alt\` on myImage from: ${src}`);
-		}
+eleventyConfig.addShortcode("image", async function (src, alt) {
+if (alt === undefined) {
+// You bet we throw an error on missing alt (alt="" works okay)
+throw new Error(`Missing \`alt\` on myImage from: ${src}`);
+}
 
-		let metadata = await Image(src, {
-			widths: [600],
-			formats: ["jpeg"],
-		});
+    	let metadata = await Image(src, {
+    		widths: [600],
+    		formats: ["jpeg"],
+    	});
 
-		let data = metadata.jpeg[metadata.jpeg.length - 1];
-		return `<img src="${data.url}" width="${data.width}" height="${data.height}" alt="${escapeAttribute(alt)}" loading="lazy" decoding="async">`;
-	});
+    	let data = metadata.jpeg[metadata.jpeg.length - 1];
+    	return `<img src="${data.url}" width="${data.width}" height="${data.height}" alt="${escapeAttribute(alt)}" loading="lazy" decoding="async">`;
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

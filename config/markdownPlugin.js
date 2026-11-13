@@ -3,9 +3,9 @@ import markdownItToc from "markdown-it-table-of-contents";
 import { IdAttributePlugin } from "@11ty/eleventy";
 import memoize from "memoize";
 
-const markdownItSlugify = memoize((s => {
+const markdownItSlugify = memoize((s) => {
 	return slugify(removeExtraText(s));
-}));
+});
 
 function removeExtraText(s) {
 	let newStr = String(s);
@@ -46,7 +46,7 @@ export default function ($config) {
 		mdLib.linkify.tlds(".io", false);
 	});
 
-	const renderMarkdownInline = memoize(content => {
+	const renderMarkdownInline = memoize((content) => {
 		return mdIt.renderInline(content);
 	});
 
@@ -70,35 +70,31 @@ export default function ($config) {
 			}
 
 			if (level === "error") {
-				if(!customLabel) {
+				if (!customLabel) {
 					label = level.toUpperCase();
 				}
 				classLevel = "elv-callout-error";
 			} else if (level === "warn") {
-				if(!customLabel) {
+				if (!customLabel) {
 					label = "WARNING";
 				}
 				classLevel = "elv-callout-warn";
-			} else if(level === "info") {
+			} else if (level === "info") {
 				// label is skipped
 				classLevel = "elv-callout-info";
-			} else if(level === "demo") {
+			} else if (level === "demo") {
 				// label is skipped
 				classLevel = "elv-callout-skew elv-callout-skew--demo";
-			} else if(level === "pitfall") {
+			} else if (level === "pitfall") {
 				// label is skipped
 				classLevel = "elv-callout-skew elv-callout-skew--pitfall";
 			}
 
-			let labelHtml = label
-				? `<div class="elv-callout-label">${customLabel || label}</div>`
-				: "";
+			let labelHtml = label ? `<div class="elv-callout-label">${customLabel || label}</div>` : "";
 			let contentHtml =
-				(content || "").trim().length > 0
-					? `<div class="elv-callout-c">${content}</div>`
-					: "";
+				(content || "").trim().length > 0 ? `<div class="elv-callout-c">${content}</div>` : "";
 
 			return `<div class="elv-callout${classLevel ? ` ${classLevel}` : ""}">${labelHtml}${contentHtml}</div>`;
-		}
+		},
 	);
 }

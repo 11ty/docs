@@ -20,16 +20,16 @@ Add the following `jsmin` filter to your Eleventy Config file:
 import { minify } from "terser";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addFilter("jsmin", async function (code) {
-		try {
-			const minified = await minify(code);
-			return minified.code;
-		} catch (err) {
-			console.error("Terser error: ", err);
-			// Fail gracefully.
-			return code;
-		}
-	});
+eleventyConfig.addFilter("jsmin", async function (code) {
+try {
+const minified = await minify(code);
+return minified.code;
+} catch (err) {
+console.error("Terser error: ", err);
+// Fail gracefully.
+return code;
+}
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -54,7 +54,11 @@ Capture the JavaScript into a variable and run it through the filter (this sampl
 {% set js %} {% include "sample.js" %} {% endset %}
 <!-- feed it through our jsmin filter to minify -->
 <script>
-{{ js | jsmin | safe }}
+	{
+		{
+			js | jsmin | safe;
+		}
+	}
 </script>
 ```
 

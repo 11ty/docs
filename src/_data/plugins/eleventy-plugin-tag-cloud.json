@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-tag-cloud",
-  "author": "gingerchew",
-  "description": "Easily generate tag clouds to add a touch of Web 2.0"
+	"npm": "eleventy-plugin-tag-cloud",
+	"author": "gingerchew",
+	"description": "Easily generate tag clouds to add a touch of Web 2.0"
 }

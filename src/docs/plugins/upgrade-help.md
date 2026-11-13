@@ -70,8 +70,8 @@ Add to your configuration file (probably `eleventy.config.js` or `.eleventy.js`)
 import UpgradeHelper from "@11ty/eleventy-upgrade-help";
 
 export default function (eleventyConfig) {
-	// If you have other `addPlugin` calls, it’s important that UpgradeHelper is added last.
-	eleventyConfig.addPlugin(UpgradeHelper);
+// If you have other `addPlugin` calls, it’s important that UpgradeHelper is added last.
+eleventyConfig.addPlugin(UpgradeHelper);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -4,6 +4,7 @@ eleventyNavigation:
   parent: Configuration
 excludeFromSidebar: true
 ---
+
 # Configuration Shapes
 
 You can learn more about the [default file names for configuration files](/docs/config.md#default-filenames).
@@ -22,12 +23,12 @@ Instead of exporting a `config` object with your static options, you _can_ retur
 
 {% set codeContent %}
 export default async function(eleventyConfig) {
-	return {
-    dir: {
-      input: "views",
-      output: "dist"
-    }
-  };
+return {
+dir: {
+input: "views",
+output: "dist"
+}
+};
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -38,9 +39,9 @@ You _can_ export your static options as the top level default export too, though
 
 {% set codeContent %}
 export default {
-	dir: {
-		input: "views"
-	}
+dir: {
+input: "views"
+}
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

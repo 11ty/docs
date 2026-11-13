@@ -1,5 +1,5 @@
 {
-   "npm": "eleventy-plugin-ghost",
-   "author": "DavidDarnes",
-   "description": "Access the Ghost Content API in Eleventy 👻"
- }
+	"npm": "eleventy-plugin-ghost",
+	"author": "DavidDarnes",
+	"description": "Access the Ghost Content API in Eleventy 👻"
+}

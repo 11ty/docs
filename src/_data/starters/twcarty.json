@@ -1,7 +1,7 @@
 {
-  "url": "https://github.com/sira313/twcarty",
-  "name": "Eleventy Card",
-  "description": "Eleventy starter project with card layout from DaisyUI",
+	"url": "https://github.com/sira313/twcarty",
+	"name": "Eleventy Card",
+	"description": "Eleventy starter project with card layout from DaisyUI",
 	"author": "Apoxicam",
-  "demo": "https://twcarty.netlify.app"
+	"demo": "https://twcarty.netlify.app"
 }

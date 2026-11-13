@@ -15,16 +15,20 @@ Add a `date` key to your front matter to override the default date (file creatio
 {% codetitle "YAML Front Matter", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 date: 2016-01-01
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
 {% codetitle "YAML Front Matter", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 date: Last Modified
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -62,8 +66,10 @@ Here’s an example using IANA time zone codes:
 
 {%- set codeBlock %}{% raw %}
 ---
+
 date: 2019-08-31 23:59:56 America/New_York
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 
@@ -71,11 +77,11 @@ date: 2019-08-31 23:59:56 America/New_York
 import { DateTime } from "luxon";
 
 export default function(eleventyConfig) {
-	eleventyConfig.addDateParsing(function(dateValue) {
-		if (typeof dateValue === "string") {
-			return DateTime.fromFormat(dateValue, "yyyy-MM-dd hh:mm:ss z");
-		}
-	});
+eleventyConfig.addDateParsing(function(dateValue) {
+if (typeof dateValue === "string") {
+return DateTime.fromFormat(dateValue, "yyyy-MM-dd hh:mm:ss z");
+}
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -91,18 +97,18 @@ import { DateTime } from "luxon";
 const TIME_ZONE = "America/Chicago";
 
 export default function(eleventyConfig) {
-	eleventyConfig.addDateParsing(function(dateValue) {
-		let localDate;
-		if(dateValue instanceof Date) { // and YAML
-			localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(TIME_ZONE, { keepLocalTime: true });
-		} else if(typeof dateValue === "string") {
-			localDate = DateTime.fromISO(dateValue, { zone: TIME_ZONE });
-		}
-		if (localDate?.isValid === false) {
-			throw new Error(`Invalid \`date\` value (${dateValue}) is invalid for ${this.page.inputPath}: ${localDate.invalidReason}`);
-		}
-		return localDate;
-	});
+eleventyConfig.addDateParsing(function(dateValue) {
+let localDate;
+if(dateValue instanceof Date) { // and YAML
+localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(TIME_ZONE, { keepLocalTime: true });
+} else if(typeof dateValue === "string") {
+localDate = DateTime.fromISO(dateValue, { zone: TIME_ZONE });
+}
+if (localDate?.isValid === false) {
+throw new Error(`Invalid \`date\` value (${dateValue}) is invalid for ${this.page.inputPath}: ${localDate.invalidReason}`);
+}
+return localDate;
+});
 };
 
 {% endset %}
@@ -122,8 +128,10 @@ Many date formats in Eleventy (when set in your content‘s filename as `YYYY-MM
 
 {%- set codeBlock %}{% raw %}
 ---
+
 date: 2018-01-01
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 

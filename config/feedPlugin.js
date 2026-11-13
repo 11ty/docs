@@ -1,13 +1,16 @@
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 
-export default function($config) {
+export default function ($config) {
 	$config.addCollection("docsFeed", function (collection) {
-		return collection.getFilteredByGlob("src/docs/**/*.md").filter(entry => {
-			// remove permalink: false templates
-			return !!entry.url;
-		}).sort((a, b) => {
-			return a.date - b.date; // sort by date - ascending (feed plugin reverses)
-		});
+		return collection
+			.getFilteredByGlob("src/docs/**/*.md")
+			.filter((entry) => {
+				// remove permalink: false templates
+				return !!entry.url;
+			})
+			.sort((a, b) => {
+				return a.date - b.date; // sort by date - ascending (feed plugin reverses)
+			});
 	});
 
 	// Documentation Feed
@@ -24,9 +27,9 @@ export default function($config) {
 			subtitle: "Updates to the Eleventy Documentation, sorted by recent git commits.",
 			base: "https://www.11ty.dev/",
 			author: {
-				name: "Zach Leatherman"
-			}
-		}
+				name: "Zach Leatherman",
+			},
+		},
 	});
 
 	// Quick Tips Feed
@@ -43,9 +46,9 @@ export default function($config) {
 			subtitle: "All of the official Eleventy Quick Tips, in feed form.",
 			base: "https://www.11ty.dev/",
 			author: {
-				name: "Zach Leatherman"
-			}
-		}
+				name: "Zach Leatherman",
+			},
+		},
 	});
 
 	// Blog Feed
@@ -62,8 +65,8 @@ export default function($config) {
 			subtitle: "News and updates about the Eleventy static site generator project.",
 			base: "https://www.11ty.dev/",
 			author: {
-				name: "Zach Leatherman"
-			}
-		}
+				name: "Zach Leatherman",
+			},
+		},
 	});
 }

@@ -3,6 +3,7 @@ newstitle: How We Use GitHub Issues and How That’s Changing
 eleventyNavigation:
   parent: Blog
 ---
+
 When new enhancement requests would come in to the [Eleventy repository](https://github.com/11ty/eleventy/issues/), our typical playbook would include the following:
 
 1. Add a reply comment with the following:

@@ -23,20 +23,20 @@ Here are a few examples:
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-  // Shortcodes added in this way are available in:
-  // * Markdown
-  // * Liquid
-  // * Nunjucks
-  // * JavaScript
-  // * Handlebars (not async)
+// Shortcodes added in this way are available in:
+// * Markdown
+// * Liquid
+// * Nunjucks
+// * JavaScript
+// * Handlebars (not async)
 
-  eleventyConfig.addShortcode("user", function(firstName, lastName) { /* … */ });
+eleventyConfig.addShortcode("user", function(firstName, lastName) { /* … */ });
 
-  // Async-friendly in {{ "2.0.0-canary.24" | coerceVersion }}
-  eleventyConfig.addShortcode("user", async function(myName) { /* … */ });
+// Async-friendly in {{ "2.0.0-canary.24" | coerceVersion }}
+eleventyConfig.addShortcode("user", async function(myName) { /* … */ });
 
-  // Direct async method available
-  eleventyConfig.addAsyncShortcode("user", async function(myName) { /* … */ });
+// Direct async method available
+eleventyConfig.addAsyncShortcode("user", async function(myName) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -64,20 +64,20 @@ When adding paired shortcodes using the Configuration API, the first argument to
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-  // Shortcodes added in this way are available in:
-  // * Markdown
-  // * Liquid
-  // * Nunjucks
-  // * JavaScript
-  // * Handlebars (sync only)
+// Shortcodes added in this way are available in:
+// * Markdown
+// * Liquid
+// * Nunjucks
+// * JavaScript
+// * Handlebars (sync only)
 
-  eleventyConfig.addPairedShortcode("user", function(content, firstName, lastName) { /* … */ });
+eleventyConfig.addPairedShortcode("user", function(content, firstName, lastName) { /* … */ });
 
-  // Async support for `addPairedShortcode` is new in Eleventy {{ "2.0.0-canary.24" | coerceVersion }}
-  eleventyConfig.addPairedShortcode("user", async function(content, myName) { /* … */ });
+// Async support for `addPairedShortcode` is new in Eleventy {{ "2.0.0-canary.24" | coerceVersion }}
+eleventyConfig.addPairedShortcode("user", async function(content, myName) { /* … */ });
 
-  // Async method available
-  eleventyConfig.addPairedAsyncShortcode("user", async function(content, myName) { /* … */ });
+// Async method available
+eleventyConfig.addPairedAsyncShortcode("user", async function(content, myName) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -108,11 +108,11 @@ A few Eleventy-specific data properties are available to shortcode callbacks.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-  // Make sure you’re not using an arrow function here: () => {}
-  eleventyConfig.addShortcode("myShortcode", function () {
-    // this.page
-    // this.eleventy
-  });
+// Make sure you’re not using an arrow function here: () => {}
+eleventyConfig.addShortcode("myShortcode", function () {
+// this.page
+// this.eleventy
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -129,9 +129,9 @@ There are many popular libraries to cache or memoize functions (filters, shortco
 import memoize from "memoize";
 
 export default function(eleventyConfig) {
-	eleventyConfig.addShortcode("htmlEntities", memoize(str => {
-		return encode(str);
-	}));
+eleventyConfig.addShortcode("htmlEntities", memoize(str => {
+return encode(str);
+}));
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -142,17 +142,17 @@ You can also specify different functionality for shortcodes in each engine, if y
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-  // Liquid
-  eleventyConfig.addLiquidShortcode("user", function(firstName, lastName) {});
-  eleventyConfig.addPairedLiquidShortcode("user", function(content, firstName, lastName) {});
+// Liquid
+eleventyConfig.addLiquidShortcode("user", function(firstName, lastName) {});
+eleventyConfig.addPairedLiquidShortcode("user", function(content, firstName, lastName) {});
 
-  // Nunjucks
-  eleventyConfig.addNunjucksShortcode("user", function(firstName, lastName) {});
-  eleventyConfig.addPairedNunjucksShortcode("user", function(content, firstName, lastName) {});
+// Nunjucks
+eleventyConfig.addNunjucksShortcode("user", function(firstName, lastName) {});
+eleventyConfig.addPairedNunjucksShortcode("user", function(content, firstName, lastName) {});
 
-  // JavaScript Template Function (New in 0.7.0)
-  eleventyConfig.addJavaScriptFunction("user", function(firstName, lastName) {});
-  eleventyConfig.addJavaScriptFunction("user", function(content, firstName, lastName) {}); // Faux-paired shortcode
+// JavaScript Template Function (New in 0.7.0)
+eleventyConfig.addJavaScriptFunction("user", function(firstName, lastName) {});
+eleventyConfig.addJavaScriptFunction("user", function(content, firstName, lastName) {}); // Faux-paired shortcode
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -167,19 +167,19 @@ Learn more about these on the individual template engine pages for [Nunjucks](/d
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-  // Async-friendly
-  // Liquid is already async-friendly
-  eleventyConfig.addLiquidShortcode("user", async function() {});
-  eleventyConfig.addPairedLiquidShortcode("user", async function(content) {});
+// Async-friendly
+// Liquid is already async-friendly
+eleventyConfig.addLiquidShortcode("user", async function() {});
+eleventyConfig.addPairedLiquidShortcode("user", async function(content) {});
 
-  // Nunjucks Async
-  eleventyConfig.addNunjucksAsyncShortcode("user", async function() {});
-  eleventyConfig.addPairedNunjucksAsyncShortcode("user", async function(content) {});
+// Nunjucks Async
+eleventyConfig.addNunjucksAsyncShortcode("user", async function() {});
+eleventyConfig.addPairedNunjucksAsyncShortcode("user", async function(content) {});
 
-  // JavaScript Template function
-  // (make sure you `await` these when using in templates!)
-  eleventyConfig.addJavaScriptFunction("user", async function() {});
-  eleventyConfig.addJavaScriptFunction("user", async function(content) {}); // Faux-paired shortcode
+// JavaScript Template function
+// (make sure you `await` these when using in templates!)
+eleventyConfig.addJavaScriptFunction("user", async function() {});
+eleventyConfig.addJavaScriptFunction("user", async function(content) {}); // Faux-paired shortcode
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

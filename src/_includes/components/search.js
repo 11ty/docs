@@ -4,7 +4,7 @@ class Search {
 	}
 
 	setValue(val) {
-		if(this.headerInput) {
+		if (this.headerInput) {
 			this.headerInput.value = val;
 		}
 	}
@@ -58,8 +58,8 @@ class Search {
 
 				// Deprioritize blog search results
 				results.sort((a, b) => {
-					const aIsBlog = a.url.startsWith('/blog');
-					const bIsBlog = b.url.startsWith('/blog');
+					const aIsBlog = a.url.startsWith("/blog");
+					const bIsBlog = b.url.startsWith("/blog");
 					if (aIsBlog && !bIsBlog) return 1;
 					if (!aIsBlog && bIsBlog) return -1;
 					return 0; // keep Pagefind's order otherwise
@@ -76,7 +76,7 @@ class Search {
 					this.searchResultsList.innerHTML = "<li>No Matches Found.</li>";
 				}
 				this.searchResultsList.classList[results.length > 0 ? "remove" : "add"](
-					"search-results-notfound"
+					"search-results-notfound",
 				);
 			} else {
 				this.searchResults.classList.add("hide");
@@ -98,7 +98,7 @@ class Search {
 				function (event) {
 					event.preventDefault();
 				},
-				false
+				false,
 			);
 		}
 		// if(this.headerInput && location.pathname.startsWith("/docs/search/")) {
@@ -115,10 +115,10 @@ class Search {
 					window.history.replaceState(
 						{},
 						"",
-						`/docs/search/${value ? `?q=${encodeURIComponent(value)}` : ""}`
+						`/docs/search/${value ? `?q=${encodeURIComponent(value)}` : ""}`,
 					);
 				},
-				false
+				false,
 			);
 
 			let queryString = this.getQueryString();

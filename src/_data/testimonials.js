@@ -14,7 +14,7 @@ export default function () {
 	return [
 		{
 			text: `Read the replies to: <em><a href="${transformUrl(
-				"https://twitter.com/jensimmons/status/1107377359546736641"
+				"https://twitter.com/jensimmons/status/1107377359546736641",
 			)}">“Fans of Eleventy.... why do you like it better than other static site generators?”</a></em>`,
 			name: "Jen Simmons",
 			avatarUrl: "https://jensimmons.com/",

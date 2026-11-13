@@ -103,13 +103,14 @@ Say you want to output something from the paginated data instead of bland `Page 
 {% codetitle "YAML", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 testdata:
-  - item1
-  - item2
-  - item3
-  - item4
-  - item5
-  - item6
-{% endraw %}{%- endset %}
+
+- item1
+- item2
+- item3
+- item4
+- item5
+- item6
+  {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 
 {% include "snippets/pagination/original.njk" %}
@@ -124,12 +125,12 @@ testdata:
 {% codetitle "YAML", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 testdata:
-  key1: item1
-  key2: item2
-  key3: item3
-  key4: item4
-  key5: item5
-  key6: item6
+key1: item1
+key2: item2
+key3: item3
+key4: item4
+key5: item5
+key6: item6
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 
@@ -147,7 +148,7 @@ You’ll probably also want to add some kind of visual styling to indicate that 
 {% codetitle "CSS", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 [aria-current] {
-	background-color: #eee;
+background-color: #eee;
 }
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("css") | safe }}

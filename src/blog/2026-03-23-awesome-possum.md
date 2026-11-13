@@ -4,6 +4,7 @@ eleventyNavigation:
   parent: Blog
 screenshotCacheBust: 1
 ---
+
 As Eleventy [enters the Awesomeverse as Build Awesome](/blog/build-awesome/) and joins the esteemed ranks of both Font Awesome and Web Awesome, the possum is taking on more responsibility as well.
 
 That’s right, the new iteration of our beloved possum mascot will be representing the larger Awesomeverse of open source projects as well (complete with custom wardrobe)!

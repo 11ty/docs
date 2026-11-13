@@ -60,9 +60,9 @@ Filters can be added using the [Configuration API](/docs/config/) and are availa
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addFilter("makeUppercase", function(value) { /* … */ });
+eleventyConfig.addFilter("makeUppercase", function(value) { /* … */ });
 
-  eleventyConfig.addAsyncFilter("makeUppercase", async function(value) { /* … */ });
+eleventyConfig.addAsyncFilter("makeUppercase", async function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -87,9 +87,9 @@ If you’d like to reuse existing filters, you can use the Configuration API’s
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("myCustomImage", function (url, alt) {
-		return `<img src="${eleventyConfig.getFilter("url")(url)}" alt="${alt}">`;
-	});
+eleventyConfig.addShortcode("myCustomImage", function (url, alt) {
+return `<img src="${eleventyConfig.getFilter("url")(url)}" alt="${alt}">`;
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -100,20 +100,21 @@ Eleventy has added a new universal filter API for asynchronous filters and exten
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Async universal filters add to:
-	// * Liquid
-	// * Nunjucks
-	// * JavaScript
+// Async universal filters add to:
+// * Liquid
+// * Nunjucks
+// * JavaScript
 
-	eleventyConfig.addFilter("myFilter", async function (value) {
-		// do some Async work
-		return value;
-	});
+    eleventyConfig.addFilter("myFilter", async function (value) {
+    	// do some Async work
+    	return value;
+    });
 
-	eleventyConfig.addAsyncFilter("myFilter", async function (value) {
-		// do some Async work
-		return value;
-	});
+    eleventyConfig.addAsyncFilter("myFilter", async function (value) {
+    	// do some Async work
+    	return value;
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -133,11 +134,11 @@ A few Eleventy-specific data properties are available to filter callbacks.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Make sure you’re not using an arrow function here: () => {}
-	eleventyConfig.addFilter("myFilter", function () {
-		// this.page
-		// this.eleventy
-	});
+// Make sure you’re not using an arrow function here: () => {}
+eleventyConfig.addFilter("myFilter", function () {
+// this.page
+// this.eleventy
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -156,9 +157,9 @@ Note that Eleventy 3.0 <!-- 3.0.0-alpha.15 --> ships with a memoization layer ar
 import memoize from "memoize";
 
 export default function(eleventyConfig) {
-	eleventyConfig.addFilter("htmlEntities", memoize(str => {
-		return encode(str);
-	}));
+eleventyConfig.addFilter("htmlEntities", memoize(str => {
+return encode(str);
+}));
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -169,18 +170,18 @@ Filters can also be specified individually for one or more template engines. (Th
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	// Liquid Filter (async-friendly)
-  eleventyConfig.addLiquidFilter("myFilter", async function(value) { /* … */ });
+// Liquid Filter (async-friendly)
+eleventyConfig.addLiquidFilter("myFilter", async function(value) { /* … */ });
 
-  // Nunjucks Filter
-  eleventyConfig.addNunjucksFilter("myFilter", function(value) { /* … */ });
+// Nunjucks Filter
+eleventyConfig.addNunjucksFilter("myFilter", function(value) { /* … */ });
 
-  // Nunjucks Async Filter
-  // Read the Nunjucks docs before using this (link below)
-  eleventyConfig.addNunjucksAsyncFilter("myFilter", function() { /* … */ });
+// Nunjucks Async Filter
+// Read the Nunjucks docs before using this (link below)
+eleventyConfig.addNunjucksAsyncFilter("myFilter", function() { /* … */ });
 
-  // JavaScript Template Function (async-friendly)
-  eleventyConfig.addJavaScriptFunction("myFilter", async function(value) { /* … */ });
+// JavaScript Template Function (async-friendly)
+eleventyConfig.addJavaScriptFunction("myFilter", async function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

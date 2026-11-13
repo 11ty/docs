@@ -60,7 +60,7 @@
 	background-color: var(--search-result-active-bg);
 }
 a[href].search-results-item:not(:hover, :focus) {
-	text-decoration-color: rgba(0,0,0,0); /* transparent */
+	text-decoration-color: rgba(0, 0, 0, 0); /* transparent */
 }
 a[href].search-results-item:is(:hover, :focus) {
 	text-decoration: none;
@@ -81,6 +81,6 @@ a[href].search-results-item:is(:hover, :focus) {
 	opacity: 0.8;
 	text-decoration: underline;
 	text-underline-position: under;
-  text-decoration-thickness: 1px;
-  text-underline-offset: -2px;
+	text-decoration-thickness: 1px;
+	text-underline-offset: -2px;
 }

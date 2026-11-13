@@ -33,11 +33,10 @@ npm install @11ty/eleventy-plugin-vite
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(EleventyVitePlugin);
+eleventyConfig.addPlugin(EleventyVitePlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
-
 
 <details>
 <summary>Expand for full list of options</summary>
@@ -48,8 +47,8 @@ View the [full list of Vite Configuration options](https://vite.dev/config/).
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(EleventyVitePlugin, {
-    tempFolderName: ".11ty-vite", // Default name of the temp folder
+eleventyConfig.addPlugin(EleventyVitePlugin, {
+tempFolderName: ".11ty-vite", // Default name of the temp folder
 
     // Options passed to the Eleventy Dev Server
     // e.g. domdiff, enabled, etc.
@@ -79,7 +78,8 @@ export default function (eleventyConfig) {
         },
       },
     },
-  });
+
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

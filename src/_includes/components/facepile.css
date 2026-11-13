@@ -6,7 +6,7 @@
 	--facepile-avatar-size: 2.75em;
 	display: flex;
 	flex-wrap: wrap;
-	gap: .25em 0;
+	gap: 0.25em 0;
 	margin-top: 2em;
 	margin-bottom: 3em;
 	padding: 0 0 0 var(--facepile-offset);
@@ -20,14 +20,14 @@
 
 .supporters-silver .facepile {
 	--facepile-avatar-size: 3.25em;
-	gap: .5em;
+	gap: 0.5em;
 	justify-content: center;
 }
 .supporters-silver .facepile a[href] {
 	margin: 0;
 }
 .supporters-silver .facepile .avatar {
-	border-radius: .25em;
+	border-radius: 0.25em;
 	border-width: 0;
 	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.08);
 }
