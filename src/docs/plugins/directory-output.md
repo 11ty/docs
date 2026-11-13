@@ -22,14 +22,17 @@ npm install @11ty/eleventy-plugin-directory-output
 
 Open up your Build Awesome config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
 export default function ($config) {
-$config.setQuietMode(true);
-$config.addPlugin(dirOutputPlugin);
+	$config.setQuietMode(true);
+	$config.addPlugin(dirOutputPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}You’re only allowed one `module.exports` in your configuration file, so make sure you only copy the `require` and the `addPlugin` lines above!{% endcallout %}
@@ -38,24 +41,26 @@ Read more about [Eleventy plugins.](/docs/plugins/)
 
 ## Options
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
 export default function ($config) {
-$config.setQuietMode(true);
-$config.addPlugin(dirOutputPlugin, {
-// Customize columns
-columns: {
-filesize: true, // Use `false` to disable
-benchmark: true, // Use `false` to disable
-},
+	$config.setQuietMode(true);
+	$config.addPlugin(dirOutputPlugin, {
+		// Customize columns
+		columns: {
+			filesize: true, // Use `false` to disable
+			benchmark: true, // Use `false` to disable
+		},
 
-    	// Will show in yellow if greater than this number of bytes
-    	warningFileSize: 400 * 1000,
-    });
-
+		// Will show in yellow if greater than this number of bytes
+		warningFileSize: 400 * 1000,
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}The `benchmark` column is only compatible with Eleventy 1.0.1 or newer.{% endcallout %}

@@ -17,15 +17,16 @@ eleventyNavigation:
 
 Here’s the first command you can enter in your Terminal application to run Build Awesome:
 
+<!-- prettier-ignore-start -->
 {% set usageCode %}
 # Searches the current directory, outputs to ./_site
-
 npx @awesome.me/buildawesome
 
 # `npx @awesome.me/buildawesome` is the same as:
-
 npx @awesome.me/buildawesome --input=. --output=_site
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <script type="module" src="/js/seven-minute-tabs.js"></script>
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
@@ -42,19 +43,19 @@ Read more about [`--input`](/docs/config/#input-directory) and [`--output`](/doc
 
 A hypothetical `template.md` in the current directory would be rendered to `_site/template/index.html`. Read more at [Permalinks](/docs/permalinks/).
 
+<!-- prettier-ignore-start -->
 {% set usageFormatsCode %}
 # Use only a subset of template types
-
 npx @awesome.me/buildawesome --formats=md,html,ejs
 
 # Don’t process any formats
-
 npx @awesome.me/buildawesome --formats=
 
 # Find out the most up-to-date list of commands (there are more)
-
 npx @awesome.me/buildawesome --help
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-formats-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -70,11 +71,13 @@ npx @awesome.me/buildawesome --help
 
 ### `--quiet` if the Output is Too Noisy
 
+<!-- prettier-ignore-start -->
 {% set usageQuietCode %}
 # Shhhhh—Don’t log so much to the console
-
 npx @awesome.me/buildawesome --quiet
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-quiet-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -90,21 +93,20 @@ npx @awesome.me/buildawesome --quiet
 
 ### Build when you save
 
+<!-- prettier-ignore-start -->
 {% set usageServeCode %}
 # Add a web server to apply changes and
-
 # refresh automatically. We’ll also --watch for you.
-
 npx @awesome.me/buildawesome --serve
 
 # Change the web server’s port—use localhost:8081
-
 npx @awesome.me/buildawesome --serve --port=8081
 
 # Watch and re-run when files change, without the web server.
-
 npx @awesome.me/buildawesome --watch
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-serve-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -118,11 +120,13 @@ npx @awesome.me/buildawesome --watch
 
 ### `--config` to Change the Config file name
 
+<!-- prettier-ignore-start -->
 {% set usageCfgCode %}
 # Override the default configuration filename (buildawesome.config.js)
-
 npx @awesome.me/buildawesome --config=myconfig.js
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-cfg-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -140,15 +144,16 @@ Read more about [Configuration files](/docs/config.md).
 
 ### `--to` can output JSON {% addedin "1.0.0" %}
 
+<!-- prettier-ignore-start -->
 {% set usageJsonCode %}
 # Output a JSON structure (does not write to the file system)
-
 npx @awesome.me/buildawesome --to=json
 
 # Default behavior (Output to file system)
-
 npx @awesome.me/buildawesome --to=fs
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-json-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -164,22 +169,21 @@ npx @awesome.me/buildawesome --to=fs
 
 ### `--incremental` for Partial Incremental Builds
 
+<!-- prettier-ignore-start -->
 {% set usageIncrementalCode %}
-# _Repeat_ builds only operate on files that have changed
-
+# *Repeat* builds only operate on files that have changed
 npx @awesome.me/buildawesome --watch --incremental
 npx @awesome.me/buildawesome --serve --incremental
 
 # Skip the initial full build with `--ignore-initial`
-
 npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 
 # Pass in a template path, watch/serve not required
-
 # Added in {{ "3.0.0-alpha.14" | coerceVersion }}
-
 npx @awesome.me/buildawesome --incremental=myfile.md
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-inc-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -197,16 +201,17 @@ Read more about [incremental builds](/docs/usage/incremental/). Related [GitHub 
 
 Be wary of any file changes that happened while Build Awesome wasn’t running!
 
+<!-- prettier-ignore-start -->
 {% set usageInitialCode %}
 # Don’t build when Build Awesome starts, only listen for future file changes
-
 npx @awesome.me/buildawesome --watch --ignore-initial
 npx @awesome.me/buildawesome --serve --ignore-initial
 
 # Works great with Incremental
-
 npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-initial-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -224,11 +229,13 @@ npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 
 Runs without writing to the file system. Useful when [debugging](/docs/debugging/).
 
+<!-- prettier-ignore-start -->
 {% set usageDryCode %}
 # Run but don’t write any files
-
 npx @awesome.me/buildawesome --dryrun
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-dry-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
@@ -263,11 +270,13 @@ Learn more about [Debug Mode log output](./debugging.md).
 
 Yes, you can use the same `input` and `output` directories, like so:
 
+<!-- prettier-ignore-start -->
 {% set usageSameDirsCode %}
 # Parse and write Markdown to HTML, respecting directory structure.
-
 npx @awesome.me/buildawesome --input=. --output=. --formats=md
 {% endset %}
+
+<!-- prettier-ignore-end -->
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#usage-same-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>

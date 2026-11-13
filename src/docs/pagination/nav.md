@@ -48,30 +48,46 @@ Alright, you definitely read all of those right? 😇 Here’s some accessible c
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "paged-nav-starter", valid: "liquid,njk,js" } %}
   <div id="paged-nav-starter-liquid" role="tabpanel">
     {%- codetitle "starter.liquid" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/starter.liquid" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="paged-nav-starter-njk" role="tabpanel">
     {%- codetitle "starter.njk" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/starter.njk" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="paged-nav-starter-js" role="tabpanel">
     {%- codetitle "starter.11ty.js" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/starter.js" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="paged-nav-starter-cjs" role="tabpanel">
     {%- codetitle "starter.11ty.cjs" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/starter.cjs" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
@@ -80,6 +96,8 @@ Alright, you definitely read all of those right? 😇 Here’s some accessible c
 For our example, this code will output the following markup for our example (on the first page):
 
 {% codetitle "HTML", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 <nav aria-labelledby="my-pagination">
 	<h2 id="my-pagination">This is my Pagination</h2>
@@ -90,6 +108,8 @@ For our example, this code will output the following markup for our example (on 
 	</ol>
 </nav>
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 {% callout "info" %}<strong>HTML tip</strong>: make sure the <code>id</code> attribute used on your heading (<code>id="my-pagination"</code>) is unique to your page!{% endcallout %}
@@ -101,16 +121,19 @@ Say you want to output something from the paginated data instead of bland `Page 
 #### When Paginating Arrays
 
 {% codetitle "YAML", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 testdata:
+  - item1
+  - item2
+  - item3
+  - item4
+  - item5
+  - item6
+{% endraw %}{%- endset %}
 
-- item1
-- item2
-- item3
-- item4
-- item5
-- item6
-  {% endraw %}{%- endset %}
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("yaml") | safe }}
 
 {% include "snippets/pagination/original.njk" %}
@@ -123,15 +146,19 @@ testdata:
 #### When Paginating Object Literals
 
 {% codetitle "YAML", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 testdata:
-key1: item1
-key2: item2
-key3: item3
-key4: item4
-key5: item5
-key6: item6
+  key1: item1
+  key2: item2
+  key3: item3
+  key4: item4
+  key5: item5
+  key6: item6
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("yaml") | safe }}
 
 {% include "snippets/pagination/object-lit.njk" %}
@@ -146,11 +173,15 @@ key6: item6
 You’ll probably also want to add some kind of visual styling to indicate that the user is on the current page. For this let’s use a light `background-color`.
 
 {% codetitle "CSS", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 [aria-current] {
-background-color: #eee;
+	background-color: #eee;
 }
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("css") | safe }}
 
 {% callout "info" %}<strong id="annoy-zach">A Tip to avoid something that annoys Zach™</strong>: If you use something like <code>font-weight</code> here make sure the change in text size for the current page doesn’t make your navigation shift around between pages! This is especially important if your navigation links are displayed side-by-side on the same line.{% endcallout %}
@@ -167,23 +198,35 @@ Note that if the current page (`page.url`) is the first or last in the set, we w
   </div>
   <div id="paged-nav-nextprev-njk" role="tabpanel">
     {%- codetitle "nextprev.njk" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/nextprev.njk" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="paged-nav-nextprev-js" role="tabpanel">
     {%- codetitle "nextprev.11ty.js" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/nextprev.js" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="paged-nav-nextprev-cjs" role="tabpanel">
     {%- codetitle "nextprev.11ty.cjs" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/nextprev.cjs" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
@@ -203,23 +246,35 @@ For clarity here, we’re omitting the previous and next links from the previous
   </div>
   <div id="paged-nav-firstlast-njk" role="tabpanel">
     {%- codetitle "firstlast.njk" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/firstlast.njk" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="paged-nav-firstlast-js" role="tabpanel">
     {%- codetitle "firstlast.11ty.js" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/firstlast.js" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="paged-nav-firstlast-cjs" role="tabpanel">
     {%- codetitle "firstlast.11ty.cjs" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/firstlast.cjs" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
@@ -237,23 +292,35 @@ Here’s the final pagination navigation template code, pieced together:
   </div>
   <div id="paged-nav-combined-njk" role="tabpanel">
     {%- codetitle "combined.njk" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/combined.njk" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="paged-nav-combined-js" role="tabpanel">
     {%- codetitle "combined.11ty.js" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/combined.js" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="paged-nav-combined-cjs" role="tabpanel">
     {%- codetitle "combined.11ty.cjs" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {%- include "snippets/pagination/nav/combined.cjs" %}
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>

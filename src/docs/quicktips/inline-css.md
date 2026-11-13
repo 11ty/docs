@@ -16,26 +16,28 @@ This tip works well on small sites that don’t have a lot of CSS. Inlining your
 
 Add the following `cssmin` filter to your Eleventy Config file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { transform } from "lightningcss";
 
 export default function ($config$) {
-$config.addFilter("cssmin", function (inputCode) {
-if (process.env.BUILDAWESOME_RUN_MODE === "build") {
-let { code } = transform({
-// filename: undefined,
-code: Buffer.from(inputCode),
-minify: true,
-sourceMap: false
-});
-return code;
-}
+	$config.addFilter("cssmin", function (inputCode) {
+		if (process.env.BUILDAWESOME_RUN_MODE === "build") {
+			let { code } = transform({
+				// filename: undefined,
+				code: Buffer.from(inputCode),
+				minify: true,
+				sourceMap: false
+			});
+			return code;
+		}
 
-    	return `/* [buildawesome] cssmin skipped during --watch and --serve */\n${inputCode}`;
-    });
-
+		return `/* [buildawesome] cssmin skipped during --watch and --serve */\n${inputCode}`;
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Create your CSS File
@@ -77,27 +79,29 @@ _Contributed by [Zach Green](https://github.com/zgreen)_
 
 You can also inline minified CSS in a [JavaScript template](/docs/languages/javascript/). This technique does not use filters, and instead uses `async` functions:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import fs from "node:fs/promises";
 import path from "node:path";
 import { transform } from "lightningcss";
 
 export default async function (data) {
-return `<style>
-${await fs
-.readFile(path.resolve(__dirname, "./sample.css"))
-.then(inputCode => {
-let { code } = transform({
-// filename: undefined,
-code: Buffer.from(inputCode),
-minify: true,
-sourceMap: false
-});
+	return `<style>
+	  ${await fs
+			.readFile(path.resolve(__dirname, "./sample.css"))
+			.then(inputCode => {
+				let { code } = transform({
+					// filename: undefined,
+					code: Buffer.from(inputCode),
+					minify: true,
+					sourceMap: false
+				});
 
-    			return code;
-    		})}
-    </style>`;
-
+				return code;
+			})}
+	</style>`;
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

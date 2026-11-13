@@ -24,11 +24,14 @@ For more larger, more complex use cases you may want to use a more full featured
 
 This plugin is included with Eleventy core and requires no additional installation. However, the plugin is opt-in and does not include any bundles by default: you must add these yourself via the `addBundle` configuration method.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addBundle("css");
+	$config.addBundle("css");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 `addBundle` does two things:
@@ -39,38 +42,40 @@ $config.addBundle("css");
 <details>
 <summary><strong>Full <code>addBundle</code> options list</strong></summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addBundle("css", {
-// File extension used for bundle file output, defaults to bundle name
-outputFileExtension: "css",
+	$config.addBundle("css", {
+		// File extension used for bundle file output, defaults to bundle name
+		outputFileExtension: "css",
 
-    	// Name of shortcode for use in templates, defaults to bundle name
-    	shortcodeName: "css",
-    	// shortcodeName: false, // disable this feature.
+		// Name of shortcode for use in templates, defaults to bundle name
+		shortcodeName: "css",
+		// shortcodeName: false, // disable this feature.
 
-    	// Optional subfolder (relative to output directory) files will write to
-    	toFileDirectory: "",
+		// Optional subfolder (relative to output directory) files will write to
+		toFileDirectory: "",
 
-    	// Modify bundle content
-    	transforms: [],
+		// Modify bundle content
+		transforms: [],
 
-    	// If two identical code blocks exist in non-default buckets, they’ll be hoisted to the first bucket in common.
-    	hoist: true,
+		// If two identical code blocks exist in non-default buckets, they’ll be hoisted to the first bucket in common.
+		hoist: true,
 
-    	// Bundle content from nodes selected by an arbitrary selector
-    	// e.g. "script" would bundle `<script>` content
-    	// Use an eleventy:ignore attribute on a node to opt-out.
-    	// Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
-    	bundleHtmlContentFromSelector: "",
+		// Bundle content from nodes selected by an arbitrary selector
+		// e.g. "script" would bundle `<script>` content
+		// Use an eleventy:ignore attribute on a node to opt-out.
+		// Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
+		bundleHtmlContentFromSelector: "",
 
-    	// In 11ty.js templates, having a named export of `bundle` will populate your bundles.
-    	bundleExportKey: "bundle",
-    	// bundleExportKey: false, // disable this feature.
-    });
-
+		// In 11ty.js templates, having a named export of `bundle` will populate your bundles.
+		bundleExportKey: "bundle",
+		// bundleExportKey: false, // disable this feature.
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 You can read more about:
@@ -119,20 +124,18 @@ Results in a removal of the bundle additions from the rendered output, like so:
 {% addedin "Bundle v3.0.2" %} Using the `bundleHtmlContentFromSelector` option allows bundling content inside HTML nodes.
 
 ```html
-# My Blog Post This is some content, I am writing markup.
+# My Blog Post
+
+This is some content, I am writing markup.
 
 <style>
-	em {
-		font-style: italic;
-	}
+em { font-style: italic; }
 </style>
 
 ## More Markdown
 
 <style>
-	strong {
-		font-weight: bold;
-	}
+strong { font-weight: bold; }
 </style>
 ```
 
@@ -148,15 +151,15 @@ You can fetch the bundle content and output it directly on your page using the `
 {% raw %}
 ```html
 <!-- Use this *anywhere*: a layout file, content template, etc -->
-<style>
-	{% getBundle "css" %}
-</style>
+<style>{% getBundle "css" %}</style>
 
 <!--
 You can add more code to the bundle after calling
 getBundle and it *will* be included.
 -->
-{% css %} * { color: orange; } {% endcss %}
+{% css %}
+* { color: orange; }
+{% endcss %}
 ```
 {% endraw %}
 
@@ -179,29 +182,32 @@ You can pass an additional string argument to your shortcode to add a sub-contai
 {% raw %}
 ```html
 <!-- This goes into a `defer` bucket -->
-{% css "defer" %} em { font-style: italic; } {% endcss %}
+{% css "defer" %}
+em { font-style: italic; }
+{% endcss %}
 ```
 
 And to retrieve the code, you do the same with `getBundle` and `getBundleFileUrl`:
 
 ```html
 <!-- Retrieve the `defer` bucket code -->
-<style>
-	{% getBundle "css", "defer" %}
-</style>
+<style>{% getBundle "css", "defer" %}</style>
 
 <!-- Or: -->
-<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}" />
+<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}">
 ```
 {% endraw %}
 
 ### Critical CSS
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addBundle("css");
+	$config.addBundle("css");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Now we’ll use asset bucketing to divide CSS between the default bucket and a defer bucket, loaded asynchronously.
@@ -211,12 +217,10 @@ Now we’ll use asset bucketing to divide CSS between the default bucket and a d
 <!-- … -->
 <head>
 	<!-- Inlined critical styles -->
-	<style>
-		{% getBundle "css" %}
-	</style>
+	<style>{% getBundle "css" %}</style>
 
 	<!-- Non-critical styles -->
-	<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}" fetchpriority="low" />
+	<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'defer' %}" fetchpriority="low">
 </head>
 <body>
 	<!-- This goes into a `default` bucket -->
@@ -230,11 +234,14 @@ Now we’ll use asset bucketing to divide CSS between the default bucket and a d
 
 ### SVG Icon Library
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addBundle("svg");
+	$config.addBundle("svg");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -246,8 +253,9 @@ $config.addBundle("svg");
 <!-- Add icons to the set from anywhere on the page -->
 {% svg %}
 <g id="icon-close"><path d="…" /></g>
-{% endsvg %} And now you can use `icon-close` in as many SVG instances as you’d like (without
-repeating the heftier SVG content).
+{% endsvg %}
+
+And now you can use `icon-close` in as many SVG instances as you’d like (without repeating the heftier SVG content).
 
 <svg><use xlink:href="#icon-close"></use></svg>
 <svg><use xlink:href="#icon-close"></use></svg>
@@ -258,11 +266,14 @@ repeating the heftier SVG content).
 
 ### React Helmet style `<head>` additions
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addBundle("html");
+	$config.addBundle("html");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -274,7 +285,7 @@ $config.addBundle("html");
 <body>
 	<!-- Add things to `<head>` from anywhere on the page -->
 	{% html "head" %}
-	<link href="https://v1.opengraph.11ty.dev" rel="preconnect" crossorigin />
+	<link href="https://v1.opengraph.11ty.dev" rel="preconnect" crossorigin>
 	{% endhtml %}
 </body>
 <!-- … -->
@@ -283,23 +294,26 @@ $config.addBundle("html");
 
 ### Postprocess the Bundle Output
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
 
 export default function($config) {
-$config.addBundle("css", {
-transforms: [
-async function(content) {
-// type contains the bundle name.
-let { type, page } = this;
-let result = await postcss([postcssNested]).process(content, { from: page.inputPath, to: null });
-return result.css;
-}
-]
-});
+	$config.addBundle("css", {
+		transforms: [
+			async function(content) {
+				// type contains the bundle name.
+				let { type, page } = this;
+				let result = await postcss([postcssNested]).process(content, { from: page.inputPath, to: null });
+				return result.css;
+			}
+		]
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Using with [WebC](/docs/languages/webc.md)
@@ -309,23 +323,15 @@ Starting with Eleventy WebC v0.9.0 (tracked at [#48](https://github.com/11ty/ele
 To add CSS to a bundle in WebC, you would use a `<style>` element in a WebC page or component:
 
 ```html
-<style>
-	/* This is bundled. */
-</style>
-<style webc:keep>
-	/* Do not bundle me—leave as is */
-</style>
+<style>/* This is bundled. */</style>
+<style webc:keep>/* Do not bundle me—leave as is */</style>
 ```
 
 To add JS to a page bundle in WebC, you would use a `<script>` element in a WebC page or component:
 
 ```html
-<script>
-	/* This is bundled. */
-</script>
-<script webc:keep>
-	/* Do not bundle me—leave as is */
-</script>
+<script>/* This is bundled. */</script>
+<script webc:keep>/* Do not bundle me—leave as is */</script>
 ```
 
 `<style @raw="getBundle('css')">` and `<script @raw="getBundle('js')">` both work as expected in WebC to fetch bundle content.

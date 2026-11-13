@@ -20,26 +20,28 @@ Eleventy now allows the addition of custom template extensions, meaning that you
 
 `clowd` is a pretend templating language that we’ve just created. It uses the `.clowd` file extension. The purpose of the language is to translate any occurrences of the word `cloud` to the word `butt` instead.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-// Add as a valid extension to process
-// Alternatively, add this to the list of formats you pass to the `--formats` CLI argument
-$config.addTemplateFormats("clowd");
+	// Add as a valid extension to process
+	// Alternatively, add this to the list of formats you pass to the `--formats` CLI argument
+	$config.addTemplateFormats("clowd");
 
-    // "clowd" here means that the extension will apply to any .clowd file
-    $config.addExtension("clowd", {
-    	compile: async (inputContent) => {
-    		// Replace any instances of cloud with butt
-    		let output = inputContent.replace(/cloud/gi, "butt");
+	// "clowd" here means that the extension will apply to any .clowd file
+	$config.addExtension("clowd", {
+		compile: async (inputContent) => {
+			// Replace any instances of cloud with butt
+			let output = inputContent.replace(/cloud/gi, "butt");
 
-    		return async () => {
-    			return output;
-    		};
-    	},
-    });
-
+			return async () => {
+				return output;
+			};
+		},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md-block" -%}
@@ -53,30 +55,32 @@ Situations where you might want to use `addExtension` but probably shouldn’t:
 
 For a more realistic sample, here’s an example of Eleventy looking for all `.scss` files in a project’s input directory to process them to your output directory.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 // Don’t forget to `npm install sass`!
 import * as sass from "sass";
 
 export default function ($config) {
-$config.addTemplateFormats("scss");
+	$config.addTemplateFormats("scss");
 
-    // Creates the extension for use
-    $config.addExtension("scss", {
-    	outputFileExtension: "css", // optional, default: "html"
+	// Creates the extension for use
+	$config.addExtension("scss", {
+		outputFileExtension: "css", // optional, default: "html"
 
-    	// `compile` is called once per .scss file in the input directory
-    	compile: async function (inputContent) {
-    		let result = sass.compileString(inputContent);
+		// `compile` is called once per .scss file in the input directory
+		compile: async function (inputContent) {
+			let result = sass.compileString(inputContent);
 
-    		// This is the render function, `data` is the full data cascade
-    		return async (data) => {
-    			return result.css;
-    		};
-    	},
-    });
-
+			// This is the render function, `data` is the full data cascade
+			return async (data) => {
+				return result.css;
+			};
+		},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 We’re using `compileString` from the Sass library above for speed benefits over their asynchronous counterparts (reported by [the Sass documentation](https://sass-lang.com/documentation/js-api#usage)).
@@ -169,19 +173,21 @@ This functionality is more-or-less identical to the [`compileOptions` `permalink
 
 {% addedin "2.0.0-canary.19" %} If `key` is the _only_ property in the options object, we treat the extension as an alias and use the existing upstream template syntax.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addExtension("11ty.jsx", {
-key: "11ty.js",
-});
+	$config.addExtension("11ty.jsx", {
+		key: "11ty.js",
+	});
 
-    // Or, you can pass an array of extensions in {{ "2.0.0-canary.19" | coerceVersion }} or newer.
-    $config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
-    	key: "11ty.js",
-    });
-
+	// Or, you can pass an array of extensions in {{ "2.0.0-canary.19" | coerceVersion }} or newer.
+	$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+		key: "11ty.js",
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 You can read about the above approach (and see more detailed examples of its usage) on the [TypeScript](/docs/languages/typescript/), [JSX](/docs/languages/jsx/), or [MDX](/docs/languages/mdx/) documentation pages.
@@ -196,28 +202,30 @@ You can read about the above approach (and see more detailed examples of its usa
 
 In these example, we switch from the Eleventy default `markdown-it` to `marked` for markdown processing.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { marked } from "marked";
 
 export default function ($config) {
-$config.addExtension("md", {
-compile: function (inputContent, inputPath) {
-let html = marked.parse(inputContent);
+	$config.addExtension("md", {
+		compile: function (inputContent, inputPath) {
+			let html = marked.parse(inputContent);
 
-    		return function (data) {
-    			// Example: use `marked` only if useMarked is set in the Data Cascade
-    			if (data.useMarked) {
-    				return html;
-    			}
+			return function (data) {
+				// Example: use `marked` only if useMarked is set in the Data Cascade
+				if (data.useMarked) {
+					return html;
+				}
 
-    			// You can also access the default `markdown-it` renderer here:
-    			return this.defaultRenderer(data);
-    		};
-    	},
-    });
-
+				// You can also access the default `markdown-it` renderer here:
+				return this.defaultRenderer(data);
+			};
+		},
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Note that overriding `md` opts-out of the default pre-processing by another template language [Markdown Files](/docs/config/#default-template-engine-for-markdown-files). As mentioned elsewhere, improvements to add additional hooks for preprocessing will likely come later.

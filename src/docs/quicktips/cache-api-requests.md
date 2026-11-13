@@ -27,22 +27,24 @@ npm install @11ty/eleventy-fetch
 
 This code is currently in use on the Eleventy website to display GitHub stars in the footer. Check out the [full source code](https://github.com/11ty/docs/blob/768b97fb27543e3139fe53dfb19cdeafb12e3d1c/_data/github.js).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
-// https://developer.github.com/v3/repos/#get
-let json = await Fetch("https://api.github.com/repos/11ty/buildawesome", {
-duration: "1d", // 1 day
-type: "json", // also supports "text" or "buffer"
-});
+	// https://developer.github.com/v3/repos/#get
+	let json = await Fetch("https://api.github.com/repos/11ty/buildawesome", {
+		duration: "1d", // 1 day
+		type: "json", // also supports "text" or "buffer"
+	});
 
-    return {
-    	stargazers: json.stargazers_count,
-    };
-
+	return {
+		stargazers: json.stargazers_count,
+	};
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 {% callout "info" %}<p>Take note that if you’re using this on a hosted build server, it may not maintain updates to the cache and will likely re-run every time. You can learn how to <a href="/docs/deployment/#persisting-cache"><strong>persist this cache</strong> on your build server</a>.</p>
@@ -53,30 +55,32 @@ type: "json", // also supports "text" or "buffer"
 
 Wrap the above code in a nice `try catch` allows you to return a fake data set if the very first request fails (no expired cache entry is available). <strong>Note that if there is already an expired cache entry available, we use that instead.</strong>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
-try {
-// https://developer.github.com/v3/repos/#get
-let json = await Fetch(
-"https://api.github.com/repos/11ty/buildawesome",
-{
-duration: "1d", // 1 day
-type: "json", // also supports "text" or "buffer"
-}
-);
+	try {
+		// https://developer.github.com/v3/repos/#get
+		let json = await Fetch(
+			"https://api.github.com/repos/11ty/buildawesome",
+			{
+				duration: "1d", // 1 day
+				type: "json", // also supports "text" or "buffer"
+			}
+		);
 
-    	return {
-    		stargazers: json.stargazers_count,
-    	};
-    } catch (e) {
-    	console.log("Failed getting GitHub stargazers count, returning 0");
-    	return {
-    		stargazers: 0,
-    	};
-    }
-
+		return {
+			stargazers: json.stargazers_count,
+		};
+	} catch (e) {
+		console.log("Failed getting GitHub stargazers count, returning 0");
+		return {
+			stargazers: 0,
+		};
+	}
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}

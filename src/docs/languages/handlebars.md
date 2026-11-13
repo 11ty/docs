@@ -33,35 +33,44 @@ The `hbs` templating language was moved out of Eleventy core in v3 and now requi
 
 - [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-handlebars
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file (ESM version shown):
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
 export default function ($config) {
-$config.addPlugin(handlebarsPlugin);
+	$config.addPlugin(handlebarsPlugin);
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Use more options:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import handlebars from "handlebars";
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
 export default function ($config) {
-$config.addPlugin(handlebarsPlugin, {
-// Override the `ejs` library instance
-eleventyLibraryOverride: handlebars,
-});
+	$config.addPlugin(handlebarsPlugin, {
+		// Override the `ejs` library instance
+		eleventyLibraryOverride: handlebars,
+	});
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
@@ -98,16 +107,19 @@ Shortcodes are basically reusable bits of content. Handlebars makes use of exist
 
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addShortcode("user", function(name, twitterUsername) {
-return `<div class="user">
+  $config.addShortcode("user", function(name, twitterUsername) {
+    return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 </div>`;
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Usage
@@ -135,10 +147,11 @@ return `<div class="user">
 
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
-return `<div class="user">
+  $config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
+    return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 <div class="user_bio">${bioContent}</div>
@@ -146,6 +159,8 @@ return `<div class="user">
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Usage
@@ -155,8 +170,7 @@ Note that you can put any Handlebars tags or content inside the `{% raw %}{{ use
 {% raw %}
 
 ```html
-{{# user "Zach Leatherman" "zachleat" }}Zach likes to take long walks on Nebraska beaches.{{/ user
-}}
+{{# user "Zach Leatherman" "zachleat" }}Zach likes to take long walks on Nebraska beaches.{{/ user }}
 ```
 
 {% endraw %}

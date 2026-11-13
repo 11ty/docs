@@ -13,21 +13,23 @@ Transforms can modify a template’s output. For example, use a transform to for
 
 {% callout "info", "md" %}The provided transform function **must** return the original or transformed content.{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Can be sync or async
-$config.addTransform("transform-name", async function (content) {
-console.log(this.page.inputPath);
+	// Can be sync or async
+	$config.addTransform("transform-name", async function (content) {
+		console.log(this.page.inputPath);
 
-    	// Caution: this could be `false` (from permalink)
-    	console.log(this.page.outputPath);
+		// Caution: this could be `false` (from permalink)
+		console.log(this.page.outputPath);
 
-    	// No changes made, return as-is
-    	return content;
-    });
-
+		// No changes made, return as-is
+		return content;
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Access to [Eleventy’s `page` variable](/docs/data-eleventy-supplied/#page-variable) (via `this.page`) was added in Eleventy v2.0. For previous versions, [consult the older versions of the docs](https://v1-0-2.11ty.dev/docs/config/#transforms).
@@ -51,7 +53,7 @@ $config.addTransform("third", () => {});
 Transforms added via plugins are inserted via the [second configuration stage for plugins](/docs/create-plugin/#creating-a-plugin).
 
 ```js
-$config.addPlugin(($config) => {
+$config.addPlugin($config => {
 	$config.addTransform("third", () => {});
 });
 $config.addTransform("first", () => {});
@@ -62,28 +64,30 @@ $config.addTransform("second", () => {});
 
 ### Minify HTML Output
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import htmlmin from "html-minifier-terser";
 
 export default function ($config) {
-$config.addTransform("htmlmin", function (content) {
-// String conversion to handle `permalink: false`
-if ((this.page.outputPath || "").endsWith(".html")) {
-let minified = htmlmin.minify(content, {
-useShortDoctype: true,
-removeComments: true,
-collapseWhitespace: true,
-});
+	$config.addTransform("htmlmin", function (content) {
+		// String conversion to handle `permalink: false`
+		if ((this.page.outputPath || "").endsWith(".html")) {
+			let minified = htmlmin.minify(content, {
+				useShortDoctype: true,
+				removeComments: true,
+				collapseWhitespace: true,
+			});
 
-    		return minified;
-    	}
+			return minified;
+		}
 
-    	// If not an HTML output, return content as-is
-    	return content;
-    });
-
+		// If not an HTML output, return content as-is
+		return content;
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Note that `html-minifier-terser` has a [significant number of options](https://github.com/terser/html-minifier-terser?tab=readme-ov-file#options-quick-reference), most of which are disabled by default.

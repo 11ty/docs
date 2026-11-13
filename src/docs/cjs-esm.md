@@ -120,14 +120,17 @@ Read more about [supported configuration file names](/docs/config.md#default-fil
 
 Your [configuration file](/docs/config.md) using ESM can use core bundled plugins (like [i18n](/docs/plugins/i18n/), [Render](/docs/plugins/render/), [InputPath to URL](/docs/plugins/inputpath-to-url/), [`id` Attribute](/docs/plugins/id-attribute/) or [HTML `<base>`](/docs/plugins/html-base/)) directly:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 // Any combination of these
 import { I18nPlugin, RenderPlugin, HtmlBasePlugin } from "@awesome.me/buildawesome";
 
 export default function ($config) {
-// …
+	// …
 };
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 Note the use of `import` and `export default`.
@@ -136,13 +139,16 @@ Note the use of `import` and `export default`.
 
 If you use core bundled plugins (like [i18n](/docs/plugins/i18n/), [Render](/docs/plugins/render/), [InputPath to URL](/docs/plugins/inputpath-to-url/), [`id` Attribute](/docs/plugins/id-attribute/) or [HTML `<base>`](/docs/plugins/html-base/)) (or any ESM package, really), you can simply require the package directly in your [configuration file](/docs/config.md) as [`require(ESM)` is now natively supported in Node 20.19 and newer](https://nodejs.org/docs/latest/api/modules.html#loading-ecmascript-modules-using-require).
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = require("@awesome.me/buildawesome");
 
 module.exports = function ($config) {
-// …
+	// …
 };
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 If you attempt to `require("@awesome.me/buildawesome")` in a version of Node that does not support it, we’ll throw a [very helpful error message which will provide you exact instructions on how to fix the issue](https://www.zachleat.com/web/future-friendly-esm/).

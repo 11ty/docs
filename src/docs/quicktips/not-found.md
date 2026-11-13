@@ -25,8 +25,8 @@ permalink: 404.html
 	<body>
 		<h1>{{ title }}</h1>
 		<p>
-			This is where you should tell the user how to find their content. Maybe on the
-			<a href="/">home page?</a>
+			This is where you should tell the user how to find their content. Maybe on
+			the <a href="/">home page?</a>
 		</p>
 	</body>
 </html>

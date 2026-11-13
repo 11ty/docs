@@ -15,7 +15,7 @@ The [RSS plugin offers a virtual template](/docs/plugins/rss.md#virtual-template
 ## API
 
 ```js
-$config.addTemplate(virtualPath, content, (data = {}));
+$config.addTemplate(virtualPath, content, data = {});
 ```
 
 - `virtualPath`: used to determine the template language and data cascade for this template. This path is relative to your project’s input directory.
@@ -26,30 +26,35 @@ $config.addTemplate(virtualPath, content, (data = {}));
 
 ### Markdown, HTML (via Liquid) Layout
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Create content templates Files
-$config.addTemplate("virtual.md", `# Hello`, {
-layout: "virtual.html"
-});
+	// Create content templates Files
+	$config.addTemplate("virtual.md", `# Hello`, {
+        	layout: "virtual.html"
+	});
 
-    // Works great with Layouts too
-    $config.addTemplate("_includes/virtual.html", `<!-- Layout -->{% raw %}{{ content }}{% endraw %}`);
-
+	// Works great with Layouts too
+	$config.addTemplate("_includes/virtual.html", `<!-- Layout -->{% raw %}{{ content }}{% endraw %}`);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### JavaScript
 
 Any of the JavaScript shapes on [`11ty.js` templates](/docs/languages/javascript.md) are also supported here.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Create content templates Files
-$config.addTemplate("virtual.11ty.js", function(data) {
-return `<h1>Hello</h1>`;
-});
+	// Create content templates Files
+	$config.addTemplate("virtual.11ty.js", function(data) {
+		return `<h1>Hello</h1>`;
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

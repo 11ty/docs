@@ -27,11 +27,14 @@ For most use cases, the default behavior of this server should handle most thing
 
 The `addWatchTarget` config method allows you to manually add a file or directory for Eleventy to watch. When the file or the files in this directory change Eleventy will trigger a build. This is useful if Eleventy is not aware of your project-specific external dependencies.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.addWatchTarget("./src/scss/");
+	$config.addWatchTarget("./src/scss/");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 **Advanced usage note:** This works with [`chokidar` under the hood](https://github.com/paulmillr/chokidar#api) and chokidar uses [`picomatch` for globbing](https://github.com/micromatch/picomatch):
@@ -44,14 +47,17 @@ We do automatically look for dependencies in your configuration file based on Ja
 
 To reset your configuration for a specific watch target, use the `resetConfig` option.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// You probably don’t need this
-$config.addWatchTarget("./_config/**", {
-resetConfig: true
-});
+	// You probably don’t need this
+	$config.addWatchTarget("./_config/**", {
+		resetConfig: true
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Reload without running a build
@@ -70,16 +76,18 @@ Previously, [the configuration API ignores for template processing](/docs/ignore
 
 New in {{ "2.0.0-canary.18" | coerceVersion }}, watch target ignores now have their own dedicated API:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Do not rebuild when README.md changes (You can use a glob here too)
-$config.watchIgnores.add("README.md");
+	// Do not rebuild when README.md changes (You can use a glob here too)
+	$config.watchIgnores.add("README.md");
 
-    // Or delete entries too
-    $config.watchIgnores.delete("README.md");
-
+	// Or delete entries too
+	$config.watchIgnores.delete("README.md");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 The `watchIgnores` Set starts with a default `**/node_modules/**` entry.
@@ -88,38 +96,47 @@ The `watchIgnores` Set starts with a default `**/node_modules/**` entry.
 
 When in `--watch` mode, Build Awesome will spider the dependencies of your [JavaScript Templates](/docs/languages/javascript/) (`.11ty.js`; {% addedin "4.0.0-alpha.11" %}all JavaScript template extensions, e.g. `.11ty.mjs`, `.11ty.ts`, `.server.js`), [JavaScript Data Files](/docs/data-js/) (`.11tydata.js` or `_data/**/*.js`), or Configuration File (usually `buildawesome.config.js`) to watch those files too. Files in `node_modules` directories are ignored. This feature is _enabled by default_.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Enabled by default
-$config.setWatchJavaScriptDependencies(false);
+	// Enabled by default
+	$config.setWatchJavaScriptDependencies(false);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Add delay before re-running {% addedin "0.11.0" %}
 
 A hardcoded amount of time Build Awesome will wait before triggering a new build when files have changes during `--watch` or `--serve` modes. You probably won’t need this, but is useful in some edge cases with other task runners (Gulp, Grunt, etc).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// default is 0
-$config.setWatchThrottleWaitTime(100); // in milliseconds
+	// default is 0
+	$config.setWatchThrottleWaitTime(100); // in milliseconds
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Advanced `chokidar` Configuration
 
 Advanced [`chokidar` options](https://github.com/paulmillr/chokidar) can be defined using the `setChokidarConfig` configuration API method:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.setChokidarConfig({
-usePolling: true,
-interval: 500,
-});
+	$config.setChokidarConfig({
+		usePolling: true,
+		interval: 500,
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "warn", "md" %}If you’re using [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/) and your project exists _outside_ of your home directory (`~`), you will likely want to use the `usePolling` feature to ensure watching works correctly. This is a WSL limitation.{% endcallout %}

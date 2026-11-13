@@ -33,9 +33,13 @@ For example, consider a template located at `posts/subdir/my-first-blog-post.md`
 ### Apply a default layout to multiple templates
 
 {% codetitle "posts/posts.json" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 { "layout": "layouts/post.njk" }
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("json") | safe }}
 
 Using the above in `posts/posts.json` will configure a layout for all of the templates inside of `posts/*`.

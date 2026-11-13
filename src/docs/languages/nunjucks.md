@@ -34,14 +34,17 @@ We use [Nunjucks defaults for all environment options](https://mozilla.github.io
 
 It’s recommended to use the Configuration API to override the default Nunjucks options.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.setNunjucksEnvironmentOptions({
-throwOnUndefined: true,
-autoescape: false, // warning: don’t do this!
-});
+	$config.setNunjucksEnvironmentOptions({
+		throwOnUndefined: true,
+		autoescape: false, // warning: don’t do this!
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Advanced: Use your Nunjucks Environment {% addedin "0.3.0" %}
@@ -50,18 +53,20 @@ While it is preferred and simpler to use the Options-specific API method above (
 
 {% callout "warn" %}Not compatible with <code>setNunjucksEnvironmentOptions</code> above—this method will <em>override</em> any configuration set there.{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Nunjucks from "nunjucks";
 
 export default function ($config) {
-let nunjucksEnvironment = new Nunjucks.Environment(
-new Nunjucks.FileSystemLoader("_includes")
-);
+	let nunjucksEnvironment = new Nunjucks.Environment(
+		new Nunjucks.FileSystemLoader("_includes")
+	);
 
-    $config.setLibrary("njk", nunjucksEnvironment);
-
+	$config.setLibrary("njk", nunjucksEnvironment);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
@@ -85,18 +90,21 @@ Filters are used to transform or modify content. You can add Nunjucks specific f
 
 Read more about [Nunjucks Filter syntax](https://mozilla.github.io/nunjucks/templating.html#filters).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Nunjucks Filter
-$config.addNunjucksFilter("myNjkFilter", function(value) { /* … */ });
+  // Nunjucks Filter
+  $config.addNunjucksFilter("myNjkFilter", function(value) { /* … */ });
 
-// Nunjucks Asynchronous Filter (read on below)
-$config.addNunjucksAsyncFilter("myAsyncNjkFilter", function(value, callback) { /* … */ });
+  // Nunjucks Asynchronous Filter (read on below)
+  $config.addNunjucksAsyncFilter("myAsyncNjkFilter", function(value, callback) { /* … */ });
 
-// Universal filters (Adds to Liquid, Nunjucks, and 11ty.js)
-$config.addFilter("myFilter", function(value) { /* … */ });
+  // Universal filters (Adds to Liquid, Nunjucks, and 11ty.js)
+  $config.addFilter("myFilter", function(value) { /* … */ });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Usage
@@ -111,17 +119,20 @@ $config.addFilter("myFilter", function(value) { /* … */ });
 
 ### Multiple Filter Arguments
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-// Nunjucks Filter
-$config.addNunjucksFilter(
-"concatThreeStrings",
-function (arg1, arg2, arg3) {
-return arg1 + arg2 + arg3;
-}
-);
+	// Nunjucks Filter
+	$config.addNunjucksFilter(
+		"concatThreeStrings",
+		function (arg1, arg2, arg3) {
+			return arg1 + arg2 + arg3;
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -136,36 +147,42 @@ return arg1 + arg2 + arg3;
 
 By default, almost all templating engines are synchronous. Nunjucks supports some asynchronous behavior, like filters. Here’s how that works:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addNunjucksAsyncFilter(
-"myAsyncFilter",
-function (value, callback) {
-setTimeout(function () {
-callback(null, "My Result");
-}, 100);
-}
-);
+	$config.addNunjucksAsyncFilter(
+		"myAsyncFilter",
+		function (value, callback) {
+			setTimeout(function () {
+				callback(null, "My Result");
+			}, 100);
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 The last argument here is the callback function, the first argument of which is the error object and the second is the result data. Use this filter like you would any other: `{% raw %}{{ myValue | myAsyncFilter }}{% endraw %}`.
 
 Here’s a Nunjucks example with 2 arguments:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addNunjucksAsyncFilter(
-"myAsyncFilter",
-function (value1, value2, callback) {
-setTimeout(function () {
-callback(null, "My Result");
-}, 100);
-}
-);
+	$config.addNunjucksAsyncFilter(
+		"myAsyncFilter",
+		function (value1, value2, callback) {
+			setTimeout(function () {
+				callback(null, "My Result");
+			}, 100);
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Multi-argument filters in Nunjucks are called like this: `{% raw %}{{ myValue1 | myAsyncFilter(myValue2) }}{% endraw %}`.
@@ -176,20 +193,23 @@ Shortcodes are reusable bits of content. You can add Nunjucks specific shortcode
 
 ### Single Shortcode
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Nunjucks Shortcode
-$config.addNunjucksShortcode("user", function(name, twitterUsername) { /* … */ });
+  // Nunjucks Shortcode
+  $config.addNunjucksShortcode("user", function(name, twitterUsername) { /* … */ });
 
-// Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-$config.addShortcode("user", function(name, twitterUsername) {
-return `<div class="user">
+  // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
+  $config.addShortcode("user", function(name, twitterUsername) {
+    return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 </div>`;
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Template Usage
@@ -213,14 +233,15 @@ return `<div class="user">
 
 ### Paired Shortcode
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Nunjucks Shortcode
-$config.addPairedNunjucksShortcode("user", function(bioContent, name, twitterUsername) { /* … */ });
+  // Nunjucks Shortcode
+  $config.addPairedNunjucksShortcode("user", function(bioContent, name, twitterUsername) { /* … */ });
 
-// Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-$config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
-return `<div class="user">
+  // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
+  $config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
+    return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 <div class="user_bio">${bioContent}</div>
@@ -228,6 +249,8 @@ return `<div class="user">
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Usage
@@ -258,17 +281,20 @@ Note that you can put any Nunjucks tags or content inside the `{% raw %}{% user 
 
 Creates a single argument object to pass to the shortcode.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-// Nunjucks Shortcode
-$config.addNunjucksShortcode("user", function (user) {
-return `<div class="user">
+	// Nunjucks Shortcode
+	$config.addNunjucksShortcode("user", function (user) {
+		return `<div class="user">
 <div class="user_name">${user.name}</div>
 ${user.twitter ? `<div class="user_twitter">@${user.twitter}</div>` : ""}
 </div>`;
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Usage
@@ -317,24 +343,26 @@ Importantly, this syntax means that any of the arguments can be optional (withou
 
 Note that the configuration methods here to add asynchronous shortcodes are different than their synchronous counterparts. This is just another gentle reminder here that these API methods are pretty verbose and it’s probably easier to add a [Universal shortcode](/docs/shortcodes/) instead.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addNunjucksAsyncShortcode(
-"user",
-async function (name, twitterUsername) {
-return await fetchAThing();
-}
-);
+	$config.addNunjucksAsyncShortcode(
+		"user",
+		async function (name, twitterUsername) {
+			return await fetchAThing();
+		}
+	);
 
-    $config.addPairedNunjucksAsyncShortcode(
-    	"user2",
-    	async function (content, name, twitterUsername) {
-    		return await fetchAThing();
-    	}
-    );
-
+	$config.addPairedNunjucksAsyncShortcode(
+		"user2",
+		async function (content, name, twitterUsername) {
+			return await fetchAThing();
+		}
+	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Usage
@@ -392,11 +420,14 @@ You can access `page`, `eleventy`, `ctx`, and `env` in filters and shortcodes. R
 
 Nunjucks provides a custom way to [add globals](https://mozilla.github.io/nunjucks/api.html#addglobal) to templates. These can be any arbitrary JavaScript: functions, variables, etc. Note that this is not async-friendly (Nunjucks does not support `await` inside of templates).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addNunjucksGlobal("fortythree", 43);
+	$config.addNunjucksGlobal("fortythree", 43);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -407,13 +438,16 @@ $config.addNunjucksGlobal("fortythree", 43);
 
 {% endraw %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addNunjucksGlobal("fortytwo", function () {
-return 42;
-});
+	$config.addNunjucksGlobal("fortytwo", function () {
+		return 42;
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}

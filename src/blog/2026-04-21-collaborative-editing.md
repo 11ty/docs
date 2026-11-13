@@ -33,10 +33,8 @@ Consider the following hypothetical Hello World example that opts-in a specific 
 ```md
 {% raw %}
 ---
-
 title: World
 ---
-
 # Hello, {{ title | editable }}
 {% endraw %}
 ```
@@ -64,17 +62,18 @@ When using Build Awesome Pro (and with the proper permissions for editing), the 
 
 Build Awesome Pro will expose controls in your project to make your content editable inline (in this example, a String literal). And when folks edit the above template, their edits will persist directly via commits in version control in the original data cascade location:
 
+<!-- prettier-ignore-start -->
 {% highlight "diff-md" %}
 {% raw %}
 ---
-
 -title: World
 +title: Moon
 ---
-
 # Hello, {{ title | editable }}
 {% endraw %}
 {% endhighlight %}
+
+<!-- prettier-ignore-end -->
 
 This will render the template’s new `title` property in the data cascade (wherever used throughout your project), in this case something like:
 

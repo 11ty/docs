@@ -31,41 +31,49 @@ The `ejs` templating language was moved out of Eleventy core in v3 and now requi
 
 Install from npm:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-ejs
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
 
 export default function ($config) {
-$config.addPlugin(ejsPlugin);
+	$config.addPlugin(ejsPlugin);
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Use more `ejs` options ([full options list](https://github.com/mde/ejs#options)):
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import ejs from "ejs";
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
 
 export default function ($config) {
-$config.addPlugin(ejsPlugin, {
-async: false, // default
+	$config.addPlugin(ejsPlugin, {
+		async: false, // default
 
-    	// use <? ?> instead of <% %>
-    	delimiter: "?",
+		// use <? ?> instead of <% %>
+		delimiter: "?",
 
-    	// Override the `ejs` library instance
-    	eleventyLibraryOverride: ejs,
-    });
-
+		// Override the `ejs` library instance
+		eleventyLibraryOverride: ejs,
+	});
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features

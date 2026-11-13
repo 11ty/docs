@@ -13,85 +13,99 @@ The first value of `addGlobalData` is the key that will be available to your tem
 
 ## Literals
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-// Values can be static:
-$config.addGlobalData("myString", "myValue");
+	// Values can be static:
+	$config.addGlobalData("myString", "myValue");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## More Complex Paths
 
 The first argument can be any [lodash-set compatible path](https://lodash.com/docs/4.17.15#set):
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addGlobalData("myNestedObject.myString", "myValue");
+	$config.addGlobalData("myNestedObject.myString", "myValue");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Functions
 
 Importantly, passing a `function` to `addGlobalData` will evaluate that function before setting the value to the data cascade (and is async-friendly).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addGlobalData("myDate", () => new Date());
+	$config.addGlobalData("myDate", () => new Date());
 
-    // myDate’s value will be a Date instance
-
+	// myDate’s value will be a Date instance
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 If you want a `function` returned, make sure you nest it:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addGlobalData("myFunction", () => {
-return () => new Date();
-});
+	$config.addGlobalData("myFunction", () => {
+		return () => new Date();
+	});
 
-    // myFunction’s value will be a function that returns a Date instance
-
+	// myFunction’s value will be a function that returns a Date instance
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 The above is important to know when using this API with [Computed Data](/docs/data-computed/#using-java-script):
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-$config.addGlobalData("eleventyComputed.myString", () => {
-return (data) => "This is a string!";
-});
+	$config.addGlobalData("eleventyComputed.myString", () => {
+		return (data) => "This is a string!";
+	});
 
-    // myString’s value will be "This is a string!"
-
+	// myString’s value will be "This is a string!"
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Async/Promises
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function ($config) {
-// or a promise:
-$config.addGlobalData("myFunctionPromise", () => {
-return new Promise((resolve) => {
-setTimeout(resolve, 100, "foo");
-});
-});
+	// or a promise:
+	$config.addGlobalData("myFunctionPromise", () => {
+		return new Promise((resolve) => {
+			setTimeout(resolve, 100, "foo");
+		});
+	});
 
-    // or async:
-    $config.addGlobalData("myAsyncFunction", async () => {
-    	return Promise.resolve("hi");
-    });
-
+	// or async:
+	$config.addGlobalData("myAsyncFunction", async () => {
+		return Promise.resolve("hi");
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Sources of Data

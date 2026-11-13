@@ -24,18 +24,24 @@ A plugin to use [Vite](https://vite.dev/) with Eleventy 2.0+.
 
 ## Installation
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-vite
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default function ($config) {
-$config.addPlugin(EleventyVitePlugin);
+	$config.addPlugin(EleventyVitePlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 <details>
@@ -43,12 +49,13 @@ $config.addPlugin(EleventyVitePlugin);
 
 View the [full list of Vite Configuration options](https://vite.dev/config/).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default function ($config) {
-$config.addPlugin(EleventyVitePlugin, {
-tempFolderName: ".11ty-vite", // Default name of the temp folder
+	$config.addPlugin(EleventyVitePlugin, {
+    tempFolderName: ".11ty-vite", // Default name of the temp folder
 
     // Options passed to the Dev Server
     // e.g. domdiff, enabled, etc.
@@ -78,10 +85,11 @@ tempFolderName: ".11ty-vite", // Default name of the temp folder
         },
       },
     },
-
-});
+  });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 See the full list of [`serverOptions` on the Dev Server documentation](/docs/dev-server/).

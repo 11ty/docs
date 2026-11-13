@@ -8,23 +8,30 @@ Is your `.eleventy.js` file getting too large? You can [create your own plugin](
 First, create a plugin file. We recommend creating a `config` or `_config` folder in your project to store config files in. Make sure that folder isn’t getting copied out to your built site (via [ignores](/docs/ignores.md)). Then create a file in that folder. It doesn’t matter what you name it.
 
 <div class="codetitle codetitle-right-md">config/local-plugin.js</div>
+
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
 	// Move any code from `buildawesome.config.js` here.
 	// Use $config as you would in your top-level config file
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 {% callout "info" %}Any variables defined in your <code>buildawesome.config.js</code> file will <em>not</em> be available to your plugin. Consider moving those variables into your plugin file, or <a href="/docs/create-plugin/#plugin-configuration-options">passing them in as options</a>.{% endcallout %}
 
 Next, use the `addPlugin` method:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import localPlugin from "./config/local-plugin.js";
 
 export default function($config) {
-$config.addPlugin(localPlugin);
+	$config.addPlugin(localPlugin);
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

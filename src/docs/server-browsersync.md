@@ -15,24 +15,30 @@ Starting with Eleventy 2.0, the [Eleventy Dev Server](/docs/dev-server/) is now 
 
 Useful if you want to change or override the default Browsersync configuration. Find the Eleventy defaults in [`EleventyServe.js`](https://github.com/11ty/eleventy/blob/master/src/EleventyServe.js). Take special note that Eleventy does not use Browsersync’s watch options and trigger reloads manually after our own internal watch methods are complete. See full options list on the [Browsersync documentation](https://browsersync.io/docs/options).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.setBrowserSyncConfig({
-notify: true,
-});
+	$config.setBrowserSyncConfig({
+		notify: true,
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Opt-out of the Browsersync JavaScript snippet {% addedin "1.0.0" %}
 
 New in [`browser-sync@2.27.1`](https://github.com/BrowserSync/browser-sync/issues/1882#issuecomment-867767056) {% addedin "1.0.0" %}. Opt-out of the JavaScript snippet normally injected by Browsersync. This disables Browsersync live-reloading.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function($config) {
-$config.setBrowserSyncConfig({
-snippet: false,
-});
+	$config.setBrowserSyncConfig({
+		snippet: false,
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

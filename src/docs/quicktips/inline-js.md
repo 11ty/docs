@@ -16,22 +16,25 @@ This tip works great if you have small JS utilities that you’d like to have in
 
 Add the following `jsmin` filter to your Eleventy Config file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { minify } from "terser";
 
 export default function ($config) {
-$config.addFilter("jsmin", async function (code) {
-try {
-const minified = await minify(code);
-return minified.code;
-} catch (err) {
-console.error("Terser error: ", err);
-// Fail gracefully.
-return code;
-}
-});
+	$config.addFilter("jsmin", async function (code) {
+		try {
+			const minified = await minify(code);
+			return minified.code;
+		} catch (err) {
+			console.error("Terser error: ", err);
+			// Fail gracefully.
+			return code;
+		}
+	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Create your JavaScript File
@@ -54,11 +57,7 @@ Capture the JavaScript into a variable and run it through the filter (this sampl
 {% set js %} {% include "sample.js" %} {% endset %}
 <!-- feed it through our jsmin filter to minify -->
 <script>
-	{
-		{
-			js | jsmin | safe;
-		}
-	}
+{{ js | jsmin | safe }}
 </script>
 ```
 

@@ -17,20 +17,22 @@ In the following example, each content template with an `eleventyDataSchema` cal
 
 <div class="codetitle">blog/blog.11tydata.js</div>
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 import { z } from "zod";
 
 export default {
-eleventyDataSchema: function(data) {
-let result = z.object({
-draft: z.optional(z.boolean())
-}).safeParse(data);
+	eleventyDataSchema: function(data) {
+		let result = z.object({
+			draft: z.optional(z.boolean())
+		}).safeParse(data);
 
-    	if(result.error) {
-    		throw new Error(z.prettifyError(result.error));
-    	}
-    }
-
+		if(result.error) {
+			throw new Error(z.prettifyError(result.error));
+		}
+	}
 };
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}

@@ -17,20 +17,26 @@ A pack of Eleventy plugins for PrismJS syntax highlighting. No browser/client Ja
 
 Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-plugin-syntaxhighlight).
 
+<!-- prettier-ignore-start -->
 {% set codeBlock %}{% raw %}
 npm install @11ty/eleventy-plugin-syntaxhighlight
 {% endraw %}{% endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function ($config) {
-$config.addPlugin(syntaxHighlight);
+	$config.addPlugin(syntaxHighlight);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Optionally pass in an options object as the second argument to `addPlugin` to further customize this plugin pack.
@@ -38,11 +44,12 @@ Optionally pass in an options object as the second argument to `addPlugin` to fu
 <details>
   <summary>Expand to see Advanced Options</summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function($config) {
-$config.addPlugin(syntaxHighlight, {
+  $config.addPlugin(syntaxHighlight, {
 
     // Line separator for line breaks
     lineSeparator: "\n",
@@ -71,10 +78,11 @@ $config.addPlugin(syntaxHighlight, {
 
     // Added in 5.0.0, throw errors on invalid language names
     errorOnInvalidLanguage: false,
-
-});
+  });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -85,7 +93,10 @@ You are responsible for including your favorite PrismJS theme CSS and there are 
 <html lang="en">
 	<head>
 		<!-- Some html boilerplate omitted -->
-		<link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet" />
+		<link
+			href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css"
+			rel="stylesheet"
+		/>
 	</head>
 </html>
 ```
@@ -112,11 +123,14 @@ Will render like this in the browser:
 
 {% callout "demo" %}
 
+<!-- prettier-ignore-start -->
 {% highlight "js" %}
 function myFunction() {
-return true;
+	return true;
 }
 {% endhighlight %}
+
+<!-- prettier-ignore-end -->
 
 {% endcallout %}
 
@@ -132,13 +146,15 @@ Will render like this in the browser:
 
 {% callout "demo" %}
 
+<!-- prettier-ignore-start -->
 {% highlight "diff-js" %}
 +function myFunction() {
-// …
-
-- return true;
-  }
+	// …
+-	return true;
+}
 {% endhighlight %}
+
+<!-- prettier-ignore-end -->
 
 {% endcallout %}
 

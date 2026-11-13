@@ -3,6 +3,6 @@ eleventyNavigation:
   parent: Home
   key: Get Started
   order: 2
-  url: "/docs/"
+  url: '/docs/'
 permalink: false
 ---

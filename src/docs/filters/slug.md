@@ -4,7 +4,7 @@ eleventyNavigation:
   key: slug Filter
   title: "<code>slug</code>"
   order: 2.1
-  excerpt: "Similar to but deprecated in favor of <code>slugify</code>"
+  excerpt: 'Similar to but deprecated in favor of <code>slugify</code>'
 excludeFromSidebar: true
 ---
 

@@ -30,8 +30,10 @@ In our [Inline CSS Quick Tip](/docs/quicktips/inline-css/), we discussed how to 
 
 ```html
 <!-- capture the CSS content as a Nunjucks variable -->
-{% set css %} {% include "components/header.css" %} {% include "components/footer.css" %} {% endset
-%}
+{% set css %}
+{% include "components/header.css" %}
+{% include "components/footer.css" %}
+{% endset %}
 <!-- feed it through our cssmin filter to minify -->
 <style>
 	{{ css | cssmin | safe }}

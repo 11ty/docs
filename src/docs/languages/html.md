@@ -26,12 +26,15 @@ Take care with the HTML template type when using the same <code>--input</code> a
 
 If you run Eleventy more than once, it’ll try to process your output files too which may result in duplicate template errors.
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 $ npx @awesome.me/buildawesome --input=. --output=. --formats=md,html
 Writing ./README/index.html from ./README.md
 
 $ npx @awesome.me/buildawesome --input=. --output=. --formats=md,html
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 The second run will attempt to write `./README/index.html` from both `./README.md` and `./README/index.html`, resulting in a Duplicate Permalink Error (two templates writing to the same location). You can workaround this issue using the [Ignores feature](/docs/ignores.md).
