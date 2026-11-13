@@ -96,8 +96,8 @@ export function generateList(headings) {
 	return root;
 }
 
-export default function (eleventyConfig) {
-	eleventyConfig.htmlTransformer.addPosthtmlPlugin(
+export default function ($config) {
+	$config.htmlTransformer.addPosthtmlPlugin(
 		"html",
 		function pageTocPosthtmlPlugin() {
 			return function (tree) {

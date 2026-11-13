@@ -32,16 +32,16 @@ const navActiveKeysFn = memoize(function(key) {
 	return navBreadcrumbsFn.call(this, key).map(entry => entry.key);
 });
 
-export default function(eleventyConfig) {
+export default function($config) {
 
-	eleventyConfig.on("eleventy.after", () => {
+	$config.on("eleventy.after", () => {
 		memoizeClear(navFn);
 		memoizeClear(navFilteredFn);
 		memoizeClear(navBreadcrumbsFn);
 		memoizeClear(navActiveKeysFn);
 	})
-	eleventyConfig.addFilter("nav", navFn);
-	eleventyConfig.addFilter("navFiltered", navFilteredFn);
-	eleventyConfig.addFilter("navBreadcrumbs", navBreadcrumbsFn);
-	eleventyConfig.addFilter("navActiveKeys", navActiveKeysFn);
+	$config.addFilter("nav", navFn);
+	$config.addFilter("navFiltered", navFilteredFn);
+	$config.addFilter("navBreadcrumbs", navBreadcrumbsFn);
+	$config.addFilter("navActiveKeys", navActiveKeysFn);
 };
