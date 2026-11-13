@@ -1,13 +1,11 @@
 ---
 eleventyNavigation:
-  parent: Using Data
+  parent: Eleventy Projects
   key: Environment Variables
-  order: 1.5
+  order: 6
 ---
 
 # Environment Variables
-
-{% tableofcontents %}
 
 You can set and use your own environment variables in your projects. They will be available in your code via [Node.js’ `process.env` property](https://nodejs.org/api/process.html#process_process_env).
 
@@ -29,40 +27,43 @@ For private keys and other sensitive information, you’ll want to create a `.en
 
 #### macOS or Linux (et al)
 
-```bash
+{%- set codeBlock %}
 MY_ENVIRONMENT=production npx @11ty/eleventy
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 #### Windows cmd.exe
 
-```bash
+{%- set codeBlock %}
 set MY_ENVIRONMENT=production & npx @11ty/eleventy
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 #### Windows Powershell (default in VS Code)
 
-```bash
+{%- set codeBlock %}
 $env:MY_ENVIRONMENT="production"; npx @11ty/eleventy
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 #### Cross Platform npm scripts
 
 Use the [`cross-env` package](https://github.com/kentcdodds/cross-env) to compatibly set your environment variables cross-platform.
 
-```sh
+{%- set codeBlock %}
 npm install cross-env
-```
-
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 {% codetitle "package.json" %}
-
-```js
+{%- set codeBlock %}
 {
-  "scripts": {
-    "build:prod": "cross-env MY_ENVIRONMENT=production npx @11ty/eleventy"
+	"scripts": {
+		"build:prod": "cross-env MY_ENVIRONMENT=production npx @11ty/eleventy"
   }
 }
-```
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 ## Use Case Ideas
 
@@ -77,7 +78,7 @@ npm install cross-env
 Eleventy also supplies its own Eleventy-specific environment variables, usually intended for more advanced use cases. You can use these in your configuration or in data files as needed.
 
 - `process.env.ELEVENTY_ROOT` {% addedin "1.0.0" %} the absolute path to the directory in which you’ve run the Eleventy command.
-- `process.env.ELEVENTY_SOURCE` {% addedin "1.0.0" %} is the method in which Eleventy has run, current either `cli` or `script`.
+- `process.env.ELEVENTY_SOURCE` {% addedin "1.0.0" %} is the method in which Eleventy has run, current either `cli` or `script` (via the [programmatic API](./programmatic.md)).
 - `process.env.ELEVENTY_RUN_MODE` {% addedin "2.0.0-beta.2" %} is one of `build`, `serve`, or `watch`.
 - `process.env.ELEVENTY_VERSION` {% addedin "3.0.0-alpha.6" %} the current version of Eleventy (e.g. `"3.0.0-alpha.5"`).
 
@@ -86,7 +87,7 @@ Eleventy also supplies its own Eleventy-specific environment variables, usually 
 Node.js supports a [`NODE_DISABLE_COLORS` environment variable](https://nodejs.org/api/cli.html#node_disable_colors1) that will disable colorized text in the terminal output.
 
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Operating System">
 		<a href="#disable-colors-nix" id="disable-colors-mac-btn" role="tab" data-tabs-persist="os:mac">macOS</a>
 		<a href="#disable-colors-nix" role="tab" data-tabs-persist="os:posix">Linux</a>
@@ -94,15 +95,27 @@ Node.js supports a [`NODE_DISABLE_COLORS` environment variable](https://nodejs.o
 		<a href="#disable-colors-all" role="tab" data-tabs-persist="os:all">Cross Platform</a>
 	</div>
 	<div id="disable-colors-nix" role="tabpanel">
-		{% highlight "sh" %}NODE_DISABLE_COLORS=1 npx @11ty/eleventy{% endhighlight %}
+{%- set codeBlock %}{% raw %}
+NODE_DISABLE_COLORS=1 npx @11ty/eleventy
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 	</div>
 	<div id="disable-colors-win" role="tabpanel">
-		{% highlight "sh" %}$env:NODE_DISABLE_COLORS="1"; npx @11ty/eleventy{% endhighlight %}
+{%- set codeBlock %}
+$env:NODE_DISABLE_COLORS="1"; npx @11ty/eleventy
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 		<p>Or with the older <code>cmd.exe</code>:</p>
-		{% highlight "sh" %}set NODE_DISABLE_COLORS=1 & npx @11ty/eleventy{% endhighlight %}
+{%- set codeBlock %}
+set NODE_DISABLE_COLORS=1 & npx @11ty/eleventy
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 	</div>
 	<div id="disable-colors-all" role="tabpanel">
-		{%- highlight "sh" %}npx cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy{% endhighlight %}
+{%- set codeBlock %}
+npx cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 		<p>Use the <a href="https://github.com/kentcdodds/cross-env"><code>cross-env</code> package</a> to compatibly set your environment variables cross-platform.</p>
 	</div>
 </seven-minute-tabs>

@@ -1,0 +1,35 @@
+name: I’m having trouble with the Eleventy documentation
+description: Have a problem? It might be a bug! Create a report to help us improve.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before opening a bug report, please search for the behavior in the existing issues.
+
+        ---
+
+        Thank you for taking the time to file a bug report. To address this bug as fast as possible, we need some information.
+  - type: input
+    id: os
+    attributes:
+      label: Web Browser
+      description: What web browser are you using? (please include the version number!)
+      placeholder: e.g. Mozilla Firefox, Vivaldi Browser, Zen Browesr
+    validations:
+      required: true
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of how to reproduce the bug
+      value: |
+        1. Go to '...'
+        2. Scroll down to '....'
+        3. I see *this* error or I expected this to happen and it didn’t
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: "Optional: If applicable, add screenshots to help explain your problem."

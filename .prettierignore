@@ -3,7 +3,8 @@ src/_includes/snippets/pagination/**/*.cjs
 _site/**
 src/_includes/components/auth/gotrue.js
 src/docs/versions.md
-src/blog/blog.md
 src/authors/author-pages.md
 src/docs/plugins/community.md
 src/docs/quicktips.md
+dist/**
+package-lock.json

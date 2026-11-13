@@ -1,0 +1,53 @@
+{%- set tabid = "jsonoutdata" %}
+<div class="codetitle codetitle-right-md">my-node-script.js</div>
+<is-land on:visible import="/js/seven-minute-tabs.js">
+<seven-minute-tabs class="tabs-flush" persist autoheight>
+  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
+  <div id="{{ tabid }}-jsesm" role="tabpanel">
+{%- set codeBlock %}{% raw %}
+import Eleventy from "@11ty/eleventy";
+
+let elev = new Eleventy(".", "_site", {
+	config: function(eleventyConfig) {
+		eleventyConfig.dataFilterSelectors.add("globalData.key1");
+		eleventyConfig.dataFilterSelectors.add("globalData.key2");
+		eleventyConfig.dataFilterSelectors.add("someProperty.key");
+	}
+});
+
+let json = await elev.toJSON();
+
+// All results with
+// json[…].data.globalData.key1
+// json[…].data.globalData.key2
+// json[…].data.someProperty.key
+console.log(json);
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
+  </div>
+  <div id="{{ tabid }}-jscjs" role="tabpanel">
+{%- set codeBlock %}{% raw %}
+(async function () {
+	const { Eleventy } = await import("@11ty/eleventy");
+
+	let elev = new Eleventy(".", "_site", {
+		config: function(eleventyConfig) {
+			eleventyConfig.dataFilterSelectors.add("globalData.key1");
+			eleventyConfig.dataFilterSelectors.add("globalData.key2");
+			eleventyConfig.dataFilterSelectors.add("someProperty.key");
+		}
+	});
+
+	let json = await elev.toJSON();
+
+	// All results with
+	// json[…].data.globalData.key1
+	// json[…].data.globalData.key2
+	// json[…].data.someProperty.key
+	console.log(json);
+})();
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
+  </div>
+</seven-minute-tabs>
+</is-land>

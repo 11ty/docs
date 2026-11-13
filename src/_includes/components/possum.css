@@ -1,17 +1,36 @@
-.elv-possum-anchor {
-	display: block;
-}
 .elv-possum {
 	position: absolute;
-	right: 0;
+	right: .5rem;
 	top: 0.5rem;
 	transition: 0.3s opacity ease-out;
+	filter: drop-shadow(3px 3px #0006);
 }
 
+:root {
+	--possum-margin: 5rem;
+}
+.elv-header-default .elv-possum {
+	width: auto;
+	height: 20vh;
+}
 .elv-header-docs .elv-possum {
-	width: 15vw;
+	width: calc(var(--possum-margin) - .5rem);
 	height: auto;
-	/* aspect ratio 0.57216495 */
-	aspect-ratio: 222 / 388;
-	max-width: 6.25rem; /* 100px /16 */
+	aspect-ratio: 790 / 2125;
+	filter: drop-shadow(1px 1px #0006);
+}
+/* #2col */
+@media (max-width: 41.375em) {
+	/* Hide moving possum on docs only */
+	.elv-possum-island {
+		display: none;
+	}
+}
+@media (min-width: 41.4375em) and (max-width: 78.125em) { /* 663px-1250px */
+	.elv-header-docs:has(.announcement) .products-max {
+		padding-right: calc(var(--possum-margin) - 1em); /* subtract link padding */
+	}
+	.elv-header-docs .elv-nav-menu {
+		padding-right: var(--possum-margin);
+	}
 }

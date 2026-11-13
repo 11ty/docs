@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "0850df588568f88c6cdab0c7b4f342273adeae3a",
+			"url": "https://github.com/11ty/docs/commit/0850df588568f88c6cdab0c7b4f342273adeae3a",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-10-22T21:06:22.000Z",
+			"message": "Update /docs/supporters/ with filtered list",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

@@ -2,14 +2,11 @@
 eleventyNavigation:
   parent: Front Matter Data
   key: Custom Front Matter
-  order: 1
 relatedLinks:
   /docs/data-custom/: Custom Data File Formats
 ---
 
 # Custom Front Matter Options {% addedin "0.9.0" %}
-
-{% tableofcontents %}
 
 Eleventy uses the [`gray-matter` npm package](https://www.npmjs.com/package/gray-matter) for parsing front matter. `gray-matter` allows additional options that aren’t available by default in Eleventy.
 
@@ -30,8 +27,7 @@ For more information, read [this example on the `gray-matter` documentation](htt
 Now you can use TOML in your front matter like this:
 
 {% codetitle "sample.md" %}
-
-```markdown
+{%- set codeBlock %}{% raw %}
 ---toml
 title = "My page title using TOML"
 ---
@@ -39,7 +35,8 @@ title = "My page title using TOML"
 <!doctype html>
 <html>
 …
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 ### Example: use JavaScript in your front matter {% addedin "0.9.0" %}
 
@@ -52,8 +49,7 @@ This section has moved to the [Frontmatter Documentation](/docs/data-frontmatter
 Now you can do things like this:
 
 {% codetitle "sample.md" %}
-
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 title: My page title
 ---
@@ -63,7 +59,8 @@ This is the start of my content and this will be shown as the excerpt.
 <!-- excerpt -->
 
 This is a continuation of my content…
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 Your template’s content will include the excerpt but remove the separator:
 

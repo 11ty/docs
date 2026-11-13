@@ -49,3 +49,58 @@ is-land.fluid lite-youtube {
 	display: block;
 	aspect-ratio: 16 / 9;
 }
+
+/* Horizontal cards linking out to YouTube, where a player for each would be heavier than the
+   page can justify */
+.video-cards {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: .5em;
+	margin-block: 2em;
+	/* Lines up with the callouts and comparison tables beside them */
+	margin-inline: -1rem;
+	padding: 0;
+	list-style: "";
+}
+.video-cards li {
+	margin: 0;
+	padding: 0;
+}
+.video-card {
+	display: flex;
+	align-items: center;
+	gap: .75em;
+	block-size: 100%;
+	border: 1px solid var(--border-color);
+	border-radius: .3em;
+	padding: .4em;
+	color: inherit;
+	text-decoration: none;
+	font-size: .8125em; /* 13px /16 */
+	line-height: 1.3;
+}
+.video-card:hover,
+.video-card:focus {
+	border-color: var(--link-color);
+}
+/* One width and one shape for every poster. The image plugin wraps each <img> in a <picture>, so
+   the flex item to size is the wrapper, with the image filling it. */
+.video-card > :is(picture, img) {
+	flex-shrink: 0;
+	display: block;
+	inline-size: 6.5em;
+}
+.video-card img {
+	block-size: auto;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	border-radius: .2em;
+}
+.video-card picture > img {
+	inline-size: 100%;
+}
+/* Runs on from the title rather than sitting under it */
+.video-card-time {
+	white-space: nowrap;
+	opacity: .7;
+}

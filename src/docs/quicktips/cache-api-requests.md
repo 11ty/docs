@@ -25,7 +25,7 @@ npm install @11ty/eleventy-fetch
 
 ## Example
 
-This code is currently in use on the Eleventy web site to display GitHub stars in the footer. Check out the [full source code](https://github.com/11ty/11ty-website/blob/768b97fb27543e3139fe53dfb19cdeafb12e3d1c/_data/github.js).
+This code is currently in use on the Eleventy web site to display GitHub stars in the footer. Check out the [full source code](https://github.com/11ty/docs/blob/768b97fb27543e3139fe53dfb19cdeafb12e3d1c/_data/github.js).
 
 {% set codeContent %}
 import Fetch from "@11ty/eleventy-fetch";
@@ -58,7 +58,7 @@ import Fetch from "@11ty/eleventy-fetch";
 export default async function () {
 	try {
 		// https://developer.github.com/v3/repos/#get
-		let json = await EleventyFetch(
+		let json = await Fetch(
 			"https://api.github.com/repos/11ty/eleventy",
 			{
 				duration: "1d", // 1 day

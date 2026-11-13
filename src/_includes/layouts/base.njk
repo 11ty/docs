@@ -2,12 +2,9 @@
 // <script>
 let headerTitle = "Eleventy";
 
-let social = {
-	imgsrc: "https://www.11ty.dev/img/open-graph.jpg",
-	imgalt: "The 11ty logo text with a small floating possum on a balloon"
+let scriptImportMap = {
+	"@sindresorhus/slugify": "https://cdn.jsdelivr.net/npm/@sindresorhus/slugify@2.2.1/+esm"
 };
-
-let domain = process.env.URL || "https://www.11ty.dev";
 
 // For things that rely on the data cascade
 let eleventyComputed = {
@@ -15,17 +12,14 @@ let eleventyComputed = {
 		return data.titleOverride || data.newstitle || data.searchTitle || data.tiptitle || data.eleventyNavigation?.key || data.title || data.headerTitle;
 	},
 	social: {
-		imgsrc: function({ domain, page, ogimageOverride }) {
-			if(ogimageOverride) {
-				return new URL(ogimageOverride, process.env.DEPLOY_PRIME_URL || domain).toString();
-			}
-			return `https://v1.screenshot.11ty.dev/${encodeURIComponent(domain + page.url + "?cache=1")}/opengraph/`;
-		},
-		imgalt: function({ domain, page }) {
-			return `A screenshot of the web page at ${domain + page.url}`;
-		},
 		description: function({ versions, config }) {
 			return `A docs page for Eleventy, a simpler static site generator.`;
+		}
+	},
+	// This page on the sister site, when its sitemap has it
+	sisterSiteUrl: function({ page, sisterSite }) {
+		if(sisterSite?.urls.includes(page.url)) {
+			return sisterSite.origin + page.url;
 		}
 	}
 };
@@ -40,20 +34,55 @@ let eleventyComputed = {
 		<meta name="description" content="{{ subtitleText }}">
 		<meta name="generator" content="{{ eleventy.generator }}">
 
+		{%- if page.url != "/" %}
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f2f2">
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2a2a2a">
+		{%- else %}
+		<meta name="theme-color" content="#1f1f1f">
+		{%- endif %}
+
+{%- if scriptImportMap %}
+		<script type="importmap">
+			{
+				"imports": {
+{%- for key, url in scriptImportMap %}
+					"{{ key }}": "{{ url }}"{% if not loop.last %},{% endif %}
+{%- endfor %}
+				}
+			}
+		</script>
+{%- endif %}
+		<link rel="preload" href="/css/fonts/benchnine-bold.woff2" as="font" type="font/woff2" crossorigin>
+
 		<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon.png">
 		<link rel="me" href="https://fosstodon.org/@eleventy">
+		<link rel="me" href="https://neighborhood.11ty.dev/@11ty">
+
+		<meta name="fediverse:creator" content="@11ty@neighborhood.11ty.dev">
 
 		<!-- Open Graph -->
 		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://www.11ty.dev{{ page.url }}">
+		<meta property="og:url" content="{{ page.url | productionUrl }}">
 		<meta property="og:site_name" content="Eleventy">
 		<meta property="og:locale" content="en_US">
 		<meta property="og:title" content="{{ title }}">
 		<meta property="og:description" content="{{ social.description }}">
-		<meta property="og:image" content="{{ social.imgsrc }}">
-		<meta property="og:image:width" content="1280">
-		<meta property="og:image:height" content="640">
-		<meta property="og:image:alt" content="{{ social.imgalt }}">
+
+{%- if ogimageOverride.src %}
+		<meta property="og:image" content="{{ ogimageOverride.src | productionUrl }}">
+		<meta property="og:image:type" content="{{ ogimageOverride.type or 'image/png' }}">
+		<meta property="og:image:alt" content="{{ ogimageOverride.alt | throwErrorWhenMissing('Missing alt image on opengraph image') }}">
+{%- elseif eleventy.env.runMode == "serve" or page.url == "/" or page.inputPath.endsWith("author-pages.md") %}
+		<meta property="og:image" content="{{ '/img/open-graph.jpg' | productionUrl }}">
+		<meta property="og:image:type" content="image/jpeg">
+		<meta property="og:image:alt" content="The 11ty logo (with a small floating possum hiding in the letter y)">
+{%- else %}
+		<meta property="og:image" content="{{ page | getOpengraphImageUrl(screenshotCacheBust) }}">
+		<meta property="og:image:type" content="image/png">
+		<meta property="og:image:alt" content="A screenshot of the web page at {{ config.origin }}{{ page.url }}">
+{%- endif %}
+		<meta property="og:image:width" content="1200">
+		<meta property="og:image:height" content="630">
 
 		<!-- Feeds -->
 		<link rel="alternate" href="/blog/feed.xml" title="Eleventy Blog" type="application/atom+xml">
@@ -61,39 +90,40 @@ let eleventyComputed = {
 {%- if feedTitle and feedUrl %}
 		<link rel="alternate" href="{{ feedUrl }}" title="{{ feedTitle }}" type="application/atom+xml">
 {%- endif %}
+		<link rel="search" href="/opensearch.xml" type="application/opensearchdescription+xml" title="Eleventy">
 
 {%- set css %}
-{% include 'components/font-titles.css' %}
-{{ robotoMonoGoogleFontsCss | safe }}
-{% include 'index.css' %}
-{% include 'components/navigation.css' %}
 {% include 'components/announcement.css' %}
-{% include 'components/external-links.css' %}
+{% include "components/fonts.css" %}
+{% include 'index.css' %}
+{% include 'components/product-tabs.css' %}
+{% include 'components/header.css' %}
+{% include 'components/navigation.css' %}
 {% include 'components/toc.css' %}
-{% include "components/minilink.css" %}
 {% include 'components/direct-links.css' %}
-{# Sidebar ad for 11ty conf #}
 {% include 'components/callout.css' %}
-{% include 'components/newsletter-signup.css' %}
-{# TODO convert to WebC #}
 {% include 'components/grid-layout.css' %}
 {% include 'components/seven-minute-tabs.css' %}
+{% include 'components/supporters.css' %}
+{% include 'components/logo-cloud.css' %}
+{% include 'components/editor.css' %}
+{% include 'components/possum.css' %}
 
-{% if not skipLegacyBundle %}
+{% if page.url != '/' %}
 	{# these components are not yet used on WebC pages #}
 	{% include 'components/breadcrumb.css' %}
 
 	{# these components have been converted to WebC #}
 	{% include 'components/prism-theme.css' %}
 	{% include 'components/code.css' %}
+	{% include 'components/code-copy.css' %}
+	{% include 'components/code-more.css' %}
 	{% include 'components/inline-code.css' %}
 	{% include 'components/layout.css' %}
 	{# TODO reference these directly from node_modules at some point #}
 	{% include 'components/flex-luthor/flex-luthor.css' %}
 	{% include 'components/flex-luthor/flex-luthor-separators.css' %}
 	{% include 'components/testimonials.css' %}
-	{% include 'components/possum.css' %}
-	{% include 'components/possum-home.css' %}
 
 	/* Filters */
 	.filter-tags--hide {
@@ -106,40 +136,57 @@ let eleventyComputed = {
 {% endif %}
 {% endset %}
 
-		<!-- Preconnect -->
-		<link href="https://v1.indieweb-avatar.11ty.dev" rel="preconnect" crossorigin>
-		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+		<style>
+		{{ css | cssmin | safe }}
+		{% getBundle "css" %}
+		</style>
 
-		<style>{{ css | cssmin | safe }}</style>
-		<style>{% getBundle "css" %}</style>
-{%- if useWebCBundle %}
-		<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'async' %}" fetchpriority="low">
-{%- endif %}
-
-{%- if not skipLegacyBundle %}
-{%- if page.inputPath.endsWith(".webc") %}
-		<link rel="stylesheet" href="/css/async-webc.css" fetchpriority="low">
-{%- elseif config.env === "production" %}
-		<link rel="stylesheet" href="/css/async.css" media="print" onload="this.media='all'" fetchpriority="low">
+{%- if page.url == '/' %}
+		<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'async' %}" media="print" onload="this.media='all'" fetchpriority="low">
 		<noscript>
-			<link rel="stylesheet" href="/css/async.css" fetchpriority="low">
+			<link rel="stylesheet" href="{% getBundleFileUrl 'css', 'async' %}" fetchpriority="low">
 		</noscript>
+{%- elseif config.env === "production" %}
+	<link rel="stylesheet" href="/dist/css/async.css" media="print" onload="this.media='all'" fetchpriority="low">
+	<noscript>
+		<link rel="stylesheet" href="/dist/css/async.css" fetchpriority="low">
+	</noscript>
 {%- else %}
-		<link rel="stylesheet" href="/css/async.css" fetchpriority="low">
+	<link rel="stylesheet" href="/dist/css/async.css" fetchpriority="low">
 {%- endif %}
+
+		<script type="module">
+		{% include "../components/details-force-state.js" %}
+		{% include "../components/disabled-form.js" %}
+		</script>
+{%- if page.url == '/' %}
+		{# see also "eleventy-js.njk" #}
+		{% js %}{% include "../../../node_modules/@11ty/is-land/is-land.js" %}{% endjs %}
+		{% js "async" %}{% include "components/active-background.js" %}{% endjs %}
+		{% js "async" %}{% include "../../../node_modules/@zachleat/heading-anchors/heading-anchors.js" %}{% endjs %}
+		{% js "async" %}{% include "../../../node_modules/@zachleat/details-utils/details-utils.js" %}{% endjs %}
+		{% js "async" %}{% include "../../../node_modules/@zachleat/seven-minute-tabs/seven-minute-tabs.js" %}{% endjs %}
+		{% js "async" %}{% include "components/eleventy-shell-syntax.js" %}{% endjs %}
+
+		<script type="module" src="{% getBundleFileUrl 'js' %}"></script>
+		<script type="module" src="{% getBundleFileUrl 'js', 'async' %}"></script>
+{%- else %}
+		<script src="/dist/js/eleventy.js" type="module"></script>
 {%- endif %}
-		<script>{% include "components/details-force-state.js" %}</script>
+
+{#
+		See also: `<is-land import>` in syntaxHighlightPlugin.js
+		<!-- Web Awesome -->
+		<link rel="stylesheet" href="/static/web-awesome/styles/themes/default.css" media="print" onload="this.media='all'" fetchpriority="low">
+		<script type="module" src="/static/web-awesome/webawesome.loader.js"></script>
+#}
 	</head>
 	<body>
 		{{ content | safe }}
 
-		<!-- Built on {{ config.now }} by Eleventy -->
-		{% getBundle "fontawesome" %}
-{%- if useWebCBundle %}
-		<script type="module" src="{% getBundleFileUrl 'js', 'async' %}"></script>
-{%- endif %}
-{%- if not skipLegacyBundle %}
-		<script src="/js/eleventy.js" type="module"></script>
-{%- endif %}
+		<!-- Built on {{ config.now | newsDate }} by Eleventy -->
+		<div>
+			{% getBundle "fontawesome" %}
+		</div>
 	</body>
 </html>

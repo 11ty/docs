@@ -21,7 +21,7 @@ Literally three days later, I am proud to show you all something that I hope Jam
 
 <img src="/img/possum-balloon-original.png" alt="James Williamson’s vision reimagined by Phineas X. Jones.">
 
-You can see more of Phineas’ work on [octophant.us](http://octophant.us/), [Instagram](https://www.instagram.com/pxj_work/), or [Twitter]({{ "https://twitter.com/Phineas/status/1128348644854382592" | canonicalTwitterUrl }}).
+You can see more of Phineas’ work on [octophant.us](https://octophant.us/), [Instagram](https://www.instagram.com/pxj_work/), or [Twitter]({{ "https://twitter.com/Phineas/status/1128348644854382592" | canonicalTwitterUrl }}).
 
 ---
 

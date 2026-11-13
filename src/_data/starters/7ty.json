@@ -1,8 +1,0 @@
-{
-	"url": "https://7ty.tech/",
-	"name": "Seven",
-	"description": "An eleventy template based on bootstrap4layouts. Includes webpack, sass version of bootstrap, vue.js powered search and a whole lot more.",
-	"author": "planetoftheweb",
-	"demo": "https://7ty.tech/",
-	"excludedFromLeaderboards": true
-}

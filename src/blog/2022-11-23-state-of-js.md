@@ -8,4 +8,4 @@ Looks like Eleventy is listed on this year’s [State of JavaScript Survey](http
 
 Appreciate y’all!
 
-<a href="https://stateofjs.com/" style="display: block; max-width: 16em">{% getScreenshotHtml "State of JS", "https://stateofjs.com/" %}</a>
+<a href="https://stateofjs.com/" style="display: block; max-width: 16em">{% getScreenshotHtml "State of JavaScript", "https://stateofjs.com/" %}</a>

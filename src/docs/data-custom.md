@@ -2,14 +2,12 @@
 eleventyNavigation:
   parent: Using Data
   key: Custom Data File Formats
-  order: 3
+  order: 5
 relatedLinks:
   /docs/data-frontmatter-customize/: Customize Front Matter Parsing
 ---
 
 # Custom Data File Formats {% addedin "0.10.0" %}
-
-{% tableofcontents %}
 
 Out of the box, Eleventy supports arbitrary JavaScript and JSON for both [template and directory data files](/docs/data-template-dir/) as well as [global data](/docs/data-global/).
 
@@ -22,7 +20,7 @@ Note that you can also add [Custom Front Matter Formats](/docs/data-frontmatter-
 {% set codeContent %}
 export default function (eleventyConfig) {
 	// Receives file contents, return parsed data
-	eleventyConfig.addDataExtension("yml,yaml", (contents, filePath) => {
+	eleventyConfig.addDataExtension("fileExtension", (contents, filePath) => {
 		return {};
 	});
 };
@@ -56,13 +54,13 @@ export default function (eleventyConfig) {
 
 ### YAML
 
-Here we’re using the [`js-yaml` package](https://www.npmjs.com/package/js-yaml). Don’t forget to `npm install js-yaml`.
+Here we’re using the [`yaml` package](https://www.npmjs.com/package/yaml). Don’t forget to `npm install yaml`.
 
 {% set codeContent %}
-import yaml from "js-yaml";
+import YAML from "yaml";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
+	eleventyConfig.addDataExtension("yaml", (contents) => YAML.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -80,13 +78,24 @@ export default function (eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
+### JSON5 - JSON for Humans
+
+[JSON5](https://www.npmjs.com/package/json5) is an extension to JSON that aims to be easier to write and maintain by hand. It omits quotes for the keys, allows for comments, trailing spaces, line breaks, and more. JSON5 is backwards-compatible with JSON. Don’t forget to `npm install json5`.
+
+{% set codeContent %}
+import JSON5 from "json5";
+
+export default function (eleventyConfig) {
+	eleventyConfig.addDataExtension("json5", (contents) => JSON5.parse(contents));
+};
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
 ### Adding a custom JSON file extension
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addDataExtension("geojson", (contents) =>
-		JSON.parse(contents)
-	);
+	eleventyConfig.addDataExtension("geojson", (contents) => JSON.parse(contents));
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

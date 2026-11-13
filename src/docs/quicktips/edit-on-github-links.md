@@ -32,7 +32,7 @@ Edit your layout file to add the link. Provide the URL to the base of your repo 
     …
     <footer>
       © 2019 Eleventy
-      <a href="https://github.com/11ty/11ty-website/blob/main/{{ page.inputPath }}">Edit this page on GitHub</a>
+      <a href="https://github.com/11ty/docs/blob/main/{{ page.inputPath }}">Edit this page on GitHub</a>
     </footer>
   </body>
 </html>

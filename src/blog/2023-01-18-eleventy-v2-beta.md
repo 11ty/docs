@@ -3,8 +3,6 @@ newstitle: "The very first beta release of Eleventy v2.0"
 eleventyNavigation:
   parent: Blog
 ---
-
-<br>
 {% callout %}<strong><em>Update:</em></strong> The <a href="/blog/eleventy-v2/">Eleventy v2.0.0 stable release</a> is now available!{% endcallout %}
 
 The very first Eleventy 2.0 Beta release is now available on the `@beta` channel and we’re looking for Beta testers! You can try it out now:
@@ -53,7 +51,7 @@ Read more about [local versus global installation](/docs/global-installation/).
 - [Render Plugin](/docs/plugins/render/) will render any template syntax inside other files _(bundled with Eleventy)_
 - [Internationalization (i18n) Plugin](/docs/plugins/i18n/) makes it easy to create localized sites _(bundled with Eleventy)_
 - [HTML `<base>` Plugin](/docs/plugins/html-base/) makes it easy to deploy your site to any folder path without changing any content (works great with the path prefix feature) _(bundled with Eleventy)_
-- Support for the [{% indieavatar "https://vitejs.dev/" %}Vite plugin](/docs/server-vite/)
+- Support for the [{% indieavatar "https://vite.dev/" %}Vite plugin](/docs/server-vite/)
 
 ### And more…
 

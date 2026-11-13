@@ -1,45 +1,42 @@
 ---
 eleventyNavigation:
-  parent: Getting Started
+  parent: Home
   key: Starter Projects
-  order: 2
+  order: 6
 ---
 
 # Starter Projects
 
-[Add your own starter project](https://github.com/11ty/11ty-website/tree/main/src/_data/starters). Community contributions are shown in random order. [Lighthouse scores are updated daily](https://eleventy-starters--speedlify.netlify.app/eleventy-starters/).
+## Official Starters
 
-<filter-container oninit>
-<form>
-  <label>
-    <input type="radio" name="projectfilter" value="" data-filter-key="tags" checked>
-    Show all projects
-  </label>
-  <label>
-    <input type="radio" name="projectfilter" value="perfectlh" data-filter-key="tags">
-    Only show projects with a Four Hundos Lighthouse score
-  </label>
-</form>
 <div class="sites-vert sites-vert--lg">
-  <div class="lo-grid" style="--fl-gap-v: 5em;">
+  <ul class="lo-grid" style="--fl-gap-v: 5em;">
 {%- for site in starters | sortObjectByOrder %}
-{%- if site.disabled != true and site.official %}
-{%- set siteData = speedlifyStarters.data[site.demo] or speedlifyStarters.data[site.url] %}
-  {% include "site-card.njk" %}
+{%- if site.official %}
+	{% set showSpeedlifyScores = true %}
+  <li>{% include "site-card.njk" %}</li>
 {%- endif %}{%- endfor %}
+  </ul>
+</div>
+
+## Community Starters
+
+[Add your own starter project](https://github.com/11ty/docs/tree/main/src/_data/starters). Community contributions are sorted by their Speedlify rank.
+
+<div class="sites-vert sites-vert--lg">
+  <ul class="lo-grid" style="--fl-gap-v: 5em;">
 {%- for site in starters | sortObjectByOrder %}
 {%- if site.disabled != true and site.featured %}
-{%- set siteData = speedlifyStarters.data[site.demo] or speedlifyStarters.data[site.url] %}
-  {% include "site-card.njk" %}
+	{% set showSpeedlifyScores = true %}
+  <li>{% include "site-card.njk" %}</li>
 {%- endif %}{%- endfor %}
-{%- for name, site in starters | shuffle %}
+{%- for site in starters | sortBySpeedlifyRank(starterRanks) %}
 {%- if site.disabled != true and not site.official and not site.featured %}
-{%- set siteData = speedlifyStarters.data[site.demo] or speedlifyStarters.data[site.url] %}
-  {% include "site-card.njk" %}
+	{% set showSpeedlifyScores = true %}
+  <li>{% include "site-card.njk" %}</li>
 {%- endif %}{%- endfor %}
-  </div>
+  </ul>
 </div>
-</filter-container>
 
 ## Lists
 

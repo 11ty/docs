@@ -1,22 +1,24 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
 	{% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "shortcode"} %}
 	<div id="shortcode-liquid" role="tabpanel">
-{%- highlight "liquid" %}{% raw %}
+{% set codeBlock %}{% raw %}
 {% image "cat.jpg", "photo of my tabby cat" %}
 {% image "cat.jpg", "photo of my tabby cat", "(min-width: 30em) 50vw, 100vw" %}
-{% endraw %}{% endhighlight %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
 		<p>The comma between arguments is <strong>optional</strong> in Liquid templates.</p>
 	</div>
 	<div id="shortcode-njk" role="tabpanel">
-{%- highlight "jinja2" %}{% raw %}
+{% set codeBlock %}{% raw %}
 {% image "cat.jpg", "photo of my tabby cat" %}
 {% image "cat.jpg", "photo of my tabby cat", "(min-width: 30em) 50vw, 100vw" %}
-{% endraw %}{% endhighlight %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 		<p>The comma between arguments is <strong>required</strong> in Nunjucks templates.</p>
 	</div>
 	<div id="shortcode-js" role="tabpanel">
-{%- highlight "js" %}{% raw %}
+{% set codeBlock %}{% raw %}
 export default function() {
 	let img1 = await this.image("cat.jpg", "photo of my tabby cat");
 	let img2 = await this.image("cat.jpg", "photo of my tabby cat", "(min-width: 30em) 50vw, 100vw");
@@ -25,10 +27,11 @@ export default function() {
 
 ${img2}`;
 };
-{% endraw %}{% endhighlight %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 	</div>
 	<div id="shortcode-cjs" role="tabpanel">
-{%- highlight "js" %}{% raw %}
+{% set codeBlock %}{% raw %}
 module.exports = function() {
 	let img1 = await this.image("cat.jpg", "photo of my tabby cat");
 	let img2 = await this.image("cat.jpg", "photo of my tabby cat", "(min-width: 30em) 50vw, 100vw");
@@ -37,8 +40,8 @@ module.exports = function() {
 
 ${img2}`;
 };
-{% endraw %}{% endhighlight %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 </div>
 </seven-minute-tabs>
 </is-land>

@@ -2,20 +2,18 @@
 eleventyNavigation:
   key: Eleventy Dev Server
   parent: Watch and Serve
+  pinned: true
 ---
 
 # Eleventy Dev Server {% addedin "2.0.0" %}
 
-{% tableofcontents %}
+Eleventy includes its own hot-reloading development server.
 
-The Eleventy 2.0 release includes a brand new development server. Check out the [`11ty/eleventy-dev-server` repository on GitHub](https://github.com/11ty/eleventy-dev-server).
-
-At time of release, this new server has:
-
-- 🏋🏻‍♀️ Minimal footprint: 1.4 MB node_modules
-	- Eleventy `node_modules` dropped from 155 MB to 34.3 MB
-	- Faster Eleventy `npm install` times (30.5% faster)
-	- Reduced Eleventy dependency count from 311 -> 211
+- [`11ty/eleventy-dev-server` on GitHub](https://github.com/11ty/eleventy-dev-server).
+- 🏋🏻‍♀️ Minimal footprint: `1.4 MB` node_modules
+	- Helped Eleventy `node_modules` drop from `155 MB` to `34.3 MB`
+	- Faster Eleventy `npm install` times (`30.5%` faster)
+	- Reduced Eleventy dependency count from `311` to `211`
 - 📦 Bundler Decoupled
 - 🚄 Fast ~2ms startup times
 - ⚡️ WebSockets-based Live reload
@@ -179,9 +177,10 @@ You can swap back to Eleventy Dev Server using the `setServerOptions` configurat
 
 First, install it:
 
-```
+{%- set codeBlock %}
 npm install @11ty/eleventy-server-browsersync
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 Then, enable it in your configuration file:
 

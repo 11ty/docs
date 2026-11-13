@@ -3,12 +3,11 @@ headerTitle: Eleventy Community
 eleventyNavigation:
   key: Code of Conduct
   parent: Community
-  order: -1
+  pinned: true
+  order: 1
 ---
 
 # Community Code of Conduct
-
-{% tableofcontents %}
 
 ## Our Pledge
 

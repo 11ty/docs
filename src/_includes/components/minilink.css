@@ -10,7 +10,7 @@
 	font-weight: 500;
 	margin: 0 0.4285714285714em 0.07142857142857em 0; /* 0 6px 1px 0 /14 */
 	line-height: 1.285714285714; /* 18px /14 */
-	font-family: system-ui, -apple-system, sans-serif;
+	font-family: system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
 	.minilink.minilink {

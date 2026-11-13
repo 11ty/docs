@@ -1,13 +1,12 @@
 ---
 eleventyNavigation:
   key: Syntax Highlighting
+  title: '<i class="fa-solid fa-file-code"></i>Syntax Highlighting'
   order: 2
   excerpt: Code syntax highlighting using PrismJS without client-side JavaScript.
 ---
 
 # Syntax Highlighting Plugin
-
-{% tableofcontents %}
 
 A pack of Eleventy plugins for PrismJS syntax highlighting. No browser/client JavaScript here, these highlight transformations are all done at build-time. Supports individual line highlighting.
 
@@ -18,9 +17,10 @@ A pack of Eleventy plugins for PrismJS syntax highlighting. No browser/client Ja
 
 Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-plugin-syntaxhighlight).
 
-```
+{% set codeBlock %}{% raw %}
 npm install @11ty/eleventy-plugin-syntaxhighlight
-```
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
@@ -106,7 +106,7 @@ This plugin provides the following syntax highlighters using PrismJS, all of whi
 
 ### Syntax Highlight Source Code
 
-- [Review the list of supported PrismJS languages](http://prismjs.com/#languages-list)
+- [Review the list of supported PrismJS languages](https://prismjs.com/#languages-list)
 
 {% include "snippets/plugins/highlight.njk" %}
 
@@ -136,9 +136,9 @@ Will render like this in the browser:
 
 {% highlight "diff-js" %}
 +function myFunction() {
-   // …
--  return true;
- }
+	// …
+-	return true;
+}
 {% endhighlight %}
 
 {% endcallout %}

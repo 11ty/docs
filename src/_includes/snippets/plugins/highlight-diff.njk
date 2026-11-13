@@ -1,99 +1,77 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "highlightdiff", additions: "md,webc", subtractions: "hbs"} %}
   <div id="highlightdiff-md" role="tabpanel">
-
-````
+{% set codeBlock %}
 ```diff-js
 +function myFunction() {
-   // …
--  return true;
- }
+	// …
+-	return true;
+}
 ```
-````
-
+{% endset %}
+{{ codeBlock | highlight("", undefined, { rawMarkdown: true }) | safe }}
   </div>
   <div id="highlightdiff-liquid" role="tabpanel">
-
-{% raw %}
-
-```markdown
+{% set codeBlock %}{% raw %}
 {% highlight diff-js %}
 +function myFunction() {
-   // …
--  return true;
- }
-{% endhighlight %}
-```
-
-{% endraw %}
-
-  </div>
-  <div id="highlightdiff-njk" role="tabpanel">
-
-{% raw %}
-
-```markdown
-{% highlight "diff-js" %}
-+function myFunction() {
-   // …
--  return true;
+	// …
+-	return true;
 }
 {% endhighlight %}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
+  </div>
+  <div id="highlightdiff-njk" role="tabpanel">
+{% set codeBlock %}{% raw %}
+{% highlight "diff-js" %}
++function myFunction() {
+	// …
+-	return true;
+}
+{% endhighlight %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="highlightdiff-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default function (data) {
   let code = `
 +function myFunction() {
-   // …
--  return true;
- }`;
+	// …
+-	return true;
+}`;
 
   return this.highlight("diff-js", code);
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 The `highlight` JavaScript function was {% addedin "Syntax Highlighter v4.0.0" %}.
 
   </div>
    <div id="highlightdiff-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = function (data) {
   let code = `
 +function myFunction() {
-   // …
--  return true;
- }`;
+	// …
+-	return true;
+}`;
 
   return this.highlight("diff-js", code);
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 The `highlight` JavaScript function was {% addedin "Syntax Highlighter v4.0.0" %}.
 
   </div>
   <div id="highlightdiff-webc" role="tabpanel">
-
-{% raw %}
-
-```html
-<!-- Requires WebC v0.6.2+ -->
+{% set codeBlock %}{% raw %}
 <!-- Requires Syntax Highlighter v4.2.0+ -->
+<!-- Requires WebC v0.6.2+ -->
 
 <syntax-highlight
   language="diff-js"
@@ -104,8 +82,8 @@ The `highlight` JavaScript function was {% addedin "Syntax Highlighter v4.0.0" %
 -  return true;
  }
 </syntax-highlight>
-```
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

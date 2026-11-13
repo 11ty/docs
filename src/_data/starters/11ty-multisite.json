@@ -1,8 +1,0 @@
-{
-    "url": "https://github.com/davidwkeith/11ty-multisite",
-    "name": "11ty-multisite",
-    "description": "Empty template that demonstrates how to setup 11ty for multiple sites with a shared layout.",
-    "author": "davidwkeith",
-    "demo": "https://11ty-multisite-site1.netlify.app/",
-    "npmStartScript": "start"
-}

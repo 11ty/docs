@@ -1,10 +1,10 @@
 ---
 eleventyNavigation:
-  parent: Data Cascade
+  parent: Using Data
   key: Validate Data
   order: 6
 ---
-# Validate Data
+# Validate Data {% addedin "v3.0.0-alpha.7" %}
 
 Use the special `eleventyDataSchema` data property to validate data in your Data Cascade. You can set this anywhere in your Data Cascade (front matter, directory data file, global data, etc).
 
@@ -16,19 +16,19 @@ In the following example, each content template with an `eleventyDataSchema` cal
 
 <div class="codetitle">blog/blog.11tydata.js</div>
 
-```js
+{%- set codeBlock %}{% raw %}
 import { z } from "zod";
-import { fromZodError } from 'zod-validation-error';
 
 export default {
 	eleventyDataSchema: function(data) {
 		let result = z.object({
-			draft: z.boolean().or(z.undefined()),
+			draft: z.optional(z.boolean())
 		}).safeParse(data);
 
 		if(result.error) {
-			throw fromZodError(result.error);
+			throw new Error(z.prettifyError(result.error));
 		}
 	}
 };
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}

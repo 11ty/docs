@@ -2,6 +2,7 @@
 eleventyNavigation:
   key: Configuration Shapes
   parent: Configuration
+excludeFromSidebar: true
 ---
 # Configuration Shapes
 
@@ -12,15 +13,6 @@ You can learn more about the [default file names for configuration files](/docs/
 **Callback functions are the preferred method** for configuration files and allow you further customization options using Eleventy’s full Configuration API helper methods.
 
 {% addedin "3.0.0-alpha.1" %}Support for ESM and Asynchronous callbacks was added in Eleventy v3.0.
-
-{% set codeContent %}
-export default async function(eleventyConfig) {
-  // Access to the full `eleventyConfig` Configuration API
-};
-{% endset %}
-{% include "snippets/configDefinition.njk" %}
-
-### Optional: Export `config` Object
 
 {% include "snippets/config/config-shape-callback-export.njk" %}
 

@@ -1,5 +1,6 @@
 {
 	"npm": "eleventy-plugin-img2picture",
 	"author": "saneef",
-	"description": "replaces <img> using <picture> with resized and optimized images."
+	"description": "replaces <img> using <picture> with resized and optimized images.",
+	"deprecated": "The function is available in the official [Eleventy Image plugin](docs/plugins/image/#html-transform)."
 }

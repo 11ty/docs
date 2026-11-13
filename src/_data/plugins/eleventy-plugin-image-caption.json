@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-image-caption",
+	"author": "johnwargo",
+	"description": "Adds shortcodes that allow you to add auto-numbering captions to images in a post and reference images (by caption label) later in posts."
+}

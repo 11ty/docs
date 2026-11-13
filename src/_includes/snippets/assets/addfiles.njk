@@ -5,48 +5,54 @@
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
     <div data-filter-code="css">
-{% highlight "js" %}
+{%- set codeBlock %}
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("bundle.css");
 };
-{% endhighlight %}
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="font">
-{% highlight "js" %}
+{%- set codeBlock %}
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("font.woff2");
 };
-{% endhighlight %}
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="js">
-{% highlight "js" %}
+{%- set codeBlock %}
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("bundle.js");
 };
-{% endhighlight %}
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
     </div>
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
     <div data-filter-code="css">
-{% highlight "js" %}
+{%- set codeBlock %}
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("bundle.css");
 };
-{% endhighlight %}
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="font">
-{% highlight "js" %}
+{%- set codeBlock %}
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("font.woff");
 };
-{% endhighlight %}
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
     </div>
     <div data-filter-code="js">
-{% highlight "js" %}
+{%- set codeBlock %}
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("bundle.js");
 };
-{% endhighlight %}
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
     </div>
   </div>
 </seven-minute-tabs>

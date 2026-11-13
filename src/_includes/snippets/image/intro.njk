@@ -1,11 +1,10 @@
 {%- set tabid = "imageintro" %}
 <div class="codetitle">my-node-script.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-
-```js
+{% set codeBlock %}
 import Image from "@11ty/eleventy-img";
 
 let src = "https://images.unsplash.com/photo-1608178398319-48f814d0750c";
@@ -14,12 +13,11 @@ let stats = await Image(src, {
 });
 
 console.log(stats);
-```
-
+{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-
-```js
+{% set codeBlock %}
 const Image = require("@11ty/eleventy-img");
 
 // ESM is required for top level async/await.
@@ -31,8 +29,8 @@ const Image = require("@11ty/eleventy-img");
 
 	console.log(stats);
 })();
-```
-
+{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

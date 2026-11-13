@@ -1,0 +1,53 @@
+{
+	"commits": [
+		{
+			"id": "7b15cd541ab368e8ea69cd66aead6d472c7044ea",
+			"url": "https://github.com/11ty/docs/commit/7b15cd541ab368e8ea69cd66aead6d472c7044ea",
+			"author": {
+				"name": "Waishnav",
+				"url": "https://github.com/Waishnav",
+				"avatarUrl": "/img/docs-avatars/86405648-vmeiE12hyE1J.png"
+			},
+			"date": "2026-11-03T18:38:21.000Z",
+			"message": "Update GitCMS URL to gitcms.dev (#2380)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "rijkvanzanten",
+			"url": "https://github.com/rijkvanzanten",
+			"avatarUrl": "/img/docs-avatars/9141017-omXs1QYcaokQ.jpeg"
+		},
+		{
+			"name": "amxmln",
+			"url": "https://github.com/amxmln",
+			"avatarUrl": "/img/docs-avatars/15271679-IfGbP9XbSiqR.png"
+		},
+		{
+			"name": "Waishnav",
+			"url": "https://github.com/Waishnav",
+			"avatarUrl": "/img/docs-avatars/86405648-vmeiE12hyE1J.png"
+		},
+		{
+			"name": "ronakganatra",
+			"url": "https://github.com/ronakganatra",
+			"avatarUrl": "/img/docs-avatars/20298819-BXzlg2kdn5qQ.jpeg"
+		},
+		{
+			"name": "bastianallgeier",
+			"url": "https://github.com/bastianallgeier",
+			"avatarUrl": "/img/docs-avatars/24532-kKYsC3DTgNjq.jpeg"
+		},
+		{
+			"name": "andrewchmr",
+			"url": "https://github.com/andrewchmr",
+			"avatarUrl": "/img/docs-avatars/43907473-EbOd1SfrKd8f.jpeg"
+		}
+	]
+}

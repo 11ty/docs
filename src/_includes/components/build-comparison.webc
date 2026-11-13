@@ -1,6 +1,12 @@
 <style webc:scoped>
 :host {
 	display: block;
+	padding: .5em 1rem;
+	border-radius: .3em;
+	border: 1px solid var(--border-color);
+	margin-block: .5em;
+	/* Lines up with .elv-callout, which full-bleeds by the same amount in docs content */
+	margin-inline: -1rem;
 }
 :host table {
 	width: 100%;
@@ -20,29 +26,6 @@
 }
 :host td:last-child {
 	width: 100%;
-}
-</style>
-
-<style webc:scoped webc:if="variant == 'home'">
-/* Variant for the home page */
-:host[variant='home'] {
-	padding: 1rem;
-	background-color: #272822;
-	color: #fff;
-	border-radius: .3em;
-	padding-block: .5em;
-	margin-block: .5em;
-}
-:host[variant='home'] thead th {
-	color: #ccc;
-}
-:host[variant='home'] thead th {
-	border-color: #555;
-}
-@media (prefers-color-scheme: dark) {
-	:host[variant='home'] {
-		background-color: #000;
-	}
 }
 </style>
 <table>

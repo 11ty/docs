@@ -1,0 +1,73 @@
+<wa-dialog id="promo-dialog" class="promo-dialog" light-dismiss without-header>
+	<a href="https://vimeo.com/1168551192/6ba669b3ff?fl=pl&fe=cm" class="elv-externalexempt"><img src="/img/vimeo-poster-sm-pl.jpg" alt="Now on Kickstarter: Build Awesome — Collaborate on Web Sites That Last" loading="eager"></a>
+	<template>
+		{# autoplay enabled due to swap #}
+		<iframe class="video-player" src="https://player.vimeo.com/video/1168551192?h=6ba669b3ff&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;dnt=1&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Now on Kickstarter: Build Awesome — Collaborate on Web Sites That Last"></iframe>
+	</template>
+	<div class="wa-stack wa-gap-2xl">
+		<div class="wa-stack wa-gap-s promo-dialog-content">
+			The same static site generation you know and love, now with endless Pro 'possum-bilties. But just like the other parts of the Awesomeverse, the core of Build Awesome will continue to be free and open source.
+		</div>
+		<div class="promo-footer wa-flank">
+			<wa-button
+				variant="brand"
+				appearance="accent"
+				href="{{ config.kickstarterUrl }}"
+				class="brand-font promo-dialog-ks-button"
+				target="_blank">
+				Support the Kickstarter!
+			</wa-button>
+			<wa-button type="button" appearance="plain" data-dialog="close">Got It</wa-button>
+		</div>
+	</div>
+
+</wa-dialog>
+<script type="module">
+if (!localStorage.getItem('ba-promo-dialog')) {
+
+	// Wait for Web Awesome kit to load and register components
+	try {
+		await customElements.whenDefined('wa-dialog');
+
+		const dialog = document.querySelector('#promo-dialog');
+		const posterLink = dialog.querySelector('a[href]');
+		const tmpl = dialog.querySelector('template');
+
+		posterLink.addEventListener('click', (e) => {
+			e.preventDefault();
+			posterLink.replaceWith(tmpl.content.cloneNode(true));
+
+			const iframe = dialog.querySelector('.video-player');
+			if (iframe && iframe.contentWindow) {
+				iframe.contentWindow.postMessage('{"method":"play"}', '*');
+			}
+		});
+
+		dialog.open = true;
+
+		const ksButton = dialog.querySelector('wa-button[variant="brand"]');
+		ksButton.addEventListener('mousedown', () => {
+			localStorage.setItem('ba-promo-dialog', 'closed');
+
+			// Stop the Vimeo video by sending a pause command
+			const iframe = dialog.querySelector('.video-player');
+			if (iframe && iframe.contentWindow) {
+				iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+			}
+		});
+
+		// Save to localStorage and stop video when dialog is closed
+		dialog.addEventListener('wa-hide', () => {
+			localStorage.setItem('ba-promo-dialog', 'closed');
+
+			// Stop the Vimeo video by sending a pause command
+			const iframe = dialog.querySelector('.video-player');
+			if (iframe && iframe.contentWindow) {
+				iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+			}
+		}, { once: true });
+	} catch (error) {
+		console.error('Error loading dialog:', error);
+	}
+}
+</script>

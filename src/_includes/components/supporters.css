@@ -1,27 +1,3 @@
-.elv-possum-pic + .supporters-avatar {
-	display: none;
-	position: absolute;
-	width: 5vw;
-	height: auto;
-	margin: 0;
-}
-@media (min-width: 41.875em) {
-	/* 670px */
-	.elv-possum-pic + .supporters-avatar {
-		display: block;
-		top: 0.8625rem;
-		right: 1.8875rem;
-		width: 2.9rem;
-		object-fit: cover;
-		height: 3.8em;
-		transform: rotate(5.2deg);
-		border: 2px solid #352a24;
-	}
-}
-.elv-header-default .elv-possum-pic + .supporters-avatar {
-	display: none;
-}
-
 /* Inline list of support avatars */
 .supporters-tiered .facepile-supporters .supporters-active img {
 	filter: grayscale(0);
@@ -50,57 +26,4 @@
 }
 .supporters-tiered a[href] {
 	text-decoration: none;
-}
-
-.supporters-gold .lo-grid > * {
-	display: flex;
-	align-items: stretch;
-	justify-content: center;
-	flex-direction: column;
-}
-.supporters-gold a[href] {
-	display: flex;
-	justify-content: center;
-}
-.supporters-gold-nordhealth {
-	translate: 0 0.2em
-}
-.supporters-gold-cloudcannon {
-	flex-grow: 1.7;
-	margin: 0 auto;
-	max-width: 28em;
-}
-.supporters-gold-cloudcannon svg {
-	background-color: #034ad8;
-	color: #fff;
-	padding: 1.25em;
-	border-radius: 0.5em;
-}
-
-.supporters-gold-transloadit svg {
-	color: #0d1419;
-}
-@media (prefers-color-scheme: dark) {
-	.supporters-gold-transloadit svg {
-		color: #fff;
-	}
-}
-
-.supporters-gold .lo-grid {
-	--lo-c-minwidth: 12em;
-	--fl-gap-v: 2em;
-	--fl-gap-h: 3em;
-	margin: 0 auto;
-}
-.supporters-gold .logo,
-.supporters-gold svg {
-	width: 100%;
-	margin: 0;
-}
-.supporters-gold .avatar {
-	max-width: 75px;
-	max-height: 75px;
-}
-.supporters-gold + .facepile-supporters {
-	margin-top: 0;
 }

@@ -1,41 +1,26 @@
+// Collapses the sidebar’s sections on small screens, where the nav sits above the page content, and
+// restores the build-time open state when the window grows back.
 class DetailsForceState extends HTMLElement {
-	constructor() {
-		super();
-		this._observer = new MutationObserver(this._init.bind(this));
-	}
-
 	connectedCallback() {
-		if (this.children.length) {
-			this._init();
-		}
-		this._observer.observe(this, { childList: true });
-	}
-
-	_init() {
-		let details = this.querySelector(":scope details");
-		if (!details) {
+		let query = this.getAttribute("data-force-closed");
+		if (!query) {
 			return;
 		}
 
-		let forceOpen = window
-			.getComputedStyle(details)
-			.getPropertyValue("--details-force-closed");
+		let sections = Array.from(this.querySelectorAll(":scope details"), (details) => ({
+			details,
+			wasOpen: details.open,
+		}));
 
-		function forceState(isOpen) {
-			if (isOpen) {
-				details.setAttribute("open", "open");
-			} else {
-				details.removeAttribute("open");
+		let forceClosed = window.matchMedia(query);
+		let apply = (matches) => {
+			for (let { details, wasOpen } of sections) {
+				details.open = matches ? false : wasOpen;
 			}
-		}
+		};
 
-		if (forceOpen && "matchMedia" in window) {
-			let mm1 = window.matchMedia(forceOpen);
-			forceState(!mm1.matches);
-			mm1.addListener(function (e) {
-				forceState(!e.matches);
-			});
-		}
+		apply(forceClosed.matches);
+		forceClosed.addEventListener("change", (event) => apply(event.matches));
 	}
 }
 

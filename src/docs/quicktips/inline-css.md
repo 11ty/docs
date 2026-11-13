@@ -10,18 +10,28 @@ This tip works well on small sites that don’t have a lot of CSS. Inlining your
 
 ## Installation
 
-`npm install clean-css` to make the CSS minifier available in your project.
+`npm install lightningcss --save-dev` to make the CSS minifier available in your project.
 
 ## Configuration
 
 Add the following `cssmin` filter to your Eleventy Config file:
 
 {% set codeContent %}
-import CleanCSS from "clean-css";
+import { transform } from "lightningcss";
 
-export default function (eleventyConfig) {
-	eleventyConfig.addFilter("cssmin", function (code) {
-		return new CleanCSS({}).minify(code).styles;
+export default function ($config$) {
+	$config.addFilter("cssmin", function (inputCode) {
+		if (process.env.ELEVENTY_RUN_MODE === "build") {
+			let { code } = transform({
+				// filename: undefined,
+				code: Buffer.from(inputCode),
+				minify: true,
+				sourceMap: false
+			});
+			return code;
+		}
+
+		return `/* [buildawesome] cssmin skipped during --watch and --serve */\n${inputCode}`;
 	});
 };
 {% endset %}
@@ -69,13 +79,22 @@ You can also inline minified CSS in a [JavaScript template](/docs/languages/java
 {% set codeContent %}
 import fs from "node:fs/promises";
 import path from "node:path";
-import CleanCSS from "clean-css";
+import { transform } from "lightningcss";
 
 export default async function (data) {
 	return `<style>
 	  ${await fs
 			.readFile(path.resolve(__dirname, "./sample.css"))
-			.then((data) => new CleanCSS().minify(data).styles)}
+			.then(inputCode => {
+				let { code } = transform({
+					// filename: undefined,
+					code: Buffer.from(inputCode),
+					minify: true,
+					sourceMap: false
+				});
+
+				return code;
+			})}
 	</style>`;
 };
 {% endset %}

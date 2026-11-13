@@ -1,13 +1,13 @@
 ---
 eleventyNavigation:
-  parent: Configuration
+  parent: Template Features
   key: Preprocessors
-  order: 4.5
+  title: Preprocess Content
+  excerpt: Use preprocessors to intercept and modify content (in-memory) before Eleventy builds.
+  order: 0.1
 ---
 
 # Preprocessors {% addedin "3.0.0-alpha.17" %}
-
-{% tableofcontents %}
 
 The Preprocessor Configuration API allows you to intercept and modify the content in template files (_not_ [Layouts](/docs/layouts.md)) before they’re processed and rendered by Eleventy.
 
@@ -34,6 +34,8 @@ export default function (eleventyConfig) {
 	* an `Array<String>` of file extensions
 * Returning `false` will ignores the template in the same way as using [`eleventyConfig.ignores` or `.eleventyignore`](/docs/ignores.md)
 * Returning nothing or `undefined` has no effect (unlike [Transforms](/docs/transforms.md))
+
+{% callout "info", "md" %}Preprocessors run before most [Computed Data](/docs/data-computed.md) is resolved, so `eleventyComputed` values are not available in the `data` argument.{% endcallout %}
 
 _Originally [GitHub Issue #188](https://github.com/11ty/eleventy/issues/188#issuecomment-2224060755)._
 

@@ -1,10 +1,15 @@
 ---
 eleventyNavigation:
   key: Eleventy Projects
-  title: Projects
-  order: 4
+  title: Guide
+  parent: Eleventy Documentation
+  order: 3
 ---
 
-# Working with Eleventy Projects
+# Guide to Eleventy Projects
 
-{{ collections.all | eleventyNavigation("Eleventy Projects") | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+<div class="elv-page-toc">
+
+{{ "Eleventy Projects" | nav | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+
+</div>

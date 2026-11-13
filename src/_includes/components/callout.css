@@ -1,43 +1,44 @@
-/* Warning */
 .elv-callout {
-	--callout-primary: hsl(195, 100%, 75%);
-	--callout-primarytext: #000;
-	--callout-secondary: #dff7ff;
+	--callout-primary: var(--border-color);
+	--callout-primarytext: var(--color);
+	--callout-secondary: var(--background-color);
+
 	line-height: 1.5;
 	margin-inline: -1rem;
 	margin-block: 1em;
 	background-color: var(--callout-secondary);
-	border: 3px solid var(--callout-border, var(--callout-primary));
+	border: 1.5px solid var(--callout-primary);
+}
+.elv-callout:is(.elv-callout-info, .elv-callout-error, .elv-callout-warn, .elv-callout-skew) {
+	--callout-primary: hsl(var(--callout-hue), 86%, 70%);
+	--callout-primarytext: hsl(var(--callout-hue), 100%, 0%);
+	--callout-secondary: hsl(var(--callout-hue), 86%, 94%);
+
+	--callout-sidebartext: hsl(var(--callout-hue), 86%, 35%);
+	--callout-code: hsla(var(--callout-hue), 86%, 70%, .25);
+	--callout-label-skew: 11deg;
 }
 details .elv-callout {
 	margin-left: 0;
 	margin-right: 0;
 }
-.elv-callout-pinned {
-	--callout-primary: #d7f4cf;
-	--callout-primarytext: #000;
-	--callout-secondary: #f1feee;
-}
-.elv-callout-box {
-	--callout-primary: #dff7ff;
-	--callout-primarytext: #000;
-	--callout-secondary: #f2fcff;
-}
-@media (min-width: 55em) {
-	/* 880px */
+
+/* #2col */
+@media (min-width: 41.4375em) {
 	.elv-callout {
 		border-radius: 0.3em;
 	}
 }
+
 @media (prefers-color-scheme: dark) {
-	.elv-callout {
-		--callout-primary: hsl(195, 100%, 22%);
-		--callout-secondary: hsl(195, 100%, 12%);
-		--callout-primarytext: #fff;
+	.elv-callout:is(.elv-callout-info, .elv-callout-error, .elv-callout-warn, .elv-callout-skew) {
+		--callout-primary: hsl(var(--callout-hue), 100%, 22%);
+		--callout-secondary: hsl(var(--callout-hue), 100%, 12%);
+		--callout-primarytext: hsl(var(--callout-hue), 100%, 100%);
 	}
 	.elv-callout,
 	.elv-callout a {
-		color: #fff;
+		color: var(--callout-primarytext);
 	}
 }
 table .elv-callout {
@@ -50,15 +51,11 @@ table .elv-callout {
 	padding: 0.75em 1em; /* 12px 16px /16 */
 }
 
-.elv-callout-c > p:first-child,
-.elv-callout-c > ul:first-child,
-.elv-callout-c > ol:first-child {
-	margin-top: 0;
+.elv-callout-c > :is(p, ul, ol, h2):first-child {
+	margin-block-start: 0;
 }
-.elv-callout-c > p:last-child,
-.elv-callout-c > ul:last-child,
-.elv-callout-c > ol:last-child {
-	margin-bottom: 0;
+.elv-callout-c > :is(p, ul, ol, h2):last-child {
+	margin-block-end: 0;
 }
 
 
@@ -67,25 +64,25 @@ table .elv-callout {
 	flex-direction: column;
 }
 
-.elv-callout-demo {
+.elv-callout-skew {
 	position: relative;
 }
 .elv-callout-label {
 	align-self: flex-start;
 	font-size: 0.9375em; /* 15px /16 */
-	font-weight: 600;
+	font-weight: 500;
 }
 .elv-callout-label,
-.elv-callout-demo:before,
-.elv-callout-demo:after {
+.elv-callout-skew:before,
+.elv-callout-skew:after {
 	margin: 0;
 	margin-right: 0.5em;
 	border-radius: 0 0 0.3em 0;
 	align-items: center;
-	padding: 0 0.55em;
+	padding: 0 1rem;
 }
-.elv-callout-demo:before,
-.elv-callout-demo:after {
+.elv-callout-skew:before,
+.elv-callout-skew:after {
 	display: inline-flex;
 	position: absolute;
 	left: 0;
@@ -93,11 +90,12 @@ table .elv-callout {
 	font-size: 0.8125em; /* 13px /16 */
 	font-weight: 800;
 }
-.elv-callout-label,
-.elv-callout-demo:before,
-.elv-callout:not(.elv-callout-demo) :not(pre) > code {
-	background-color: var(--callout-tag, var(--callout-primary));
+.elv-callout-label {
+	background-color: var(--callout-primary);
 	color: var(--callout-primarytext);
+}
+.elv-callout code {
+	background-color: var(--callout-code, var(--callout-primary));
 }
 .elv-callout a,
 .elv-callout :visited {
@@ -113,82 +111,56 @@ table .elv-callout {
 	background-color: transparent;
 }
 
-/* Error */
-.elv-callout-error {
-	--callout-primary: hsl(0, 100%, 77%);
-	--callout-secondary: hsl(0, 100%, 90%);
-}
-@media (prefers-color-scheme: dark) {
-	.elv-callout-error {
-		--callout-primary: hsl(0, 100%, 22%);
-		--callout-secondary: hsl(0, 100%, 12%);
-	}
-}
-/* Warning */
-.elv-callout-warn {
-	--callout-primary: hsl(60, 100%, 62%);
-	--callout-secondary: hsl(60, 100%, 85%);
-}
-@media (prefers-color-scheme: dark) {
-	.elv-callout-warn {
-		--callout-primary: hsl(53, 100%, 29%);
-		--callout-secondary: hsl(53, 100%, 13%);
-	}
-}
-/* Demo */
-.elv-callout-demo {
-	--callout-primary: transparent;
-	--callout-secondary: hsl(270deg 50% 90%);
-	--callout-tag: rebeccapurple;
-	--callout-border: rebeccapurple;
+/* Skewed text (demo) */
+.elv-callout-skew {
+	--callout-sidebar-size: 2.777777777778em; /* 50px /18 */
 	overflow: hidden;
-	padding-left: 3.888888888889em; /* 70px /18 */
+	padding-left: var(--callout-sidebar-size);
+	border-color: var(--callout-sidebartext);
 }
-@media (prefers-color-scheme: dark) {
-	.elv-callout-demo {
-		--callout-primary: hsl(270deg 50% 30%);
-		--callout-secondary: hsl(270deg 50% 30%);
-		--callout-tag: hsl(270deg 50% 85%);
-		--callout-primarytext: #fff;
-		--callout-border: rebeccapurple;
-	}
-	.elv-callout-demo code {
-		background-color: hsl(270deg 50% 15%);
-	}
-}
-.elv-callout-demo:after {
+.elv-callout-skew:after {
 	display: none;
 }
 @media (min-width: 37.5em) {
 	/* 600px */
-	.elv-callout-demo {
-		padding-right: 3.888888888889em; /* 70px /18 */
+	.elv-callout-skew {
+		padding-right: var(--callout-sidebar-size);
 	}
-	.elv-callout-demo:after {
+	.elv-callout-skew:after {
 		display: block;
 	}
 }
-.elv-callout-demo:before,
-.elv-callout-demo:after {
-	content: "DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO ";
+.elv-callout-skew:before,
+.elv-callout-skew:after {
+	content: var(--callout-sidebar-content);
 	width: min-content;
 	overflow: hidden;
 	top: -2em;
 	bottom: -1em;
 	border-radius: 0;
-	background-color: var(--callout-primary);
-	color: var(--callout-tag);
+	background-color: transparent;
+	color: var(--callout-sidebartext);
 	font-weight: 700;
-	transform: skewY(-13deg);
+	transform: skewY(calc(-1 * var(--callout-label-skew)));
 	padding: 0 0.2857142857143em; /* 4px /14 */
 	margin: 0;
 }
-.elv-callout-demo:after {
+.elv-callout-skew:after {
 	right: 0;
 	left: auto;
 	margin-right: 0;
 	margin-left: 0.5em;
-	transform: skewY(13deg);
+	transform: skewY(var(--callout-label-skew));
+}
+
+/* Demo */
+.elv-callout-skew--demo {
+	--callout-sidebar-content: "DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO " / " Demo ";
+}
+/* Pitfall */
+.elv-callout-skew--pitfall {
+	--callout-sidebar-size: 3.444444444444em; /* 62px /18 */
+	--callout-sidebar-content: "PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL " / " Pitfall ";
 }
 
 /* Style the content inside of the callout */
@@ -224,41 +196,65 @@ body > .elv-callout-sticky .elv-callout-c {
 }
 
 /* in left nav */
-.elv-toc .elv-callout-pinned .elv-callout-c {
-	text-wrap: balance;
+.elv-toc .elv-callout {
+	margin-block-start: 0;
 }
-.elv-toc .elv-callout:first-child {
-	margin-bottom: 0.25em;
+.elv-toc .elv-callout-c {
+	flex-grow: 1;
 }
-@media (max-width: 54.9375em) {
-	/* 880px - 1 */
+.elv-toc .elv-callout-label {
+	margin-inline-end: 0;
+}
+
+/* #2col */
+@media (max-width: 41.375em) {
 	.elv-toc .elv-callout {
-		border-left: 0;
-		border-right: 0;
+		border-inline-width: 0;
 	}
-	.elv-toc .elv-callout-pinned {
+	.elv-toc .elv-callout {
 		display: none;
 	}
 }
-@media (min-width: 55em) {
-	/* 880px */
-	.elv-toc .elv-callout-label,
-	.elv-toc .elv-callout-c {
-		padding-left: 1rem;
-		padding-right: 1rem;
+
+/* #2col */
+@media (min-width: 41.4375em) {
+	.elv-toc .elv-callout:first-child:has(+ .elv-callout) {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 	}
+	.elv-toc .elv-callout:first-child:has(+ .elv-callout) .elv-callout-c {
+		padding-block: .5rem;
+	}
+	/* Flush with the column, so the callouts start on the same line as the nav below rather than
+	   bleeding a rem past it */
 	.elv-toc .elv-callout {
-		margin-right: 0;
-		margin-left: -1rem;
+		margin-inline: 0;
 		font-size: 0.875em; /* 14px /16 */
 		line-height: 2;
 	}
-}
-@media (min-width: 55em) and (max-width: 70.625em) {
-	/* 880px–1130px */
-	.elv-toc .elv-callout {
-		border-left: 0;
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
+	/* The callouts are 14px, so their own 1em inset would land short of the nav’s */
+	.elv-toc .elv-callout-c {
+		padding-inline: 1rem;
 	}
+}
+
+
+/* Themes */
+.elv-callout {
+	--callout-hue: 195;
+}
+/* Error */
+.elv-callout-error {
+	--callout-hue: 0;
+}
+/* Warning */
+.elv-callout-warn {
+	--callout-hue: 60;
+}
+.elv-callout-skew--demo {
+	--callout-hue: 270;
+}
+.elv-callout-skew--pitfall {
+	--callout-hue: 36;
 }

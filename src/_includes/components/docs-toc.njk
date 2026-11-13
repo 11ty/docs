@@ -1,3 +1,4 @@
+{%- from "components/docs-nav.njk" import navList -%}
 <div class="elv-toc" data-pagefind-ignore>
 {%- set calloutTitle %}<a href="/blog/">Blog</a>{% endset %}
 {%- for post in collections.sidebarHighlight %}
@@ -8,40 +9,24 @@
 
 {%- set versionsTitle = "<a href='/docs/versions/'>Versions</a>" %}
 {%- callout "box", "html", versionsTitle -%}
-	<dl>
+	<dl class="versions-callout">
 		<dt>Stable</dt>
-		<dd><code>{{ npmVersions.latest }}</code></dd>
-		{# <dt>Beta</dt>
-		<dd><code>{{ npmVersions.beta }}</code></dd> #}
+		<dd><a href="https://github.com/11ty/eleventy/releases/tag/v{{ npmVersions.latest }}" class="elv-externalexempt"><code>{{ npmVersions.latest }}</code>{# <small>{{ githubReleases[ npmVersions.latest | normalizeVersion ].date | timeDiff }}</small> #}</a></dd>
+		{%- if semverGreaterThan(npmVersions.beta, npmVersions.latest) %}
+		<dt>Beta</dt>
+		<dd><a href="https://github.com/11ty/eleventy/releases/tag/v{{ npmVersions.beta }}" class="elv-externalexempt"><code>{{ npmVersions.beta }}</code>{# <small>{{ githubReleases[ npmVersions.beta | normalizeVersion ].date | timeDiff }}</small> #}</a></dd>
+		{%- endif %}
+		{%- if semverGreaterThan(npmVersions.canary, npmVersions.latest) and semverGreaterThan(npmVersions.canary, npmVersions.beta) %}
 		<dt>Canary</dt>
-		<dd><code>{{ npmVersions.canary }}</code></dd>
+		<dd><a href="https://github.com/11ty/eleventy/releases/tag/v{{ npmVersions.canary }}" class="elv-externalexempt"><code>{{ npmVersions.canary }}</code>{# <small>{{ githubReleases[ npmVersions.canary | normalizeVersion ].date | timeDiff }}</small> #}</a></dd>
+		{%- endif %}
 	</dl>
 {%- endcallout %}
 
-<details-force-state>
-	<details>
-		<summary class="btn-primary benchnine rainbow-active rainbow-active-noanim">Toggle Menu</summary>
-
-		{%- if eleventyNavigation -%}
-			{%- set navKey = eleventyNavigation.key -%}
-		{%- endif -%}
-		<div id="skip-nav">
-			{{ collections.sidebarNav | eleventyNavigation | eleventyNavigationToHtml({ activeKey: navKey, listClass: 'elv-toc-list', activeListItemClass: 'elv-toc-active' }) | safe }}
-		</div>
-		{%- if not ignoreSidebarCallout %}
-		{%- set comparison = comparisons | randompick %}
-		{%- set comparisonTitle = "<a href='" + comparison.url + "'>Compare " + comparison.title + "</a>" %}
-		{%- callout "box", "html", comparisonTitle %}
-		<is-land on:visible on:media="(prefers-reduced-motion: no-preference)">
-			<template data-island="once"><link rel="stylesheet" href="/css/throbber.css" webc:keep><script src="/js/throbber.js" webc:keep></script></template>
-			<div><strong>Eleventy</strong> <code>{{ comparison.eleventy.readable }}</code></div>
-			{# this isn’t WebC so it doesn’t show the fallback content #}
-			<text-throbber interval="1000" duration="{{ comparison.eleventy.ms }}"></text-throbber>
-			<div><strong>{{ comparison.other.label }}</strong> <code>{{ comparison.other.readable }}</code></div>
-			<text-throbber interval="1000" duration="{{ comparison.other.ms }}"></text-throbber>
-		</is-land>
-		{%- endcallout %}
-		{%- endif %}
-	</details>
+<details-force-state class="elv-toc-c" data-force-closed="(max-width: 41.375em)" id="skip-nav">
+	<nav>
+	{%- set navKey = eleventyNavigation.key if eleventyNavigation else "" -%}
+	{{ navList("Eleventy Documentation,Ecosystem" | navFiltered, navKey, navKey | navActiveKeys, page.url, "elv-toc-list") }}
+	</nav>
 </details-force-state>
 </div>

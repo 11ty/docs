@@ -1,8 +1,8 @@
 ---
 eleventyNavigation:
-  parent: Learn
+  parent: Home
   key: Tutorials
-  order: 1.5
+  order: 5
 feedTitle: Quick Tips RSS Feed
 feedUrl: /docs/quicktips/feed.xml
 ---
@@ -52,6 +52,14 @@ feedUrl: /docs/quicktips/feed.xml
 ### Put it on the web
 
 * Put your new site on the web! [Read more about Deployment](/docs/deployment/)
+
+## Official [Quick Tips](./quicktips.md)
+
+There are currently [×{{ collections.quicktips.length }} quick tips](./quicktips.md) in our catalog.
+
+[<i class="fa-solid fa-square-rss"></i>Subscribe to the **Eleventy Quick Tips RSS Feed**](/docs/quicktips/feed.xml)
+
+## From the Community
 
 ### Adding Features
 

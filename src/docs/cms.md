@@ -1,16 +1,17 @@
 ---
 eleventyNavigation:
-  parent: Deployment
+  parent: Services
   key: Using a CMS
-featuredCmses:
-  - name: "Want your logo here? Contact us!"
-    url: "mailto:partners@11ty.dev"
-    tags: [Recommended Partner]
-    class: sites-featured
-    screenshotSize: opengraph
+  order: 2
 cmses:
   - name: CloudCannon
     url: https://cloudcannon.com/eleventy-cms/?utm_campaign=11ty-partner&utm_source=official-sponsor
+    tags: [Git-based]
+  - name: GitCMS
+    url: https://gitcms.dev/
+    tags: [Git-based]
+  - name: CMS Brew
+    url: https://cmsbrew.com/?utm_source=11ty-docs
     tags: [Git-based]
   - name: WordPress REST API
     url: https://developer.wordpress.org/rest-api/
@@ -26,6 +27,10 @@ cmses:
     tags: [API]
   - name: Sanity
     url: https://www.sanity.io/
+    screenshotSize: medium
+    tags: [API]
+  - name: DatoCMS
+    url: https://datocms.com/
     screenshotSize: medium
     tags: [API]
   - name: Notion
@@ -77,10 +82,17 @@ cmses:
     url: https://craftcms.com/
     screenshotSize: medium
     tags: [API]
+  - name: Pages CMS
+    url: https://pagescms.org/
+    screenshotSize: medium
+    tags: [Git-based]
+  - name: Kirby CMS
+    url: https://getkirby.com
+    screenshotSize: medium
+    tags: [API]
 ---
-# Using a CMS
 
-{% tableofcontents %}
+# Using a CMS
 
 _Content Management Systems_ (CMS) add a web-based interface to your site, allowing both technical and non-technical folks the ability to easily update the web site on-the-go.
 
@@ -104,9 +116,6 @@ Digging deeper, there are two main types of Headless CMS options:
 
 <div class="sites-vert sites-vert--md sites--reverse sites--center">
   <div class="lo-grid" style="--fl-gap-v: 5em;">
-{%- for site in featuredCmses %}
-{% include "site-card.njk" %}
-{%- endfor %}
 {%- for site in cmses | shuffle %}
 {% include "site-card.njk" %}
 {%- endfor %}

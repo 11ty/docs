@@ -2,7 +2,6 @@
 src/docs/server-api.md
 
 # Generic
-package-lock.json
 node_modules/
 .env
 .log
@@ -13,5 +12,9 @@ yarn.lock
 
 # App-specific
 _site/
+dist/
 node-supporters/
 src/_data/builtwith/
+
+tmp/
+src/_data/firehose.json

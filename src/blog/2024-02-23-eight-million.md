@@ -11,7 +11,7 @@ On February 19, 2024 **Eleventy passed [eight million lifetime downloads](https:
 
 _(This number is limited to Eleventy core and doesn’t count our ecosystem of utilities and plugins.)_
 
-{% image "./src/blog/eight-million.jpg", "Zach pointing to the new balloons in his office that say 8 Million", [350, 700], "", "100vw" %}
+<img src="/blog/eight-million.jpg" alt="Zach pointing to the new balloons in his office that say 8 Million" eleventy:widths="350,700" sizes="100vw">
 
 Thank you for the support!!
 

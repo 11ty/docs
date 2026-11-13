@@ -1,11 +1,15 @@
 ---
 headerTitle: Eleventy Authors
 layout: layouts/docs.njk
+eleventyNavigation:
+  parent: Community
+  key: Authors
+excludeFromSidebar: true
 ---
 <h1>Eleventy Authors</h1>
 
 <ul>
-  <li>×{{ authors | length }} unique authors.</li>
+  <li>×{{ builtwithAuthors | length }} unique authors.</li>
   <li>Want to add your name below? Head over to the <a href="https://github.com/11ty/11ty-community/issues/new/choose"><code>11ty-community</code> issue tracker</a>.</li>
 </ul>
 
@@ -18,7 +22,7 @@ layout: layouts/docs.njk
     </tr>
   </thead>
 	<tbody>
-{%- for author in authors | sortAuthors %}
+{%- for author in builtwithAuthors | sortAuthors %}
 {%- set supporter = opencollective.supporters | isSupporter(author.name, author.opencollective) -%}
 		<tr>
 			<td><a href="/authors/{{ author.name | slugify }}/">{% communityavatar author.name %}{{ supporter.name or author.name | safe }}</a></td>

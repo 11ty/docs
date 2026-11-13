@@ -2,12 +2,11 @@
 layout: layouts/main.njk
 headerClass: elv-header-docs
 isDocs: true
-headerTag: div
 ---
 {% if eleventyNavigation and eleventyNavigation.parent %}
 <nav class="breadcrumb" aria-labelledby="breadcrumb">
   <div class="sr-only" id="breadcrumb">Breadcrumbs: </div>
-  {{ collections.sidebarNav | eleventyNavigationBreadcrumb(eleventyNavigation.parent, {includeSelf: true}) | eleventyNavigationToHtml({ listClass: 'fl fl-inline', activeListItemClass: 'breadcrumb-active' }) | safe }}
+  {{ eleventyNavigation.parent | navBreadcrumbs | eleventyNavigationToHtml({ listClass: 'fl fl-inline', activeListItemClass: 'breadcrumb-active' }) | safe }}
 </nav>
 {% endif %}
 {% if pageTitle %}<h1>{{ pageTitle | safe }}</h1>{% endif %}
@@ -16,25 +15,37 @@ headerTag: div
 
 {%- if not overrideCommunityLinks and (communityLinks or communityLinksKey) %}
 <div class="elv-community" id="community-resources">
-  <h2>From the Community</h2>
+  <h2 data-ha-exclude>From the Community</h2>
   {%- include "community-contributed.njk" -%}
 </div>
 {%- endif %}
 
 {% if eleventyNavigation and eleventyNavigation.key %}
 {%- set navKey = eleventyNavigation.parent or eleventyNavigation.key -%}
-{%- set otherPages = collections.sidebarNav | eleventyNavigation(navKey) -%}
-{% if otherPages.length > 1 %}
+{%- set otherPages = navKey | navFiltered -%}
+{%- set breadcrumbs = eleventyNavigation.key | navBreadcrumbs -%}
+{%- set isTemplateLang = false -%}
+{%- for crumb in breadcrumbs -%}
+  {%- if crumb.key == "Template Languages" -%}{%- set isTemplateLang = true -%}{%- endif -%}
+{%- endfor -%}
+{% if otherPages.length > 1 or isTemplateLang %}
+{% if isTemplateLang %}
 <hr>
-<h3 data-ha-exclude>{% if eleventyNavigation.parent %}Other pages in {% endif %}{{ navKey }}:</h3>
+<div class="elv-langlist" data-pagefind-ignore>
+	<span class="elv-langlist-hed">Template Languages:</span>
+{% templatelangs templatetypes, page %}
+</div>
+{% elseif navKey != "Eleventy Documentation" and navKey != "Ecosystem" %}
+<hr>
+<h3 data-ha-exclude>{% if eleventyNavigation.parent %}Other pages in {% endif %}<em>{{ navKey }}</em></h3>
 {{ otherPages | eleventyNavigationToHtml({ activeKey: eleventyNavigation.key, listClass: 'inlinelist inlinelist-no-nest', listItemClass: 'inlinelist-item', activeListItemClass: 'elv-cat-list-active' }) | safe }}
 {% endif %}
-
+{% endif %}
 {% endif %}
 
 {% if relatedLinks or (relatedKey and collections[ "related-" + relatedKey ].length) %}
 <hr>
-<h3>Related Docs</h3>
+<h3 data-ha-exclude>Related Docs</h3>
 <ul>
 {% for related in collections[ "related-" + relatedKey ] %}
 	<li><a href="{{ related.url }}">{{ related.data.relatedTitle or related.data.title }}</a></li>
@@ -44,3 +55,5 @@ headerTag: div
 {% endfor %}
 </ul>
 {% endif %}
+
+{% include "components/page-authors.njk" %}

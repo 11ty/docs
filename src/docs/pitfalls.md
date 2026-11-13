@@ -2,7 +2,7 @@
 eleventyNavigation:
   parent: Eleventy Projects
   key: Common Pitfalls
-  order: 8
+  order: 10
   excerpt: Some common problems that people run into.
 ---
 

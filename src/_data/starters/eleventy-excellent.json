@@ -3,5 +3,6 @@
 	"name": "eleventy-excellent",
 	"description": "Opinionated Eleventy starter based on the workflow suggested by Andy Bell's buildexcellentwebsit.es.",
 	"author": "lene",
-	"demo": "https://eleventy-excellent.netlify.app/"
+	"demo": "https://eleventy-excellent.netlify.app/",
+	"featured": true
 }

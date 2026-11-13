@@ -1,0 +1,287 @@
+/* Header */
+.elv-menu {
+	background-color: rgba(255, 255, 255, 0.65);
+	color: var(--color);
+	backdrop-filter: blur(15px);
+}
+.elv-header-docs .elv-menu:has(active-background.active) {
+	/* let the backdrop-filter work with active-background too */
+	background-color: transparent;
+}
+:where(.elv-menu) a,
+:where(.elv-menu) a:visited,
+:where(.elv-menu) a[href] {
+	color: inherit;
+}
+@media (prefers-color-scheme: dark) {
+	.elv-menu {
+		background-color: rgba(0, 0, 0, 0.65);
+	}
+}
+.elv-header {
+	position: relative;
+	z-index: 2;
+}
+.elv-hed,
+.elv-nav-header {
+	width: 100%;
+	margin: 0 auto;
+}
+.elv-nav-menu {
+	padding: 1rem;
+	margin-inline: auto;
+}
+@media (min-width: 58.125em) { /* 930px */
+	.elv-nav-menu.elv-nav-menu {
+		flex-wrap: nowrap;
+		white-space: nowrap;
+	}
+}
+.elv-hed,
+.elv-nav-header,
+.elv-nav-menu {
+	max-width: calc(var(--layout-max));
+}
+.elv-nav-menu-logo {
+	display: block;
+	width: 2em;
+	height: 2em;
+	max-height: 2em;
+	background-color: #222;
+	text-align: center;
+	border-radius: 0.15em;
+	padding: 0 0.25em;
+}
+.elv-nav-menu-logo svg {
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	margin: 0;
+}
+/* Full width logo */
+.elv-header-default .elv-nav-header {
+	max-width: none;
+}
+
+/* Sticky, #2col × 600px */
+@media (min-width: 41.4375em) and (min-height: 43.75em) {
+	/* Take care with the sticky toc too */
+	.elv-header.elv-header-docs,
+	.elv-header.elv-header-default .elv-menu {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+	}
+	/* Only the menu sticks on the home page, so it needs the page rather than the header as its container */
+	.elv-header.elv-header-default {
+		display: contents;
+	}
+	:root:has(.elv-header, :target) {
+		scroll-padding-top: 3.75em; /* 60px /16 */
+	}
+	/* Leave extra room for tabs links */
+	:root:has(.elv-header, [role="tabpanel"]:target) {
+		scroll-padding-top: 6em;
+	}
+}
+
+.elv-nav-menu {
+	--search-bg: rgba(255, 255, 255, 0.8);
+	--search-icon: rgba(0, 0, 0, 0.4);
+	--search-border: rgba(0, 0, 0, 0.2);
+	--search-text: #000;
+	--search-radius: 1rem;
+}
+@media (prefers-color-scheme: dark) {
+	.elv-nav-menu {
+		--search-bg: rgba(0, 0, 0, 0.8);
+		--search-icon: rgba(255, 255, 255, 0.4);
+		--search-border: rgba(255, 255, 255, 0.2);
+		--search-text: #fff;
+	}
+}
+
+.elv-nav-menu form {
+	color: var(--search-text);
+}
+@media (min-width: 67.5em) {
+	/* 1080px */
+	.elv-nav-menu form {
+		margin-inline: 2em;
+	}
+}
+.elv-nav-menu input[type="search"] {
+	font: inherit;
+	font-size: 0.9375em; /* 15px /16 */
+	border: 1px solid var(--search-border);
+	border-radius: var(--search-radius);
+	padding-inline: var(--search-radius) 2.75em;
+	width: 100%;
+	min-width: 8.666666666667em; /* 130px /15 */
+	color: inherit;
+	background-color: var(--search-bg);
+}
+.elv-nav-menu button {
+	font-size: 0.75em;
+	margin: 0;
+	padding-inline: 0.75em;
+	border-radius: var(--search-radius);
+	border: none;
+	color: var(--search-icon);
+	background-color: transparent;
+}
+.elv-nav-menu .util-stack > button {
+	place-self: end;
+	height: 100%;
+}
+
+.elv-header-docs:before,
+.elv-header-docs:after {
+	content: " ";
+	display: table;
+}
+.elv-header-docs:after {
+	clear: both;
+}
+
+/* Header Hero */
+.elv-hero {
+	display: flex;
+	align-items: center;
+	height: 40vh;
+	background-color: #222;
+	text-decoration: none;
+}
+.elv-hero:has(.elv-hero-ba) {
+	background-image: repeating-linear-gradient(
+		-45deg,
+		var(--stripe-color-1),
+		var(--stripe-color-1) 10px,
+		var(--stripe-color-2) 10px,
+		var(--stripe-color-2) 20px
+	);
+	background-color: #00A776;
+}
+.elv-hero-ba {
+	display: block;
+	margin: 1rem;
+}
+.elv-hero-ba svg {
+	display: block;
+	width: clamp(4em, 10vh, 10em);
+	height: auto;
+	aspect-ratio: 1/1;
+	margin: 0.5em auto;
+	color: #183153;
+}
+.elv-hero-ba svg + svg {
+	color: #fff;
+	display: block;
+	width: clamp(7.5em, 30vw, 30vh);
+	height: auto;
+	aspect-ratio: 300/109;
+	margin-block: clamp(4vh, 4vh, 2.5em);
+}
+.elv-hero-11ty {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	display: flex;
+	font-size: clamp(3em, 6vw, 6em);
+	display: flex;
+	align-items: center;
+}
+.elv-hero-11ty svg {
+	margin: 0 1.5rem;
+}
+.elv-mascot-image {
+	position: absolute;
+	bottom: 0;
+	left: .5rem;
+	width: 5rem; /* 80px /16 */
+	height: auto;
+}
+.elv-hero-11ty:before {
+	--stripe-color-1: #00A776;
+	--stripe-color-2: #222;
+	content: "";
+	width: 4rem;
+	margin-right: -1rem;
+	height: 100%;
+	background-image: linear-gradient(83deg, var(--stripe-color-1), var(--stripe-color-1) 50%, var(--stripe-color-2) 51%, var(--stripe-color-2) 100%);
+	opacity: .999;
+}
+a[href].elv-hero-11ty,
+a[href].elv-hero-11ty:visited {
+	color: #fff;
+	background-color: #222;
+}
+.elv-header-default .elv-hero {
+	display: flex;
+	justify-content: center;
+	padding-inline-end: 8rem;
+}
+.elv-header-docs .elv-hero {
+	float: left;
+	margin-right: 0.5em;
+}
+.elv-header-docs .elv-hero :is(img, svg) {
+	width: 3em;
+	height: 3em;
+}
+@media (min-width: 43.75em) {
+	/* 700px */
+	.elv-header-docs .elv-hero {
+		margin-right: 1em;
+	}
+	.elv-header-docs .elv-hero img,
+	.elv-header-docs .elv-hero svg {
+		width: 4em; /* 64px /16 */
+		height: 4em; /* 64px /16 */
+	}
+}
+
+/* Header Heading */
+.elv-hed {
+	/* Matches .elv-layout, which no longer wraps it */
+	padding-inline: 1rem;
+	font-size: 3.125em; /* 50px /16 */
+	line-height: 1.2;
+	margin-block: 2rem;
+	text-align: center;
+	text-transform: none;
+	text-wrap: balance;
+}
+main h1.elv-hed {
+	border: none;
+}
+
+/* fix: big header link fighting with versions overlay */
+.elv-header-default .elv-menu {
+	position: relative;
+	z-index: 1;
+}
+.elv-header-default .elv-nav-header {
+	position: relative;
+	z-index: 0;
+}
+
+.elv-mascot-image {
+	position: absolute;
+	bottom: 0;
+	right: 15%;
+	width: 100px;
+	height: auto;
+	filter: drop-shadow(3px 3px #0006);
+}
+
+.elv-header-version {
+	padding: .25em .75em;
+	border-radius: .25em;
+}
+@media (prefers-color-scheme: dark) {
+	.elv-header-version {
+		background-color: #1a1a1a;
+	}
+}

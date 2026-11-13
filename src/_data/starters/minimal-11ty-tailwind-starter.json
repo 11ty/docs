@@ -1,8 +1,0 @@
-{
-	"url": "https://github.com/tomreinert/minimal-11ty-tailwind-starter",
-	"name": "Minimal 11ty + Tailwind Starter",
-	"description": "A very minimal, beginner-friendly starter with tailwind and a smart navigation component.",
-	"author": "tomreinert",
-	"demo": "https://clever-newton-cbb08a.netlify.app",
-	"excludedFromLeaderboards": true
-}

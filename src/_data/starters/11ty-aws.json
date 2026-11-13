@@ -1,7 +1,0 @@
-{
-    "url": "https://github.com/coryasilva/11ty-aws",
-    "demo": "https://11ty-aws.corysilva.com",
-    "name": "11ty AWS",
-    "description": "11ty + TailwindCSS + AlpineJS + AWS-CDK",
-    "author": "coryasilva"
-}

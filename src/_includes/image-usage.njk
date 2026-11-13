@@ -1,5 +1,5 @@
 {% callout "info", "md-block", "Eleventy Image Usage Types" %}
 - [Image HTML Transform](/docs/plugins/image/#html-transform): **Recommended**—start with this one! It’s the easiest to configure and is compatible with all template syntax.
-{{ collections.all | eleventyNavigation("Image") | eleventyNavigationToMarkdown({ showExcerpt: true }) }}
+{{ "Image" | nav | eleventyNavigationToMarkdown({ showExcerpt: true }) }}
 {#- - [Images as Custom Templates](/docs/languages/custom/) (not yet on docs, probably discouraged) #}
 {% endcallout %}

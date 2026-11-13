@@ -2,6 +2,5 @@
 	"url": "https://github.com/NikitaZanella/11ty-SASS",
 	"name": "11ty-SASS",
 	"description": "11ty blog starter template with SASS and Dark Mode",
-	"author": "ZanellaNikita",
-	"demo": "https://11ty-sass.netlify.app/"
+	"author": "ZanellaNikita"
 }

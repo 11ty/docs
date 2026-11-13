@@ -12,23 +12,35 @@
 .sites-lo > .site-top .sites-perf-si {
 	display: block;
 }
+.sites-screenshot-container {
+	border-radius: 0.4em;
+	box-shadow: 0 0 0 var(--card-shadow-size, 3px) var(--card-shadow-color, var(--shadow-color));
+}
 .sites-screenshot {
 	display: block;
-	border: 1px solid #ccc;
-	border-radius: 0.4em;
-	margin: 0.5em 0;
 	width: 100%;
 	height: auto;
+	border-radius: .4em;
+	box-shadow: 0 0 0.125em; /* 2px /16 */
 }
-.sites-screenshot-youtube-sq {
-	aspect-ratio: 1/1;
+.sites-screenshot-og {
+	aspect-ratio: 1200/630;
 	object-fit: cover;
-	object-position: 100% 50%;
 }
-.sites-icon-auto.sites-icon-auto.sites-icon-auto {
-	width: 23.4375em; /* 375px /16 */
-	height: auto;
-	padding: 2.5em;
+.sites-screenshot-og-sq {
+	aspect-ratio: 1/1;
+	object-fit: contain;
+	background-color: #222;
+}
+.sites-screenshot-container--icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 1 / 1;
+}
+.sites-screenshot-container--icon .avatar.sites-icon-auto {
+	width: 3.333333333333em; /* 60px /18 */
+	height: 3.333333333333em; /* 60px /18 */
 }
 .sites-site-official .sites-screenshot {
 	border-color: #666;
@@ -91,7 +103,7 @@
 	margin-top: 1em;
 	margin-bottom: 0;
 }
-.sites-vert .sites-screenshot {
+.sites-vert .sites-screenshot-container {
 	margin-top: 4px;
 	margin-bottom: 4px;
 }
@@ -102,11 +114,17 @@
 	height: 1em;
 	object-fit: contain;
 }
+.sites-vert--wc .avatar {
+	margin-right: 0;
+}
 .sites-vert > .lo-grid {
 	--fl-gap-h: 1rem;
 	--fl-gap-v: 1rem;
-	--lo-c-minwidth: 10em;
+	--lo-c-minwidth: 8.5em;
 	--lo-grid-repeat: auto-fill;
+}
+.sites-vert > .lo-grid:has(.sites-screenshot-og:not(.sites-screenshot-og-sq)) {
+	--lo-c-minwidth: 14em; /* 224px /16 */
 }
 .sites-vert--md > .lo-grid,
 .sites-vert--lg > .lo-grid {
@@ -148,16 +166,44 @@
 	overflow: hidden;
 	width: 100%;
 }
-.sites-site-vert a:focus .sites-screenshot,
-.sites-site-vert a:hover .sites-screenshot {
-	--shadow-color: rgba(234, 0, 255, 0.747);
-	box-shadow: 0 0 0 4px var(--shadow-color);
+.sites-site-vert .sites-screenshot-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 1/1;
+	position: relative;
 }
+.sites-site-vert .sites-screenshot-container:has(.sites-screenshot-og:not(.sites-screenshot-og-sq)) {
+	aspect-ratio: 1200/630;
+}
+.sites-site-vert .sites-screenshot-container:after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	opacity: .3;
+	background: var(--card-background);
+	z-index: -1;
+	border-radius: .4em;
+}
+
+/* Borders and hovers */
+.sites-site-vert a:is(:focus, :hover) {
+	--card-shadow-color: rgba(234, 0, 255, 0.747);
+	--card-shadow-size: 0.3333333333333em; /* 6px /18 */
+}
+.sites-site-vert :is(a, .sites-site-nolink) {
+	--card-shadow-color: var(--card-primary);
+}
+.sites-site-vert a:is(:focus, :hover) img,
+.sites-site-vert a:is(:focus, :hover) .sites-screenshot-container:after {
+	opacity: .75;
+}
+/* End borders and hovers */
 
 .sites-site-vert > a {
 	text-decoration: none;
 }
-.sites-site-vert speedlify-score {
+.sites-site-vert speedlify2-score {
 	justify-content: center;
 }
 
@@ -165,8 +211,8 @@
 	position: relative;
 }
 .sites-site-vert .sites-site-lighthouse {
-	font-size: 0.6666666666667em; /* 12px /18 */
-	transform: translateY(-100%);
+	font-size: 0.5555555555556em; /* 10px /18 */
+	transform: translateY(calc(-100% - .2222222em - 2px));
 	position: absolute;
 	right: 1px;
 	display: flex;
@@ -174,8 +220,8 @@
 	justify-content: center;
 	border-radius: 1.4em 0 0.4em 0;
 	background: rgba(255, 255, 255, 0.9);
-	font-weight: 600;
-	padding: 4px;
+	font-weight: 500;
+	padding: 0.2222222222222em; /* 4px /18 */
 }
 .sites-site-vert .sites-site-lighthouse .speedlify-score {
 	background-color: #fff;
@@ -201,6 +247,10 @@
 	}
 	.img-gallery .sites-screenshot {
 		border: none;
+		box-shadow: none;
+		max-height: 18em;
+		width: auto;
+		margin-inline: auto;
 	}
 	.sites-site-vert a:hover .img-gallery {
 		box-shadow: 0 0 0 4px var(--shadow-color);
@@ -250,17 +300,22 @@
 	font-weight: 700;
 }
 .sites-vert:has(.sites-featured)
-	.sites-site-vert:not(.sites-featured)
-	.avatar-indieweb {
+.sites-site-vert:not(.sites-featured)
+.avatar-indieweb {
 	display: none;
 }
 
 /* Host /generator icons on author pages on screenshots */
+.sites-screenshot-container {
+	position: relative;
+}
 .sites-screenshot-container-icons {
+	position: absolute;
+	inset: 0;
 	display: flex;
 	gap: 0.25em;
-	justify-content: space-between;
-	margin-top: -0.5em;
+	align-items: flex-end;
+	justify-content: flex-start;
 	padding: 0.25em;
 }
 .sites-screenshot-container-icons img {

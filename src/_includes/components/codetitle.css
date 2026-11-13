@@ -41,6 +41,12 @@
 .codetitle + .minilink + pre {
 	margin-top: 0;
 }
+.codetitle + div:has(> is-land) {
+	clear: both;
+}
+.codetitle + div:has(> is-land) :is(eleventy-editor, pre) {
+	margin-top: 0;
+}
 .codetitle + .minilink {
 	float: right;
 	margin: 0 2em 0 0;

@@ -1,11 +1,10 @@
-<h2 class="mt-0" id="quick-start">Quick Start</h2>
+<h2 id="quick-start">Quick Start</h2>
 
 <p>Eleventy requires a way to <a href="docs/javascript-runtime.webc">run JavaScript</a> on your computer and we recommend Node.js (version <node-minimum></node-minimum> or newer). You can check whether or not you have Node.js installed by running <code>node --version</code> in a Terminal. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If <code>node</code> is not found or it reports a version number below <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">install Node.js</a> before moving on.</p>
 
 <p>Now we’ll create an <code>index.md</code> <a href="https://commonmark.org/help/">Markdown</a> file. You can do this in the text editor of your choice or by running one of these commands in your terminal:</p>
 
-<script type="module" src="/js/seven-minute-tabs.js" webc:keep></script>
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Operating System">
 		<a href="#quickstart-os-nix" id="quickstart-os-mac-btn" role="tab" data-tabs-persist="os:mac">macOS</a>
 		<a href="#quickstart-os-nix" role="tab" data-tabs-persist="os:posix">Linux</a>
@@ -28,7 +27,7 @@ echo # Heading > index.md
 	</div>
 	<div id="quickstart-os-all" role="tabpanel">
 		<syntax-highlight language="bash">
-npx @11ty/create index.md "# Heading"
+echo '# Heading' | npx @11ty/create index.md
 		</syntax-highlight>
 		<p>Learn more about <a href="https://github.com/11ty/create"><code>@11ty/create</code></a> <em>(requires Node.js 18 or newer)</em>.</p>
 	</div>
@@ -36,7 +35,7 @@ npx @11ty/create index.md "# Heading"
 
 <p>Run Eleventy using <code>npx</code>, an <a href="https://www.npmjs.com/">npm</a>-provided command that is bundled with Node.js.</p>
 
-<seven-minute-tabs class="tabs-flush tabs-firstonly" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#quickstart-run-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
 		<a href="#quickstart-run-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
@@ -63,16 +62,40 @@ yarn dlx @11ty/eleventy --serve
 
 <p>Eleventy compiles any files in the current directory matching valid <a href="/docs/languages/">file extensions</a> (<code>md</code> is one of many) to the <code>_site</code> output folder. It might look like this:</p>
 
-<cli-eleventy-output @show-version>
+<template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
+
+```11ty-output
 [11ty] Writing _site/index.html from ./index.md (liquid)
-[11ty] Wrote 1 file in 0.03 seconds%%VERSION%%
+[11ty] Wrote 1 file in 0.03 seconds ({% latestVersion $data.versions, $data.config %})
 [11ty] Watching…
 [11ty] Server at http://localhost:8080/
-</cli-eleventy-output>
+```
+
+</template>
 
 <p>The <code>--serve</code> option also starts a <a href="/docs/dev-server/">local development server</a>. Open up <code>http://localhost:8080/</code> in your favorite web browser to view your web site.</p>
+<p>If you’d like to experiment further with different template syntax, edit the following sample <code>index.md</code> file in your browser. <a href="/docs/data-frontmatter/">Front Matter</a>, <a href="/docs/languages/liquid/">Liquid</a> and <a href="/docs/languages/markdown/">Markdown</a> are in use.</p>
+
+<script type="module" src="/js/browser-window.js" webc:keep></script>
+
+<is-land on:visible import="/js/eleventy-editor.js">
+	<div class="editor-layout">
+		<p class="editor-filename"><code>index.md</code></p>
+		<p class="editor-filename"><code>_site/index.html</code></p>
+		<eleventy-editor group="quickstart" output="external" data-editor-filename="index.md">
+			<syntax-highlight language="markdown">
+---
+title: Heading
+---
+# {{ title }}
+			</syntax-highlight>
+		</eleventy-editor>
+		<browser-window fill url="https://example.com/"><eleventy-output group="quickstart" data-editor-filename="index.md"></eleventy-output></browser-window>
+	</div>
+</is-land>
 
 <ul>
 	<li>Read our full <a href="/docs/"><strong>Get Started guide</strong></a> on the docs.</li>
 	<li>Watch <a href="https://www.youtube.com/watch?v=kzf9A9tkkl4"><strong>6 minutes to Build a Blog from Scratch</strong></a>.</li>
+	<li><a href="/docs/try/"><strong>Try it out in your browser</strong></a>: edit project files and see the output live.</li>
 </ul>

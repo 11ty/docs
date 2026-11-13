@@ -1,6 +1,0 @@
-{
-	"url": "https://github.com/moody-person/11ty-starter",
-	"name": "11ty-starter",
-	"description": "Eleventy starter, using sass, nunjucks, rollup",
-	"demo": "https://moody-person.github.io/11ty-starter/"
-}

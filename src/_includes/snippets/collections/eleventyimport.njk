@@ -1,11 +1,8 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync  class="tabs-flush">
+<seven-minute-tabs persist sync  class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "collections-import"} %}
   <div id="collections-import-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 ---
 eleventyImport:
   collections: ["post"]
@@ -15,16 +12,11 @@ eleventyImport:
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="collections-import-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{% set codeBlock %}{% raw %}
 ---
 eleventyImport:
   collections: ["post"]
@@ -34,16 +26,11 @@ eleventyImport:
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="collections-import-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export function data() {
   return {
     eleventyImport: {
@@ -59,16 +46,11 @@ export function render(data) {
       .join("\n")}
   </ul>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="collections-import-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 exports.data = function () {
   return {
     eleventyImport: {
@@ -84,10 +66,8 @@ exports.render = function (data) {
       .join("\n")}
   </ul>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

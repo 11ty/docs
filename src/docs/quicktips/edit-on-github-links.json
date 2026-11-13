@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "d85ca0a424fb3d1de4e8a4ace14e4ebb4a5f6883",
+			"url": "https://github.com/11ty/docs/commit/d85ca0a424fb3d1de4e8a4ace14e4ebb4a5f6883",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-07-01T21:19:13.000Z",
+			"message": "Renamed repo to `docs`",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

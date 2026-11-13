@@ -2,7 +2,7 @@
 eleventyNavigation:
   parent: Eleventy Projects
   key: Add CSS, JS, Fonts
-  order: 0
+  order: 0.1
   excerpt: Add assets to your Eleventy project.
 ---
 <h1>Adding CSS, JavaScript, Fonts</h1>
@@ -21,8 +21,9 @@ filter-container:defined .filter-code--hide {
 }
 </style>
 
+<script type="module" src="/js/filter-container.js" webc:keep></script>
 <filter-container oninit leave-url-alone>
-	<h2 id="copy-files"><number-flag>1</number-flag> Copy <span data-filter-code="css">CSS</span><span data-filter-code="font">Web Font</span><span data-filter-code="js">JavaScript</span> Files</h2>
+	<h2 id="copy-files"><number-flag>1</number-flag> Copy <span data-toc-exclude data-filter-code="css">CSS</span><span data-toc-exclude data-filter-code="font">Web Font</span><span data-toc-exclude data-filter-code="js">JavaScript</span> Files</h2>
 
 	<p>This is the simplest approach and is great for beginners and/or with small projects. It’s great because it <em>doesn’t require a bundler or any external dependencies</em>.</p>
 
@@ -150,7 +151,7 @@ permalink: bundle.js
 
 <h2 id="eleventy-custom-templates"><number-flag>3</number-flag> Eleventy Custom Templates</h2>
 
-<p>You can add <code>js</code> and <code>css</code> (or even <code>scss</code> for Sass) as <a href="/docs/languages/custom/">custom template types</a> in Eleventy. This means that any <code>js</code> and <code>css</code> files added to your project are processed by Eleventy.</p>
+<p>You can add <code>js</code> and <code>css</code> (or even <a href="/docs/languages/sass/"><code>scss</code> for Sass</a>) as <a href="/docs/languages/custom/">custom template types</a> in Eleventy. This means that any <code>js</code> and <code>css</code> files added to your project are processed by Eleventy.</p>
 
 <p>This also (optionally) allows you to post-process the CSS (using Sass, PostCSS, or LightningCSS) or client-JavaScript (using esbuild, rollup, WebPack, etc) and write the processed content to your output folder. This also allows you to use features in your bundle code that aren’t available in web browsers, like nesting CSS, TypeScript, or JSX.</p>
 
@@ -159,10 +160,15 @@ permalink: bundle.js
 <p>Here are a few great guides to get you started:</p>
 
 <sites-list>
+	<!--- <site-card
+		@icon-url="https://sass-lang.com/"
+		@url="/docs/languages/custom/#example-add-sass-support-to-eleventy"
+		@name="Using Eleventy Custom Templates to Add Sass Support to Eleventy"
+		@date=""></site-card> --->
 	<site-card
 		@icon-url="https://sass-lang.com/"
-		@url="https://www.11ty.dev/docs/languages/custom/#example-add-sass-support-to-eleventy"
-		@name="Using Eleventy Custom Templates to Add Sass Support to Eleventy"
+		@url="/docs/languages/sass/"
+		@name="Configure Sass as a Custom Template Syntax in Eleventy"
 		@date=""></site-card>
 	<site-card @url="https://pepelsbey.dev/articles/eleventy-css-js/" @name="CSS and JavaScript as First-Class Citizens in Eleventy" @using="esbuild, PostCSS" @date="2022-11-25"></site-card>
 	<site-card @url="https://11ty.rocks/posts/process-css-with-lightningcss/" @name="Process CSS or Sass with LightningCSS" @using="LightningCSS" @date="2023-02-25"></site-card>
@@ -172,20 +178,22 @@ permalink: bundle.js
 
 <p>Eleventy also provides an optional plaintext <a href="/docs/plugins/bundle.md"><strong>Bundle plugin</strong></a> that allows you to populate bundles with code from content pages. This allows you to make the CSS and JavaScript content-driven. The bundle plugin can be used in Nunjucks, Liquid, Handlebars, 11ty.js, and WebC templates and is provided for free with the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> Starter Project</a>.</p>
 
-<p>Furthermore, <em>the bundle plugin is used by <a href="/docs/languages/webc/#css-and-js-(bundler-mode)">WebC to create minimal bundles</a> that are comprised only of CSS and JavaScript from components used on each WebC page</em>. Using WebC in this way provides the best and least-effort investment in the long-term maintenance of a page. When components on the page change, the JavaScript and CSS bundles are automatically streamlined and will not contain extra code from previous designs.</p>
+<p>Furthermore, <em>the bundle plugin is used by <a href="/docs/languages/webc/#css-and-js-bundler-mode">WebC to create minimal bundles</a> that are comprised only of CSS and JavaScript from components used on each WebC page</em>. Using WebC in this way provides the best and least-effort investment in the long-term maintenance of a page. When components on the page change, the JavaScript and CSS bundles are automatically streamlined and will not contain extra code from previous designs.</p>
 
 <p>Get started with the <a href="/docs/plugins/bundle.md"><strong>Bundle plugin</strong></a> or <a href="/docs/languages/webc/"><strong>WebC</strong></a>!</p>
 
 <sites-list>
 	<!--- <site-card @url="/docs/plugins/bundle/" @name="Bundle Plugin" @date=""></site-card> --->
-	<site-card :@image-html="image('./src/img/logos/webc.png', 'WebC Logo', [154], 'sites-screenshot', '6.25em')" @url="/docs/languages/webc/" @name="WebC" @date=""></site-card>
+	<site-card @url="/docs/languages/webc/" @name="WebC" @date="">
+		<img src="/img/logos/webc.png" alt="WebC Logo" width="196" class="sites-screenshot" sizes="12.25em">
+	</site-card>
 	<site-card @url="https://www.youtube.com/watch?v=fzo_S9UiYYk" @name="Rebuilding 11ty.dev using WebC" @date="2023-03-08"></site-card>
 </sites-list>
 
 <h2 id="learn-more">Learn More</h2>
 
 <sites-list>
-	<site-card @icon-url="https://vitejs.dev/" @url="https://www.11ty.dev/docs/server-vite/" @name="Using Eleventy’s Vite Plugin" @date=""></site-card>
+	<site-card @icon-url="https://vite.dev/" @url="https://www.11ty.dev/docs/server-vite/" @name="Using Eleventy’s Vite Plugin" @date=""></site-card>
 	<site-card @url="https://www.webstoemp.com/blog/eleventy-dev-server-external-asset-pipeline/" @name="External Asset Pipeline with Eleventy" using="esbuild" @date="2023-01-23"></site-card>
 	<site-card @url="https://danburzo.ro/eleventy-sass/" @name="Sass in Eleventy, with versioning" @date="2023-05-01"></site-card>
 	<site-card @url="https://helloyes.dev/blog/2021/minimal-sass-and-eleventy-setup/" @name="Minimal SASS & Eleventy Setup" @date="2021-06-21"></site-card>

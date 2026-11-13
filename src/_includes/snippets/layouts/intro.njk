@@ -1,54 +1,42 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "layouts", additions: "md"} %}
   <div id="layouts-md" role="tabpanel">
-
 {% codetitle "index.md" %}
-{% raw %}
-```markdown
+{% set codeBlock %}{% raw %}
 ---
 layout: mylayout.njk
 title: My Rad Markdown Blog Post
 ---
-
 # {{ title }}
-```
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("markdown") | safe }}
   </div>
   <div id="layouts-liquid" role="tabpanel">
-
 {% codetitle "index.liquid" %}
-{% raw %}
-```liquid
+{% set codeBlock %}{% raw %}
 ---
 layout: mylayout.njk
 title: My Rad Liquid Blog Post
 ---
 <h1>{{ title }}</h1>
-```
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="layouts-njk" role="tabpanel">
-
 {% codetitle "index.njk" %}
-{% raw %}
-```njk
+{% set codeBlock %}{% raw %}
 ---
 layout: mylayout.njk
 title: My Rad Nunjucks Blog Post
 ---
 <h1>{{ title }}</h1>
-```
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="layouts-js" role="tabpanel">
-
 {% codetitle "index.11ty.js" %}
-{% raw %}
-```js
+{% set codeBlock %}{% raw %}
 export const data = {
 	layout: "mylayout.njk",
 	title: "My Rad JavaScript Blog Post",
@@ -57,15 +45,12 @@ export const data = {
 export function render(data) {
 	return `<h1>${data.title}</h1>`;
 };
-```
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="layouts-cjs" role="tabpanel">
-
 {% codetitle "index.11ty.cjs" %}
-{% raw %}
-```js
+{% set codeBlock %}{% raw %}
 module.exports.data = {
 	layout: "mylayout.njk",
 	title: "My Rad JavaScript Blog Post",
@@ -74,9 +59,8 @@ module.exports.data = {
 module.exports.render = function(data) {
 	return `<h1>${data.title}</h1>`;
 };
-```
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

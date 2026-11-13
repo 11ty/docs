@@ -58,7 +58,8 @@ With all of that said—it is possible to integrate existing third-party tools w
 	<site-card @url="https://www.matuzo.at/blog/2023/single-page-applications-criticism/" @name="Why I'm not the biggest fan of Single Page Applications" @date="2023-02-10"></site-card>
 	<site-card @url="https://scribe.rip/@jason.godesky/when-javascript-fails-52eef47e90db" @name="When JavaScript Fails" @date="2023-02-15"></site-card>
 	<site-card @url="https://jakearchibald.com/2017/netflix-and-react/" @name="Netflix functions without client-side React, and it’s a good thing" @date="2017-10-31"></site-card>
-	<site-card @url="https://twitter.com/jaffathecake/status/1433317536754458628" @name="SPA navigation may be slower than MPA navigation (Tweet)" @date="2021-09-02"></site-card>
+	<!-- https://x.com/jaffathecake/status/1433317536754458628 -->
+	<site-card @url="https://www.youtube.com/watch?v=4zG0AZRZD6Q" @name="SPA navigation may be slower than MPA navigation" @date="2021-09-02"></site-card>
 	<site-card @url="https://www.zachleat.com/twitter/1169998370041208832/" @name="Which has a better FMP? 8.5 MB of HTML or one SPA-rendered Tweet" @date="2019-09-06"></site-card>
 </sites-list>
 

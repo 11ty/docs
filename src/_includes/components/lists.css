@@ -7,123 +7,79 @@
 		background-position: 100% 50%;
 	}
 }
-.buzzword-list,
 .inlinelist {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .25em;
 	padding: 0;
 }
 .inlinelist:first-child:last-child {
 	margin: 0;
 }
 .buzzword,
-.buzzword-list li,
-.inlinelist .inlinelist-item {
+.inlinelist > li {
 	display: inline;
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
+	border-radius: .15em;
 	font-size: 116%;
 	white-space: normal;
 	padding: 0.2em 0.5em;
-	margin: 4px 4px 4px 0;
 	transition: 0.15s linear outline;
 }
-
-.inlinelist .inlinelist-item:is(:has([aria-selected="true"]), .active) {
+.inlinelist > li {
+	font-size: 100%;
+}
+.inlinelist > li:is(:has([aria-selected="true"]), .active) {
 	background-color: #222;
 	color: #fff;
 	font-weight: inherit;
 }
-.inlinelist .inlinelist-item:is(:has([aria-selected="true"]), .active) :is(:link, :visited) {
+.inlinelist > li:is(:has([aria-selected="true"]), .active) :is(:link, :visited) {
 	color: #fff;
 }
-.inlinelist .inlinelist-item code {
+.inlinelist > li code {
 	background-color: transparent;
-	font-size: 80%;
-	margin-left: 6px;
-	padding-left: 6px;
-	display: inline-block;
-	position: relative;
-}
-@media (max-width: 26.8125em) {
-	/* 429px */
-	.inlinelist .inlinelist-item {
-		overflow: hidden;
-	}
-	.inlinelist .inlinelist-item code {
-		float: right;
-		line-height: 1.75;
-	}
-}
-@media (min-width: 26.875em) {
-	/* 430px */
-	.inlinelist .inlinelist-item code {
-		float: none;
-	}
-	.inlinelist .inlinelist-item code:before {
-		content: " ";
-		border-left: 1px solid rgba(255, 255, 255, 0.8);
-		position: absolute;
-		left: -2px;
-		top: -2px;
-		bottom: 2px;
-	}
-	@media (prefers-color-scheme: dark) {
-		.inlinelist .inlinelist-item code:before {
-			border-left-color: rgba(0, 0, 0, 0.8);
-		}
-	}
+	font-size: 0.9375em; /* 15px /16 */
 }
 a.buzzword {
 	text-decoration: underline;
 	font-size: inherit;
 }
-.buzzword-list a,
 .inlinelist a {
 	text-decoration: none;
 }
-.inlinelist .inlinelist-item {
-	font-size: 100%;
-	line-height: 2;
-}
 @supports not (-webkit-box-decoration-break: clone) {
 	.buzzword,
-	.buzzword-list li,
-	.inlinelist .inlinelist-item {
+	.inlinelist > li {
 		display: inline-block;
 	}
 }
-.buzzword-list li,
 .buzzword {
 	background-color: #f7f7f7;
 }
 @media (prefers-color-scheme: dark) {
-	.buzzword-list li,
 	.buzzword {
 		background-color: #080808;
 	}
 }
-.inlinelist .inlinelist-item {
+.inlinelist > li {
 	background-color: #e9e9e9;
 }
 @media (prefers-color-scheme: dark) {
-	.inlinelist .inlinelist-item {
+	.inlinelist > li {
 		background-color: #000;
 	}
-	.inlinelist .inlinelist-item a {
+	.inlinelist > li a {
 		color: #fff;
 	}
-	.inlinelist .inlinelist-item code {
+	.inlinelist > li code {
 		color: inherit;
 	}
 }
-/* .inlinelist .inlinelist-item:has(> a):hover, */
-.inlinelist .inlinelist-item:hover,
-.inlinelist .inlinelist-item:focus,
-.buzzword-list li:hover,
-.buzzword-list li:focus,
-.buzzword:hover,
-.buzzword:focus,
-.rainbow-active:hover,
-.rainbow-active:focus {
+.inlinelist > li:is(:hover, :focus),
+.buzzword:is(:hover, :focus),
+.rainbow-active:is(:hover, :focus) {
 	position: relative;
 	background-image: linear-gradient(
 		238deg,
@@ -142,12 +98,13 @@ a.buzzword {
 	background-size: 1200% 1200%;
 	background-position: 2% 80%;
 	color: #fff;
-	text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
 	animation: rainbow 4s ease-out alternate infinite;
 }
-.inlinelist .inlinelist-item.inert,
-.inlinelist .inlinelist-item.inert:hover,
-.inlinelist .inlinelist-item.inert:focus {
+.inlinelist > li:is(:hover, :focus),
+.buzzword:is(:hover, :focus) {
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+}
+.inlinelist > li.inert {
 	background-color: transparent;
 	background-image: none;
 	color: inherit;
@@ -157,35 +114,22 @@ a.buzzword {
 .rainbow-active-noanim {
 	animation: none !important;
 }
-.inlinelist .inlinelist-item:hover a,
-.inlinelist .inlinelist-item:focus a,
-.buzzword-list li:hover a,
-.buzzword-list li:focus a,
-a.buzzword:hover,
-a.buzzword:focus,
-a.rainbow-active:hover,
-a.rainbow-active:focus {
+.inlinelist > li:is(:hover, :focus) a,
+a.buzzword:is(:hover, :focus),
+a.rainbow-active:is(:hover, :focus) {
 	color: #fff;
 	text-decoration: none;
 }
 @media (prefers-reduced-motion: reduce) {
-	.inlinelist .inlinelist-item:hover,
-	.inlinelist .inlinelist-item:focus,
-	.buzzword-list li:hover,
-	.buzzword-list li:focus,
-	.buzzword:hover,
-	.buzzword:focus,
-	.rainbow-active:hover,
-	.rainbow-active:focus {
+	.inlinelist > li:is(:hover, :focus),
+	.buzzword:is(:hover, :focus),
+	.rainbow-active:is(:hover, :focus) {
 		animation: none;
 	}
 }
 
-.buzzword-list li:hover:after,
-.buzzword-list li:focus:after,
-.buzzword:hover:after,
-.buzzword:focus:after {
-	font-family: system-ui, -apple-system, sans-serif;
+.buzzword:is(:hover, :focus):after {
+	font-family: system-ui, sans-serif;
 	content: "Buzzword alert!!!";
 	position: absolute;
 	left: 0;
@@ -199,36 +143,33 @@ a.rainbow-active:focus {
 	line-height: 1.2;
 	pointer-events: none;
 }
-main h2 .buzzword,
-main h3 .buzzword,
-main p .buzzword {
+main :is(h2, h3, p) .buzzword {
 	font-size: inherit;
 	margin: 0;
 	line-height: 1.444444444444; /* 26px /18 */
 }
-main h2 a.buzzword,
-main h3 a.buzzword,
-main p a.buzzword {
+main :is(h2, h3, p) a.buzzword {
 	text-decoration: underline;
 }
 
 /* Small viewport */
 @media (max-width: 26.8125em) {
 	/* 429px */
-	.inlinelist .inlinelist-item {
+	.inlinelist > li {
+		flex-basis: 100%;
 		display: block;
 		width: auto;
 		padding: 0;
-		line-height: 1.4;
+		/* line-height: 1.4; */
 	}
-	.inlinelist .inlinelist-item > a {
+	.inlinelist > li > * {
 		display: block;
 		padding: 0.2em 0.5em;
 	}
 }
 @media (min-width: 26.875em) {
 	/* 430px */
-	.inlinelist .inlinelist-item > a {
+	.inlinelist > li > * {
 		display: inline-block;
 		white-space: nowrap;
 	}
@@ -242,7 +183,7 @@ main p a.buzzword {
 	border-radius: 50%;
 	width: 1.75em;
 	height: 1.75em;
-	font-weight: 600;
+	font-weight: 500;
 }
 @media (prefers-color-scheme: dark) {
 	.numberflag {
@@ -287,7 +228,13 @@ h2 .numberflag:after {
 .inlinelist-sm {
 	font-size: 0.6666666666667em; /* 12px /18 */
 }
-.inlinelist-sm .inlinelist-item {
-	font-family: system-ui, -apple-system, sans-serif;
-	font-weight: 600;
+:where(.inlinelist-sm) > li {
+	font-family: system-ui, sans-serif;
+	font-weight: 500;
+}
+
+/* Disabled list item */
+.listitem-disabled {
+	opacity: .5;
+	cursor: not-allowed;
 }

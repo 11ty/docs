@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "024a9a2912992ff90a7a7e2e09a1e38094993ba0",
+			"url": "https://github.com/11ty/docs/commit/024a9a2912992ff90a7a7e2e09a1e38094993ba0",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-03-23T16:34:55.000Z",
+			"message": "Update docs for ESM Feeds plugin v3.0.0",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "mark-pitblado",
+			"url": "https://github.com/mark-pitblado",
+			"avatarUrl": "/img/docs-avatars/86988982-VvTEVK5STB0m.png"
+		}
+	]
+}

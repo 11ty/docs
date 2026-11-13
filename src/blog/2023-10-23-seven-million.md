@@ -11,9 +11,9 @@ On October 18, 2023 **Eleventy passed [seven million lifetime downloads](https:/
 
 _(This number is limited to Eleventy core and doesn’t count our ecosystem of utilities and plugins.)_
 
-{% image "./src/blog/sevenmilgraph.png", "A line chart showing Eleventy’s downloads per year", [350, 700], "", "100vw" %}
+<img src="/blog/sevenmilgraph.png" alt="A line chart showing Eleventy’s downloads per year" eleventy:widths="350, 700" sizes="100vw">
 
-{% image "./src/blog/sevenmil.jpg", "Zach pointing to the new balloons in his office that say 7 Million", [350, 700], "", "100vw" %}
+<img src="/blog/sevenmil.jpg" alt="Zach pointing to the new balloons in his office that say 7 Million" eleventy:widths="350, 700" sizes="100vw">
 
 Thank you for the support!!
 

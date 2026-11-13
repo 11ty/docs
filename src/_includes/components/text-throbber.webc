@@ -1,10 +1,12 @@
-<link rel="stylesheet" href="throbber.css">
+<link rel="stylesheet" href="throbber.css" webc:bucket="default">
 <script src="throbber.js"></script>
 <script webc:type="js">
-let bars = [];
-for(let j = 0; j < duration; j+= 1000) {
-	bars.push("=");
+export default function({ duration }) {
+	let bars = [];
+	for(let j = 0; j < duration; j+= 1000) {
+		bars.push("=");
+	}
+	bars.push(" 🏁");
+	return bars.join("");
 }
-bars.push(" 🏁");
-bars.join("");
 </script>

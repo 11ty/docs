@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "270c2fe14a077258cac82c40b5f72c60c1b4bab0",
+			"url": "https://github.com/11ty/docs/commit/270c2fe14a077258cac82c40b5f72c60c1b4bab0",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-11-07T22:27:29.000Z",
+			"message": "Fix syntax highlight on i18n docs",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "cristovaov",
+			"url": "https://github.com/cristovaov",
+			"avatarUrl": "/img/docs-avatars/5374958-SnY8xNsERz85.jpeg"
+		},
+		{
+			"name": "madrilene",
+			"url": "https://github.com/madrilene",
+			"avatarUrl": "/img/docs-avatars/62096871-iBgVCPeiHRQM.png"
+		}
+	]
+}

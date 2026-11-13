@@ -1,48 +1,35 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight class="tabs-flush">
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "localelinks"} %}
   <div id="localelinks-njk" role="tabpanel">
 
 {% codetitle "/en/blog.njk" %}
-
-{% raw %}
-
-```njk
+{% set codeBlock %}{% raw %}
 This page is also available in:
 {% for link in page.url | locale_links %}
 {%- if not loop.first %},{% endif %}
 <a href="{{link.url}}" lang="{{link.lang}}" hreflang="{{link.lang}}">{{link.label}}</a>
 {% endfor %}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="localelinks-liquid" role="tabpanel">
 
 {% codetitle "/en/blog.liquid" %}
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 This page is also available in:
 {% assign links = page.url | locale_links %}
 {%- for link in links %}
 {%- unless forloop.first %},{% endunless %}
 <a href="{{link.url}}" lang="{{link.lang}}" hreflang="{{link.lang}}">{{link.label}}</a>
 {%- endfor -%}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="localelinks-js" role="tabpanel">
 
 {% codetitle "/en/blog.11ty.js" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default function (data) {
 	let links = this.locale_links(data.page.url);
 
@@ -54,18 +41,13 @@ ${links
 	})
 	.join(", ")}`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="localelinks-cjs" role="tabpanel">
 
 {% codetitle "/en/blog.11ty.cjs" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = function (data) {
 	let links = this.locale_links(data.page.url);
 
@@ -77,10 +59,8 @@ ${links
 	})
 	.join(", ")}`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

@@ -1,14 +1,12 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Configure Templates with Data
   key: Layouts
   order: 1
   excerpt: Wrap content in other content.
 ---
 
 # Layouts
-
-{% tableofcontents %}
 
 Eleventy Layouts are special templates that can be used to wrap other content.
 
@@ -20,15 +18,15 @@ This will look for a `mylayout.njk` Nunjucks file in your _includes_ folder at `
 
 - You can use any template language in your layout file—it doesn’t need to match the template language of the content: an `ejs` template can use a `njk` layout.
 - Layouts paths can use subdirectories: `layout: "layouts/base.njk"` maps to `_includes/layouts/base.njk`.
-- You can have a [separate folder for Eleventy layouts](</docs/config/#directory-for-layouts-(optional)>) if you’d prefer to have them separate from your _includes_ folder.
+- You can have a [separate folder for Eleventy layouts](</docs/config/#directory-for-layouts-optional>) if you’d prefer to have them separate from your _includes_ folder.
 
 Next, we need to create a `mylayout.njk` file. It may contain any arbitrary text, but here we’re using HTML:
 
 {% codetitle "_includes/mylayout.njk" %}
-
-{%- highlight "html" %}
+{% set codeBlock %}
 {% include "snippets/layouts/mylayout.njk" %}
-{%- endhighlight %}
+{% endset %}
+{{ codeBlock | highlight("html") | safe }}
 
 Note that the layout template will populate the `content` data with the child template’s content. Also note that we don’t want to double-escape the output, so we’re using the provided Nunjucks `safe` filter here (see more language double-escaping syntax below).
 

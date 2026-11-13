@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "6a586156868c23128fdb87ecaa318ebbfab3458f",
+			"url": "https://github.com/11ty/docs/commit/6a586156868c23128fdb87ecaa318ebbfab3458f",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-11-10T23:35:46.000Z",
+			"message": "Adds a table of contents sidebar",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "siakaramalegos",
+			"url": "https://github.com/siakaramalegos",
+			"avatarUrl": "/img/docs-avatars/4777393-i6kXv6KVaSiM.jpeg"
+		},
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "shaftoe",
+			"url": "https://github.com/shaftoe",
+			"avatarUrl": "/img/docs-avatars/281389-CLbbADKNETwH.jpeg"
+		}
+	]
+}

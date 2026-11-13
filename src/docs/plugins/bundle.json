@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "f4e8ec4eb911c0be04f3e2cd5fc2a721f5f54606",
+			"url": "https://github.com/11ty/docs/commit/f4e8ec4eb911c0be04f3e2cd5fc2a721f5f54606",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-06-10T20:54:27.000Z",
+			"message": "Adding docs for bundleHtmlContentFromSelector",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

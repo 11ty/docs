@@ -1,30 +1,29 @@
 ---
 eleventyNavigation:
-  parent: Configuration
+  parent: Eleventy Projects
   key: Passthrough File Copy
-  order: 1
+  title: Copy Files to Output
+  order: 0
 ---
 
 # Passthrough File Copy {% addedin "0.2.14" %}
-
-{% tableofcontents %}
 
 If we want to copy additional files that are not Eleventy templates, we use a feature called Passthrough File Copy to tell Eleventy to copy things to our output folder for us.
 
 ## Configuration API Method
 
-<a id="{{ 'Manual Pass-through Copy (Faster)' | slug }}"></a><a id="{{ 'Manual Passthrough Copy (Faster)' | slug }}"></a>
+<a id="{{ 'Manual Pass-through Copy (Faster)' | slugify }}"></a><a id="{{ 'Manual Passthrough Copy (Faster)' | slugify }}"></a>
 
-Use a configuration API method to specify _files_ or _directories_ for Eleventy to copy.
+Use a configuration API method to specify _files_ or _directories_ for Eleventy to copy to the output folder.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
 	// Output directory: _site
 
-	// Copy `img/` to `_site/img`
+	// Copy `img/` to `_site/img/`
 	eleventyConfig.addPassthroughCopy("img");
 
-	// Copy `css/fonts/` to `_site/css/fonts`
+	// Copy `css/fonts/` to `_site/css/fonts/`
 	// Keeps the same directory structure.
 	eleventyConfig.addPassthroughCopy("css/fonts");
 
@@ -65,7 +64,7 @@ export default function (eleventyConfig) {
 
 In this example, we copy all `jpg` image files to the output folder, maintaining their directory structure. If you do not want to maintain the same directory structure, [change the output directory.](#using-globs-and-output-directories)
 
-Note that this method is slower than non-glob methods, as it searches the entire directory structure and copies each file in Eleventy individually.
+Note that this method is slower than non-glob methods, as it searches the entire directory structure and copies each file individually.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
@@ -79,6 +78,53 @@ With an output directory of `_site`:
 
 - `img/avatar.jpg` will copy to `_site/img/avatar.jpg`
 - `subdir/img/avatar.jpg` will copy to `_site/subdir/img/avatar.jpg`
+
+### Copy a file alongside a Template {% addedin "3.1.0-alpha.1" %}
+
+Use the _HTML Relative Passthrough Copy Mode_ to copy files referenced in any template syntax that outputs to `.html`. [Issue #3573](https://github.com/11ty/eleventy/pull/3573)
+
+{% set codeContent %}
+export default function(eleventyConfig) {
+	// Relative to the project root directory
+	eleventyConfig.addPassthroughCopy("content/**/*.mp4", {
+		mode: "html-relative"
+	});
+}
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
+<details>
+<summary><strong>Full options list</strong></summary>
+
+{% set codeContent %}
+export default async function(eleventyConfig) {
+	// glob or Array of globs to match for copy
+	eleventyConfig.addPassthroughCopy("**/*.png", {
+		mode: "html-relative",
+		paths: [], // additional fallback directories to look for source files
+		failOnError: true, // throw an error when a path matches (via `match`) but not found on file system
+		copyOptions: { dot: false }, // `recursive-copy` copy options
+	});
+}
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
+</details>
+
+Any references that match this glob in `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and a [whole bunch more (via posthtml-urls)](https://github.com/11ty/eleventy-posthtml-urls/blob/6e064c8a03174835eb15afbb5b759fecd696f901/lib/defaultOptions.js#L12-L33) will colocate the file alongside your template (reusing any [`permalink` values](/docs/permalinks/) correctly). If a passthrough copy file is not found to be referenced in an HTML output file, it will not be copied to the output directory.
+
+As a few example paths, with an output directory of `_site`:
+
+- `<video src="video.mp4">` on `template.njk` will copy to `_site/template/video.mp4` alongside `_site/template/index.html`.
+- `<video src="assets/video.mp4">` on `dir/template.njk` will copy to `_site/dir/template/assets/video.mp4` alongside `_site/dir/template/index.html`
+
+{% callout "info", "md", "HTML Relative Copy Mode restrictions" %}
+
+- dot files are filtered out by default (override by changing the `copyOptions.dot: false` default, consult the _Full options list_ above)
+- Referenced files must be inside the project’s root directory.
+- Absolute paths are ignored.
+
+{% endcallout %}
 
 ### Change the Output Directory {% addedin "0.9.0" %}
 
@@ -121,27 +167,6 @@ With an output directory of `_site`:
 - `img/avatar.jpg` would copy to `_site/img/avatar.jpg`
 - `subdir/img/avatar.jpg` would copy to `_site/img/avatar.jpg`
 
-## Passthrough by File Extension {% addedin "0.2.7" %}
-
-Eleventy, by default, searches for any file in the input directory with a file extension listed in your [`templateFormats` configuration](/docs/config/#template-formats). That means if you’ve listed `njk` in your `templateFormats`, we’ll look for any Nunjucks templates (files with the `.njk` file extension).
-
-If a file format is not recognized by Eleventy as a template file extension, Eleventy will ignore the file. You can modify this behavior by adding supported template formats:
-
-{% set codeContent %}
-export default function (eleventyConfig) {
-	eleventyConfig.setTemplateFormats([
-		"md",
-		"css", // css is not yet a recognized template extension in Eleventy
-	]);
-};
-{% endset %}
-{% include "snippets/configDefinition.njk" %}
-
-In the above code sample `css` is not currently a recognized Eleventy template, but Eleventy will search for any `*.css` files inside of the input directory and copy them to output (keeping directory structure).
-
-You might want to use this for images by adding `"jpg"`, `"png"`, or maybe even `"webp"`.
-
-{% callout "info", "md" %}Note that this method is typically slower than the `addPassthroughCopy` configuration API method above, especially if your project is large and has lots of files.{% endcallout %}
 
 <span id="passthrough-during-serve"></span>
 
@@ -171,6 +196,28 @@ This behavior will revert to `"copy"` in your project automatically if:
 <div class="youtube-related">
   {%- youtubeEmbed "EcId2RVdUFE", "Emulated Passthrough File Copy (Weekly №15)", "443" -%}
 </div>
+
+## Passthrough by File Extension {% addedin "0.2.7" %}
+
+Eleventy, by default, searches for any file in the input directory with a file extension listed in your [`templateFormats` configuration](/docs/config/#template-formats). That means if you’ve listed `njk` in your `templateFormats`, we’ll look for any Nunjucks templates (files with the `.njk` file extension).
+
+If a file format is not recognized by Eleventy as a template file extension, Eleventy will ignore the file. You can modify this behavior by adding supported template formats:
+
+{% set codeContent %}
+export default function (eleventyConfig) {
+	eleventyConfig.setTemplateFormats([
+		"md",
+		"css", // `css` is not a registered template syntax file extension
+	]);
+};
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
+In the above code sample `css` is not currently a recognized Eleventy template, but Eleventy will search for any `*.css` files inside of the input directory and copy them to output (maintaining the same directory structure).
+
+You might use this for images by adding `"jpg"`, `"png"`, or even `"webp"`.
+
+{% callout "info", "md" %}Note that this method is typically slower than the `addPassthroughCopy` configuration API method above, especially if your project is large and has lots of files.{% endcallout %}
 
 ## Advanced Options {% addedin "2.0.0-canary.12" %}
 

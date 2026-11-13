@@ -1,15 +1,16 @@
 // https://blog.npmjs.org/post/78719826768/download-counts-are-back
 import EleventyFetch from "@11ty/eleventy-fetch";
 
-let NPM_PKG_NAME = "@11ty/eleventy";
-let START_YEAR = 2018;
+const NPM_PKG_NAME = "@11ty/eleventy";
+const START_YEAR = 2018;
+const CACHE_DURATION = process.env.ELEVENTY_RUN_MODE === "serve" ? "1w" : "1d";
 
 async function getDownloadsForYear(year) {
 	let isCurrentYear = new Date().getFullYear() === year;
 	let url = `https://api.npmjs.org/downloads/point/${year}-01-01:${year}-12-31/${NPM_PKG_NAME}`;
 	let json = await EleventyFetch(url, {
 		type: "json",
-		duration: isCurrentYear ? "1d" : "*",
+		duration: isCurrentYear ? CACHE_DURATION : "*",
 		directory: ".cache/eleventy-fetch/",
 		dryRun: false,
 	});

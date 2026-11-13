@@ -30,13 +30,8 @@ layout: layouts/docs.njk
 
 <h1>{{ eleventyNavigation.key }}{% if addedInVersion %}{% addedin addedInVersion%}{% endif %}</h1>
 
-<div class="elv-langlist" data-pagefind-ignore>
-	<span class="elv-langlist-hed">Template Languages:</span>
-{% templatelangs templatetypes, page %}
-</div>
-
 {% if logoImage %}
-<p>{% image logoImage, "Logo for " + eleventyNavigation.key, [200, 400], "elv-langlist-logo", "200px" %}</p>
+<p><img src="{{ logoImage }}" alt="Logo for {{ eleventyNavigation.key }}" eleventy:widths="200,400" class="elv-langlist-logo" sizes="200px"></p>
 {% endif %}
 
 {{ content | safe }}

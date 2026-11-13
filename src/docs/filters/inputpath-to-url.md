@@ -9,7 +9,7 @@ eleventyNavigation:
 
 # `inputPathToUrl` Universal Filter
 
-{% addedin "v3.0.0-alpha.5" %} Map a file’s location and to the template’s output URL. Very useful for robust hyperlinking allowing you to change your output URLs without breaking content links!  Eleventy 3.0 <!-- 3.0.0-alpha.15 --> [memoizes this filter](/docs/memoize.md).
+{% addedin "v3.0.0-alpha.5" %} Map a file’s location and to the template’s output URL. Very useful for robust hyperlinking allowing you to change your output URLs without breaking content links!  Eleventy 3.0 <!-- 3.0.0-alpha.15 --> [memoizes this filter](/docs/memoize).
 
 {% callout "info", "md" -%}
 This filter is an alternative to the [InputPath To Url Plugin](/docs/plugins/inputpath-to-url/), which provides an Eleventy transform that is less verbose but a bit slower.
@@ -20,7 +20,7 @@ _Inspired by [GitHub issue #84](https://github.com/11ty/eleventy/issues/84)._
 ## Usage
 
 <is-land import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "inputpathtourl"} %}
   <div id="inputpathtourl-liquid" role="tabpanel">
 

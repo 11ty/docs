@@ -1,12 +1,12 @@
 ---
 eleventyNavigation:
+  parent: Eleventy Projects
   key: Configuration
-  order: 6
+  title: Add a Configuration File
+  pinned: true
 ---
 
 # Configuration
-
-{% tableofcontents %}
 
 Configuration files are optional. Add an `eleventy.config.js` file to the root directory of your project (read more about [default configuration filenames](#default-filenames)) to configure Eleventy to your own project’s needs. It might look like this:
 
@@ -17,17 +17,17 @@ export default async function(eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinitionEager.njk" %}
 
-There are a few different ways to [shape your configuration file](/docs/config-shapes/). {% addedin "3.0.0-alpha.1" %}Support for ESM and Asynchronous callbacks was added in Eleventy v3.0.
+There are a few different ways to [shape your configuration file](/docs/config-shapes/). {% addedin "3.0.0-alpha.1" %}Eleventy v3 added support for both ESM and Asynchronous callbacks.
 
 
 - Add [Filters](/docs/filters/).
 - Add [Shortcodes](/docs/shortcodes/).
 - Add [Custom Tags](/docs/custom-tags/).
-- Add [JavaScript Functions](/docs/languages/javascript/#javascript-template-functions) {% addedin "0.7.0" %}
+- Add [JavaScript Template Functions](/docs/languages/javascript/#java-script-template-functions) {% addedin "0.7.0" %}
 - Add custom [Collections](/docs/collections/) and use [Advanced Collection Filtering and Sorting](/docs/collections/#advanced-custom-filtering-and-sorting).
-- Add some [Plugins](/docs/plugins/).
+- Add [Plugins](/docs/plugins/).
 
-{% callout %}Is your config file getting big and hard to understand? You can <a href="/docs/quicktips/local-plugin/">create your own plugin</a> to move some code out.{% endcallout %}
+{% callout %}Is your config file getting big and hard to understand? You can <a href="/docs/quicktips/local-plugin/">create a project-specific plugin</a> to better organize your code.{% endcallout %}
 
 ## Default filenames
 
@@ -44,7 +44,7 @@ The first configuration file found is used. The others are ignored.
   {%- youtubeEmbed "hJAtWQ9nmKU", "Additions to the default config filename list (Changelog №17)", "431" -%}
 </div>
 
-## Configuration Options
+## Directories
 
 ### Input Directory
 
@@ -60,7 +60,7 @@ Controls the top level directory/file/glob that we’ll use to look for template
 
 #### Command Line
 
-```bash
+{% set codeBlock %}
 # The current directory
 npx @11ty/eleventy --input=.
 
@@ -72,7 +72,8 @@ npx @11ty/eleventy --input=*.md
 
 # A subdirectory
 npx @11ty/eleventy --input=views
-```
+{% endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 #### Configuration
 
@@ -191,9 +192,7 @@ Controls the directory inside which the finished templates will be written to.
 
 #### Command Line
 
-```bash
-npx @11ty/eleventy --output=_site
-```
+{{ "npx @11ty/eleventy --output=_site" | highlight("bash") | safe }}
 
 #### Configuration
 
@@ -211,6 +210,8 @@ export default function(eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
+## Template Engines
+
 ### Default template engine for Markdown files
 
 Markdown files run through this template engine before transforming to HTML.
@@ -221,6 +222,7 @@ Markdown files run through this template engine before transforming to HTML.
 | _Default_                | `liquid`                                                          |
 | _Valid Options_          | A valid [template engine short name](/docs/languages/) or `false` |
 | _Command Line Override_  | _None_                                                            |
+| _Configuration API_      | `setMarkdownTemplateEngine` {% addedin "4.0.0-alpha.1" %} |
 
 {% include "snippets/config/config-mdengine.njk" %}
 
@@ -234,6 +236,7 @@ HTML templates run through this template engine before transforming to (better) 
 | _Default_               | `liquid`                                                          |
 | _Valid Options_         | A valid [template engine short name](/docs/languages/) or `false` |
 | _Command Line Override_ | _None_                                                            |
+| _Configuration API_      | `setHtmlTemplateEngine` {% addedin "4.0.0-alpha.1" %} |
 
 {% include "snippets/config/config-htmlengine.njk" %}
 
@@ -280,6 +283,8 @@ export default function (eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
+## Build Options
+
 ### Enable Quiet Mode to Reduce Console Noise
 
 In order to maximize user-friendliness to beginners, Eleventy will show each file it processes and the output file. To disable this noisy console output, use quiet mode!
@@ -321,6 +326,8 @@ Deploy to https://11ty.github.io/eleventy-base-blog/ on GitHub pages without mod
 ```bash
 npx @11ty/eleventy --pathprefix=eleventy-base-blog
 ```
+
+## Data Files
 
 ### Change Base File Name for Data Files
 
@@ -387,6 +394,8 @@ export default function (eleventyConfig) {
 {% include "snippets/configDefinition.njk" %}
 
 </details>
+
+## Transforms and Linters
 
 ### Transforms
 
@@ -455,7 +464,7 @@ export default function (eleventyConfig) {
 
 </details>
 
-### Data Filter Selectors
+## Data Filter Selectors
 
 {% addedin "1.0.0" %}<!-- Beta 4 -->
 
@@ -471,12 +480,12 @@ export default function (eleventyConfig) {
 
 This will now include a `data` property in your JSON output that includes the `page` variable for each matching template.
 
-### TypeScript Type Definitions
+## TypeScript Type Definitions
 
 This may enable some extra autocomplete features in your IDE (where supported).
 
 {% set codeContent %}
-/** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
+/** @param {import("@11ty/eleventy/UserConfig").default} eleventyConfig */
 export default function (eleventyConfig) {
 	// …
 };
@@ -485,40 +494,36 @@ export default function (eleventyConfig) {
 
 - Related: [GitHub #2091](https://github.com/11ty/eleventy/pull/2091) and [GitHub #3097](https://github.com/11ty/eleventy/issues/3097)
 
-### Removed Features
+## Removed Features
 
-#### Change exception case suffix for HTML files
+### Change exception case suffix for HTML files
 
 {% callout "warn", "", "Feature Removal" %}The <code>htmlOutputSuffix</code> feature was removed in Eleventy 3.0. You can read about the feature on the <a href="https://v2-0-1.11ty.dev/docs/config/#change-exception-case-suffix-for-html-files">v2 documentation</a>. Related: <a href="https://github.com/11ty/eleventy/issues/3327">GitHub #3327</a>.{% endcallout %}
 
-### Documentation Moved to Dedicated Pages
+## Documentation Moved to Dedicated Pages
 
-<a id="{{ 'Copy Files to Output using Pass-through File Copy' | slug }}"></a>
+<a id="{{ 'Copy Files to Output using Pass-through File Copy' | slugify }}"></a>
 
-#### Copy Files to Output using Passthrough File Copy
+### Copy Files to Output using Passthrough File Copy
 
 Files found (that don’t have a valid template engine) from opt-in file extensions in `templateFormats` will passthrough to the output directory. Read more about [Passthrough Copy](/docs/copy/).
 
-#### Data Deep Merge {% addedin "0.6.0" %}
-
-- Documentation for [Data Deep Merging has been moved to its own page](/docs/data-deep-merge/) under the Data Cascade.
-
-#### Customize Front Matter Parsing Options {% addedin "0.9.0" %}
+### Customize Front Matter Parsing Options {% addedin "0.9.0" %}
 
 - Documented at [Customize Front Matter Parsing](/docs/data-frontmatter-customize/).
 
-#### Watch JavaScript Dependencies {% addedin "0.7.0" %}
+### Watch JavaScript Dependencies {% addedin "0.7.0" %}
 
 - Documented at [Watch and Serve Configuration](/docs/watch-serve/).
 
-#### Add Your Own Watch Targets {% addedin "0.10.0" %}
+### Add Your Own Watch Targets {% addedin "0.10.0" %}
 
 - Documented at [Watch and Serve Configuration](/docs/watch-serve/).
 
-#### Override Browsersync Server Options {% addedin "0.7.0" %}
+### Override Browsersync Server Options {% addedin "0.7.0" %}
 
 - Documented at [Watch and Serve Configuration](/docs/watch-serve/).
 
-#### Transforms
+### Transforms
 
 - Documented at [Transforms](/docs/transforms.md).

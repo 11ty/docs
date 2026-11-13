@@ -2,7 +2,8 @@
 eleventyNavigation:
   parent: Template Languages
   key: Handlebars
-  order: 7
+  order: 4
+  excerpt: A logicless templating engine similar to Mustache
 relatedKey: handlebars
 relatedTitle: Template Language—Handlebars
 tags:
@@ -10,23 +11,32 @@ tags:
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
+[Handlebars](https://handlebarsjs.com/) is a template language that emphasizes simplicity and speed. As the name suggests, it's inspired by and a superset of the [Mustache](/docs/languages/mustache/) template language. It adds [several features](https://github.com/handlebars-lang/handlebars.js#differences-between-handlebarsjs-and-mustache) that Mustache doesn't have, like nested paths: you can refer to `{% raw %}{{variable.member}}{% endraw %}` in Handlebars, but not in Mustache.
 
 | Eleventy Short Name | File Extension | npm Package                                                |
 | ------------------- | -------------- | ---------------------------------------------------------- |
-| `hbs`               | `.hbs`         | [`handlebars.js`](https://github.com/wycats/handlebars.js) |
+| `hbs`               | `.hbs`         | [`handlebars`](https://github.com/wycats/handlebars.js) |
 
-You can override a `.hbs` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/languages/#overriding-the-template-language).
+| Eleventy or Plugin version | `handlebars` version |
+| --- | --- |
+| `@11ty/eleventy@0.x` | `handlebars@4.x` |
+| `@11ty/eleventy@1.x` | `handlebars@4.x` |
+| `@11ty/eleventy@2.x` | `handlebars@4.x` |
+| `@11ty/eleventy@3.x` and newer | N/A |
+| `@11ty/eleventy-plugin-handlebars@1.x` | `handlebars@4.x` |
+
+You can override a `.hbs` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
 ## Installation
 
-The `haml` templating language was moved out of Eleventy core in v3 and now requires a plugin installation.
+The `hbs` templating language was moved out of Eleventy core in v3 and now requires a plugin installation.
 
 * [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
-```sh
+{%- set codeBlock %}
 npm install @11ty/eleventy-plugin-handlebars
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file (ESM version shown):
 
@@ -61,7 +71,7 @@ export default function (eleventyConfig) {
 | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ✅ Partials                                                       | `{% raw %}{{> user}}{% endraw %}` looks for `_includes/user.hbs`. Does not process front matter in the include file.                                                                                      |
 | 🚫 Partials (Relative Path)                                       | **Not yet supported**: `{% raw %}{{> ./user}}{% endraw %}` looks for `user.hbs` in the template’s current directory.                                                                                      |
-| ✅ Helpers (Custom Tags)                                          | `{% raw %}{{ helperName myObject }}{% endraw %}` Handlebars calls them Helpers, but Eleventy calls them Shortcodes. Read more about [Shortcodes](/docs/shortcodes/) or [Custom Tags](/docs/custom-tags/). |
+| ✅ Helpers (Custom Tags)                                          | `{% raw %}{{ helperName myObject }}{% endraw %}` Handlebars calls them Helpers, but Eleventy calls them Shortcodes. Read more about [Shortcodes](/docs/shortcodes/). |
 | ✅ [Filters](/docs/filters/) | `{% raw %}{{ filterName myObject }}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                               |
 | ✅ [Shortcodes](/docs/shortcodes/)                                | `{% raw %}{{{ uppercase name }}}{% endraw %}` Read more about [Shortcodes](/docs/shortcodes/). {% addedin "0.5.0" %}                                                                                      |
 

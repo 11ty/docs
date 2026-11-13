@@ -1,15 +1,12 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "htmlbase"} %}
   <div id="htmlbase-liquid" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Liquid", "Syntax" %}
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 {{ "/test/" | htmlBaseUrl }}
 => "/pathprefix/test/"
 
@@ -25,9 +22,8 @@ Absolute URLs are ignored:
 
 {{ "http://example.com/" | htmlBaseUrl }}
 => "http://example.com/"
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
 
   </div>
   <div id="htmlbase-njk" role="tabpanel">
@@ -36,9 +32,7 @@ With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Nunjucks", "Syntax" %}
 
-{% raw %}
-
-```njk
+{% set codeBlock %}{% raw %}
 {{ "/test/" | htmlBaseUrl }}
 => "/pathprefix/test/"
 
@@ -54,9 +48,8 @@ Absolute URLs are ignored:
 
 {{ "http://example.com/" | htmlBaseUrl }}
 => "http://example.com/"
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 
   </div>
   <div id="htmlbase-js" role="tabpanel">
@@ -64,10 +57,7 @@ Absolute URLs are ignored:
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.js", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default function () {
 	return `
 ${this.htmlBaseUrl("/test/")}
@@ -87,9 +77,8 @@ ${this.htmlBaseUrl("http://example.com/")}
 => "http://example.com/"
 `;
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
   </div>
 	<div id="htmlbase-cjs" role="tabpanel">
@@ -97,10 +86,7 @@ ${this.htmlBaseUrl("http://example.com/")}
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.js", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = function () {
 	return `
 ${this.htmlBaseUrl("/test/")}
@@ -120,9 +106,8 @@ ${this.htmlBaseUrl("http://example.com/")}
 => "http://example.com/"
 `;
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
   </div>
 </seven-minute-tabs>

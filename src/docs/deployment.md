@@ -1,15 +1,9 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Services
   key: Deployment
   title: "Deployment & Hosting"
-  order: 8
-featuredHosts:
-  - name: "Want your logo here? Contact us!"
-    url: "mailto:partners@11ty.dev"
-    tags: [Recommended Partner]
-    class: sites-featured
-    screenshotSize: opengraph
+  order: 1
 hosts:
   - name: Cloudflare Pages
     url: https://pages.cloudflare.com/
@@ -25,21 +19,18 @@ hosts:
     url: https://stormkit.io/
     screenshotSize: medium
   - name: GitHub Pages
-    url: https://pages.github.com/
+    url: https://docs.github.com/en/pages
     screenshotSize: medium
   - name: GitLab Pages
     url: https://docs.gitlab.com/ee/user/project/pages/
     screenshotSize: medium
   - name: Render
-    url: https://render-web.onrender.com/
+    url: https://render.com/docs/static-sites
     screenshotSize: medium
   - name: Azure Static Web Apps
     url: https://azure.microsoft.com/en-us/services/app-service/static/
     screenshotSize: medium
     skipIcon: true
-  - name: Edgio
-    url: https://docs.edg.io/guides/v7/sites_frameworks/getting_started/eleventy
-    screenshotSize: medium
   - name: Digital Ocean
     url: https://www.digitalocean.com/community/tutorials/how-to-create-and-deploy-your-first-eleventy-website
     screenshotSize: medium
@@ -55,6 +46,13 @@ hosts:
   - name: Sourcehut Pages
     url: https://srht.site/
     screenshotSize: medium
+  - name: CloudRay
+    url: https://cloudray.io/articles/how-to-deploy-your-eleventy-website
+    screenshotSize: medium
+  - name: DeployHQ
+    url: https://www.deployhq.com/
+    screenshotSize: medium
+    description: Git-based deployment platform that runs your Eleventy build on its servers and transfers the <code>_site/</code> output to your own server via SSH/SFTP/FTP (or to S3, Azure Blob, or Rackspace Cloud Files). Supports multiple environments with branch-to-server mapping, config-file injection, atomic releases, one-click rollback, and pre/post deploy hooks.
 classicHosts:
   - name: Vercel CLI
     url: https://vercel.com/cli
@@ -69,20 +67,16 @@ classicHosts:
     url: https://neocities.org/
     screenshotSize: medium
     skipIcon: true
-  - name: yay.boo
-    url: https://yay.boo/
-    screenshotSize: medium
   - name: Cloudflare Direct Upload
     url: https://developers.cloudflare.com/pages/get-started/direct-upload/#drag-and-drop
     screenshotSize: medium
   - name: xmit
     url: https://xmit.co/
     screenshotSize: medium
-webides:
-  - name: Glitch
-    url: https://glitch.com/
+  - name: Tiiny Host
+    url: https://tiiny.host
     screenshotSize: medium
-    hideRelatedLinks: true
+webides:
   - name: Stackblitz
     url: https://stackblitz.com/
     screenshotSize: medium
@@ -90,8 +84,6 @@ webides:
 ---
 
 # Deployment
-
-{% tableofcontents %}
 
 Now that you’ve built a web site with Eleventy _(even if it’s one HTML page!)_ you might be ready to put it on the web for everyone to see! There are a bunch of different ways to do it!
 
@@ -109,9 +101,6 @@ Jamstack providers can trigger your Eleventy build command automatically when yo
 
 <div class="sites-vert sites-vert--md sites--reverse sites--center">
   <div class="lo-grid" style="--fl-gap-v: 5em;">
-{%- for site in featuredHosts %}
-{% include "site-card.njk" %}
-{%- endfor %}
 {%- for site in hosts | shuffle %}
 {% include "site-card.njk" %}
 {%- endfor %}
@@ -169,82 +158,37 @@ The `.cache` folder is used by the [Eleventy Fetch plugin](/docs/plugins/fetch/)
 
 Some Jamstack providers have additional features to persist this folder between builds, re-useing the cache and speeding up build times. Here are a few of these:
 
-- **CloudCannon**: use [Preserved paths](https://cloudcannon.com/documentation/articles/caching-specific-folders-to-reduce-build-times/#preserved-paths). [Tutorial on YouTube](https://www.youtube.com/watch?v=ULwVlFMth1U).
-- **Vercel**: zero-configuration support (when the [Eleventy framework is detected](https://vercel.com/docs/deployments/configure-a-build#framework-preset), [source](https://github.com/vercel/vercel/blob/20237d4f7b55b0697b57db15636c11204cb0dc39/packages/frameworks/src/frameworks.ts#L363)).
 - [**Cloudflare Pages**](https://developers.cloudflare.com/pages/configuration/build-caching/#frameworks): now preserves the `.cache` folder by default! _(shipped April 2024)_
-- **GitHub Pages**: use the [`cache` action](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#using-the-cache-action). [Mini-tutorial included below](#deploy-an-eleventy-project-to-github-pages).
+- **Vercel**: zero-configuration support (when the [Eleventy framework is detected](https://vercel.com/docs/deployments/configure-a-build#framework-preset), [source](https://github.com/vercel/vercel/blob/20237d4f7b55b0697b57db15636c11204cb0dc39/packages/frameworks/src/frameworks.ts#L363)).
+- **GitHub Pages**: use the [`cache` action](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows#using-the-cache-action). [Mini-tutorial included below](#deploy-an-eleventy-project-to-git-hub-pages).
 - **Netlify**: use [`netlify-plugin-cache`](https://www.npmjs.com/package/netlify-plugin-cache). [Mini-tutorial included below](#using-netlify-plugin-cache-to-persist-cache). [Video on YouTube](https://www.youtube.com/watch?v=JCQQgtOcjH4&t=322s).
+- **CloudCannon**: use [Preserved paths](https://cloudcannon.com/documentation/articles/caching-specific-folders-to-reduce-build-times/#preserved-paths). [Tutorial on YouTube](https://www.youtube.com/watch?v=ULwVlFMth1U).
 
 ### Speed up Eleventy Image
 
 Additionally, _if_ you’re writing your [Eleventy Image output](/docs/plugins/image/#output-directory) to your Eleventy output directory (e.g. `./_site/img/`) (and not checking those files into `git`), you can persist this folder as well to [reuse the Eleventy Image disk cache](/docs/plugins/image/#disk-cache) to improve build times.
 
-- [**CloudCannon** Tutorial on YouTube](https://www.youtube.com/watch?v=ULwVlFMth1U) _({{ "2023-10-23" | newsDate("yyyy") }})_
+- [Write images to `.cache` to reuse Persisted Cache (see above)](https://www.zachleat.com/web/faster-builds-with-eleventy-img/) _({{ "2025-08-01" | newsDate("yyyy") }})_
 - [Source example on GitHub for **Netlify**](https://github.com/11ty/demo-eleventy-img-netlify-cache) _({{ "2022-02-24" | newsDate("yyyy") }})_
+- [**CloudCannon** Tutorial on YouTube](https://www.youtube.com/watch?v=ULwVlFMth1U) _({{ "2023-10-23" | newsDate("yyyy") }})_
 
 ## Mini-Tutorials
 
 ### Deploy an Eleventy project to GitHub pages
 
-Includes persisted cache across builds. Using [`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages).
+Includes persisted cache across builds.
 
-<ol>
-<li>Go to your repository’s Settings on GitHub.</li>
-<li>In the GitHub Pages section change:<ul><li>Source: <code>Deploy from a branch</code></li><li>Branch: <code>gh-pages/(root)</code></li></ul></li>
-<li>Create a new GitHub workflow file in <details><summary><code>.github/workflows/deploy-to-ghpages.yml</code></summary>
-
-{% raw %}
-
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-
-jobs:
-  deploy:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      - name: Persist npm cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
-
-      - name: Persist Eleventy .cache
-        uses: actions/cache@v3
-        with:
-          path: ./.cache
-          key: ${{ runner.os }}-eleventy-fetch-cache
-
-      - run: npm install
-      - run: npm run build-ghpages
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+1. Create a new file in your repository at `.github/workflows/deploy-gh-pages.yml`. Copy and paste the contents from the [`eleventy-base-blog` sample YAML configuration for GitHub Actions](https://github.com/11ty/eleventy-base-blog/blob/39454297a92872f2d116315f2af668f2675e7746/.github/workflows/gh-pages.yml.sample).
+2. Go to your repository’s Settings on GitHub and find the GitHub Pages subsection. Under the Build and Deployment on the GitHub Pages settings, find the Source option and select `GitHub Actions`
+3. In your project’s package.json, make sure the `build-ghpages` script has the `--pathprefix=` parameter set to your repository name.
+```json
+"scripts": {
+	"build-ghpages": "npx @11ty/eleventy --pathprefix=/YOUR_REPO_NAME/",
+}
 ```
+4. _Exception:_ When using a Custom domain (example.com) with GitHub Pages, deploying to `example.com/` instead of `*.github.io/YOUR_REPO_NAME/` make sure to remove the `--pathprefix` parameter entirely. e.g. `"build-ghpages": "npx @11ty/eleventy",`
+5. Commit this new `.github/workflows/deploy-gh-pages.yml` file and push it upstream to GitHub.
 
-{% endraw %}
-
-</details></li></ol>
 
 ### Using `netlify-plugin-cache` to persist cache
 

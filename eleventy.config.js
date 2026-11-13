@@ -1,5 +1,4 @@
-import "dotenv/config";
-
+import { fileURLToPath } from "node:url";
 import memoize from "memoize";
 import { DateTime } from "luxon";
 import HumanReadable from "human-readable-numbers";
@@ -7,21 +6,82 @@ import commaNumber from "comma-number";
 import lodashGet from "lodash/get.js";
 import shortHash from "short-hash";
 import { ImportTransformer } from "esm-import-transformer";
+import { transform as tweetbackTransform } from "@tweetback/canonical";
 
-import syntaxHighlightPlugin from "@11ty/eleventy-plugin-syntaxhighlight";
 import navigationPlugin from "@11ty/eleventy-navigation";
-import eleventyImage, { eleventyImagePlugin, eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import eleventyImage from "@11ty/eleventy-img";
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
-import { RenderPlugin, InputPathToUrlTransformPlugin } from "@11ty/eleventy";
+import { RenderPlugin, InputPathToUrlTransformPlugin/*, PreserveClosingTagsPlugin*/ } from "@11ty/eleventy";
 import fontAwesomePlugin from "@11ty/font-awesome";
+import { getImageColors } from "@11ty/image-color";
 
-import { addedIn, coerceVersion } from "./config/addedin.js";
-import monthDiffPlugin from "./config/monthDiff.js";
-import minificationLocalPlugin from "./config/minification.js";
+import imagePlugin from "./config/imagePlugin.js";
+import { addedIn, coerceVersion, greaterThan } from "./config/addedin.js";
+import minificationLocalPlugin, { minifyJavaScriptFile } from "./config/minification.js";
+import { bundleModulePath } from "./config/bundleJavaScript.js";
 import cleanName from "./config/cleanAuthorName.js";
 import objectHas from "./config/object-has.js";
 import markdownPlugin from "./config/markdownPlugin.js";
+import pageTocPlugin from "./config/pageTocPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
+import sidebarPlugin from "./config/sidebarPlugin.js";
+import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
+import hiddenAuthors from "./config/hiddenAuthors.js";
+
+// Load .env if present (absent in production).
+try {
+	process.loadEnvFile();
+} catch (e) {
+	if (e.code !== "ENOENT") {
+		throw e;
+	}
+}
+
+// Hosts without a usable Open Graph image, use the screenshot service instead.
+const screenshotOnlyHosts = new Set([
+	"berryhouse.ca",
+	"blog.fontawesome.com",
+	"blog.glitch.com",
+	"blog.mozilla.org",
+	"chobble.com",
+	"developer.chrome.com",
+	"docs.flutter.dev",
+	"hoeser.dev",
+	"tc39.es",
+	"v8.dev",
+]);
+
+function useScreenshotImage(url) {
+	try {
+		return screenshotOnlyHosts.has(new URL(url).hostname.replace(/^www\./, ""));
+	} catch (e) {
+		return false;
+	}
+}
+
+function resolveModule(target) {
+	return fileURLToPath(import.meta.resolve(target));
+}
+
+function displayUrl(url) {
+	url = url.replace("https://", "");
+	url = url.replace("http://", "");
+
+	if (url.endsWith("/index.html")) {
+		url = url.replace("/index.html", "/");
+	}
+
+	// remove trailing slash
+	if (url.endsWith("/")) {
+		url = url.slice(0, -1);
+	}
+
+	if(url.startsWith("www.")) {
+		url = url.slice("www.".length);
+	}
+
+	return url;
+}
 
 let defaultAvatarHtml = `<img src="/img/default-avatar.png" alt="Default Avatar" loading="lazy" decoding="async" class="avatar" width="200" height="200">`;
 const shortcodes = {
@@ -41,33 +101,7 @@ const shortcodes = {
 			(linkUrl ? `</a>` : "")
 		);
 	},
-	image: async function (filepath, alt, widths, classes, sizes, attributes) {
-		let options = {
-			formats: ["avif", "png"],
-			widths: widths || ["auto"],
-			urlPath: "/img/built/",
-			outputDir: "_site/img/built/",
-			transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve",
-		};
-
-		let stats = await eleventyImage(filepath, options);
-
-		return eleventyImage.generateHTML(
-			stats,
-			Object.assign(
-				{
-					alt,
-					loading: "lazy",
-					decoding: "async",
-					sizes,
-					class: classes || "",
-					"eleventy:ignore": "",
-				},
-				attributes
-			)
-		);
-	},
-	getScreenshotHtml(siteSlug, siteUrl, sizes, preset = "small") {
+	async getScreenshotHtml(alt, siteUrl, sizes, preset = "small") {
 		let zoom;
 		let viewport = {
 			width: 375,
@@ -84,21 +118,29 @@ const shortcodes = {
 			zoom = "bigger";
 		}
 
-		let isYouTubeUrl = siteUrl.includes("www.youtube.com");
+		// wait a little longer for small images
+		let advanced = "";
+		if(preset === "small") {
+			advanced = "_wait:2";
+		}
+
+		let isOpenGraphUrl =
+			(preset === "opengraph" && !useScreenshotImage(siteUrl)) ||
+			siteUrl.includes("www.youtube.com");
 		let isSquare = viewport.width === viewport.height;
 		let screenshotUrl;
 		if (siteUrl) {
-			if(isYouTubeUrl) {
+			if(isOpenGraphUrl) {
 				screenshotUrl = `https://v1.opengraph.11ty.dev/${encodeURIComponent(
 					siteUrl
 				)}/small/jpeg/`;
 
-				viewport.width = 650;
-				viewport.height = 366;
+				viewport.width = 1200;
+				viewport.height = 630;
 			} else {
-				screenshotUrl = `https://v1.screenshot.11ty.dev/${encodeURIComponent(
+				screenshotUrl = `https://screenshot.11ty.app/${encodeURIComponent(
 					siteUrl
-				)}/${preset}/1:1/${zoom ? `${zoom}/` : ""}`;
+				)}/${preset}/1:1/${zoom ? `${zoom}/` : ""}${advanced ? `${advanced}/` : ""}`;
 			}
 		}
 
@@ -110,19 +152,21 @@ const shortcodes = {
 			},
 		};
 
-		let stats = eleventyImage.statsByDimensionsSync(
+		let stats = await eleventyImage(
 			screenshotUrl,
-			viewport.width,
-			viewport.height,
-			options
+			{
+				...options,
+				statsOnly: true,
+				imageMetadataOverride: { width: viewport.width, height: viewport.height },
+			}
 		);
 
 		let attrs = {
-			alt: `Screenshot of ${siteUrl}`,
+			alt: alt ?? "",
 			loading: "lazy",
 			decoding: "async",
 			sizes: sizes || "(min-width: 22em) 30vw, 100vw",
-			class: "sites-screenshot" + (isYouTubeUrl ? ` sites-screenshot-youtube${isSquare ? "-sq" : ""}` : ""),
+			class: "sites-screenshot" + (isOpenGraphUrl || preset === "opengraph" ? ` sites-screenshot-og${isSquare ? " sites-screenshot-og-sq" : ""}` : ""),
 			"eleventy:ignore": "",
 		};
 
@@ -134,22 +178,22 @@ const shortcodes = {
 		let cacheBuster = `_${d.getFullYear()}_${d.getMonth()}_${d.getDate()}`;
 		return `<img src="https://v1.generator.11ty.dev/image/${encodeURIComponent(
 			url
-		)}/${cacheBuster}/" width="66" height="66" alt="Meta Generator tag icon for ${url}" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:ignore>`;
+		)}/${cacheBuster}/" width="66" height="66" alt="" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:ignore>`;
 	},
 	getHostingImageHtml(url) {
 		return `<img src="https://v1.builtwith.11ty.dev/${encodeURIComponent(
 			url
-		)}/image/host/" width="66" height="66" alt="Hosting provider icon for ${url}" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:ignore>`;
+		)}/image/host/" width="66" height="66" alt="" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:ignore>`;
 	},
-	getAvatarHtmlFromFullUrl(fullUrl, cls = "", attrs = "") {
-		let dims = [150, 150];
+	getAvatarHtmlFromFullUrl(fullUrl, cls = "", attrs = "", dims = [150, 150]) {
 		if (cls === "avatar-tall") {
 			dims = [120, 150];
 		}
 
+		// empty `alt=""` intentional
 		return `<img src="${fullUrl}" width="${dims[0]}" height="${
 			dims[1]
-		}" alt="IndieWeb Avatar for ${fullUrl}" class="avatar avatar-indieweb${
+		}" alt="" class="avatar avatar-indieweb${
 			cls ? ` ${cls}` : ""
 		}" loading="lazy" decoding="async"${attrs ? ` ${attrs}` : ""}>`;
 	},
@@ -160,7 +204,7 @@ const shortcodes = {
 			return "";
 		}
 		let fullUrl = `https://v1.indieweb-avatar.11ty.dev/${encodeURIComponent(iconUrl)}/`;
-		return shortcodes.getAvatarHtmlFromFullUrl(fullUrl, cls, "eleventy:ignore");
+		return shortcodes.getAvatarHtmlFromFullUrl(fullUrl, cls, "eleventy:ignore", [60, 60]);
 	},
 	getGitHubAvatarHtml(username, alt = "") {
 		if(!username) {
@@ -175,15 +219,15 @@ const shortcodes = {
 	},
 	getOpenCollectiveAvatarHtml(supporter) {
 		let preferIndiewebAvatarSlugs = [
-			"nejlepsiceskacasinacom",
-			"slovenskeonlinecasinocom",
+			"nejlepsiceskacasina-com",
+			"slovenskeonlinecasino-com",
 		]
-		let {image: url, name: username} = supporter;
+		let {image: url, name: username, hasDefaultAvatar, website} = supporter;
 		let alt = `Open Collective Avatar for ${username}`;
-		if(preferIndiewebAvatarSlugs.includes(supporter.slug) && supporter.website) {
-			return shortcodes.getIndieAvatarHtml(supporter.website);
+		if(website && (hasDefaultAvatar || preferIndiewebAvatarSlugs.includes(supporter.slug))) {
+			return shortcodes.getIndieAvatarHtml(website);
 		}
-		return `<img src="${url}" width="66" height="66" alt="${alt}" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:optional>`;
+		return `<img src="${url}" width="66" height="66" alt="${alt}" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:optional="placeholder">`;
 	},
 };
 
@@ -198,157 +242,119 @@ function findBy(data, path, value) {
 			return false;
 		}
 
-		if (typeof value === "string") {
-			let valueLower = value.toLowerCase();
-			let dataLower = gotten.toLowerCase();
-			if (valueLower === dataLower) {
-				return true;
+		if (Array.isArray(gotten)) {
+			if (typeof value === "string") {
+				return gotten.some((item) => typeof item === "string" && item.localeCompare(value, undefined, { sensitivity: "base" }) === 0);
 			}
-			return false;
+			return gotten.includes(value);
+		}
+
+		if (typeof value === "string") {
+			return gotten.localeCompare(value, undefined, {sensitivity: "base"}) === 0;
 		}
 
 		return value === gotten;
 	});
 }
 
-export default async function (eleventyConfig) {
-	eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+export default async function ($config) {
+	$config.setServerPassthroughCopyBehavior("passthrough");
 
-
-	if (process.env.NODE_ENV === "production") {
-		eleventyConfig.setConcurrency(1);
-	}
-
-	if (process.env.NODE_ENV === "production") {
-		// Skip on production
-		eleventyConfig.ignores.add("src/admin.md");
-	} else {
+	if (process.env.NODE_ENV !== "production") {
 		// Skip on local dev
-		eleventyConfig.ignores.add("src/api/*");
-		eleventyConfig.ignores.add("src/authors/author-pages.md");
-		eleventyConfig.ignores.add("src/firehose.11ty.js");
-		eleventyConfig.ignores.add("src/firehose-feed.11ty.js");
+		$config.ignores.add("src/api/*");
+		$config.ignores.add("src/authors/author-pages.md");
 	}
 
-	eleventyConfig.setServerOptions({
+	$config.setServerOptions({
 		showVersion: false,
-		domDiff: false,
+		domDiff: true,
 	});
 
 	/* Plugins */
-	eleventyConfig.addPlugin(syntaxHighlightPlugin, {
-		lineSeparator: "<br>",
-		init: function ({ Prism }) {
-			Prism.languages.markdown = Prism.languages.extend("markup", {
-				frontmatter: {
-					pattern: /^---[\s\S]*?^---$/m,
-					greedy: true,
-					inside: Prism.languages.yaml,
-				},
-			});
-		},
-	});
+	$config.addPlugin(syntaxHighlightPlugin);
 
-	eleventyConfig.addPlugin(fontAwesomePlugin, {
+	$config.addPlugin(fontAwesomePlugin, {
 		defaultAttributes: {
 			class: "fa11ty-icon"
 		}
 	});
 
-	// for WebC
-	eleventyConfig.addPlugin(eleventyImagePlugin, {
-		// options via https://www.11ty.dev/docs/plugins/image/#usage
-		formats: ["avif", "jpeg"],
+	$config.addPlugin(imagePlugin);
+	$config.addPlugin(markdownPlugin);
+	$config.addPlugin(pageTocPlugin);
 
-		urlPath: "/img/built/",
+	$config.addPlugin(minificationLocalPlugin);
+	$config.addPlugin(RenderPlugin);
 
-		defaultAttributes: {
-			loading: "lazy",
-			decoding: "async",
-			"eleventy:ignore": "",
-		},
+	$config.htmlTransformer.posthtmlProcessOptions.closingSingleTag = "slash";
+	// $config.addPlugin(PreserveClosingTagsPlugin, {
+	// 	tags: ["meta"]
+	// });
 
-		cacheOptions: {
-			duration: "14d",
-		},
-	});
+	$config.addPlugin(InputPathToUrlTransformPlugin);
 
-	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
-		// which file extensions to process
-		extensions: "html",
-
-		// Add any other Image utility options here:
-
-		// optional, output image formats
-		formats: ["avif", "jpeg"],
-
-		// optional, output image widths
-		// widths: ["auto"],
-
-		urlPath: "/img/built/",
-
-		// optional, attributes assigned on <img> override these values.
-		defaultAttributes: {
-			loading: "lazy",
-			decoding: "async",
-		},
-
-		cacheOptions: {
-			duration: "14d",
-		},
-	});
-
-	eleventyConfig.addPlugin(markdownPlugin);
-	eleventyConfig.addPlugin(navigationPlugin);
-	eleventyConfig.addPlugin(monthDiffPlugin);
-	eleventyConfig.addPlugin(minificationLocalPlugin);
-	eleventyConfig.addPlugin(RenderPlugin);
-	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
-	eleventyConfig.addPlugin(eleventyWebcPlugin, {
+	$config.addPlugin(eleventyWebcPlugin, {
 		components: [
 			"./src/_includes/components/*.webc",
-			"npm:@11ty/is-land/*.webc",
+			// "npm:@11ty/is-land/*.webc",
+			// "npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc",
 			"npm:@11ty/eleventy-img/*.webc",
 		],
 		bundlePluginOptions: {
-			transforms: [
-				// 			function(bundleContent) {
-				// 				// careful with HTML bundles here in the future
-				// 				return `
-				// /* @11ty/eleventy-plugin-bundle: ${bundleContent.length/1000} kB */
-				// ${bundleContent}`;
-				// 			}
-			],
+			toFileDirectory: "dist",
 		},
 	});
 
 	// Feeds (only in production)
 	if (process.env.NODE_ENV === "production") {
-		feedPlugin(eleventyConfig);
+		feedPlugin($config);
 	}
 
 	/* End plugins */
 
-	eleventyConfig.addCollection("sidebarNav", function (collection) {
-		// filter out excludeFromSidebar options
-		return collection.getAll().filter((item) => {
-			return (
-				item.data?.eleventyNavigation && item.data?.excludeFromSidebar !== true
-			);
-		});
+	$config.addPlugin(navigationPlugin);
+	$config.addPlugin(sidebarPlugin);
+
+	$config.addShortcode("getColorsForUrl", async (url) => {
+		if(process.env.ELEVENTY_RUN_MODE !== "build") {
+			return [];
+		}
+
+		let avatarUrl = `https://v1.indieweb-avatar.11ty.dev/${encodeURIComponent(url)}/`;
+
+		return getImageColors(avatarUrl).then(colors => {
+			return colors.map(c => c.colorjs).sort((a, b) => {
+				return (b.oklch.l + b.oklch.c) - (a.oklch.l + a.oklch.c);
+			});
+		}, error => {
+			console.warn( `Error fetching colors from avatar for ${url}`, error );
+			return []; // error, return empty set.
+		})
 	});
 
-	eleventyConfig.addFilter("coerceVersion", coerceVersion);
-	eleventyConfig.addShortcode("addedin", addedIn);
+	$config.addFilter("modulo", function (num, div) {
+		return num % div;
+	});
 
-	eleventyConfig.addShortcode(
+	$config.addFilter("throwErrorWhenMissing", function (arg, msg) {
+		if(arg) {
+			return;
+		}
+		throw new Error(msg + ` (via throwErrorWhenMissing filter on ${this.page.url})`);
+	});
+	$config.addFilter("coerceVersion", coerceVersion);
+	$config.addNunjucksGlobal("semverGreaterThan", greaterThan);
+	$config.addShortcode("addedin", addedIn);
+
+	$config.addShortcode(
 		"generatoravatar",
 		shortcodes.getGeneratorImageHtml
 	);
-	eleventyConfig.addShortcode("hostavatar", shortcodes.getHostingImageHtml);
-	eleventyConfig.addShortcode("indieavatar", shortcodes.getIndieAvatarHtml);
+	$config.addShortcode("hostavatar", shortcodes.getHostingImageHtml);
+	$config.addShortcode("indieavatar", shortcodes.getIndieAvatarHtml);
 
-	eleventyConfig.addShortcode("indieweblink", function (content, url, iconUrl) {
+	$config.addShortcode("indieweblink", function (content, url, iconUrl) {
 		if (!url) {
 			return content;
 		}
@@ -357,31 +363,30 @@ export default async function (eleventyConfig) {
 		return `<a href="${url}">${imgHtml}${content}</a>`;
 	});
 
-	eleventyConfig.addShortcode("emoji", function (emoji, alt = "") {
+	$config.addShortcode("emoji", function (emoji, alt = "") {
 		return (
 			`<span aria-hidden="true" class="emoji">${emoji}</span>` +
 			(alt ? `<span class="sr-only">${alt}</span>` : "")
 		);
 	});
 
-	eleventyConfig.addAsyncFilter("canonicalTwitterUrl", async (url) => {
+	$config.addFilter("canonicalTwitterUrl", (url) => {
 		try {
-			const { transform } = await import("@tweetback/canonical");
-			return transform(url);
+			return tweetbackTransform(url);
 		} catch (e) {
 			return url;
 		}
 	});
 
 	let ref = 0;
-	eleventyConfig.on("eleventy.before", () => {
+	$config.on("eleventy.before", () => {
 		ref = 0;
 	});
-	eleventyConfig.addShortcode("uid", () => {
+	$config.addShortcode("uid", () => {
 		return `id-${++ref}`;
 	});
 
-	eleventyConfig.addFilter("esmToCjs", memoize((sourceCode) => {
+	$config.addFilter("esmToCjs", memoize((sourceCode) => {
 		try {
 			let it = new ImportTransformer(sourceCode);
 			let outputCode = it.transformToRequire();
@@ -394,90 +399,109 @@ export default async function (eleventyConfig) {
 		}
 	}));
 
-	eleventyConfig.addShortcode("image", shortcodes.image);
-	eleventyConfig.addShortcode("communityavatar", shortcodes.communityAvatar);
-	eleventyConfig.addShortcode(
+	$config.addShortcode("communityavatar", shortcodes.communityAvatar);
+
+	// Avatar downloaded by the git import, falling back to the GitHub CDN
+	$config.addShortcode("authoravatar", function (author) {
+		if (!author?.avatarUrl) {
+			return shortcodes.communityAvatar(author?.name);
+		}
+
+		return `<img src="${author.avatarUrl}" width="66" height="66" alt="GitHub Avatar for ${author.name}" class="avatar avatar-large" loading="lazy" decoding="async">`;
+	});
+	$config.addShortcode(
 		"opencollectiveavatar",
 		shortcodes.getOpenCollectiveAvatarHtml
 	);
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"getScreenshotHtml",
 		shortcodes.getScreenshotHtml
 	);
 
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"codetitle",
 		function (title, heading = "Filename") {
 			return `<div class="codetitle codetitle-left"><b>${heading} </b>${title}</div>`;
 		}
 	);
 
-	eleventyConfig.addPairedShortcode("minilink", function (text, href) {
+	$config.addPairedShortcode("minilink", function (text, href) {
 		return `<a href="${href}" class="minilink minilink-lower">${text}</a>`;
 	});
 
-	eleventyConfig.addPairedShortcode(
-		"codewithprompt",
-		function (text, prePrefixCode, id) {
-			let ret = [];
-			if (prePrefixCode) {
-				ret.push(`<div data-preprefix-${prePrefixCode}${
-					id ? ` id="${id}"` : ""
-				}>
-`);
-			}
-
-			ret.push(`\`\`\`bash/-
-${text.trim()}
-\`\`\``);
-
-			if (prePrefixCode) {
-				ret.push(`
-</div>`);
-			}
-
-			return ret.join("\n");
-		}
-	);
-
 	// WebC migration: TODO remove this after full conversion
-	eleventyConfig.addPassthroughCopy({
+	$config.addPassthroughCopy({
+		"src/js/*.js": "js/",
 		"src/_includes/components/throbber.js": "js/throbber.js",
+		"src/_includes/components/possum-mascot.js": "js/possum-mascot.js",
 		"src/_includes/components/throbber.css": "css/throbber.css",
-		"node_modules/@zachleat/heading-anchors/heading-anchors.js": "js/heading-anchors.js",
+		"src/css/fonts/BenchNine-Bold-kern-latin.woff2": "css/fonts/benchnine-bold.woff2",
+		"src/css/fonts/RobotoMono-Regular-kern-latin.woff2": "css/fonts/robotomono-regular.woff2",
+		"src/css/fonts/RobotoMono-Regular-kern-latinext.woff2": "css/fonts/robotomono-regular-ext.woff2",
 	});
 
-	eleventyConfig.addPassthroughCopy({
-		"node_modules/@11ty/logo/assets/logo-bg.svg": "img/logo-github.svg",
-		"node_modules/@11ty/logo/assets/open-graph.jpg": "img/open-graph.jpg",
-		"node_modules/@11ty/logo/img/logo-784x1093.png": "img/logo.png",
-		"node_modules/@11ty/logo/img/logo-200x200.png": "img/logo-github.png",
-		"node_modules/@11ty/logo/img/logo-96x96.png": "img/favicon.png",
-		"node_modules/speedlify-score/speedlify-score.js": "js/speedlify-score.js",
-		"node_modules/@zachleat/seven-minute-tabs/seven-minute-tabs.js":
-			"js/seven-minute-tabs.js",
-		"node_modules/lite-youtube-embed/src/lite-yt-embed.js": `js/lite-yt-embed.js`,
+	$config.addPassthroughCopy({
+		[resolveModule("@11ty/logo/assets/logo-bg.svg")]: "img/logo-github.svg",
+		// [resolveModule("@11ty/logo/assets/open-graph.jpg")]: "img/open-graph.jpg",
+		[resolveModule("@11ty/logo/img/logo-784x1093.png")]: "img/logo.png",
+		[resolveModule("@11ty/logo/img/logo-200x200.png")]: "img/logo-github.png",
+		[resolveModule("@11ty/logo/img/logo-96x96.png")]: "img/favicon.png",
+
+		[resolveModule("speedlify2-score")]: "js/speedlify2-score.js",
+		[resolveModule("@zachleat/seven-minute-tabs")]: "js/seven-minute-tabs.js",
+		[resolveModule("@zachleat/filter-container")]: "js/filter-container.js",
+		[resolveModule("@zachleat/table-of-contents")]: "js/table-of-contents.js",
+		[resolveModule("lite-youtube-embed")]: `js/lite-yt-embed.js`,
 		"node_modules/artificial-chart/artificial-chart.{css,js}": `static/`,
+
+		// Eleventy Editor
+		[resolveModule("@zachleat/line-numbers")]: "js/line-numbers.js",
+		[resolveModule("@zachleat/browser-window")]: "js/browser-window.js",
 	});
 
-	eleventyConfig.addPassthroughCopy("src/img");
-	eleventyConfig.addPassthroughCopy("src/blog/*.png");
-	eleventyConfig.addPassthroughCopy("src/blog/pretty-atom-feed-v3.xsl");
-	eleventyConfig.addPassthroughCopy("src/favicon.ico");
+	// Eleventy Editor
+	// Minification only happens in production
+	await minifyJavaScriptFile(resolveModule("@11ty/client"), "dist/js/eleventy.core.browser.js");
+	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), "dist/js/eleventy.engine-md.browser.js");
+	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), "dist/js/eleventy.engine-liquid.browser.js");
+	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", "dist/js/wa-copy-button.js");
 
-	eleventyConfig.addFilter("matchbannerlink", (links, text) => {
+	$config.addPassthroughCopy({
+		"dist/": "/",
+	});
+
+	$config.addPassthroughCopy("src/img");
+	$config.addPassthroughCopy("src/blog/*.png");
+	$config.addPassthroughCopy("src/blog/pretty-atom-feed-v3.xsl");
+	$config.addPassthroughCopy("src/favicon.ico");
+	$config.addPassthroughCopy({
+		"./node_modules/@awesome.me/webawesome/dist-cdn/": "/static/web-awesome/",
+	});
+
+	$config.addFilter("matchbannerlink", (links, text) => {
 		return links.find((entry) => entry.label.indexOf(text) !== -1);
 	});
 
-	eleventyConfig.addFilter("lighthouseGoodDataCheck", function (data) {
+	$config.addFilter("lighthouseGoodDataCheck", function (data) {
 		return !!data && !("error" in data);
 	});
 
-	eleventyConfig.addFilter("lighthousePerfectScore", function (data) {
+	$config.addFilter("lighthousePerfectScore", function (data) {
 		return !!data && !("error" in data) && data.lighthouse.total === 400;
 	});
 
-	eleventyConfig.addFilter("speedlifyHash", function (site) {
+	$config.addFilter("cardScreenshotHtml", async function (site) {
+		let url = site.demo || site.url;
+		if(!url) {
+			return `<div class="sites-screenshot-container"><img alt="" class="sites-screenshot"></div>`;
+		}
+		if(site.screenshotOverride) {
+			return `<div class="sites-screenshot-container"><img alt="${site.screenshotOverride.alt || ""}" loading="lazy" decoding="async" class="sites-screenshot" src="${site.screenshotOverride.src}" width="${site.screenshotOverride.width}" height="${site.screenshotOverride.height}"></div>`;
+		}
+		return `<div class="sites-screenshot-container">${await shortcodes.getScreenshotHtml("", url, null, site.screenshotSize)}</div>`;
+	});
+
+	$config.addFilter("speedlifyHash", function (site) {
 		if (!site || !site.url) {
 			// console.log( "speedlifyHash: Missing url for", site.name );
 			return;
@@ -486,53 +510,31 @@ ${text.trim()}
 		return shortHash(site.url);
 	});
 
-	eleventyConfig.addFilter("toJSON", function (obj) {
+	$config.addFilter("toJSON", function (obj) {
 		return JSON.stringify(obj);
 	});
 
-	eleventyConfig.addFilter("toSearchEntry", function (str) {
+	$config.addFilter("toSearchEntry", function (str) {
 		return str
 			.replace(/<a class="direct-link"[^>]*>#<\/a\>/g, "")
 			.replace(/[\t]{2,}/g, "\t") // change \t\t\t\t\t\t to \t
 			.replace(/[\n]{2,}/g, "\n"); // change \n\n\n\n\n to \n
 	});
 
-	eleventyConfig.addFilter("humanReadableNum", function (num) {
+	$config.addFilter("humanReadableNum", function (num) {
 		if (num || num === 0) {
 			return HumanReadable.toHumanString(num);
 		}
 		return "";
 	});
 
-	eleventyConfig.addFilter("commaNumber", function (num) {
+	$config.addFilter("commaNumber", function (num) {
 		return commaNumber(num);
 	});
 
-	eleventyConfig.addFilter("displayPrice", function (num) {
-		return new Intl.NumberFormat("en-US", {
-			style: "currency",
-			currency: "USD",
-			minimumFractionDigits: 0,
-		}).format(num);
-	});
+	$config.addFilter("displayUrl", displayUrl);
 
-	eleventyConfig.addFilter("displayUrl", function (url) {
-		url = url.replace("https://", "");
-		url = url.replace("http://", "");
-
-		if (url.endsWith("/index.html")) {
-			url = url.replace("/index.html", "/");
-		}
-
-		// remove trailing slash
-		if (url.endsWith("/")) {
-			url = url.substring(0, url.length - 1);
-		}
-
-		return url;
-	});
-
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"templatelangs",
 		function (languages, page, whitelist, anchor, isinline) {
 			let parentTag = isinline ? "span" : "ul";
@@ -555,13 +557,10 @@ ${text.trim()}
 	);
 
 	// WebC migration: eleventy-version.webc
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"latestVersion",
 		function (versions, config, prefix = "v") {
 			for (let version of versions) {
-				if (version.tag === "LATEST") {
-					continue;
-				}
 				if (version.channel && version.channel !== "latest") {
 					continue;
 				}
@@ -576,6 +575,10 @@ ${text.trim()}
 
 	function randomizeArray(arr) {
 		let a = arr.slice(0);
+		if(process.env.DISABLE_RANDOM) {
+			return a;
+		}
+
 		for (let i = a.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
 			[a[i], a[j]] = [a[j], a[i]];
@@ -584,7 +587,7 @@ ${text.trim()}
 	}
 
 	// Thanks to https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-	eleventyConfig.addFilter("shuffle", (arr, sliceNum) => {
+	$config.addFilter("shuffle", (arr = [], sliceNum = undefined) => {
 		if (Array.isArray(arr)) {
 			if (!sliceNum) {
 				return randomizeArray(arr);
@@ -604,17 +607,26 @@ ${text.trim()}
 		return a;
 	});
 
-	// Thanks to https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
-	eleventyConfig.addFilter("randompick", (arr) => {
-		if (Array.isArray(arr)) {
-			return arr[Math.floor(Math.random() * arr.length)];
+	function getRandomArrayEntry(arr) {
+		if(process.env.DISABLE_RANDOM) {
+			return arr.at(0);
 		}
 
-		let randkey = Object.keys(arr)[Math.floor(Math.random() * arr.length)];
+		let index = Math.floor(Math.random() * arr.length);
+		return arr.at(index);
+	}
+
+	// Thanks to https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array
+	$config.addFilter("randompick", (arr) => {
+		if (Array.isArray(arr)) {
+			return getRandomArrayEntry(arr);
+		}
+
+		let randkey = getRandomArrayEntry(Object.keys(arr));
 		return arr[randkey];
 	});
 
-	eleventyConfig.addFilter("getsize", (arr) => {
+	$config.addFilter("getsize", (arr) => {
 		if (Array.isArray(arr)) {
 			return arr.length;
 		}
@@ -622,8 +634,8 @@ ${text.trim()}
 		return Object.keys(arr).length;
 	});
 
-	eleventyConfig.addShortcode("addToSampleSites", function () {
-		return `<a href="https://github.com/11ty/11ty-website/issues/new/choose"><strong>Want to add your site to this list?</strong></a>`;
+	$config.addShortcode("addToSampleSites", function () {
+		return `<a href="https://github.com/11ty/docs/issues/new/choose"><strong>Want to add your site to this list?</strong></a>`;
 	});
 
 	function testimonialNameHtml(testimonial) {
@@ -637,20 +649,38 @@ ${text.trim()}
 		return avatarHtml + testimonial.name;
 	}
 
-	eleventyConfig.addShortcode("testimonialNameHtml", testimonialNameHtml);
+	$config.addShortcode("testimonialNameHtml", testimonialNameHtml);
 
-	eleventyConfig.addShortcode("testimonial", function (testimonial) {
+	$config.addShortcode("testimonial", function (testimonial) {
 		let nameHtml = testimonialNameHtml(testimonial);
 		return `<blockquote><p>${
 			!testimonial.indirect ? `“` : ``
 		}${testimonial.text}${!testimonial.indirect ? `” <span class="bio-source">—${shortcodes.link(testimonial.source, nameHtml)}</span>` : ``}</p></blockquote>`;
 	});
 
-	eleventyConfig.addFilter("filterBusinessPeople", function (authors) {
+	$config.addFilter("filterBusinessPeople", function (authors) {
 		return Object.values(authors).filter((entry) => !!entry.business_url);
 	});
 
-	eleventyConfig.addFilter("isBusinessPerson", function (supporter) {
+	// Their business_url, preferring the matching entry from their built sites so the screenshot is shared with the rest of the site.
+	$config.addFilter("businessSiteUrl", function (author) {
+		let host = (url) => {
+			try {
+				return new URL(url).hostname.replace(/^www\./, "");
+			} catch (e) {
+				return undefined;
+			}
+		};
+
+		let businessHost = host(author.business_url);
+		let match = (author.sites || []).find(
+			(site) => businessHost && host(site.url) === businessHost
+		);
+
+		return match ? match.url : author.business_url;
+	});
+
+	$config.addFilter("isBusinessPerson", function (supporter) {
 		return (
 			supporter &&
 			supporter.isMonthly &&
@@ -659,7 +689,7 @@ ${text.trim()}
 		);
 	});
 
-	eleventyConfig.addFilter(
+	$config.addFilter(
 		"isSupporter",
 		function (
 			supporters,
@@ -687,36 +717,11 @@ ${text.trim()}
 		}
 	);
 
-	eleventyConfig.addShortcode(
-		"supporterAmount",
-		function (amount, maxAmount = 2000) {
-			// mostly fibonacci
-			let increments = [
-				5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584,
-			];
-			let incrementCounter = 0;
-			let fullHearts = [];
-			let emptyHearts = [];
-			let j = 0;
-			for (let k = amount; j <= k; j += increments[incrementCounter]) {
-				fullHearts.push("🎈");
-				incrementCounter++;
-			}
-			for (; j <= maxAmount; j += increments[incrementCounter]) {
-				emptyHearts.push("🎈");
-				incrementCounter++;
-			}
-			return `${fullHearts.join(
-				""
-			)}<span class="supporters-hearts-empty">${emptyHearts.join("")}</span>`;
-		}
-	);
-
-	eleventyConfig.addFilter("toISO", (dateObj) => {
+	$config.addFilter("toISO", (dateObj) => {
 		return dateObj.toISOString();
 	});
 
-	eleventyConfig.addFilter("newsDate", (dateObj, format = "yyyy LLLL dd") => {
+	$config.addFilter("newsDate", (dateObj, format = "yyyy LLLL dd") => {
 		if (typeof dateObj === "string") {
 			return DateTime.fromISO(dateObj).toFormat(format);
 		} else if (typeof dateObj === "number") {
@@ -725,7 +730,7 @@ ${text.trim()}
 		return DateTime.fromJSDate(dateObj).toFormat(format);
 	});
 
-	eleventyConfig.addFilter("objectFilterNot", (obj, compareKey) => {
+	$config.addFilter("objectFilterNot", (obj, compareKey) => {
 		let newObj = {};
 		for (let j in obj) {
 			if (!obj[j][compareKey]) {
@@ -735,7 +740,7 @@ ${text.trim()}
 		return newObj;
 	});
 
-	eleventyConfig.addFilter("rankSortByNumericKey", (arr, ...keys) => {
+	$config.addFilter("rankSortByNumericKey", (arr, ...keys) => {
 		return arr
 			.filter((entry) => true)
 			.sort((a, b) => {
@@ -749,7 +754,7 @@ ${text.trim()}
 			});
 	});
 
-	eleventyConfig.addFilter(
+	$config.addFilter(
 		"calc",
 		(sites, type, key, greaterThanOrEqualTo = 1) => {
 			let sum = 0;
@@ -790,9 +795,9 @@ ${text.trim()}
 		}
 	);
 
-	eleventyConfig.addFilter("findBy", findBy);
+	$config.addFilter("findBy", findBy);
 
-	eleventyConfig.addFilter("findSiteDataByUrl", (url, sites) => {
+	$config.addFilter("findSiteDataByUrl", (url, sites) => {
 		let sitesArr = sites;
 		if (!Array.isArray(sitesArr)) {
 			sitesArr = Object.values(sites);
@@ -814,60 +819,75 @@ ${text.trim()}
 		}
 	});
 
-	eleventyConfig.addFilter("repeat", (number, str) => {
+	$config.addFilter("repeat", (number, str) => {
 		if (number > 0) {
 			return str + new Array(number).join(str);
 		}
 		return "";
 	});
 
-	eleventyConfig.addFilter("values", (obj) => {
+	$config.addFilter("values", (obj) => {
 		return Object.values(obj);
 	});
 
-	eleventyConfig.addFilter("sortAuthors", (authors) => {
+	$config.addFilter("sortAuthors", (authors) => {
 		return Object.values(authors).filter(author => !author.name.startsWith("twitter:")).sort((a, b) => {
 			return b.sites.length - a.sites.length;
 		});
 	});
 
-	eleventyConfig.addFilter("cleanAuthorName", cleanName);
+	$config.addFilter("cleanAuthorName", cleanName);
 
-	eleventyConfig.addFilter("head", (arr, num) => {
+	// GitHub authors from a page’s imported git history, oldest contribution first
+	$config.addFilter("pageAuthors", (authors) => {
+		if (!Array.isArray(authors)) {
+			return [];
+		}
+
+		return authors.filter((author) => {
+			// Only the api import route has a login (and therefore an avatar)
+			return (
+				author?.url?.startsWith("https://github.com/") &&
+				!author.name.endsWith("[bot]") &&
+				!hiddenAuthors.has(author.name)
+			);
+		});
+	});
+
+	// Newest commit date from a page’s imported git history
+	$config.addFilter("pageLastModified", (commits) => {
+		if (!Array.isArray(commits)) {
+			return;
+		}
+
+		return commits
+			.map((commit) => commit.date)
+			.filter(Boolean)
+			.sort()
+			.pop();
+	});
+
+	$config.addFilter("head", (arr, num) => {
 		return num ? arr.slice(0, num) : arr;
 	});
 
-	eleventyConfig.addFilter("headafter", (arr, num) => {
+	$config.addFilter("headafter", (arr, num) => {
 		return num ? arr.slice(num) : arr;
 	});
 
-	eleventyConfig.addFilter("supportersFacepile", (supporters) => {
+	$config.addFilter("filterSupportersActive", (supporters) => {
+		// workaround a bug in the open collective API
+		const ALLOWED_SLUGS = [
+			"superluxuryreps"
+		];
+
 		return supporters.filter((supporter) => {
-			return supporter.status === "ACTIVE" && !supporter.hasDefaultAvatar && [
-				"bca-account1", // website is buycheapaccounts.com
-				"baocasino", // gambling
-				"woorke", // sells social media accounts
-				"suominettikasinot24", // gambling
-				"masonslots", //gambling
-				"trust-my-paper", // selling term papers
-				"kiirlaenud", // some quick loans site
-				"kajino-bitcoin", // crypto
-				"seo25-com", // selling website traffic
-				"relief-factor", // profile link was some weird PDF
-				"targetedwebtraffic", // selling website traffic
-				"forexbrokerz", // crypto
-				"viewality-media", // broken site on wix?
-				"aviator-game1", // gambling
-				"igrovye-avtomaty", // gambling
-				"sidesmedia", // selling social media
-				"best-casinos-australia-bca", // gambling
-				"buy-tiktok-likes", // selling social media
-			].includes(supporter.slug) === false;
+			return ALLOWED_SLUGS.includes(supporter.slug) || supporter.status === "ACTIVE";
 		});
 	});
 
 	// Sort an object that has `order` props in values. Return an array
-	eleventyConfig.addFilter("sortObjectByOrder", (obj) => {
+	$config.addFilter("sortObjectByOrder", (obj) => {
 		let arr = [];
 		for (let key in obj) {
 			arr.push(obj[key]);
@@ -877,13 +897,20 @@ ${text.trim()}
 		});
 	});
 
-	// Case insensitive check an object for a key
-	eleventyConfig.addFilter("has", objectHas);
+	// Ranked sites first (lowest rank wins), unranked sites after in random order.
+	$config.addFilter("sortBySpeedlifyRank", (obj, ranks = {}) => {
+		return randomizeArray(Object.values(obj)).sort((a, b) => {
+			return (ranks[a.demo] ?? Infinity) - (ranks[b.demo] ?? Infinity) || 0;
+		});
+	});
 
-	let slugify = eleventyConfig.getFilter("slugify");
+	// Case insensitive check an object for a key
+	$config.addFilter("has", objectHas);
+
+	let slugify = $config.getFilter("slugify");
 
 	// Case insensitive check an object for a key
-	eleventyConfig.addShortcode("authorLink", (authors, name) => {
+	$config.addShortcode("authorLink", (authors, name) => {
 		let html = [];
 
 		if (name) {
@@ -905,7 +932,7 @@ ${text.trim()}
 		return html.join("");
 	});
 
-	eleventyConfig.addFilter(
+	$config.addFilter(
 		"convertCommunityLinkToSiteCard",
 		function ({ url, author, title }) {
 			/*
@@ -919,7 +946,7 @@ to:
 <div class="sites-site-vert">
   <a href="{{ site.url }}" class="elv-externalexempt">
     <div class="sites-screenshot-container">
-      {% getScreenshotHtml site.fileSlug, site.url %}
+      {% getScreenshotHtml "", site.url %}
     </div>
   </a>
 </div> */
@@ -933,16 +960,7 @@ to:
 		}
 	);
 
-	eleventyConfig.addFilter("getStackblitzUrl", function (url, cmd) {
-		if (url.startsWith("https://github.com/")) {
-			let s = url.split("/");
-			return `https://stackblitz.com/github/${s[3]}/${s[4]}${
-				cmd ? `?terminal=${encodeURIComponent(cmd)}` : ""
-			}`;
-		}
-	});
-
-	eleventyConfig.addShortcode(
+	$config.addShortcode(
 		"youtubeEmbed",
 		function (slug, label, startTime) {
 			if (label) {
@@ -979,7 +997,7 @@ to:
 		}
 	);
 
-	eleventyConfig.addFilter("injectAvatars", function (content) {
+	$config.addFilter("injectAvatars", function (content) {
 		return content
 			.split("Eleventy")
 			.join(
@@ -987,13 +1005,73 @@ to:
 			);
 	});
 
-	eleventyConfig.addFilter("packageManagerCodeTransform", (content, type) => {
+	$config.addFilter("packageManagerCodeTransform", (content, type) => {
 		if(type === "yarn") {
 			return content.replaceAll("npx @11ty/", "yarn exec ");
 		} else if(type === "pnpm") {
 			return content.replaceAll("npx @11ty/", "pnpm exec ");
 		}
 		return content;
+	});
+
+	$config.addFilter("opencollectiveTier", (supporters = [], tier = undefined) => {
+		return supporters.filter(s => s.isMonthly && (!tier || s?.tier?.slug == tier));
+	});
+
+	/*
+	 * JavaScript Pretty Date
+	 * Copyright (c) 2011 John Resig (ejohn.org)
+	 * Licensed under the MIT and GPL licenses.
+	 *
+	 * Floor for minutes/hours, Round for days and weeks
+	 */
+	$config.addFilter("timeDiff", dateStr => {
+		let diff = (Date.now() - Date.parse(dateStr)) / 1000;
+		let day_diff = Math.round(diff / 86400);
+
+		if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 ) {
+			return;
+		}
+
+		let result = day_diff == 0 && (
+				diff < 60 && "now" ||
+				diff < 120 && "1 minute ago" ||
+				diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
+				diff < 7200 && "1 hour ago" ||
+				diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
+			day_diff == 1 && "1 day ago" || // Yesterday
+			day_diff < 7 && day_diff + " days ago" ||
+			day_diff <= 11 && "1 week ago" ||
+			day_diff < 31 && Math.round( day_diff / 7 ) + " weeks ago";
+
+		return result;
+	})
+
+	$config.addFilter("normalizeVersion", (version = "") => {
+		if(version.startsWith("v")) {
+			return version.slice(1);
+		}
+		return version;
+	})
+
+		// Remove after https://github.com/11ty/eleventy/issues/3668
+	const TIME_ZONE = "America/Chicago";
+	$config.addDateParsing(function(dateValue) {
+		let localDate;
+		if(dateValue instanceof Date) { // override YAML dates
+			localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(TIME_ZONE, { keepLocalTime: true });
+		} else if(typeof dateValue === "string") { // override String dates
+			localDate = DateTime.fromISO(dateValue, { zone: TIME_ZONE });
+		} else {
+			let filepathRegex = this.page.inputPath.match(/(\d{4}-\d{2}-\d{2})/);
+			if (filepathRegex !== null) {
+				localDate = DateTime.fromISO(filepathRegex[1], { zone: TIME_ZONE });
+			}
+		}
+
+		if (localDate?.isValid) {
+			return localDate;
+		}
 	});
 };
 

@@ -15,20 +15,15 @@
 				{%- if site.source_url %}<div><a href="{{ site.source_url }}" class="elv-externalexempt">Source Code</a></div>{% endif -%}
 			</div>
 		</em>
+		{%- if site.demo and showSpeedlifyScores -%}
 		<div class="list-bare-desc list-bare-desc-avatar site-score">
-			{%- set hash = site | speedlifyHash %}
-			{%- if hash -%}
-				<a href="https://www.11ty.dev/speedlify/#site-{{ hash }}" class="elv-externalexempt nound">
-					<is-land on:visible import="/js/speedlify-score.js">
-						<speedlify-score speedlify-url="https://www.11ty.dev/speedlify/" hash="{{ hash }}" score weight rank></speedlify-score>
-					</is-land>
-				</a>
-			{%- endif -%}
+			<is-land on:visible import="/js/speedlify2-score.js"><speedlify2-score speedlify-url="https://www.speedlify.dev/" url="{{ site.demo }}"></speedlify2-score></is-land>
 		</div>
+		{%- endif -%}
 		{%- endif %}
 	</div>
 	<div class="sites-screenshot-container">
-		{% getScreenshotHtml site.fileSlug, site.url %}
+		{% getScreenshotHtml "", site.url %}
 		<div class="sites-screenshot-container-icons">{% hostavatar site.url %} {% generatoravatar site.url %}</div>
 	</div>
 </div>

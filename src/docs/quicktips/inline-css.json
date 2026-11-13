@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "987655c0b33955168a087ae6874c7d43fbffbd1f",
+			"url": "https://github.com/11ty/docs/commit/987655c0b33955168a087ae6874c7d43fbffbd1f",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-06-24T18:54:23.000Z",
+			"message": "Removes all mention of clean-css for #2330",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "zgreen",
+			"url": "https://github.com/zgreen",
+			"avatarUrl": "/img/docs-avatars/1700355-cFTL6wN9X0GA.jpeg"
+		}
+	]
+}

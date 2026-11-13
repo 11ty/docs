@@ -9,13 +9,11 @@ eleventyNavigation:
 
 # Get Next or Previous Collection Item Universal Filters
 
-{% tableofcontents %}
-
 ## `getPreviousCollectionItem` and `getNextCollectionItem` {% addedin "0.11.0" %}
 
 Fetch the previous and next items in a collection when you pass in the current `page` object.
 
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "nextprev"} %}
   <div id="nextprev-liquid" role="tabpanel">
 
@@ -52,7 +50,7 @@ Fetch the previous and next items in a collection when you pass in the current `
 Useful when you’d like to link to the previous or next template in your collection:
 
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "nextprevlink"} %}
   <div id="nextprevlink-liquid" role="tabpanel">
 
@@ -94,7 +92,7 @@ The [Collections documentation](/docs/collections/#sorting) outlines the default
 The `getCollectionItemIndex` filter returns the 0-based numeric index of the current (or passed) page in the collection.
 
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "getitemindex"} %}
   <div id="getitemindex-liquid" role="tabpanel">
 
@@ -138,7 +136,7 @@ Or pass it in:
 For completeness, a `getCollectionItem` filter is also included that fetches the current page from a collection.
 
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "getitem"} %}
   <div id="getitem-liquid" role="tabpanel">
 

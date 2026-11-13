@@ -1,8 +1,12 @@
 import semver from "semver";
 import versions from "../src/_data/versions.js";
 
+const newestPublishedVersion = versions
+	.filter((v) => v.tag !== "LATEST" && !v.prerelease)
+	.shift();
+
 // Warning: using 2.0.0 excludes 2.0.0-beta.x, 2.0.0-alpha.x releases
-const MINIMUM_VERSION_SHOWN = "1.99999.0";
+const MINIMUM_VERSION_SHOWN = "0.99999.0";
 
 const COERCE = {
 	// should have `v` prefix
@@ -11,7 +15,7 @@ const COERCE = {
 
 function isCoreRelease(version) {
 	// For version text that starts with a number (plugins don’t do this)
-	return ("" + version).match(/^v{0,1}[0-9]/);
+	return ("" + version).match(/^v?[0-9]/);
 }
 
 function isPreRelease(version) {
@@ -30,9 +34,6 @@ function isPreReleaseOf(version, releasedVersion) {
 
 // coerce -canary to -beta or if stable version is released, strips -canary and -beta
 function coerceVersion(version) {
-	const newestPublishedVersion = versions
-		.filter((v) => v.tag !== "LATEST")
-		.shift();
 	if (!isCoreRelease(version)) {
 		return version;
 	}
@@ -68,24 +69,30 @@ function coerceVersion(version) {
 function addedIn(version, tag, extraClass) {
 	let beforeText = "Added in ";
 	if (isCoreRelease(version)) {
-		// Show no content for super old version notes
+		// Skip super old version notes
 		if (semver.lt(version, MINIMUM_VERSION_SHOWN)) {
 			return "";
 		}
-		const newestPublishedVersion = versions
-			.filter((v) => v.tag !== "LATEST")
-			.shift();
-		if (
-			isPreRelease(version) &&
-			semver.gt(version, newestPublishedVersion.tag)
-		) {
-			beforeText = "Pre-release only: ";
+
+		let newestPublishedVersionTag = newestPublishedVersion.tag;
+		if(newestPublishedVersionTag.startsWith("v")) {
+			newestPublishedVersionTag = newestPublishedVersionTag.slice(1);
+		}
+
+		if (isPreRelease(version)) {
+			if(semver.gt(version, newestPublishedVersionTag)) {
+				beforeText = "Pre-release only: ";
+			}
+		} else {
+			let newestPublishedMajorVersion = parseInt(newestPublishedVersionTag.split(".")[0]);
+			if(semver.gt(version, newestPublishedVersionTag) || semver.gte(version, `${newestPublishedMajorVersion + 1}.0.0`)) {
+				beforeText = "Upcoming in: ";
+			}
 		}
 	}
-
 	tag = tag || "span";
 
-	return `<${tag} data-pagefind-ignore eleventy:id-ignore class="minilink minilink-addedin${
+	return `<${tag} data-toc-exclude data-pagefind-ignore eleventy:id-ignore class="minilink minilink-addedin${
 		extraClass ? ` ${extraClass}` : ""
 	}" data-uncoerced-version="${version}">${beforeText}${coerceVersion.call(
 		this,
@@ -93,4 +100,8 @@ function addedIn(version, tag, extraClass) {
 	)}</${tag}>`;
 }
 
-export { addedIn, coerceVersion };
+function greaterThan(first, second) {
+	return semver.gt(first, second);
+}
+
+export { addedIn, coerceVersion, greaterThan };

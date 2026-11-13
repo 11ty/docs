@@ -1,0 +1,5 @@
+{
+  "npm": "eleventy-auto-cache-buster",
+  "author": "Denperidge",
+  "description": " A content-hash based cache buster, not requiring any filters or code changes aside from enabling the plugin!"
+}

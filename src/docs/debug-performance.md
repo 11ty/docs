@@ -1,17 +1,25 @@
 ---
 eleventyNavigation:
-  key: Debug Performance
-  parent: Debug Mode
+  parent: Command Line Usage
+  key: Analyzing Build Performance
   excerpt: How to analyze your Eleventy build to find bottlenecks.
-  order: 1
 excludeFromSidebar: true
 ---
+# Analyzing Build Performance
 
-# Performance
+## Performance Tips
 
-{% callout "info" %}You’ll probably want to read the <a href="/docs/debugging/">Debug mode documentation</a> before continuing here.{% endcallout %}
+- You can analyze your [project’s specific build performance metrics (via DEBUG or Node.js CPU Profiling)](/docs/debug-performance/).
+- [Memoize costly Shortcodes](/docs/shortcodes/#memoize-shortcodes) and [Filters](/docs/filters/#memoize-filters) (we typically see the most expensive ones are those performing JavaScript, CSS, or HTML minification)
+- Take [passthrough copy out of your build-loop with the Eleventy Dev Server](/docs/copy/#emulate-passthrough-copy-during-serve).
+- Use the [Image HTML Transform method to optimize images on-request during development](/docs/plugins/image.md#build-performance).
+- Use [`--incremental` for Incremental builds](/docs/usage/#incremental-for-partial-incremental-builds).
+- Use the [Directory Output plugin](/docs/plugins/directory-output/) to report per-template performance and file size information.
+- Making network requests (to an API) can be expensive! Use the [Fetch utility](/docs/plugins/fetch/) to create a local cache of external network requests (use `duration` to configure how long the cache should last).
 
-Eleventy by default will warn you if certain pieces of your build take longer than 8% of your total build time. This list includes:
+## Warnings
+
+Eleventy (by default) will warn you if certain pieces of your build take longer than 8% of your total build time. This list includes:
 
 - [Filters/Helpers/11ty.js JavaScript Functions](/docs/filters/)
 - [Shortcodes](/docs/shortcodes/)
@@ -20,19 +28,21 @@ Eleventy by default will warn you if certain pieces of your build take longer th
 
 This list is not considered to be exhaustive. It’s just what has been implemented thus far!
 
-## Show All Performance Measurements
+## Show Debug Measurements
+
+{% callout "info" %}You’ll probably want to read the <a href="/docs/debugging/">Debug mode documentation</a> before continuing here.{% endcallout %}
 
 {% addedin "0.11.0" %} You can use the following `debug` command to show performance measurements for all of these entries (not just those that take longer than 8%).
 
 Learn more about [environment variables for debug output](/docs/debugging/#commands).
 
-#### macOS or Linux (et al)
+### macOS or Linux (et al)
 
 ```bash
 DEBUG=Eleventy:Benchmark* npx @11ty/eleventy
 ```
 
-#### Windows
+### Windows
 
 ```bash
 set DEBUG=Eleventy:Benchmark* & npx @11ty/eleventy
@@ -53,3 +63,22 @@ Benchmark (Aggregate): Template Write took 2088ms (27.6%, called 312×, 6.7ms ea
 ```
 
 Note that while we do make every attempt to make these as accurate as possible, the percentages for these entries may be greater than 100% due to the asynchronous nature of these tasks (passthrough copy especially).
+
+## Node.js CPU Profiling <span id="node-js-profiling"></span>
+
+The most reliable mechanism for tracking down performance issues in any Node.js based code is to use Node’s built-in [CPU Profiling](https://nodejs.org/docs/latest/api/cli.html#--cpu-prof) feature (Node v12+). You can run Node with the `--cpu-prof` argument and point to the Eleventy bin like so (noting that `--quiet` is an Eleventy CLI argument and you can add any others there too):
+
+```sh
+# Instead of:
+# npx @11ty/eleventy --quiet
+
+# Use this:
+npx --node-options="--cpu-prof" @11ty/eleventy --quiet
+
+# Alternatively, you can try this:
+# node --cpu-prof ./node_modules/.bin/eleventy --quiet
+```
+
+This will write a `CPU.***.cpuprofile` file to the same directory.
+
+[SpeedScope](https://www.speedscope.app/) is a great web site that will help you look at a visual representation of this data, with a special nod to the `Left Heavy` and `Sandwich` visuals!

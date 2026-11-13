@@ -1,5 +1,8 @@
 ---
-headerTitle: Eleventy Community
+eleventyNavigation:
+  parent: Why Eleventy?
+  key: Testmonials
+excludeFromSidebar: true
 ---
 
 # Testimonials

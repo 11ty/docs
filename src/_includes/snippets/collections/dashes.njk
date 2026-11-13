@@ -1,41 +1,28 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "collections-dashwarn"} %}
   <div id="collections-dashwarn-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 <ul>
 {%- for post in collections.post-with-dash -%}
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="collections-dashwarn-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{% set codeBlock %}{% raw %}
 <ul>
 {%- for post in collections['post-with-dash'] -%}
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="collections-dashwarn-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export function render(data) {
   return `<ul>
     ${data.collections['post-with-dash']
@@ -43,16 +30,11 @@ export function render(data) {
       .join("\n")}
   </ul>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="collections-dashwarn-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 exports.render = function (data) {
   return `<ul>
     ${data.collections['post-with-dash']
@@ -60,10 +42,8 @@ exports.render = function (data) {
       .join("\n")}
   </ul>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

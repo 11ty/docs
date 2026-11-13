@@ -1,11 +1,8 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "pagedobj"} %}
   <div id="pagedobj-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 ---
 pagination:
   data: testdata
@@ -20,16 +17,11 @@ testdata:
   <li>{{ item }}={{testdata[item] }}</li>
 {% endfor -%}
 </ol>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="pagedobj-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{% set codeBlock %}{% raw %}
 ---
 pagination:
   data: testdata
@@ -44,16 +36,11 @@ testdata:
   <li>{{ item }}={{testdata[item] }}</li>
 {% endfor -%}
 </ol>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="pagedobj-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export const data = {
 	pagination: {
 		data: "testdata",
@@ -75,16 +62,11 @@ export function render(data) {
 			.join("")}
 	</ol>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 <div id="pagedobj-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 exports.data = {
 	pagination: {
 		data: "testdata",
@@ -106,10 +88,8 @@ exports.render = function (data) {
 			.join("")}
 	</ol>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

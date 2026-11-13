@@ -7,13 +7,10 @@ eleventyNavigation:
 
 # Front Matter Data
 
-{% tableofcontents %}
-
 Add data in your template front matter, like this:
 
 {% codetitle "YAML", "Syntax" %}
-
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 title: My page title
 ---
@@ -21,7 +18,8 @@ title: My page title
 <!doctype html>
 <html>
 …
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 The above is using [YAML syntax](https://learnxinyminutes.com/docs/yaml/). You can [use other formats too](#front-matter-formats).
 
@@ -51,7 +49,7 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 
 ### JSON Front Matter
 
-```html
+{%- set codeBlock %}{% raw %}
 ---json
 {
   "title": "My page title"
@@ -62,16 +60,15 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 <html>
 	…
 </html>
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("html") | safe }}
 
 ### JavaScript Front Matter <span id="javascript-front-matter"></span>
 
 {% addedin "3.0.0-alpha.18" %}You can use any arbitrary JavaScript here and we’ll export all of the top level variables and functions to your template. This uses the [`node-retrieve-globals` library](https://github.com/zachleat/node-retrieve-globals).
 
 {% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-```html
+{%- set codeBlock %}{% raw %}
 ---js
 const title = "My page title";
 
@@ -82,8 +79,8 @@ function currentDate() {
 
 <h1>{{ title }}</h1>
 <p>Published on {{ currentDate() }}</p>
-```
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 
 _Warning: while Nunjucks and Liquid syntax are similar, the above example will **not** work in Liquid. Liquid does not allow function execution in output (e.g. `{% raw %}{{ currentDate() }}{% endraw %}`)._
 
@@ -91,9 +88,7 @@ _Warning: while Nunjucks and Liquid syntax are similar, the above example will *
 <details>
 <summary><strong>More Advanced Examples of JavaScript Front Matter</strong></summary>
 
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 ---js
 // async-friendly
 const myAsyncString = await Promise.resolve("HELLO FROM THE OTHER SIDE");
@@ -109,20 +104,17 @@ const { noop } = await import("@zachleat/noop");
 console.log({ noop });
 ---
 <!-- The template content goes here -->
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 </details>
 
 #### JavaScript Object Front Matter
 
-In previous versions of Eleventy, `js` front matter was required to use a JavaScript object notation. This method is still supported moving forward.
+`js` front matter also supports JavaScript object notation (though it isn’t as pretty).
 
 {% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-```html
+{%- set codeBlock %}{% raw %}
 ---js
 {
   title: "My page title",
@@ -135,8 +127,8 @@ In previous versions of Eleventy, `js` front matter was required to use a JavaSc
 
 <h1>{{ title }}</h1>
 <p>Published on {{ currentDate() }}</p>
-```
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("html") | safe }}
 
 _Warning: while Nunjucks and Liquid syntax are similar, the above example will **not** work in Liquid. Liquid does not allow function execution in output (e.g. `{% raw %}{{ currentDate() }}{% endraw %}`)._
 
@@ -144,7 +136,6 @@ _Warning: while Nunjucks and Liquid syntax are similar, the above example will *
 
 You can [customize Front Matter Parsing](/docs/data-frontmatter-customize/) in Eleventy to add your own custom format, and we provide examples for:
 
-- [JavaScript in front matter](/docs/data-frontmatter-customize/#example-use-javascript-in-your-front-matter).
 - [TOML in front matter](/docs/data-frontmatter-customize/#example-using-toml-for-front-matter-parsing).
 - You can also configure [front matter for customized excerpts](/docs/data-frontmatter-customize/).
 

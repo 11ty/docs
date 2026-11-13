@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "921bb643151f1b1eb4e9823a013af40b6cdce24e",
+			"url": "https://github.com/11ty/docs/commit/921bb643151f1b1eb4e9823a013af40b6cdce24e",
+			"author": {
+				"name": "tmcw",
+				"url": "https://github.com/tmcw",
+				"avatarUrl": "/img/docs-avatars/32314-BWvl9mNPWtbN.jpeg"
+			},
+			"date": "2026-01-29T01:18:34.000Z",
+			"message": "Add introductory information to Sass template language",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "/img/docs-avatars/32314-BWvl9mNPWtbN.jpeg"
+		}
+	]
+}

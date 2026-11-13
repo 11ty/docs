@@ -4,6 +4,7 @@ eleventyNavigation:
   key: JavaScript Template Literals
 layout: layouts/langs.njk
 excludeFromSidebar: true
+removedFeature: true
 ---
 
 | Eleventy Short Name | File Extension | npm Package |

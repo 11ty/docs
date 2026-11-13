@@ -1,0 +1,16 @@
+.subhed {
+	font-family: system-ui, sans-serif;
+	font-size: 0.9375em; /* 15px /16 */
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin: 0;
+	color: #666;
+	text-align: center;
+	border: none;
+}
+@media (prefers-color-scheme: dark) {
+	.subhed {
+		color: #adadad;
+	}
+}

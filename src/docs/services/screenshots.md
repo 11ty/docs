@@ -7,8 +7,6 @@ eleventyNavigation:
 communityLinksKey: api-services-screenshot
 ---
 
-{% tableofcontents %}
-
 Feed this runtime service a URL and it returns a fully rendered screenshot image from that page (using Puppeteer)
 
 <div class="youtube-related">
@@ -51,7 +49,7 @@ Try it out on the [Eleventy API Explorer](https://api-explorer.11ty.dev/).
 
 {% callout "demo" %}
 
-<img src="https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.11ty.dev%2Fdocs%2F/small/9:16/bigger/" class="screenshot screenshot-first-example" width="375" height="667" loading="lazy" decoding="async" alt="Screenshot of 11ty.dev">
+<img src="https://v1.screenshot.11ty.dev/https%3A%2F%2Fwww.11ty.dev%2Fdocs%2F/small/9:16/bigger/" class="screenshot screenshot-first-example" width="375" height="667" loading="lazy" decoding="async" alt="Screenshot of 11ty.dev" eleventy:ignore>
 
 {% endcallout %}
 

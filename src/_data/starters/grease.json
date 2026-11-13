@@ -3,5 +3,6 @@
 	"name": "Grease",
 	"description": "Grease is a website starter that makes building performant, accessible, aesthetic websites fast & frictionless. It uses 11ty, Lightning CSS, and Esbuild, and includes a lightweight, declarative CSS architecture that sets you up for success.",
 	"author": "adamstddrd",
-	"demo": "https://web-grease.netlify.app/"
+	"demo": "https://web-grease.netlify.app/",
+	"featured": true
 }

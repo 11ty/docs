@@ -2,7 +2,8 @@
 eleventyNavigation:
   parent: Template Languages
   key: Nunjucks
-  order: 5
+  order: 2
+  excerpt: Popular language for generating HTML and more
 relatedKey: nunjucks
 relatedTitle: Template Language—Nunjucks
 tags:
@@ -12,13 +13,18 @@ tags:
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                       |
 | ------------------- | -------------- | ------------------------------------------------- |
 | `njk`               | `.njk`         | [`nunjucks`](https://mozilla.github.io/nunjucks/) |
 
-You can override a `.njk` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/languages/).
+| Eleventy version | `nunjucks` version |
+| --- | --- |
+| `@11ty/eleventy@0.x` | `nunjucks@3.x` |
+| `@11ty/eleventy@1.x` | `nunjucks@3.x` |
+| `@11ty/eleventy@2.x` | `nunjucks@3.x` |
+| `@11ty/eleventy@3.x` | `nunjucks@3.x` |
+
+You can override a `.njk` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
 ## Nunjucks Environment Options
 
@@ -345,11 +351,17 @@ This is identical to the synchronous Nunjucks usage.
 
 {% endraw %}
 
+## Warning: Macros are not async-friendly
+
+Per the Nunjucks documentation, [Nunjucks macros are not async-friendly](https://mozilla.github.io/nunjucks/templating.html#macro).
+
+> If you are using the asynchronous API, please be aware that you cannot do anything asynchronous inside macros. This is because macros are called like normal functions. In the future we may have a way to call a function asynchronously. If you do this now, the behavior is undefined.
+
 <div id="warning-the-set-tag-does-not-work-with-async-content"></div>
 
 ## Warning: `set` is not async-friendly
 
-{% callout "warn" %}This is a <a href="/docs/pitfalls/"><strong>Common Pitfall</strong></a>.{% endcallout %}
+{% callout "pitfall" %}This is a <a href="/docs/pitfalls/"><strong>Common Pitfall</strong></a>.{% endcallout %}
 
 [Nunjucks’ {% raw %}`{% set %}`{% endraw %} tag](https://mozilla.github.io/nunjucks/templating.html#set) does not work to capture asynchronous content (e.g. asynchronous shortcodes).
 

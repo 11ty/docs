@@ -2,23 +2,39 @@
 eleventyNavigation:
   parent: Template Languages
   key: EJS
-  order: 9
+  order: 6
+  excerpt: Embedded JavaScript
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
+[EJS](https://ejs.co/), short for _Embedded JavaScript_, is a template language that emphasizes the use of plain JavaScript instead of having its own template syntax. It can be really convenient if you're fluent in JavaScript. As opposed to languages like [Mustache](/docs/languages/mustache/) that bill themselves as 'logic-less', EJS lets you use as much logic as you'd like.
 
 | Eleventy Short Name | File Extension | npm Package                                |
 | ------------------- | -------------- | ------------------------------------------ |
 | `ejs`               | `.ejs`         | [`ejs`](https://www.npmjs.com/package/ejs) |
 
-You can override a `.ejs` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/languages/).
+| Eleventy or Plugin version | `ejs` version |
+| --- | --- |
+| `@11ty/eleventy@0.x` | `ejs@2.x` |
+| `@11ty/eleventy@1.x` | `ejs@3.x` |
+| `@11ty/eleventy@2.x` | `ejs@3.x` |
+| `@11ty/eleventy@3.x` and newer | N/A |
+| `@11ty/eleventy-plugin-ejs@1.x` | `ejs@3.x` |
+
+You can override a `.ejs` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
 ## Installation
 
 The `ejs` templating language was moved out of Eleventy core in v3 and now requires a plugin installation.
 
 * [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
+
+Install from npm:
+
+{%- set codeBlock %}
+npm install @11ty/eleventy-plugin-ejs
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file:
 

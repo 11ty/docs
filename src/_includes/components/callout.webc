@@ -3,16 +3,18 @@
 <!-- level, format, label -->
 <div class="elv-callout" :class="level ? `elv-callout-${level}` : ''">
 	<script webc:type="js">
- 	let labelStr = "";
-	if(customLabel) {
-		labelStr = label;
-	} else if(level === "info" || level === "error") {
-		labelStr = level.toUpperCase() + ":";
-	} else if(level === "warn") {
-		labelStr = "WARNING:";
-	}
+	export default function({ customLabel, label, level }) {
+		let labelStr = "";
+		if(customLabel) {
+			labelStr = label;
+		} else if(level === "info" || level === "error") {
+			labelStr = level.toUpperCase() + ":";
+		} else if(level === "warn") {
+			labelStr = "WARNING:";
+		}
 
-  labelStr ? `<div class="elv-callout-label">${labelStr}</div>` : ""
+		return labelStr ? `<div class="elv-callout-label">${labelStr}</div>` : "";
+	}
 	</script>
 
   <div class="elv-callout-c" @html="content"></div>

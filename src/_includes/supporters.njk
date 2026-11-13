@@ -1,29 +1,31 @@
-<div class="fullwidth-module supporters-tiered supporters-gold">
-	<h3 class="subhed"><strong>Gold Sponsors</strong></h3>
-	<div class="lo-grid">
-	{%- for supporter in opencollective.supporters | shuffle %}{% if supporter.tier.slug == "gold-sponsor" and supporter.isMonthly -%}
-	{%- set nameToSlug = supporter.name | slug | lower -%}
-		<div class="{% if opencollectiveExtra[nameToSlug].containerClass %} {{ opencollectiveExtra[nameToSlug].containerClass }}{% endif %}">
-			<a href="{{ opencollectiveExtra[nameToSlug].href or supporter.website or supporter.profile }}" class="elv-externalexempt" data-supporters-slug="{{ nameToSlug }}" rel="sponsored">{% if opencollectiveExtra[nameToSlug].icon %}{{ opencollectiveExtra[nameToSlug].icon | safe }}<span class="sr-only">{{ supporter.name }}</span>{% else %}{% opencollectiveavatar supporter %}{{ supporter.name }}{% endif %}</a>
+{%- set goldSponsors = opencollective.supporters | opencollectiveTier("gold-sponsor") | filterSupportersActive %}
+<div class="fl">
+{%- if goldSponsors.length > 0 %}
+	<div class="supporters-tiered supporters-gold">
+		<h3 class="subhed"><strong>Gold Sponsors</strong></h3>
+		<div class="lo-grid">
+		{%- for supporter in goldSponsors | shuffle %}
+		{%- set nameToSlug = supporter.name | slugify | lower -%}
+			<div>
+				<a href="{{ supporter.website or supporter.profile }}" class="elv-externalexempt" rel="sponsored">{% opencollectiveavatar supporter %}{{ supporter.name }}</a>
+			</div>
+		{%- endfor %}
 		</div>
-	{%- endif %}{% endfor %}
+	</div>
+{%- endif %}
+	<div class="supporters-tiered supporters-silver">
+		<h3 class="subhed"><strong>{% if goldSponsors.length > 0 %}Silver {% endif %}Sponsors</strong></h3>
+		<div class="facepile facepile-supporters">
+		{%- for supporter in opencollective.supporters | filterSupportersActive | shuffle %}{% if supporter.tier.slug == "silver-sponsor" -%}
+			<a href="{{ supporter.website or supporter.profile }}" class="elv-externalexempt" rel="sponsored">{% opencollectiveavatar supporter %}</a>
+		{%- endif %}{% endfor %}
+		</div>
 	</div>
 </div>
-
-<div class="fullwidth-module supporters-tiered supporters-silver">
-	<h3 class="subhed"><strong>Silver Sponsors</strong></h3>
-	<div class="facepile facepile-supporters">
-	{%- for supporter in opencollective.supporters | supportersFacepile | shuffle %}{% if supporter.tier.slug == "silver-sponsor" and supporter.isMonthly -%}
-		{%- set nameToSlug = supporter.name | slug | lower -%}
-		<a href="{{ supporter.website or supporter.profile }}" class="elv-externalexempt" data-supporters-slug="{{ nameToSlug }}" rel="sponsored">{% opencollectiveavatar supporter %}</a>
-	{%- endif %}{% endfor %}
-	</div>
-</div>
-
 <div class="fullwidth-module">
 	<is-land on:visible on:save-data="false">
 		<template data-island>
-			<h3 class="subhed ta-c"><strong>Supporters</strong></h3>
+			<h3 class="subhed ta-c"><a href="https://opencollective.com/11ty"><strong>{% if opencollective.backersCount %}×{{ opencollective.backersCount }} {% endif %}Supporters</strong></a></h3>
 			<html-fetch src="/imports/supporters.html"></html-fetch>
 		</template>
 	</is-land>

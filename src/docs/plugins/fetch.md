@@ -1,13 +1,13 @@
 ---
 eleventyNavigation:
   key: Fetch
-  order: -0.15
+  title: '<i class="fa-solid fa-bone"></i>Fetch'
+  pinned: true
+  order: 2
   excerpt: A utility to fetch and cache network requests.
 ---
 
 # Fetch
-
-{% tableofcontents %}
 
 _This documentation is written for Eleventy Fetch v5.0+, requiring **Node 18** or newer._
 
@@ -30,10 +30,10 @@ This plugin can save _any_ kind of asset—JSON, HTML, images, videos, etc.
 
 - [`@11ty/eleventy-fetch` on npm](https://www.npmjs.com/package/@11ty/eleventy-fetch)
 
-```
+{%- set codeBlock %}{% raw %}
 npm install @11ty/eleventy-fetch
-```
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 This plugin was formerly known as [`@11ty/eleventy-cache-assets`](https://www.npmjs.com/package/@11ty/eleventy-cache-assets) and was renamed to `@11ty/eleventy-fetch` with v3: [Video Changelog](https://www.youtube.com/watch?v=JCQQgtOcjH4&t=246s).
 
@@ -317,13 +317,15 @@ export default async function () {
 
 ### Change Global Concurrency
 
-```js
+{%- set codeBlock %}{% raw %}
 import Fetch from "@11ty/eleventy-fetch";
 Fetch.concurrency = 4; // default is 10
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 ### DEBUG mode
 
-```js
+{%- set codeBlock %}{% raw %}
 DEBUG=Eleventy:Fetch npx @11ty/eleventy
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}

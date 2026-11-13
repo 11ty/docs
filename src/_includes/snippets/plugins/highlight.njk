@@ -1,54 +1,41 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "highlight", additions: "md,webc"} %}
   <div id="highlight-md" role="tabpanel">
-
-````markdown
+{% set codeBlock %}{% raw %}
 ```js
 function myFunction() {
 	return true;
 }
 ```
-````
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("markdown", undefined, { rawMarkdown: true }) | safe }}
 
-    Optionally specify a language after the start of the markdown fenced code block.
+Optionally specify a language after the start of the markdown fenced code block.
 
   </div>
   <div id="highlight-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 {% highlight js %}
 function myFunction() {
   return true;
 }
 {% endhighlight %}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="highlight-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{% set codeBlock %}{% raw %}
 {% highlight "js" %}
 function myFunction() {
   return true;
 }
 {% endhighlight %}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="highlight-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default function (data) {
 	let code = `
 function myFunction() {
@@ -57,18 +44,14 @@ function myFunction() {
 
 	return this.highlight("js", code);
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 The `highlight` JavaScript function was {% addedin "Syntax Highlighter v4.0.0" %}.
 
   </div>
 	<div id="highlight-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = function (data) {
 	let code = `
 function myFunction() {
@@ -77,9 +60,8 @@ function myFunction() {
 
 	return this.highlight("js", code);
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 The `highlight` JavaScript function was {% addedin "Syntax Highlighter v4.0.0" %}.
 
@@ -87,10 +69,7 @@ The `highlight` JavaScript function was {% addedin "Syntax Highlighter v4.0.0" %
   <div id="highlight-webc" role="tabpanel">
 
 {% codetitle "webc", "Syntax" %}
-
-{% raw %}
-
-```html
+{% set codeBlock %}{% raw %}
 <!-- Requires WebC v0.6.2+ -->
 <!-- Requires Syntax Highlighter v4.2.0+ -->
 
@@ -98,18 +77,18 @@ The `highlight` JavaScript function was {% addedin "Syntax Highlighter v4.0.0" %
 	language="js"
 	webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight"
 >
-	function myFunction() { return true; }
+function myFunction() {
+	return true;
+}
 </syntax-highlight>
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("html") | safe }}
 
 <details>
 <summary>Expand to see an example of importing this as a global component in your configuration file.</summary>
 
 {% codetitle ".eleventy.js" %}
-
-```js
+{% set codeBlock %}{% raw %}
 const pluginWebc = require("@11ty/eleventy-plugin-webc");
 
 export default function (eleventyConfig) {
@@ -121,15 +100,19 @@ export default function (eleventyConfig) {
 		],
 	});
 };
-```
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 {% codetitle "page.webc" %}
 
-```html
+{% set codeBlock %}{% raw %}
 <syntax-highlight language="js">
-	function myFunction() { return true; }
+function myFunction() {
+	return true;
+}
 </syntax-highlight>
-```
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("html") | safe }}
 
 </details>
 
@@ -137,8 +120,7 @@ export default function (eleventyConfig) {
 <summary>Expand to see an example of importing for use anywhere on the page via front matter.</summary>
 
 {% codetitle "page.webc" %}
-
-```html
+{% set codeBlock %}{% raw %}
 ---
 webc:
   components: ./node_modules/@11ty/eleventy-plugin-syntaxhighlight/syntax-highlight.webc
@@ -147,7 +129,8 @@ webc:
 <syntax-highlight language="js">
 	function myFunction() { return true; }
 </syntax-highlight>
-```
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("html") | safe }}
 
 </details>
 

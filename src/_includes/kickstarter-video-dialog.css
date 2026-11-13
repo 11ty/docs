@@ -1,0 +1,77 @@
+
+wa-dialog.promo-dialog:not(:defined) {
+	display: none;
+}
+.promo-dialog {
+	--width: 40em;
+	--spacing: 0;
+}
+.promo-dialog img {
+	max-width: 100%;
+	height: auto;
+}
+.promo-dialog wa-button::part(base) {
+	font-weight: 700;
+}
+.promo-dialog wa-button[variant="brand"]::part(base) {
+	background: var(--brand-ba);
+	color: #fff;
+}
+.promo-dialog p {
+	color: black;
+	padding: 1em;
+}
+.promo-dialog-content {
+	color: #191b22;
+	padding: 1em;
+	line-height: 1.5;
+}
+.promo-footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5em 2em;
+	padding: 1em;
+	justify-content: center;
+}
+.promo-dialog-ks-button {
+	flex-grow: 1;
+	max-width: 25em;
+}
+
+@media (prefers-color-scheme: dark) {
+	.promo-dialog::part(panel) {
+		background-color: #191b22;
+		color: #f1f2f3;
+	}
+	.promo-dialog {
+		--width: 40em;
+		--spacing: 0;
+		color: #f1f2f3;
+		background: #191b22;
+	}
+	.promo-dialog body, .promo-dialog wa-stack {
+		color: #f1f2f3;
+		background: #191b22;
+	}
+	.promo-dialog wa-button::part(base) {
+		background: #00a877;
+		color: #f1f2f3;
+		font-weight: 700;
+	}
+	.promo-dialog-content {
+		color: #f1f2f3;
+		background: #191b22;
+		padding: 1em;
+		line-height: 1.5;
+	}
+	.promo-footer {
+		padding: 1em;
+		background: #191b22;
+		width: 100%;
+	}
+	#promo-dialog wa-button[appearance="plain"]::part(base) {
+		background-color: #191b22;
+		color: #f1f2f3;
+		padding-right: 3em;
+	}
+}

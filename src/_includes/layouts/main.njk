@@ -2,6 +2,11 @@
 layout: layouts/base.njk
 headerClass: elv-header-default
 ---
+<div class="elv-skip">
+	<a href="#skip-nav">Skip to navigation</a>
+	<a href="#skip-content">Skip to main content</a>
+</div>
+
 {% include "header.njk" %}
 
 {% if config.outdated -%}
@@ -11,26 +16,26 @@ headerClass: elv-header-default
 <div class="elv-callout-sticky">{% callout "info" %}These docs are for an upcoming version of Eleventy and <em>subject to change</em>—take extra care before linking here! Look to the <a href="https://www.11ty.dev/docs/">latest docs</a> instead (or full <a href="https://www.11ty.dev/docs/versions/">release history</a>).{% endcallout %}</div>
 {% endif -%}
 
-<main class="elv-layout elv-layout-toc" {% if not excludeFromSearch %} data-pagefind-body{% endif %}>
+<main class="elv-layout elv-layout-toc{% if classAdditions.main %} {{ classAdditions.main }}{% endif %}" {% if not excludeFromSearch %} data-pagefind-body{% endif %}>
 	{% include "components/docs-toc.njk" %}
-
+	{%- if not excludePageToc %}{% include "components/page-toc.njk" %}{% endif %}
 	<div id="skip-content">
 		<heading-anchors selector="h2,h3,h4">{{ content | safe }}</heading-anchors>
 	</div>
 </main>
 
-<footer class="elv-footer elv-layout elv-layout-toc">
-	{% include "newsletter-signup.njk" %}
-{% if ignoreSupporters %}{% else %}
+{% include "logo-cloud.njk" %}
+
+<footer class="elv-footer-wrap">
+	{% include "components/announcement.njk" %}
+
+	<div class="elv-footer elv-layout">
+	{% include "social-callout.njk" %}
+{% if not ignoreSupporters %}
 	{% include "supporters.njk" %}
 {% endif %}
-{%- if ignoreGitHubButtons %}{% else %}
-	{% callout %}
-		{% include "star-on-github.njk" %}
-	{% endcallout %}
-{%- endif %}
 
 	{% include "footer-nav.njk" %}
+	</div>
 </footer>
-
-<script type="module" src="/js/heading-anchors.js"></script>
+{% include "components/corner-logo.njk" %}

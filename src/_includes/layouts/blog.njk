@@ -1,0 +1,43 @@
+---
+title: Eleventy Blog
+layout: layouts/docs.njk
+eleventyComputed:
+  social:
+    description: "An Eleventy blog post published on {{ page.date | newsDate('LLLL yyyy') }}."
+classAdditions:
+  main: elv-layout-blog
+---
+<h1>{{ newstitle }}</h1>
+
+<div class="fl fl-inline fl-separator-h fl-nowrap mb-4" style="--fl-gap-h: 1.5em; --fl-gap-v: .5em">
+  <div>
+    <em>{{ page.date | newsDate }}</em>
+  </div>
+{%- if postAuthor and postAuthors[postAuthor] %}
+	<div>
+    <a href="{{ postAuthors[postAuthor] }}" class="elv-externalexempt">{% indieavatar postAuthors[postAuthor] %}{{ postAuthor }}</a>
+  </div>
+{%- endif %}
+  <div>
+    {% emoji "📢" %} <a href="/blog/feed.xml">Subscribe to the Eleventy News Feed</a>
+  </div>
+</div>
+
+{{ content | safe }}
+
+{% if not hideRelatedBlogPosts %}
+<hr>
+
+<h3>More <a href="/blog/">Blog Posts</a></h3>
+
+{%- set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+{%- set nextPost = collections.blog | getNextCollectionItem(page) %}
+
+{%- if nextPost or previousPost %}
+<ul class="elv-blog-navigation">
+<li><span><i class="fa-solid fa-arrow-left"></i>Older</span>{% if previousPost %}<a href="{{ previousPost.url }}"><strong>{{ previousPost.data.newstitle }}</strong></a>{% else %}<em>None</em>{% endif %}</li>
+<li><span>Newer<i class="fa-solid fa-arrow-right"></i></span>{% if nextPost %}<a href="{{ nextPost.url }}"><strong>{{ nextPost.data.newstitle }}</strong></a>{% else %}<em>None (yet!)</em></em>{% endif %}</li>
+</ul>
+{%- endif %}
+
+{%- endif %}

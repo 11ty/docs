@@ -1,11 +1,10 @@
 {%- set tabid = "fullopts" %}
 <div class="codetitle codetitle-right-md">my-node-script.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist>
+<seven-minute-tabs class="tabs-flush" persist autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-
-```js
+{%- set codeBlock %}{% raw %}
 import Eleventy from "@11ty/eleventy";
 
 let elev = new Eleventy(".", "_site", {
@@ -22,12 +21,11 @@ let elev = new Eleventy(".", "_site", {
 });
 
 // Use `write` or `toJSON` or `toNDJSON`
-```
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-
-```js
+{%- set codeBlock %}{% raw %}
 (async function () {
 	const { Eleventy } = await import("@11ty/eleventy");
 
@@ -46,8 +44,8 @@ let elev = new Eleventy(".", "_site", {
 
 	// Use `write` or `toJSON` or `toNDJSON`
 })();
-```
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

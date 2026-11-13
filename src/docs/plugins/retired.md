@@ -2,9 +2,9 @@
 eleventyNavigation:
   key: Retired Plugins
   parent: Plugins
-  order: 3
+  order: 100
 ---
 
 # Retired Plugins
 
-{{ collections.all | eleventyNavigation("Retired Plugins") | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+{{ "Retired Plugins" | nav | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}

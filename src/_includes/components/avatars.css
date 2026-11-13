@@ -1,0 +1,52 @@
+.icon,
+.avatar,
+blockquote img {
+	height: 1.3em;
+	width: 1.3em;
+	display: inline-block;
+	vertical-align: text-top;
+	margin-left: 2px;
+	margin-right: 6px;
+}
+main .icon[height] {
+	height: 1.3em;
+	width: 1.3em;
+	object-fit: cover;
+}
+.avatar-large {
+	height: 1.5em;
+	width: 1.5em;
+}
+.avatar,
+blockquote img {
+	border-radius: 50%;
+}
+.avatar-indieweb {
+	border-radius: 0.25em;
+}
+.icon,
+.avatar {
+	vertical-align: middle;
+}
+ul:not(.list-bare):not(.inlinelist) > li > a > .avatar {
+	width: auto;
+	height: 1.111111111111em; /* 20px /18 */
+	vertical-align: top;
+	margin-left: 4px;
+	margin-right: 4px;
+}
+ul:not(.list-bare):not(.inlinelist) > li > a > .avatar-large {
+	width: 1.444444444444em; /* 26px /18 */
+	height: 1.444444444444em; /* 26px /18 */
+	object-fit: contain;
+	margin-right: 0.3888888888889em; /* 7px /18 */
+}
+blockquote .bio-source {
+	white-space: nowrap;
+}
+
+h1 .avatar {
+	height: 0.7em;
+	width: 0.7em;
+	vertical-align: baseline;
+}

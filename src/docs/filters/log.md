@@ -12,7 +12,7 @@ eleventyNavigation:
 {% addedin "0.11.0" %} An easy way to <code>console.log</code> anything from inside of a template file.
 
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "log"} %}
   <div id="log-liquid" role="tabpanel">
 
@@ -41,7 +41,7 @@ eleventyNavigation:
 {% raw %}
 
 ```js
-module.exports = function (data) {
+export default function (data) {
 	// Caveat: you have access to `console.log` here, so probably use that.
 	return this.log("My Title");
 };
@@ -74,7 +74,7 @@ is functionally the same as running `console.log("My Title")` inside of your tem
 You can drop log in between any filter chain you already have and it will log the incoming data and pass it through to the next filter.
 
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight>
 	{% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "log-chain-demo", subtractions: "js,cjs,hbs"} %}
   <div id="log-chain-demo-liquid" role="tabpanel">
 

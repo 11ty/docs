@@ -1,14 +1,11 @@
 ---
 eleventyNavigation:
-  parent: Getting Started
+  parent: Learn
   key: Opening a Terminal
   order: 1
-excludeFromSidebar: true
 ---
 
 # Opening a Terminal
-
-{% tableofcontents %}
 
 Eleventy runs in a [Terminal application](https://en.wikipedia.org/wiki/Terminal_emulator). If you’re not familiar with Terminal applications, they’re used to run typed commands (and programs) on your computer. A Terminal application is mostly synonymous with terms like Command Line Interface (CLI) or shell prompt.
 

@@ -1,0 +1,43 @@
+{
+	"commits": [
+		{
+			"id": "f6ca182812d9f339c689cabdb2b911923e5ff7d6",
+			"url": "https://github.com/11ty/docs/commit/f6ca182812d9f339c689cabdb2b911923e5ff7d6",
+			"author": {
+				"name": "tbodt",
+				"url": "https://github.com/tbodt",
+				"avatarUrl": "/img/docs-avatars/5678977-OKMyK9woZ30c.jpeg"
+			},
+			"date": "2026-07-21T18:59:53.000Z",
+			"message": "Don't suggest parsing YAML by returning {} (#2337)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "edbrannin",
+			"url": "https://github.com/edbrannin",
+			"avatarUrl": "/img/docs-avatars/121909-C8DKVNQchy1q.png"
+		},
+		{
+			"name": "freddyheppell",
+			"url": "https://github.com/freddyheppell",
+			"avatarUrl": "/img/docs-avatars/1475568-s9KG2FpAjMrC.jpeg"
+		},
+		{
+			"name": "cjmaxik",
+			"url": "https://github.com/cjmaxik",
+			"avatarUrl": "/img/docs-avatars/1501705-c8gW2qh3t8EO.png"
+		},
+		{
+			"name": "tbodt",
+			"url": "https://github.com/tbodt",
+			"avatarUrl": "/img/docs-avatars/5678977-OKMyK9woZ30c.jpeg"
+		}
+	]
+}

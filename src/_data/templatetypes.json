@@ -55,6 +55,10 @@
 	"ext": "mdx",
 	"url": "/docs/languages/mdx/"
 },{
+	"name": "Sass",
+	"ext": "scss",
+	"url": "/docs/languages/sass/"
+},{
 	"name": "Custom",
 	"ext": "*",
 	"url": "/docs/languages/custom/"

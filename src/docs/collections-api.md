@@ -3,11 +3,8 @@ pageTitle: Collections API
 eleventyNavigation:
   parent: Collections
   key: Collections API
-  order: 2
   excerpt: Advanced control over collections.
 ---
-{% tableofcontents %}
-
 To get fancier with your collections (and even do a bit of your own custom filtering, if you’d like), you can use our Configuration API.
 
 Inside of your `eleventy.config.js` config file, you can use the `addCollection` method:
@@ -16,8 +13,8 @@ Inside of your `eleventy.config.js` config file, you can use the `addCollection`
 export default function (eleventyConfig) {
 	// async-friendly
 	eleventyConfig.addCollection("myCollectionName", async (collectionsApi) => {
-		// get unsorted items
-		return collectionsApi.getAll();
+		// get items
+		return collectionsApi.getAllSorted();
 	});
 };
 {% endset %}
@@ -31,9 +28,54 @@ export default function (eleventyConfig) {
 
 The data collection gets passed to the callback. You can use it in all sorts of ways:
 
+### getAllSorted()
+
+Returns an array of items sorted by the [default sorting algorithm](/docs/collections/#sorting), just like they'd be sorted in a template.
+
+{% set codeContent %}
+export default function (eleventyConfig) {
+	// Use the default sorting algorithm (ascending by date, filename tiebreaker)
+	eleventyConfig.addCollection("allMySortedContent", function (collectionsApi) {
+		return collectionsApi.getAllSorted();
+	});
+};
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
+#### Example: `getAllSorted().reverse()`
+
+{% set codeContent %}
+export default function (eleventyConfig) {
+	// Use the default sorting algorithm in reverse (descending dir, date, filename)
+	// Note that using a template engine’s `reverse` filter might be easier here
+	eleventyConfig.addCollection("myPostsReverse", function (collectionsApi) {
+		return collectionsApi.getAllSorted().reverse();
+	});
+};
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
+Note that while Array `.reverse()` mutates the array _in-place_, all Eleventy Collection API methods return new copies of collection arrays and can be modified without side effects to other collections. You can also use `.toReversed()` if you want to avoid mutations (Node 20+). However, <a href="/docs/collections.md#do-not-use-array-reverse">you do need to <strong>be careful when using Array `.reverse()`</strong> in templates!</a>
+
+#### Example: `getAllSorted().filter()`
+
+{% set codeContent %}
+export default function (eleventyConfig) {
+	// Filter using `Array.filter`
+	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
+		return collectionsApi.getAllSorted().filter(function (item) {
+			// Only return content that was originally a markdown file
+			let extension = item.inputPath.split(".").pop();
+			return extension === "md";
+		});
+	});
+};
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
 ### getAll()
 
-Returns an array.
+Returns an array of items in arbitrary order. This is marginally faster than `getAllSorted()` if you don't need a particular ordering, but most of the time you'll want `getAllSorted` instead.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
@@ -81,54 +123,10 @@ Curious where the date is coming from? [Read more about Content Dates](/docs/dat
 
 Note that the last example adding the `myCustomSort` collection will be available in your templates as `collections.myCustomSort`.
 
-### getAllSorted()
-
-Returns an array.
-
-{% set codeContent %}
-export default function (eleventyConfig) {
-	// Use the default sorting algorithm (ascending by date, filename tiebreaker)
-	eleventyConfig.addCollection("allMySortedContent", function (collectionsApi) {
-		return collectionsApi.getAllSorted();
-	});
-};
-{% endset %}
-{% include "snippets/configDefinition.njk" %}
-
-#### Example: `getAllSorted().reverse()`
-
-{% set codeContent %}
-export default function (eleventyConfig) {
-	// Use the default sorting algorithm in reverse (descending dir, date, filename)
-	// Note that using a template engine’s `reverse` filter might be easier here
-	eleventyConfig.addCollection("myPostsReverse", function (collectionsApi) {
-		return collectionsApi.getAllSorted().reverse();
-	});
-};
-{% endset %}
-{% include "snippets/configDefinition.njk" %}
-
-Note that while Array `.reverse()` mutates the array _in-place_, all Eleventy Collection API methods return new copies of collection arrays and can be modified without side effects to other collections. You can also use `.toReversed()` if you want to avoid mutations (Node 20+). However, <a href="/docs/collections.md#do-not-use-array-reverse()">you do need to <strong>be careful when using Array `.reverse()`</strong> in templates!</a>
-
-#### Example: `getAllSorted().filter()`
-
-{% set codeContent %}
-export default function (eleventyConfig) {
-	// Filter using `Array.filter`
-	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
-		return collectionsApi.getAllSorted().filter(function (item) {
-			// Only return content that was originally a markdown file
-			let extension = item.inputPath.split(".").pop();
-			return extension === "md";
-		});
-	});
-};
-{% endset %}
-{% include "snippets/configDefinition.njk" %}
 
 ### getFilteredByTag( tagName )
 
-Returns an array.
+Returns a sorted array.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
@@ -142,7 +140,7 @@ export default function (eleventyConfig) {
 
 ### getFilteredByTags( tagName, secondTagName, […] )
 
-Retrieve content that includes _all_ of the tags passed in. Returns an array.
+Retrieve content that includes _all_ of the tags passed in. Returns a sorted array.
 
 {% set codeContent %}
 export default function (eleventyConfig) {
@@ -162,7 +160,7 @@ export default function (eleventyConfig) {
 Returns an array. Will match an arbitrary glob (or an array of globs) against the input file’s full `inputPath` (including the input directory).
 
 {% callout "info" %}
-<strong>Note</strong>: <code>getFilteredByGlob</code> filters results returned from <a href="#getallsorted()"><code>getAllSorted</code></a>. It will not search the file system for new templates. It will not match files in your <a href="/docs/config.md#directory-for-includes">Includes directory</a> or anything excluded by <code>eleventyExcludeFromCollections</code>.
+<strong>Note</strong>: <code>getFilteredByGlob</code> filters results returned from <a href="#get-all-sorted"><code>getAllSorted</code></a>. It will not search the file system for new templates. It will not match files in your <a href="/docs/config.md#directory-for-includes">Includes directory</a> or anything excluded by <code>eleventyExcludeFromCollections</code>.
 {% endcallout %}
 
 {% callout "info" %}
@@ -171,17 +169,17 @@ Returns an array. Will match an arbitrary glob (or an array of globs) against th
 
 {% set codeContent %}
 export default function (eleventyConfig) {
-	eleventyConfig.addCollection("onlyMarkdown", function (collectionApi) {
-		return collectionApi.getFilteredByGlob("**/*.md");
+	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
+		return collectionsApi.getFilteredByGlob("**/*.md");
 	});
 
-	eleventyConfig.addCollection("posts", function (collectionApi) {
-		return collectionApi.getFilteredByGlob("_posts/*.md");
+	eleventyConfig.addCollection("posts", function (collectionsApi) {
+		return collectionsApi.getFilteredByGlob("_posts/*.md");
 	});
 
-	eleventyConfig.addCollection("posts", function (collectionApi) {
+	eleventyConfig.addCollection("posts", function (collectionsApi) {
 		// Also accepts an array of globs!
-		return collectionApi.getFilteredByGlob(["posts/*.md", "notes/*.md"]);
+		return collectionsApi.getFilteredByGlob(["posts/*.md", "notes/*.md"]);
 	});
 };
 {% endset %}

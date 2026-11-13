@@ -36,7 +36,13 @@ permalink: 404.html
 
 Eleventy will output this template to `404.html`.
 
-If you’re using [GitHub Pages](https://help.github.com/en/github/working-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site), [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/introduction.html#custom-error-codes-pages), [Netlify](https://docs.netlify.com/routing/redirects/redirect-options/#custom-404-page-handling), or [Cloudflare Pages](https://developers.cloudflare.com/pages/platform/serving-pages/#not-found-behavior) there is no step two! A `404.html` file in your output directory is all you need.
+There is no step two if you’re using one of the following hosts (a `404.html` file in your output directory is all you need):
+
+- [GitHub Pages](https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/)
+- [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/introduction.html#custom-error-codes-pages)
+- [Netlify](https://www.netlify.com/docs/redirects/#custom-404)
+- [Cloudflare Pages](https://developers.cloudflare.com/pages/platform/serving-pages/#not-found-behavior)
+- [Vercel](https://vercel.com/guides/custom-404-page#static-site-generator-ssg)
 
 Netlify even has lovely [multi-language 404 page support too using `Redirects`](https://docs.netlify.com/routing/redirects/redirect-options/#custom-404-page-handling).
 

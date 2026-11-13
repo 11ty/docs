@@ -9,7 +9,7 @@ external_url: https://www.zachleat.com/web/independent-sustainable-11ty/
 Read [this post about 11ty’s goal of being fully independent and sustainable in 2024]({{ external_url }}):
 
 <a href="{{ external_url }}" class="elv-externalexempt opengraph-card" style="max-width: 25em">
-  <img src="https://v1.screenshot.11ty.dev/{{ external_url | urlencode }}/opengraph/" alt="So you want to speak at the 11ty International Symposium on Making Web Sites Real Good" loading="lazy" decoding="async" width="650" height="341">
+  <img src="https://screenshot.11ty.app/{{ external_url | urlencode }}/opengraph/" alt="So you want to speak at the 11ty International Symposium on Making Web Sites Real Good" loading="lazy" decoding="async" width="650" height="341">
 </a>
 
 11ty is now operating independently, with full time development and maintenance funded by our Open Collective supporters. We need your help to keep going! We have a goal of $6000 USD recurring monthly budget.

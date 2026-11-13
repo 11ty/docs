@@ -1,11 +1,8 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "pagedcollection"} %}
   <div id="pagedcollection-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 ---
 title: My Posts
 pagination:
@@ -19,16 +16,11 @@ pagination:
   <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
 {% endfor %}
 </ol>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="pagedcollection-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{% set codeBlock %}{% raw %}
 ---
 title: My Posts
 pagination:
@@ -42,16 +34,11 @@ pagination:
   <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
 {% endfor %}
 </ol>
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="pagedcollection-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export const data = {
 	title: "My Posts",
 	pagination: {
@@ -70,16 +57,11 @@ export function render(data) {
 			.join("")}
 	</ol>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="pagedcollection-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 exports.data = {
 	title: "My Posts",
 	pagination: {
@@ -98,10 +80,8 @@ exports.render = function (data) {
 			.join("")}
 	</ol>`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

@@ -1,17 +1,13 @@
 {# uses codeContent #}
 {% set tabid %}tab-{% uid %}{% endset %}
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-  {% highlight "js" %}
-{%- if codeContent %}{{ codeContent | safe }}{% endif %}
-  {% endhighlight %}
+{%- if codeContent %}{{ codeContent | highlight("js") | safe }}{% endif %}
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-  {% highlight "js" %}
-{%- if codeContent %}{{ codeContent | esmToCjs | safe }}{% endif %}
-  {% endhighlight %}
+{%- if codeContent %}{{ codeContent | esmToCjs | highlight("js") | safe }}{% endif %}
   </div>
 </seven-minute-tabs>
 </is-land>

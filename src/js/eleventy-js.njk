@@ -1,15 +1,20 @@
 ---
-permalink: js/eleventy.js
+permalink: /dist/js/eleventy.js
 eleventyExcludeFromCollections: true
 ---
 {% set js %}
-{# Islands must come first #}
 {% include "../../node_modules/@11ty/is-land/is-land.js" %}
-{% include "../../node_modules/@11ty/is-land/is-land-autoinit.js" %}
 
 {% include "components/html-fetch.js" %}
-{% include "../../node_modules/@zachleat/filter-container/filter-container.js" %}
+{% include "components/active-background.js" %}
+{% include "components/copy-button-id-assignment.js" %}
+{% include "../../node_modules/@zachleat/heading-anchors/heading-anchors.js" %}
 {% include "../../node_modules/@zachleat/details-utils/details-utils.js" %}
+{% include "components/eleventy-shell-syntax.js" %}
+{# <text-throbber>, used by build-comparison and install-comparison, which are no longer only on the home page #}
+{% include "components/throbber.js" %}
+{# <download-counter>, which is no longer only on the home page #}
+{% include "components/download-counter.js" %}
 
 {% include "components/search.js" %}
 {% endset %}

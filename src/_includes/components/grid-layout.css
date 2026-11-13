@@ -16,3 +16,11 @@
 .lo-grid > * {
 	margin: 0;
 }
+ul.lo-grid {
+	list-style: none;
+	padding: 0;
+}
+ul.lo-grid > li {
+	padding: 0;
+	line-height: inherit;
+}

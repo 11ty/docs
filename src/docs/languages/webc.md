@@ -2,13 +2,12 @@
 eleventyNavigation:
   parent: Template Languages
   key: WebC
-  order: 3
-logoImage: "./src/img/logos/webc.png"
+  order: 1
+  excerpt: Web components with server rendering
+logoImage: "/img/logos/webc.png"
 layout: layouts/langs.njk
 relatedLinks:
 ---
-
-{% tableofcontents "open" %}
 
 | Type           | Value                                                                                                                                                 |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -69,9 +68,10 @@ relatedLinks:
 
 It’s on [npm at `@11ty/eleventy-plugin-webc`](https://www.npmjs.com/package/@11ty/eleventy-plugin-webc)!
 
-```
+{%- set codeBlock %}
 npm install @11ty/eleventy-plugin-webc
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 To add support for `.webc` files in Eleventy, add the plugin in your Eleventy configuration file:
 
@@ -582,7 +582,7 @@ You can use this to render an arbitrary object as attributes too (note the paren
 
 ### `@html`
 
-We surface a special `@html` [prop](<#props-(properties)>) to override any tag content with custom JavaScript.
+We surface a special `@html` [prop](#props-properties) to override any tag content with custom JavaScript.
 
 ```html
 <template @html="'Template HTML'"></template>
@@ -609,13 +609,13 @@ We surface a special `@html` [prop](<#props-(properties)>) to override any tag c
 
 {% addedin "@11ty/webc@0.7.1" %}
 
-As noted in [`@html`](#@html), you can use `@raw` as an alias for `webc:raw @html`.
+As noted in [`@html`](#html), you can use `@raw` as an alias for `webc:raw @html`.
 
 ### `@text`
 
 {% addedin "@11ty/webc@0.6.0" %}
 
-We provide a special `@text` [prop](<#props-(properties)>) to override any tag content with custom JavaScript. The entire value returned here will be escaped!
+We provide a special `@text` [prop](#props-properties) to override any tag content with custom JavaScript. The entire value returned here will be escaped!
 
 ```html
 <p @text="dataProperty"></p>
@@ -706,7 +706,11 @@ You can also specify an attribute value to `webc:scoped` to hard code your own c
 
 {% addedin "@11ty/webc@0.9.0" %}You can now also use `<script webc:setup>` to run arbitrary JavaScript and provide data and markup to your component. Any top level variables declared here are available in your component as local data.
 
-This is similar to using [JavaScript as a custom Eleventy Front Matter type](/docs/data-frontmatter-customize/#example-use-javascript-in-your-front-matter), although data in `webc:setup` is scoped to the component and _does not_ flow back up in the Data Cascade.
+This is similar to using [JavaScript as a custom Eleventy Front Matter type](/docs/data-frontmatter-customize/#example-use-java-script-in-your-front-matter), although data in `webc:setup` is scoped to the component and _does not_ flow back up in the Data Cascade.
+
+{% callout "info", "md" %}
+**Note:** This JavaScript is run _only once_ per build, even if the component is used in multiple instances. Therefore, there is no access inside the `<script webc:setup>` tag to instance-specific data such as attributes, props, or slots.
+{% endcallout %}
 
 {% codetitle "components/my-component.webc" %}
 
@@ -735,7 +739,7 @@ The [Custom Transforms feature](https://github.com/11ty/webc#custom-transforms) 
 
 {% callout "info", "md" %}**Note:** The `webc:type="11ty"` feature is exclusive to the **Eleventy** WebC plugin and is not available in non-Eleventy independent WebC.{% endcallout %}
 
-Use `webc:type="11ty"` with the `11ty:type` attribute to specify a [valid template syntax](/docs/plugins/render/#rendertemplate-paired-shortcode).
+Use `webc:type="11ty"` with the `11ty:type` attribute to specify a [valid template syntax](/docs/plugins/render/#render-template-paired-shortcode).
 
 {% codetitle "my-page.webc" %}
 
@@ -795,7 +799,7 @@ You can also transform individual element content using `webc:type`. In addition
 
 ```html
 <script webc:type="render">
-	function() {
+	export default function() {
 		if(!this.alt) {
 			throw new Error("oh no you didn’t");
 		}
@@ -824,7 +828,9 @@ Or use a JavaScript render function to generate some CSS:
 ```html
 <template webc:is="style" webc:root="override">
 	<script webc:type="js">
-		`/* ${license} */`;
+		export default function({ license }) {
+			return `/* ${license} */`;
+		}
 	</script>
 	<slot></slot>
 </template>
@@ -836,7 +842,7 @@ Or use a JavaScript render function to generate some CSS:
 ```html
 <template webc:is="style" webc:root="override">
 	<script webc:type="render">
-		function() {
+		export default function() {
 			return `/* ${this.license} */`;
 		}
 	</script>
@@ -853,11 +859,13 @@ Note that you can also use `webc:if`!
 
 ```html
 <script webc:type="js">
+export default function({ src, alt }) {
 	if (alt) {
-		`<img src="${src}" alt="${alt}">`;
+		return `<img src="${src}" alt="${alt}">`;
 	} else {
-		`<a href="${src}">Your image didn’t have an alt so you get this link instead.</a>`;
+		return `<a href="${src}">Your image didn’t have an alt so you get this link instead.</a>`;
 	}
+}
 </script>
 ```
 
@@ -916,7 +924,7 @@ Use `webc:raw` to opt-out of WebC template processing for all child content of t
 </template>
 ```
 
-- Related: [`@raw` property](#@raw)
+- Related: [`@raw` property](#raw)
 
 ### `webc:ignore`
 
@@ -950,7 +958,7 @@ Instead of an HTML comment that will show up in rendered output, you can add one
 
 This plugin provides a few transforms out of the box: `webc:type="js"`, `webc:type="render"`, `webc:type="css:scoped"`, and `webc:type="11ty"`.
 
-However, adding your own [`webc:type` Custom Transform](https://github.com/11ty/webc#custom-transforms) **directly** to WebC is not yet available in the Eleventy WebC plugin! If this is something folks would like to see added, [please let us know](https://fosstodon.org/@eleventy)!
+However, adding your own [`webc:type` Custom Transform](https://github.com/11ty/webc#custom-transforms) **directly** to WebC is not yet available in the Eleventy WebC plugin! If this is something folks would like to see added, [please let us know](https://neighborhood.11ty.dev/@11ty)!
 
 Do note that you **can** [add your own custom template engine](/docs/languages/custom/) which would be available via `webc:type="11ty"` (e.g. `<style webc:type="11ty" 11ty:type="sass">`).
 
@@ -960,7 +968,7 @@ WebC [Helpers](https://github.com/11ty/webc#helper-functions) are JavaScript fun
 
 #### Eleventy-provided Helpers
 
-{% addedin "@11ty/eleventy-plugin-webc@0.5.0" %}Included with Eleventy WebC, [JavaScript template functions](/docs/languages/javascript/#javascript-template-functions) and [Universal Filters](/docs/filters/) are provided automatically as WebC Helpers.
+{% addedin "@11ty/eleventy-plugin-webc@0.5.0" %}Included with Eleventy WebC, [JavaScript template functions](/docs/languages/javascript/#java-script-template-functions) and [Universal Filters](/docs/filters/) are provided automatically as WebC Helpers.
 
 This includes [`url`, `slugify`, `log`, and others](/docs/filters/#eleventy-provided-filters)!
 
@@ -1104,7 +1112,7 @@ The above example assumes the existence of `_includes/my-layout.webc` (an [Eleve
 </html>
 ```
 
-- Read more about the WebC properties: [`@raw`](#@raw) {% addedin "@11ty/webc@0.7.1" %} and [`@html`](#@html).
+- Read more about the WebC properties: [`@raw`](#raw) {% addedin "@11ty/webc@0.7.1" %} and [`@html`](#html).
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.content`) when referencing helpers/data/attributes/property values. -->
 
 </details>
@@ -1195,6 +1203,30 @@ The following plugins offer official WebC components for use in your projects:
   - Example: `<img webc:is="eleventy-image" webc:import="npm:@11ty/eleventy-img">`
   - Read more at [the Image WebC component](../plugins/image-webc.md).
 
+### Eleventy Data Cascade
+
+To access **global data** from the Data Cascade, you can use `$data` variable in your component's javascript. For example:
+
+For example, if you have this in `_data/site.json`:
+
+```json
+{
+  "title": "My Site Title"
+}
+```
+
+In an internal webc component, that is in a sub-folder such as `src/_includes/components/*`, you can access that data via:
+
+```html
+<h1 @text="$data.site.title"></h1>
+```
+
+In a top-level webc component, such as a layout file or other \*.webc files in the Eleventy input folder, you can access global data variables directly without `$data`:
+
+```html
+<h1 @text="site.title"></h1>
+```
+
 ### CSS and JS (Bundler mode)
 
 Eleventy WebC will bundle any specific page’s assets (CSS and JS used by components on the page). These are automatically rolled up when a component uses `<script>`, `<script src>`, `<style>`, or `<link rel="stylesheet">`. You can use this to implement component-driven Critical CSS.
@@ -1241,7 +1273,7 @@ You can opt-out of bundling on a per-element basis [using `webc:keep`](#webckeep
 </html>
 ```
 
-- {% addedin "@11ty/eleventy-plugin-webc@0.9.0" %}Eleventy WebC uses the [Bundle Plugin](/docs/plugins/bundle.md#using-with-webc) behind the scenes to implement bundling. `getBundle('css')` and `getBundle('js')` can now be used instead of `getCss(page.url)` and `getJs(page.url)` respectively.
+- {% addedin "@11ty/eleventy-plugin-webc@0.9.0" %}Eleventy WebC uses the [Bundle Plugin](/docs/plugins/bundle.md#using-with-web-c) behind the scenes to implement bundling. `getBundle('css')` and `getBundle('js')` can now be used instead of `getCss(page.url)` and `getJs(page.url)` respectively.
 - {% addedin "@11ty/webc@0.8.0" %}`webc:keep` is required on `<style>` and `<script>` in your layout files to prevent re-bundling the bundles.
 - {% addedin "@11ty/webc@0.8.0" %}The `getCss` and `getJs` helpers are now available to all WebC templates without restriction. Previous versions required them to be used in an _Eleventy Layout_ file.
 - `@raw` was {% addedin "@11ty/webc@0.7.1" %}. Previous versions can use `webc:raw @html`.
@@ -1286,7 +1318,7 @@ The CSS bundle will look like:
 
 You can access these bundles in other templates types too (`.njk`, `.liquid`, etc.).
 
-{% addedin "@11ty/eleventy-plugin-webc@0.9.0" %}Eleventy WebC uses the [Bundle Plugin](/docs/plugins/bundle.md#using-with-webc) behind the scenes to implement bundling. This plugin provides `getBundle` and `getBundleFileUrl` universal shortcodes for use in any template type (including WebC as shown above).
+{% addedin "@11ty/eleventy-plugin-webc@0.9.0" %}Eleventy WebC uses the [Bundle Plugin](/docs/plugins/bundle.md#using-with-web-c) behind the scenes to implement bundling. This plugin provides `getBundle` and `getBundleFileUrl` universal shortcodes for use in any template type (including WebC as shown above).
 
 <details>
 <summary><em>WebC v0.8.0 and older:</em> Check out the deprecated (but still in place for backwards compatibility) <code>webcGetCss</code> and <code>webcGetJs</code> universal filters for bundle output.</summary>

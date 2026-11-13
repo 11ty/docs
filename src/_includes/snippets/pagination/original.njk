@@ -1,19 +1,16 @@
-<seven-minute-tabs class="tabs-flush">
+<seven-minute-tabs class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "pagenavorig", valid: "njk"} %}
   <div id="pagenavorig-liquid" role="tabpanel">
     <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
   </div>
   <div id="pagenavorig-njk" role="tabpanel">
-
-{% raw %}
-```jinja2
+{% set codeBlock %}{% raw %}
 <!-- Don’t copy this code, it’s been simplified for clarity -->
 {% for pageEntry in pagination.pages %}
 <a href="{{ pagination.hrefs[ loop.index0 ] }}">Page {{ loop.index }}</a>
 {% endfor %}
-```
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="pagenavorig-js" role="tabpanel">
     <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>

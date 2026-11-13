@@ -2,6 +2,5 @@
 	"url": "https://github.com/clottman/link-in-bio-11ty",
 	"name": "Link-in-Bio 11ty",
 	"description": "A single page containing a list of links generated from data defined in JS",
-	"author": "CasseyLottman",
-	"demo": "https://link-in-bio-11ty.glitch.me/"
+	"author": "CasseyLottman"
 }

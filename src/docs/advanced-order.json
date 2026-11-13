@@ -1,0 +1,28 @@
+{
+	"commits": [
+		{
+			"id": "cbb4498834ab1ca5c65c20be9610189430798305",
+			"url": "https://github.com/11ty/docs/commit/cbb4498834ab1ca5c65c20be9610189430798305",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-03-27T21:58:55.000Z",
+			"message": "Desktop navigation collapsed section",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "Zearin",
+			"url": "https://github.com/Zearin",
+			"avatarUrl": "/img/docs-avatars/630124-BrXMC5aYJNrH.png"
+		}
+	]
+}

@@ -1,19 +1,17 @@
 ---
 eleventyNavigation:
-  parent: Configuration
-  key: Events
-  order: 10
+  parent: Advanced
+  key: Configuration Events
+  order: 2
 ---
 
 # Events
 
-{% tableofcontents %}
-
-You may want to run some code at certain times during the compiling process. To do that, you can use _configuration events_, which will run at specific times during the compiling process.
+You may want to run some custom JavaScript code in your configuration file at varying times during Eleventy’s build process. _Configuration events_ unlock this ability.
 
 [[toc]]
 
-All events are configured in your `.eleventy.js` configuration file, with the code run every time the event triggers.
+All events are configured in your [configuration file](./config.md), with the code run every time the event triggers.
 
 Asynchronous callback function support added in v1.0.
 
@@ -27,7 +25,7 @@ The `eleventy.before` event runs every time Eleventy starts building, so it will
 export default function(eleventyConfig) {
 	// Async-friendly in 1.0+
 	// Arguments added in 2.0+
-	eleventyConfig.on("eleventy.before", async ({ dir, runMode, outputMode }) => {
+	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
 		// Run me before the build starts
 	});
 }
@@ -46,7 +44,7 @@ export default function(eleventyConfig) {
 	// Arguments added in 2.0+
 	eleventyConfig.on(
 		"eleventy.after",
-		async ({ dir, results, runMode, outputMode }) => {
+		async ({ directories, results, runMode, outputMode }) => {
 			// Run me after the build ends
 		}
 	);
@@ -60,13 +58,13 @@ Eleventy now provides an object with metadata on the build as an argument to the
 
 {% set codeContent %}
 export default function(eleventyConfig) {
-	eleventyConfig.on("eleventy.before", async ({ dir, runMode, outputMode }) => {
+	eleventyConfig.on("eleventy.before", async ({ directories, runMode, outputMode }) => {
 		// Read more below
 	});
 
 	eleventyConfig.on(
 		"eleventy.after",
-		async ({ dir, results, runMode, outputMode }) => {
+		async ({ directories, results, runMode, outputMode }) => {
 			// Read more below
 		}
 	);
@@ -74,8 +72,9 @@ export default function(eleventyConfig) {
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
-- `directories`
-- `dir` (deprecated, use `directories` instead): an object with current project directories, set in [your configuration file](/docs/config/#input-directory) (or populated with Eleventy defaults).
+- `directories`: an object with normalized project directory paths, set in your in [your configuration file](/docs/config/#input-directory) (or populated with Eleventy defaults).
+	- Included properties: `input`, `inputFile`, `inputGlob`, `data`, `includes`, `layouts`, and `output`. Works best with a [named `config` export](./config-shapes.md#callback-function) in your configuration file.
+- `dir` (deprecated, use `directories` instead):
 	- Included properties: `input` (default `"."`), `output` (default `"_site"`), `includes` (default `"_includes"`), `data` (default `"_data"`), and `layouts` (no default value).
 - `outputMode`: a string representing the value of [`--to` on the command line](/docs/usage/#to-can-output-json)
   - `fs` (default)
@@ -94,9 +93,9 @@ export default function(eleventyConfig) {
 
 ## `eleventy.beforeConfig` {% addedin "3.0.0-alpha.3" %}
 
-The `eleventy.beforeConfig` runs before your configuration is initialized and was added as an escape hatch for folks unable to update their top-level configuration callback to be `async` (usually due to some limitation in a third-party tool). You probably won’t need this.
+The `eleventy.beforeConfig` runs before your configuration is initialized and was added as an escape hatch for folks unable to update their top-level configuration callback to be `async` (usually due to some limitation in a third-party tool or a requirement to use CommonJS). You probably won’t need this.
 
-```js
+{%- set codeBlock %}
 // sync configuration callback
 module.exports = function (eleventyConfig) {
 	// async-friendly event
@@ -105,7 +104,8 @@ module.exports = function (eleventyConfig) {
 		eleventyConfig.addPlugin(HtmlBasePlugin);
   });
 };
-```
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 ## `eleventy.beforeWatch` {% addedin "1.0.0" %}
 

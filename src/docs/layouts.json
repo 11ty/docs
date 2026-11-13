@@ -1,0 +1,38 @@
+{
+	"commits": [
+		{
+			"id": "996a9777eae3a6b8b8cf6511553d0a8674112ddb",
+			"url": "https://github.com/11ty/docs/commit/996a9777eae3a6b8b8cf6511553d0a8674112ddb",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-10-15T21:59:10.000Z",
+			"message": "Add wa-copy-button",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "BenDMyers",
+			"url": "https://github.com/BenDMyers",
+			"avatarUrl": "/img/docs-avatars/18060369-rOWxiIaIuXzb.jpeg"
+		},
+		{
+			"name": "CanIGetaPR",
+			"url": "https://github.com/CanIGetaPR",
+			"avatarUrl": "/img/docs-avatars/45294513-NFkCqcMcwUTN.png"
+		},
+		{
+			"name": "deining",
+			"url": "https://github.com/deining",
+			"avatarUrl": "/img/docs-avatars/18169566-BW6ZbhTe4D7n.png"
+		}
+	]
+}

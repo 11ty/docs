@@ -1,31 +1,25 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "htmlbasehtmlblock"} %}
   <div id="htmlbasehtmlblock-liquid" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Liquid", "Syntax" %}
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 {{ '<a href="/test/">Link</a>' | transformWithHtmlBase }}
 => '<a href="/pathprefix/test/">Link</a>'
 
 {{ '<a href="/test/">Link</a>' | transformWithHtmlBase: "http://example.com/" }}
 => '<a href="http://example.com/pathprefix/test/">Link</a>'
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
 
 Resolving relative URLs (with path prefix still at `"/pathprefix/"`):
 
 {% codetitle "Liquid", "Syntax" %}
 
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 On a page with URL `/my-template/`:
 
 {{ '<a href="test/">Link</a>' | transformWithHtmlBase: "http://example.com/" }}
@@ -35,36 +29,28 @@ Override the page URL:
 
 {{ '<a href="test/">Link</a>' | transformWithHtmlBase: "http://example.com/", "/my-other-template/" }}
 => '<a href="http://example.com/pathprefix/my-other-template/test/">Link</a>'
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="htmlbasehtmlblock-njk" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```njk
+{% set codeBlock %}{% raw %}
 {{ '<a href="/test/">Link</a>' | transformWithHtmlBase }}
 => '<a href="/pathprefix/test/">Link</a>'
 
 {{ '<a href="/test/">Link</a>' | transformWithHtmlBase("http://example.com/") }}
 => '<a href="http://example.com/pathprefix/test/">Link</a>'
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 
 Resolving relative URLs (with path prefix still at `"/pathprefix/"`):
 
 {% codetitle "Nunjucks", "Syntax" %}
 
-{% raw %}
-
-```njk
+{% set codeBlock %}{% raw %}
 On a page with URL `/my-template/`:
 
 {{ '<a href="test/">Link</a>' | transformWithHtmlBase("http://example.com/") }}
@@ -74,20 +60,15 @@ Override the page URL:
 
 {{ '<a href="test/">Link</a>' | transformWithHtmlBase("http://example.com/", "/my-other-template/") }}
 => '<a href="http://example.com/pathprefix/my-other-template/test/">Link</a>'
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="htmlbasehtmlblock-js" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.js", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default async function () {
 	return `
 ${await this.transformWithHtmlBase(`<a href="/test/">Link</a>`)}
@@ -99,17 +80,13 @@ ${await this.transformWithHtmlBase(
 )}
 => '<a href="http://example.com/pathprefix/test/">Link</a>'`;
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 Resolving relative URLs (with path prefix still at `"/pathprefix/"`):
 
 {% codetitle "11ty.js", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default async function () {
 	return `
 On a page with URL "/my-template/":
@@ -129,20 +106,15 @@ ${await this.transformWithHtmlBase(
 )}
 => '<a href="http://example.com/pathprefix/my-other-template/test/">Link</a>''`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="htmlbasehtmlblock-cjs" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.cjs", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = async function () {
 	return `
 ${await this.transformWithHtmlBase(`<a href="/test/">Link</a>`)}
@@ -154,17 +126,13 @@ ${await this.transformWithHtmlBase(
 )}
 => '<a href="http://example.com/pathprefix/test/">Link</a>'`;
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 Resolving relative URLs (with path prefix still at `"/pathprefix/"`):
 
 {% codetitle "11ty.cjs", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = async function () {
 	return `
 On a page with URL "/my-template/":
@@ -184,10 +152,8 @@ ${await this.transformWithHtmlBase(
 )}
 => '<a href="http://example.com/pathprefix/my-other-template/test/">Link</a>''`;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

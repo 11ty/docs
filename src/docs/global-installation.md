@@ -16,7 +16,7 @@ npm install -g @11ty/eleventy
 
 The above adds an `eleventy` command that you can use in any directory. When you run Eleventy globally, it might look like this:
 
-{% codewithprompt "cmdhomedir" %}
-eleventy --version
+```
+$ eleventy --version
 {% latestVersion versions, config, "" %}
-{% endcodewithprompt %}
+```

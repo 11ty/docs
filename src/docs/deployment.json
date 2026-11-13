@@ -1,0 +1,76 @@
+{
+	"commits": [
+		{
+			"id": "8504be350ddff7ef6c377c741849e9428292939a",
+			"url": "https://github.com/11ty/docs/commit/8504be350ddff7ef6c377c741849e9428292939a",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-11-09T17:13:04.000Z",
+			"message": "Removes shut down host",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "jchengjr77",
+			"url": "https://github.com/jchengjr77",
+			"avatarUrl": "/img/docs-avatars/50639799-oarqUjWxFgVT.jpeg"
+		},
+		{
+			"name": "palmiak",
+			"url": "https://github.com/palmiak",
+			"avatarUrl": "/img/docs-avatars/2342458-p3LPBOHhJHr1.jpeg"
+		},
+		{
+			"name": "eldemcan",
+			"url": "https://github.com/eldemcan",
+			"avatarUrl": "/img/docs-avatars/2489876-tgo2qn5vBRuC.jpeg"
+		},
+		{
+			"name": "pcarrier",
+			"url": "https://github.com/pcarrier",
+			"avatarUrl": "/img/docs-avatars/8641-aNnUz4eOLWXA.jpeg"
+		},
+		{
+			"name": "andrewshell",
+			"url": "https://github.com/andrewshell",
+			"avatarUrl": "/img/docs-avatars/144136-L037WJsw3T2O.jpeg"
+		},
+		{
+			"name": "osbre",
+			"url": "https://github.com/osbre",
+			"avatarUrl": "/img/docs-avatars/23292709-5M8NwSRIg9KF.png"
+		},
+		{
+			"name": "Justin Hunter"
+		},
+		{
+			"name": "GeoSegun",
+			"url": "https://github.com/GeoSegun",
+			"avatarUrl": "/img/docs-avatars/91230297-n9TNDIbXTsXv.jpeg"
+		},
+		{
+			"name": "adamdjbrett",
+			"url": "https://github.com/adamdjbrett",
+			"avatarUrl": "/img/docs-avatars/22662978-dg4C9NCVVW8t.jpeg"
+		},
+		{
+			"name": "facundofarias",
+			"url": "https://github.com/facundofarias",
+			"avatarUrl": "/img/docs-avatars/2700564-Qj7C5wADzQ93.jpeg"
+		},
+		{
+			"name": "SatvikMishra08",
+			"url": "https://github.com/SatvikMishra08",
+			"avatarUrl": "/img/docs-avatars/89024979-9dFJ985jbYMU.png"
+		}
+	]
+}

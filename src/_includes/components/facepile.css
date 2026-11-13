@@ -1,22 +1,30 @@
 /* Featured sites */
 .facepile {
+	--facepile-offset: 0.375em; /* 6px /16 */
+	--facepile-border-size: 1px;
+	--facepile-rainbow-offset: 1em;
+	--facepile-avatar-size: 2.75em;
+	display: flex;
+	flex-wrap: wrap;
+	gap: .25em 0;
 	margin-top: 2em;
 	margin-bottom: 3em;
-	line-height: 2;
-	padding: 0 0 0 25px;
+	padding: 0 0 0 var(--facepile-offset);
 }
 .facepile > a {
-	display: inline-block;
-	margin-left: -25px;
-	transition: opacity 0.3s;
-	opacity: 0.9;
+	width: var(--facepile-avatar-size);
+	height: var(--facepile-avatar-size);
+	aspect-ratio: 1;
+	margin-left: calc(-1 * var(--facepile-offset));
 }
+
 .supporters-silver .facepile {
-	text-align: center;
-	text-wrap: balance; /* Not supported with display: inline-block on FF yet */
+	--facepile-avatar-size: 3.25em;
+	gap: .5em;
+	justify-content: center;
 }
-.supporters-silver .facepile > a ~ a {
-	margin-left: 0;
+.supporters-silver .facepile a[href] {
+	margin: 0;
 }
 .supporters-silver .facepile .avatar {
 	border-radius: .25em;
@@ -31,41 +39,36 @@
 	z-index: 1;
 }
 .facepile .avatar {
-	width: 30px;
-	height: 30px;
-	width: calc(30px + 5vw);
-	height: calc(30px + 5vw);
-	max-width: 60px;
-	max-height: 60px;
-	margin-bottom: 6px;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	margin: 0;
+	background-color: #fff;
 	color: #fff;
-	border: 2px solid;
-	transition: border 0.3s;
-	object-fit: cover;
+	border: var(--facepile-border-size) solid;
 }
 @media (prefers-color-scheme: dark) {
 	.facepile .avatar {
+		background-color: #222;
 		color: #222;
 	}
 }
-.facepile-supporters .avatar {
-	width: calc(30px + 2vw);
-	height: calc(30px + 2vw);
+.facepile .avatar,
+.facepile .avatar-indieweb {
+	border-radius: 50%;
 }
-.facepile > a:after {
+
+.facepile > a:is(:focus, :hover):after {
 	content: "";
 	position: absolute;
 	border-radius: 50%;
 	z-index: -1;
 	pointer-events: none;
 	opacity: 0;
-}
-.facepile > a:focus:after,
-.facepile > a:hover:after {
-	left: -24px; /* Right - 4px */
-	right: -20px;
-	top: -24px; /* Right - 4px */
-	bottom: -20px;
+	left: calc(-1 * var(--facepile-rainbow-offset));
+	right: calc(-1 * var(--facepile-rainbow-offset));
+	top: calc(-1 * var(--facepile-rainbow-offset));
+	bottom: calc(-1 * var(--facepile-rainbow-offset));
 	opacity: 0.6;
 	background-color: currentColor;
 	background-image: linear-gradient(
@@ -82,51 +85,40 @@
 		#8000ff,
 		#ff0080
 	);
-	background-size: 1200% 1200%;
+	background-size: 600% 600%;
 	background-position: 0 80%;
 }
-.facepile > a:nth-child(11n + 1):focus:after,
-.facepile > a:nth-child(11n + 1):hover:after {
+.facepile > a:nth-child(11n + 1):is(:focus, :hover):after {
 	background-position: 0% 80%;
 }
-.facepile > a:nth-child(11n + 2):focus:after,
-.facepile > a:nth-child(11n + 2):hover:after {
+.facepile > a:nth-child(11n + 2):is(:focus, :hover):after {
 	background-position: 9% 80%;
 }
-.facepile > a:nth-child(11n + 3):focus:after,
-.facepile > a:nth-child(11n + 3):hover:after {
+.facepile > a:nth-child(11n + 3):is(:focus, :hover):after {
 	background-position: 18% 80%;
 }
-.facepile > a:nth-child(11n + 4):focus:after,
-.facepile > a:nth-child(11n + 4):hover:after {
+.facepile > a:nth-child(11n + 4):is(:focus, :hover):after {
 	background-position: 27% 80%;
 }
-.facepile > a:nth-child(11n + 5):focus:after,
-.facepile > a:nth-child(11n + 5):hover:after {
+.facepile > a:nth-child(11n + 5):is(:focus, :hover):after {
 	background-position: 36% 80%;
 }
-.facepile > a:nth-child(11n + 6):focus:after,
-.facepile > a:nth-child(11n + 6):hover:after {
+.facepile > a:nth-child(11n + 6):is(:focus, :hover):after {
 	background-position: 45% 80%;
 }
-.facepile > a:nth-child(11n + 7):focus:after,
-.facepile > a:nth-child(11n + 7):hover:after {
+.facepile > a:nth-child(11n + 7):is(:focus, :hover):after {
 	background-position: 54% 80%;
 }
-.facepile > a:nth-child(11n + 8):focus:after,
-.facepile > a:nth-child(11n + 8):hover:after {
+.facepile > a:nth-child(11n + 8):is(:focus, :hover):after {
 	background-position: 63% 80%;
 }
-.facepile > a:nth-child(11n + 9):focus:after,
-.facepile > a:nth-child(11n + 9):hover:after {
+.facepile > a:nth-child(11n + 9):is(:focus, :hover):after {
 	background-position: 72% 80%;
 }
-.facepile > a:nth-child(11n + 10):focus:after,
-.facepile > a:nth-child(11n + 10):hover:after {
+.facepile > a:nth-child(11n + 10):is(:focus, :hover):after {
 	background-position: 81% 80%;
 }
-.facepile > a:nth-child(11n + 11):focus:after,
-.facepile > a:nth-child(11n + 11):hover:after {
+.facepile > a:nth-child(11n + 11):is(:focus, :hover):after {
 	background-position: 90% 80%;
 }
 
@@ -134,16 +126,22 @@
 	background-color: #eee;
 }
 
-/* Filter out gold sponsors when the giant logos are adjacent (in the footer, everywhere but the home page) */
+/* Filter out duplicate and inactive gold/silvers sponsors */
 .facepile-supporters [data-supporters-tier="gold-sponsor"],
 .facepile-supporters [data-supporters-tier="silver-sponsor"] {
 	display: none;
 }
-[show-gold-sponsors] .facepile-supporters [data-supporters-tier="gold-sponsor"],
-[show-silver-sponsors] .facepile-supporters [data-supporters-tier="silver-sponsor"] {
-	display: inline-block;
-}
 
 .facepile > a:has(img.avatar:not([src])) {
 	display: none;
+}
+
+/* /docs/supporters/ */
+.supporters-facepile .avatar {
+	max-width: 2em;
+	margin-right: 0.5em;
+}
+.supporters-facepile a[href] {
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

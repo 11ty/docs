@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "32d35bd178b0fc0e3f72e165f43777756025ee54",
+			"url": "https://github.com/11ty/docs/commit/32d35bd178b0fc0e3f72e165f43777756025ee54",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-03-27T22:31:50.000Z",
+			"message": "Item organization",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

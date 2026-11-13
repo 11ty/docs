@@ -3,26 +3,19 @@ pageTitle: Image (WebC)
 eleventyNavigation:
   key: Image WebC
   parent: Image
-  excerpt: Use a WebC component for WebC templates.
+  excerpt: ~~Use a WebC component for WebC templates.~~
 excludeFromSidebar: true
 ---
 
-{% tableofcontents %}
-
 {% include "image-usage.njk" %}
+
+{% callout "error", "md-block", "Feature Removed" %}Due to and maintenance cost and feature overlap with the [Image HTML Transform](/docs/plugins/image/#html-transform), the `<eleventy-image>` WebC component was retired in Eleventy Image v7. Read more at [GitHub Issue #305](https://github.com/11ty/eleventy-img/issues/305). The [HTML Transform method](/docs/plugins/image/#html-transform) is recommended moving forward. You _can_ also create your own Image component using an approach similar to [Asynchronous Shortcodes](/docs/plugins/image-shortcodes/) using `webc:type="js"`.{% endcallout %}
 
 ## Usage
 
-{% renderTemplate "webc" %}
-<div class="build-cost-inline">
-<div><a href="./image.md#optimize-images-on-request"><build-cost @cost="1" @icon="🍦" @rating-icon="🍨" label="Serve Cost"></build-cost></a></div>
-<div><a href="./image.md#build-cost"><build-cost @cost="3"></build-cost></a></div>
-</div>
-{% endrenderTemplate %}
-
 {% addedin "Image v3.1.0" %} Eleventy Image now provides a built-in `<eleventy-image>` WebC component for use in your Eleventy project.
 
-Using Eleventy Image in [WebC](/docs/languages/webc.md) offers all the same great benefits you’re used to from Eleventy Image with an intuitive declarative HTML-only developer experience. WebC components work in `*.webc` files. For similar functionality in other template formats, use the the [Liquid/Nunjucks/JavaScript shortcodes](./image-shortcodes.md) above (or even `<eleventy-image>` with the [Render plugin](/docs/plugins/render.md)).
+Using Eleventy Image in [WebC](/docs/languages/webc.md) offers all the same great benefits you’re used to from Eleventy Image with an intuitive declarative HTML-only developer experience. WebC components work in `*.webc` files. For similar functionality in other template formats, use the [Liquid/Nunjucks/JavaScript shortcodes](./image-shortcodes.md) above (or even `<eleventy-image>` with the [Render plugin](/docs/plugins/render.md)).
 
 ### Configuration
 

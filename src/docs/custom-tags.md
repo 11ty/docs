@@ -1,14 +1,14 @@
 ---
 eleventyNavigation:
-  parent: Configuration
+  parent: Shortcodes
   key: Custom Tags
-  order: 5
 relatedKey: custom-tags
 relatedTitle: Template Custom Tags
 tags:
   - related-shortcodes
   - related-nunjucks
   - related-liquid
+excludeFromSidebar: true
 ---
 
 # Custom Tags

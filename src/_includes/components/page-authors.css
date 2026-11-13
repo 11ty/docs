@@ -1,0 +1,52 @@
+/* Commit authors for a single page, sits under the page title */
+.page-authors {
+	--page-authors-avatar-size: 2.462em; /* 32px /13 */
+	--page-authors-offset: 0.25em;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 0.5em;
+	font-family: system-ui, sans-serif;
+	font-size: 0.8125em; /* 13px /16 */
+	margin-block: 2em 0;
+	color: #666;
+}
+@media (prefers-color-scheme: dark) {
+	.page-authors {
+		color: #adadad;
+	}
+}
+.page-authors-line {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25em 0.75em;
+}
+.page-authors-faces {
+	display: flex;
+	flex-wrap: wrap;
+	padding-inline-start: var(--page-authors-offset);
+}
+.page-authors-faces > a {
+	width: var(--page-authors-avatar-size);
+	height: var(--page-authors-avatar-size);
+	margin-inline-start: calc(-1 * var(--page-authors-offset));
+}
+.page-authors-faces > a:is(:focus, :hover) {
+	position: relative;
+	z-index: 1;
+}
+.page-authors .avatar {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	border: 1px solid #fff;
+	background-color: #fff;
+	border-radius: 50%;
+}
+@media (prefers-color-scheme: dark) {
+	.page-authors .avatar {
+		border-color: #222;
+		background-color: #222;
+	}
+}

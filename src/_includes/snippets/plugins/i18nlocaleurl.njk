@@ -1,113 +1,74 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight class="tabs-flush">
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "localeurl"} %}
   <div id="localeurl-njk" role="tabpanel">
-
 {% codetitle "/en/index.njk" %}
-
-{% raw %}
-
-```njk
+{%- set codeBlock %}{% raw %}
 <a href="{{ "/blog/" | locale_url }}">Blog</a>
 <!-- <a href="/en/blog/">Blog</a> -->
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 
 {% codetitle "/es/index.njk" %}
-
-{% raw %}
-
-```njk
+{%- set codeBlock %}{% raw %}
 <a href="{{ "/blog/" | locale_url }}">Blog</a>
 <!-- <a href="/es/blog/">Blog</a> -->
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="localeurl-liquid" role="tabpanel">
-
 {% codetitle "/en/index.liquid" %}
-
-{% raw %}
-
-```liquid
+{%- set codeBlock %}{% raw %}
 <a href="{{ "/blog/" | locale_url }}">Blog</a>
 <!-- <a href="/en/blog/">Blog</a> -->
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("liquid") | safe }}
 
 {% codetitle "/es/index.liquid" %}
-
-{% raw %}
-
-```liquid
+{%- set codeBlock %}{% raw %}
 <a href="{{ "/blog/" | locale_url }}">Blog</a>
 <!-- <a href="/es/blog/">Blog</a> -->
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="localeurl-js" role="tabpanel">
-
 {% codetitle "/en/index.11ty.js" %}
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 export default function (data) {
 	return `<a href="${this.locale_url("/blog/")}">Blog</a>`;
 	// returns <a href="/en/blog/">Blog</a>
 };
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 {% codetitle "/es/index.11ty.js" %}
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 export default function (data) {
 	return `<a href="${this.locale_url("/blog/")}">Blog</a>`;
 	// returns <a href="/es/blog/">Blog</a>
 };
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="localeurl-cjs" role="tabpanel">
 
 {% codetitle "/en/index.11ty.cjs" %}
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 module.exports = function (data) {
 	return `<a href="${this.locale_url("/blog/")}">Blog</a>`;
 	// returns <a href="/en/blog/">Blog</a>
 };
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 {% codetitle "/es/index.11ty.cjs" %}
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 module.exports = function (data) {
 	return `<a href="${this.locale_url("/blog/")}">Blog</a>`;
 	// returns <a href="/es/blog/">Blog</a>
 };
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

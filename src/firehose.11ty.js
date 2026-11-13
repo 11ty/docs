@@ -1,6 +1,5 @@
 // import { decodeHTML } from "entities";
 import { escapeText } from "entities/escape";
-import activity from "../config/activity.js";
 
 function getSlugFromTitle(str) {
 	if (str.startsWith("GitHub Releases [")) {
@@ -13,26 +12,27 @@ function getSlugFromTitle(str) {
 	return "";
 }
 
-export async function data() {
-	const feed = await activity();
-	const entries = await feed.getEntries();
-
+export function data() {
 	return {
 		headerTitle: "Eleventy Community",
-		entries: entries,
 		layout: "layouts/docs.njk",
+		eleventyNavigation: {
+			key: "Firehose",
+			parent: "Community",
+			order: 1.1,
+		}
 	};
 }
 
-export async function render({ entries }) {
+export async function render({ firehose = [] }) {
 	return `
 <h1>Eleventy Firehose</h1>
 
-<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, <a href="https://11ty.dev/mastodon">Mastodon account</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
+<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>
-	<li>Built using <a href="https://github.com/11ty/eleventy-activity-feed"><code>eleventy-activity-feed</code></a>.</li>
+	<li>Built using <a href="https://github.com/11ty/import"><code>@11ty/import</code></a>.</li>
 </ul>
 
 <hr>
@@ -54,19 +54,12 @@ export async function render({ entries }) {
 </style>
 
 <div class="activity-feed">
+	<script type="module" src="/js/filter-container.js"></script>
 	<filter-container oninit>
 		<p data-filter-results="result/results" aria-live="polite"></p>
 
 		<form>
 			<strong>Filter:</strong>
-			<label>
-				<input type="checkbox" value="mastodon" data-filter-key="type">
-				Mastodon
-			</label>
-			<label>
-				<input type="checkbox" value="bluesky" data-filter-key="type">
-				Bluesky
-			</label>
 			<label>
 				<input type="checkbox" value="youtube" data-filter-key="type" checked>
 				YouTube
@@ -84,12 +77,10 @@ export async function render({ entries }) {
 				Quick Tips
 			</label>
 		</form>
-${entries
+${firehose
 	.map((entry) => {
-		// Only show content on Mastodon
-		let content = entry.sourceLabel === "Mastodon" || entry.sourceLabel === "Bluesky"
-			? entry.content || ""
-			: "";
+		// Only videos render their content, as an embed
+		let content = "";
 
 		if (
 			entry.sourceLabel.startsWith("YouTube") &&
@@ -105,10 +96,10 @@ ${entries
 		return `<div data-filter-type="${getSlugFromTitle(
 			`${entry.sourceLabel}: ${entry.title}`
 		)}">${this.callout(
-			content,
-			"box",
+			`<p><strong><a href="${entry.url}">${escapeText(entry.title)}</a></strong></p>${content}`,
+			"info",
 			"html",
-			`<a href="${entry.url}">${escapeText(entry.title)}</a>`
+			entry.sourceLabel,
 		)}</div>`;
 	})
 	.join("\n")}

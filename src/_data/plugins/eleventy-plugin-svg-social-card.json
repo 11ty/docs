@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-svg-social-card",
+	"author": "jcubic",
+	"description": "Generate per-page social card images (Open Graph / Twitter card) from an SVG template."
+}

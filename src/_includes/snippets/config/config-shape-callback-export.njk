@@ -1,35 +1,35 @@
 {%- set tabid = "configshapes-callback-export" %}
 <div class="codetitle codetitle-right-md">eleventy.config.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-
-```js
+{% set codeBlock %}
 module.exports = async function(eleventyConfig) {};
 
+// This named export is optional
 module.exports.config = {
   dir: {
     input: "views",
     output: "dist"
   }
 };
-```
-
+{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-
-```js
+{% set codeBlock %}
 export default async function(eleventyConfig) {};
 
+// This named export is optional
 export const config = {
   dir: {
     input: "views",
     output: "dist"
   }
 };
-```
-
+{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

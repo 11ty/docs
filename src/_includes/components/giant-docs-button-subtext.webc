@@ -14,4 +14,4 @@
 }
 </style>
 
-<p webc:root="override" class="mb-8">Todd and <a :href="canonicalTwitterUrl('https://twitter.com/brucel/status/1107699886584143872')">Bruce</a> said this button should be bigger and as you can see they were right.</p>
+<p webc:root="override" class="mb-8">Todd and <a href="https://social.vivaldi.net/@brucelawson">Bruce</a> said this button should be bigger and as you can see they were right.</p>

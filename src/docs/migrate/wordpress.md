@@ -1,7 +1,7 @@
 ---
 titleOverride: Migrating from WordPress to Eleventy
 eleventyNavigation:
-  parent: Migrating to Eleventy
+  parent: Importing Content
   key: Migrating from WordPress
 iconUrl: https://wordpress.org
 exportCommunityLinks:

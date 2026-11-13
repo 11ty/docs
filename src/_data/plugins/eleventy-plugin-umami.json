@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-umami",
+	"author": "Akashic101",
+	"description": "Get the stats of your selfhosted umami-instance and use them in your 11ty-project using this plugin"
+}

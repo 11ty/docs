@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "73ea0eefa24dbe052d18b65100bccf58d73e0a13",
+			"url": "https://github.com/11ty/docs/commit/73ea0eefa24dbe052d18b65100bccf58d73e0a13",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-12-16T17:47:23.000Z",
+			"message": "Documenting Node’s type stripping feature compatibility, updates to CJS/ESM docs",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

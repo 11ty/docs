@@ -2,19 +2,27 @@
 eleventyNavigation:
   parent: Template Languages
   key: Pug
-  order: 11
+  order: 8
+  excerpt: Shorthand syntax for HTML
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
+[Pug templates](https://pugjs.org/api/getting-started.html) let you write HTML pages in a terse shorthand.
+Previously these were known as Jade templates (the project was renamed).
 
 | Eleventy Short Name | File Extension | npm Package                           |
 | ------------------- | -------------- | ------------------------------------- |
 | `pug`               | `.pug`         | [`pug`](https://github.com/pugjs/pug) |
 
-Pug templates used to be called Jade templates and the project was renamed.
+| Eleventy or Plugin version | `pug` version |
+| --- | --- |
+| `@11ty/eleventy@0.x` | `pug@3.x` |
+| `@11ty/eleventy@1.x` | `pug@3.x` |
+| `@11ty/eleventy@2.x` | `pug@3.x` |
+| `@11ty/eleventy@3.x` and newer | N/A |
+| `@11ty/eleventy-plugin-pug@1.x` | `pug@3.x` |
 
-You can override a `.pug` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/languages/).
+You can override a `.pug` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
 ## Installation
 
@@ -22,9 +30,10 @@ The `pug` templating language was moved out of Eleventy core in v3 and now requi
 
 * [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
-```sh
+{%- set codeBlock %}
 npm install @11ty/eleventy-plugin-pug
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file:
 

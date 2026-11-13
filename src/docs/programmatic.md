@@ -1,13 +1,11 @@
 ---
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Advanced
   key: Programmatic API
-  order: 6.6
+  order: 1
 ---
 
 # Programmatic API {% addedin "1.0.0" %}<!-- Beta 10 or Canary 50 -->
-
-{% tableofcontents %}
 
 You can run Eleventy in any arbitrary Node script.
 
@@ -19,11 +17,11 @@ Now create a file called `my-node-script.js` with the following contents:
 
 {% include "snippets/programmatic/node-script.njk" %}
 
-Then run your new script from the command line. _Don’t include `~ $` when you run this command._
+Then run your new script from the command line.
 
-{% codewithprompt "cmdhomedir" %}
+```
 node my-node-script.js
-{% endcodewithprompt %}
+```
 
 ## Don’t write to the file system
 
@@ -32,6 +30,12 @@ Using `.write()` will write your output to the file system. If, instead, you wan
 ### JSON Output
 
 {% include "snippets/programmatic/json-out.njk" %}
+
+#### Adding data to JSON output
+
+You can use the `eleventyConfig.dataFilterSelectors` configuration API `Set` to add or remove lodash-style selectors for Data Cascade entries to be included in individual entries from the `toJSON` method.
+
+{% include "snippets/programmatic/json-out-data.njk" %}
 
 ### ndjson Output
 

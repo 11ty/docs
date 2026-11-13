@@ -20,14 +20,14 @@ Add the following `jsmin` filter to your Eleventy Config file:
 import { minify } from "terser";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addFilter("jsmin", async function (code, callback) {
+	eleventyConfig.addFilter("jsmin", async function (code) {
 		try {
 			const minified = await minify(code);
-			callback(null, minified.code);
+			return minified.code;
 		} catch (err) {
 			console.error("Terser error: ", err);
 			// Fail gracefully.
-			callback(null, code);
+			return code;
 		}
 	});
 };

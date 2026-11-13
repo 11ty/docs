@@ -2,14 +2,25 @@
 eleventyNavigation:
   parent: Template Languages
   key: Markdown
+  pinned: true
   order: 2
+  excerpt: Most common language for authoring content
 layout: layouts/langs.njk
-logoImage: "./src/img/logos/markdown.svg"
+logoImage: "/img/logos/markdown.svg"
 relatedLinks:
   /docs/config/#default-template-engine-for-markdown-files: Default Template Engine for Markdown Files
 ---
 
-{% tableofcontents "open" %}
+For many websites, Markdown is the primary template language for authoring content: it's intended to be an easy-to-read markup language for authoring blog posts, documentation, and more. The [Markdown Guide](https://www.markdownguide.org/cheat-sheet/) is a good resource for learning Markdown if you're not familiar with the syntax.
+
+{% codetitle "example.md" %}
+{% codetitle "Markdown", "Syntax" %}
+{% set codeBlock %}
+**Markdown** is a great language for writing _content_.
+You can create [links](https://11ty.dev), lists,
+tables, and more.
+{% endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 | Eleventy Short Name | File Extension | npm Package                                                |
 | ------------------- | -------------- | ---------------------------------------------------------- |
@@ -17,8 +28,9 @@ relatedLinks:
 
 * Related languages: [MDX](/docs/languages/mdx/)
 
+
 {% callout "info" %}
-Markdown files are by default pre-processed as Liquid templates. <a href="/docs/config/#default-template-engine-for-markdown-files">You can change this default in your configuration file</a> (or disable it altogether). To change this for a single template and not globally, read <a href="/docs/languages/">Changing a Template’s Rendering Engine</a>.
+Markdown files are by default pre-processed as Liquid templates. <a href="/docs/config/#default-template-engine-for-markdown-files">You can change this default in your configuration file</a> (or disable it altogether). To change this for a single template and not globally, read <a href="/docs/template-overrides/">Changing a Template’s Rendering Engine</a>.
 {% endcallout %}
 
 ## Markdown Options
@@ -54,11 +66,12 @@ export default function (eleventyConfig) {
 
 Run your own callback on the provided Library instance (the default _or_ any provided by `setLibrary` above).
 
-```js
-module.exports = function (eleventyConfig) {
+{% set codeContent %}
+export default function (eleventyConfig) {
 	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.enable("code"));
 };
-```
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
 
 ## Add your own plugins {% addedin "0.3.0" %}
 
@@ -67,13 +80,26 @@ Pass in your own `markdown-it` plugins using the `amendLibrary` (Eleventy &gt;= 
 1. Find your [own `markdown-it` plugin on NPM](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 2. `npm install` the plugin.
 
-```js
-const markdownItEmoji = require("markdown-it-emoji");
+{%- set codeBlock %}
+import { full as emoji } from "markdown-it-emoji";
 
-module.exports = function (eleventyConfig) {
-	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(markdownItEmoji));
+export default function (eleventyConfig) {
+	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(emoji));
 };
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
+
+## Highlighting Code
+
+Use [fenced code blocks](https://spec.commonmark.org/0.28/#fenced-code-blocks) to include code examples in your Markdown content, and install the [Syntax Highlighting Plugin](https://www.11ty.dev/docs/plugins/syntaxhighlight/) if you want them to be highlighted.
+
+````md
+```ts
+function hello(name: string) {
+	console.log(`Hello ${name}`);
+}
 ```
+````
 
 ## Indented Code Blocks
 
@@ -172,27 +198,28 @@ module.exports = function (eleventyConfig) {
 
 ## Why can’t I return markdown from paired shortcodes to use in a markdown file?
 
-{% callout "warn" %}This is a <a href="/docs/pitfalls/"><strong>Common Pitfall</strong></a>.{% endcallout %}
+{% callout "pitfall" %}This is a <a href="/docs/pitfalls/"><strong>Common Pitfall</strong></a>.{% endcallout %}
 
-The truth is, **you can** return markdown inside shortcodes (as long as the file is transforming markdown, either as a `.md` file extension or [with `templateEngineOverride`](/docs/languages/#overriding-the-template-language)). However, there is one small wrinkle that might catch you off guard.
+The truth is, **you can** return markdown inside shortcodes (as long as the file is transforming markdown, either as a `.md` file extension or [with `templateEngineOverride`](/docs/template-overrides/)). However, there is one small wrinkle that might catch you off guard.
 
-{% codetitle ".eleventy.js" %}
+{% set codeContent %}
+export default function(eleventyConfig) {
+	eleventyConfig.addPairedShortcode("myShortcode", function (content) {
+		// Method A: ✅ This works fine
+		return content;
 
-```js
-eleventyConfig.addPairedShortcode("myShortcode", function (content) {
-	// Method A: ✅ This works fine
-	return content;
-
-	// Method B: ⚠️ Careful when wrapping with HTML
-	return `<div>${content}</div>`;
-});
-```
+		// Method B: ⚠️ Careful when wrapping with HTML
+		return `<div>${content}</div>`;
+	});
+}
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
 
 {% codetitle "Liquid, Nunjucks", "Syntax" %}
 
 {% raw %}
 
-```
+```jinja2
 {% myShortcode %}My really *important* content.{% endmyShortcode %}
 ```
 
@@ -200,3 +227,12 @@ eleventyConfig.addPairedShortcode("myShortcode", function (content) {
 
 1. Method A returns: `My really *important* content.` which is successfully [transformed as markdown into `My really <em>important</em> content`](https://spec.commonmark.org/dingus/?text=My%20really%20*important*%20content.).
 1. Method B returns: `<div>My really *important* content.</div>` which markdown treats as an HTML block which cannot have nested markdown inside of it. It’s [transformed into `<div>My really *important* content.</div>`](https://spec.commonmark.org/dingus/?text=%3Cdiv%3EMy%20really%20*important*%20content.%3C%2Fdiv%3E). Read more at the [CommonMark specification on HTML blocks](https://spec.commonmark.org/0.28/#html-blocks).
+
+## Module versions
+
+| Eleventy version | `markdown-it` version |
+| --- | --- |
+| `@11ty/eleventy@0.x` | `markdown-it@10.x` |
+| `@11ty/eleventy@1.x` | `markdown-it@12.x` |
+| `@11ty/eleventy@2.x` | `markdown-it@13.x` |
+| `@11ty/eleventy@3.x` | `markdown-it@14.x` |

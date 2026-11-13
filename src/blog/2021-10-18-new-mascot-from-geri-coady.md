@@ -8,7 +8,7 @@ eleventyNavigation:
 The Eleventy Mascot is becoming a series! Our project has continued with its pseudo-regular refresh of the famed possum on a balloon and the latest in the series is from acclaimed designer, illustrator, and author Geri Coady!
 
 <div style="display: inline-block; border-radius: 1em; background-color: hsl(229deg 40% 38%); border: .75em solid hsl(229deg 40% 28%); box-shadow: -10px 10px 80px rgb(0 0 0 / 10%);">
-  {% image "./src/img/possum-geri.png", "3 possums suspended from a red balloon" %}
+  <img src="/img/possum-geri.png" alt="3 possums suspended from a red balloon">
 </div>
 
 I really like this iteration and the unique style Geri brought to the project—especially the addition of two littles, which to me is a lovely nod to how our community has grown!

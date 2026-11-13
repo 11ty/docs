@@ -1,0 +1,33 @@
+{
+	"commits": [
+		{
+			"id": "e4d7935b30c95911b501c4f922e711790d965fdf",
+			"url": "https://github.com/11ty/docs/commit/e4d7935b30c95911b501c4f922e711790d965fdf",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-02-05T20:29:58.000Z",
+			"message": "Updates per https://github.com/11ty/eleventy-base-blog/pull/157",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "aarongoldenthal",
+			"url": "https://github.com/aarongoldenthal",
+			"avatarUrl": "/img/docs-avatars/6117004-pZNGMBLtAQjm.png"
+		},
+		{
+			"name": "adamwolf",
+			"url": "https://github.com/adamwolf",
+			"avatarUrl": "/img/docs-avatars/35681-h9jyRNmbSh09.jpeg"
+		}
+	]
+}

@@ -1,15 +1,12 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "htmlbasefull"} %}
   <div id="htmlbasefull-liquid" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Liquid", "Syntax" %}
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 {{ "/test/" | htmlBaseUrl: "http://example.com/" }}
 => "http://example.com/pathprefix/test/"
 
@@ -23,9 +20,8 @@ Absolute URLs are still ignored:
 
 {{ "http://11ty.dev/" | htmlBaseUrl: "http://example.com/" }}
 => "http://11ty.dev/"
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
 
   </div>
   <div id="htmlbasefull-njk" role="tabpanel">
@@ -33,10 +29,7 @@ Absolute URLs are still ignored:
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```njk
+{% set codeBlock %}{% raw %}
 {{ "/test/" | htmlBaseUrl("http://example.com/") }}
 => "http://example.com/pathprefix/test/"
 
@@ -50,9 +43,8 @@ Absolute URLs are still ignored:
 
 {{ "http://11ty.dev/" | htmlBaseUrl("http://example.com/") }}
 => "http://11ty.dev/"
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 
   </div>
   <div id="htmlbasefull-js" role="tabpanel">
@@ -60,10 +52,7 @@ Absolute URLs are still ignored:
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.js", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default function () {
 	return (
 		`
@@ -85,9 +74,8 @@ ${this.htmlBaseUrl("http://11ty.dev/", "http://example.com/")}
 => "http://11ty.dev/"`
 	);
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
   </div>
   <div id="htmlbasefull-cjs" role="tabpanel">
@@ -95,10 +83,7 @@ ${this.htmlBaseUrl("http://11ty.dev/", "http://example.com/")}
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.cjs", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = function () {
 	return (
 		`
@@ -120,9 +105,8 @@ ${this.htmlBaseUrl("http://11ty.dev/", "http://example.com/")}
 => "http://11ty.dev/"`
 	);
 };
-```
-
-{% endraw %}
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
 
   </div>
 

@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "a3342e3c1b27040f3838659aeec7ee26aa3aad2d",
+			"url": "https://github.com/11ty/docs/commit/a3342e3c1b27040f3838659aeec7ee26aa3aad2d",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2026-07-02T15:57:58.000Z",
+			"message": "Link to build.awesome.me",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

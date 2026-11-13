@@ -1,8 +1,8 @@
 ---
 eleventyNavigation:
-  parent: Configuration
+  parent: Template Features
   key: Shortcodes
-  order: 4
+  order: 2
 relatedKey: shortcodes
 relatedTitle: Template Shortcodes
 tags:
@@ -14,8 +14,6 @@ tags:
 ---
 
 # Shortcodes {% addedin "0.5.0" %}
-
-{% tableofcontents %}
 
 Various template engines can be extended with shortcodes for easy reusable content. This is sugar around Template Language [Custom Tags](/docs/custom-tags/). Shortcodes are supported in JavaScript, Liquid, Nunjucks templates.
 
@@ -51,7 +49,7 @@ Markdown files are pre-processed as Liquid templates by default—any shortcodes
 
 Read more about using shortcodes on the individual Template Language documentation pages:
 
-- [JavaScript `*.11ty.js`](/docs/languages/javascript/#javascript-template-functions) (async-friendly)
+- [JavaScript `*.11ty.js`](/docs/languages/javascript/#java-script-template-functions) (async-friendly)
 - [Liquid `*.liquid`](/docs/languages/liquid/#shortcodes) (async-friendly)
 - [Nunjucks `*.njk`](/docs/languages/nunjucks/#shortcodes) (async-friendly)
 - [Handlebars `*.hbs`](/docs/languages/handlebars/#shortcodes) (sync only)
@@ -90,7 +88,7 @@ Markdown files are pre-processed as Liquid templates by default—any shortcodes
 
 Read more about using paired shortcodes on the individual Template Language documentation pages:
 
-- [JavaScript `*.11ty.js`](/docs/languages/javascript/#javascript-template-functions) (async-friendly)
+- [JavaScript `*.11ty.js`](/docs/languages/javascript/#java-script-template-functions) (async-friendly)
 - [Liquid `*.liquid`](/docs/languages/liquid/#shortcodes) (async-friendly)
 - [Nunjucks `*.njk`](/docs/languages/nunjucks/#shortcodes) (async-friendly)
 - [Handlebars `*.hbs`](/docs/languages/handlebars/#shortcodes) (sync only)
@@ -104,7 +102,7 @@ Read more about using paired shortcodes on the individual Template Language docu
 A few Eleventy-specific data properties are available to shortcode callbacks.
 
 - `this.page` {% addedin "0.11.0" %} (Learn about [`page`](/docs/data-eleventy-supplied.md#page-variable))
-- `this.eleventy` {% addedin "2.0.0-canary.5" %} (Learn about [`eleventy`](/docs/data-eleventy-supplied.md##eleventy-variable))
+- `this.eleventy` {% addedin "2.0.0-canary.5" %} (Learn about [`eleventy`](/docs/data-eleventy-supplied.md#eleventy-variable))
 - `this.env` (Nunjucks-specific) {% addedin "3.0.0-canary.5" %}
 - `this.ctx` (Nunjucks-specific) {% addedin "3.0.0-canary.5" %}
 
@@ -118,6 +116,25 @@ export default function (eleventyConfig) {
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
+
+## Memoize Shortcodes
+
+> Memoize functions - An optimization used to speed up consecutive function calls by caching the result of calls with identical input
+
+There are many popular libraries to cache or memoize functions (filters, shortcodes, etc): [`memoize`](https://www.npmjs.com/package/memoize) (ESM-only) is one such package. You can use `memoize` (or any [other memoization library](https://www.npmjs.com/search?q=memoize)) to cache things in your Eleventy Configuration file.
+
+<div class="codetitle">eleventy.config.js</div>
+
+{%- set codeBlock %}{% raw %}
+import memoize from "memoize";
+
+export default function(eleventyConfig) {
+	eleventyConfig.addShortcode("htmlEntities", memoize(str => {
+		return encode(str);
+	}));
+};
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
 
 ## Per-Engine Shortcodes
 
@@ -146,7 +163,7 @@ Markdown files are pre-processed as Liquid templates by default—any shortcodes
 
 ### Async Friendly Per-Engine Shortcodes
 
-Learn more about these on the individual template engine pages for [Nunjucks](/docs/languages/nunjucks/#asynchronous-shortcodes), [Liquid](/docs/languages/liquid/#asynchronous-shortcodes), and [`11ty.js` JavaScript](/docs/languages/javascript/#asynchronous-javascript-template-functions).
+Learn more about these on the individual template engine pages for [Nunjucks](/docs/languages/nunjucks/#asynchronous-shortcodes), [Liquid](/docs/languages/liquid/#asynchronous-shortcodes), and [`11ty.js` JavaScript](/docs/languages/javascript/#asynchronous-java-script-template-functions).
 
 {% set codeContent %}
 export default function (eleventyConfig) {

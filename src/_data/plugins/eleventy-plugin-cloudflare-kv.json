@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-cloudflare-kv",
+	"author": "alexmensch",
+	"description": "builds collections from content stored in Cloudflare KV as a simple CMS."
+}

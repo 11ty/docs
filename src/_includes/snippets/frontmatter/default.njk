@@ -1,29 +1,27 @@
 {%- set tabid = "default" %}
 <div class="codetitle codetitle-right-md">eleventy.config.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-
-```js
+{% set codeBlock %}
 export default function (eleventyConfig) {
 	eleventyConfig.setFrontMatterParsingOptions({
 		language: "js", // default is "yaml"
 	});
 };
-```
-
+{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-
-```js
+{% set codeBlock %}
 module.exports = function (eleventyConfig) {
 	eleventyConfig.setFrontMatterParsingOptions({
 		language: "js", // default is "yaml"
 	});
 };
-```
-
+{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

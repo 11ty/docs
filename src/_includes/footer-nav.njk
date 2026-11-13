@@ -1,21 +1,28 @@
-<ul class="list-bare mb-2 fl fl-inline fl-nowrap">
-	<li><em><i class="fa-solid fa-hammer"></i>Built with Eleventy v{{ eleventy.version }}</em></li>
-	<li><a href="https://fontawesome.com/"><i class="fa-brands fa-font-awesome"></i>Font Awesome</a></li>
-	<li>{% include "edit-on-github.njk" %}</li>
-	<li><a href="/docs/accessibility/"><i class="fa-solid fa-universal-access"></i>Accessibility</a></li>
-	<li><a href="https://zachleat.com" class="elv-externalexempt">{% communityavatar "zachleat" %}</a></li>
-</ul>
-<ul class="list-bare mb-2 fl fl-inline fl-nowrap">
-	<li><a href="/docs/credits/"><i class="fa-solid fa-handshake-angle"></i>Credits</a></li>
-	<li><a href="/firehose/"><i class="fa-solid fa-fire"></i>Firehose</a></li>
-	<li><a href="/styleguide/"><i class="fa-solid fa-border-top-left"></i>Style Guide</a></li>
-{% if github and github.stargazers %}
-	<li><a href="https://github.com/11ty/eleventy/" class="elv-externalexempt" title="{{ github.stargazers }}"><i class="fa-solid fa-star"></i>{{ github.stargazers | humanReadableNum }} Stars</a></li>
-{% endif %}
-{% if npm and npm.downloads %}
-	<li><i class="fa-solid fa-download"></i><abbr title="{{ npm.downloads }}">{{ npm.downloads | humanReadableNum }}</abbr> Downloads</li>
-{% endif %}
-{% if opencollective and opencollective.backers %}
-	<li><a href="/docs/supporters/"><i class="fa-solid fa-hand-holding-medical"></i>{{ opencollective.backers | humanReadableNum }} Backers</a></li>
-{% endif %}
-</ul>
+<div class="fl fl-nowrap elv-footer-nav">
+	<ul class="list-bare">
+		<li>{% include "edit-on-github.njk" %}</li>
+		<li><a href="/docs/accessibility/">Accessibility</a></li>
+		<li><a href="/docs/credits/">Credits</a></li>
+		<li><a href="/firehose/">Firehose</a></li>
+		<li><a href="/styleguide/">Style Guide</a></li>
+	</ul>
+	<ul class="list-bare">
+		<li><strong class="subhed">Built With</strong></li>
+		<li><em><i class="fa-brands fa-eleventy"></i>Eleventy v{{ eleventy.version }}</em></li>
+		<li><is-land import="/js/time-difference.js" on:idle><time-difference live><em>Built <time datetime="{{ config.now | toISO }}">{{ config.now | newsDate }}</time></em></time-difference></is-land></li>
+		<li><strong class="subhed">Statistics</strong></li>
+{%- if github and github.stargazers %}
+		<li><a href="https://github.com/11ty/eleventy/" class="elv-externalexempt" title="{{ github.stargazers }}"><i class="fa-solid fa-star"></i>{{ github.stargazers | humanReadableNum }} Stars</a></li>
+{%- endif %}
+{%- if npm and npm.downloads %}
+		<li><i class="fa-solid fa-download"></i><abbr title="{{ npm.downloads }}">{{ npm.downloads | humanReadableNum }}</abbr> Downloads</li>
+{%- endif %}
+	</ul>
+	<ul class="list-bare">
+		<li><strong class="subhed">Awesomeverse</strong></li>
+		<li><a href="https://fontawesome.com/"><i class="fa-brands fa-font-awesome"></i>Font Awesome</a></li>
+		<li><a href="https://webawesome.com/"><i class="fa-brands fa-web-awesome"></i>Web Awesome</a></li>
+		<li><a href="https://www.podcastawesome.com/">Podcast Awesome</a></li>
+		<li><a href="https://blog.fontawesome.com/">Blog Awesome</a></li>
+	</ul>
+</div>

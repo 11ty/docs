@@ -4,7 +4,14 @@
 	"feedTitle": "Quick Tips RSS Feed",
 	"feedUrl": "/docs/quicktips/feed.xml",
 	"tags": ["quicktips", "docs-quicktips"],
+	"eleventyNavigation": {
+		"parent": "Quick Tips"
+	},
 	"eleventyComputed": {
-		"title": "Quick Tip: {{ tiptitle }}"
-	}
+		"title": "Quick Tip: {{ tiptitle }}",
+		"eleventyNavigation": {
+			"key": "Quick Tip: {{ tiptitle }}"
+		}
+	},
+	"excludeFromSidebar": true
 }

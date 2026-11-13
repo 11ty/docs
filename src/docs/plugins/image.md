@@ -2,13 +2,13 @@
 pageTitle: Image
 eleventyNavigation:
   key: Image
-  order: -.2
+  title: '<i class="fa-solid fa-image"></i>Image'
   excerpt: A utility to resize and generate images.
+  pinned: true
+  order: 1
 communityLinksKey: image
 overrideCommunityLinks: true
 ---
-
-{% tableofcontents %}
 
 {% renderTemplate "webc" %}<div class="build-cost-inline"><a href="#build-cost"><build-cost cost="3"></build-cost></a></div>{% endrenderTemplate %}
 
@@ -23,13 +23,14 @@ Utility to perform build-time image transformations for both vector and raster i
 
 ## Installation
 
-Published as [`@11ty/eleventy-img`](https://www.npmjs.com/package/@11ty/eleventy-img) on npm. [Source code on GitHub](https://github.com/11ty/eleventy-img).
+Published as [`@11ty/eleventy-img`](https://www.npmjs.com/package/@11ty/eleventy-img) on npm. [Source code on GitHub](https://github.com/11ty/image).
 
-_Image v6.0.0 requires Node 18+._
+_Image v7.0.0 requires Node 22+ (and is [ESM](/docs/cjs-esm/))._
 
-```
+{%- set codeBlock %}
 npm install @11ty/eleventy-img
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 ## Usage
 
@@ -76,7 +77,7 @@ If you explicitly define the [`urlPath` option](#url-path), the `urlPath` is use
 
 You can configure individual `<img>` elements with per-instance overrides:
 
-- `<img width>` is aliased to `eleventy:widths` when it is valid HTML (a single `integer` value) {% addedin "Image v6.0.0" %} _Related [#234](https://github.com/11ty/eleventy-img/issues/234)_.
+- `<img width>` is aliased to `eleventy:widths` when it is valid HTML (a single `integer` value) {% addedin "Image v6.0.0" %} _Related [#234](https://github.com/11ty/image/issues/234)_. If both exist, `eleventy:widths` is given priority over `width` {% addedin "Image v7.0.0" %} _[#314](https://github.com/11ty/image/issues/314)_.
 - `<img eleventy:widths="200,600">` comma separated string to override the default widths.
 - `<img eleventy:formats="webp">` comma separated string to override the default formats.
 - `<img eleventy:ignore>` skips this image.
@@ -116,7 +117,7 @@ export default function (eleventyConfig) {
 
 - {% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}During local development (when using `--serve`), images are optimized when requested in the browser. Read more about [`transformOnRequest`](#optimize-images-on-request).
 - The `sizes` attribute must be present if `widths` has more than one entry ([MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes)). The `eleventyImageTransformPlugin` does not provide a default value for `sizes`, so it must be explicitly included in the HTML attribute or with `htmlOptions.imgAttributes`.
-	- {% addedin "Image v6.0.0" %}When using `loading="lazy"` and `sizes` is not supplied in markup — we’ll use `sizes="auto"` automatically. _Related [#207](https://github.com/11ty/eleventy-img/issues/207)_.
+	- {% addedin "Image v6.0.0" %}When using `loading="lazy"` and `sizes` is not supplied in markup — we’ll use `sizes="auto"` automatically. _Related [#207](https://github.com/11ty/image/issues/207)_.
 
 ## Build Performance <span id="build-cost"></span><span id="build-cost-🧰"></span>
 
@@ -130,7 +131,7 @@ Image optimization is likely one of the costlier pieces of your Eleventy build. 
 
 ### Optimize Images on Request
 
-{% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}When using the [Image HTML transform](#html-transform) or the [Image WebC component](./image-webc.md) during local development, image processing is removed from the build for extra performance. Instead, they are processed when requested by the browser using a special middleware built-in to the Eleventy Dev Server. This is enabled or disabled using the [`transformOnRequest` option](#transform-on-request).
+{% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}When using the [Image HTML transform](#html-transform) during local development, image processing is removed from the build for extra performance. Instead, they are processed when requested by the browser using a special middleware built-in to the Eleventy Dev Server. This is enabled or disabled using the [`transformOnRequest` option](#transform-on-request).
 
 <div id="caching"></div>
 
@@ -178,7 +179,7 @@ console.assert(stats1 !== stats2, "A different promise");
 
 ### Disk Cache
 
-{% addedin "Image v1.0.0" %} Eleventy will skip processing files that are unchanged and already exist in the output directory. This requires the built-in hashing algorithm and is not supported with custom filenames. More background at <a href="https://github.com/11ty/eleventy-img/issues/51">Issue #51</a>.
+{% addedin "Image v1.0.0" %} Eleventy will skip processing files that are unchanged and already exist in the output directory. This requires the built-in hashing algorithm and is not supported with custom filenames. More background at <a href="https://github.com/11ty/image/issues/51">Issue #51</a>.
 
 You can use this to [speed up builds on your build server](/docs/deployment/#persisting-cache).
 
@@ -207,10 +208,11 @@ Use almost any combination of `webp`, `jpeg`, `png`, `svg`, `avif`, `gif`, and `
 - `formats: ["auto"]` (keep original format)
 - `formats: ["svg"]` (requires SVG input)
 - `formats: ["avif"]` <a href="#build-cost"><span class="minilink minilink-buildcost"><code>+1</code> Build Cost</span></a>
+- `formats: ["passthrough"]` (use the original file _without_ processing it, useful if you’ve already optimized your images in a separate pipeline) {% addedin "Image v7.0.0" %} _[Related: #212](https://github.com/11ty/image/issues/212#issuecomment-5076153507)_
 
 ### Skip raster formats for SVG
 
-If using SVG output (the input format is SVG and `svg` is added to your `formats` array), we will skip all of the raster formats even if they’re in `formats`. This may be useful in a CMS-driven workflow when the input could be vector or raster.
+If using SVG output (the input format is SVG and `svg` is in your `formats` array option), we will skip all of the raster formats even if they’re in `formats`. This may be useful in a CMS-driven workflow when the input could be vector or raster.
 
 - `svgShortCircuit: false` (default)
 - `svgShortCircuit: true`
@@ -263,7 +265,7 @@ await Image("./test/bio-2017.jpg", {
 Development build performance improvement to [optimize images when they are requested in the browser](#optimize-images-on-request).
 
 * `transformOnRequest: false` (default)
-* `transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve"` (default for HTML Transform and WebC component)
+* `transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve"` (default for HTML Transform)
 
 You can use [`transformOnRequest` with Shortcodes too](./image-shortcodes.md#boost-performance-optimize-images-on-request).
 
@@ -362,7 +364,7 @@ If you want to try the utility out and not write any files (useful for testing),
 - `failOnError: true` (default)
 - `failOnError: false` no error is thrown (warning output is logged)
 
-See also the [`eleventy:optional` attribute](#attribute-overrides). _Related [#225](https://github.com/11ty/eleventy-img/issues/225)_
+See also the [`eleventy:optional` attribute](#attribute-overrides). _Related [#225](https://github.com/11ty/image/issues/225)_
 
 ### Format Filtering
 
@@ -370,7 +372,7 @@ See also the [`eleventy:optional` attribute](#attribute-overrides). _Related [#2
 
 - `formatFiltering: ["transparent", "animated"]`
 
-_Related [#105](https://github.com/11ty/eleventy-img/issues/105) and [#260](https://github.com/11ty/eleventy-img/issues/260)_
+_Related [#105](https://github.com/11ty/image/issues/105) and [#260](https://github.com/11ty/image/issues/260)_
 
 ### Output Directory
 
@@ -386,7 +388,7 @@ A path-prefix-esque directory for the `<img src>` attribute. e.g. `/img/` for `<
 
 - `urlPath: "/img/"` (default)
 
-{% addedin "Image v6.0.0" %}Full URLs are now supported, e.g. `urlPath: "https://example.com/img/"`. _Related [#239](https://github.com/11ty/eleventy-img/issues/239)_.
+{% addedin "Image v6.0.0" %}Full URLs are now supported, e.g. `urlPath: "https://example.com/img/"`. _Related [#239](https://github.com/11ty/image/issues/239)_.
 
 If you’re using the Image HTML Transform, we recommended **_not_** to define `urlPath`.
 
@@ -408,16 +410,16 @@ If you’re using the Image HTML Transform, we recommended **_not_** to define `
 - `sharpJpegOptions: {}`
 - `sharpAvifOptions: {}`
 
-{% addedin "Image v6.0.0" %}[ICC Profiles](https://sharp.pixelplumbing.com/api-output#keepiccprofile) are preserved by default (when available) for better colors when images have `srgb`, `p3`, or `cmyk` color profiles. _Related [#244](https://github.com/11ty/eleventy-img/issues/244)_.
+{% addedin "Image v6.0.0" %}[ICC Profiles](https://sharp.pixelplumbing.com/api-output#keepiccprofile) are preserved by default (when available) for better colors when images have `srgb`, `p3`, or `cmyk` color profiles. _Related [#244](https://github.com/11ty/image/issues/244)_.
 
 #### Full Sharp API Access
 
-Use the `transform` callback to access anything in the [Sharp API](https://sharp.pixelplumbing.com/api-constructor). _Related [#52](https://github.com/11ty/eleventy-img/issues/52)_. This runs before Eleventy Image processing (keep EXIF metadata, rotation, cropping, et al).
+Use the `transform` callback to access anything in the [Sharp API](https://sharp.pixelplumbing.com/api-constructor). _Related [#52](https://github.com/11ty/image/issues/52)_. This runs before Eleventy Image processing (keep EXIF metadata, rotation, cropping, et al). The second argument with image info was added in v7: _[#274](https://github.com/11ty/image/issues/274)_.
 
 ```js
 {
 	// …
-	transform: (sharp) => {
+	transform: (sharp, { width, height, format }) => {
 		sharp.keepExif();
 	}
 }
@@ -466,7 +468,7 @@ When caching remote images, you may want to check the processed image output int
 
 #### Custom URLs
 
-Want to use a hosted image service instead? You can override the entire URL. Takes precedence over `filenameFormat` option. Useful with `statsSync` or `statsByDimensionsSync`.
+Want to use a hosted image service instead? You can override the entire URL. Takes precedence over `filenameFormat` option. Useful with `statsOnly`.
 
 The metadata object returned will not include `filename` or `outputPath` properties.
 
@@ -484,11 +486,11 @@ The metadata object returned will not include `filename` or `outputPath` propert
 }
 ```
 
-- [_Example on `11ty-website`_](https://github.com/11ty/11ty-website/blob/516faa397a98f8990f3d02eb41e1c99bedfab9cf/.eleventy.js#L105)
+- [_Example on `11ty/docs`_](https://github.com/11ty/docs/blob/516faa397a98f8990f3d02eb41e1c99bedfab9cf/.eleventy.js#L105)
 
 #### Stats Only
 
-{% addedin "Image v1.1.0" %} Skips all image processing to return metadata. Doesn’t write files. Use this as an alternative to the separate `statsSync*` functions—this will use in-memory cache and de-duplicate requests.
+{% addedin "Image v1.1.0" %} Skips all image processing to return metadata. Doesn’t write files. This uses in-memory cache and de-duplicates requests.
 
 - `statsOnly: false` (default)
 - `statsOnly: true`

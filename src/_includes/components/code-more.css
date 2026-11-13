@@ -1,0 +1,58 @@
+.highlight-line {
+	display: inline-block;
+
+	/* del, ins, mark default styles */
+	text-decoration: none;
+	color: inherit;
+}
+
+/* allow highlighting empty lines */
+.highlight-line:empty:before {
+	content: " ";
+}
+
+.highlight-line {
+	min-width: 100%;
+}
+.highlight-line .highlight-line {
+	min-width: 0;
+}
+
+.highlight-line-isdir {
+	color: #b0b0b0;
+	background-color: #222;
+}
+.highlight-line-active {
+	background-color: #444;
+	background-color: hsla(0, 0%, 27%, 0.8);
+}
+.highlight-line-add {
+	background-color: #45844b;
+}
+.highlight-line-remove {
+	background-color: #902f2f;
+}
+
+pre[class*="language-diff-"] {
+	padding-left: 1.5rem;
+	padding-right: 0;
+}
+.token.deleted {
+	background-color: hsl(350deg 100% 88% / 20%);
+}
+.token.inserted {
+	background-color: hsl(120deg 73% 75% / 20%);
+}
+code > .token.inserted:not(.prefix),
+code > .token.deleted:not(.prefix) {
+	display: block;
+	margin-left: -1.5rem;
+}
+.token.prefix.prefix {
+	display: inline-flex;
+	justify-content: center;
+	width: 1rem;
+	margin-right: 0.5rem;
+	-webkit-user-select: none;
+	user-select: none;
+}

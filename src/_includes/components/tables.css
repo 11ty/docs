@@ -1,0 +1,116 @@
+/* Tables */
+table {
+	border-collapse: collapse;
+	margin-bottom: 2em;
+}
+table th,
+table td {
+	text-align: left;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	padding: 0.4em;
+	font-size: 0.8125em; /* 13px /16 */
+	vertical-align: top;
+}
+table thead th {
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-size: 0.75em; /* 12px /16 */
+	border-top: none;
+}
+table thead th code {
+	text-transform: none;
+}
+table th:first-child,
+table td:first-child {
+	padding-left: 0;
+}
+table th {
+	border-color: var(--border-color);
+}
+table thead th {
+	color: #222;
+}
+table thead th a[href] {
+	color: inherit;
+}
+table .numeric {
+	white-space: nowrap;
+	text-align: right;
+	font-family: Roboto Mono, Consolas, Monaco, Andale Mono, Ubuntu Mono,
+		monospace;
+}
+.numeric-down:not(.numeric-before, .numeric-after):before, /* default position before */
+.numeric-up:not(.numeric-before, .numeric-after):before, /* default position before */
+.numeric-before {
+	--rating-margin: 0 .25em 0 0;
+}
+.numeric-after {
+	--rating-margin: 0 0 0 .25em;
+}
+.numeric-note {
+	--rating-character: "*";
+	--rating-margin: 0 .25em;
+	--rating-color: red;
+}
+.numeric-up {
+	--rating-character: "↑";
+	--rating-color: green;
+}
+.numeric-down {
+	--rating-character: "↓";
+	--rating-color: red;
+}
+.numeric-good {
+	--rating-color: green;
+}
+.numeric-bad {
+	--rating-color: red;
+}
+.numeric-note:before,
+.numeric-up:not(.numeric-before, .numeric-after):before, /* default position before */
+.numeric-down:not(.numeric-before, .numeric-after):before, /* default position before */
+.numeric-before:before,
+.numeric-after:after {
+	content: var(--rating-character);
+	margin: var(--rating-margin);
+	font-weight: bold;
+	font-family: system-ui, sans-serif;
+	color: var(--rating-color);
+}
+
+
+@media (prefers-color-scheme: dark) {
+	table td {
+		border-color: #333;
+	}
+	table thead th {
+		color: #ddd;
+	}
+}
+h2 + table,
+h2 + .table-scroller {
+	margin-top: -0.625em; /* -10px /16 */
+}
+
+/* Wide tables scroll sideways instead of stretching the page */
+.table-scroller {
+	overflow-x: auto;
+	margin-bottom: 2em;
+}
+.table-scroller > table {
+	margin-bottom: 0;
+}
+
+@media (min-width: 37.5em) {
+	/* 600px */
+	table th,
+	table td {
+		padding: 0.4em 0.8em;
+		font-size: 1em; /* 16px /16 */
+	}
+	table thead th {
+		font-size: 0.875em; /* 14px /16 */
+	}
+}

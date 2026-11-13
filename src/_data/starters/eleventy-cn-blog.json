@@ -1,6 +1,0 @@
-{
-	"url": "https://github.com/xiyuvi/eleventy-cn-blog",
-	"name": "eleventy-cn-blog",
-	"description": "The default static blog template supports Chinese/Thai/Japanese paths, supports preloading, SEO and other functions, and tries to use zero JavaScript for writing. However, due to the huge gap between the real world and the ideal, sometimes it is necessary to restrain adding a small amount of JavaScript - 一个开箱即用的静态博客生成器，基于eleventy的静态博客生成器，灵感来自eleventy-base-blog模版，对中文做了一些优化，尽量使用零js编写",
-	"demo": "https://demo.xiyu.pro"
-}

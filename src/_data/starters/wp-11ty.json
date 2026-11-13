@@ -2,7 +2,5 @@
 	"url": "https://github.com/jhackett1/wp-11ty/",
 	"name": "WP 11ty",
 	"description": "A minimal example showing how to use the WordPress API to drive a static Eleventy frontend.",
-	"author": "jhackett1",
-	"demo": "https://githubbox.com/jhackett1/wp-11ty/",
-	"excludedFromLeaderboards": true
+	"author": "jhackett1"
 }

@@ -7,84 +7,99 @@ input[type="checkbox"] {
 	height: 1.4em;
 }
 
-.formprefs {
-	padding: 0.5em;
-	font-size: 0.9375em; /* 15px /16 */
-	border-radius: 0.25em;
-}
-footer .formprefs {
-	display: flex;
-	gap: 1em;
-	background-color: #eee;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	margin-left: -1rem;
-	margin-right: -1rem;
-	margin-bottom: 0.5em;
+/* Big primary button */
+.btn-form,
+.btn-primary {
+	cursor: pointer;
+	border: 2px solid;
+	font-size: 1em;
+	text-align: center;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: inherit;
+	background-color: inherit;
 }
 @media (prefers-color-scheme: dark) {
-	footer .formprefs {
-		background-color: #2c2c2c;
+	.btn-form {
+		background-color: #000;
+		border-color: transparent;
 	}
 }
-.formprefs fieldset {
-	border: none;
-	padding-left: 0;
-	padding-right: 0;
+.btn-form {
+	border-radius: 1em;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+	box-shadow: 0 4px 3px -3px #000;
 }
-.formprefs legend {
-	float: left;
-	padding: 0;
+.btn-primary {
+	display: block;
+	border-radius: 1.5em;
+	margin: 0;
+	padding: 0.5em 1em 0.4em;
+	box-shadow: 0 8px 6px -6px #000;
+	border-color: rgba(0,0,0,.8);
 }
-.formprefs label {
-	margin-left: 0.25em;
-	font-weight: bold;
+@media (prefers-color-scheme: dark) {
+	.btn-primary {
+		border-color: rgba(255,255,255,.3);
+	}
+}
+.btn-primary:is(:hover, :focus) {
+	border-color: rgba(255,255,255,.3);
 }
 
-/* Inline defaults chooser */
-.tmplsyntax {
-	display: flex;
-	justify-content: flex-end;
-}
-.tmplsyntax details,
-.tmplsyntax summary {
-	margin: 0;
-}
-.tmplsyntax-default {
-	font-size: 0.8125em;
-	position: relative;
-}
-@media (max-width: 31.1875em) {
-	/* 499px */
-	/* No room! Use the one in the footer */
-	.tmplsyntax-default {
-		display: none;
-	}
-}
-.tmplsyntax-default summary {
-	white-space: nowrap;
-	line-height: 1.8;
-	padding: 0 1em;
-	border-top: 5px solid transparent;
-}
-.tmplsyntax-default[open] summary,
-.tmplsyntax-default[open] .tmplsyntax-dropdown {
+.btn-form:hover,
+.btn-form:focus {
+	border-color: transparent;
 	background-color: #222;
 	color: #fff;
 }
-.tmplsyntax-dropdown {
-	position: absolute;
-	left: 0;
-	right: 0;
-	z-index: 1;
-	box-shadow: rgba(0, 0, 0, 0.07) 0px 16px 24px 0px,
-		rgba(0, 0, 0, 0.06) 0px 6px 30px 0px, rgba(0, 0, 0, 0.1) 0px 8px 10px 0px;
+@media (prefers-color-scheme: dark) {
+	.btn-form:focus,
+	.btn-form:hover {
+		background-color: #fff;
+		color: #222;
+	}
 }
-.tmplsyntax legend {
-	display: none;
+
+.btn-c {
+	margin-left: auto;
+	margin-right: auto;
 }
-.tmplsyntax label {
-	display: block;
-	margin: 0.5em 0.25em;
-	white-space: nowrap;
+@media (min-width: 20em) {
+	.btn-primary {
+		font-size: 6vw;
+	}
+	.btn-primary-sm,
+	.btn-primary-standard {
+		font-size: 1.4em;
+	}
+}
+@media (min-width: 28.125em) {
+	/* 450px */
+	.btn-primary-sm {
+		font-size: 5.6vw;
+	}
+	.btn-primary-standard {
+		font-size: 4vw;
+	}
+}
+@media (min-width: 53.125em) {
+	/* 850px */
+	.btn-primary-sm {
+		font-size: 2.666666666667em; /* 48px /18 */
+	}
+	.btn-primary-standard {
+		font-size: 1.666666666667em; /* 30px /18 */
+	}
+}
+@media (min-width: 87.5em) {
+	/* 1400px */
+	.btn-primary {
+		font-size: 5.25em; /* 84px /16 */
+	}
+}
+.btn-primary-nogrow {
+	font-size: 1.4em;
 }

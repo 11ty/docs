@@ -1,4 +1,14 @@
 class Search {
+	get headerInput() {
+		return document.querySelector("header input[type='search']");
+	}
+
+	setValue(val) {
+		if(this.headerInput) {
+			this.headerInput.value = val;
+		}
+	}
+
 	clearResults() {
 		this.searchResultsCount.innerHTML = "Results";
 		this.searchResultsList.innerHTML = "";
@@ -17,6 +27,7 @@ class Search {
 		.replace(/&lt;mark>/g, "<mark>")
 		.replace(/&lt;\/mark>/g, "</mark>")}</code>
 	</p>
+	<p class="search-result-doc-path">${result.url}</p>
 </a>
 `;
 
@@ -32,6 +43,8 @@ class Search {
 	}
 
 	async onInput(value) {
+		this.setValue(value);
+
 		let pagefind = await this.getLibrary();
 		window.clearTimeout(this.onInputTimeout);
 		this.onInputTimeout = window.setTimeout(async () => {
@@ -42,6 +55,15 @@ class Search {
 
 				let search = await pagefind.search(value);
 				let results = await Promise.all(search.results.map((r) => r.data()));
+
+				// Deprioritize blog search results
+				results.sort((a, b) => {
+					const aIsBlog = a.url.startsWith('/blog');
+					const bIsBlog = b.url.startsWith('/blog');
+					if (aIsBlog && !bIsBlog) return 1;
+					if (!aIsBlog && bIsBlog) return -1;
+					return 0; // keep Pagefind's order otherwise
+				});
 
 				for (let result of results) {
 					this.addResult(result, value);
@@ -79,6 +101,9 @@ class Search {
 				false
 			);
 		}
+		// if(this.headerInput && location.pathname.startsWith("/docs/search/")) {
+		// 	this.headerInput.setAttribute("readonly", true);
+		// }
 
 		let text = document.getElementById("search-term");
 		if (text) {

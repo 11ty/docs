@@ -5,13 +5,13 @@ a.btn-primary {
 	border-width: .3em;
 }
 
+a.btn-primary:any-link {
+	background-color: #fff;
+}
+
 @media (prefers-color-scheme: dark) {
-	a.btn-primary,
-	a.btn-primary[href],
-	a.btn-primary:visited {
-		background-color: #fff;
-		color: #222;
-		border-color: #ccc;
+	a.btn-primary:any-link {
+		background-color: #222;
 	}
 }
 a.btn-primary:hover {
@@ -24,8 +24,15 @@ a.btn-primary:hover {
 		transform: none;
 	}
 }
+/* The content column stops growing once the headings sidebar appears */
+@media (min-width: 72em) {
+	a.btn-primary {
+		font-size: min(6vw, 4.5rem);
+	}
+}
 
-@media (min-width: 55em) and (min-height: 59.375em) { /* 880px × 950px */
+/* #2col × 950px */
+@media (min-width: 41.4375em) and (min-height: 59.375em) {
 	:host-context(html:not(:has(:focus-visible))) {
 		display: block;
 		position: sticky;
@@ -34,10 +41,7 @@ a.btn-primary:hover {
 		right: 0;
 		z-index: 10;
 	}
-	:host-context(html:not(:has(:focus-visible))) .btn-primary {
-		background-color: #fff;
-	}
 }
 </style>
 
-<a href="/docs/" class="btn-primary benchnine rainbow-active rainbow-active-noanim">Documentation</a>
+<a href="/docs/" class="btn-primary benchnine rainbow-active">Documentation</a>

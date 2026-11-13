@@ -1,13 +1,13 @@
 ---
 eleventyNavigation:
   key: Directory Output
+  # title: '<i class="fa-solid fa-folder-open"></i>Directory Output'
   order: 3.2
   excerpt: A plugin to group and sort console output by directory, with file size and benchmarks.
+excludeFromSidebar: true
 ---
 
 # Directory Output
-
-{% tableofcontents %}
 
 Group and sort Eleventy’s verbose output by directory (and show file size with benchmarks). View the [source code on GitHub](https://github.com/11ty/eleventy-plugin-directory-output).
 

@@ -3,7 +3,7 @@ newstitle: "The Eleventy Community Survey Results (2023)"
 eleventyNavigation:
   parent: Blog
 ---
-{% callout "info", "md", "New Survey Alert" %}Please help Eleventy out again by completing [Survey Awesome (2024)](/blog/survey-awesome/)!{% endcallout %}
+{% callout "info", "md", "New Survey Alert" %}Please help Eleventy out again by completing [~~Survey Awesome (2024)~~](/blog/survey-awesome/)!{% endcallout %}
 
 _Prerequisite read: [The Next Phase of Eleventy: Return of the Side Project](https://www.zachleat.com/web/eleventy-side-project/)._
 

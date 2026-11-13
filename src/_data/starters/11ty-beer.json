@@ -1,0 +1,7 @@
+{
+	"url": "https://github.com/w3teal/11ty-beer",
+	"name": "11ty Beer",
+	"description": "An 11ty blog template with Material Design, PWA and minified files that simply works.",
+	"author": "W3Teal",
+	"demo": "https://11ty-beer.vercel.app/"
+}

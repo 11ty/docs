@@ -1,18 +1,14 @@
 {# uses codeContent #}
-{% set tabid %}tab-{% uid %}{% endset %}
+{% set tabid %}{% if tabIdOverride %}{{ tabIdOverride }}{% else %}tab-{% uid %}{% endif %}{% endset %}
 <div class="codetitle codetitle-right-md">eleventy.config.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-  {% highlight "js" %}
-{%- if codeContent %}{{ codeContent | safe }}{% endif %}
-  {% endhighlight %}
+{%- if codeContent %}{{ codeContent | highlight("js") | safe }}{% endif %}
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-  {% highlight "js" %}
-{%- if codeContent %}{{ codeContent | esmToCjs | safe }}{% endif %}
-  {% endhighlight %}
+{%- if codeContent %}{{ codeContent | esmToCjs | highlight("js") | safe }}{% endif %}
 	{# <p><em>You’re only allowed one <code>module.exports</code> in your configuration file, so make sure you only copy the <code>require</code> and the <code>addPlugin</code> lines above!<em></p> #}
   </div>
 </seven-minute-tabs>

@@ -1,0 +1,7 @@
+{
+	"url": "https://github.com/jcubic/complite",
+	"name": "Complite",
+	"description": "A complete, SEO/GEO/AI-ready Eleventy 3 blog starter. CSS-first dark mode, JSON-LD structured data, Open Graph, RSS, XML sitemap, llms.txt for AI agents, SQLite full-text search, PHP contact form with bot protection, Prism syntax highlighting, and content negotiation for markdown — zero client JS required.",
+	"author": "jcubic",
+	"demo": "https://complite.jcubic.pl"
+}

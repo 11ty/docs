@@ -1,8 +1,29 @@
 <script webc:setup>
-function getIconHtml(url) {
+export function getIconHtml(url) {
 	if(url) {
 		return indieavatar(url, 'sites-screenshot sites-icon-auto');
 	}
+}
+
+export async function getScreenshotStyle(url, iconUrl) {
+	let colors = await getColorsForUrl(iconUrl || url);
+	if(!colors || colors.length === 0) {
+		return false;
+	}
+
+	let styles = [];
+	let filteredColors = colors.filter(color => {
+		return color.oklch.l > .4 && color.oklch.l <= .95;
+	});
+	if(filteredColors[0]) {
+		styles.push(`--card-primary: ${filteredColors[0].toString({format: "hex"})};`);
+	}
+
+	if(iconUrl) {
+		styles.push(`--card-background: linear-gradient(${colors.slice(0, 3).map(c => c.toString({format: "hex"})).join(',')})`);
+	}
+
+	return styles.join(";");
 }
 </script>
 <style webc:scoped>
@@ -13,11 +34,16 @@ function getIconHtml(url) {
 <link rel="stylesheet" href="site-entry.css">
 
 <div class="sites-site-vert">
-	<a :href="url" class="elv-externalexempt" :title="name || false">
-		<div class="sites-screenshot-container" @html="imageHtml || getIconHtml(iconUrl) || getScreenshotHtml(undefined, screenshotUrl || url, null, size)"></div>
-		<span class="sites-site-name--nowrap">
+	<a :href="url" class="elv-externalexempt" :title="name || false" :style="getScreenshotStyle(url, iconUrl)">
+		<div class="sites-screenshot-container" :class="iconUrl ? 'sites-screenshot-container--icon' : ''">
+			<slot>
+				<div webc:nokeep @html="getIconHtml(iconUrl) || getScreenshotHtml(undefined, screenshotUrl || url, null, size)"></div>
+			</slot>
+			<div webc:if="showIcons" class="sites-screenshot-container-icons" @html="generatoravatar(url)"></div>
+		</div>
+		<span :class="featured ? 'sites-site-name' : 'sites-site-name--nowrap'">
 			<span webc:nokeep @html="indieavatar(url, 'avatar-large')"></span>
-			<span webc:nokeep @text="name || url"></span>
+			<span webc:nokeep @text="name || displayUrl(url)"></span>
 			<em webc:if="using" @text="`(${using})`"></em>
 			<span class="metadata" webc:if="date" @text="`(${date.split('-').shift()})`"></span>
 			<span class="metadata" webc:if="medialength" @text="`⏱ ${medialength}`"></span>

@@ -1,15 +1,19 @@
 /* Opengraph card */
 .opengraph-card {
 	display: inline-flex;
+	align-items: center;
 	flex-direction: column;
 	border: 2px solid #000;
 	border-radius: .5em;
 	overflow: hidden;
 	text-align: center;
-	font-size: 1.25em; /* 20px /16 */
 	font-weight: bold;
-	box-shadow: 0 0 0 4px var(--shadow-color, transparent);
+	box-shadow: 0 0 0 3px var(--shadow-color, transparent);
 	opacity: .8;
+	max-width: var(--paragraph-max);
+}
+.opengraph-card:not(:has(> *:first-child:last-child)) {
+	padding: .75em .75em 0 .75em;
 }
 a[href].opengraph-card:focus,
 a[href].opengraph-card:hover {
@@ -22,4 +26,5 @@ a[href].opengraph-card:hover {
 }
 .opengraph-card img {
 	display: block;
+	border-radius: .4em;
 }

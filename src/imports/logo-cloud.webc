@@ -1,34 +1,38 @@
 ---
 permalink: /imports/logo-cloud.html
 ---
-<li><img webc:is="indieweb-avatar" url="https://www.cloudcannon.com/">CloudCannon</li>
+<li><img webc:is="indieweb-avatar" url="https://ubuntu.com/">Ubuntu</li>
+<li><img webc:is="indieweb-avatar" url="https://www.jetbrains.com/">JetBrains</li>
 <li><img webc:is="indieweb-avatar" url="https://www.netlify.com/">Netlify</li>
+<li><img webc:is="indieweb-avatar" url="https://www.cloudflare.com/">Cloudflare</li>
+<li><img webc:is="indieweb-avatar" url="https://www.shopify.com/">Shopify</li>
+<li><img webc:is="indieweb-avatar" url="https://flutter.dev/">Flutter</li>
 <li><img webc:is="indieweb-avatar" url="https://web.dev/">web.dev</li>
 <li><img webc:is="indieweb-avatar" url="https://web.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></li>
 <li><img webc:is="indieweb-avatar" url="https://www.stanford.edu/"><abbr title="Stanford">Stanford</abbr></li>
 <li><img webc:is="indieweb-avatar" url="https://v8.dev/">V8</li>
 <li><img webc:is="indieweb-avatar" url="https://gsap.com/">GSAP</li>
+<li><img webc:is="indieweb-avatar" url="https://sentry.io/">Sentry</li>
 <li><img webc:is="indieweb-avatar" url="https://developer.chrome.com/">Chrome Developers</li>
 <li><img webc:is="indieweb-avatar" url="https://css-tricks.com/">CSS Tricks</li>
-<li><img webc:is="indieweb-avatar" url="https://www.webpagetest.org/">WebPageTest</li>
 <li><img webc:is="indieweb-avatar" url="https://www.a11yproject.com/">A11Y Project</li>
+<li><img src="/img/logos/w3c.png" width="150" height="150" alt="" class="avatar" loading="lazy" decoding="async"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr></li>
+<li><img webc:is="indieweb-avatar" url="https://eslint.org/">ESLint</li>
 <li><img webc:is="indieweb-avatar" url="https://www.noaa.gov/"><abbr title="National Oceanic and Atmospheric Administration">NOAA</abbr></li>
+<li><img webc:is="indieweb-avatar" url="https://18f.org/">18F</li>
 <li><img webc:is="indieweb-avatar" url="https://cloud.gov/">United States (gov)</li>
 <li><img webc:is="indieweb-avatar" url="https://data.gov/">data.gov</li>
 <li><img webc:is="indieweb-avatar" url="https://www.gov.uk/">United Kingdom (gov)</li>
 <li><img webc:is="indieweb-avatar" url="https://www.numerique.gouv.fr/">France (gov)</li>
 <li><img webc:is="indieweb-avatar" url="https://www.louvre.fr/">The Louvre Museum</li>
 <li><img webc:is="indieweb-avatar" url="https://www.fastmail.com/">Fastmail</li>
-<li><img webc:is="indieweb-avatar" url="https://stackoverflow.com/">Stack Overflow</li>
 <li><img webc:is="indieweb-avatar" url="https://lit.dev/" width="120">Lit</li>
-<li><img webc:is="indieweb-avatar" url="https://glitch.com/">Glitch</li>
 <li><img webc:is="indieweb-avatar" url="https://stackblitz.com/">Stackblitz</li>
 <li><img webc:is="indieweb-avatar" url="https://openwebdocs.org/">Open Web Docs</li>
 <li><img webc:is="indieweb-avatar" url="https://foursquare.com/">Foursquare</li>
 <li><img webc:is="indieweb-avatar" url="https://jamstack.org/">jamstack.org</li>
-<li><img webc:is="indieweb-avatar" url="https://www.greenpeace.org/">Greenpeace</li>
 <li><img webc:is="indieweb-avatar" url="https://www.csis.org/"><abbr title="Center for Strategic & International Studies">CSIS</abbr></li>
-<li><img webc:is="indieweb-avatar" url="https://eslint.org/">ESLint</li>
+<li><img webc:is="indieweb-avatar" url="https://www.springernature.com/">Springer Nature</li>
 <li><img webc:is="indieweb-avatar" url="https://mochajs.org/">Mocha</li>
 <li><img webc:is="indieweb-avatar" url="https://revealjs.com/">reveal.js</li>
 <li><img webc:is="indieweb-avatar" url="https://panic.com/">Panic</li>
@@ -47,3 +51,16 @@ permalink: /imports/logo-cloud.html
 <li><img webc:is="indieweb-avatar" url="https://www.ca.gov/">California (gov)</li>
 <li><img webc:is="indieweb-avatar" url="https://ux.redhat.com">Red Hat</li>
 <li><img webc:is="indieweb-avatar" url="https://www.pie.design/">Just Eat Takeaway</li>
+
+<!-- These don’t go through the IndieWeb Avatar service. Their marks are inlined rather than
+     referenced, because this file is fetched into another page and a <use href="#…"> would point
+     at a symbol that page never bundled. The rest are names only until someone sources a mark. -->
+<li><i class="fa-brands fa-stack-overflow"></i>Stack Overflow</li>
+<li><img src="/img/logos/cloudcannon.svg" width="24" height="24" alt="" class="avatar avatar-mark" loading="lazy" decoding="async">CloudCannon</li>
+<li><img src="/img/logos/glitch.svg" width="24" height="24" alt="" class="avatar avatar-mark" loading="lazy" decoding="async">Glitch</li>
+<li>Greenpeace</li>
+<li>WebPageTest</li>
+
+<!-- This file is fetched into another page, so it carries its own icon spritesheet: the symbols
+     a <use href="#…"> needs aren’t in the bundle of whichever page pulls it in. -->
+<template webc:type="11ty" 11ty:type="njk" webc:raw webc:nokeep>{% getBundle "fontawesome" %}</template>

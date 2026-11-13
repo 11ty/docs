@@ -7,8 +7,6 @@ eleventyNavigation:
 excludeFromSidebar: true
 ---
 
-{% tableofcontents %}
-
 {% include "image-usage.njk" %}
 
 We can use the [Image JavaScript API](./image-js.md) and wire it up to a [Universal Shortcode](../shortcodes.md).
@@ -58,15 +56,13 @@ export default function (eleventyConfig) {
 #### More about Shortcodes
 
 - Read more about [`eleventyConfig.addShortcode`](/docs/shortcodes/#asynchronous-shortcodes) and universal shortcodes. Use `addAsyncShortcode` in versions of Eleventy older than v2.0. You can also [add these shortcodes to individual template engines](/docs/shortcodes/#async-friendly-per-engine-shortcodes), if you’d like!
-- **Warning about Nunjucks Macros:** [Nunjucks macros cannot use async shortcodes](https://mozilla.github.io/nunjucks/templating.html#macro). If you use macros, use the [transform](./image.md#html-transform) or [synchronous shortcode](#synchronous-shortcode) methods.
+- **Warning** [Nunjucks macros are not async-friendly](/docs/languages/nunjucks/#warning-macros-are-not-async-friendly). If you make use of Nunjucks macros in your project, do **not** use asynchronous shortcodes for Image optimization. Instead use the [transform](./image.md#html-transform) or [synchronous shortcode](#synchronous-shortcode) methods.
 
 ### Template Usage
 
 Now you can use the `image` shortcode in your templates and the appropriate HTML will be generated for you (based on your specified Image options).
 
 {% include "snippets/image/templates.njk" %}
-
-If you want to use Eleventy Image in WebC, take note that it is possible to wire up the method below in WebC. However it is **recommended to use the [provided `<eleventy-image>` WebC component](./image-webc.md) instead**.
 
 ## Advanced
 
@@ -186,38 +182,4 @@ export default function (eleventyConfig) {
 
 ### Synchronous Shortcode
 
-_Deprecated in <a href="https://github.com/11ty/eleventy-img/issues/211">Eleventy Image v4.0.0</a>._
-
-{% callout "info", "md" %}The new [Eleventy Transform](./image.md#html-transform) is now preferred for situations that are not asynchronous-friendly (Handlebars, macros in Nunjucks, et al). For asynchronous-friendly templates (e.g. Nunjucks, Liquid, JavaScript), the [Asynchronous Shortcode](#asynchronous-shortcode) is another option. If you’re using WebC, use the provided [WebC component](./image-webc.md).{% endcallout %}
-
-#### Configuration
-
-Use `Image.statsSync` to get the metadata of a source even if the image generation is not finished yet:
-
-{% set codeContent %}
-import Image from "@11ty/eleventy-img";
-
-export default function (eleventyConfig) {
-	eleventyConfig.addShortcode("myImage", function imageShortcode(src, cls, alt, widths = ["auto"], sizes = "100vh") {
-		let options = {
-			widths,
-			formats: ["jpeg"],
-		};
-
-		// generate images: this is async but we don’t wait
-		Image(src, options);
-
-		let imageAttributes = {
-			class: cls,
-			alt,
-			sizes,
-			loading: "lazy",
-			decoding: "async",
-		};
-		// get metadata even if the images are not fully generated yet
-		let metadata = Image.statsSync(src, options);
-		return Image.generateHTML(metadata, imageAttributes);
-	});
-};
-{% endset %}
-{% include "snippets/configDefinition.njk" %}
+{% callout "error", "md" %}The new [Eleventy Transform](./image.md#html-transform) is now preferred for situations that are not asynchronous-friendly (Handlebars, macros in Nunjucks, et al). For asynchronous-friendly templates (e.g. Nunjucks, Liquid, JavaScript), the [Asynchronous Shortcode](#asynchronous-shortcode) is another option.{% endcallout %}

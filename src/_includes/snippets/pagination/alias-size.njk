@@ -1,11 +1,8 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "pagedchunk"} %}
   <div id="pagedchunk-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 ---
 pagination:
   data: testdata
@@ -19,16 +16,11 @@ testdata:
 permalink: "different/{{ wonder[0] | slugify }}/index.html"
 ---
 You can use the alias in your content too {{ wonder[0] }}.
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="pagedchunk-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{% set codeBlock %}{% raw %}
 ---
 pagination:
   data: testdata
@@ -42,16 +34,11 @@ testdata:
 permalink: "different/{{ wonder[0] | slugify }}/index.html"
 ---
 You can use the alias in your content too {{ wonder[0] }}.
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="pagedchunk-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export const data = {
   pagination: {
     data: "testdata",
@@ -67,23 +54,18 @@ export const data = {
   permalink: {
     function(data) {
       return `different/${this.slugify(data.wonder[0])}/index.html`
-    };
+    }
   }
 };
 
 export function render(data) {
   return `You can use the alias in your content too ${data.wonder[0]}.`;
 }
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="pagedchunk-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 exports.data = {
   pagination: {
     data: "testdata",
@@ -99,17 +81,15 @@ exports.data = {
   permalink: {
     function(data) {
       return `different/${this.slugify(data.wonder[0])}/index.html`
-    };
+    }
   }
 };
 
 exports.render = function (data) {
   return `You can use the alias in your content too ${data.wonder[0]}.`;
 }
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

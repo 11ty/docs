@@ -1,11 +1,8 @@
 <is-land import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush">
+<seven-minute-tabs class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "paginationnavarray"} %}
   <div id="paginationnavarray-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 ---
 pagination:
   data: testdata
@@ -19,16 +16,11 @@ testdata:
  - item6
 ---
 {% comment %}pagination.items has the data for the current page{% endcomment %}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="paginationnavarray-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{% set codeBlock %}{% raw %}
 ---
 pagination:
   data: testdata
@@ -42,10 +34,8 @@ testdata:
  - item6
 ---
 {# pagination.items has the data for the current page #}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="paginationnavarray-js" role="tabpanel">
     <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>

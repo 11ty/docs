@@ -1,13 +1,10 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight class="tabs-flush">
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "localelinksrel"} %}
   <div id="localelinksrel-njk" role="tabpanel">
 
 {% codetitle "_includes/mylayout.njk" %}
-
-{% raw %}
-
-```njk
+{% set codeBlock %}{% raw %}
 {# `{{lang}}` must be set by you in the data cascade, see above note #}
 <!doctype html>
 <html lang="{{lang}}">
@@ -16,18 +13,13 @@
   {% for link in page.url | locale_links %}
     <link rel="alternate" hreflang="{{link.lang}}" href="https://www.11ty.dev{{link.url}}">
   {% endfor %}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="localelinksrel-liquid" role="tabpanel">
 
 {% codetitle "_includes/mylayout.njk" %}
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 <!doctype html>
 {% comment %} `{{lang}}` must be set by you in the data cascade, see above note {% endcomment %}
 <html lang="{{lang}}">
@@ -37,18 +29,13 @@
 {%- for link in links %}
     <link rel="alternate" hreflang="{{link.lang}}" href="https://www.11ty.dev{{link.url}}">
 {%- endfor -%}
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="localelinksrel-js" role="tabpanel">
 
 {% codetitle "/_includes/mylayout.11ty.js" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default function (data) {
 	let links = this.locale_links(data.page.url);
 	// side note: url argument is optional for current page
@@ -66,18 +53,12 @@ export default function (data) {
 		.join("\n")}
 `;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="localelinksrel-cjs" role="tabpanel">
-
 {% codetitle "/_includes/mylayout.11ty.cjs" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = function (data) {
 	let links = this.locale_links(data.page.url);
 	// side note: url argument is optional for current page
@@ -95,10 +76,8 @@ module.exports = function (data) {
 		.join("\n")}
 `;
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

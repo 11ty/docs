@@ -2,13 +2,13 @@
 eleventyNavigation:
   parent: Template Languages
   key: Custom
-  order: 12
+  pinned: true
+  order: 4
+  excerpt: Use your own template language
 relatedKey: customlang
 relatedTitle: Template Language—Custom
 layout: layouts/langs.njk
 ---
-
-{% tableofcontents "open" %}
 
 | Eleventy Short Name | File Extension | npm Package |
 | ------------------- | -------------- | ----------- |
@@ -45,7 +45,7 @@ export default function (eleventyConfig) {
 Situations where you might want to use `addExtension` but probably shouldn’t:
 
 1. If you want to post-process the content of an existing template language (a file extension already processed by Eleventy), use a [Configuration API Transform](/docs/config/#transforms) instead.
-2. If you want to pre-process `md` or `html` files using another template language, change the _Default Template Engine for [Markdown Files](/docs/config/#default-template-engine-for-markdown-files)_ or _[HTML Files](/docs/config/#default-template-engine-for-html-files)_, respectively. This can also be done on [a per-template basis](/docs/languages/#overriding-the-template-language). We will likely add additional hooks for preprocessing in the future.
+2. If you want to pre-process `md` or `html` files using another template language, change the _Default Template Engine for [Markdown Files](/docs/config/#default-template-engine-for-markdown-files)_ or _[HTML Files](/docs/config/#default-template-engine-for-html-files)_, respectively. This can also be done on [a per-template basis](/docs/template-overrides/). We will likely add additional hooks for preprocessing in the future.
    {%- endcallout %}
 
 ## Example: Add Sass support to Eleventy
@@ -54,7 +54,7 @@ For a more realistic sample, here’s an example of Eleventy looking for all `.s
 
 {% set codeContent %}
 // Don’t forget to `npm install sass`!
-import sass from "sass";
+import * as sass from "sass";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addTemplateFormats("scss");
@@ -90,22 +90,23 @@ You can pass in both the file’s `inputPath` and the Eleventy includes folder t
 <!-- TODO -->
 {% codetitle "eleventy.config.js" %}
 
-```js/1,5-8
-		// some configuration truncated …
-    compile: function (inputContent, inputPath) {
-      let parsed = path.parse(inputPath);
+```diff-js
+// some configuration omitted…
++compile: function (inputContent, inputPath) {
++	let { dir } = path.parse(inputPath);
 
-      let result = sass.compileString(inputContent, {
-        loadPaths: [
-          parsed.dir || ".",
-          this.config.dir.includes
-        ]
-      });
+let result = sass.compileString(inputContent, {
++		loadPaths: [
++			dir || ".",
++			this.config.dir.includes
++		]
+	});
 
-      return (data) => {
-        return result.css;
-      };
-    }
+	return (data) => {
+		return result.css;
+	};
+}
+// …
 ```
 
 Make special note of the `this.config.dir.includes` folder above. Declaring your includes folder means that you don’t need to prefix any file paths with the includes folder name (e.g. `_includes/_code.scss` can be consumed with `@use "code"`).
@@ -114,24 +115,25 @@ Make special note of the `this.config.dir.includes` folder above. Declaring your
 
 Eleventy includes two features to improve the performance of custom template compilation:
 
-1. A compilation cache, which you can optionally disable with [`compileOptions.cache`](#compileoptions.cache-for-advanced-control-of-caching)
+1. A compilation cache, which you can optionally disable with [`compileOptions.cache`](#compile-options-cache-for-advanced-control-of-caching)
 2. Hooks for incremental builds (via the `--incremental` command line flag)
 
 To facilitate these features, if a template syntax allows use of other templates (think `@use` in Sass or `webc:import` in WebC), Eleventy needs to know about the dependencies a template file relies on. This is heavily dependent on each template compiler.
 
 In our Sass example, this is exposed by Sass via the [`loadedUrls` property from the `compileString` function](https://sass-lang.com/documentation/js-api/interfaces/CompileResult), and you can see an example of how we register our dependencies in the `compile` method below:
 
-```js/4
-    // some configuration truncated …
-    compile: function (inputContent, inputPath) {
-      let result = sass.compileString(inputContent);
+```diff-js
+// some configuration omitted…
+compile: function (inputContent, inputPath) {
+	let result = sass.compileString(inputContent);
 
-      this.addDependencies(inputPath, result.loadedUrls);
++	this.addDependencies(inputPath, result.loadedUrls);
 
-      return async (data) => {
-        return result.css;
-      };
-    }
+	return async (data) => {
+		return result.css;
+	};
+}
+// …
 ```
 
 `addDependencies`’s first parameter is the parent template file path. The second parameter is an Array of child file paths used by the template. The dependencies can be either relative or absolute paths and we will normalize them as needed.
@@ -140,25 +142,26 @@ In our Sass example, this is exposed by Sass via the [`loadedUrls` property from
 
 To add support for Sass’ underscore convention (file names that start with an underscore aren’t written to the output directory), just return early in the `compile` function (don’t return a `render` function).
 
-```js/3-5
-    // some configuration truncated …
-    compile: async function (inputContent, inputPath) {
-      let parsed = path.parse(inputPath);
-      if(parsed.name.startsWith("_")) {
-        return;
-      }
+```diff-js
+// some configuration omitted…
+compile: async function (inputContent, inputPath) {
+	let parsed = path.parse(inputPath);
++	if(parsed.name.startsWith("_")) {
++		return;
++	}
 
-      let result = sass.compileString(inputContent);
+	let result = sass.compileString(inputContent);
 
-      return async (data) => {
-        return result.css;
-      };
-    }
+	return async (data) => {
+		return result.css;
+	};
+}
+// …
 ```
 
-Note that files inside of the `_includes` folder are left out of processing by default, so if you store your sass `@use`, `@forward`, and `@import` files in there you’ll get this for free (see the [Using `inputPath` example](#using-inputpath) above)!
+Note that files inside of the `_includes` folder are left out of processing by default, so if you store your sass `@use`, `@forward`, and `@import` files in there you’ll get this for free (see the [Using `inputPath` example](#using-input-path) above)!
 
-This functionality is more-or-less identical to the [`compileOptions` `permalink: false` overrides](#compileoptions.permalink-to-override-permalink-compilation), documented later on this page.
+This functionality is more-or-less identical to the [`compileOptions` `permalink: false` overrides](#compile-options-permalink-to-override-permalink-compilation), documented later on this page.
 
 ## Aliasing an Existing Template Language
 
@@ -298,7 +301,7 @@ When the output file is written to the file system, what file extension should b
 
 An async-friendly function that runs _once_ (no matter how many files use the extension) for any additional setup at the beginning before any compilation or rendering.
 
-Note that `init` will **not** re-run on watch/serve mode. If you’d like something that runs before _every_ build, use the [`eleventy.before` event](/docs/events/#eleventy.before).
+Note that `init` will **not** re-run on watch/serve mode. If you’d like something that runs before _every_ build, use the [`eleventy.before` event](/docs/events/#eleventy-before).
 
 ```js
 	// some configuration truncated …
@@ -413,6 +416,8 @@ In the above example, the data cascade will include a top-level variable `availa
 
 ### `compileOptions`
 
+<div id="compileoptions.permalink-to-override-permalink-compilation"><!-- this id necessary for upgrade plugin https://github.com/11ty/eleventy-upgrade-help/issues/12 --></div>
+
 #### `compileOptions.permalink` to Override Permalink Compilation
 
 _Optional_. This has the same signature as the `compile` function and expects a reusable `render` function to be returned.
@@ -460,7 +465,7 @@ This provides another way to implement Sass’ underscore convention to skip wri
 
 - _Optional_: Defaults to `false`
 
-Enable to use Eleventy to spider and watch files `require`’d in these templates. This allows you to control the [Watch JavaScript Dependencies](/docs/watch-serve/#watch-javascript-dependencies) feature on a per-template language basis. Most template languages will want the default here and keep this feature disabled.
+Enable to use Eleventy to spider and watch files `require`’d in these templates. This allows you to control the [Watch JavaScript Dependencies](/docs/watch-serve/#watch-java-script-dependencies) feature on a per-template language basis. Most template languages will want the default here and keep this feature disabled.
 
 #### `compileOptions.cache` for advanced control of caching
 

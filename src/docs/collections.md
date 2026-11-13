@@ -1,15 +1,13 @@
 ---
 pageTitle: Collections (Using Tags)
 eleventyNavigation:
-  parent: Eleventy Projects
+  parent: Configure Templates with Data
   key: Collections
   order: 2
   excerpt: Group, reuse, and sort content in interesting ways.
 communityLinksKey: collections
 overrideCommunityLinks: true
 ---
-
-{% tableofcontents %}
 
 While [pagination](/docs/pagination/) allows you to iterate over a data set to create multiple templates, a collection allows you to group content in interesting ways. A piece of content can be a part of multiple collections, if you assign the same string value to the `tags` key in the front matter.
 
@@ -20,13 +18,13 @@ Take care to note that `tags` have a singular purpose in Eleventy: to construct 
 For a blog site, your individual post files may use a tag called `post`, but it can be whatever you want. In this example, `mypost.md` has a single tag `post`:
 
 {% codetitle "Markdown", "Syntax" %}
-
-```yaml
+{% set codeBlock %}
 ---
 tags: post
 title: Hot Take—Social Media is Considered Harmful
 ---
-```
+{% endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 This will place this `mypost.md` into the `post` collection with all other pieces of content sharing the `post` tag. To reference this collection and make a list of all posts, use the `collections` object in any template:
 
@@ -65,25 +63,26 @@ By default Eleventy puts all of your content (independent of whether or not it h
 In front matter (or further upstream in the data cascade), set the `eleventyExcludeFromCollections` option to true to opt out of specific pieces of content added to all collections (including `collections.all`, collections set using tags, or collections added from the Configuration API in your config file). Useful for your RSS feed, `sitemap.xml`, custom templated `.htaccess` files, et cetera.
 
 {% codetitle "excluded.md" %}
-
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 eleventyExcludeFromCollections: true
 tags: post
 ---
 
 This will not be available in `collections.all` or `collections.post`.
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 {% addedin "3.0.0-alpha.1" %} `eleventyExcludeFromCollections` can now also accept an array of tag names:
 
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 eleventyExcludeFromCollections: ["post"]
 ---
 
 This will be available in `collections.all` but not `collections.post`.
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 ## Add to a Collection using Tags
 
@@ -91,43 +90,47 @@ You can use a single tag, as in the above example OR you can use any number of t
 
 ### A single tag: cat
 
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 tags: cat
 ---
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 This content would show up in the template data inside of `collections.cat`.
 
 ### Using multiple words in a single tag
 
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 tags: cat and dog
 ---
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 If you use multiple words for one tag you can access the content by the following syntax `collections['cat and dog']`.
 
 ### Multiple tags, single line
 
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 tags: ["cat", "dog"]
 ---
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 This content would show up in the template data inside of `collections.cat` and `collections.dog`.
 
 ### Multiple tags, multiple lines
 
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 tags:
   - cat
   - dog
 ---
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 This content would show up in the template data inside of `collections.cat` and `collections.dog`.
 
@@ -135,11 +138,12 @@ This content would show up in the template data inside of `collections.cat` and 
 
 As of Eleventy 1.0, the [Data Cascade](/docs/data-cascade/) is combined using [deep data merge](/docs/data-deep-merge/) by default, which means tags are merged together with tags assigned higher in the data cascade (the Arrays are combined). To redefine `tags` in the front matter use [the `override:` prefix](/docs/data-deep-merge/#using-the-override-prefix):
 
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 override:tags: []
 ---
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 This content would not show up in any of the collections it was added to with `tags` higher up in the data cascade.
 
@@ -154,7 +158,7 @@ Note in the above example that we output the `post.data.title` value? Similarly,
 - `rawInput`: the raw input of the template (before any processing). This does _not_ include front matter. {% addedin "v3.0.0-alpha.1" %} _(Related: [#1206](https://github.com/11ty/eleventy/issues/1206))_
 - `content`: the rendered content of this template. This does _not_ include layout wrappers. {% addedin "2.0.0-canary.19" %}
 
-```js
+{%- set codeBlock %}
 {
   page: {
     inputPath: './test1.md',
@@ -164,12 +168,12 @@ Note in the above example that we output the `post.data.title` value? Similarly,
   },
   data: { title: 'Test Title', tags: ['tag1', 'tag2'], date: 'Last Modified', /* … */ },
   content: '<h1>Test Title</h1>\n\n<p>This is text content…',
-  // Pre-release only: {{ "3.0.0-alpha.1" | coerceVersion }}
-{%- raw %}
-  rawInput: '<h1>{{ title }}</h1>\n\n<p>This is text content…',
+
+  // Available in {{ "3.0.0-alpha.1" | coerceVersion }} and newer:
+{% raw %}  rawInput: '<h1>{{ title }}</h1>\n\n<p>This is text content…',{% endraw %}
 }
-{% endraw %}
-```
+{%- endset %}
+{{ codeBlock | highlight("json") | safe }}
 
 _Backwards compatibility notes:_
 
@@ -187,12 +191,13 @@ The default collection sorting algorithm sorts in ascending order using:
 
 For example, assume I only write blog posts on New Years Day:
 
-```
+{%- set codeBlock %}{% raw %}
 posts/postA.md (created on 2008-01-01)
 posts/postB.md (created on 2008-01-01)
 posts/post3.md (created on 2007-01-01)
 another-posts/post1.md (created on 2011-01-01)
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("text") | safe }}
 
 This collection would be sorted like this:
 
@@ -209,7 +214,7 @@ To sort descending in your template, you can use a filter to reverse the sort or
 
 ### Do not use Array `reverse()`
 
-{% callout "warn" %}
+{% callout "pitfall" %}
 <p id="array-reverse">You should <em><strong>not</strong></em> use Array <code>reverse()</code> on collection arrays in your templates, like so:</p>
 <p><code>{%raw %}{%- for post in collections.post.reverse() -%}{% endraw %}</code></p>
 <p>This will <a href="https://doesitmutate.xyz/reverse/">mutate the array</a> and re-order it <em>in-place</em> and will have side effects for any use of that collection in other templates.</p>
@@ -239,11 +244,12 @@ Instead of `reverse` use:
 
 You can modify how a piece of content is sorted in a collection by changing its default `date`. [Read more at Content Dates](/docs/dates/).
 
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 date: 2016-01-01
 ---
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
 
 ## Advanced: Custom Filtering and Sorting
 

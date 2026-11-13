@@ -1,0 +1,96 @@
+{
+	"commits": [
+		{
+			"id": "369b8431e92c1ba327159088102f4ebda0ba8907",
+			"url": "https://github.com/11ty/docs/commit/369b8431e92c1ba327159088102f4ebda0ba8907",
+			"author": {
+				"name": "SatvikMishra08",
+				"url": "https://github.com/SatvikMishra08",
+				"avatarUrl": "/img/docs-avatars/89024979-9dFJ985jbYMU.png"
+			},
+			"date": "2026-10-14T13:44:11.000Z",
+			"message": "Fix broken heading anchor links in docs (#2371)",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "cfjedimaster",
+			"url": "https://github.com/cfjedimaster",
+			"avatarUrl": "/img/docs-avatars/393660-18uMhOTwOHdk.jpeg"
+		},
+		{
+			"name": "deining",
+			"url": "https://github.com/deining",
+			"avatarUrl": "/img/docs-avatars/18169566-BW6ZbhTe4D7n.png"
+		},
+		{
+			"name": "nielsbom",
+			"url": "https://github.com/nielsbom",
+			"avatarUrl": "/img/docs-avatars/327080-hUbNriAZ99SF.png"
+		},
+		{
+			"name": "Zearin",
+			"url": "https://github.com/Zearin",
+			"avatarUrl": "/img/docs-avatars/630124-BrXMC5aYJNrH.png"
+		},
+		{
+			"name": "CanIGetaPR",
+			"url": "https://github.com/CanIGetaPR",
+			"avatarUrl": "/img/docs-avatars/45294513-NFkCqcMcwUTN.png"
+		},
+		{
+			"name": "sc0ttes",
+			"url": "https://github.com/sc0ttes",
+			"avatarUrl": "/img/docs-avatars/5059325-HFLJp1JkrhFs.png"
+		},
+		{
+			"name": "pdehaan",
+			"url": "https://github.com/pdehaan",
+			"avatarUrl": "/img/docs-avatars/557895-PgvpjhbqnKXr.jpeg"
+		},
+		{
+			"name": "Alexander Chudesnov"
+		},
+		{
+			"name": "Snapstromegon",
+			"url": "https://github.com/Snapstromegon",
+			"avatarUrl": "/img/docs-avatars/18480654-QQ3tgyMiSCEV.png"
+		},
+		{
+			"name": "refactorized",
+			"url": "https://github.com/refactorized",
+			"avatarUrl": "/img/docs-avatars/282710-r5pxFDUEvMZr.jpeg"
+		},
+		{
+			"name": "jamesnw",
+			"url": "https://github.com/jamesnw",
+			"avatarUrl": "/img/docs-avatars/167908-lBtwdAP6sWob.jpeg"
+		},
+		{
+			"name": "harrislapiroff",
+			"url": "https://github.com/harrislapiroff",
+			"avatarUrl": "/img/docs-avatars/296631-vjOCLmaMKgnj.jpeg"
+		},
+		{
+			"name": "caseywatts",
+			"url": "https://github.com/caseywatts",
+			"avatarUrl": "/img/docs-avatars/273653-hKF8979K9Vfq.png"
+		},
+		{
+			"name": "tmcw",
+			"url": "https://github.com/tmcw",
+			"avatarUrl": "/img/docs-avatars/32314-BWvl9mNPWtbN.jpeg"
+		},
+		{
+			"name": "SatvikMishra08",
+			"url": "https://github.com/SatvikMishra08",
+			"avatarUrl": "/img/docs-avatars/89024979-9dFJ985jbYMU.png"
+		}
+	]
+}

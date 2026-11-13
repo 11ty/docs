@@ -42,7 +42,7 @@ seven-minute-tabs [role="tab"] {
 	background-color: var(--smt-tab-bg);
 	color: var(--smt-tab-text);
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	font-size: 0.9375em; /* 15px /16 */
 	font-weight: 500;
 	padding: 0 1rem;
@@ -78,7 +78,8 @@ seven-minute-tabs [role="tab"]:not([aria-selected="true"]):is(:hover, :focus) {
 		font-size: 0.8125em; /* 13px /16 */
 	}
 }
-@media (max-width: 54.9375em) { /* 879px */
+/* #2col */
+@media (max-width: 41.375em) {
 	seven-minute-tabs:not(.tabs-right) [role="tablist"]:not(.has-label) [role="tab"]:first-child {
 		border-top-left-radius: 0;
 	}
@@ -96,8 +97,8 @@ seven-minute-tabs [role="tabpanel"] {
 	padding: 1rem;
 }
 
-/* Two column */
-@media (min-width: 55em) { /* 880px */
+/* #2col */
+@media (min-width: 41.4375em) {
 	seven-minute-tabs [role="tabpanel"] {
 		border-radius: .3125rem;
 	}
@@ -126,16 +127,15 @@ seven-minute-tabs [role="tabpanel"] .elv-callout {
 }
 
 /* Only show the first tab pre-JS */
-seven-minute-tabs.tabs-firstonly:not(:defined) [role="tablist"] {
+seven-minute-tabs:not(:defined) [role="tabpanel"] ~ [role="tabpanel"] {
 	display: none;
 }
-seven-minute-tabs.tabs-firstonly:not(:defined) [role="tablist"] + [role="tabpanel"] ~ * {
+/* Use :target to make the tabs work without JavaScript */
+seven-minute-tabs:not(:defined):has([role="tabpanel"] ~ [role="tabpanel"]:target) [role="tablist"] + [role="tabpanel"] {
 	display: none;
 }
-@media (min-width: 55em) { /* 880px */
-	seven-minute-tabs.tabs-firstonly:not(:defined) [role="tabpanel"] {
-		border-radius: .3125rem;
-	}
+seven-minute-tabs:not(:defined) [role="tabpanel"] ~ [role="tabpanel"]:target {
+	display: block;
 }
 
 /* Make tab padding slightly smaller at small viewport */
@@ -168,3 +168,47 @@ seven-minute-tabs:has([role="tab"]:nth-last-child(n+5)) [role="tablist"] {
 	}
 }
 
+/* Visual deprecation for CommonJS */
+seven-minute-tabs [data-tabs-persist="templatelang:cjs"] {
+	font-size: 0.75em; /* 12px /16 */
+}
+seven-minute-tabs [data-tabs-persist="templatelang:cjs"]:after {
+	content: "(CommonJS)";
+}
+seven-minute-tabs:has([data-tabs-persist="templatelang:cjs"]) [data-tabs-persist="templatelang:js"]:after {
+	content: "(ESM)";
+}
+/* not on demo blocks */
+.elv-callout-demo seven-minute-tabs [data-tabs-persist]:after {
+	content: "";
+}
+seven-minute-tabs :is([data-tabs-persist="templatelang:cjs"], [data-tabs-persist="templatelang:js"]):after {
+	color: #999;
+	margin-inline-start: .25em;
+	font-size: 0.75rem; /* 12px /16 */
+}
+
+/* Expand height */
+seven-minute-tabs[autoheight] [role="tabpanel"]:has(> :is(.syntax-highlight, syntax-highlight, pre[class*="language-"]):only-child) {
+	height: var(--smt-height);
+}
+seven-minute-tabs[autoheight] [role="tabpanel"]:not(:has(> :is(.syntax-highlight, syntax-highlight, pre[class*="language-"]):only-child)) {
+	min-height: var(--smt-height);
+}
+seven-minute-tabs[autoheight] :is(.syntax-highlight, syntax-highlight, pre[class*="language-"]):only-child,
+seven-minute-tabs[autoheight] :is(.syntax-highlight, syntax-highlight):only-child > pre {
+	height: 100%;
+}
+
+/* Expand height with codetitle (requires tabs-flush) */
+seven-minute-tabs[autoheight] [role="tabpanel"]:not([hidden]):has(> .codetitle:first-child + .syntax-highlight:last-child),
+seven-minute-tabs[autoheight] [role="tabpanel"]:not([hidden]):has(> .codetitle:first-child + .syntax-highlight + .codetitle + .syntax-highlight:last-child) {
+	height: var(--smt-height);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+seven-minute-tabs[autoheight] [role="tabpanel"]:not([hidden]):has(> .codetitle:first-child + .syntax-highlight:last-child) :is(.syntax-highlight, .syntax-highlight pre),
+seven-minute-tabs[autoheight] [role="tabpanel"]:not([hidden]):has(> .codetitle:first-child + .syntax-highlight + .codetitle + .syntax-highlight:last-child)  :is(.syntax-highlight, .syntax-highlight pre) {
+	height: 100%;
+}

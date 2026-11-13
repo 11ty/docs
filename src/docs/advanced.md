@@ -1,9 +1,10 @@
 ---
 eleventyNavigation:
+  parent: Eleventy Projects
   key: Advanced
-  order: 10
+  order: 11
 ---
 
 # Advanced
 
-{{ collections.all | eleventyNavigation("Advanced") | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}
+{{ "Advanced" | nav | eleventyNavigationToHtml({ showExcerpt: true }) | safe }}

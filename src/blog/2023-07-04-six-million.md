@@ -8,7 +8,7 @@ On July 3, 2023 **Eleventy passed [six million lifetime downloads](https://npm-s
 
 _(This number is limited to Eleventy core and doesn’t count our ecosystem of utilities and plugins.)_
 
-{% image "./src/blog/six-million.jpg", "Zach pointing to the new balloons in his office that say 6 Million", [350, 700], "", "100vw" %}
+<img src="/blog/six-million.jpg" alt="Zach pointing to the new balloons in his office that say 6 Million" eleventy:widths="350, 700" sizes="100vw">
 
 Thank you for the support!!
 

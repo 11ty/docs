@@ -1,0 +1,23 @@
+{
+	"commits": [
+		{
+			"id": "3bfeeca363a3eb903da01f2121e6042a1eccd461",
+			"url": "https://github.com/11ty/docs/commit/3bfeeca363a3eb903da01f2121e6042a1eccd461",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-03-28T14:04:58.000Z",
+			"message": "Navigation",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		}
+	]
+}

@@ -1,73 +1,53 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync>
+<seven-minute-tabs persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "htmlbase-fullurl"} %}
   <div id="htmlbase-fullurl-liquid" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Liquid", "Syntax" %}
-
-{% raw %}
-
-```liquid
+{% set codeBlock %}{% raw %}
 {{ "http://example.com/" | addPathPrefixToFullUrl }}
 => "http://example.com/pathprefix/"
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="htmlbase-fullurl-njk" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```njk
+{% set codeBlock %}{% raw %}
 {{ "http://example.com/" | addPathPrefixToFullUrl }}
 => "http://example.com/pathprefix/"
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="htmlbase-fullurl-js" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.js", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 export default function () {
 	return this.addPathPrefixToFullUrl("http://example.com/");
 	// "http://example.com/pathprefix/"
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 	<div id="htmlbase-fullurl-cjs" role="tabpanel">
 
 With path prefix set to `"/pathprefix/"`:
 
 {% codetitle "11ty.cjs", "Syntax" %}
-
-{% raw %}
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = function () {
 	return this.addPathPrefixToFullUrl("http://example.com/");
 	// "http://example.com/pathprefix/"
 };
-```
-
-{% endraw %}
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

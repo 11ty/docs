@@ -2,12 +2,10 @@
 eleventyNavigation:
   parent: Using Data
   key: Eleventy Supplied Data
-  order: 0.5
+  order: 2
 ---
 
 # Eleventy Supplied Data
-
-{% tableofcontents %}
 
 Here are a few data values we supply to your page that you can use in your templates:
 
@@ -108,16 +106,12 @@ You can use this feature to [globally change your project’s default permalinks
 If you want a file extension in your URL, you might use it like this:
 
 {% codetitle "YAML Front Matter", "Syntax" %}
-
-{% raw %}
-
-```markdown
+{%- set codeBlock %}{% raw %}
 ---
 permalink: "{{ page.filePathStem }}.html"
 ---
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("yaml") | safe }}
 
 This example output uses the above permalink value.
 
@@ -164,7 +158,7 @@ const eleventy = {
 };
 ```
 
-* {% addedin "v3.0.0-alpha.6" %}`eleventy.directories` contains project-root relative normalized paths for the important Eleventy directories: [`input`](/docs/config.md#input-directory),  [`includes`](/docs/config.md#directory-for-includes),  [`layouts`](/docs/config.md##directory-for-layouts-(optional)) (if used),  [`data`](/docs/config.md##directory-for-global-data-files), and [`output`](/docs/config.md#output-directory).
+* {% addedin "v3.0.0-alpha.6" %}`eleventy.directories` contains project-root relative normalized paths for the important Eleventy directories: [`input`](/docs/config.md#input-directory),  [`includes`](/docs/config.md#directory-for-includes),  [`layouts`](/docs/config.md#directory-for-layouts-optional) (if used),  [`data`](/docs/config.md#directory-for-global-data-files), and [`output`](/docs/config.md#output-directory).
 
 ### Feature Availability
 
@@ -179,13 +173,10 @@ It’s helpful if you add `<meta name="generator">` to your existing Eleventy pr
 
 {% codetitle "Nunjucks, Liquid", "Syntax" %}
 
-{% raw %}
-
-```njk
+{%- set codeBlock %}{% raw %}
 <meta name="generator" content="{{ eleventy.generator }}">
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 
 These videos also provide some additional context as to why this is important:
 

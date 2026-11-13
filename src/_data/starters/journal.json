@@ -2,5 +2,6 @@
 	"url": "https://github.com/adamdjbrett/11ty-journal",
 	"name": "11ty Journal",
 	"description": "A blog template and theme using 11ty and bootstrap.",
+	"author": "adamdjbrett",
 	"demo": "https://journal.000000076.xyz/"
 }

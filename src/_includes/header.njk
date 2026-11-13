@@ -1,62 +1,83 @@
+<aside>
+	{% include "components/product-tabs.njk" %}
+</aside>
 <header class="elv-header{% if headerClass %} {{ headerClass }}{% endif %}">
-	<div class="elv-header-skip-content">
-		<a href="#skip-nav">Skip to navigation</a>
-		<a href="#skip-content">Skip to main content</a>
-	</div>
-
 	<div class="elv-menu">
 		<ul class="elv-nav-menu list-bare fl fl-inline fl-nowrap">
-			<li><a href="/" class="naked">11ty</a></li>
-			<li><a href="/docs/">Docs</a></li>
-			<li><a href="/docs/search/">Search</a></li>
+			<li><a href="/" class="elv-nav-menu-logo"><i class="fa-brands fa-eleventy"></i><span class="sr-only">11ty</span></a></li>
+			<li><a href="/docs/">Get Started</a></li>
 			<li><a href="/blog/">Blog</a></li>
 			<li><a href="/docs/community/">Community</a></li>
-			{# <li><a href="/firehose/">Firehose</a></li> #}
-			{# <li><a href="https://conf.11ty.dev/" class= elv-externalexempt">Conference</a></li> #}
-			{# <li><a href="https://merch.11ty.dev/products/11ty-merch-bundle-2024-limited-edition" class="elv-externalexempt">Merch</a></li> #}
+			<li><a href="/docs/versions/"><code class="elv-header-version">v{{ npmVersions.latest }}</code></a></li>
 			<li>
 				<details-utils close-click-outside close-esc>
 					<details class="elv-popover">
 						<summary>Versions</summary>
 						<div>
-						  <ul class="list-bare">
-								<li><a href="/docs/" class="elv-externalexempt"><code>v3</code> <small>Stable</small></a></li>
+							<ul class="list-bare">
+{%- set v4Url = sisterSiteUrl if sisterSite.version == "v4" %}
+{%- set v3Url = sisterSiteUrl if sisterSite.version == "v3" %}
+								<li><a href="{{ v4Url or 'https://build.awesome.me/docs/' }}" class="elv-externalexempt"><span><code>v4</code></span> <small>Pre-release</small>{% if v4Url and page.url != "/" %}<code class="elv-popover-sub">{{ page.url }}</code>{% endif %}</a></li>
+								<li><a href="{{ v3Url or 'https://www.11ty.dev/docs/' }}" class="elv-externalexempt"><span><code>v3</code></span> <small>Stable</small>{% if v3Url and page.url != "/" %}<code class="elv-popover-sub">{{ page.url }}</code>{% endif %}</a></li>
 								<li><a href="https://v2.11ty.dev/docs/" class="elv-externalexempt"><code>v2</code></a></li>
 								<li><a href="https://v1.11ty.dev/docs/" class="elv-externalexempt"><code>v1</code></a></li>
 								<li><a href="https://v0.11ty.dev/docs/" class="elv-externalexempt"><code>v0</code></a></li>
 								<li><a href="/docs/versions/" class="elv-externalexempt">History</a></li>
-							</dl>
+								<li><a href="/firehose/" class="elv-externalexempt">Firehose</a></li>
+							</ul>
 						</div>
 					</details>
 				</details-utils>
 			</li>
-			<li class="spacer" aria-hidden="true"></li>
-			<li><a href="/blog/feed.xml" class="naked elv-externalexempt elv-nav-sociallink"><i class="fa-solid fa-square-rss"></i><span class="elv-nav-sociallink-text">Feed</span></a></li>
-			<li><a href="https://github.com/11ty/eleventy/" class="naked elv-nav-sociallink elv-skipicon"><i class="fa-brands fa-github"></i><span class="elv-nav-sociallink-text">GitHub</span></a></li>
-			<li><a href="https://www.youtube.com/c/EleventyVideo" class="naked elv-externalexempt elv-nav-sociallink"><i class="fa-brands fa-youtube"></i><span class="sr-only">YouTube</span></a></li>
-			<li><a href="https://fosstodon.org/@eleventy" class="naked elv-nav-sociallink"><i class="fa-brands fa-mastodon"></i><span class="sr-only">Mastodon</span></a></li>
-			<li><a href="https://bsky.app/profile/11ty.dev" class="naked elv-nav-sociallink"><i class="fa-brands fa-bluesky"></i><span class="sr-only">Bluesky</span></a></li>
-			<li><a href="/blog/discord/" class="naked elv-nav-sociallink"><i class="fa-brands fa-discord"></i><span class="sr-only">Discord</span></a></li>
-			<li><a href="https://fontawesome.com/" class="naked elv-nav-sociallink"><i class="fa-brands fa-font-awesome"></i><span class="sr-only">Font Awesome</span></a></li>
+			{# <li><a href="/firehose/">Firehose</a></li> #}
+			{# <li><a href="https://conf.11ty.dev/" class= elv-externalexempt">Conference</a></li> #}
+			{# <li><a href="https://merch.11ty.dev/products/11ty-merch-bundle-2024-limited-edition" class="elv-externalexempt">Merch</a></li> #}
+			<li class="util-grow">
+				<disabled-form>
+					<form action="/docs/search/" class="util-stack">
+						<label>
+							<span class="sr-only">Search</span>
+							<input type="search" name="q" placeholder="Search…" value="" disabled>
+						</label>
+						<button type="submit" disabled><i class="fa-solid fa-magnifying-glass"></i><span class="sr-only">Search</span></button>
+					</form>
+				</disabled-form>
+			</li>
+			{# <li class="spacer" aria-hidden="true"></li> #}
+			{# <li><a href="/blog/feed.xml" class="nound elv-externalexempt elv-nav-sociallink"><i class="fa-solid fa-square-rss"></i><span class="elv-nav-sociallink-text">Feed</span></a></li> #}
+			<li><a href="https://github.com/11ty/eleventy/" class="elv-skipicon"><i class="fa-brands fa-github" style="font-size: .9em"></i>GitHub</a></li>
+			{# <li><a href="https://www.npmjs.com/org/11ty" class="nound elv-externalexempt elv-nav-sociallink"><i class="fa-brands fa-npm fa11ty-npm"></i><span class="sr-only">npm</span></a></li> #}
+			<li><a href="https://www.youtube.com/c/EleventyVideo" class="nound elv-externalexempt elv-nav-sociallink"><i class="fa-brands fa-youtube"></i><span class="sr-only">YouTube</span></a></li>
+			<li><a href="https://neighborhood.11ty.dev/@11ty" class="nound elv-nav-sociallink"><i class="fa-brands fa-mastodon"></i><span class="sr-only">Mastodon</span></a></li>
+			<li><a href="https://bsky.app/profile/11ty.dev" class="nound elv-nav-sociallink"><i class="fa-brands fa-bluesky"></i><span class="sr-only">Bluesky</span></a></li>
+			<li><a href="/blog/discord/" class="nound elv-nav-sociallink"><i class="fa-brands fa-discord"></i><span class="sr-only">Discord</span></a></li>
 		</ul>
 	</div>
 
 	<div class="elv-nav-header">
-		<a href="{% if logoLink %}{{ logoLink }}{% else %}/{% endif %}" class="elv-hero elv-externalexempt">{% if logoContent %}{{ logoContent | safe }}{% else %}{% include "../img/logo.svg" %}{% endif %}<span class="sr-only">Eleventy</span></a>
-		<{{ headerTag or "h1" }} class="elv-hed">{{ headerTitle | safe }}</{{ headerTag or "h1" }}>
-		<is-land on:visible on:idle on:save-data="false" on:media="(prefers-reduced-motion: no-preference)">
+{%- if not isDocs %}
+		<a class="elv-hero elv-externalexempt" href="/docs/">
+			<div class="elv-hero-ba">
+				{% include "components/ba-balloon.svg" %}
+				{% include "components/build-awesome.svg" %}
+				<span class="sr-only">Build Awesome</span>
+			</div>
+		</a>
+		<a href="/docs/" class="elv-hero-11ty">
+			<i class="fa-brands fa-eleventy"></i><span class="sr-only">Eleventy</span>
+			<img src="/img/mascots/ba-didelphis-awesomenicus.svg" alt="A cartoon possum wearing a green tshirt with a balloon logo on front" class="elv-mascot-image" eleventy:widths="120" loading="eager">
+		</a>
+{%- endif %}
+
+		<is-land class="elv-possum-island" on:visible on:idle on:load on:save-data="false" on:media="(prefers-reduced-motion: no-preference)" import="/js/possum-mascot.js">
 			<template data-island>
-				<a href="/blog/mascot-david/" class="elv-possum-anchor">
-					<div class="elv-possum-pic">
-						{% if isDocs %}
-						{% image "./src/img/mascots/david.svg", "The possum is Eleventy’s mascot", [222], "elv-possum" %}
-						{% else %}
-						{% image "./src/img/mascots/david.svg", "The possum is Eleventy’s mascot", [222, 350], "elv-possum", "20vh" %}
-						{% endif %}
-						</is-land>
-					</div>
-				</a>
+				<possum-mascot {% if page.url == "/" %}variant="home" idle-timeout="0" speed="30" sticky="false"{% else %}idle-timeout="10"{% endif %}>
+					<img src="/img/mascots/awesome-possum-balloon-smile-sm.svg" alt="The possum is Eleventy’s mascot" {% if isDocs %}eleventy:widths="222"{% else %}eleventy:widths="222,350" sizes="20vh"{% endif %} class="elv-possum" loading="eager">
+				</possum-mascot>
 			</template>
 		</is-land>
 	</div>
+{%- if not isDocs %}
+	<h1 class="elv-hed">{{ headerTitle | safe }}</h1>
+{%- endif %}
 </header>

@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-llms",
+	"author": "Chris Maas",
+	"description": "Create llms.txt and llms-full.txt for your Eleventy site based on your source Markdown files"
+}

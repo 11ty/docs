@@ -9,7 +9,7 @@
 }
 
 .elv-nav-menu a {
-	font-weight: 600;
+	font-weight: 500;
 }
 
 /* Spacer and social links */
@@ -27,24 +27,6 @@
 	/* 399px */
 	.elv-nav-menu > *:has(.elv-nav-sociallink-text) {
 		flex-basis: auto;
-	}
-}
-
-@media (min-width: 60.625em) {
-	/* 970px */
-	.elv-nav-sociallink {
-		font-size: 0.875em; /* 14px /16 */
-	}
-	.spacer {
-		display: inherit;
-	}
-	.elv-nav-menu .spacer {
-		flex-grow: 999;
-	}
-	.elv-nav-sociallink-text {
-		position: static;
-		overflow: visible;
-		clip: auto;
 	}
 }
 

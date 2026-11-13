@@ -33,6 +33,13 @@
 .fl-inline > * {
 	flex-grow: 0;
 }
+.fl-grow,
+.fl-inline .fl-grow {
+	flex-grow: 9999;
+}
+.fl-spaced-out {
+	justify-content: space-between;
+}
 
 /* Debug */
 .fl-debug > * {

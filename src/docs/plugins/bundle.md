@@ -1,13 +1,12 @@
 ---
 eleventyNavigation:
   key: Bundle
+  title: '<i class="fa-solid fa-file-zipper"></i>Bundle'
   order: 3.15
   excerpt: A plugin create small plain-text bundles of code (CSS, JS, HTML, SVG, etc)
 ---
 
 # Bundle {% addedin "3.0.0-alpha.10" %}
-
-{% tableofcontents %}
 
 The Bundle plugin is a plain-text bundler unlocking minimal per-page or app-level bundles of CSS, JavaScript, or HTML to be included in your Eleventy project.
 
@@ -23,7 +22,7 @@ For more larger, more complex use cases you may want to use a more full featured
 
 ## Usage
 
-This plugin is added to Eleventy by default and requires no additional installation. However, the plugin does not include any default bundles. You must add these yourself via `addBundle`.
+This plugin is included with Eleventy core and requires no additional installation. However, the plugin is opt-in and does not include any bundles by default: you must add these yourself via the `addBundle` configuration method.
 
 {% set codeContent %}
 export default function(eleventyConfig) {
@@ -58,6 +57,12 @@ export default function(eleventyConfig) {
 
 		// If two identical code blocks exist in non-default buckets, they’ll be hoisted to the first bucket in common.
 		hoist: true,
+
+		// Bundle content from nodes selected by an arbitrary selector
+		// e.g. "script" would bundle `<script>` content
+		// Use an eleventy:ignore attribute on a node to opt-out.
+		// Supported selectors: https://www.npmjs.com/package/posthtml-match-helper
+		bundleHtmlContentFromSelector: "",
 
 		// In 11ty.js templates, having a named export of `bundle` will populate your bundles.
 		bundleExportKey: "bundle",
@@ -106,6 +111,31 @@ Results in a removal of the bundle additions from the rendered output, like so:
 
 <h2>More Markdown</h2>
 ```
+
+#### Bundling HTML Node Content
+
+{% addedin "Bundle v3.0.2" %} Using the `bundleHtmlContentFromSelector` option allows bundling content inside HTML nodes.
+
+```html
+# My Blog Post
+
+This is some content, I am writing markup.
+
+<style>
+em { font-style: italic; }
+</style>
+
+## More Markdown
+
+<style>
+strong { font-weight: bold; }
+</style>
+```
+
+When using `bundleHtmlContentFromSelector: "style"`, the `<style>` nodes in an HTML file will roll up into the bundle.
+
+- `<style eleventy:ignore>` to opt-out per node
+- `<style eleventy:bucket="async">` to change the bucket for a node {% addedin "Bundle v3.0.5" %}
 
 ### Rendering Bundles
 

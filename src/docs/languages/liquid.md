@@ -2,7 +2,8 @@
 eleventyNavigation:
   parent: Template Languages
   key: Liquid
-  order: 6
+  order: 3
+  excerpt: Simple language also used by Jekyll and Shopify
 relatedKey: liquid
 relatedTitle: Template Language—Liquid
 tags:
@@ -12,13 +13,18 @@ tags:
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                          |
 | ------------------- | -------------- | ---------------------------------------------------- |
 | `liquid`            | `.liquid`      | [`liquidjs`](https://www.npmjs.com/package/liquidjs) |
 
-You can override a `.liquid` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/languages/).
+| Eleventy version | `liquidjs` version |
+| --- | --- |
+| `@11ty/eleventy@0.x` | `liquidjs@6.x` |
+| `@11ty/eleventy@1.x` | `liquidjs@9.x` |
+| `@11ty/eleventy@2.x` | `liquidjs@10.x` |
+| `@11ty/eleventy@3.x` | `liquidjs@10.x` |
+
+You can override a `.liquid` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
 ## Liquid Options
 
@@ -92,7 +98,7 @@ export default function (eleventyConfig) {
 
 ### Quoted Include Paths
 
-{% callout "warn" %}This is a common pitfall if you’re using Liquid templates.{% endcallout %}
+{% callout "pitfall" %}This is a common pitfall if you’re using Liquid templates.{% endcallout %}
 
 If you’d like to use include paths without quotation marks, you must enable `dynamicPartials: false` in your Liquid options. The [default in Eleventy 1.0 (and `liquidjs`) swapped from `false` to `true`](https://github.com/11ty/eleventy/issues/240). Read more about this limitation at [Issue #72](https://github.com/11ty/eleventy/issues/72).
 
@@ -320,4 +326,3 @@ export default function (eleventyConfig) {
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
-

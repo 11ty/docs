@@ -3,8 +3,7 @@ eleventyNavigation:
   key: Order of Operations
   parent: Advanced
   excerpt: How Eleventy works internally.
-  order: 1
-excludeFromSidebar: true
+  order: 3
 ---
 
 # Order of Operations

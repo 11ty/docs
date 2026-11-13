@@ -1,71 +1,51 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "renderfileoverride"} %}
   <div id="renderfileoverride-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{%- set codeBlock %}{% raw %}
 ---
 myData:
   key: value
 ---
 {% renderFile "./_includes/blogpost.md", myData, "njk" %}
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="renderfileoverride-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{%- set codeBlock %}{% raw %}
 ---
 myData:
   key: value
 ---
 {% renderFile "./_includes/blogpost.md", myData, "njk" %}
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="renderfileoverride-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 export const data = {
-  myData: {
-    myKey: "myValue",
-  },
+	myData: {
+		myKey: "myValue",
+	},
 };
 export async function render(data) {
   return await this.renderFile("./includes/blogpost.md", data.myData, "njk");
 };
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="renderfileoverride-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 module.exports.data = {
-  myData: {
-    myKey: "myValue",
-  },
+	myData: {
+		myKey: "myValue",
+	},
 };
 module.exports.render = async function (data) {
   return await this.renderFile("./includes/blogpost.md", data.myData, "njk");
 };
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

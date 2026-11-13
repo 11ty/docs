@@ -14,7 +14,7 @@ David was so excited to deliver this one and we think he absolutely nailed it. T
 [Have an idea for this critter’s name? Tell us on Mastodon!](https://fosstodon.org/@eleventy)
 
 <div style="display: inline-block; padding: 1em; border-radius: 1em; background-color: #019cb5; border: .75em solid #00848b; box-shadow: -10px 10px 80px rgb(0 0 0 / 10%); max-width: 25em">
-  {% image "./src/img/mascots/david.svg", "A possum in glasses suspended from a red balloon", [800] %}
+  <img src="/img/mascots/david.svg" alt="A possum in glasses suspended from a red balloon" width="800">
 </div>
 
 [_Read more about David on his web site._](https://reverentgeek.com/about/)

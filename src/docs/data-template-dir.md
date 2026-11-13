@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Template and Directory Specific Data Files {% addedin "0.2.14" %}
 
-{% tableofcontents %}
-
 While you can provide [global data files](/docs/data-global/) to supply data to all of your templates, you may want some of your data to be available locally only to one specific template or to a directory of templates. For that use, we also search for JSON and [JavaScript Data Files](/docs/data-js/) in specific places in your directory structure.
 
 For example, consider a template located at `posts/subdir/my-first-blog-post.md`. Eleventy will look for data in the following places (starting with highest priority, local data keys override global data):
@@ -35,10 +33,10 @@ For example, consider a template located at `posts/subdir/my-first-blog-post.md`
 ### Apply a default layout to multiple templates
 
 {% codetitle "posts/posts.json" %}
-
-```json
+{%- set codeBlock %}{% raw %}
 { "layout": "layouts/post.njk" }
-```
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("json") | safe }}
 
 Using the above in `posts/posts.json` will configure a layout for all of the templates inside of `posts/*`.
 

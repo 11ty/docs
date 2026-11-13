@@ -1,3 +1,12 @@
+---
+eleventyNavigation:
+  parent: Filters
+  key: slug Filter
+  title: "<code>slug</code>"
+  order: 2.1
+  excerpt: 'Similar to but deprecated in favor of <code>slugify</code>'
+excludeFromSidebar: true
+---
 # `slug` Universal Filter
 
 {% callout "warn", "md" %}Starting in Eleventy v1.0.0 it is recommended to use [the `slugify` Universal Filter](/docs/filters/slugify/) instead of `slug`. For backwards compatibility, `slug` is still included and supported but `slugify` has better default behavior for URLs with special characters. **If you want to swap `slug` to `slugify` wholesale in old projects, please [read this warning about breaking URLs](/docs/filters/slugify/#changing-slug-to-slugify). Be careful!**{% endcallout %}

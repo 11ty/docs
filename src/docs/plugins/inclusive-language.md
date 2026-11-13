@@ -1,13 +1,13 @@
 ---
 eleventyNavigation:
   key: Inclusive Language
+  # title: '<i class="fa-solid fa-handshake-angle"></i>Inclusive Language'
   order: 4
   excerpt: A plugin to check for inclusive language in markdown files.
+excludeFromSidebar: true
 ---
 
 # Inclusive Language Plugin
-
-{% tableofcontents %}
 
 An Eleventy linter plugin to check for inclusive language in markdown files. Inspired by [_CSS Tricks’ Words to Avoid in Educational Writing_](https://css-tricks.com/words-avoid-educational-writing/). No browser/client JavaScript here—everything is this plugin is done at build-time.
 

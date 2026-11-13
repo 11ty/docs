@@ -1,8 +1,10 @@
 ---
 eleventyNavigation:
+  parent: Eleventy Projects
   key: Getting Started
   title: Get Started
-  order: 2
+  pinned: true
+  order: -2
 communityLinksKey: getting-started
 overrideCommunityLinks: true
 ---
@@ -14,28 +16,31 @@ overrideCommunityLinks: true
 	{% endcallout %}
 </template>
 
-<p>Eleventy <eleventy-version></eleventy-version> requires a <a href="javascript-runtime.webc">JavaScript runtime</a>, usually <strong><a href="https://nodejs.org/">Node.js</a></strong> — <strong>version <node-minimum></node-minimum></strong> or higher.</p>
+<p>Eleventy <eleventy-version></eleventy-version> requires a <a href="javascript-runtime.webc">JavaScript runtime</a>, typically <strong><a href="https://nodejs.org/">Node.js</a></strong> (<strong>version <node-minimum></node-minimum></strong> or higher).</p>
 
-<p>You can check whether or not you have Node.js installed by running <code>node --version</code> in a terminal application. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If the command is not found or it reports a number lower than <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">download and install Node.js</a> before moving on to the next step. We encourage folks to use <a href="javascript-runtime.webc#odd-versions-of-node-js">even numbered releases</a> of Node.js.</p>
+<p>You can check whether or not you have Node.js installed by running <code>node --version</code> in a terminal application. (<a href="/docs/terminal-window/"><em>Well, wait—what is a Terminal?</em></a>) If the command is not found or it reports a number lower than <node-minimum></node-minimum>, you will need to <a href="https://nodejs.org/en/download/">download and install Node.js</a> before moving on to the next step. Learn why it’s encouraged to use <a href="javascript-runtime.webc#odd-numbered-versions-of-node-js">even numbered releases of Node.js</a>.</p>
 
 <p>Prefer to watch videos instead? Check out <a href="https://www.youtube.com/watch?v=kzf9A9tkkl4"><strong>6 minutes to Build a Blog from Scratch</strong></a>.</p>
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
-
 ## <span class="numberflag"><span class="sr-only">Step</span> 1</span> Make a Project Directory
 
 Create a directory for your project using the `mkdir` command (short for _make directory_):
+</template>
 
-```bash
+<syntax-highlight language="bash">
 mkdir eleventy-sample
-```
+</syntax-highlight>
 
+<template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 Now move into that directory with the `cd` command (short for _change directory_):
+</template>
 
-```bash
+<syntax-highlight language="bash">
 cd eleventy-sample
-```
+</syntax-highlight>
 
+<template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 ## <span class="numberflag"><span class="sr-only">Step</span> 2</span> Install Eleventy
 
 ### Create a `package.json`
@@ -45,32 +50,24 @@ Installing Eleventy into a project requires a `package.json` file.
 </template>
 
 <script type="module" src="/js/seven-minute-tabs.js" webc:keep></script>
-<seven-minute-tabs class="tabs-flush tabs-right tabs-firstonly" persist sync>
+<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#quickstart-run-2a-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
 		<a href="#quickstart-run-2a-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
 		<a href="#quickstart-run-2a-yarn" role="tab" data-tabs-persist="pkgmgr:yarn">Yarn</a>
 	</div>
 	<div id="quickstart-run-2a-npm" role="tabpanel">
-		<syntax-highlight language="bash">
-			npm init -y
-		</syntax-highlight>
+		<syntax-highlight language="bash">npm init -y</syntax-highlight>
 		<p>The <code>npm</code> command (included with Node.js) will create a <code>package.json</code> file for you with <a href="https://docs.npmjs.com/cli/init"><code>npm init -y</code></a>. The <code>-y</code> flag tells <code>npm</code> to use default values and skips the questionnaire.</p>
 		<p>Use the following command if you want to use <a href="/docs/cjs-esm.md">ESM in your project and not CommonJS</a>.</p>
-		<syntax-highlight language="bash">
-			npm pkg set type="module"
-		</syntax-highlight>
+		<syntax-highlight language="bash">npm pkg set type="module"</syntax-highlight>
 	</div>
 	<div id="quickstart-run-2a-pnpm" role="tabpanel">
-		<syntax-highlight language="bash">
-			pnpm init
-		</syntax-highlight>
+		<syntax-highlight language="bash">pnpm init</syntax-highlight>
 		<p>Learn more about <a href="https://pnpm.io/">pnpm</a> (it requires separate installation).</p>
 	</div>
 	<div id="quickstart-run-2a-yarn" role="tabpanel">
-		<syntax-highlight language="bash">
-			yarn init
-		</syntax-highlight>
+		<syntax-highlight language="bash">yarn init</syntax-highlight>
 		<p>Learn more about <a href="https://yarnpkg.com/">yarn</a> (it requires separate installation).</p>
 	</div>
 </seven-minute-tabs>
@@ -83,7 +80,7 @@ Installing Eleventy into a project requires a `package.json` file.
 
 </template>
 
-<seven-minute-tabs class="tabs-flush tabs-right tabs-firstonly" persist sync>
+<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#quickstart-run-2b-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
 		<a href="#quickstart-run-2b-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
@@ -114,7 +111,7 @@ _You may also [install Eleventy globally](/docs/global-installation/) but the `p
 
 </template>
 
-<seven-minute-tabs class="tabs-flush tabs-right tabs-firstonly" persist sync>
+<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#quickstart-run-3a-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
 		<a href="#quickstart-run-3a-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
@@ -140,11 +137,11 @@ _You may also [install Eleventy globally](/docs/global-installation/) but the `p
 
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 
-Here’s what your command line might look like after you run Eleventy:
+Here’s what your command line should look like after you run Eleventy:
 
-{% codewithprompt "lastlinegreen" %}
+```11ty-output
 [11ty] Wrote 0 files in 0.03 seconds ({% latestVersion versions, config %})
-{% endcodewithprompt %}
+```
 
 If you see `({% latestVersion versions, config %})` in your output you know you’re using the newest version. However, Eleventy didn’t process any files! This is expected—we have an empty folder with no templates inside.
 
@@ -155,7 +152,7 @@ A <dfn>template</dfn> is a content file written in a [format such as Markdown, H
 Let’s run two commands to create two new template files.
 </template>
 
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Operating System">
 		<a href="#quickstart-os-nix" id="quickstart-os-mac-btn" role="tab" data-tabs-persist="os:mac">macOS</a>
 		<a href="#quickstart-os-nix" role="tab" data-tabs-persist="os:posix">Linux</a>
@@ -177,18 +174,18 @@ echo '# Heading' | out-file -encoding utf8 'README.md'
 	</div>
 	<div id="quickstart-os-all" role="tabpanel">
 <syntax-highlight language="bash">
-npx @11ty/create index.html "<!doctype html><title>Page title</title><p>Hi</p>"
-npx @11ty/create README.md "# Heading"
+echo '<!doctype html><title>Page title</title><p>Hi</p>' | npx @11ty/create index.html
+echo '# Heading' | npx @11ty/create README.md
 </syntax-highlight>
 		<p>Learn more about <a href="https://github.com/11ty/create"><code>@11ty/create</code></a> <em>(requires Node.js 18 or newer)</em>.</p>
 	</div>
 </seven-minute-tabs>
 
-<p>Alternatively, you can create these using any text editor—just make sure you save them into your project folder and they have the correct file extensions.</p>
+<p>Alternatively, you can create these using any text editor — make sure you save them into your project folder and they have the correct file extensions.</p>
 
 <p>After you’ve created an HTML template and a Markdown template, let’s run Eleventy again with the following command:</p>
 
-<seven-minute-tabs class="tabs-flush tabs-right tabs-firstonly" persist sync>
+<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#quickstart-run-4-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
 		<a href="#quickstart-run-4-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
@@ -214,21 +211,43 @@ yarn exec eleventy
 <template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 The output might look like this:
 
-{% codewithprompt "lastlinegreen" %}
+```11ty-output
 [11ty] Writing _site/README/index.html from ./README.md (liquid)
 [11ty] Writing _site/index.html from ./index.html (liquid)
 [11ty] Wrote 2 files in 0.04 seconds ({% latestVersion versions, config %})
-{% endcodewithprompt %}
+```
 
-We’ve compiled our two content templates in the current directory into the output folder (`_site` is the default).
+We’ve now compiled our two content templates in the current directory into the output folder (`_site` is the default).
 
+If you’d like to experiment further with [template file syntax](/docs/languages/), edit the following sample `README.md` file in your browser. [Front Matter](/docs/data-frontmatter/), [Liquid](/docs/languages/liquid/) and [Markdown](/docs/languages/markdown/) syntax are in use.
+</template>
+
+<script type="module" src="/js/browser-window.js" webc:keep></script>
+
+<is-land on:visible import="/js/eleventy-editor.js">
+	<div class="editor-layout">
+		<p class="editor-filename"><code>README.md</code></p>
+		<p class="editor-filename"><code>_site/README/index.html</code></p>
+		<eleventy-editor focus group="get-started" output="external" data-editor-filename="README.md">
+			<syntax-highlight language="markdown" :copy-button-enabled="false">
+---
+title: Heading
+---
+# {{ title }}
+			</syntax-highlight>
+		</eleventy-editor>
+		<browser-window fill url="/README/"><eleventy-output group="get-started" data-editor-filename="README.md"></eleventy-output></browser-window>
+	</div>
+</is-land>
+
+<template webc:type="11ty" 11ty:type="njk,md" webc:raw webc:nokeep>
 ## <span class="numberflag"><span class="sr-only">Step</span> 5</span> Gaze upon your templates
 
 Use `--serve` to start up a hot-reloading local web server.
 
 </template>
 
-<seven-minute-tabs class="tabs-flush tabs-right tabs-firstonly" persist sync>
+<seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
 	<div role="tablist" aria-label="Choose your Package Manager">
 		<a href="#quickstart-run-5-npm" role="tab" data-tabs-persist="pkgmgr:npm">npm</a>
 		<a href="#quickstart-run-5-pnpm" role="tab" data-tabs-persist="pkgmgr:pnpm">pnpm</a>
@@ -255,30 +274,19 @@ Use `--serve` to start up a hot-reloading local web server.
 
 Your command line might look something like:
 
-<style>
-#getting-started-serve .highlight-line:first-child + br + .highlight-line + br + .highlight-line,
-#getting-started-serve .highlight-line:first-child + br + .highlight-line + br + .highlight-line * {
-  color: #0dbc79 !important;
-}
-#getting-started-serve .highlight-line:first-child + br + .highlight-line + br + .highlight-line + br + .highlight-line + br + .highlight-line,
-#getting-started-serve .highlight-line:first-child + br + .highlight-line + br + .highlight-line + br + .highlight-line + br + .highlight-line * {
-  color: #4c8bcf !important;
-}
-</style>
-
-{% codewithprompt "noop", "getting-started-serve" %}
+```11ty-output
 [11ty] Writing _site/index.html from ./index.html (liquid)
 [11ty] Writing _site/README/index.html from ./README.md (liquid)
 [11ty] Wrote 2 files in 0.04 seconds ({% latestVersion versions, config %})
 [11ty] Watching…
 [11ty] Server at http://localhost:8080/
-{% endcodewithprompt %}
+```
 
 Open `http://localhost:8080/` or `http://localhost:8080/README/` in your favorite web browser to see your Eleventy site live! When you save your template files—Eleventy will refresh the browser with your new changes automatically!
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 6</span> Put it online (optional)
 
-Head over to our [deployment documentation](/docs/deployment/) to read more about putting your Eleventy project online for everyone to see.
+Your output folder (`_site`) now contains all of the statically built files for your new web site. You can upload this folder to any web host! Head over to our [deployment documentation](/docs/deployment/) to read more about putting your Eleventy project online for everyone to see.
 
 ## <span class="numberflag"><span class="sr-only">Step</span> 7</span> Continue Learning…
 
@@ -288,6 +296,7 @@ Congratulations—you made something with Eleventy! Now put it to work:
 1. Use [a layout file so that you don’t have to repeat boilerplate on every template](/docs/layouts/).
 1. Add a [configuration file](/docs/config/) to unlock advanced Eleventy capabilities!
 1. Add [CSS, JavaScript, or Web Fonts](/docs/assets/) to your project.
+1. It’s super easy to add automated [Image optimization](/docs/plugins/image/) too!
 1. Learn more of the [command line options for Eleventy](/docs/usage/).
 1. Perhaps you’d like to [consume data from third party APIs](/docs/data-js/) in your project?
 </template>

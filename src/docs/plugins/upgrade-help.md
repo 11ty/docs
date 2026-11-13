@@ -1,13 +1,12 @@
 ---
 eleventyNavigation:
   key: Upgrade Helper
+  title: '<i class="fa-solid fa-circle-up"></i>Upgrade Helper'
   order: 1
   excerpt: A plugin to help you upgrade your Eleventy project between major version releases.
 ---
 
 # Major Version Upgrade Helper
-
-{% tableofcontents %}
 
 - [Source code on GitHub](https://github.com/11ty/eleventy-upgrade-help)
 - [Sample project using the Upgrade Helper plugin](https://github.com/11ty/demo-eleventy-upgrade-help)
@@ -18,31 +17,50 @@ eleventyNavigation:
 
 Upgrade your project’s version of Eleventy with `npm` _before_ using this helper plugin.
 
-```bash
-# Upgrading from Eleventy v0 to v1
+Upgrading from Eleventy v0 to v1:
+
+{%- set codeBlock %}
 npm install @11ty/eleventy@1
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
-# Or, upgrading from Eleventy v1 to v2
+Or, upgrading from Eleventy v1 to v2:
+
+{%- set codeBlock %}
 npm install @11ty/eleventy@2
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
-# Or, upgrading from Eleventy v2 to v3
+Or, upgrading from Eleventy v2 to v3:
+{%- set codeBlock %}
 npm install @11ty/eleventy@3
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 ### <span class="numberflag"><span class="sr-only">Step</span> 2</span> Install the Helper
 
 Then, install the helper plugin. The major version will match the version of Eleventy that you’re upgrading to.
 
-```bash
-# Upgrading from Eleventy v0 to v1
+Upgrading from Eleventy v0 to v1:
+
+{%- set codeBlock %}
 npm install @11ty/eleventy-upgrade-help@1
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
-# Or, upgrading from Eleventy v1 to v2
+Or, upgrading from Eleventy v1 to v2:
+
+{%- set codeBlock %}
 npm install @11ty/eleventy-upgrade-help@2
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
-# Or, upgrading from Eleventy v2 to v3
+Or, upgrading from Eleventy v2 to v3:
+
+{%- set codeBlock %}
 npm install @11ty/eleventy-upgrade-help@3
-```
+{%- endset %}
+{{ codeBlock | highlight("bash") | safe }}
 
 ### <span class="numberflag"><span class="sr-only">Step</span> 3</span> Add to Configuration File
 

@@ -1,0 +1,78 @@
+{
+	"commits": [
+		{
+			"id": "e6a729d8c6f944c172852e4ef8cd6eee45c88b49",
+			"url": "https://github.com/11ty/docs/commit/e6a729d8c6f944c172852e4ef8cd6eee45c88b49",
+			"author": {
+				"name": "zachleat",
+				"url": "https://github.com/zachleat",
+				"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+			},
+			"date": "2025-10-29T16:02:57.000Z",
+			"message": "info blocks cleanup",
+			"via": "git"
+		}
+	],
+	"authors": [
+		{
+			"name": "neo7-studio-web",
+			"url": "https://github.com/neo7-studio-web",
+			"avatarUrl": "/img/docs-avatars/18073828-TFHIJqjIWJzV.png"
+		},
+		{
+			"name": "zachleat",
+			"url": "https://github.com/zachleat",
+			"avatarUrl": "/img/docs-avatars/39355-BYqDKnzPAH8O.png"
+		},
+		{
+			"name": "kaisermann",
+			"url": "https://github.com/kaisermann",
+			"avatarUrl": "/img/docs-avatars/12702016-SMz8f5a6mdjR.jpeg"
+		},
+		{
+			"name": "SiarheiBobryk",
+			"url": "https://github.com/SiarheiBobryk",
+			"avatarUrl": "/img/docs-avatars/33809585-9kWLlKfbyHKG.png"
+		},
+		{
+			"name": "AramZS",
+			"url": "https://github.com/AramZS",
+			"avatarUrl": "/img/docs-avatars/748069-PjG8hKEtapTq.jpeg"
+		},
+		{
+			"name": "TomerAberbach",
+			"url": "https://github.com/TomerAberbach",
+			"avatarUrl": "/img/docs-avatars/23299544-Fzf73iJnSp82.jpeg"
+		},
+		{
+			"name": "andrealeardini",
+			"url": "https://github.com/andrealeardini",
+			"avatarUrl": "/img/docs-avatars/25171375-QZVCzEGKUlVr.png"
+		},
+		{
+			"name": "qorbani",
+			"url": "https://github.com/qorbani",
+			"avatarUrl": "/img/docs-avatars/771382-8nXfWhphIrSg.png"
+		},
+		{
+			"name": "j-f1",
+			"url": "https://github.com/j-f1",
+			"avatarUrl": "/img/docs-avatars/25517624-O2aASR5gZm4n.png"
+		},
+		{
+			"name": "Zearin",
+			"url": "https://github.com/Zearin",
+			"avatarUrl": "/img/docs-avatars/630124-BrXMC5aYJNrH.png"
+		},
+		{
+			"name": "danburzo",
+			"url": "https://github.com/danburzo",
+			"avatarUrl": "/img/docs-avatars/205375-AZTe2BuIoSyH.png"
+		},
+		{
+			"name": "breyman",
+			"url": "https://github.com/breyman",
+			"avatarUrl": "/img/docs-avatars/44279058-JdSl6OJS2lMY.png"
+		}
+	]
+}

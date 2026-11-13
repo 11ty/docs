@@ -1,18 +1,11 @@
 <script webc:setup>
-function latestVersionNodeMinimum(versions, config) {
-  for( let version of versions ) {
-    if( version.tag === "LATEST" ) {
-      continue;
-    }
-    if( version.channel && version.channel !== "latest" ) {
-      continue;
-    }
-    if( !config.prerelease && version.prerelease ) {
-      continue;
-    }
-
-    return version.minimumNodeVersion;
-  }
+export function latestVersionNodeMinimum(versions, config) {
+	for( let version of versions ) {
+		if(version.latestStableRelease) {
+			return version.minimumNodeVersion;
+		}
+	}
+	throw new Error("Latest stable release not found.");
 }
 </script>
 

@@ -1,15 +1,14 @@
 {% set tabid %}tab-{% uid %}{% endset %}
 <div class="codetitle codetitle-right-md">eleventy.config.js</div>
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync>
+<seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-
-```js
-import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
+{% set codeBlock %}{% raw %}
+import { HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
+	eleventyConfig.addPlugin(HtmlBasePlugin, {
 		// The base URL: defaults to Path Prefix
 		baseHref: eleventyConfig.pathPrefix,
 
@@ -21,16 +20,15 @@ export default function (eleventyConfig) {
 		extensions: "html",
 	});
 }
-```
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-
-```js
+{% set codeBlock %}{% raw %}
 module.exports = async function (eleventyConfig) {
-	const { EleventyHtmlBasePlugin } = await import("@11ty/eleventy");
+	const { HtmlBasePlugin } = await import("@11ty/eleventy");
 
-	eleventyConfig.addPlugin(EleventyHtmlBasePlugin, {
+	eleventyConfig.addPlugin(HtmlBasePlugin, {
 		// The base URL: defaults to Path Prefix
 		baseHref: eleventyConfig.pathPrefix,
 
@@ -42,8 +40,8 @@ module.exports = async function (eleventyConfig) {
 		extensions: "html",
 	});
 }
-```
-
+{% endraw %}{% endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

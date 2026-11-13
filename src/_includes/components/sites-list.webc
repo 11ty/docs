@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="site-entry.css">
-<div class="sites-vert" :class="size ? `sites-vert--${size}` : ''">
+<div class="sites-vert sites-vert--wc" :class="size ? `sites-vert--${size}` : ''">
 	<div class="lo-grid">
 		<slot></slot>
 	</div>

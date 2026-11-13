@@ -1,5 +1,5 @@
 {
 	"eleventyNavigation": {
-		"parent": "API Services"
+		"parent": "Runtime APIs"
 	}
 }

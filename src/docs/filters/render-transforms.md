@@ -3,7 +3,6 @@ eleventyNavigation:
   parent: Filters
   key: renderTransforms Filter
   title: "<code>renderTransforms</code>"
-  order: 5
   excerpt: "Render project transforms on an arbitrary block of content."
 excludeFromSidebar: true
 ---

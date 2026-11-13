@@ -3,6 +3,5 @@
 	"name": "11ty-Contentful-Starter",
 	"description": "An Eleventy powered multipage starter project that uses Contentful to create, and manage pages. The front end utilizes the HTML5UP Solid State theme for layout and styling.",
 	"author": "shyruparel",
-	"demo": "https://contentful.github.io/11ty-contentful-starter/",
-	"excludedFromLeaderboards": true
+	"demo": "https://contentful.github.io/11ty-contentful-starter/"
 }

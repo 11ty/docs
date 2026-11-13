@@ -1,13 +1,12 @@
 ---
 eleventyNavigation:
   key: InputPath to URL
+  title: '<i class="fa-solid fa-file"></i>InputPath to URL'
   order: 3
   excerpt: Maps an Eleventy input file path to its output URL.
 ---
 
 # InputPath to URL {% addedin "v3.0.0-alpha.5" %}
-
-{% tableofcontents %}
 
 This plugin allows you to use file system paths in your HTML and they will be automatically transformed to their output URLs. Very useful for robust hyperlinking allowing you to change your output URLs without breaking content links! Works out of the box with [`permalink` remapping](/docs/permalinks/), the [HTML `<base>` plugin](/docs/plugins/html-base/), etc.
 
@@ -19,68 +18,52 @@ _Inspired by [GitHub issue #84](https://github.com/11ty/eleventy/issues/84)._
 
 ### Usage
 
-You can link to `inputPath` in any `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and [a whole bunch more](https://github.com/posthtml/posthtml-urls/blob/307c91342a211b3f9fb22bc57264bbb31f235fbb/lib/defaultOptions.js) (via [posthtml-urls](https://github.com/posthtml/posthtml-urls)) and this plugin will render the correct URL for the template in your output directory.
+You can link to `inputPath` in any `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and [a whole bunch more](https://github.com/11ty/eleventy-posthtml-urls/blob/6e064c8a03174835eb15afbb5b759fecd696f901/lib/defaultOptions.js#L12-L33) (via [posthtml-urls](https://github.com/11ty/posthtml-urls)) and this plugin will render the correct URL for the template in your output directory.
 
 This uses an [Eleventy Transform](/docs/config/#transforms) to modify the output of all template syntaxes that output an `.html` file.
 
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "inputpathtourl", additions: "html,md"} %}
   <div id="inputpathtourl-html" role="tabpanel">
-
-```html
+{%- set codeBlock %}
 <a href="my-template.md">Home</a>
-```
-
+{%- endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="inputpathtourl-md" role="tabpanel">
-
-```md
+{%- set codeBlock %}
 [Home](my-template.md)
-```
-
+{%- endset %}
+{{ codeBlock | highlight("markdown") | safe }}
   </div>
   <div id="inputpathtourl-liquid" role="tabpanel">
-
-{% raw %}
-```liquid
+{%- set codeBlock %}
 <a href="my-template.md">Home</a>
-```
-{% endraw %}
-
+{%- endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="inputpathtourl-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{%- set codeBlock %}
 <a href="my-template.md">Home</a>
-```
-
-{% endraw %}
-
+{%- endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="inputpathtourl-js" role="tabpanel">
-
-{% raw %}
-```js
+{%- set codeBlock %}
 export default function (data) {
 	return `<a href="my-template.md">Home</a>`;
 };
-```
-{% endraw %}
-
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="inputpathtourl-cjs" role="tabpanel">
-
-{% raw %}
-```js
+{%- set codeBlock %}
 module.exports = function (data) {
   return `<a href="my-template.md">Home</a>`;
 };
-```
-{% endraw %}
-
+{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

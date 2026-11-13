@@ -1,13 +1,11 @@
 ---
 eleventyNavigation:
-  parent: Configuration
+  parent: Template Features
   key: Ignore Files
-  order: 2
+  order: 0
 ---
 
 # Ignore Template Files
-
-{% tableofcontents %}
 
 Add an `.eleventyignore` file to your _input_ directory or _project root_ directory for a new line-separated list of files (or globs) that will not be processed by Eleventy. Note that any paths listed in your project’s `.gitignore` file are automatically ignored—you don’t need to duplicate them to your `.eleventyignore` file. [Layouts, include files, extends, partials, macros, and other lower level template features](/docs/config/#directory-for-includes) aren’t relevant to this feature.
 
@@ -43,7 +41,7 @@ You can also use the new [Preprocessor Configuration API](/docs/config-preproces
 
 ### `.gitignore` entries
 
-Paths listed in your project’s `.gitignore` file are automatically ignored. You can [opt-out of this behavior](#opt-out-of-using-.gitignore).
+Paths listed in your project’s `.gitignore` file are automatically ignored. You can [opt-out of this behavior](#opt-out-of-using-gitignore).
 
 ### `node_modules` {% addedin "1.0.0" %}
 

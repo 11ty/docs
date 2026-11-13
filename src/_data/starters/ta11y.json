@@ -1,7 +1,0 @@
-{
-		"url": "https://github.com/MarkBuskbjerg/ta11y",
-		"name": "ta11y",
-		"description": "An 11ty starter template with posts and pages using Tailwind CSS and AlpineJS and features like draft and scheduled content",
-		"author": "markbuskbjerg",
-		"demo": "https://ta11y.app/"
-	}

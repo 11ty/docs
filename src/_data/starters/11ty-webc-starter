@@ -1,0 +1,8 @@
+{
+    "url": "https://github.com/davidwkeith/11ty-webc-starter",
+    "name": "11ty-webc-starter",
+    "description": "A style-free starter for templating an entire 11ty site using WebC.",
+    "author": "davidwkeith",
+    "demo": "https://11ty-webc-starter.dwk.io/",
+    "npmStartScript": "npx @llty/eleventy"
+}

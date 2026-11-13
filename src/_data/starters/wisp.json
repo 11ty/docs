@@ -2,5 +2,6 @@
 	"url": "https://github.com/adamdjbrett/11ty-wisp",
 	"name": "Wisp",
 	"description": "A minimalist blog template using Pico CSS.",
+	"author": "adamdjbrett",
 	"demo": "https://wisp.000000076.xyz/"
 }

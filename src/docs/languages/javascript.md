@@ -2,7 +2,9 @@
 eleventyNavigation:
   parent: Template Languages
   key: JavaScript
-  order: 4
+  pinned: true
+  order: 3
+  excerpt: Run JavaScript to generate content
 addedInVersion: 0.7.0
 relatedKey: javascript
 relatedTitle: Template Language—JavaScript
@@ -10,12 +12,10 @@ tags:
   - related-filters
   - related-shortcodes
 relatedLinks:
-  /docs/config/#watch-javascript-dependencies: Watch JavaScript Dependencies
+  /docs/config/#watch-java-script-dependencies: Watch JavaScript Dependencies
 communityLinksKey: javascript
 layout: layouts/langs.njk
 ---
-
-{% tableofcontents "open" %}
 
 | Eleventy Short Name | File Extension | Version Added |
 | ------------------- | -------------- | ----------- |
@@ -24,7 +24,7 @@ layout: layouts/langs.njk
 | `11ty.js`           | `.11ty.mjs`    | `3.0.0` |
 
 * Related languages: [JSX](/docs/languages/jsx/), [TypeScript](/docs/languages/typescript/), [MDX](/docs/languages/mdx/)
-* _[Front matter](/docs/data-frontmatter/) is not supported in JavaScript files._
+* _[Front matter](/docs/data-frontmatter/) is not supported in JavaScript files. Use a `data` export instead._
 
 Eleventy supports many different types of JavaScript content that will be parsed as Eleventy templates. They are comprehensively described below.
 
@@ -227,7 +227,7 @@ export default Test;
 
 ### Markdown and JavaScript
 
-Yes, you can use JavaScript as your preprocessor language for Markdown. Read more about [`templateEngineOverride`](/docs/languages/#overriding-the-template-language).
+Yes, you can use JavaScript as your preprocessor language for Markdown. Read more about [`templateEngineOverride`](/docs/template-overrides/).
 
 {% set codeContent %}
 class Test {

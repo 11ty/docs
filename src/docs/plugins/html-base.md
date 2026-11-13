@@ -1,14 +1,12 @@
 ---
 eleventyNavigation:
   key: HTML Base
-  title: "HTML <code>&lt;base&gt;</code>"
+  title: '<i class="fa-solid fa-chess-rook"></i>HTML <code>&lt;base&gt;</code>'
   order: 3.1
   excerpt: Emulate the <code>&lt;base&gt;</code> element by adding a prefix to all URLs in <code>.html</code> output files.
 ---
 
 # HTML `<base>` {% addedin "2.0.0-canary.15" %}
-
-{% tableofcontents %}
 
 A build-time application of `<base>` to HTML (without relying on `<base>`) by modifying `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]`, and more.
 
@@ -25,7 +23,7 @@ Historically, we then recommended to use the provided [`url` filter](/docs/filte
 
 With this new plugin, you no longer need to use the `url` filter in your HTML content. This plugin adds an [Eleventy Transform](/docs/config/#transforms) that will modify your HTML output and inject your Path Prefix in your template content.
 
-- Behind the scenes, this plugin uses [posthtml-urls](https://github.com/posthtml/posthtml-urls) and transforms `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and [a whole bunch more](https://github.com/posthtml/posthtml-urls/blob/307c91342a211b3f9fb22bc57264bbb31f235fbb/lib/defaultOptions.js).
+- Behind the scenes, this plugin transforms URLs found in `a[href]`, `video[src]`, `audio[src]`, `source`, `img[src]`, `[srcset]` and [a whole bunch more](https://github.com/11ty/eleventy-posthtml-urls/blob/6e064c8a03174835eb15afbb5b759fecd696f901/lib/defaultOptions.js#L12-L33) (via [posthtml-urls](https://github.com/11ty/posthtml-urls)).
 
 <div class="youtube-related">
   {%- youtubeEmbed "hJAtWQ9nmKU", "New HTML Base Plugin (Changelog №17)", "512" -%}

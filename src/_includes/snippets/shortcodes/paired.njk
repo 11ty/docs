@@ -1,43 +1,34 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "pairedshortcodes"} %}
   <div id="pairedshortcodes-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{%- set codeBlock %}{% raw %}
 {% user firstName, lastName %}
   Hello {{ someOtherVariable }}.
 
   Hello {% anotherShortcode %}.
 {% enduser %}
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("liquid") | safe }}
 
 The comma between arguments is **optional** in Liquid templates.
 
   </div>
   <div id="pairedshortcodes-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{%- set codeBlock %}{% raw %}
 {% user firstName, lastName %}
   Hello {{ someOtherVariable }}.
 
   Hello {% anotherShortcode %}.
 {% enduser %}
-```
-
-{% endraw %}
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
 
 The comma between arguments is **required** in Nunjucks.
 
   </div>
   <div id="pairedshortcodes-js" role="tabpanel">
-
-```js
+{%- set codeBlock %}{% raw %}
 export default function (data) {
   let userContent = `Hello ${data.someOtherVariable}
 
@@ -46,12 +37,11 @@ Hello ${this.anotherShortCode()}`;
   // pass the content as the first parameter.
   return `<h1>${this.user(userContent, data.firstName, data.lastName)}</h1>`;
 };
-```
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="pairedshortcodes-cjs" role="tabpanel">
-
-```js
+{%- set codeBlock %}{% raw %}
 module.exports = function (data) {
   let userContent = `Hello ${data.someOtherVariable}
 
@@ -60,8 +50,8 @@ Hello ${this.anotherShortCode()}`;
   // pass the content as the first parameter.
   return `<h1>${this.user(userContent, data.firstName, data.lastName)}</h1>`;
 };
-```
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

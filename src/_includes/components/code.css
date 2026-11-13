@@ -6,7 +6,6 @@ pre {
 	line-height: 1.5;
 
 	overflow-x: auto;
-	font-size: 0.875em; /* 14px /16 */
 	font-family: Roboto Mono, Consolas, Monaco, Andale Mono, Ubuntu Mono,
 		monospace;
 
@@ -22,6 +21,14 @@ pre {
 
 	background-color: #272822;
 	color: #fff;
+	scrollbar-color: #aaa transparent;
+}
+
+:is(.syntax-highlight, syntax-highlight) {
+	margin-inline: -1rem;
+}
+:is(.syntax-highlight, syntax-highlight) pre {
+	margin-inline: 0;
 }
 
 .fl > * > pre {
@@ -54,85 +61,19 @@ pre + .note {
 	}
 }
 @media (min-width: 37.5em) {
-	/* 600px */
 	pre {
 		font-size: 1em; /* 16px /16 */
 	}
 }
-@media (min-width: 55em) {
-	/* 880px */
+/* #2col */
+@media (min-width: 41.4375em) {
 	pre {
 		border-radius: 0.3em;
 	}
 }
 
-.highlight-line {
-	display: inline-block;
-
-	/* del, ins, mark default styles */
-	text-decoration: none;
+pre.language-11ty-output {
+	border: 2px solid var(--border-color);
+	background-color: inherit;
 	color: inherit;
-}
-
-/* allow highlighting empty lines */
-.highlight-line:empty:before {
-	content: " ";
-}
-
-.highlight-line {
-	min-width: 100%;
-}
-.highlight-line .highlight-line {
-	min-width: 0;
-}
-
-.highlight-line-isdir {
-	color: #b0b0b0;
-	background-color: #222;
-}
-.highlight-line-active {
-	background-color: #444;
-	background-color: hsla(0, 0%, 27%, 0.8);
-}
-.highlight-line-add {
-	background-color: #45844b;
-}
-.highlight-line-remove {
-	background-color: #902f2f;
-}
-
-[data-preprefix-cmdhomedir] .highlight-line:first-child:before {
-	color: #aaa;
-	content: "~ $ ";
-}
-[data-preprefix-eleventysample] .highlight-line:first-child:before {
-	color: #aaa;
-	content: "~/eleventy-sample $ ";
-}
-[data-preprefix-lastlinegreen] .highlight-line:last-child,
-[data-preprefix-lastlinegreen] .highlight-line:last-child * {
-	color: #0dbc79 !important;
-}
-
-pre[class*="language-diff-"] {
-	padding-left: 0;
-	padding-right: 0;
-}
-.token.deleted {
-	background-color: hsl(350deg 100% 88% / 20%);
-}
-.token.inserted {
-	background-color: hsl(120deg 73% 75% / 20%);
-}
-.token.inserted:not(.prefix),
-.token.deleted:not(.prefix) {
-	display: block;
-}
-.token.prefix.unchanged,
-.token.prefix.inserted,
-.token.prefix.deleted {
-	-webkit-user-select: none;
-	user-select: none;
-	margin-right: 0.5em;
-	padding: 0 0.2em;
 }

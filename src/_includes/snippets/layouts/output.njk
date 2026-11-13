@@ -1,10 +1,9 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "layoutoutput", additions: "md", label: "View the output from"} %}
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
+  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "layoutoutput", additions: "md", subtractions:"cjs", label: "View the output from"} %}
   <div id="layoutoutput-md" role="tabpanel">
-
-```html
-<!DOCTYPE html>
+{% set codeBlock %}
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -15,13 +14,12 @@
 		<h1>My Rad Markdown Blog Post</h1>
 	</body>
 </html>
-```
-
+{% endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="layoutoutput-liquid" role="tabpanel">
-
-```html
-<!DOCTYPE html>
+{% set codeBlock %}
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -32,13 +30,12 @@
 		<h1>My Rad Liquid Blog Post</h1>
 	</body>
 </html>
-```
-
+{% endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="layoutoutput-njk" role="tabpanel">
-
-```html
-<!DOCTYPE html>
+{% set codeBlock %}
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -49,13 +46,12 @@
 		<h1>My Rad Nunjucks Blog Post</h1>
 	</body>
 </html>
-```
-
+{% endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="layoutoutput-js" role="tabpanel">
-
-```html
-<!DOCTYPE html>
+{% set codeBlock %}
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -66,13 +62,12 @@
 		<h1>My Rad JavaScript Blog Post</h1>
 	</body>
 </html>
-```
-
+{% endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="layoutoutput-cjs" role="tabpanel">
-
-```html
-<!DOCTYPE html>
+{% set codeBlock %}
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -83,8 +78,8 @@
 		<h1>My Rad JavaScript Blog Post</h1>
 	</body>
 </html>
-```
-
+{% endset %}
+{{ codeBlock | highlight("html") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

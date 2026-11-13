@@ -3,6 +3,5 @@
 	"name": "Eleventy-AgilityCMS-Starter-Blog",
 	"description": "A starter blog using Eleventy and powered by Agility CMS with full page and module management. Uses TailwindCSS and Alpine.js.",
 	"author": "joelvarty",
-	"demo": "https://agilitycms-eleventy-starter-2020.vercel.app/",
-	"excludedFromLeaderboards": true
+	"demo": "https://agilitycms-eleventy-starter-2020.vercel.app/"
 }

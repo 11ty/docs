@@ -1,0 +1,7 @@
+{
+	"url": "https://git.chobble.com/chobble/chobble-template",
+	"name": "Chobble Template",
+	"description": "A large, opinionated template with minimalist CSS, for business sites, built with Nix",
+	"author": "Chobble",
+	"demo": "https://example.chobble.com/"
+}

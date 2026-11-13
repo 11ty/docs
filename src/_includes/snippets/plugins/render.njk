@@ -1,43 +1,30 @@
 <is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush">
+<seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "rendertmpl"} %}
   <div id="rendertmpl-liquid" role="tabpanel">
-
-{% raw %}
-
-```liquid
+{%- set codeBlock %}{% raw %}
 {% renderTemplate "md" %}
 # I am a title
 
 * I am a list
 * I am a list
 {% endrenderTemplate %}
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("liquid") | safe }}
   </div>
   <div id="rendertmpl-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+{%- set codeBlock %}{% raw %}
 {% renderTemplate "md" %}
 # I am a title
 
 * I am a list
 * I am a list
 {% endrenderTemplate %}
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("jinja2") | safe }}
   </div>
   <div id="rendertmpl-js" role="tabpanel">
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 export default async function () {
   return await this.renderTemplate(
     `# I am a title
@@ -47,16 +34,11 @@ export default async function () {
     "md"
   );
 };
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="rendertmpl-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+{%- set codeBlock %}{% raw %}
 module.exports = async function () {
   return await this.renderTemplate(
     `# I am a title
@@ -66,10 +48,8 @@ module.exports = async function () {
     "md"
   );
 };
-```
-
-{% endraw %}
-
+{% endraw %}{%- endset %}
+{{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>
 </is-land>

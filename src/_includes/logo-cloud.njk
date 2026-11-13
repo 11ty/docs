@@ -1,0 +1,25 @@
+{#- Nunjucks, not <logo-cloud>: the footer lives in a .njk layout, where WebC components aren’t
+    resolved. The list is rendered twice so the animation can shift by exactly one copy and loop
+    without a seam; the second copy is hidden from assistive tech. -#}
+<a href="/docs/why/" class="logo-marquee-c elv-logo-marquee" aria-label="Eleventy is production ready and trusted by NASA, Cern, Google and more">
+	<div class="logo-marquee">
+	{%- for copy in [1, 2] %}
+		<ul class="logos-list"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+			<li>{% indieavatar "https://www.nasa.gov/" %}<abbr title="National Aeronautics and Space Administration">NASA</abbr></li>
+			<li>{% indieavatar "https://home.web.cern.ch/" %}Cern</li>
+			<li>{% indieavatar "https://tc39.es/" %}TC39</li>
+			<li><img src="/img/logos/w3c.png" width="150" height="150" alt="" class="avatar" loading="lazy" decoding="async">W3C</li>
+			<li>{% indieavatar "https://about.google/" %}Google</li>
+			<li>{% indieavatar "https://www.microsoft.com/" %}Microsoft</li>
+			<li>{% indieavatar "https://www.mozilla.org/" %}Mozilla</li>
+			<li>{% indieavatar "https://fontawesome.com/" %}Font Awesome</li>
+			<li>{% indieavatar "https://apache.org/" %}Apache</li>
+			<li>{% indieavatar "https://www.freecodecamp.org/" %}freeCodeCamp</li>
+			<li>
+				<html-fetch src="/imports/logo-cloud.html" target="li" replace></html-fetch>
+			</li>
+			<li class="logos-list-more">…and more</li>
+		</ul>
+	{%- endfor %}
+	</div>
+</a>

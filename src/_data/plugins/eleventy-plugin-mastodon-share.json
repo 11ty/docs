@@ -1,0 +1,5 @@
+{
+  "npm": "@kylereddoch/eleventy-plugin-mastodon-share",
+  "author": "kylereddoch",
+  "description": "Mastodon sharing plugin for Eleventy with an instance picker, popular instances, and saved preferred server support."
+}

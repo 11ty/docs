@@ -3,6 +3,5 @@
 	"name": "11ty-Contentful-Photo-Gallery",
 	"description": "A Photo Gallery made using Contentful and 11ty, deployed via GitHub Actions and hosted on GitHub Pages.",
 	"author": "shyruparel",
-	"demo": "https://gallery.contentful.com/",
-	"excludedFromLeaderboards": true
+	"demo": "https://gallery.contentful.com/"
 }

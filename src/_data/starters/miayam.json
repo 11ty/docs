@@ -1,7 +1,0 @@
-{
-    "url": "https://github.com/miayam/miayam",
-    "name": "Miayam 11ty Starter Project",
-    "description": "A brutalist 11ty starter project built with as little tooling as possible. Atomic Design, Webpack, Pug, SCSS, Vanilla JS",
-    "author": "miayam",
-    "demo": "https://docs.miayam.io"
-}
