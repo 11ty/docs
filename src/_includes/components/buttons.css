@@ -4,20 +4,22 @@
 	--btn-bg: #183153;
 	--btn-color: #f0f1f3;
 	--btn-shadow-color: #0f1f36;
-	--btn-shadow-size: .375rem;
+	--btn-shadow-size: 0.375rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	flex-wrap: wrap;
-	gap: .25em .5em;
-	padding: .75em 2em;
+	gap: 0.25em 0.5em;
+	padding: 0.75em 2em;
 	margin-block-end: var(--btn-shadow-size);
 	text-decoration: none;
-	border-radius: .5em;
-	border: .125rem solid var(--btn-shadow-color);
+	border-radius: 0.5em;
+	border: 0.125rem solid var(--btn-shadow-color);
 	font-weight: 700;
-	transition: transform .3s, box-shadow .2s;
+	transition:
+		transform 0.3s,
+		box-shadow 0.2s;
 	background-color: var(--btn-bg);
 	color: var(--btn-color);
 	box-shadow: 0 var(--btn-shadow-size) 0 var(--btn-shadow-color);
@@ -49,25 +51,25 @@
 		   color, thickness and the pink hover thickening all still come from the global a[href]
 		   rules and this reads like every other link on the site. */
 		text-decoration-line: underline;
-		transition: opacity .2s;
+		transition: opacity 0.2s;
 
 		/* The shared press drops the button onto its shadow; this one has none, so it dims instead */
 		&:active {
 			transform: none;
-			opacity: .6;
+			opacity: 0.6;
 		}
 	}
 
 	&.--disabled {
 		cursor: not-allowed;
-		opacity: .7;
+		opacity: 0.7;
 	}
 }
 
 .btn-tag {
-	font-size: .75em;
+	font-size: 0.75em;
 	text-transform: uppercase;
-	padding: .25em .75em;
-	border-radius: .25em;
-	background-color: rgba(0,0,0,.4);
+	padding: 0.25em 0.75em;
+	border-radius: 0.25em;
+	background-color: rgba(0, 0, 0, 0.4);
 }

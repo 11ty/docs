@@ -29,17 +29,17 @@ node my-node-script.js
 
 All configuration is passed through an `options` object and every property is optional.
 
-| Option       | Type       | Default    | Description                                                                                                        |
-| ------------ | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------ |
-| `input`      | `string`   | `"."`      | The input directory (or a single input file). Mirrors the [`--input` CLI flag](/docs/usage/).                      |
-| `output`     | `string`   | `"_site"`  | The output directory. Mirrors the [`--output` CLI flag](/docs/usage/).                                             |
-| `configPath` | `string`   | _(none)_   | Path to a configuration file. Equivalent to the [`--config` CLI flag](/docs/usage/).                               |
-| `config`     | `function` | _(none)_   | A [configuration callback](#the-config-callback) that receives the config API object. |
-| `quietMode`  | `boolean`  | `false`    | When `true`, suppresses the build output logging. Equivalent to the [`--quiet` CLI flag](/docs/usage/).            |
-| `dryRun`     | `boolean`  | `false`    | When `true`, runs a full build but does not write anything to the file system.                                     |
-| `runMode`    | `string`   | `"build"`  | One of `"build"`, `"watch"`, or `"serve"`.                                                                          |
-| `pathPrefix` | `string`   | `"/"`      | Prepends this value to all URLs. Equivalent to the [`--pathprefix` CLI option used with the HTML `<base>` plugin](/docs/plugins/html-base/).                         |
-| `loader`     | `string`   | `"auto"`   | Force the module mode: `"esm"`, `"cjs"`, or `"auto"` (detected from your `package.json` `type`).                    |
+| Option       | Type       | Default   | Description                                                                                                                                  |
+| ------------ | ---------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input`      | `string`   | `"."`     | The input directory (or a single input file). Mirrors the [`--input` CLI flag](/docs/usage/).                                                |
+| `output`     | `string`   | `"_site"` | The output directory. Mirrors the [`--output` CLI flag](/docs/usage/).                                                                       |
+| `configPath` | `string`   | _(none)_  | Path to a configuration file. Equivalent to the [`--config` CLI flag](/docs/usage/).                                                         |
+| `config`     | `function` | _(none)_  | A [configuration callback](#the-config-callback) that receives the config API object.                                                        |
+| `quietMode`  | `boolean`  | `false`   | When `true`, suppresses the build output logging. Equivalent to the [`--quiet` CLI flag](/docs/usage/).                                      |
+| `dryRun`     | `boolean`  | `false`   | When `true`, runs a full build but does not write anything to the file system.                                                               |
+| `runMode`    | `string`   | `"build"` | One of `"build"`, `"watch"`, or `"serve"`.                                                                                                   |
+| `pathPrefix` | `string`   | `"/"`     | Prepends this value to all URLs. Equivalent to the [`--pathprefix` CLI option used with the HTML `<base>` plugin](/docs/plugins/html-base/). |
+| `loader`     | `string`   | `"auto"`  | Force the module mode: `"esm"`, `"cjs"`, or `"auto"` (detected from your `package.json` `type`).                                             |
 
 {% include "snippets/programmatic/fullopts.njk" %}
 
@@ -58,21 +58,22 @@ Notably, the `config` callback does not replace your configuration file: both ru
 
 {#
 Missing from above:
+
 - The default Build Awesome configuration file
 - [`beforeConfig` event fires](/docs/events/#eleventy-before-config)
 - Plugins
-#}
+  #}
 
 ## Building Your Project
 
 Making a new instance of Build Awesome doesn’t process anything: you must call one of these methods to execute a build. Each returns a Promise, so use with `await` or `.then()`.
 
-| Method          | Returns                              | Description                                                                    |
-| --------------- | ------------------------------------ | ------------------------------------------------------------------------------ |
-| `write()`       | `Promise<Array>`                     | Renders and writes output to the file system.     |
-| `toJSON()`      | `Promise<Array>`                     | Renders and returns output as data (no files written). |
-| `watch()`       | `Promise`                            | Runs an initial build, then rebuilds on file changes.                          |
-| `serve(port)`   | `Promise`                            | Starts the [Dev Server](/docs/dev-server/) on the given port.                  |
+| Method        | Returns          | Description                                                   |
+| ------------- | ---------------- | ------------------------------------------------------------- |
+| `write()`     | `Promise<Array>` | Renders and writes output to the file system.                 |
+| `toJSON()`    | `Promise<Array>` | Renders and returns output as data (no files written).        |
+| `watch()`     | `Promise`        | Runs an initial build, then rebuilds on file changes.         |
+| `serve(port)` | `Promise`        | Starts the [Dev Server](/docs/dev-server/) on the given port. |
 
 ### Write to the File System
 
@@ -86,13 +87,13 @@ If you want to retrieve the rendered content programmatically _without_ writing 
 
 `toJSON()` resolves to an array of entries, one per rendered output. Each entry includes:
 
-| Property     | Description                                                                 |
-| ------------ | --------------------------------------------------------------------------- |
-| `inputPath`  | The template’s source path.                                                 |
-| `outputPath` | Where the file _would_ be written on disk.                                  |
-| `url`        | The output [URL](/docs/data-eleventy-supplied/#page-variable) for the page. |
-| `content`    | The final rendered content.                                                 |
-| `rawInput`   | The template’s raw (unrendered) input.                                      |
+| Property     | Description                                                                                                                          |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `inputPath`  | The template’s source path.                                                                                                          |
+| `outputPath` | Where the file _would_ be written on disk.                                                                                           |
+| `url`        | The output [URL](/docs/data-eleventy-supplied/#page-variable) for the page.                                                          |
+| `content`    | The final rendered content.                                                                                                          |
+| `rawInput`   | The template’s raw (unrendered) input.                                                                                               |
 | `data`       | Selected [Data Cascade](/docs/data-cascade/) entries—only present when you add [data filter selectors](#adding-data-to-json-output). |
 
 #### Adding data to JSON output
@@ -107,10 +108,10 @@ By default, the `data` property is not included in `toJSON` entries. Use the `$c
 
 In addition to the constructor `options`, you can configure an instance by calling these methods _before_ a build. Each corresponds to a command line flag.
 
-| Method                        | Description                                                            |
-| ----------------------------- | --------------------------------------------------------------------- |
-| `setFormats(formats)`         | Comma-separated [template formats](/docs/usage/) (`--formats`) to process.          |
-| `disableLogger()`             | Disable Build Awesome’s logging entirely.                             |
+| Method                | Description                                                                |
+| --------------------- | -------------------------------------------------------------------------- |
+| `setFormats(formats)` | Comma-separated [template formats](/docs/usage/) (`--formats`) to process. |
+| `disableLogger()`     | Disable Build Awesome’s logging entirely.                                  |
 
 ### Handling Errors
 
