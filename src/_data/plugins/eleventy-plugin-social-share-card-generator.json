@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-social-share-card-generator",
-    "author": "tpiros",
-    "description": "Automagically creates a share card for social media platforms"
+	"npm": "eleventy-plugin-social-share-card-generator",
+	"author": "tpiros",
+	"description": "Automagically creates a share card for social media platforms"
 }

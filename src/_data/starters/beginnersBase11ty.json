@@ -1,7 +1,6 @@
-
 {
 	"url": "https://github.com/Ewan-D/beginnersBase11ty",
 	"name": "beginnersBase11ty",
 	"description": "belt and braces starter for a blog. Includes 11ty's image, rss & navigation plugins + tailwind & fan art!",
-  "demo": "https://trusting-pasteur-48f806.netlify.app/"
+	"demo": "https://trusting-pasteur-48f806.netlify.app/"
 }

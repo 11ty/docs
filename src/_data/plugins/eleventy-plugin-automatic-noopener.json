@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-automatic-noopener",
-  "author": "jkc_codes",
-  "description": "Automatically add rel='noopener' attributes to unsafe <a>, <area> and <form> elements."
+	"npm": "eleventy-plugin-automatic-noopener",
+	"author": "jkc_codes",
+	"description": "Automatically add rel='noopener' attributes to unsafe <a>, <area> and <form> elements."
 }

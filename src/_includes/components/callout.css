@@ -15,7 +15,7 @@
 	--callout-secondary: hsl(var(--callout-hue), 86%, 94%);
 
 	--callout-sidebartext: hsl(var(--callout-hue), 86%, 35%);
-	--callout-code: hsla(var(--callout-hue), 86%, 70%, .25);
+	--callout-code: hsla(var(--callout-hue), 86%, 70%, 0.25);
 	--callout-label-skew: 11deg;
 }
 header .elv-callout {
@@ -70,7 +70,6 @@ table .elv-callout {
 .elv-callout-c > :is(p, ul, ol, h2):last-child {
 	margin-block-end: 0;
 }
-
 
 .elv-callout {
 	display: flex;
@@ -166,12 +165,14 @@ table .elv-callout {
 
 /* Demo */
 .elv-callout-skew--demo {
-	--callout-sidebar-content: "DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO " / " Demo ";
+	--callout-sidebar-content: "DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO " /
+		" Demo ";
 }
 /* Pitfall */
 .elv-callout-skew--pitfall {
 	--callout-sidebar-size: 3.444444444444em; /* 62px /18 */
-	--callout-sidebar-content: "PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL " / " Pitfall ";
+	--callout-sidebar-content: "PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL PITFALL " /
+		" Pitfall ";
 }
 
 /* Style the content inside of the callout */
@@ -212,7 +213,7 @@ table .elv-callout {
 		flex-wrap: wrap;
 	}
 	.elv-toc .elv-callout:first-child:has(+ .elv-callout) .elv-callout-c {
-		padding-block: .5rem;
+		padding-block: 0.5rem;
 	}
 	/* Flush with the column, so the callouts start on the same line as the nav below rather than
 	   bleeding a rem past it */
@@ -226,7 +227,6 @@ table .elv-callout {
 		padding-inline: 1rem;
 	}
 }
-
 
 /* Themes */
 .elv-callout {

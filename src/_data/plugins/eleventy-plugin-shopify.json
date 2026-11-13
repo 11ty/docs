@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-shopify",
-  "author": "danleatherman",
-  "description": "Import your Shopify products, pages, and collections into Eleventy as global data."
+	"npm": "eleventy-plugin-shopify",
+	"author": "danleatherman",
+	"description": "Import your Shopify products, pages, and collections into Eleventy as global data."
 }

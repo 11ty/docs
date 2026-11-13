@@ -27,8 +27,8 @@ The `ignores` Set starts with a default `**/node_modules/**` entry in Eleventy v
 
 {% set codeContent %}
 export default function ($config) {
-	$config.ignores.add("README.md");
-	$config.ignores.delete("README.md");
+$config.ignores.add("README.md");
+$config.ignores.delete("README.md");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -53,11 +53,12 @@ If you want to opt-out and search for templates inside of your `node_modules` fo
 
 {% set codeContent %}
 export default function ($config) {
-	// in Eleventy 2.0
-	$config.ignores.delete("**/node_modules/**");
+// in Eleventy 2.0
+$config.ignores.delete("**/node_modules/**");
 
-	// in Eleventy 1.0
-	$config.ignores.delete("node_modules/**");
+    // in Eleventy 1.0
+    $config.ignores.delete("node_modules/**");
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -86,7 +87,7 @@ You can disable automatic use of your `.gitignore` file by using the Configurati
 
 {% set codeContent %}
 export default function ($config) {
-	$config.setUseGitIgnore(false);
+$config.setUseGitIgnore(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

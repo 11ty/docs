@@ -26,7 +26,7 @@ This data will be available to your templates under the `userList` key like this
 
 {%- set codeBlock %}{% raw %}
 {
-	userList: ["user1", "user2"];
+userList: ["user1", "user2"];
 }
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -39,9 +39,9 @@ Our data will be now available to your templates under a `users` key like so:
 
 {%- set codeBlock %}{% raw %}
 {
-	users: {
-		userList: ["user1", "user2"];
-	}
+users: {
+userList: ["user1", "user2"];
+}
 }
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}

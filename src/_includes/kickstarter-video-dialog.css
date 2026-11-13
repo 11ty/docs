@@ -1,4 +1,3 @@
-
 wa-dialog.promo-dialog:not(:defined) {
 	display: none;
 }
@@ -29,7 +28,7 @@ wa-dialog.promo-dialog:not(:defined) {
 .promo-footer {
 	display: flex;
 	flex-wrap: wrap;
-	gap: .5em 2em;
+	gap: 0.5em 2em;
 	padding: 1em;
 	justify-content: center;
 }
@@ -49,7 +48,8 @@ wa-dialog.promo-dialog:not(:defined) {
 		color: #f1f2f3;
 		background: #191b22;
 	}
-	.promo-dialog body, .promo-dialog wa-stack {
+	.promo-dialog body,
+	.promo-dialog wa-stack {
 		color: #f1f2f3;
 		background: #191b22;
 	}

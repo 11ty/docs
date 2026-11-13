@@ -5,6 +5,7 @@ eleventyNavigation:
   order: 4
 communityLinksKey: plugins
 ---
+
 # Plugins
 
 Plugins are custom code that Eleventy can import into a project from an external repository.

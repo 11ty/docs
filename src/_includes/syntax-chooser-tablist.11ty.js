@@ -23,7 +23,7 @@ async function render({ id, valid, additions, subtractions, only, label }) {
 	let syntaxAddArray = (additions || "").split(",").filter((entry) => !!entry);
 	for (let syn of syntaxAddArray) {
 		if (extraSyntaxes[syn]) {
-			if(syn == "hbs") {
+			if (syn == "hbs") {
 				addHbs = true;
 			} else {
 				syntaxes[syn] = extraSyntaxes[syn];
@@ -39,7 +39,7 @@ async function render({ id, valid, additions, subtractions, only, label }) {
 		Object.assign(syntaxes, syntaxMap);
 	}
 
-	if(addHbs) {
+	if (addHbs) {
 		syntaxes.hbs = extraSyntaxes.hbs;
 	}
 
@@ -57,13 +57,12 @@ async function render({ id, valid, additions, subtractions, only, label }) {
 	let defaultOnNoPreference = ` or syntax == "" or syntax == undefined`;
 
 	for (let syn in syntaxes) {
-		let isPreferenceSelectable =
-			validArray.length === 0 || validArray.includes(syn);
+		let isPreferenceSelectable = validArray.length === 0 || validArray.includes(syn);
 
 		str.push(
 			`<a href="#${id}-${syn}" role="tab" data-tabs-persist="templatelang:${syn}"{% if syntax == "${syn}"${
 				isPreferenceSelectable ? defaultOnNoPreference : ""
-			} %} aria-selected="true"{% endif %}>${syntaxes[syn]}</a>`
+			} %} aria-selected="true"{% endif %}>${syntaxes[syn]}</a>`,
 		);
 
 		// only the first one should default

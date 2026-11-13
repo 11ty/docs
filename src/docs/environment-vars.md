@@ -58,9 +58,9 @@ npm install cross-env
 {% codetitle "package.json" %}
 {%- set codeBlock %}
 {
-	"scripts": {
-		"build:prod": "cross-env MY_ENVIRONMENT=production npx @awesome.me/buildawesome"
-  }
+"scripts": {
+"build:prod": "cross-env MY_ENVIRONMENT=production npx @awesome.me/buildawesome"
+}
 }
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}

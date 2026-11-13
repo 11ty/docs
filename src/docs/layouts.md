@@ -18,7 +18,7 @@ This will look for a `mylayout.njk` Nunjucks file in your _includes_ folder at `
 
 - You can use any template language in your layout file—it doesn’t need to match the template language of the content: an `ejs` template can use a `njk` layout.
 - Layouts paths can use subdirectories: `layout: "layouts/base.njk"` maps to `_includes/layouts/base.njk`.
-- You can have a [separate folder for Eleventy layouts](</docs/config/#directory-for-layouts-optional>) if you’d prefer to have them separate from your _includes_ folder.
+- You can have a [separate folder for Eleventy layouts](/docs/config/#directory-for-layouts-optional) if you’d prefer to have them separate from your _includes_ folder.
 
 Next, we need to create a `mylayout.njk` file. It may contain any arbitrary text, but here we’re using HTML:
 
@@ -56,7 +56,7 @@ Configuration API: use `$config.addLayoutAlias(from, to)` to add layout aliases.
 
 {% set codeContent %}
 export default function($config) {
-	$config.addLayoutAlias("post", "layouts/post.njk");
+$config.addLayoutAlias("post", "layouts/post.njk");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -64,15 +64,15 @@ export default function($config) {
 ## Prevent double-escaping in layouts
 
 {% raw %}
-| Template Language | Unescaped Content (for layout content) | Comparison with an Escaped Output | Docs |
+| Template Language | Unescaped Content (for layout content)                 | Comparison with an Escaped Output | Docs                                                                                 |
 | ----------------- | ------------------------------------------------------ | --------------------------------- | ------------------------------------------------------------------------------------ |
-| Nunjucks | `{{ content \| safe }}` | `{{ value }}` | [Docs](https://mozilla.github.io/nunjucks/templating.html#safe) |
-| EJS | `<%- content %>` | `<%= value %>` | [Docs](https://www.npmjs.com/package/ejs#tags) |
-| Handlebars | `{{{ content }}}` (triple stash) | `{{ value }}` (double stash) | [Docs](https://handlebarsjs.com/#html-escaping) |
-| Mustache | `{{{ content }}}` (triple stash) | `{{ value }}` (double stash) | [Docs](https://github.com/janl/mustache.js#variables) |
-| Liquid | is by default unescaped so you can use `{{ content }}` | `{{ value \| escape }}` | [Docs](https://liquidjs.com/filters/escape.html) |
-| HAML | `! #{ content }` | `= #{ content }` | [Docs](https://haml.info/docs/yardoc/file.REFERENCE.html#unescaping_html) |
-| Pug | `!{content}` | `#{value}` | [Docs](https://pugjs.org/language/interpolation.html#string-interpolation-unescaped) |
+| Nunjucks          | `{{ content \| safe }}`                                | `{{ value }}`                     | [Docs](https://mozilla.github.io/nunjucks/templating.html#safe)                      |
+| EJS               | `<%- content %>`                                       | `<%= value %>`                    | [Docs](https://www.npmjs.com/package/ejs#tags)                                       |
+| Handlebars        | `{{{ content }}}` (triple stash)                       | `{{ value }}` (double stash)      | [Docs](https://handlebarsjs.com/#html-escaping)                                      |
+| Mustache          | `{{{ content }}}` (triple stash)                       | `{{ value }}` (double stash)      | [Docs](https://github.com/janl/mustache.js#variables)                                |
+| Liquid            | is by default unescaped so you can use `{{ content }}` | `{{ value \| escape }}`           | [Docs](https://liquidjs.com/filters/escape.html)                                     |
+| HAML              | `! #{ content }`                                       | `= #{ content }`                  | [Docs](https://haml.info/docs/yardoc/file.REFERENCE.html#unescaping_html)            |
+| Pug               | `!{content}`                                           | `#{value}`                        | [Docs](https://pugjs.org/language/interpolation.html#string-interpolation-unescaped) |
 {% endraw %}
 
 ## Layout Chaining
@@ -90,7 +90,7 @@ You can disable extensionless layouts in your project with the `setLayoutResolut
 
 {% set codeContent %}
 export default function($config) {
-	$config.setLayoutResolution(false);
+$config.setLayoutResolution(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

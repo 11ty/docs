@@ -1,6 +1,5 @@
 {
-    "npm": "eleventy-plugin-torchlight",
-    "author": "timkley",
-    "description": "Plugin to syntax highlight your code blocks with torchlight.dev."
-  }
-  
+	"npm": "eleventy-plugin-torchlight",
+	"author": "timkley",
+	"description": "Plugin to syntax highlight your code blocks with torchlight.dev."
+}

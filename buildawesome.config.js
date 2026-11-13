@@ -12,13 +12,21 @@ import { escapeAttribute, decodeHTML } from "entities";
 import navigationPlugin from "@11ty/eleventy-navigation";
 import eleventyImage from "@11ty/eleventy-img";
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
-import { RenderPlugin, InputPathToUrlTransformPlugin/*, PreserveClosingTagsPlugin*/ } from "@11ty/eleventy";
+import {
+	RenderPlugin,
+	InputPathToUrlTransformPlugin /*, PreserveClosingTagsPlugin*/,
+} from "@11ty/eleventy";
 import fontAwesomePlugin from "@11ty/font-awesome";
 import { getImageColors } from "@11ty/image-color";
 import { parse as parseDateString } from "@11ty/parse-date-strings";
 
 import imagePlugin from "./config/imagePlugin.js";
-import { addedIn, coerceVersion, greaterThan, rcompare as compareVersion } from "./config/addedin.js";
+import {
+	addedIn,
+	coerceVersion,
+	greaterThan,
+	rcompare as compareVersion,
+} from "./config/addedin.js";
 import minificationLocalPlugin, { minifyJavaScriptFile } from "./config/minification.js";
 import { bundleModulePath } from "./config/bundleJavaScript.js";
 import cleanName from "./config/cleanAuthorName.js";
@@ -78,7 +86,7 @@ function displayUrl(url) {
 		url = url.slice(0, -1);
 	}
 
-	if(url.startsWith("www.")) {
+	if (url.startsWith("www.")) {
 		url = url.slice("www.".length);
 	}
 
@@ -97,11 +105,7 @@ const shortcodes = {
 		return shortcodes.getGitHubAvatarHtml(slug, alt);
 	},
 	link(linkUrl, content) {
-		return (
-			(linkUrl ? `<a href="${linkUrl}">` : "") +
-			content +
-			(linkUrl ? `</a>` : "")
-		);
+		return (linkUrl ? `<a href="${linkUrl}">` : "") + content + (linkUrl ? `</a>` : "");
 	},
 	async getScreenshotHtml(alt, siteUrl, sizes, preset = "small") {
 		let zoom;
@@ -122,7 +126,7 @@ const shortcodes = {
 
 		// wait a little longer for small images
 		let advanced = "";
-		if(preset === "small") {
+		if (preset === "small") {
 			advanced = "_wait:2";
 		}
 
@@ -132,16 +136,14 @@ const shortcodes = {
 		let isSquare = viewport.width === viewport.height;
 		let screenshotUrl;
 		if (siteUrl) {
-			if(isOpenGraphUrl) {
-				screenshotUrl = `https://v1.opengraph.11ty.dev/${encodeURIComponent(
-					siteUrl
-				)}/small/jpeg/`;
+			if (isOpenGraphUrl) {
+				screenshotUrl = `https://v1.opengraph.11ty.dev/${encodeURIComponent(siteUrl)}/small/jpeg/`;
 
 				viewport.width = 1200;
 				viewport.height = 630;
 			} else {
 				screenshotUrl = `https://screenshot.11ty.app/${encodeURIComponent(
-					siteUrl
+					siteUrl,
 				)}/${preset}/1:1/${zoom ? `${zoom}/` : ""}${advanced ? `${advanced}/` : ""}`;
 			}
 		}
@@ -154,21 +156,22 @@ const shortcodes = {
 			},
 		};
 
-		let stats = await eleventyImage(
-			screenshotUrl,
-			{
-				...options,
-				statsOnly: true,
-				imageMetadataOverride: { width: viewport.width, height: viewport.height },
-			}
-		);
+		let stats = await eleventyImage(screenshotUrl, {
+			...options,
+			statsOnly: true,
+			imageMetadataOverride: { width: viewport.width, height: viewport.height },
+		});
 
 		let attrs = {
 			alt: alt ?? "",
 			loading: "lazy",
 			decoding: "async",
 			sizes: sizes || "(min-width: 22em) 30vw, 100vw",
-			class: "sites-screenshot" + (isOpenGraphUrl || preset === "opengraph" ? ` sites-screenshot-og${isSquare ? " sites-screenshot-og-sq" : ""}` : ""),
+			class:
+				"sites-screenshot" +
+				(isOpenGraphUrl || preset === "opengraph"
+					? ` sites-screenshot-og${isSquare ? " sites-screenshot-og-sq" : ""}`
+					: ""),
 			"eleventy:ignore": "",
 		};
 
@@ -179,12 +182,12 @@ const shortcodes = {
 		// Daily
 		let cacheBuster = `_${d.getFullYear()}_${d.getMonth()}_${d.getDate()}`;
 		return `<img src="https://v1.generator.11ty.dev/image/${encodeURIComponent(
-			url
+			url,
 		)}/${cacheBuster}/" width="66" height="66" alt="" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:ignore>`;
 	},
 	getHostingImageHtml(url) {
 		return `<img src="https://v1.builtwith.11ty.dev/${encodeURIComponent(
-			url
+			url,
 		)}/image/host/" width="66" height="66" alt="" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:ignore>`;
 	},
 	getAvatarHtmlFromFullUrl(fullUrl, cls = "", attrs = "", dims = [150, 150]) {
@@ -202,14 +205,14 @@ const shortcodes = {
 	// WebC migration: indieweb-avatar.webc
 	// size = "large"
 	getIndieAvatarHtml(iconUrl, cls = "") {
-		if(typeof iconUrl !== "string" || iconUrl.startsWith("/")) {
+		if (typeof iconUrl !== "string" || iconUrl.startsWith("/")) {
 			return "";
 		}
 		let fullUrl = `https://v1.indieweb-avatar.11ty.dev/${encodeURIComponent(iconUrl)}/`;
 		return shortcodes.getAvatarHtmlFromFullUrl(fullUrl, cls, "eleventy:ignore", [60, 60]);
 	},
 	getGitHubAvatarHtml(username, alt = "") {
-		if(!username) {
+		if (!username) {
 			return "";
 		}
 		if (!alt) {
@@ -220,13 +223,10 @@ const shortcodes = {
 		return `<img src="${url}" width="66" height="66" alt="${alt}" class="avatar avatar-large" loading="lazy" decoding="async">`;
 	},
 	getOpenCollectiveAvatarHtml(supporter) {
-		let preferIndiewebAvatarSlugs = [
-			"nejlepsiceskacasina-com",
-			"slovenskeonlinecasino-com",
-		]
-		let {image: url, name: username, hasDefaultAvatar, website} = supporter;
+		let preferIndiewebAvatarSlugs = ["nejlepsiceskacasina-com", "slovenskeonlinecasino-com"];
+		let { image: url, name: username, hasDefaultAvatar, website } = supporter;
 		let alt = `Open Collective Avatar for ${username}`;
-		if(website && (hasDefaultAvatar || preferIndiewebAvatarSlugs.includes(supporter.slug))) {
+		if (website && (hasDefaultAvatar || preferIndiewebAvatarSlugs.includes(supporter.slug))) {
 			return shortcodes.getIndieAvatarHtml(website);
 		}
 		return `<img src="${url}" width="66" height="66" alt="${alt}" class="avatar avatar-large" loading="lazy" decoding="async" eleventy:optional="placeholder">`;
@@ -246,13 +246,17 @@ function findBy(data, path, value) {
 
 		if (Array.isArray(gotten)) {
 			if (typeof value === "string") {
-				return gotten.some((item) => typeof item === "string" && item.localeCompare(value, undefined, { sensitivity: "base" }) === 0);
+				return gotten.some(
+					(item) =>
+						typeof item === "string" &&
+						item.localeCompare(value, undefined, { sensitivity: "base" }) === 0,
+				);
 			}
 			return gotten.includes(value);
 		}
 
 		if (typeof value === "string") {
-			return gotten.localeCompare(value, undefined, {sensitivity: "base"}) === 0;
+			return gotten.localeCompare(value, undefined, { sensitivity: "base" }) === 0;
 		}
 
 		return value === gotten;
@@ -278,8 +282,8 @@ export default async function ($config) {
 
 	$config.addPlugin(fontAwesomePlugin, {
 		defaultAttributes: {
-			class: "fa11ty-icon"
-		}
+			class: "fa11ty-icon",
+		},
 	});
 
 	$config.addPlugin(imagePlugin);
@@ -319,20 +323,25 @@ export default async function ($config) {
 	$config.addPlugin(sidebarPlugin);
 
 	$config.addShortcode("getColorsForUrl", async (url) => {
-		if(process.env.BUILDAWESOME_RUN_MODE !== "build") {
+		if (process.env.BUILDAWESOME_RUN_MODE !== "build") {
 			return [];
 		}
 
 		let avatarUrl = `https://v1.indieweb-avatar.11ty.dev/${encodeURIComponent(url)}/`;
 
-		return getImageColors(avatarUrl).then(colors => {
-			return colors.map(c => c.colorjs).sort((a, b) => {
-				return (b.oklch.l + b.oklch.c) - (a.oklch.l + a.oklch.c);
-			});
-		}, error => {
-			console.warn( `Error fetching colors from avatar for ${url}`, error );
-			return []; // error, return empty set.
-		})
+		return getImageColors(avatarUrl).then(
+			(colors) => {
+				return colors
+					.map((c) => c.colorjs)
+					.sort((a, b) => {
+						return b.oklch.l + b.oklch.c - (a.oklch.l + a.oklch.c);
+					});
+			},
+			(error) => {
+				console.warn(`Error fetching colors from avatar for ${url}`, error);
+				return []; // error, return empty set.
+			},
+		);
 	});
 
 	$config.addFilter("modulo", function (num, div) {
@@ -346,7 +355,7 @@ export default async function ($config) {
 	});
 
 	$config.addFilter("throwErrorWhenMissing", function (arg, msg) {
-		if(arg) {
+		if (arg) {
 			return;
 		}
 		throw new Error(msg + ` (via throwErrorWhenMissing filter on ${this.page.url})`);
@@ -355,10 +364,7 @@ export default async function ($config) {
 	$config.addNunjucksGlobal("semverGreaterThan", greaterThan);
 	$config.addShortcode("addedin", addedIn);
 
-	$config.addShortcode(
-		"generatoravatar",
-		shortcodes.getGeneratorImageHtml
-	);
+	$config.addShortcode("generatoravatar", shortcodes.getGeneratorImageHtml);
 	$config.addShortcode("hostavatar", shortcodes.getHostingImageHtml);
 	$config.addShortcode("indieavatar", shortcodes.getIndieAvatarHtml);
 
@@ -394,18 +400,21 @@ export default async function ($config) {
 		return `id-${++ref}`;
 	});
 
-	$config.addFilter("esmToCjs", memoize((sourceCode) => {
-		try {
-			let it = new ImportTransformer(sourceCode);
-			let outputCode = it.transformToRequire();
+	$config.addFilter(
+		"esmToCjs",
+		memoize((sourceCode) => {
+			try {
+				let it = new ImportTransformer(sourceCode);
+				let outputCode = it.transformToRequire();
 
-			// lol
-			return outputCode.replace("export default ", "module.exports = ");
-		} catch(e) {
-			console.log( sourceCode );
-			throw e;
-		}
-	}));
+				// lol
+				return outputCode.replace("export default ", "module.exports = ");
+			} catch (e) {
+				console.log(sourceCode);
+				throw e;
+			}
+		}),
+	);
 
 	$config.addShortcode("communityavatar", shortcodes.communityAvatar);
 
@@ -417,21 +426,12 @@ export default async function ($config) {
 
 		return `<img src="${author.avatarUrl}" width="66" height="66" alt="GitHub Avatar for ${author.name}" class="avatar avatar-large" loading="lazy" decoding="async">`;
 	});
-	$config.addShortcode(
-		"opencollectiveavatar",
-		shortcodes.getOpenCollectiveAvatarHtml
-	);
-	$config.addShortcode(
-		"getScreenshotHtml",
-		shortcodes.getScreenshotHtml
-	);
+	$config.addShortcode("opencollectiveavatar", shortcodes.getOpenCollectiveAvatarHtml);
+	$config.addShortcode("getScreenshotHtml", shortcodes.getScreenshotHtml);
 
-	$config.addShortcode(
-		"codetitle",
-		function (title, heading = "Filename") {
-			return `<div class="codetitle codetitle-left"><b>${heading} </b>${title}</div>`;
-		}
-	);
+	$config.addShortcode("codetitle", function (title, heading = "Filename") {
+		return `<div class="codetitle codetitle-left"><b>${heading} </b>${title}</div>`;
+	});
 
 	$config.addPairedShortcode("minilink", function (text, href) {
 		return `<a href="${href}" class="minilink minilink-lower">${text}</a>`;
@@ -468,9 +468,18 @@ export default async function ($config) {
 	// Eleventy Editor
 	// Minification only happens in production
 	await minifyJavaScriptFile(resolveModule("@11ty/client"), "dist/js/eleventy.core.browser.js");
-	await minifyJavaScriptFile(resolveModule("@11ty/client/md"), "dist/js/eleventy.engine-md.browser.js");
-	await minifyJavaScriptFile(resolveModule("@11ty/client/liquid"), "dist/js/eleventy.engine-liquid.browser.js");
-	await bundleModulePath("@awesome.me/webawesome/dist/components/copy-button/copy-button.js", "dist/js/wa-copy-button.js");
+	await minifyJavaScriptFile(
+		resolveModule("@11ty/client/md"),
+		"dist/js/eleventy.engine-md.browser.js",
+	);
+	await minifyJavaScriptFile(
+		resolveModule("@11ty/client/liquid"),
+		"dist/js/eleventy.engine-liquid.browser.js",
+	);
+	await bundleModulePath(
+		"@awesome.me/webawesome/dist/components/copy-button/copy-button.js",
+		"dist/js/wa-copy-button.js",
+	);
 
 	$config.addPassthroughCopy({
 		"dist/": "/",
@@ -497,10 +506,10 @@ export default async function ($config) {
 
 	$config.addFilter("cardScreenshotHtml", async function (site) {
 		let url = site.demo || site.url;
-		if(!url) {
+		if (!url) {
 			return `<div class="sites-screenshot-container"><img alt="" class="sites-screenshot"></div>`;
 		}
-		if(site.screenshotOverride) {
+		if (site.screenshotOverride) {
 			return `<div class="sites-screenshot-container"><img alt="${site.screenshotOverride.alt || ""}" loading="lazy" decoding="async" class="sites-screenshot" src="${site.screenshotOverride.src}" width="${site.screenshotOverride.width}" height="${site.screenshotOverride.height}"></div>`;
 		}
 		return `<div class="sites-screenshot-container">${await shortcodes.getScreenshotHtml("", url, null, site.screenshotSize)}</div>`;
@@ -539,48 +548,40 @@ export default async function ($config) {
 
 	$config.addFilter("displayUrl", displayUrl);
 
-	$config.addShortcode(
-		"templatelangs",
-		function (languages, page, whitelist, anchor, isinline) {
-			let parentTag = isinline ? "span" : "ul";
-			let childTag = isinline ? "span" : "li";
+	$config.addShortcode("templatelangs", function (languages, page, whitelist, anchor, isinline) {
+		let parentTag = isinline ? "span" : "ul";
+		let childTag = isinline ? "span" : "li";
 
-			return `<${parentTag} class="inlinelist">${languages
-				.filter((lang) =>
-					!whitelist ? true : whitelist.indexOf(lang.ext) > -1
-				)
-				.map(
-					(lang) =>
-						`<${childTag} class="inlinelist-item${
-							page.url == lang.url ? " active" : ""
-						}"><a href="${lang.url}${anchor || ""}">${lang.name}${
-							lang.ext ? ` <code>*.${lang.ext}</code>` : ""
-						}</a></${childTag}>`
-				)
-				.join(" ")}</${parentTag}>`;
-		}
-	);
+		return `<${parentTag} class="inlinelist">${languages
+			.filter((lang) => (!whitelist ? true : whitelist.indexOf(lang.ext) > -1))
+			.map(
+				(lang) =>
+					`<${childTag} class="inlinelist-item${
+						page.url == lang.url ? " active" : ""
+					}"><a href="${lang.url}${anchor || ""}">${lang.name}${
+						lang.ext ? ` <code>*.${lang.ext}</code>` : ""
+					}</a></${childTag}>`,
+			)
+			.join(" ")}</${parentTag}>`;
+	});
 
 	// WebC migration: eleventy-version.webc
-	$config.addShortcode(
-		"latestVersion",
-		function (versions, config, prefix = "v") {
-			for (let version of versions.sort((v1, v2) => compareVersion(v1.tag, v2.tag))) {
-				if (version.channel && version.channel !== "latest") {
-					continue;
-				}
-				if (!config.prerelease && version.prerelease) {
-					continue;
-				}
-
-				return prefix + version.tag.substr(1);
+	$config.addShortcode("latestVersion", function (versions, config, prefix = "v") {
+		for (let version of versions.sort((v1, v2) => compareVersion(v1.tag, v2.tag))) {
+			if (version.channel && version.channel !== "latest") {
+				continue;
 			}
+			if (!config.prerelease && version.prerelease) {
+				continue;
+			}
+
+			return prefix + version.tag.substr(1);
 		}
-	);
+	});
 
 	function randomizeArray(arr) {
 		let a = arr.slice(0);
-		if(process.env.DISABLE_RANDOM) {
+		if (process.env.DISABLE_RANDOM) {
 			return a;
 		}
 
@@ -613,7 +614,7 @@ export default async function ($config) {
 	});
 
 	function getRandomArrayEntry(arr) {
-		if(process.env.DISABLE_RANDOM) {
+		if (process.env.DISABLE_RANDOM) {
 			return arr.at(0);
 		}
 
@@ -679,28 +680,19 @@ export default async function ($config) {
 
 		let businessHost = host(author.business_url);
 		let match = (author.sites || []).find(
-			(site) => businessHost && host(site.url) === businessHost
+			(site) => businessHost && host(site.url) === businessHost,
 		);
 
 		return match ? match.url : author.business_url;
 	});
 
 	$config.addFilter("isBusinessPerson", function (supporter) {
-		return (
-			supporter &&
-			supporter.isMonthly &&
-			supporter.amount &&
-			supporter.amount.value >= 5
-		);
+		return supporter && supporter.isMonthly && supporter.amount && supporter.amount.value >= 5;
 	});
 
 	$config.addFilter(
 		"isSupporter",
-		function (
-			supporters,
-			githubUsername,
-			hardcodedOpencollectiveUsername
-		) {
+		function (supporters, githubUsername, hardcodedOpencollectiveUsername) {
 			let slug = {
 				// hardcoded map for github => opencollective slugs
 				"twitter:unabridgedsoft": "unabridged-software",
@@ -719,7 +711,7 @@ export default async function ($config) {
 				return supporter.pop();
 			}
 			return false;
-		}
+		},
 	);
 
 	$config.addFilter("toISO", (dateObj) => {
@@ -762,46 +754,43 @@ export default async function ($config) {
 			});
 	});
 
-	$config.addFilter(
-		"calc",
-		(sites, type, key, greaterThanOrEqualTo = 1) => {
-			let sum = 0;
-			let values = [];
-			let keys;
-			if (Array.isArray(key)) {
-				keys = key;
-			} else {
-				keys = [key];
-			}
-			let count = 0;
-			for (let site of sites) {
-				let test = true;
-				for (let key of keys) {
-					if (isNaN(site[key]) || site[key] < greaterThanOrEqualTo) {
-						test = false;
-					}
-				}
-				if (test) {
-					count++;
-				}
-				if (typeof site[key] === "number") {
-					sum += site[key];
-					values.push(site[key]);
+	$config.addFilter("calc", (sites, type, key, greaterThanOrEqualTo = 1) => {
+		let sum = 0;
+		let values = [];
+		let keys;
+		if (Array.isArray(key)) {
+			keys = key;
+		} else {
+			keys = [key];
+		}
+		let count = 0;
+		for (let site of sites) {
+			let test = true;
+			for (let key of keys) {
+				if (isNaN(site[key]) || site[key] < greaterThanOrEqualTo) {
+					test = false;
 				}
 			}
-			if (type === "count") {
-				return count;
+			if (test) {
+				count++;
 			}
-			if (type === "mean") {
-				return sum / values.length;
-			}
-			if (type === "median") {
-				if (values.length > 0) {
-					return values.sort((a, b) => b - a)[Math.floor(values.length / 2)];
-				}
+			if (typeof site[key] === "number") {
+				sum += site[key];
+				values.push(site[key]);
 			}
 		}
-	);
+		if (type === "count") {
+			return count;
+		}
+		if (type === "mean") {
+			return sum / values.length;
+		}
+		if (type === "median") {
+			if (values.length > 0) {
+				return values.sort((a, b) => b - a)[Math.floor(values.length / 2)];
+			}
+		}
+	});
 
 	$config.addFilter("findBy", findBy);
 
@@ -817,11 +806,7 @@ export default async function ($config) {
 			}
 			let lowerUrl = url.toLowerCase();
 			let siteUrl = site.url.toLowerCase();
-			if (
-				lowerUrl === siteUrl ||
-				lowerUrl === `${siteUrl}/` ||
-				`${lowerUrl}/` === siteUrl
-			) {
+			if (lowerUrl === siteUrl || lowerUrl === `${siteUrl}/` || `${lowerUrl}/` === siteUrl) {
 				return site;
 			}
 		}
@@ -839,9 +824,11 @@ export default async function ($config) {
 	});
 
 	$config.addFilter("sortAuthors", (authors) => {
-		return Object.values(authors).filter(author => !author.name.startsWith("twitter:")).sort((a, b) => {
-			return b.sites.length - a.sites.length;
-		});
+		return Object.values(authors)
+			.filter((author) => !author.name.startsWith("twitter:"))
+			.sort((a, b) => {
+				return b.sites.length - a.sites.length;
+			});
 	});
 
 	$config.addFilter("cleanAuthorName", cleanName);
@@ -885,9 +872,7 @@ export default async function ($config) {
 
 	$config.addFilter("filterSupportersActive", (supporters) => {
 		// workaround a bug in the open collective API
-		const ALLOWED_SLUGS = [
-			"superluxuryreps"
-		];
+		const ALLOWED_SLUGS = ["superluxuryreps"];
 
 		return supporters.filter((supporter) => {
 			return ALLOWED_SLUGS.includes(supporter.slug) || supporter.status === "ACTIVE";
@@ -940,10 +925,8 @@ export default async function ($config) {
 		return html.join("");
 	});
 
-	$config.addFilter(
-		"convertCommunityLinkToSiteCard",
-		function ({ url, author, title }) {
-			/*
+	$config.addFilter("convertCommunityLinkToSiteCard", function ({ url, author, title }) {
+		/*
 communityLinks:
 - url: https://www.pborenstein.com/posts/collections/
   author: pborenstein
@@ -959,63 +942,57 @@ to:
   </a>
 </div> */
 
-			return {
-				url,
-				// author removed, the great twitter prune of 2025
-				name: title,
-				fileSlug: slugify(url),
-			};
+		return {
+			url,
+			// author removed, the great twitter prune of 2025
+			name: title,
+			fileSlug: slugify(url),
+		};
+	});
+
+	$config.addShortcode("youtubeEmbed", function (slug, label, startTime) {
+		if (label) {
+			label = label.replace(/"/g, "");
 		}
-	);
 
-	$config.addShortcode(
-		"youtubeEmbed",
-		function (slug, label, startTime) {
-			if (label) {
-				label = label.replace(/"/g, "");
-			}
+		let readableStartTime = "";
+		if (startTime) {
+			let t = parseInt(startTime, 10);
+			let minutes = Math.floor(t / 60);
+			let seconds = t % 60;
+			readableStartTime = `${minutes}m${seconds}s`;
+		}
+		let fallback = `https://i.ytimg.com/vi/${slug}/maxresdefault.jpg`;
 
-			let readableStartTime = "";
-			if (startTime) {
-				let t = parseInt(startTime, 10);
-				let minutes = Math.floor(t / 60);
-				let seconds = t % 60;
-				readableStartTime = `${minutes}m${seconds}s`;
-			}
-			let fallback = `https://i.ytimg.com/vi/${slug}/maxresdefault.jpg`;
+		// hard-coded fallback
+		if (slug === "pPkWxn0TF9w") {
+			fallback = `https://img.youtube.com/vi/${slug}/hqdefault.jpg`;
+		}
 
-			// hard-coded fallback
-			if (slug === "pPkWxn0TF9w") {
-				fallback = `https://img.youtube.com/vi/${slug}/hqdefault.jpg`;
-			}
-
-			return `<div><is-land on:visible import="/js/lite-yt-embed.js" class="fluid"><lite-youtube videoid="${slug}"${
-				startTime ? ` params="start=${startTime}"` : ""
-			} playlabel="Play${
-				label ? `: ${label}` : ""
-			}" style="background-image:url('${fallback}')">
+		return `<div><is-land on:visible import="/js/lite-yt-embed.js" class="fluid"><lite-youtube videoid="${slug}"${
+			startTime ? ` params="start=${startTime}"` : ""
+		} playlabel="Play${label ? `: ${label}` : ""}" style="background-image:url('${fallback}')">
 	<a href="https://youtube.com/watch?v=${slug}" class="elv-externalexempt lty-playbtn" title="Play Video"><span class="lyt-visually-hidden">Play Video${
-				label ? `: ${label}` : ""
-			}</span></a>
+		label ? `: ${label}` : ""
+	}</span></a>
 </lite-youtube><a href="https://youtube.com/watch?v=${slug}${
-				startTime ? `&t=${startTime}` : ""
-			}">${label || "Watch on YouTube"}${
-				readableStartTime ? ` <code>▶${readableStartTime}</code>` : ""
-			}</a></is-land></div>`;
-		}
-	);
+			startTime ? `&t=${startTime}` : ""
+		}">${label || "Watch on YouTube"}${
+			readableStartTime ? ` <code>▶${readableStartTime}</code>` : ""
+		}</a></is-land></div>`;
+	});
 
 	$config.addFilter("packageManagerCodeTransform", (content, type) => {
-		if(type === "yarn") {
+		if (type === "yarn") {
 			return content.replaceAll("npx @11ty/", "yarn exec ");
-		} else if(type === "pnpm") {
+		} else if (type === "pnpm") {
 			return content.replaceAll("npx @11ty/", "pnpm exec ");
 		}
 		return content;
 	});
 
 	$config.addFilter("opencollectiveTier", (supporters = [], tier = undefined) => {
-		return supporters.filter(s => s.isMonthly && (!tier || s?.tier?.slug == tier));
+		return supporters.filter((s) => s.isMonthly && (!tier || s?.tier?.slug == tier));
 	});
 
 	/*
@@ -1025,42 +1002,47 @@ to:
 	 *
 	 * Floor for minutes/hours, Round for days and weeks
 	 */
-	$config.addFilter("timeDiff", dateStr => {
+	$config.addFilter("timeDiff", (dateStr) => {
 		let diff = (Date.now() - Date.parse(dateStr)) / 1000;
 		let day_diff = Math.round(diff / 86400);
 
-		if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 ) {
+		if (isNaN(day_diff) || day_diff < 0 || day_diff >= 31) {
 			return;
 		}
 
-		let result = day_diff == 0 && (
-				diff < 60 && "now" ||
-				diff < 120 && "1 minute ago" ||
-				diff < 3600 && Math.floor( diff / 60 ) + " minutes ago" ||
-				diff < 7200 && "1 hour ago" ||
-				diff < 86400 && Math.floor( diff / 3600 ) + " hours ago") ||
-			day_diff == 1 && "1 day ago" || // Yesterday
-			day_diff < 7 && day_diff + " days ago" ||
-			day_diff <= 11 && "1 week ago" ||
-			day_diff < 31 && Math.round( day_diff / 7 ) + " weeks ago";
+		let result =
+			(day_diff == 0 &&
+				((diff < 60 && "now") ||
+					(diff < 120 && "1 minute ago") ||
+					(diff < 3600 && Math.floor(diff / 60) + " minutes ago") ||
+					(diff < 7200 && "1 hour ago") ||
+					(diff < 86400 && Math.floor(diff / 3600) + " hours ago"))) ||
+			(day_diff == 1 && "1 day ago") || // Yesterday
+			(day_diff < 7 && day_diff + " days ago") ||
+			(day_diff <= 11 && "1 week ago") ||
+			(day_diff < 31 && Math.round(day_diff / 7) + " weeks ago");
 
 		return result;
-	})
+	});
 
 	$config.addFilter("normalizeVersion", (version = "") => {
-		if(version.startsWith("v")) {
+		if (version.startsWith("v")) {
 			return version.slice(1);
 		}
 		return version;
-	})
+	});
 
-		// Remove after https://github.com/11ty/eleventy/issues/3668
+	// Remove after https://github.com/11ty/eleventy/issues/3668
 	const TIME_ZONE = "America/Chicago";
-	$config.addDateParsing(function(dateValue) {
+	$config.addDateParsing(function (dateValue) {
 		let localDate;
-		if(dateValue instanceof Date) { // override YAML dates
-			localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(TIME_ZONE, { keepLocalTime: true });
-		} else if(typeof dateValue === "string") { // override String dates
+		if (dateValue instanceof Date) {
+			// override YAML dates
+			localDate = DateTime.fromJSDate(dateValue, { zone: "utc" }).setZone(TIME_ZONE, {
+				keepLocalTime: true,
+			});
+		} else if (typeof dateValue === "string") {
+			// override String dates
 			localDate = DateTime.fromISO(dateValue, { zone: TIME_ZONE });
 		} else {
 			let filepathRegex = this.page.inputPath.match(/(\d{4}-\d{2}-\d{2})/);
@@ -1073,7 +1055,7 @@ to:
 			return localDate;
 		}
 	});
-};
+}
 
 export const config = {
 	dir: {

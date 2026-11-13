@@ -13,13 +13,13 @@ layout: layouts/langs.njk
 | ------------------- | -------------- | ------------------------------------------ |
 | `ejs`               | `.ejs`         | [`ejs`](https://www.npmjs.com/package/ejs) |
 
-| Eleventy or Plugin version | `ejs` version |
-| --- | --- |
-| `@11ty/eleventy@0.x` | `ejs@2.x` |
-| `@11ty/eleventy@1.x` | `ejs@3.x` |
-| `@11ty/eleventy@2.x` | `ejs@3.x` |
-| `@11ty/eleventy@3.x` and newer | N/A |
-| `@11ty/eleventy-plugin-ejs@1.x` | `ejs@3.x` |
+| Eleventy or Plugin version      | `ejs` version |
+| ------------------------------- | ------------- |
+| `@11ty/eleventy@0.x`            | `ejs@2.x`     |
+| `@11ty/eleventy@1.x`            | `ejs@3.x`     |
+| `@11ty/eleventy@2.x`            | `ejs@3.x`     |
+| `@11ty/eleventy@3.x` and newer  | N/A           |
+| `@11ty/eleventy-plugin-ejs@1.x` | `ejs@3.x`     |
 
 You can override a `.ejs` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
@@ -27,7 +27,7 @@ You can override a `.ejs` file’s template engine. Read more at [Changing a Tem
 
 The `ejs` templating language was moved out of Eleventy core in v3 and now requires a plugin installation.
 
-* [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
+- [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
 Install from npm:
 
@@ -42,11 +42,10 @@ Add to your configuration file:
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
 
 export default function ($config) {
-	$config.addPlugin(ejsPlugin);
+$config.addPlugin(ejsPlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
-
 
 Use more `ejs` options ([full options list](https://github.com/mde/ejs#options)):
 
@@ -55,15 +54,16 @@ import ejs from "ejs";
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
 
 export default function ($config) {
-	$config.addPlugin(ejsPlugin, {
-		async: false, // default
+$config.addPlugin(ejsPlugin, {
+async: false, // default
 
-		// use <? ?> instead of <% %>
-		delimiter: "?",
+    	// use <? ?> instead of <% %>
+    	delimiter: "?",
 
-		// Override the `ejs` library instance
-		eleventyLibraryOverride: ejs,
-	});
+    	// Override the `ejs` library instance
+    	eleventyLibraryOverride: ejs,
+    });
+
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

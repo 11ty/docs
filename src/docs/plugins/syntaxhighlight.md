@@ -28,7 +28,7 @@ Open up your Eleventy config file (probably `buildawesome.config.js`) and use `a
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function ($config) {
-	$config.addPlugin(syntaxHighlight);
+$config.addPlugin(syntaxHighlight);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -42,7 +42,7 @@ Optionally pass in an options object as the second argument to `addPlugin` to fu
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function($config) {
-  $config.addPlugin(syntaxHighlight, {
+$config.addPlugin(syntaxHighlight, {
 
     // Line separator for line breaks
     lineSeparator: "\n",
@@ -71,7 +71,8 @@ export default function($config) {
 
     // Added in 5.0.0, throw errors on invalid language names
     errorOnInvalidLanguage: false,
-  });
+
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -84,10 +85,7 @@ You are responsible for including your favorite PrismJS theme CSS and there are 
 <html lang="en">
 	<head>
 		<!-- Some html boilerplate omitted -->
-		<link
-			href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css"
-			rel="stylesheet"
-		/>
+		<link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet" />
 	</head>
 </html>
 ```
@@ -116,7 +114,7 @@ Will render like this in the browser:
 
 {% highlight "js" %}
 function myFunction() {
-	return true;
+return true;
 }
 {% endhighlight %}
 
@@ -136,9 +134,10 @@ Will render like this in the browser:
 
 {% highlight "diff-js" %}
 +function myFunction() {
-	// …
--	return true;
-}
+// …
+
+- return true;
+  }
 {% endhighlight %}
 
 {% endcallout %}

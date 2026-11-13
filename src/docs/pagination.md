@@ -68,25 +68,25 @@ We enable pagination and then give it a dataset with the `data` key. We control 
 {% codetitle "JavaScript Object", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 {
-  items: [], // Array of current page’s chunk of data
-  pageNumber: 0, // current page number, 0 indexed
+items: [], // Array of current page’s chunk of data
+pageNumber: 0, // current page number, 0 indexed
 
-  // Cool URLs
-  hrefs: [], // Array of all page hrefs (in order)
-  href: {
-    next: "…", // put inside <a href="{{ pagination.href.next }}">Next Page</a>
-    previous: "…", // put inside <a href="{{ pagination.href.previous }}">Previous Page</a>
-    first: "…",
-    last: "…",
-  },
+// Cool URLs
+hrefs: [], // Array of all page hrefs (in order)
+href: {
+next: "…", // put inside <a href="{{ pagination.href.next }}">Next Page</a>
+previous: "…", // put inside <a href="{{ pagination.href.previous }}">Previous Page</a>
+first: "…",
+last: "…",
+},
 
-  pages: [], // Array of all chunks of paginated data (in order)
-  page: {
-    next: {}, // Next page’s chunk of data
-    previous: {}, // Previous page’s chunk of data
-    first: {},
-    last: {},
-  }
+pages: [], // Array of all chunks of paginated data (in order)
+page: {
+next: {}, // Next page’s chunk of data
+previous: {}, // Previous page’s chunk of data
+first: {},
+last: {},
+}
 }
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -99,26 +99,26 @@ In addition to the `pagination` object entries documented above, it also has:
 {% codetitle "JavaScript Object", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 {
-  data: "…", // the original string key to the dataset
-  size: 1, // page chunk sizes
+data: "…", // the original string key to the dataset
+size: 1, // page chunk sizes
 
-  // Cool URLs
-  // Use pagination.href.next, pagination.href.previous, et al instead.
-  nextPageHref: "…", // put inside <a href="{{ pagination.nextPageHref }}">Next Page</a>
-  previousPageHref: "…", // put inside <a href="{{ pagination.previousPageHref }}">Previous Page</a>
-  firstPageHref: "…",
-  lastPageHref: "…",
+// Cool URLs
+// Use pagination.href.next, pagination.href.previous, et al instead.
+nextPageHref: "…", // put inside <a href="{{ pagination.nextPageHref }}">Next Page</a>
+previousPageHref: "…", // put inside <a href="{{ pagination.previousPageHref }}">Previous Page</a>
+firstPageHref: "…",
+lastPageHref: "…",
 
-  // Uncool URLs
-  // These include index.html file names, use `hrefs` instead
-  links: [], // Array of all page links (in order)
+// Uncool URLs
+// These include index.html file names, use `hrefs` instead
+links: [], // Array of all page links (in order)
 
-  // Deprecated things:
-  // nextPageLink
-  // previousPageLink
-  // firstPageLink
-  // lastPageLink
-  // pageLinks (alias to `links`)
+// Deprecated things:
+// nextPageLink
+// previousPageLink
+// firstPageLink
+// lastPageLink
+// pageLinks (alias to `links`)
 }
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -139,9 +139,9 @@ In this example, we would get 3 pages that each print a key/value pair from `tes
 {% codetitle "JavaScript Object", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 [
-	["itemkey1"], // pagination.items[0] holds the object key
-	["itemkey2"],
-	["itemkey3"],
+["itemkey1"], // pagination.items[0] holds the object key
+["itemkey2"],
+["itemkey3"],
 ];
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -153,15 +153,17 @@ If you’d like the pagination to iterate over the values instead of the keys (u
 {% codetitle "YAML Front Matter", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 pagination:
-  data: testdata
-  size: 1
-  resolve: values
+data: testdata
+size: 1
+resolve: values
 testdata:
-  itemkey1: itemvalue1
-  itemkey2: itemvalue2
-  itemkey3: itemvalue3
+itemkey1: itemvalue1
+itemkey2: itemvalue2
+itemkey3: itemvalue3
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -171,9 +173,9 @@ This resolves to:
 
 {%- set codeBlock %}{% raw %}
 [
-	["itemvalue1"], // pagination.items[0] holds the object value
-	["itemvalue2"],
-	["itemvalue3"],
+["itemvalue1"], // pagination.items[0] holds the object value
+["itemvalue2"],
+["itemvalue3"],
 ];
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -185,7 +187,7 @@ This resolves to:
 {% codetitle "JavaScript Object", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 {
-	"myData": ["item1", "item2", "item3", "item4"]
+"myData": ["item1", "item2", "item3", "item4"]
 }
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("json") | safe }}
@@ -202,8 +204,10 @@ Normally, front matter does not support template syntax, but `permalink` does, e
 
 {%- set codeBlock %}{% raw %}
 ---
+
 permalink: "different/page-{{ pagination.pageNumber }}/index.html"
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -215,8 +219,10 @@ That means Nunjucks will also let you start your page numbers with 1 instead of 
 
 {%- set codeBlock %}{% raw %}
 ---
+
 permalink: "different/page-{{ pagination.pageNumber + 1 }}/index.html"
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -226,8 +232,10 @@ You can even use template logic here too:
 
 {%- set codeBlock %}{% raw %}
 ---
+
 permalink: "different/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -242,13 +250,17 @@ You can do more advanced things like this:
 {% codetitle "YAML Front Matter using Liquid, Nunjucks", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 pagination:
-  data: testdata
-  size: 1
+data: testdata
+size: 1
 testdata:
-  - My Item
-permalink: "different/{{ pagination.items[0] | slugify }}/index.html"
+
+- My Item
+  permalink: "different/{{ pagination.items[0] | slugify }}/index.html"
+
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -287,12 +299,14 @@ By default, if the specified data set is empty, Eleventy will not render any pag
 {% codetitle "Liquid, Nunjucks", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 title: Available Products
 pagination:
-  data: collections.available
-  size: 6
-  generatePageOnEmptyData: true
+data: collections.available
+size: 6
+generatePageOnEmptyData: true
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -308,16 +322,20 @@ Use `reverse: true`.
 
 {%- set codeBlock %}{% raw %}
 ---
+
 pagination:
-  data: testdata
-  size: 2
-  reverse: true
+data: testdata
+size: 2
+reverse: true
 testdata:
-  - item1
-  - item2
-  - item3
-  - item4
+
+- item1
+- item2
+- item3
+- item4
+
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -325,8 +343,8 @@ Paginates to:
 
 {%- set codeBlock %}{% raw %}
 [
-	["item4", "item3"],
-	["item2", "item1"],
+["item4", "item3"],
+["item2", "item1"],
 ];
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -342,16 +360,17 @@ Use the `filter` pagination property to remove values from paginated data.
 {% codetitle "YAML Front Matter", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 pagination:
-  data: testdata
-  size: 1
-  filter:
-    - item3
+data: testdata
+size: 1
+filter: - item3
 testdata:
-  item1: itemvalue1
-  item2: itemvalue2
-  item3: itemvalue3
+item1: itemvalue1
+item2: itemvalue2
+item3: itemvalue3
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -368,17 +387,18 @@ This will work the same with paginated arrays or with `resolve: values` for pagi
 {% codetitle "YAML Front Matter", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 pagination:
-  data: testdata
-  size: 1
-  resolve: values
-  filter:
-    - itemvalue3
+data: testdata
+size: 1
+resolve: values
+filter: - itemvalue3
 testdata:
-  item1: itemvalue1
-  item2: itemvalue2
-  item3: itemvalue3
+item1: itemvalue1
+item2: itemvalue2
+item3: itemvalue3
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -397,24 +417,27 @@ The most powerful tool to change the data. Use this callback to modify, filter, 
 {%- set codeBlock %}{% raw %}
 ---js
 {
-  pagination: {
-    data: "testdata",
-    size: 2,
-    before: function(paginationData, fullData) {
-      // `fullData` is new in v1.0.1 and contains the full Data Cascade thus far
+pagination: {
+data: "testdata",
+size: 2,
+before: function(paginationData, fullData) {
+// `fullData` is new in v1.0.1 and contains the full Data Cascade thus far
 
       return paginationData.map(entry => `${entry} with a suffix`);
     }
-  },
-  testdata: [
-    "item1",
-    "item2",
-    "item3",
-    "item4"
-  ]
+
+},
+testdata: [
+"item1",
+"item2",
+"item3",
+"item4"
+]
 }
 ---
+
 <!-- the rest of the template -->
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
 
@@ -429,8 +452,8 @@ You can do anything in this `before` callback. Maybe a custom `.sort()`, `.filte
 {%- set codeBlock %}{% raw %}
 // …
 before: function() {
-  let slug = this.slugify("My title.");
-  // use Universal filters or shortcodes too…
+let slug = this.slugify("My title.");
+// use Universal filters or shortcodes too…
 },
 // …
 {% endraw %}{%- endset %}
@@ -453,17 +476,21 @@ Consider the following pagination template:
 {% codetitle "my-page.md" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 tags:
-  - myCollection
-pagination:
+
+- myCollection
+  pagination:
   data: testdata
   size: 2
-testdata:
-  - item1
-  - item2
-  - item3
-  - item4
+  testdata:
+- item1
+- item2
+- item3
+- item4
+
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 
@@ -472,18 +499,22 @@ This means that `collections.myCollection` will have only the first page added t
 {% codetitle "my-page.md" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 tags:
-  - myCollection
-pagination:
+
+- myCollection
+  pagination:
   data: testdata
   size: 2
   addAllPagesToCollections: true
-testdata:
-  - item1
-  - item2
-  - item3
-  - item4
+  testdata:
+- item1
+- item2
+- item3
+- item4
+
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 

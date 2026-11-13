@@ -1,7 +1,7 @@
 {
-  "url": "https://github.com/yhaefliger/yatas",
-  "name": "YATAS",
-  "description": "Yet Another Tailwind Apline Starter. Tailwind v2 compiled in JIT mode and Alpine v3.",
-  "author": "yhaefliger",
-  "demo": "https://yatas.netlify.app/"
+	"url": "https://github.com/yhaefliger/yatas",
+	"name": "YATAS",
+	"description": "Yet Another Tailwind Apline Starter. Tailwind v2 compiled in JIT mode and Alpine v3.",
+	"author": "yhaefliger",
+	"demo": "https://yatas.netlify.app/"
 }

@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-netlify-redirects",
-  "author": "hovhaDovah",
-  "description": "Generate a Netlify _redirects file for your Eleventy site using front matter."
+	"npm": "eleventy-plugin-netlify-redirects",
+	"author": "hovhaDovah",
+	"description": "Generate a Netlify _redirects file for your Eleventy site using front matter."
 }

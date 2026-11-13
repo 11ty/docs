@@ -1,5 +1,5 @@
 {
-  "npm": "@grimlink/eleventy-plugin-lucide-icons",
-  "author": "grimlink",
-  "description": "This Eleventy plugin enables the inclusion of lucide-icons as inline SVG elements"
+	"npm": "@grimlink/eleventy-plugin-lucide-icons",
+	"author": "grimlink",
+	"description": "This Eleventy plugin enables the inclusion of lucide-icons as inline SVG elements"
 }

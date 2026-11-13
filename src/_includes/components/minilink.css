@@ -2,7 +2,7 @@
 .minilink {
 	display: inline-flex;
 	align-items: center;
-	gap: .25em;
+	gap: 0.25em;
 	padding: 0.125em 0.625em; /* 10px /16 */
 	text-transform: uppercase;
 	font-size: 0.7222222222222em; /* 13px /18 */
@@ -109,7 +109,7 @@ h4 .minilink {
 	text-transform: uppercase;
 }
 .minilink-buildcost code {
-	margin-right: .25em;
+	margin-right: 0.25em;
 }
 .minilink-buildcost code:before {
 	content: "🧰";

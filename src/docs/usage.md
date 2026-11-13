@@ -19,9 +19,11 @@ Here’s the first command you can enter in your Terminal application to run Bui
 
 {% set usageCode %}
 # Searches the current directory, outputs to ./_site
+
 npx @awesome.me/buildawesome
 
 # `npx @awesome.me/buildawesome` is the same as:
+
 npx @awesome.me/buildawesome --input=. --output=_site
 {% endset %}
 <script type="module" src="/js/seven-minute-tabs.js"></script>
@@ -42,12 +44,15 @@ A hypothetical `template.md` in the current directory would be rendered to `_sit
 
 {% set usageFormatsCode %}
 # Use only a subset of template types
+
 npx @awesome.me/buildawesome --formats=md,html,ejs
 
 # Don’t process any formats
+
 npx @awesome.me/buildawesome --formats=
 
 # Find out the most up-to-date list of commands (there are more)
+
 npx @awesome.me/buildawesome --help
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -61,12 +66,13 @@ npx @awesome.me/buildawesome --help
 	<div id="usage-formats-yarn" role="tabpanel">{{ usageFormatsCode | packageManagerCodeTransform("yarn") | highlight("bash") | safe }}</div>
 </seven-minute-tabs>
 
-* The default for `--formats=` changed in {{ "3.0.0-alpha.7" | coerceVersion }} from an alias of `*` to an empty set.
+- The default for `--formats=` changed in {{ "3.0.0-alpha.7" | coerceVersion }} from an alias of `*` to an empty set.
 
 ### `--quiet` if the Output is Too Noisy
 
 {% set usageQuietCode %}
 # Shhhhh—Don’t log so much to the console
+
 npx @awesome.me/buildawesome --quiet
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -86,13 +92,17 @@ npx @awesome.me/buildawesome --quiet
 
 {% set usageServeCode %}
 # Add a web server to apply changes and
+
 # refresh automatically. We’ll also --watch for you.
+
 npx @awesome.me/buildawesome --serve
 
 # Change the web server’s port—use localhost:8081
+
 npx @awesome.me/buildawesome --serve --port=8081
 
 # Watch and re-run when files change, without the web server.
+
 npx @awesome.me/buildawesome --watch
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -110,6 +120,7 @@ npx @awesome.me/buildawesome --watch
 
 {% set usageCfgCode %}
 # Override the default configuration filename (buildawesome.config.js)
+
 npx @awesome.me/buildawesome --config=myconfig.js
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -131,9 +142,11 @@ Read more about [Configuration files](/docs/config.md).
 
 {% set usageJsonCode %}
 # Output a JSON structure (does not write to the file system)
+
 npx @awesome.me/buildawesome --to=json
 
 # Default behavior (Output to file system)
+
 npx @awesome.me/buildawesome --to=fs
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -152,15 +165,19 @@ npx @awesome.me/buildawesome --to=fs
 ### `--incremental` for Partial Incremental Builds
 
 {% set usageIncrementalCode %}
-# *Repeat* builds only operate on files that have changed
+# _Repeat_ builds only operate on files that have changed
+
 npx @awesome.me/buildawesome --watch --incremental
 npx @awesome.me/buildawesome --serve --incremental
 
 # Skip the initial full build with `--ignore-initial`
+
 npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 
 # Pass in a template path, watch/serve not required
+
 # Added in {{ "3.0.0-alpha.14" | coerceVersion }}
+
 npx @awesome.me/buildawesome --incremental=myfile.md
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -182,10 +199,12 @@ Be wary of any file changes that happened while Build Awesome wasn’t running!
 
 {% set usageInitialCode %}
 # Don’t build when Build Awesome starts, only listen for future file changes
+
 npx @awesome.me/buildawesome --watch --ignore-initial
 npx @awesome.me/buildawesome --serve --ignore-initial
 
 # Works great with Incremental
+
 npx @awesome.me/buildawesome --serve --incremental --ignore-initial
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -207,6 +226,7 @@ Runs without writing to the file system. Useful when [debugging](/docs/debugging
 
 {% set usageDryCode %}
 # Run but don’t write any files
+
 npx @awesome.me/buildawesome --dryrun
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>
@@ -245,6 +265,7 @@ Yes, you can use the same `input` and `output` directories, like so:
 
 {% set usageSameDirsCode %}
 # Parse and write Markdown to HTML, respecting directory structure.
+
 npx @awesome.me/buildawesome --input=. --output=. --formats=md
 {% endset %}
 <seven-minute-tabs class="tabs-flush tabs-right" persist sync autoheight>

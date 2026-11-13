@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-google-fonts",
-  "author": "takanorip",
-  "description": "A Nunjucks shortcode to optimize Google Fonts. This shortcode download and inline Google Font's CSS."
+	"npm": "eleventy-google-fonts",
+	"author": "takanorip",
+	"description": "A Nunjucks shortcode to optimize Google Fonts. This shortcode download and inline Google Font's CSS."
 }

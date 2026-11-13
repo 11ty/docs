@@ -7,7 +7,7 @@ eleventyNavigation:
 
 # CommonJS, ESM, and TypeScript
 
-* Related: [JavaScript Modules on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- Related: [JavaScript Modules on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 
 Build Awesome works with many different flavors of JavaScript:
 
@@ -125,7 +125,7 @@ Your [configuration file](/docs/config.md) using ESM can use core bundled plugin
 import { I18nPlugin, RenderPlugin, HtmlBasePlugin } from "@awesome.me/buildawesome";
 
 export default function ($config) {
-	// …
+// …
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -140,7 +140,7 @@ If you use core bundled plugins (like [i18n](/docs/plugins/i18n/), [Render](/doc
 const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = require("@awesome.me/buildawesome");
 
 module.exports = function ($config) {
-	// …
+// …
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}

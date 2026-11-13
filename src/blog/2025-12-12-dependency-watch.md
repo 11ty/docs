@@ -1,13 +1,14 @@
 ---
 newstitle: Eleventy Core Dependency Watch (2025 Edition)
 ---
+
 In our quest for smoother long term maintenance and hardened [security footprint](/blog/npm-security/), we wanted to let folks know that we’ve made even more exciting dependency simplification improvements on the [v4 canary prereleases](https://github.com/11ty/eleventy/releases/tag/v4.0.0-alpha.6)!
 
 Notably when comparing `v4.0.0-alpha.6` to `v3.1.2`, we’ve:
 
 - Reduced our total dependency count from `134` to `105` (<code class="numeric-down numeric-good">21.6%</code>)
 - Dropped third-party dependency count from `123` to `89` (<code class="numeric-down numeric-good">27.6%</code>)
-- Decreased `node_modules` weight from `21 MiB` to `14 MiB`  (<code class="numeric-down numeric-good">33.3%</code>)
+- Decreased `node_modules` weight from `21 MiB` to `14 MiB` (<code class="numeric-down numeric-good">33.3%</code>)
 
 ## Full History
 

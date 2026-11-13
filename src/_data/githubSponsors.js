@@ -1,14 +1,14 @@
 import EleventyFetch from "@11ty/eleventy-fetch";
 
-export default async function() {
+export default async function () {
 	const query = `query {
 		organization(login: "11ty") {
 			monthlyEstimatedSponsorsIncomeInCents
 		}
-	}`
+	}`;
 
-	if(!process.env.GITHUB_READ_TOKEN) {
-		console.error( "Missing GITHUB_READ_TOKEN env variable." );
+	if (!process.env.GITHUB_READ_TOKEN) {
+		console.error("Missing GITHUB_READ_TOKEN env variable.");
 		return {};
 	}
 

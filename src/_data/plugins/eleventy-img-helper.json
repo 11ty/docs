@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-img-helper",
-  "author": "AlexDueppen",
-  "description": "Adds responsive images to any template's output using eleventy-img, configurable with CSS selectors."
+	"npm": "eleventy-img-helper",
+	"author": "AlexDueppen",
+	"description": "Adds responsive images to any template's output using eleventy-img, configurable with CSS selectors."
 }

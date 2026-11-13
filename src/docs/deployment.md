@@ -182,14 +182,15 @@ Includes persisted cache across builds.
 1. Create a new file in your repository at `.github/workflows/deploy-gh-pages.yml`. Copy and paste the contents from the [`eleventy-base-blog` sample YAML configuration for GitHub Actions](https://github.com/11ty/eleventy-base-blog/blob/39454297a92872f2d116315f2af668f2675e7746/.github/workflows/gh-pages.yml.sample).
 2. Go to your repository’s Settings on GitHub and find the GitHub Pages subsection. Under the Build and Deployment on the GitHub Pages settings, find the Source option and select `GitHub Actions`
 3. In your project’s package.json, make sure the `build-ghpages` script has the `--pathprefix=` parameter set to your repository name.
+
 ```json
 "scripts": {
 	"build-ghpages": "npx @awesome.me/buildawesome --pathprefix=/YOUR_REPO_NAME/",
 }
 ```
+
 4. _Exception:_ When using a Custom domain (example.com) with GitHub Pages, deploying to `example.com/` instead of `*.github.io/YOUR_REPO_NAME/` make sure to remove the `--pathprefix` parameter entirely. e.g. `"build-ghpages": "npx @awesome.me/buildawesome",`
 5. Commit this new `.github/workflows/deploy-gh-pages.yml` file and push it upstream to GitHub.
-
 
 ### Using `netlify-plugin-cache` to persist cache
 

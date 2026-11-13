@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-file-list",
-  "author": "johnwargo",
-  "description": "An Eleventy Plugin that creates a collection containing metadata from a list of all files in a specified folder."
+	"npm": "eleventy-plugin-file-list",
+	"author": "johnwargo",
+	"description": "An Eleventy Plugin that creates a collection containing metadata from a list of all files in a specified folder."
 }

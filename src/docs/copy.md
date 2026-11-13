@@ -18,18 +18,19 @@ Use a configuration API method to specify _files_ or _directories_ for Eleventy 
 
 {% set codeContent %}
 export default function ($config) {
-	// Output directory: _site
+// Output directory: _site
 
-	// Copy `img/` to `_site/img/`
-	$config.addPassthroughCopy("img");
+    // Copy `img/` to `_site/img/`
+    $config.addPassthroughCopy("img");
 
-	// Copy `css/fonts/` to `_site/css/fonts/`
-	// Keeps the same directory structure.
-	$config.addPassthroughCopy("css/fonts");
+    // Copy `css/fonts/` to `_site/css/fonts/`
+    // Keeps the same directory structure.
+    $config.addPassthroughCopy("css/fonts");
 
-	// Copy any .jpg file to `_site`, via Glob pattern
-	// Keeps the same directory structure.
-	$config.addPassthroughCopy("**/*.jpg");
+    // Copy any .jpg file to `_site`, via Glob pattern
+    // Keeps the same directory structure.
+    $config.addPassthroughCopy("**/*.jpg");
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -51,11 +52,12 @@ If we copy `src/img` using passthrough file copy, it will copy to `_site/img`.
 
 {% set codeContent %}
 export default function ($config) {
-	// Input directory: src
-	// Output directory: _site
+// Input directory: src
+// Output directory: _site
 
-	// The following copies to `_site/img`
-	$config.addPassthroughCopy("src/img");
+    // The following copies to `_site/img`
+    $config.addPassthroughCopy("src/img");
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -68,8 +70,8 @@ Note that this method is slower than non-glob methods, as it searches the entire
 
 {% set codeContent %}
 export default function ($config) {
-	// Find and copy any `jpg` files, maintaining directory structure.
-	$config.addPassthroughCopy("**/*.jpg");
+// Find and copy any `jpg` files, maintaining directory structure.
+$config.addPassthroughCopy("**/*.jpg");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -85,10 +87,10 @@ Use the _HTML Relative Passthrough Copy Mode_ to copy files referenced in any te
 
 {% set codeContent %}
 export default function($config) {
-	// Relative to the project root directory
-	$config.addPassthroughCopy("content/**/*.mp4", {
-		mode: "html-relative"
-	});
+// Relative to the project root directory
+$config.addPassthroughCopy("content/**/*.mp4", {
+mode: "html-relative"
+});
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -98,13 +100,13 @@ export default function($config) {
 
 {% set codeContent %}
 export default async function($config) {
-	// glob or Array of globs to match for copy
-	$config.addPassthroughCopy("**/*.png", {
-		mode: "html-relative",
-		paths: [], // additional fallback directories to look for source files
-		failOnError: true, // throw an error when a path matches (via `match`) but not found on file system
-		copyOptions: { dot: false }, // `recursive-copy` copy options
-	});
+// glob or Array of globs to match for copy
+$config.addPassthroughCopy("**/*.png", {
+mode: "html-relative",
+paths: [], // additional fallback directories to look for source files
+failOnError: true, // throw an error when a path matches (via `match`) but not found on file system
+copyOptions: { dot: false }, // `recursive-copy` copy options
+});
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -132,17 +134,18 @@ Instead of a string, pass in an object of the following structure: `{ "input": "
 
 {% set codeContent %}
 export default function ($config) {
-	// Input directory: src
-	// Output directory: _site
+// Input directory: src
+// Output directory: _site
 
-	// Copy `img/` to `_site/subfolder/img`
-	$config.addPassthroughCopy({ img: "subfolder/img" });
+    // Copy `img/` to `_site/subfolder/img`
+    $config.addPassthroughCopy({ img: "subfolder/img" });
 
-	// Copy `src/img/` to `_site/subfolder/img`
-	$config.addPassthroughCopy({ "src/img": "subfolder/img" });
+    // Copy `src/img/` to `_site/subfolder/img`
+    $config.addPassthroughCopy({ "src/img": "subfolder/img" });
 
-	// Copy `random-folder/img/` to `_site/subfolder/img`
-	$config.addPassthroughCopy({ "random-folder/img": "subfolder/img" });
+    // Copy `random-folder/img/` to `_site/subfolder/img`
+    $config.addPassthroughCopy({ "random-folder/img": "subfolder/img" });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -153,11 +156,12 @@ Note that this method is slower than non-glob methods, as it is searching the en
 
 {% set codeContent %}
 export default function ($config) {
-	// Output directory: _site
+// Output directory: _site
 
-	// Find and copy any `jpg` files in any folder to _site/img
-	// Does not keep the same directory structure.
-	$config.addPassthroughCopy({ "**/*.jpg": "img" });
+    // Find and copy any `jpg` files in any folder to _site/img
+    // Does not keep the same directory structure.
+    $config.addPassthroughCopy({ "**/*.jpg": "img" });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -166,7 +170,6 @@ With an output directory of `_site`:
 
 - `img/avatar.jpg` would copy to `_site/img/avatar.jpg`
 - `subdir/img/avatar.jpg` would copy to `_site/img/avatar.jpg`
-
 
 <span id="passthrough-during-serve"></span>
 
@@ -180,8 +183,8 @@ You can enable this behavior in your project using this configuration API method
 
 {% set codeContent %}
 export default function ($config) {
-	// the default is "copy"
-	$config.setServerPassthroughCopyBehavior("passthrough");
+// the default is "copy"
+$config.setServerPassthroughCopyBehavior("passthrough");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -205,10 +208,10 @@ If a file format is not recognized by Eleventy as a template file extension, Ele
 
 {% set codeContent %}
 export default function ($config) {
-	$config.setTemplateFormats([
-		"md",
-		"css", // `css` is not a registered template syntax file extension
-	]);
+$config.setTemplateFormats([
+"md",
+"css", // `css` is not a registered template syntax file extension
+]);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -225,13 +228,14 @@ Additionally, you can pass additional configuration options to the `recursive-co
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addPassthroughCopy("img", {
-		expand: true, // expand symbolic links
-	});
+$config.addPassthroughCopy("img", {
+expand: true, // expand symbolic links
+});
 
-	$config.addPassthroughCopy({ img: "subfolder/img" }, {
-		debug: true, // log debug information
-	});
+    $config.addPassthroughCopy({ img: "subfolder/img" }, {
+    	debug: true, // log debug information
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

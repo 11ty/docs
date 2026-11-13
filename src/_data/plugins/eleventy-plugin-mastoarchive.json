@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-mastoarchive",
-  "author": "declan_byrd",
-  "description": "Create a global data object \"mastodon\" that contains all your public posts on Mastodon."
+	"npm": "eleventy-plugin-mastoarchive",
+	"author": "declan_byrd",
+	"description": "Create a global data object \"mastodon\" that contains all your public posts on Mastodon."
 }

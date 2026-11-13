@@ -35,9 +35,7 @@ export default async function () {
 			return Promise.reject(e);
 		}
 
-		console.log(
-			"Failed getting Getting Started resources from 11tybundle.dev."
-		);
+		console.log("Failed getting Getting Started resources from 11tybundle.dev.");
 		return { bundle: [] };
 	}
 }

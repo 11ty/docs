@@ -6,18 +6,21 @@ const METADATA_OPTIONS = {
 	language: "en",
 	base: FEED_BASE,
 	author: {
-		name: "Zach Leatherman"
-	}
-}
+		name: "Zach Leatherman",
+	},
+};
 
-export default function($config) {
+export default function ($config) {
 	$config.addCollection("docsFeed", function (collection) {
-		return collection.getFilteredByGlob("src/docs/**/*.md").filter(entry => {
-			// remove permalink: false templates
-			return !!entry.url;
-		}).sort((a, b) => {
-			return a.date - b.date; // sort by date - ascending (feed plugin reverses)
-		});
+		return collection
+			.getFilteredByGlob("src/docs/**/*.md")
+			.filter((entry) => {
+				// remove permalink: false templates
+				return !!entry.url;
+			})
+			.sort((a, b) => {
+				return a.date - b.date; // sort by date - ascending (feed plugin reverses)
+			});
 	});
 
 	// Documentation Feed
@@ -32,7 +35,7 @@ export default function($config) {
 			title: "Build Awesome Documentation",
 			subtitle: "Updates to the Build Awesome Documentation, sorted by recent git commits.",
 			...METADATA_OPTIONS,
-		}
+		},
 	});
 
 	// Quick Tips Feed
@@ -47,7 +50,7 @@ export default function($config) {
 			title: "Build Awesome Quick Tips",
 			subtitle: "All of the official Build Awesome Quick Tips, in feed form.",
 			...METADATA_OPTIONS,
-		}
+		},
 	});
 
 	// Blog Feed
@@ -62,6 +65,6 @@ export default function($config) {
 			title: "Build Awesome Blog",
 			subtitle: "News and updates about the Build Awesome site generator project.",
 			...METADATA_OPTIONS,
-		}
+		},
 	});
 }

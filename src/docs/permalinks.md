@@ -492,8 +492,8 @@ permalink: /resource
 
 {% set codeContent %}
 export default function($config) {
-	// Disable this error for the project.
-	$config.configureErrorReporting({ allowMissingExtensions: true })
+// Disable this error for the project.
+$config.configureErrorReporting({ allowMissingExtensions: true })
 };
 {% endset %}
 {% set tabIdOverride = "permalink-configure-error-reporting" %}
@@ -526,18 +526,19 @@ The following configuration (using [global data via the configuration API](/docs
 
 {% set codeContent %}
 export default function($config) {
-	// Set global permalinks to resource.html style
-	$config.addGlobalData("permalink", () => {
-		return (data) =>
-			`${data.page.filePathStem}.${data.page.outputFileExtension}`;
-	});
+// Set global permalinks to resource.html style
+$config.addGlobalData("permalink", () => {
+return (data) =>
+`${data.page.filePathStem}.${data.page.outputFileExtension}`;
+});
 
-	// Remove .html from `page.url`
-	$config.addUrlTransform((page) => {
-		if (page.url.endsWith(".html")) {
-			return page.url.slice(0, -1 * ".html".length);
-		}
-	});
+    // Remove .html from `page.url`
+    $config.addUrlTransform((page) => {
+    	if (page.url.endsWith(".html")) {
+    		return page.url.slice(0, -1 * ".html".length);
+    	}
+    });
+
 };
 {% endset %}
 {% set tabIdOverride = "permalink-remove-trailing-slashes" %}
@@ -584,16 +585,15 @@ The following works for `/resource`-style URLs on Vercel but additionally requir
 
 {% set codeContent %}
 export default function($config) {
-	$config.addUrlTransform((page) => {
-		// remove trailing slash from `page.url`
-		if (page.url !== "/" && page.url.endsWith("/")) {
-			return page.url.slice(0, -1);
-		}
-	});
+$config.addUrlTransform((page) => {
+// remove trailing slash from `page.url`
+if (page.url !== "/" && page.url.endsWith("/")) {
+return page.url.slice(0, -1);
+}
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
-
 
 ## Advanced Usage
 
@@ -634,14 +634,15 @@ This example matches any `.xx.html` URL:
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addUrlTransform(({ url }) => {
-		// `url` is guaranteed to be a string here even if you’re using `permalink: false`
-		if (url.match(/\.[a-z]{2}\.html$/i)) {
-			return url.slice(0, -1 * ".en.html".length) + "/";
-		}
+$config.addUrlTransform(({ url }) => {
+// `url` is guaranteed to be a string here even if you’re using `permalink: false`
+if (url.match(/\.[a-z]{2}\.html$/i)) {
+return url.slice(0, -1 * ".en.html".length) + "/";
+}
 
-		// Returning undefined skips the url transform.
-	});
+    	// Returning undefined skips the url transform.
+    });
+
 };
 {% endset %}
 {% set tabIdOverride = "permalink-url-transform" %}
@@ -666,7 +667,6 @@ permalink: about.es.html
 		</div>
 	</div>
 </is-land>
-
 
 ### Disable templating in permalinks {% addedin "0.7.0" %}
 
@@ -699,8 +699,8 @@ Eleventy includes a global configuration option to disable dynamic templating al
 
 {% set codeContent %}
 export default function ($config) {
-	// Dynamic permalinks are enabled by default
-	$config.setDynamicPermalinks(false);
+// Dynamic permalinks are enabled by default
+$config.setDynamicPermalinks(false);
 };
 {% endset %}
 {% set tabIdOverride = "permalink-dynamic-permalinks" %}
@@ -723,7 +723,6 @@ permalink: "/this-will-be-a-string-without-{{templating}}/"
 		</div>
 	</div>
 </is-land>
-
 
 ### Ignore the output directory {% addedin "0.1.4" %}
 

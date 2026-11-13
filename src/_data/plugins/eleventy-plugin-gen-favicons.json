@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-gen-favicons",
-  "author": "njaldwin",
-  "description": "From a single svg or image, generate \"the ultimate favicon setup\" with all six commonly used icons plus a webmanifest using 2022 best practices."
+	"npm": "eleventy-plugin-gen-favicons",
+	"author": "njaldwin",
+	"description": "From a single svg or image, generate \"the ultimate favicon setup\" with all six commonly used icons plus a webmanifest using 2022 best practices."
 }

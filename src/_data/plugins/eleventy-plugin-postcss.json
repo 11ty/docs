@@ -1,4 +1,4 @@
 {
-    "npm": "eleventy-plugin-postcss",
-    "description": "Easy to use modern Eleventy plugin for PostCSS prepreprocessor"
-  }
+	"npm": "eleventy-plugin-postcss",
+	"description": "Easy to use modern Eleventy plugin for PostCSS prepreprocessor"
+}

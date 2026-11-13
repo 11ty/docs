@@ -23,20 +23,20 @@ Here are a few examples:
 
 {% set codeContent %}
 export default function ($config) {
-  // Shortcodes added in this way are available in:
-  // * Markdown
-  // * Liquid
-  // * Nunjucks
-  // * JavaScript
-  // * Handlebars (not async)
+// Shortcodes added in this way are available in:
+// * Markdown
+// * Liquid
+// * Nunjucks
+// * JavaScript
+// * Handlebars (not async)
 
-  $config.addShortcode("user", function(firstName, lastName) { /* … */ });
+$config.addShortcode("user", function(firstName, lastName) { /* … */ });
 
-  // Async-friendly in {{ "2.0.0-canary.24" | coerceVersion }}
-  $config.addShortcode("user", async function(myName) { /* … */ });
+// Async-friendly in {{ "2.0.0-canary.24" | coerceVersion }}
+$config.addShortcode("user", async function(myName) { /* … */ });
 
-  // Direct async method available
-  $config.addAsyncShortcode("user", async function(myName) { /* … */ });
+// Direct async method available
+$config.addAsyncShortcode("user", async function(myName) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -64,20 +64,20 @@ When adding paired shortcodes using the Configuration API, the first argument to
 
 {% set codeContent %}
 export default function ($config) {
-  // Shortcodes added in this way are available in:
-  // * Markdown
-  // * Liquid
-  // * Nunjucks
-  // * JavaScript
-  // * Handlebars (sync only)
+// Shortcodes added in this way are available in:
+// * Markdown
+// * Liquid
+// * Nunjucks
+// * JavaScript
+// * Handlebars (sync only)
 
-  $config.addPairedShortcode("user", function(content, firstName, lastName) { /* … */ });
+$config.addPairedShortcode("user", function(content, firstName, lastName) { /* … */ });
 
-  // Async support for `addPairedShortcode` is new in Eleventy {{ "2.0.0-canary.24" | coerceVersion }}
-  $config.addPairedShortcode("user", async function(content, myName) { /* … */ });
+// Async support for `addPairedShortcode` is new in Eleventy {{ "2.0.0-canary.24" | coerceVersion }}
+$config.addPairedShortcode("user", async function(content, myName) { /* … */ });
 
-  // Async method available
-  $config.addPairedAsyncShortcode("user", async function(content, myName) { /* … */ });
+// Async method available
+$config.addPairedAsyncShortcode("user", async function(content, myName) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -108,11 +108,11 @@ A few Eleventy-specific data properties are available to shortcode callbacks.
 
 {% set codeContent %}
 export default function ($config) {
-  // Make sure you’re not using an arrow function here: () => {}
-  $config.addShortcode("myShortcode", function () {
-    // this.page
-    // this.eleventy
-  });
+// Make sure you’re not using an arrow function here: () => {}
+$config.addShortcode("myShortcode", function () {
+// this.page
+// this.eleventy
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -129,9 +129,9 @@ There are many popular libraries to cache or memoize functions (filters, shortco
 import memoize from "memoize";
 
 export default function($config) {
-	$config.addShortcode("htmlEntities", memoize(str => {
-		return encode(str);
-	}));
+$config.addShortcode("htmlEntities", memoize(str => {
+return encode(str);
+}));
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -142,17 +142,17 @@ You can also specify different functionality for shortcodes in each engine, if y
 
 {% set codeContent %}
 export default function ($config) {
-  // Liquid
-  $config.addLiquidShortcode("user", function(firstName, lastName) {});
-  $config.addPairedLiquidShortcode("user", function(content, firstName, lastName) {});
+// Liquid
+$config.addLiquidShortcode("user", function(firstName, lastName) {});
+$config.addPairedLiquidShortcode("user", function(content, firstName, lastName) {});
 
-  // Nunjucks
-  $config.addNunjucksShortcode("user", function(firstName, lastName) {});
-  $config.addPairedNunjucksShortcode("user", function(content, firstName, lastName) {});
+// Nunjucks
+$config.addNunjucksShortcode("user", function(firstName, lastName) {});
+$config.addPairedNunjucksShortcode("user", function(content, firstName, lastName) {});
 
-  // JavaScript Template Function (New in 0.7.0)
-  $config.addJavaScriptFunction("user", function(firstName, lastName) {});
-  $config.addJavaScriptFunction("user", function(content, firstName, lastName) {}); // Faux-paired shortcode
+// JavaScript Template Function (New in 0.7.0)
+$config.addJavaScriptFunction("user", function(firstName, lastName) {});
+$config.addJavaScriptFunction("user", function(content, firstName, lastName) {}); // Faux-paired shortcode
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -167,19 +167,19 @@ Learn more about these on the individual template engine pages for [Nunjucks](/d
 
 {% set codeContent %}
 export default function ($config) {
-  // Async-friendly
-  // Liquid is already async-friendly
-  $config.addLiquidShortcode("user", async function() {});
-  $config.addPairedLiquidShortcode("user", async function(content) {});
+// Async-friendly
+// Liquid is already async-friendly
+$config.addLiquidShortcode("user", async function() {});
+$config.addPairedLiquidShortcode("user", async function(content) {});
 
-  // Nunjucks Async
-  $config.addNunjucksAsyncShortcode("user", async function() {});
-  $config.addPairedNunjucksAsyncShortcode("user", async function(content) {});
+// Nunjucks Async
+$config.addNunjucksAsyncShortcode("user", async function() {});
+$config.addPairedNunjucksAsyncShortcode("user", async function(content) {});
 
-  // JavaScript Template function
-  // (make sure you `await` these when using in templates!)
-  $config.addJavaScriptFunction("user", async function() {});
-  $config.addJavaScriptFunction("user", async function(content) {}); // Faux-paired shortcode
+// JavaScript Template function
+// (make sure you `await` these when using in templates!)
+$config.addJavaScriptFunction("user", async function() {});
+$config.addJavaScriptFunction("user", async function(content) {}); // Faux-paired shortcode
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

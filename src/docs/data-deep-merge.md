@@ -5,6 +5,7 @@ eleventyNavigation:
 excludeFromSidebar: true
 removedFeature: true
 ---
+
 # Data Deep Merge {% addedin "0.6.0" %}
 
 {% callout "error", "md-block", "Feature Removed" %}This feature was removed in Eleventy v4.0. Read more at [GitHub Issue #3937](https://github.com/11ty/eleventy/issues/3937) (originally inspired by [GitHub Issue #147](https://github.com/11ty/eleventy/issues/147)).{% endcallout %}
@@ -13,11 +14,12 @@ Feel free to [head over to the previous Eleventy version of the docs for this do
 
 {% set codeContent %}
 export default function ($config) {
-	// throws an error in Eleventy v4
-	$config.setDataDeepMerge(false);
+// throws an error in Eleventy v4
+$config.setDataDeepMerge(false);
 
-	// is a no-op in Eleventy v4
-	$config.setDataDeepMerge(true);
+    // is a no-op in Eleventy v4
+    $config.setDataDeepMerge(true);
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

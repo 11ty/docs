@@ -5,6 +5,7 @@ eleventyNavigation:
 blogHighlight: true
 screenshotCacheBust: 1
 ---
+
 <div class="opengraph-card"><img src="./build-awesome-og.png" alt="Build Awesome in white text with the Build Awesome balloon, set amongst a variety of Font Awesome icons in the background"></div>
 
 **It’s one small step for 11ty, one giant leap for Build Awesome.**
@@ -13,7 +14,7 @@ When [11ty joined Font Awesome in September 2024](/blog/eleventy-font-awesome/),
 
 We are following the same playbook for Eleventy! To support us, subscribe to the upcoming [Build_Awesome_Kickstarter `final_Final_v2.psd`]({{ config.kickstarterUrl }}) and get notified when the campaign launches!
 
-_Folks following along closely may have noticed the [_oopsie-daisy_ false-start fundraising campaign](https://blog.fontawesome.com/pausing-kickstarter/) earlier this week. Given a few email deliverability hiccups, folks not following along closely may [not know](https://blog.fontawesome.com/we-have-a-99-email-reputation-gmail-disagrees/) about the campaign at all! We are taking a mulligan._
+_Folks following along closely may have noticed the [*oopsie-daisy* false-start fundraising campaign](https://blog.fontawesome.com/pausing-kickstarter/) earlier this week. Given a few email deliverability hiccups, folks not following along closely may [not know](https://blog.fontawesome.com/we-have-a-99-email-reputation-gmail-disagrees/) about the campaign at all! We are taking a mulligan._
 
 <a href="{{ config.kickstarterUrl }}" class="btn-brand"><i class="fa-brands fa-build-awesome"></i>Subscribe to the Build Awesome Kickstarter</a>
 

@@ -3,6 +3,7 @@ newstitle: "The Eleventy Community Survey (2025)"
 eleventyNavigation:
   parent: Blog
 ---
+
 Please participate in the [**Eleventy Community Survey (and Suggestion Box) (2025)**](https://www.11ty.dev/survey/2025/)!
 
 <a href="https://www.11ty.dev/survey/2025/" style="display: block; max-width: 16em">{% getScreenshotHtml "Eleventy Community Survey (2025)", "https://www.11ty.dev/survey/2025/" %}</a>

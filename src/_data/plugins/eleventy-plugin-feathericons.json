@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-feathericons",
-    "author": "reatlat",
-    "description": "Shortcode, allows feather-icons to be embedded as inline svg into templates."
+	"npm": "eleventy-plugin-feathericons",
+	"author": "reatlat",
+	"description": "Shortcode, allows feather-icons to be embedded as inline svg into templates."
 }

@@ -24,7 +24,7 @@ Next, use the `addPlugin` method:
 import localPlugin from "./config/local-plugin.js";
 
 export default function($config) {
-	$config.addPlugin(localPlugin);
+$config.addPlugin(localPlugin);
 }
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

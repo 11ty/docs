@@ -4,6 +4,7 @@ eleventyNavigation:
   key: Validate Data
   order: 6
 ---
+
 # Validate Data {% addedin "v3.0.0-alpha.7" %}
 
 Use the special `eleventyDataSchema` data property to validate data in your Data Cascade. You can set this anywhere in your Data Cascade (front matter, directory data file, global data, etc).
@@ -20,15 +21,16 @@ In the following example, each content template with an `eleventyDataSchema` cal
 import { z } from "zod";
 
 export default {
-	eleventyDataSchema: function(data) {
-		let result = z.object({
-			draft: z.optional(z.boolean())
-		}).safeParse(data);
+eleventyDataSchema: function(data) {
+let result = z.object({
+draft: z.optional(z.boolean())
+}).safeParse(data);
 
-		if(result.error) {
-			throw new Error(z.prettifyError(result.error));
-		}
-	}
+    	if(result.error) {
+    		throw new Error(z.prettifyError(result.error));
+    	}
+    }
+
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}

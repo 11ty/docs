@@ -5,6 +5,7 @@ eleventyNavigation:
 blogHighlight: true
 screenshotCacheBust: 1
 ---
+
 **TL;DR** After a [whoopsie-daisy false-start on our initial Kickstarter campaign](https://blog.fontawesome.com/pausing-kickstarter/), we’re ramping up again to launch [Kickstarter Final_FINAL_v2 on **April 28, 2026**](https://www.kickstarter.com/projects/fontawesome/build-awesome-pro?ref=43ttgb).
 
 <a href="{{ config.kickstarterUrl }}" class="btn-brand elv-externalexempt"><i class="fa-brands fa-build-awesome"></i>We’re improving how developers collaborate on the Open Web. Get notified on April 28th!</a>
@@ -32,8 +33,10 @@ Consider the following hypothetical Hello World example that opts-in a specific 
 ```md
 {% raw %}
 ---
+
 title: World
 ---
+
 # Hello, {{ title | editable }}
 {% endraw %}
 ```
@@ -53,7 +56,6 @@ export function render({ title }) {
 
 </details>
 
-
 When using Build Awesome Pro (and with the proper permissions for editing), the `title` data property will render as an editable value on the page. Edits can be made directly in-browser and are applied in the data cascade to apply _project-wide_.
 
 {% callout "demo" %}
@@ -65,9 +67,11 @@ Build Awesome Pro will expose controls in your project to make your content edit
 {% highlight "diff-md" %}
 {% raw %}
 ---
+
 -title: World
 +title: Moon
 ---
+
 # Hello, {{ title | editable }}
 {% endraw %}
 {% endhighlight %}

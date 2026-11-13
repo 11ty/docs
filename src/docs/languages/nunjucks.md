@@ -17,12 +17,12 @@ layout: layouts/langs.njk
 | ------------------- | -------------- | ------------------------------------------------- |
 | `njk`               | `.njk`         | [`nunjucks`](https://mozilla.github.io/nunjucks/) |
 
-| Eleventy version | `nunjucks` version |
-| --- | --- |
-| `@11ty/eleventy@0.x` | `nunjucks@3.x` |
-| `@11ty/eleventy@1.x` | `nunjucks@3.x` |
-| `@11ty/eleventy@2.x` | `nunjucks@3.x` |
-| `@11ty/eleventy@3.x` | `nunjucks@3.x` |
+| Eleventy version     | `nunjucks` version |
+| -------------------- | ------------------ |
+| `@11ty/eleventy@0.x` | `nunjucks@3.x`     |
+| `@11ty/eleventy@1.x` | `nunjucks@3.x`     |
+| `@11ty/eleventy@2.x` | `nunjucks@3.x`     |
+| `@11ty/eleventy@3.x` | `nunjucks@3.x`     |
 
 You can override a `.njk` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
@@ -36,10 +36,10 @@ It’s recommended to use the Configuration API to override the default Nunjucks
 
 {% set codeContent %}
 export default function ($config) {
-	$config.setNunjucksEnvironmentOptions({
-		throwOnUndefined: true,
-		autoescape: false, // warning: don’t do this!
-	});
+$config.setNunjucksEnvironmentOptions({
+throwOnUndefined: true,
+autoescape: false, // warning: don’t do this!
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -54,29 +54,30 @@ While it is preferred and simpler to use the Options-specific API method above (
 import Nunjucks from "nunjucks";
 
 export default function ($config) {
-	let nunjucksEnvironment = new Nunjucks.Environment(
-		new Nunjucks.FileSystemLoader("_includes")
-	);
+let nunjucksEnvironment = new Nunjucks.Environment(
+new Nunjucks.FileSystemLoader("_includes")
+);
 
-	$config.setLibrary("njk", nunjucksEnvironment);
+    $config.setLibrary("njk", nunjucksEnvironment);
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
 
-| Feature                                                           | Syntax                                                                                                                                                                                                                                                                        |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ Includes                                                       | `{% raw %}{% include 'included.njk' %}{% endraw %}` looks in `_includes/included.njk`. Filenames must be in quotes. Does not process front matter in the include file.                                                                                                        |
-| ✅ Includes (Relative Path) {% addedin "0.9.0" %}                 | Relative paths use `./` (template’s directory) or `../` (template’s parent directory).<br><br>Example: `{% raw %}{% include './included.njk' %}{% endraw %}` looks for `included.njk` in the template’s current directory. Does not process front matter in the include file. |
-| ✅ Extends                                                        | `{% raw %}{% extends 'base.njk' %}{% endraw %}` looks in `_includes/base.njk`. Does not process front matter in the include file.                                                                                                                                             |
-| ✅ Extends (Relative Path) {% addedin "0.9.0" %}                  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory)<br><br>Example: `{% raw %}{% extends './base.njk' %}{% endraw %}` looks for `base.njk` in the template’s current directory. Does not process front matter in the include file.          |
-| ✅ Imports                                                        | `{% raw %}{% import 'macros.njk' %}{% endraw %}` looks in `_includes/macros.njk`. Does not process front matter in the include file.                                                                                                                                          |
-| ✅ Imports (Relative Path) {% addedin "0.9.0" %}                  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory):<br>`{% raw %}{% import './macros.njk' %}{% endraw %}` looks for `macros.njk` in the template’s current directory. Does not process front matter in the include file.                   |
-| ✅ Filters                                                        | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
-| ✅ [Universal Filters](/docs/filters/) | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
-| ✅ [Custom Tags](/docs/custom-tags/)                              | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Custom Tags](/docs/custom-tags/). {% addedin "0.5.0" %}                                                                                                                                                          |
-| ✅ [Shortcodes](/docs/shortcodes/)                                | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Shortcodes](/docs/shortcodes/). {% addedin "0.5.0" %}                                                                                                                                                            |
+| Feature                                           | Syntax                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ Includes                                       | `{% raw %}{% include 'included.njk' %}{% endraw %}` looks in `_includes/included.njk`. Filenames must be in quotes. Does not process front matter in the include file.                                                                                                        |
+| ✅ Includes (Relative Path) {% addedin "0.9.0" %} | Relative paths use `./` (template’s directory) or `../` (template’s parent directory).<br><br>Example: `{% raw %}{% include './included.njk' %}{% endraw %}` looks for `included.njk` in the template’s current directory. Does not process front matter in the include file. |
+| ✅ Extends                                        | `{% raw %}{% extends 'base.njk' %}{% endraw %}` looks in `_includes/base.njk`. Does not process front matter in the include file.                                                                                                                                             |
+| ✅ Extends (Relative Path) {% addedin "0.9.0" %}  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory)<br><br>Example: `{% raw %}{% extends './base.njk' %}{% endraw %}` looks for `base.njk` in the template’s current directory. Does not process front matter in the include file.          |
+| ✅ Imports                                        | `{% raw %}{% import 'macros.njk' %}{% endraw %}` looks in `_includes/macros.njk`. Does not process front matter in the include file.                                                                                                                                          |
+| ✅ Imports (Relative Path) {% addedin "0.9.0" %}  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory):<br>`{% raw %}{% import './macros.njk' %}{% endraw %}` looks for `macros.njk` in the template’s current directory. Does not process front matter in the include file.                   |
+| ✅ Filters                                        | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
+| ✅ [Universal Filters](/docs/filters/)            | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
+| ✅ [Custom Tags](/docs/custom-tags/)              | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Custom Tags](/docs/custom-tags/). {% addedin "0.5.0" %}                                                                                                                                                          |
+| ✅ [Shortcodes](/docs/shortcodes/)                | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Shortcodes](/docs/shortcodes/). {% addedin "0.5.0" %}                                                                                                                                                            |
 
 ## Filters
 
@@ -86,14 +87,14 @@ Read more about [Nunjucks Filter syntax](https://mozilla.github.io/nunjucks/temp
 
 {% set codeContent %}
 export default function($config) {
-  // Nunjucks Filter
-  $config.addNunjucksFilter("myNjkFilter", function(value) { /* … */ });
+// Nunjucks Filter
+$config.addNunjucksFilter("myNjkFilter", function(value) { /* … */ });
 
-  // Nunjucks Asynchronous Filter (read on below)
-  $config.addNunjucksAsyncFilter("myAsyncNjkFilter", function(value, callback) { /* … */ });
+// Nunjucks Asynchronous Filter (read on below)
+$config.addNunjucksAsyncFilter("myAsyncNjkFilter", function(value, callback) { /* … */ });
 
-  // Universal filters (Adds to Liquid, Nunjucks, and 11ty.js)
-  $config.addFilter("myFilter", function(value) { /* … */ });
+// Universal filters (Adds to Liquid, Nunjucks, and 11ty.js)
+$config.addFilter("myFilter", function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -112,13 +113,13 @@ export default function($config) {
 
 {% set codeContent %}
 export default function ($config) {
-	// Nunjucks Filter
-	$config.addNunjucksFilter(
-		"concatThreeStrings",
-		function (arg1, arg2, arg3) {
-			return arg1 + arg2 + arg3;
-		}
-	);
+// Nunjucks Filter
+$config.addNunjucksFilter(
+"concatThreeStrings",
+function (arg1, arg2, arg3) {
+return arg1 + arg2 + arg3;
+}
+);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -137,14 +138,14 @@ By default, almost all templating engines are synchronous. Nunjucks supports som
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addNunjucksAsyncFilter(
-		"myAsyncFilter",
-		function (value, callback) {
-			setTimeout(function () {
-				callback(null, "My Result");
-			}, 100);
-		}
-	);
+$config.addNunjucksAsyncFilter(
+"myAsyncFilter",
+function (value, callback) {
+setTimeout(function () {
+callback(null, "My Result");
+}, 100);
+}
+);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -155,14 +156,14 @@ Here’s a Nunjucks example with 2 arguments:
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addNunjucksAsyncFilter(
-		"myAsyncFilter",
-		function (value1, value2, callback) {
-			setTimeout(function () {
-				callback(null, "My Result");
-			}, 100);
-		}
-	);
+$config.addNunjucksAsyncFilter(
+"myAsyncFilter",
+function (value1, value2, callback) {
+setTimeout(function () {
+callback(null, "My Result");
+}, 100);
+}
+);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -177,12 +178,12 @@ Shortcodes are reusable bits of content. You can add Nunjucks specific shortcode
 
 {% set codeContent %}
 export default function($config) {
-  // Nunjucks Shortcode
-  $config.addNunjucksShortcode("user", function(name, twitterUsername) { /* … */ });
+// Nunjucks Shortcode
+$config.addNunjucksShortcode("user", function(name, twitterUsername) { /* … */ });
 
-  // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  $config.addShortcode("user", function(name, twitterUsername) {
-    return `<div class="user">
+// Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
+$config.addShortcode("user", function(name, twitterUsername) {
+return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 </div>`;
@@ -214,12 +215,12 @@ export default function($config) {
 
 {% set codeContent %}
 export default function($config) {
-  // Nunjucks Shortcode
-  $config.addPairedNunjucksShortcode("user", function(bioContent, name, twitterUsername) { /* … */ });
+// Nunjucks Shortcode
+$config.addPairedNunjucksShortcode("user", function(bioContent, name, twitterUsername) { /* … */ });
 
-  // Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
-  $config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
-    return `<div class="user">
+// Universal Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
+$config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
+return `<div class="user">
 <div class="user_name">${name}</div>
 <div class="user_twitter">@${twitterUsername}</div>
 <div class="user_bio">${bioContent}</div>
@@ -259,9 +260,9 @@ Creates a single argument object to pass to the shortcode.
 
 {% set codeContent %}
 export default function($config) {
-	// Nunjucks Shortcode
-	$config.addNunjucksShortcode("user", function (user) {
-		return `<div class="user">
+// Nunjucks Shortcode
+$config.addNunjucksShortcode("user", function (user) {
+return `<div class="user">
 <div class="user_name">${user.name}</div>
 ${user.twitter ? `<div class="user_twitter">@${user.twitter}</div>` : ""}
 </div>`;
@@ -318,19 +319,20 @@ Note that the configuration methods here to add asynchronous shortcodes are diff
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addNunjucksAsyncShortcode(
-		"user",
-		async function (name, twitterUsername) {
-			return await fetchAThing();
-		}
-	);
+$config.addNunjucksAsyncShortcode(
+"user",
+async function (name, twitterUsername) {
+return await fetchAThing();
+}
+);
 
-	$config.addPairedNunjucksAsyncShortcode(
-		"user2",
-		async function (content, name, twitterUsername) {
-			return await fetchAThing();
-		}
-	);
+    $config.addPairedNunjucksAsyncShortcode(
+    	"user2",
+    	async function (content, name, twitterUsername) {
+    		return await fetchAThing();
+    	}
+    );
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -392,7 +394,7 @@ Nunjucks provides a custom way to [add globals](https://mozilla.github.io/nunjuc
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addNunjucksGlobal("fortythree", 43);
+$config.addNunjucksGlobal("fortythree", 43);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -407,9 +409,9 @@ export default function ($config) {
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addNunjucksGlobal("fortytwo", function () {
-		return 42;
-	});
+$config.addNunjucksGlobal("fortytwo", function () {
+return 42;
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

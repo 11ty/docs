@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-post-stats",
-  "author": "johnwargo",
-  "description": "Adds a post statistics collection to a site you can use to generate a table or graph of posts over time as well as average days between posts."
+	"npm": "eleventy-plugin-post-stats",
+	"author": "johnwargo",
+	"description": "Adds a post statistics collection to a site you can use to generate a table or graph of posts over time as well as average days between posts."
 }

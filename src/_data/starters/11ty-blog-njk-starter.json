@@ -1,6 +1,6 @@
 {
-  "url": "https://github.com/httpsterio/11ty-blog-njk-starter",
-  "name": "11ty-blog-njk-starter",
-  "description": "Forked from Rong Ying's starter, now with njk and a few tiny fixes",
-  "demo": "https://11ty-blog-njk-starter.netlify.app"
+	"url": "https://github.com/httpsterio/11ty-blog-njk-starter",
+	"name": "11ty-blog-njk-starter",
+	"description": "Forked from Rong Ying's starter, now with njk and a few tiny fixes",
+	"demo": "https://11ty-blog-njk-starter.netlify.app"
 }

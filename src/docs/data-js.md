@@ -28,7 +28,7 @@ If you return a `function`, we’ll use the return value from that function.
 
 {% set codeContent %}
 export default function () {
-	return ["user1", "user2"];
+return ["user1", "user2"];
 }
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -37,15 +37,16 @@ We use `await` on the return value, so you can return a promise and/or use an `a
 
 {% set codeContent %}
 async function fetchUserData(username) {
-	// do some async things
-	return username;
+// do some async things
+return username;
 }
 
 export default async function () {
-	let user1 = await fetchUserData("user1");
-	let user2 = await fetchUserData("user2");
+let user1 = await fetchUserData("user1");
+let user2 = await fetchUserData("user2");
 
-	return [user1, user2];
+    return [user1, user2];
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -60,11 +61,12 @@ You’ll want to use [Eleventy’s Fetch plugin](/docs/plugins/fetch/) to reques
 
 {% set codeContent %}
 export default function (configData) {
-	if (configData.eleventy.env.source === "cli") {
-		return "I am on the command line";
-	}
+if (configData.eleventy.env.source === "cli") {
+return "I am on the command line";
+}
 
-	return "I am running programmatically via a script";
+    return "I am running programmatically via a script";
+
 }
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -85,16 +87,17 @@ import { graphql, buildSchema } from "graphql";
 
 // this could also be `async function`
 export default function () {
-	// if you want to `await` for other things here, use `async function`
-	var schema = buildSchema(`type Query {
+// if you want to `await` for other things here, use `async function`
+var schema = buildSchema(`type Query {
     hello: String
   }`);
 
-	var root = {
-		hello: () => "Hello world async!",
-	};
+    var root = {
+    	hello: () => "Hello world async!",
+    };
 
-	return graphql(schema, "{ hello }", root);
+    return graphql(schema, "{ hello }", root);
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -135,5 +138,6 @@ Working from our [Inline CSS Quick Tip](/docs/quicktips/inline-css/), we can mod
 	{{ css | safe }}
 {% endif %}
 </style>
+
 {% endraw %}{% endset %}
 {{ codeBlock | highlight("html") | safe }}

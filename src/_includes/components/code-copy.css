@@ -2,34 +2,34 @@
 :is(syntax-highlight, .syntax-highlight):has(wa-copy-button) {
 	position: relative;
 
- 	wa-copy-button {
+	wa-copy-button {
 		position: absolute;
 		right: 0;
 		bottom: 0;
-		padding: .25em 0;
+		padding: 0.25em 0;
 		margin: 0;
 		color: #fff;
 		height: 2.5em; /* SAFARI WEEEEE */
 
 		&::part(button) {
 			transition: 300ms all;
-			opacity: .75;
-			background-color: rgba(0,0,0,.5);
-			border-radius: .25em;
+			opacity: 0.75;
+			background-color: rgba(0, 0, 0, 0.5);
+			border-radius: 0.25em;
 			cursor: copy;
 		}
 
 		&:is(:hover, :focus)::part(button) {
 			opacity: 1;
-			background-color: rgba(0,0,0,1);
+			background-color: rgba(0, 0, 0, 1);
 		}
 
 		&::part(success-icon) {
 			color: rgb(141, 237, 141);
 		}
 		&::part(tooltip__body) {
-			background-color: rgba(0,0,0,.94);
-			border-radius: .25em;
+			background-color: rgba(0, 0, 0, 0.94);
+			border-radius: 0.25em;
 		}
 	}
 }

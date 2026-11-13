@@ -38,19 +38,24 @@ table thead th a[href] {
 table .numeric {
 	white-space: nowrap;
 	text-align: right;
-	font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+	font-family:
+		Menlo,
+		Monaco,
+		Consolas,
+		Courier New,
+		monospace;
 }
 .numeric-down:not(.numeric-before, .numeric-after):before, /* default position before */
 .numeric-up:not(.numeric-before, .numeric-after):before, /* default position before */
 .numeric-before {
-	--rating-margin: 0 .25em 0 0;
+	--rating-margin: 0 0.25em 0 0;
 }
 .numeric-after {
-	--rating-margin: 0 0 0 .25em;
+	--rating-margin: 0 0 0 0.25em;
 }
 .numeric-note {
 	--rating-character: "*";
-	--rating-margin: 0 .25em;
+	--rating-margin: 0 0.25em;
 	--rating-color: red;
 }
 .numeric-up {
@@ -78,7 +83,6 @@ table .numeric {
 	font-family: system-ui, sans-serif;
 	color: var(--rating-color);
 }
-
 
 @media (prefers-color-scheme: dark) {
 	table td {

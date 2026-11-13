@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-hubspot",
-    "author": "reatlat",
-    "description": "will generate HubSpot forms or meeting calendars."
+	"npm": "eleventy-plugin-hubspot",
+	"author": "reatlat",
+	"description": "will generate HubSpot forms or meeting calendars."
 }

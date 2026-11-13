@@ -1,6 +1,6 @@
 {
-  "url": "https://github.com/httpsterio/11ty-gallery",
-  "name": "11ty-gallery",
-  "description": "A simple little photogallery project. Crops, resizes and generates json from your images. Requires Graphicsmagic, ffmpeg and jq.",
-  "demo": "https://11ty-gallery.netlify.app"
+	"url": "https://github.com/httpsterio/11ty-gallery",
+	"name": "11ty-gallery",
+	"description": "A simple little photogallery project. Crops, resizes and generates json from your images. Requires Graphicsmagic, ffmpeg and jq.",
+	"demo": "https://11ty-gallery.netlify.app"
 }

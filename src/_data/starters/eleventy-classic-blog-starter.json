@@ -1,7 +1,7 @@
 {
-  "url": "https://github.com/TigersWay/eleventy-classic-blog-starter",
-  "name": "Eleventy Classic Blog Starter (ECBS)",
-  "description": "A starter template to build a classic `Hyde` blog with Eleventy.",
-  "author": "tigerswaynet",
-  "demo": "https://eleventy-classic-blog-starter.netlify.app/"
+	"url": "https://github.com/TigersWay/eleventy-classic-blog-starter",
+	"name": "Eleventy Classic Blog Starter (ECBS)",
+	"description": "A starter template to build a classic `Hyde` blog with Eleventy.",
+	"author": "tigerswaynet",
+	"demo": "https://eleventy-classic-blog-starter.netlify.app/"
 }

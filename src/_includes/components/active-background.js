@@ -3,10 +3,10 @@ window.customElements.define(
 	class extends HTMLElement {
 		activate(targetElement) {
 			let color = targetElement.getAttribute("data-active-background");
-			if(color === "") {
+			if (color === "") {
 				// use current color if data attribute has no value
 				color = window.getComputedStyle(targetElement).getPropertyValue("color");
-				if(color.startsWith("rgb(")) {
+				if (color.startsWith("rgb(")) {
 					color = `rgba(${color.trim().slice(4, -1)}, .3)`;
 				}
 			}
@@ -23,7 +23,7 @@ window.customElements.define(
 		}
 
 		connectedCallback() {
-			for(let el of this.querySelectorAll("[data-active-background]")) {
+			for (let el of this.querySelectorAll("[data-active-background]")) {
 				el.addEventListener("mouseenter", () => this.activate(el));
 				el.addEventListener("mouseleave", () => this.deactivate());
 
@@ -31,5 +31,5 @@ window.customElements.define(
 				el.addEventListener("focusout", () => this.deactivate());
 			}
 		}
-	}
+	},
 );

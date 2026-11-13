@@ -1,8 +1,18 @@
 /* External links */
-a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt) {
+a[href^="https://"]:not(
+		[href^="https://build.awesome.me"],
+		[href^="https://build.awesome.me"],
+		.minilink,
+		.elv-externalexempt
+	) {
 	text-decoration-color: var(--external-link-underline);
 }
-a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt):after {
+a[href^="https://"]:not(
+		[href^="https://build.awesome.me"],
+		[href^="https://build.awesome.me"],
+		.minilink,
+		.elv-externalexempt
+	):after {
 	content: " ↗";
 	font-family: system-ui, sans-serif;
 	font-style: normal;
@@ -14,19 +24,31 @@ a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://buil
 	letter-spacing: -0.08333333333333em; /* -1px /12 */
 }
 /* Contains Font Awesome icon */
-a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt):has(.fa11ty-icon):after {
+a[href^="https://"]:not(
+		[href^="https://build.awesome.me"],
+		[href^="https://build.awesome.me"],
+		.minilink,
+		.elv-externalexempt
+	):has(.fa11ty-icon):after {
 	content: "";
 }
 
 /* External link hovers */
-a[href^="https://"]:not([href^="https://build.awesome.me"], [href^="https://build.awesome.me"], .minilink, .elv-externalexempt):hover:after {
+a[href^="https://"]:not(
+		[href^="https://build.awesome.me"],
+		[href^="https://build.awesome.me"],
+		.minilink,
+		.elv-externalexempt
+	):hover:after {
 	color: inherit;
 }
 
 /* CSS-only favicons https://www.zachleat.com/web/external-link-favicons/
  * Limited to YouTube and GitHub only (most commonly used)
  */
-a:is([href^="https://www.youtube.com"], [href^="https://youtube.com"]):not(.elv-externalexempt):before,
+a:is([href^="https://www.youtube.com"], [href^="https://youtube.com"]):not(
+		.elv-externalexempt
+	):before,
 a[href^="https://github.com"]:not(.elv-externalexempt):before {
 	content: "";
 	display: inline-block;
@@ -37,7 +59,9 @@ a[href^="https://github.com"]:not(.elv-externalexempt):before {
 	background-size: contain;
 	background-repeat: no-repeat;
 }
-a:is([href^="https://www.youtube.com"], [href^="https://youtube.com"]):not(.elv-externalexempt):after,
+a:is([href^="https://www.youtube.com"], [href^="https://youtube.com"]):not(
+		.elv-externalexempt
+	):after,
 a[href^="https://github.com"]:not(.elv-externalexempt):after {
 	display: none;
 }
@@ -68,7 +92,8 @@ a[href^="https://youtube.com"].lty-playbtn:before,
 }
 
 /* Hide duplicate images */
-a:is([href^="https://www.youtube.com"], [href^="https://youtube.com"]):not(.elv-externalexempt) .avatar,
+a:is([href^="https://www.youtube.com"], [href^="https://youtube.com"]):not(.elv-externalexempt)
+	.avatar,
 a[href^="https://github.com"]:not(.elv-externalexempt) .avatar {
 	display: none;
 }

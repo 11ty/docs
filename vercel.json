@@ -1,62 +1,110 @@
 {
-  "trailingSlash": true,
-  "redirects": [
-    { "source": "/survey/", "destination": "https://forms.gle/v8mjUuf5cyRZy2GG7", "statusCode": 301 },
-    { "source": "/survey/2025/", "destination": "https://forms.gle/v8mjUuf5cyRZy2GG7", "statusCode": 301 },
-    { "source": "/mastodon/", "destination": "https://neighborhood.11ty.dev/@11ty", "statusCode": 301 },
-    { "source": "/youtube/", "destination": "https://www.youtube.com/c/EleventyVideo", "statusCode": 301 },
-    { "source": "/follow/", "destination": "/firehose/firehose.rss", "statusCode": 301 },
-    { "source": "/follow/follow.rss", "destination": "/firehose/firehose.rss", "statusCode": 301 },
-    { "source": "/docs/getting-started/", "destination": "/docs/", "statusCode": 301 },
-    { "source": "/docs/get-started/", "destination": "/docs/", "statusCode": 301 },
-    { "source": "/activity/", "destination": "/firehose/", "statusCode": 301 },
-    { "source": "/docs/sites/", "destination": "https://www.speedlify.dev/group/11ty-community/", "permanent": true },
-    { "source": "/docs/performance-leaderboard/", "destination": "https://www.speedlify.dev/group/11ty-community/", "permanent": true },
-    { "source": "/docs/accessibility-leaderboard/", "destination": "https://www.speedlify.dev/group/11ty-community/", "permanent": true },
-    { "source": "/leaderboard/(.*)", "destination": "https://www.speedlify.dev/group/11ty-community/", "permanent": true },
-    { "source": "/speedlify/(.*)", "destination": "https://www.speedlify.dev/group/11ty-community/", "permanent": true },
-    { "source": "/news/:path*", "destination": "/blog/:path*", "permanent": true },
-    { "source": "/docs/how-to-support/", "destination": "/docs/community/", "statusCode": 301 },
-    { "source": "/docs/plugins/cache/", "destination": "/docs/plugins/fetch/", "statusCode": 301 },
-    { "source": "/docs/plugins/partial-hydration/", "destination": "/docs/plugins/is-land/", "statusCode": 301 },
-    { "source": "/docs/templates/", "destination": "/docs/projects/", "statusCode": 301 },
-    { "source": "/docs/plugins/official/", "destination": "/docs/plugins/", "statusCode": 301 },
-    { "source": "/docs/memoize/", "destination": "/docs/filters/#memoize-filters", "statusCode": 301 },
+	"trailingSlash": true,
+	"redirects": [
+		{
+			"source": "/survey/",
+			"destination": "https://forms.gle/v8mjUuf5cyRZy2GG7",
+			"statusCode": 301
+		},
+		{
+			"source": "/survey/2025/",
+			"destination": "https://forms.gle/v8mjUuf5cyRZy2GG7",
+			"statusCode": 301
+		},
+		{
+			"source": "/mastodon/",
+			"destination": "https://neighborhood.11ty.dev/@11ty",
+			"statusCode": 301
+		},
+		{
+			"source": "/youtube/",
+			"destination": "https://www.youtube.com/c/EleventyVideo",
+			"statusCode": 301
+		},
+		{ "source": "/follow/", "destination": "/firehose/firehose.rss", "statusCode": 301 },
+		{ "source": "/follow/follow.rss", "destination": "/firehose/firehose.rss", "statusCode": 301 },
+		{ "source": "/docs/getting-started/", "destination": "/docs/", "statusCode": 301 },
+		{ "source": "/docs/get-started/", "destination": "/docs/", "statusCode": 301 },
+		{ "source": "/activity/", "destination": "/firehose/", "statusCode": 301 },
+		{
+			"source": "/docs/sites/",
+			"destination": "https://www.speedlify.dev/group/11ty-community/",
+			"permanent": true
+		},
+		{
+			"source": "/docs/performance-leaderboard/",
+			"destination": "https://www.speedlify.dev/group/11ty-community/",
+			"permanent": true
+		},
+		{
+			"source": "/docs/accessibility-leaderboard/",
+			"destination": "https://www.speedlify.dev/group/11ty-community/",
+			"permanent": true
+		},
+		{
+			"source": "/leaderboard/(.*)",
+			"destination": "https://www.speedlify.dev/group/11ty-community/",
+			"permanent": true
+		},
+		{
+			"source": "/speedlify/(.*)",
+			"destination": "https://www.speedlify.dev/group/11ty-community/",
+			"permanent": true
+		},
+		{ "source": "/news/:path*", "destination": "/blog/:path*", "permanent": true },
+		{ "source": "/docs/how-to-support/", "destination": "/docs/community/", "statusCode": 301 },
+		{ "source": "/docs/plugins/cache/", "destination": "/docs/plugins/fetch/", "statusCode": 301 },
+		{
+			"source": "/docs/plugins/partial-hydration/",
+			"destination": "/docs/plugins/is-land/",
+			"statusCode": 301
+		},
+		{ "source": "/docs/templates/", "destination": "/docs/projects/", "statusCode": 301 },
+		{ "source": "/docs/plugins/official/", "destination": "/docs/plugins/", "statusCode": 301 },
+		{
+			"source": "/docs/memoize/",
+			"destination": "/docs/filters/#memoize-filters",
+			"statusCode": 301
+		},
 
-    { "source": "/speedlify/", "destination": "https://www.11ty.dev/speedlify/", "permanent": false },
-    { "source": "/docs/performance/", "destination": "/docs/why/", "statusCode": 301 }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
-    },
-    {
-      "source": "/blog/feed.xml",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Content-Type",
-          "value": "application/xml; charset=utf-8"
-        }
-      ]
-    }
-  ]
+		{
+			"source": "/speedlify/",
+			"destination": "https://www.11ty.dev/speedlify/",
+			"permanent": false
+		},
+		{ "source": "/docs/performance/", "destination": "/docs/why/", "statusCode": 301 }
+	],
+	"headers": [
+		{
+			"source": "/(.*)",
+			"headers": [
+				{
+					"key": "X-Robots-Tag",
+					"value": "noindex, nofollow"
+				}
+			]
+		},
+		{
+			"source": "/api/(.*)",
+			"headers": [
+				{
+					"key": "Access-Control-Allow-Origin",
+					"value": "*"
+				}
+			]
+		},
+		{
+			"source": "/blog/feed.xml",
+			"headers": [
+				{
+					"key": "X-Content-Type-Options",
+					"value": "nosniff"
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/xml; charset=utf-8"
+				}
+			]
+		}
+	]
 }

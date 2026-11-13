@@ -16,9 +16,9 @@ At their simplest, Build Awesome plugins are a function passed to the `addPlugin
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addPlugin(function($config) {
-		// I am a plugin!
-	});
+$config.addPlugin(function($config) {
+// I am a plugin!
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -27,11 +27,11 @@ The plugin can be defined elsewhere in the same file:
 
 {% set codeContent %}
 function myPlugin($config) {
-	// I am a plugin!
+// I am a plugin!
 }
 
 export default function ($config) {
-	$config.addPlugin(myPlugin);
+$config.addPlugin(myPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -42,7 +42,7 @@ Or in a different file:
 import myPlugin from "./_config/plugin.js";
 
 export default function ($config) {
-	$config.addPlugin(myPlugin);
+$config.addPlugin(myPlugin);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -53,7 +53,7 @@ Or in an `npm` package:
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.addPlugin(pluginRss);
+$config.addPlugin(pluginRss);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -62,9 +62,9 @@ Plugins are async-friendly {% addedin "3.0.0-alpha.1" %} but you must `await` th
 
 {% set codeContent %}
 export default async function ($config) {
-	await $config.addPlugin(async function($config) {
-		// I am an asynchronous plugin!
-	});
+await $config.addPlugin(async function($config) {
+// I am an asynchronous plugin!
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -89,7 +89,7 @@ Your config file is probably named `buildawesome.config.js` or `eleventy.config.
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.addPlugin(pluginRss);
+$config.addPlugin(pluginRss);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -102,14 +102,15 @@ Use an optional second argument to `addPlugin` to customize your plugin’s beha
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function ($config) {
-	$config.addPlugin(pluginSyntaxHighlight, {
-		// only install the markdown highlighter
-		templateFormats: ["md"],
+$config.addPlugin(pluginSyntaxHighlight, {
+// only install the markdown highlighter
+templateFormats: ["md"],
 
-		init: function ({ Prism }) {
-			// Add your own custom language to Prism!
-		},
-	});
+    	init: function ({ Prism }) {
+    		// Add your own custom language to Prism!
+    	},
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -123,10 +124,10 @@ It’s unlikely you’ll need this feature _but_ you can namespace parts of your
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
-	$config.namespace("myPrefix_", () => {
-		// the rssLastUpdatedDate filter is now myPrefix_rssLastUpdatedDate
-		$config.addPlugin(pluginRss);
-	});
+$config.namespace("myPrefix_", () => {
+// the rssLastUpdatedDate filter is now myPrefix_rssLastUpdatedDate
+$config.addPlugin(pluginRss);
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -145,19 +146,20 @@ You are unlikely to need this, but you can execute a plugin’s code immediately
 
 {% set codeContent %}
 export default function ($config, pluginOptions) {
-	console.log( "first" );
+console.log( "first" );
 
-	$config.addPlugin($config => {
-		console.log("fourth");
-	});
+    $config.addPlugin($config => {
+    	console.log("fourth");
+    });
 
-	$config.addPlugin($config => {
-		console.log("second");
-	}, {
-		immediate: true
-	});
+    $config.addPlugin($config => {
+    	console.log("second");
+    }, {
+    	immediate: true
+    });
 
-	console.log("third");
+    console.log("third");
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -170,7 +172,7 @@ A plugin primarily provides a “configuration function.” This function is cal
 
 {% set codeContent %}
 export default function ($config, pluginOptions) {
-	// Your plugin code goes here
+// Your plugin code goes here
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -186,22 +188,22 @@ If you want to allow developers to use custom arguments provided by your plugin,
 
 {% set codeContent %}
 export default {
-	initArguments: {},
-	configFunction: function ($config, pluginOptions) {
-		// Your plugin code goes here
-	},
+initArguments: {},
+configFunction: function ($config, pluginOptions) {
+// Your plugin code goes here
+},
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addPlugin(require("./fancy-plugin.js"), {
-		init: function (initArguments) {
-			// `this` is the $config object
-			// initArguments will be the `myInitArguments` object from above
-		},
-	});
+$config.addPlugin(require("./fancy-plugin.js"), {
+init: function (initArguments) {
+// `this` is the $config object
+// initArguments will be the `myInitArguments` object from above
+},
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -216,9 +218,9 @@ If your plugin requires a specific feature in Build Awesome (Eleventy) core, you
 
 {% set codeContent %}
 export default function ($config, pluginOptions) {
-	if(!("addTemplate" in $config)) {
-		console.log( `[my-test-plugin] WARN Build Awesome (Eleventy) plugin compatibility: Virtual Templates are required for this plugin, please use Build Awesome (Eleventy) v3.0 or newer.` );
-	}
+if(!("addTemplate" in $config)) {
+console.log( `[my-test-plugin] WARN Build Awesome (Eleventy) plugin compatibility: Virtual Templates are required for this plugin, please use Build Awesome (Eleventy) v3.0 or newer.` );
+}
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -231,20 +233,19 @@ If feature testing is not available for your specific use case, you can add this
 
 {% set codeContent %}
 export default function ($config, pluginOptions) {
-	try {
-		// Emit a warning message if the application is not using Build Awesome (Eleventy) 3.0 or newer (including prereleases).
-		$config.versionCheck(">=3.0");
-	} catch(e) {
-		console.log( `[my-test-plugin] WARN Build Awesome plugin compatibility: ${e.message}` );
-	}
+try {
+// Emit a warning message if the application is not using Build Awesome (Eleventy) 3.0 or newer (including prereleases).
+$config.versionCheck(">=3.0");
+} catch(e) {
+console.log( `[my-test-plugin] WARN Build Awesome plugin compatibility: ${e.message}` );
+}
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
-* This uses the [`semver` package](https://www.npmjs.com/package/semver) and is compatible with advanced range syntax.
-* **Upper bounding your version number is _not recommended_**. We work very hard to maintain backwards compatibility between major versions. Please ensure your plugin code does the same!
-* The `versionCheck` method has been available in core since v0.3.2 (~2018).
-
+- This uses the [`semver` package](https://www.npmjs.com/package/semver) and is compatible with advanced range syntax.
+- **Upper bounding your version number is _not recommended_**. We work very hard to maintain backwards compatibility between major versions. Please ensure your plugin code does the same!
+- The `versionCheck` method has been available in core since v0.3.2 (~2018).
 
 ### Distributing a Plugin
 

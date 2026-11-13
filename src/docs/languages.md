@@ -4,6 +4,7 @@ eleventyNavigation:
   key: Template Languages
   order: 3
 ---
+
 # Template Languages
 
 Eleventy’s super power is that it is built on an extensible architecture that can work with one or more template languages in the same project.

@@ -1,4 +1,4 @@
 {
-  "npm": "eleventy-plugin-babel",
-  "description": "Compiles JS with gulp-babel."
+	"npm": "eleventy-plugin-babel",
+	"description": "Compiles JS with gulp-babel."
 }

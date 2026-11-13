@@ -11,12 +11,8 @@
 .fl > * {
 	/* if a margin is in play, account for this in our stackpoint calculations */
 	/* notably this will also work if a stackpoint is not used. */
-	--fl-gap-mod: calc(
-		var(--fl-stackpoint, -1 * var(--fl-gap-h, 0px)) - var(--fl-stackpoint, 0px)
-	);
-	--fl-stackpoint-calc: calc(
-		(var(--fl-stackpoint, 100%) - 100% + var(--fl-gap-mod, 0px)) * 999
-	);
+	--fl-gap-mod: calc(var(--fl-stackpoint, -1 * var(--fl-gap-h, 0px)) - var(--fl-stackpoint, 0px));
+	--fl-stackpoint-calc: calc((var(--fl-stackpoint, 100%) - 100% + var(--fl-gap-mod, 0px)) * 999);
 
 	flex-grow: 1;
 	/* This will always have a value, due to CSS variable defaults set in .fl above */

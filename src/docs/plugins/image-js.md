@@ -76,5 +76,8 @@ Use the `returnType: "html"` option to return HTML. [Learn more about `returnTyp
 The above will log:
 
 ```html
-<picture><source type="image/webp" srcset="/img/yL0QoCVMHj-300.webp 300w"><img alt="" src="/img/yL0QoCVMHj-300.jpeg" width="300" height="300"></picture>
+<picture
+	><source type="image/webp" srcset="/img/yL0QoCVMHj-300.webp 300w" />
+	<img alt="" src="/img/yL0QoCVMHj-300.jpeg" width="300" height="300"
+/></picture>
 ```

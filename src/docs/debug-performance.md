@@ -5,6 +5,7 @@ eleventyNavigation:
   excerpt: How to analyze your Eleventy build to find bottlenecks.
 excludeFromSidebar: true
 ---
+
 # Analyzing Build Performance
 
 ## Performance Tips

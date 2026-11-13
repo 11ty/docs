@@ -7,10 +7,10 @@ relatedTitle: Template Language—JSX
 layout: layouts/langs.njk
 ---
 
-| Eleventy Short Name                       | File Extension | npm Package                       |
-| ----------------------------------------- | -------------- | --------------------------------- |
-| `11ty.jsx`                                | `.11ty.jsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }})  |
-| [`11ty.tsx`](/docs/languages/typescript/) | `.11ty.tsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }})  |
+| Eleventy Short Name                       | File Extension | npm Package                             |
+| ----------------------------------------- | -------------- | --------------------------------------- |
+| `11ty.jsx`                                | `.11ty.jsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }}) |
+| [`11ty.tsx`](/docs/languages/typescript/) | `.11ty.tsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }}) |
 
 - Related languages: [TypeScript](/docs/languages/typescript/), [JavaScript](/docs/languages/javascript/), [MDX](/docs/languages/mdx/), [Custom](/docs/languages/custom/)
 - _[Front matter](/docs/data-frontmatter/) is not supported in JSX files. Use a `data` export instead._
@@ -27,20 +27,21 @@ import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
 
 export default function ($config) {
-	// We can add support for TypeScript too, at the same time:
-	$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
-		key: "11ty.js",
-		compile: function () {
-			return async function (data) {
-				let content = await this.defaultRenderer(data);
-				return renderToStaticMarkup(content);
-			};
-		},
-	});
+// We can add support for TypeScript too, at the same time:
+$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+key: "11ty.js",
+compile: function () {
+return async function (data) {
+let content = await this.defaultRenderer(data);
+return renderToStaticMarkup(content);
+};
+},
+});
 
-	// Add to --formats via Configuration
-	// or via CLI: --formats=11ty.jsx,11ty.ts,11ty.tsx
-	$config.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
+    // Add to --formats via Configuration
+    // or via CLI: --formats=11ty.jsx,11ty.ts,11ty.tsx
+    $config.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
+
 }
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -49,9 +50,9 @@ Now Eleventy will find and process `**/*.11ty.{jsx,ts,tsx}` files.
 
 ## Community Contributions <span id="alternative-approaches"></span>
 
-* {% indieweblink "eleventy-hast-jsx", "https://github.com/j-f1/eleventy-hast-jsx" %}
-* {% indieweblink "eleventy-plugin-react-ssr", "https://github.com/scinos/eleventy-plugin-react-ssr" %}
-* {% indieweblink "JetBrains: Better 11ty Development with Tooling", "https://www.jetbrains.com/guide/javascript/tutorials/eleventy-tsx/" %}
+- {% indieweblink "eleventy-hast-jsx", "https://github.com/j-f1/eleventy-hast-jsx" %}
+- {% indieweblink "eleventy-plugin-react-ssr", "https://github.com/scinos/eleventy-plugin-react-ssr" %}
+- {% indieweblink "JetBrains: Better 11ty Development with Tooling", "https://www.jetbrains.com/guide/javascript/tutorials/eleventy-tsx/" %}
 
 ### Using `esbuild-register`
 
@@ -66,10 +67,10 @@ const { register } = require("esbuild-register/dist/node");
 register();
 
 module.exports = function($config) {
-	// We can add support for TypeScript too, at the same time:
-	$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
-		key: "11ty.js",
-	});
+// We can add support for TypeScript too, at the same time:
+$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+key: "11ty.js",
+});
 };
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}

@@ -1,7 +1,7 @@
 {
-    "url": "https://github.com/stopnoanime/11ty-no-style-please",
-    "demo": "https://11ty-no-style-please.netlify.app",
-    "name": "11ty-no-style-please",
-    "description": "A minimalist blog template for eleventy with Netlify CMS built in",
-    "author": "stopnoanime"
+	"url": "https://github.com/stopnoanime/11ty-no-style-please",
+	"demo": "https://11ty-no-style-please.netlify.app",
+	"name": "11ty-no-style-please",
+	"description": "A minimalist blog template for eleventy with Netlify CMS built in",
+	"author": "stopnoanime"
 }

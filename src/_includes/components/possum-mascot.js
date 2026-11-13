@@ -45,15 +45,22 @@ const possumMascotStyles = `
 customElements.define(
 	"possum-mascot",
 	class extends HTMLElement {
-		static activityEvents = ["pointermove", "pointerdown", "keydown", "scroll", "wheel", "touchstart"];
+		static activityEvents = [
+			"pointermove",
+			"pointerdown",
+			"keydown",
+			"scroll",
+			"wheel",
+			"touchstart",
+		];
 
 		connectedCallback() {
 			this.img = this.querySelector("img");
-			if(!this.img || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			if (!this.img || matchMedia("(prefers-reduced-motion: reduce)").matches) {
 				return;
 			}
 
-			if(!this.shadowRoot) {
+			if (!this.shadowRoot) {
 				let shadow = this.attachShadow({ mode: "open" });
 				shadow.innerHTML = `<style>${possumMascotStyles}</style><slot></slot><img class="possum" alt="" hidden>`;
 				this.flier = shadow.querySelector(".possum");
@@ -62,10 +69,10 @@ customElements.define(
 			let timeout = parseFloat(this.getAttribute("idle-timeout"));
 			this.timeoutMs = (isNaN(timeout) ? 20 : timeout) * 1000;
 			this.onActivity = (e) => this.activity(e);
-			this.onVisibility = () => document.hidden ? this.land() : this.wake();
+			this.onVisibility = () => (document.hidden ? this.land() : this.wake());
 			this.onClick = () => this.pop();
 
-			for(let type of this.constructor.activityEvents) {
+			for (let type of this.constructor.activityEvents) {
 				window.addEventListener(type, this.onActivity, { passive: true });
 			}
 			document.addEventListener("visibilitychange", this.onVisibility);
@@ -74,7 +81,7 @@ customElements.define(
 		}
 
 		disconnectedCallback() {
-			for(let type of this.constructor.activityEvents) {
+			for (let type of this.constructor.activityEvents) {
 				window.removeEventListener(type, this.onActivity);
 			}
 			document.removeEventListener("visibilitychange", this.onVisibility);
@@ -108,7 +115,7 @@ customElements.define(
 		}
 
 		set state(value) {
-			if(value) {
+			if (value) {
 				this.setAttribute("state", value);
 			} else {
 				this.removeAttribute("state");
@@ -116,12 +123,12 @@ customElements.define(
 		}
 
 		activity(e) {
-			if(this.state === "falling" || this.isHome && this.state) {
+			if (this.state === "falling" || (this.isHome && this.state)) {
 				return;
 			}
-			if(this.state === "floating") {
+			if (this.state === "floating") {
 				// Let folks chase the possum with their pointer
-				if(e.type === "pointermove" || this.contains(e.target)) {
+				if (e.type === "pointermove" || this.contains(e.target)) {
 					return;
 				}
 				this.land();
@@ -146,7 +153,7 @@ customElements.define(
 			let tick = (now) => {
 				let dt = Math.min(now - last, 100) / 1000;
 				last = now;
-				if(fn(dt, (now - start) / 1000) !== false) {
+				if (fn(dt, (now - start) / 1000) !== false) {
 					this.frame = requestAnimationFrame(tick);
 				}
 			};
@@ -158,20 +165,20 @@ customElements.define(
 		}
 
 		float() {
-			if(!this.img.complete) {
+			if (!this.img.complete) {
 				this.img.addEventListener("load", () => this.float(), { once: true });
 				return;
 			}
-			if(this.state || document.hidden) {
+			if (this.state || document.hidden) {
 				return;
 			}
 
-			if(!this.liftOff()) {
+			if (!this.liftOff()) {
 				return;
 			}
 
 			this.state = "floating";
-			if(this.isHome) {
+			if (this.isHome) {
 				this.flyAcross();
 				return;
 			}
@@ -185,7 +192,10 @@ customElements.define(
 			this.animate((dt, t) => {
 				// Wander slowly so the path isn’t a perfect bounce
 				let turn = Math.sin(t / 2.3) * 0.4 * dt;
-				[vx, vy] = [vx * Math.cos(turn) - vy * Math.sin(turn), vx * Math.sin(turn) + vy * Math.cos(turn)];
+				[vx, vy] = [
+					vx * Math.cos(turn) - vy * Math.sin(turn),
+					vx * Math.sin(turn) + vy * Math.cos(turn),
+				];
 
 				let x = this.x + vx * dt;
 				driftY += vy * dt;
@@ -194,11 +204,11 @@ customElements.define(
 				let maxX = innerWidth - this.home.right;
 				let minY = -this.home.top;
 				let maxY = innerHeight - this.home.bottom;
-				if(x < minX || x > maxX) {
+				if (x < minX || x > maxX) {
 					vx *= -1;
 					x = Math.max(minX, Math.min(maxX, x));
 				}
-				if(driftY < minY || driftY > maxY) {
+				if (driftY < minY || driftY > maxY) {
 					vy *= -1;
 					driftY = Math.max(minY, Math.min(maxY, driftY));
 				}
@@ -227,7 +237,7 @@ customElements.define(
 				this.tilt = Math.sin(t * 0.9) * 6;
 				this.render();
 
-				if(p < 1) {
+				if (p < 1) {
 					return;
 				}
 
@@ -240,7 +250,7 @@ customElements.define(
 		// Swap the header possum for a copy that can move around the viewport
 		liftOff() {
 			let rect = this.img.getBoundingClientRect();
-			if(rect.bottom < 0 || rect.width === 0) {
+			if (rect.bottom < 0 || rect.width === 0) {
 				return false;
 			}
 
@@ -262,14 +272,14 @@ customElements.define(
 		}
 
 		pop() {
-			if(this.state === "falling") {
+			if (this.state === "falling") {
 				return;
 			}
-			if(this.state !== "floating") {
+			if (this.state !== "floating") {
 				// Pop from the header (or mid-landing)
 				cancelAnimationFrame(this.frame);
 				this.reset();
-				if(!this.liftOff()) {
+				if (!this.liftOff()) {
 					return;
 				}
 			}
@@ -283,12 +293,12 @@ customElements.define(
 			let burst = document.createElement("span");
 			burst.className = "pop";
 			burst.style.left = `${rect.left + rect.width / 2}px`;
-			burst.style.top = `${rect.top + rect.height * .12}px`;
+			burst.style.top = `${rect.top + rect.height * 0.12}px`;
 			this.shadowRoot.append(burst);
 			burst.addEventListener("animationend", () => burst.remove(), { once: true });
 
 			let vy = -60;
-			let spin = (Math.random() - .5) * 240;
+			let spin = (Math.random() - 0.5) * 240;
 			let gravity = 1800;
 			let duration = 1.2;
 
@@ -299,7 +309,7 @@ customElements.define(
 				this.render();
 				this.flier.style.opacity = Math.max(0, 1 - t / duration);
 
-				if(t < duration && this.home.top + this.y + this.scrollOffset < innerHeight) {
+				if (t < duration && this.home.top + this.y + this.scrollOffset < innerHeight) {
 					return;
 				}
 
@@ -310,7 +320,7 @@ customElements.define(
 		}
 
 		land() {
-			if(this.state !== "floating" || this.isHome) {
+			if (this.state !== "floating" || this.isHome) {
 				return;
 			}
 
@@ -322,7 +332,7 @@ customElements.define(
 			flier.style.transform = `translate(0, ${this.scrollOffset}px) rotate(0)`;
 
 			let done = () => {
-				if(this.state === "landing") {
+				if (this.state === "landing") {
 					this.reset();
 				}
 			};
@@ -336,5 +346,5 @@ customElements.define(
 			this.flier.removeAttribute("style");
 			this.flier.classList.remove("is-popped");
 		}
-	}
+	},
 );

@@ -65,9 +65,7 @@ If _you’re continuing to use CommonJS_, these will need to be updated to dynam
 // Eleventy 3.0 supports async configuration callbacks:
 module.exports = async function (eleventyConfig) {
 	// Any combination of these
-	const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = await import(
-		"@11ty/eleventy"
-	);
+	const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = await import("@11ty/eleventy");
 
 	// …
 };

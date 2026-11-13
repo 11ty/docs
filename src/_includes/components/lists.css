@@ -10,7 +10,7 @@
 .inlinelist {
 	display: flex;
 	flex-wrap: wrap;
-	gap: .25em;
+	gap: 0.25em;
 	padding: 0;
 }
 .inlinelist:first-child:last-child {
@@ -21,7 +21,7 @@
 	display: inline;
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
-	border-radius: .15em;
+	border-radius: 0.15em;
 	font-size: 116%;
 	white-space: normal;
 	padding: 0.2em 0.5em;
@@ -232,6 +232,6 @@ h2 .numberflag:after {
 
 /* Disabled list item */
 .listitem-disabled {
-	opacity: .5;
+	opacity: 0.5;
 	cursor: not-allowed;
 }

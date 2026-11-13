@@ -1,4 +1,4 @@
 {
-  "npm": "eleventy-plugin-mathjax",
-  "description": "A plugin for rendering math equations using MathJax."
+	"npm": "eleventy-plugin-mathjax",
+	"description": "A plugin for rendering math equations using MathJax."
 }

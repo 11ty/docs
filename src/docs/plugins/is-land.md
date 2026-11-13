@@ -85,10 +85,11 @@ Add any number of loading conditions to this tag to control how and when the isl
 <is-land on:visible on:idle>
 	<!-- your HTML here -->
 
-	<is-land on:media="(min-width: 64em)">
-		<!-- Islands can be nested -->
-		<!-- Islands inherit all of their parents’ loading conditions -->
-	</is-land>
+    <is-land on:media="(min-width: 64em)">
+    	<!-- Islands can be nested -->
+    	<!-- Islands inherit all of their parents’ loading conditions -->
+    </is-land>
+
 </is-land>
 {%- endset %}
 {{ codeBlock | highlight("html") | safe }}
@@ -121,8 +122,8 @@ Place any post-JS content inside of one or more `<template data-island>` element
 {%- endset %}
 {{ codeBlock | highlight("html") | safe }}
 
-* Use `data-island="replace"` to replace the contents of the `<is-land>` with the template.
-* Use `data-island="once"` to run a template’s contents once per page (keyed from template contents). _(New in v2.0.1)_
+- Use `data-island="replace"` to replace the contents of the `<is-land>` with the template.
+- Use `data-island="once"` to run a template’s contents once per page (keyed from template contents). _(New in v2.0.1)_
 
 #### Run your own custom JavaScript, load your own CSS
 
@@ -137,12 +138,13 @@ Embed a script inside the template to run custom JS when the island’s loading 
 		</style>
 		<link rel="stylesheet" href="my-css-file.css" />
 
-		<!-- JS -->
-		<script type="module">
-			console.log("Hydrating!");
-		</script>
-		<script type="module" src="my-js-file.js"></script>
-	</template>
+    	<!-- JS -->
+    	<script type="module">
+    		console.log("Hydrating!");
+    	</script>
+    	<script type="module" src="my-js-file.js"></script>
+    </template>
+
 </is-land>
 {%- endset %}
 {{ codeBlock | highlight("html") | safe }}
@@ -209,10 +211,10 @@ Island.addInitType("vue", async (target) => {
 
 #### Svelte
 
-* [Examples](https://is-land.11ty.dev/demo-svelte) (using Import Maps)
-* Medium-sized library
-* Rendering modes: Client, Server, Server + Client (Hydration)
-* Requires a compiler for client mode (uncommon)
+- [Examples](https://is-land.11ty.dev/demo-svelte) (using Import Maps)
+- Medium-sized library
+- Rendering modes: Client, Server, Server + Client (Hydration)
+- Requires a compiler for client mode (uncommon)
 
 {%- set codeBlock %}{% raw %}
 <script type="module">
@@ -264,10 +266,10 @@ Island.addInitType("svelte", async (target) => {
 
 #### Preact
 
-* [Examples](https://is-land.11ty.dev/demo-preact)
-* Small library (~9 kB)
-* Rendering modes: Client (shown), Server, Server + Client (Hydration)
-* No compiler needed when using [`htm`](https://github.com/developit/htm) rather than JSX.
+- [Examples](https://is-land.11ty.dev/demo-preact)
+- Small library (~9 kB)
+- Rendering modes: Client (shown), Server, Server + Client (Hydration)
+- No compiler needed when using [`htm`](https://github.com/developit/htm) rather than JSX.
 
 {%- set codeBlock %}
 <script type="module">
@@ -277,6 +279,7 @@ Island.addInitType("preact", async (target) => {
 	component.default(target);
 });
 </script>
+
 <is-land on:visible type="preact" import="preact-component.js"></is-land>
 {%- endset %}
 {{ codeBlock | highlight("html") | safe }}
@@ -288,11 +291,11 @@ Island.addInitType("preact", async (target) => {
 import { html, render } from 'https://unpkg.com/htm/preact/index.mjs?module'
 
 function App (props) {
-  return html`<p><strong>Hello ${props.name}!</strong></p>`;
+return html`<p><strong>Hello ${props.name}!</strong></p>`;
 }
 
 export default function(el) {
-  render(html`<${App} name="from Preact" />`, el);
+render(html`<${App} name="from Preact" />`, el);
 }
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -301,9 +304,9 @@ export default function(el) {
 
 #### Lit
 
-* [Examples](https://is-land.11ty.dev/demo-lit) (using Import Maps)
-* Small library (~10 kB)
-* Rendering modes: Client, Server, Server + Client (Hydration)
+- [Examples](https://is-land.11ty.dev/demo-lit) (using Import Maps)
+- Small library (~10 kB)
+- Rendering modes: Client, Server, Server + Client (Hydration)
 
 {%- set codeBlock %}
 <is-land on:visible import="lit-component.js">
@@ -343,13 +346,13 @@ export default function(el) {
 import {html, css, LitElement} from "lit";
 
 customElements.define('lit-component', class extends LitElement {
-  static properties = {
-    name: {type: String},
-  };
+static properties = {
+name: {type: String},
+};
 
-  render() {
-    return html`<p>Hello, ${this.name || "Stranger"}!</p>`;
-  }
+render() {
+return html`<p>Hello, ${this.name || "Stranger"}!</p>`;
+}
 });
 {%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -358,10 +361,10 @@ customElements.define('lit-component', class extends LitElement {
 
 #### Alpine.js
 
-* [Examples](https://is-land.11ty.dev/demo-alpine)
-* Smaller library (~20 kB)
-* Rendering modes: Client
-* Progressive-enhancement friendly (control fallback content)
+- [Examples](https://is-land.11ty.dev/demo-alpine)
+- Smaller library (~20 kB)
+- Rendering modes: Client
+- Progressive-enhancement friendly (control fallback content)
 
 {%- set codeBlock %}
 <script type="module">
@@ -397,6 +400,6 @@ Island.addFallback("[x-data]", (node) => {
 
 #### Solid.js
 
-* [Examples](https://is-land.11ty.dev/demo-solid) (using Import Maps)
-* Medium library (~40 kB)
-* Rendering modes: Client
+- [Examples](https://is-land.11ty.dev/demo-solid) (using Import Maps)
+- Medium library (~40 kB)
+- Rendering modes: Client

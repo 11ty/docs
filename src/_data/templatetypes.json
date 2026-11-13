@@ -1,65 +1,82 @@
-[{
-	"name": "HTML",
-	"ext": "html",
-	"url": "/docs/languages/html/"
-},{
-	"name": "Markdown",
-	"ext": "md",
-	"url": "/docs/languages/markdown/"
-},{
-	"name": "WebC",
-	"ext": "webc",
-	"url": "/docs/languages/webc/"
-},{
-	"name": "JavaScript",
-	"ext": "11ty.js",
-	"url": "/docs/languages/javascript/"
-},{
-	"name": "Liquid",
-	"ext": "liquid",
-	"url": "/docs/languages/liquid/"
-},{
-	"name": "Nunjucks",
-	"ext": "njk",
-	"url": "/docs/languages/nunjucks/"
-},{
-	"name": "Handlebars",
-	"ext": "hbs",
-	"url": "/docs/languages/handlebars/"
-},{
-	"name": "Mustache",
-	"ext": "mustache",
-	"url": "/docs/languages/mustache/"
-},{
-	"name": "EJS",
-	"ext": "ejs",
-	"url": "/docs/languages/ejs/"
-},{
-	"name": "Haml",
-	"ext": "haml",
-	"url": "/docs/languages/haml/"
-},{
-	"name": "Pug",
-	"ext": "pug",
-	"url": "/docs/languages/pug/"
-},{
-	"name": "TypeScript",
-	"ext": "ts",
-	"url": "/docs/languages/typescript/"
-},{
-	"name": "JSX",
-	"ext": "jsx",
-	"url": "/docs/languages/jsx/"
-},{
-	"name": "MDX",
-	"ext": "mdx",
-	"url": "/docs/languages/mdx/"
-},{
-	"name": "Sass",
-	"ext": "scss",
-	"url": "/docs/languages/sass/"
-},{
-	"name": "Custom",
-	"ext": "*",
-	"url": "/docs/languages/custom/"
-}]
+[
+	{
+		"name": "HTML",
+		"ext": "html",
+		"url": "/docs/languages/html/"
+	},
+	{
+		"name": "Markdown",
+		"ext": "md",
+		"url": "/docs/languages/markdown/"
+	},
+	{
+		"name": "WebC",
+		"ext": "webc",
+		"url": "/docs/languages/webc/"
+	},
+	{
+		"name": "JavaScript",
+		"ext": "11ty.js",
+		"url": "/docs/languages/javascript/"
+	},
+	{
+		"name": "Liquid",
+		"ext": "liquid",
+		"url": "/docs/languages/liquid/"
+	},
+	{
+		"name": "Nunjucks",
+		"ext": "njk",
+		"url": "/docs/languages/nunjucks/"
+	},
+	{
+		"name": "Handlebars",
+		"ext": "hbs",
+		"url": "/docs/languages/handlebars/"
+	},
+	{
+		"name": "Mustache",
+		"ext": "mustache",
+		"url": "/docs/languages/mustache/"
+	},
+	{
+		"name": "EJS",
+		"ext": "ejs",
+		"url": "/docs/languages/ejs/"
+	},
+	{
+		"name": "Haml",
+		"ext": "haml",
+		"url": "/docs/languages/haml/"
+	},
+	{
+		"name": "Pug",
+		"ext": "pug",
+		"url": "/docs/languages/pug/"
+	},
+	{
+		"name": "TypeScript",
+		"ext": "ts",
+		"url": "/docs/languages/typescript/"
+	},
+	{
+		"name": "JSX",
+		"ext": "jsx",
+		"url": "/docs/languages/jsx/"
+	},
+	{
+		"name": "MDX",
+		"ext": "mdx",
+		"url": "/docs/languages/mdx/"
+	},
+	{
+		"name": "Sass",
+		"ext": "scss",
+		"url": "/docs/languages/sass/"
+	},
+	{
+		"name": "Custom",
+		"ext": "*",
+		"url": "/docs/languages/custom/"
+	}
+]

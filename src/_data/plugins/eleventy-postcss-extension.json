@@ -1,4 +1,4 @@
 {
-  "npm": "eleventy-postcss-extension",
-  "description": "Add CSS processing with PostCSS to your Eleventy build."
+	"npm": "eleventy-postcss-extension",
+	"description": "Add CSS processing with PostCSS to your Eleventy build."
 }

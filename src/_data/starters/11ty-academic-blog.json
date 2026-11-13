@@ -1,7 +1,7 @@
 {
-  "url": "https://github.com/CondensedMilk7/eleventy-academic-template",
-  "name": "11ty-academic-blog",
-  "description": "Academic blog template, supporting citations, math, optimized printing and more.",
+	"url": "https://github.com/CondensedMilk7/eleventy-academic-template",
+	"name": "11ty-academic-blog",
+	"description": "Academic blog template, supporting citations, math, optimized printing and more.",
 	"author": "CondensedMilk7",
-  "demo": "https://eleventy-academic-template.netlify.app/"
+	"demo": "https://eleventy-academic-template.netlify.app/"
 }

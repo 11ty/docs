@@ -13,9 +13,9 @@ logoImage: "/img/logos/sass.svg"
 
 You don't have to use Sass to style your site: [Eleventy supports normal CSS as well as other assets assets.](/docs/assets) Also, consider that CSS has added many of the features of Sass, like nested styles and variables, so it's no longer as necessary to use Sass.
 
-| Eleventy Short Name | File Extension | npm Package |
-| ------------------- | -------------- | ----------- |
-| `scss`          | `.scss`         | [`sass`](https://www.npmjs.com/package/sass) |
+| Eleventy Short Name | File Extension | npm Package                                  |
+| ------------------- | -------------- | -------------------------------------------- |
+| `scss`              | `.scss`        | [`sass`](https://www.npmjs.com/package/sass) |
 
 - [_Related: Eleventy Custom Templates for JavaScript and CSS_](/docs/assets/#eleventy-custom-templates)
 
@@ -39,34 +39,35 @@ import path from "node:path";
 import * as sass from "sass";
 
 export default function ($config) {
-	$config.addExtension("scss", {
-		outputFileExtension: "css",
+$config.addExtension("scss", {
+outputFileExtension: "css",
 
-		// opt-out of Eleventy Layouts
-		useLayouts: false,
+    	// opt-out of Eleventy Layouts
+    	useLayouts: false,
 
-		compile: async function (inputContent, inputPath) {
-			let parsed = path.parse(inputPath);
-			// Don’t compile file names that start with an underscore
-			if(parsed.name.startsWith("_")) {
-				return;
-			}
+    	compile: async function (inputContent, inputPath) {
+    		let parsed = path.parse(inputPath);
+    		// Don’t compile file names that start with an underscore
+    		if(parsed.name.startsWith("_")) {
+    			return;
+    		}
 
-			let result = sass.compileString(inputContent, {
-				loadPaths: [
-					parsed.dir || ".",
-					this.config.dir.includes,
-				]
-			});
+    		let result = sass.compileString(inputContent, {
+    			loadPaths: [
+    				parsed.dir || ".",
+    				this.config.dir.includes,
+    			]
+    		});
 
-			// Map dependencies for incremental builds
-			this.addDependencies(inputPath, result.loadedUrls);
+    		// Map dependencies for incremental builds
+    		this.addDependencies(inputPath, result.loadedUrls);
 
-			return async (data) => {
-				return result.css;
-			};
-		},
-	});
+    		return async (data) => {
+    			return result.css;
+    		};
+    	},
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -1,6 +1,6 @@
 {
-		"url": "https://github.com/mattwaler/tea-stack",
-		"name": "TEA Stack",
-		"description": "A starting point with TailwindCSS, 11ty, and AlpineJS ready to roll.",
-		"author": "mattwaler"
-	}
+	"url": "https://github.com/mattwaler/tea-stack",
+	"name": "TEA Stack",
+	"description": "A starting point with TailwindCSS, 11ty, and AlpineJS ready to roll.",
+	"author": "mattwaler"
+}

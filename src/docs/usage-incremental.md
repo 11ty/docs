@@ -36,14 +36,14 @@ Let’s check in on the current capabilities and the roadmap:
     - Files outside your input directory still need to be watched (e.g. via [`addWatchTarget`](/docs/watch-serve/#add-your-own-watch-targets)).
   - [**Collections**](/docs/collections/) {% addedin "2.0.0-canary.21" %}: When you add or delete a tag from a template, any templates using that collection tag (as declared by [`pagination.data`](/docs/pagination/) or [`eleventyImport.collections`](/docs/collections/#declare-your-collections-for-incremental-builds)) will be rebuilt. {% addedin "4.0.0-alpha.11" %}This also applies when a data file change adds or removes a tag.
 - [**Passthrough Copy**](/docs/copy/) (Incremental passthrough copy) {% addedin "0.11.0" %}:
-	- Only copy a passthrough copy file when it actively changed. Don’t run a template or full build if _only_ a passthrough copy file has changed.
-	- When running a template build, skip the passthrough copy step.
+  - Only copy a passthrough copy file when it actively changed. Don’t run a template or full build if _only_ a passthrough copy file has changed.
+  - When running a template build, skip the passthrough copy step.
   - {% addedin "2.0.0-canary.12" %} [Passthrough copy can be emulated during `--serve`](/docs/copy/#passthrough-during-serve) to speed up both incremental and non-incremental builds. It was decided not to ship incremental passthrough copy as the default behavior ([#1109](https://github.com/11ty/eleventy/issues/1109)), instead deferring to this emulated copy feature.
 - [**Configuration File**](/docs/config/)
   - If you create/update your Eleventy configuration file, a full build will run.
 - **Don’t build on startup**: {% addedin "2.0.0-canary.25" %} [`--ignore-initial`](/docs/usage/#ignore-initial-to-run-eleventy-without-an-initial-build) was added and works great with `--incremental`.
 - **Explicit Incremental** {% addedin "3.0.0-alpha.14" %} Pass in a filename to only build an incremental for one file (and it’s dependencies) with `--incremental=filename` (more in [#3324](https://github.com/11ty/buildawesome/issues/3324))
-	- {% addedin "4.0.0-alpha.8" %}Added support for multiple incremental files (also called **Batched Incremental**) with `--incremental=file1 --incremental=file2` or `--incremental=file1,file2` (more in [#4274](https://github.com/11ty/buildawesome/issues/4274))
+  - {% addedin "4.0.0-alpha.8" %}Added support for multiple incremental files (also called **Batched Incremental**) with `--incremental=file1 --incremental=file2` or `--incremental=file1,file2` (more in [#4274](https://github.com/11ty/buildawesome/issues/4274))
 
 ## Additional Template Syntax Specific Features
 

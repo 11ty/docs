@@ -13,13 +13,12 @@ Configuration files are optional. Add an `buildawesome.config.js` file to the ro
 
 {% set codeContent %}
 export default async function($config) {
-	// Configure using $config
+// Configure using $config
 };
 {% endset %}
 {% include "snippets/configDefinitionEager.njk" %}
 
 There are a few different ways to [shape your configuration file](/docs/config-shapes/). {% addedin "3.0.0-alpha.1" %}Build Awesome supports [CommonJS, ESM, TypeScript](/docs/cjs-esm/) (and Asynchronous callbacks in each).
-
 
 - Add [Filters](/docs/filters/).
 - Add [Shortcodes](/docs/shortcodes/).
@@ -60,27 +59,31 @@ The first configuration file found is used. The others are ignored.
 
 Controls the top level directory/file/glob that we’ll use to look for templates.
 
-| Input Directory         |                           |
-| ----------------------- | ------------------------- |
-| _Object Key_            | `dir.input`               |
-| _Default Value_         | `.` _(current directory)_ |
-| _Valid Options_         | Any valid directory.      |
+| Input Directory         |                                                             |
+| ----------------------- | ----------------------------------------------------------- |
+| _Object Key_            | `dir.input`                                                 |
+| _Default Value_         | `.` _(current directory)_                                   |
+| _Valid Options_         | Any valid directory.                                        |
 | _Configuration API_     | `$config.setInputDirectory()` {% addedin "3.0.0-alpha.6" %} |
-| _Command Line Override_ | `--input`                 |
+| _Command Line Override_ | `--input`                                                   |
 
 #### Command Line
 
 {% set codeBlock %}
 # The current directory
+
 npx @awesome.me/buildawesome --input=.
 
 # A single file
+
 npx @awesome.me/buildawesome --input=README.md
 
 # A glob of files
+
 npx @awesome.me/buildawesome --input=*.md
 
 # A subdirectory
+
 npx @awesome.me/buildawesome --input=views
 {% endset %}
 {{ codeBlock | highlight("bash") | safe }}
@@ -95,8 +98,8 @@ Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
 export default function($config) {
-	// Order matters, put this at the top of your configuration file.
-  $config.setInputDirectory("views");
+// Order matters, put this at the top of your configuration file.
+$config.setInputDirectory("views");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -110,9 +113,8 @@ The includes directory is meant for [Eleventy layouts](/docs/layouts/), include 
 | _Object Key_            | `dir.includes`                                                                |
 | _Default_               | `_includes`                                                                   |
 | _Valid Options_         | Any valid directory inside of `dir.input` (an empty string `""` is supported) |
-| _Configuration API_     | `$config.setIncludesDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setIncludesDirectory()` {% addedin "3.0.0-alpha.6" %}                |
 | _Command Line Override_ | _None_                                                                        |
-
 
 Via named export (order doesn’t matter). Note that there are many [different shapes of configuration file](/docs/config-shapes.md).
 
@@ -122,9 +124,9 @@ Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
 export default function($config) {
-	// Order matters, put this at the top of your configuration file.
-	// This is relative to your input directory!
-  $config.setIncludesDirectory("my_includes");
+// Order matters, put this at the top of your configuration file.
+// This is relative to your input directory!
+$config.setIncludesDirectory("my_includes");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -144,7 +146,7 @@ This configuration option is optional but useful if you want your [Eleventy layo
 | _Object Key_            | `dir.layouts`                                                                 |
 | _Default_               | _The value in `dir.includes`_                                                 |
 | _Valid Options_         | Any valid directory inside of `dir.input` (an empty string `""` is supported) |
-| _Configuration API_     | `$config.setLayoutsDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setLayoutsDirectory()` {% addedin "3.0.0-alpha.6" %}                 |
 | _Command Line Override_ | _None_                                                                        |
 
 Via named export (order doesn’t matter). Note that there are many [different shapes of configuration file](/docs/config-shapes.md).
@@ -155,9 +157,9 @@ Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
 export default function($config) {
-	// Order matters, put this at the top of your configuration file.
-	// This is relative to your input directory!
-  $config.setLayoutsDirectory("_layouts");
+// Order matters, put this at the top of your configuration file.
+// This is relative to your input directory!
+$config.setLayoutsDirectory("_layouts");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -166,13 +168,13 @@ export default function($config) {
 
 Controls the directory inside which the global data template files, available to all templates, can be found. Read more about [Global Data Files](/docs/data-global/).
 
-| Data Files Directory    |                                           |
-| ----------------------- | ----------------------------------------- |
-| _Object Key_            | `dir.data`                                |
-| _Default_               | `_data`                                   |
-| _Valid Options_         | Any valid directory inside of `dir.input` |
+| Data Files Directory    |                                                            |
+| ----------------------- | ---------------------------------------------------------- |
+| _Object Key_            | `dir.data`                                                 |
+| _Default_               | `_data`                                                    |
+| _Valid Options_         | Any valid directory inside of `dir.input`                  |
 | _Configuration API_     | `$config.setDataDirectory()` {% addedin "3.0.0-alpha.6" %} |
-| _Command Line Override_ | _None_                                    |
+| _Command Line Override_ | _None_                                                     |
 
 Via named export (order doesn’t matter). Note that there are many [different shapes of configuration file](/docs/config-shapes.md).
 
@@ -182,8 +184,8 @@ Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
 export default function($config) {
-	// Order matters, put this at the top of your configuration file.
-  $config.setDataDirectory("lore");
+// Order matters, put this at the top of your configuration file.
+$config.setDataDirectory("lore");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -197,7 +199,7 @@ Controls the directory inside which the finished templates will be written to.
 | _Object Key_            | `dir.output`                                                                              |
 | _Default_               | `_site`                                                                                   |
 | _Valid Options_         | Any string that will work as a directory name. Eleventy creates this if it doesn’t exist. |
-| _Configuration API_     | `$config.setOutputDirectory()` {% addedin "3.0.0-alpha.6" %} |
+| _Configuration API_     | `$config.setOutputDirectory()` {% addedin "3.0.0-alpha.6" %}                              |
 | _Command Line Override_ | `--output`                                                                                |
 
 #### Command Line
@@ -214,8 +216,8 @@ Or via method (not available in plugins) {% addedin "3.0.0-alpha.6" %}:
 
 {% set codeContent %}
 export default function($config) {
-	// Order matters, put this at the top of your configuration file.
-  $config.setOutputDirectory("dist");
+// Order matters, put this at the top of your configuration file.
+$config.setOutputDirectory("dist");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -232,7 +234,7 @@ Markdown files run through this template engine before transforming to HTML.
 | _Default_                | `liquid`                                                          |
 | _Valid Options_          | A valid [template engine short name](/docs/languages/) or `false` |
 | _Command Line Override_  | _None_                                                            |
-| _Configuration API_      | `setMarkdownTemplateEngine` {% addedin "4.0.0-alpha.1" %} |
+| _Configuration API_      | `setMarkdownTemplateEngine` {% addedin "4.0.0-alpha.1" %}         |
 
 {% include "snippets/config/config-mdengine.njk" %}
 
@@ -246,7 +248,7 @@ HTML templates run through this template engine before transforming to (better) 
 | _Default_               | `liquid`                                                          |
 | _Valid Options_         | A valid [template engine short name](/docs/languages/) or `false` |
 | _Command Line Override_ | _None_                                                            |
-| _Configuration API_      | `setHtmlTemplateEngine` {% addedin "4.0.0-alpha.1" %} |
+| _Configuration API_     | `setHtmlTemplateEngine` {% addedin "4.0.0-alpha.1" %}             |
 
 {% include "snippets/config/config-htmlengine.njk" %}
 
@@ -254,13 +256,13 @@ HTML templates run through this template engine before transforming to (better) 
 
 Specify which types of templates should be transformed.
 
-| Template Formats        |                                                          |
-| ----------------------- | -------------------------------------------------------- |
-| _Object Key_            | `templateFormats`                                        |
-| _Default_               | `html,liquid,ejs,md,hbs,mustache,haml,pug,njk,11ty.js`   |
-| _Valid Options_         | Array of [template engine short names](/docs/languages/) |
-| _Command Line Override_ | `--formats` _(accepts a comma separated string)_         |
-| _Configuration API_     | `setTemplateFormats` {% addedin "0.2.14" %} and `addTemplateFormats` {% addedin "0.11.0" %}              |
+| Template Formats        |                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------- |
+| _Object Key_            | `templateFormats`                                                                           |
+| _Default_               | `html,liquid,ejs,md,hbs,mustache,haml,pug,njk,11ty.js`                                      |
+| _Valid Options_         | Array of [template engine short names](/docs/languages/)                                    |
+| _Command Line Override_ | `--formats` _(accepts a comma separated string)_                                            |
+| _Configuration API_     | `setTemplateFormats` {% addedin "0.2.14" %} and `addTemplateFormats` {% addedin "0.11.0" %} |
 
 {% callout "info" %}{% addedin "0.9.0" %} <strong>Case sensitivity</strong>: File extensions should be considered case insensitive, cross-platform. While macOS already behaves this way (by default), other operating systems require additional Eleventy code to enable this behavior.{% endcallout %}
 
@@ -280,15 +282,16 @@ There are many [different shapes of configuration file](/docs/config-shapes.md).
 
 {% set codeContent %}
 export default function ($config) {
-	// Reset to this value
-	$config.setTemplateFormats("html,liquid,njk");
+// Reset to this value
+$config.setTemplateFormats("html,liquid,njk");
 
-	// Additive to existing
-	$config.addTemplateFormats("pug,haml");
+    // Additive to existing
+    $config.addTemplateFormats("pug,haml");
 
-	// Or:
-	// $config.setTemplateFormats([ "html", "liquid", "njk" ]);
-	// $config.addTemplateFormats([ "pug", "haml" ]);
+    // Or:
+    // $config.setTemplateFormats([ "html", "liquid", "njk" ]);
+    // $config.addTemplateFormats([ "pug", "haml" ]);
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -307,7 +310,7 @@ In order to maximize user-friendliness to beginners, Eleventy will show each fil
 
 {% set codeContent %}
 export default function ($config) {
-	$config.setQuietMode(true);
+$config.setQuietMode(true);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -322,12 +325,12 @@ npx @awesome.me/buildawesome --quiet
 
 If your site lives in a different subdirectory (particularly useful with GitHub pages), use pathPrefix to specify this. When paired with the [HTML `<base>` plugin](/docs/plugins/html-base.md) it will transform any absolute URLs in your HTML to include this folder name and does **not** affect where things go in the output folder.
 
-| Path Prefix             |                                       |
-| ----------------------- | ------------------------------------- |
-| _Object Key_            | `pathPrefix`                          |
-| _Default_               | `/`                                   |
+| Path Prefix             |                                                |
+| ----------------------- | ---------------------------------------------- |
+| _Object Key_            | `pathPrefix`                                   |
+| _Default_               | `/`                                            |
 | _Valid Options_         | A prefix directory added to urls in HTML files |
-| _Command Line Override_ | `--pathprefix` {% addedin "0.2.11" %} |
+| _Command Line Override_ | `--pathprefix` {% addedin "0.2.11" %}          |
 
 {% include "snippets/config/config-pathprefix.njk" %}
 
@@ -352,8 +355,8 @@ npx @awesome.me/buildawesome --pathprefix=eleventy-base-blog
 
 {% set codeContent %}
 export default function ($config) {
-	// Looks for index.json and index.11tydata.json instead of using folder names
-	$config.setDataFileBaseName("index");
+// Looks for index.json and index.11tydata.json instead of using folder names
+$config.setDataFileBaseName("index");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -377,14 +380,15 @@ Read more about [Template and Directory Specific Data Files](/docs/data-template
 
 {% set codeContent %}
 export default function ($config) {
-	// e.g. file.json and file.11tydata.json
-	$config.setDataFileSuffixes([".11tydata", ""]);
+// e.g. file.json and file.11tydata.json
+$config.setDataFileSuffixes([".11tydata", ""]);
 
-	// e.g. file.11tydata.json
-	$config.setDataFileSuffixes([".11tydata"]);
+    // e.g. file.11tydata.json
+    $config.setDataFileSuffixes([".11tydata"]);
 
-	// No data files are used.
-	$config.setDataFileSuffixes([]);
+    // No data files are used.
+    $config.setDataFileSuffixes([]);
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -396,9 +400,9 @@ Prior to {{ "2.0.0-canary.19" | coerceVersion }} this feature was exposed using 
 
 {% set codeContent %}
 export default function ($config) {
-	return {
-		jsDataFileSuffix: ".11tydata",
-	};
+return {
+jsDataFileSuffix: ".11tydata",
+};
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -424,15 +428,16 @@ Similar to Transforms, Linters are provided to analyze a template’s output wit
 
 {% set codeContent %}
 export default function ($config) {
-	// Sync or async
-	$config.addLinter("linter-name", async function (content) {
-		console.log(this.inputPath);
-		console.log(this.outputPath);
+// Sync or async
+$config.addLinter("linter-name", async function (content) {
+console.log(this.inputPath);
+console.log(this.outputPath);
 
-		// Eleventy 2.0+ has full access to Eleventy’s `page` variable
-		console.log(this.page.inputPath);
-		console.log(this.page.outputPath);
-	});
+    	// Eleventy 2.0+ has full access to Eleventy’s `page` variable
+    	console.log(this.page.inputPath);
+    	console.log(this.page.outputPath);
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -448,28 +453,21 @@ This example has been packaged as a plugin in [`eleventy-plugin-inclusive-langua
 
 ```js
 export default function ($config) {
-	$config.addLinter(
-		"inclusive-language",
-		function (content, inputPath, outputPath) {
-			let words =
-				"simply,obviously,basically,of course,clearly,just,everyone knows,however,easy".split(
-					","
-				);
+	$config.addLinter("inclusive-language", function (content, inputPath, outputPath) {
+		let words =
+			"simply,obviously,basically,of course,clearly,just,everyone knows,however,easy".split(",");
 
-			// Eleventy 1.0+: use this.inputPath and this.outputPath instead
-			if (inputPath.endsWith(".md")) {
-				for (let word of words) {
-					let regexp = new RegExp("\\b(" + word + ")\\b", "gi");
-					if (content.match(regexp)) {
-						console.warn(
-							`Inclusive Language Linter (${inputPath}) Found: ${word}`
-						);
-					}
+		// Eleventy 1.0+: use this.inputPath and this.outputPath instead
+		if (inputPath.endsWith(".md")) {
+			for (let word of words) {
+				let regexp = new RegExp("\\b(" + word + ")\\b", "gi");
+				if (content.match(regexp)) {
+					console.warn(`Inclusive Language Linter (${inputPath}) Found: ${word}`);
 				}
 			}
 		}
-	);
-};
+	});
+}
 ```
 
 </details>
@@ -482,8 +480,8 @@ A `Set` of [`lodash` selectors](https://lodash.com/docs/4.17.15#get) that allow 
 
 {% set codeContent %}
 export default function ($config) {
-	$config.dataFilterSelectors.add("page");
-	$config.dataFilterSelectors.delete("page");
+$config.dataFilterSelectors.add("page");
+$config.dataFilterSelectors.delete("page");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -497,7 +495,7 @@ This may enable some extra autocomplete features in your IDE (where supported).
 {% set codeContent %}
 /** @param {import("@awesome.me/buildawesome").UserConfig} $config */
 export default function ($config) {
-	// …
+// …
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

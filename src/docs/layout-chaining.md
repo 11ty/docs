@@ -15,11 +15,13 @@ To chain a layout, let’s look at an example:
 {% codetitle "layout-chain-example.md" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 layout: mainlayout.njk
 title: My Rad Blog
 ---
 
 # My Rad Markdown Blog Post
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 

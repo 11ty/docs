@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-github-repos",
-  "author": "johnwargo",
-  "description": "An Eleventy plugin that creates a collection of metadata from an account's GitHub repositories."
+	"npm": "eleventy-plugin-github-repos",
+	"author": "johnwargo",
+	"description": "An Eleventy plugin that creates a collection of metadata from an account's GitHub repositories."
 }

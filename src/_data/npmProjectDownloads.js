@@ -9,15 +9,18 @@ export default async function () {
 			duration: "1d",
 		});
 
-		let packages = report.projects.filter(p => p.owner === "11ty");
+		let packages = report.projects.filter((p) => p.owner === "11ty");
 		// Workspace packages share a repo, so count each repo once.
-		let repos = [...new Map(packages.map(p => [p.nameWithOwner, p])).values()];
-		let published = packages.filter(p => p.published);
+		let repos = [...new Map(packages.map((p) => [p.nameWithOwner, p])).values()];
+		let published = packages.filter((p) => p.published);
 		let generatedAt = Date.parse(report.generatedAt);
 		const YEAR = 365 * 24 * 60 * 60 * 1000;
 
 		return {
-			downloads: packages.reduce((sum, p) => sum + (p.downloadsAllTimeKnown ? p.downloadsAllTime : 0), 0),
+			downloads: packages.reduce(
+				(sum, p) => sum + (p.downloadsAllTimeKnown ? p.downloadsAllTime : 0),
+				0,
+			),
 			// Last-year total sets the pace for the live estimate.
 			downloadsLastYear: packages.reduce((sum, p) => sum + (p.downloadsKnown ? p.downloads : 0), 0),
 			stars: repos.reduce((sum, p) => sum + (p.stars || 0), 0),

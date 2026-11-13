@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-phosphoricons",
-    "author": "reatlat",
-    "description": "Shortcode, allows phosphor-icons to be embedded as inline svg into templates."
+	"npm": "eleventy-plugin-phosphoricons",
+	"author": "reatlat",
+	"description": "Shortcode, allows phosphor-icons to be embedded as inline svg into templates."
 }

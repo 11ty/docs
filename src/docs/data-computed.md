@@ -20,6 +20,7 @@ Consider a blog post with the following front matter format:
 {% codetitle "posts/my-page-title.md" %}
 {% set codeBlock %}
 ---
+
 title: My Page Title
 parent: My Parent Key
 ---
@@ -51,12 +52,12 @@ The resulting data for each `posts/*.md` file when processed by Eleventy has the
 
 {% set codeBlock %}
 {
-	"title": "My Page Title",
-	"parent": "My Parent Key",
-	"eleventyNavigation": {
-		"key": "My Page Title",
-		"parent": "My Parent Key"
-	}
+"title": "My Page Title",
+"parent": "My Parent Key",
+"eleventyNavigation": {
+"key": "My Page Title",
+"parent": "My Parent Key"
+}
 }
 {% endset %}
 {{ codeBlock | highlight("json") | safe }}
@@ -82,17 +83,17 @@ Here’s a bunch of examples:
 
 {% set codeContent %}
 export default {
-	eleventyComputed: {
-		myTemplateString: "This is assumed to be a template string!",
-		myString: (data) => "This is a string!",
-		myFunction: (data) => `This is a string using ${data.someValue}.`,
-		myAsyncFunction: async (data) => await someAsyncThing(),
-		myPromise: (data) => {
-			return new Promise((resolve) => {
-				setTimeout(() => resolve("100ms DELAYED HELLO"), 100);
-			});
-		},
-	},
+eleventyComputed: {
+myTemplateString: "This is assumed to be a template string!",
+myString: (data) => "This is a string!",
+myFunction: (data) => `This is a string using ${data.someValue}.`,
+myAsyncFunction: async (data) => await someAsyncThing(),
+myPromise: (data) => {
+return new Promise((resolve) => {
+setTimeout(() => resolve("100ms DELAYED HELLO"), 100);
+});
+},
+},
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
@@ -109,13 +110,15 @@ Consider our first example, but using Nunjucks (this example is also valid Liqui
 
 {% set codeBlock %}{% raw %}
 ---
+
 title: My Page Title
 parent: My Parent Key
 eleventyComputed:
-  eleventyNavigation:
-    key: "{{ title }}"
-    parent: "{{ parent }}"
+eleventyNavigation:
+key: "{{ title }}"
+parent: "{{ parent }}"
 ---
+
 {% endraw %}{% endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -124,12 +127,12 @@ The above would also resolve to the same Data Cascade:
 {% codetitle "posts/my-page-title.njk", "Data Cascade for" %}
 {% set codeBlock %}
 {
-	"title": "My Page Title",
-	"parent": "My Parent Key",
-	"eleventyNavigation": {
-		"key": "My Page Title",
-		"parent": "My Parent Key"
-	}
+"title": "My Page Title",
+"parent": "My Parent Key",
+"eleventyNavigation": {
+"key": "My Page Title",
+"parent": "My Parent Key"
+}
 }
 {% endset %}
 {{ codeBlock | highlight("json") | safe }}
@@ -154,10 +157,12 @@ We put a lot of work into making this feature as easy to use as possible. Most o
 
 {% set codeBlock %}{% raw %}
 ---
+
 key: My Key
 eleventyComputed:
-  key: "This Is {{ key }}"
+key: "This Is {{ key }}"
 ---
+
 {% endraw %}{% endset %}
 {{ codeBlock | highlight("markdown") | safe }}
 
@@ -167,20 +172,21 @@ We do try our best to automatically detect dependencies between `eleventyCompute
 
 {% set codeContent %}
 export default {
-	eleventyComputed: {
-		myValue: () => "Hi",
-		myOtherValue: () => "Bye",
-		usesAllTheThings: (data) => {
-			// We detect this as a declared dependency
-			data.myValue;
-			// You can use as many as you want.
-			data.myOtherValue;
-			// You could use any valid JS syntax to access them.
-			[data.myValue, data.myOtherValue];
+eleventyComputed: {
+myValue: () => "Hi",
+myOtherValue: () => "Bye",
+usesAllTheThings: (data) => {
+// We detect this as a declared dependency
+data.myValue;
+// You can use as many as you want.
+data.myOtherValue;
+// You could use any valid JS syntax to access them.
+[data.myValue, data.myOtherValue];
 
-			return `How are you?`;
-		},
-	},
+    		return `How are you?`;
+    	},
+    },
+
 };
 {% endset %}
 {% include "snippets/esmCjsTabs.njk" %}

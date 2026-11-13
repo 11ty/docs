@@ -112,6 +112,6 @@ Both the [`eleventy`](/docs/data-eleventy-supplied/#eleventy-variable) and [`pag
 ---
 myContent: "{{ 'Second' }}"
 ---
-{{ myContent | renderContent("njk", myData) }}
+{ { myContent | renderContent("njk", myData) } }
 ```
 {% endraw %}

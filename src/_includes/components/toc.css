@@ -14,12 +14,13 @@
 		--elv-toc-sticky-top: 13.5rem;
 	}
 }
-@media (min-width: 55em) and (min-height: 43.75em) {/* 880px */
-	.elv-header-docs ~.elv-layout .elv-toc {
+@media (min-width: 55em) and (min-height: 43.75em) {
+	/* 880px */
+	.elv-header-docs ~ .elv-layout .elv-toc {
 		/* Clears the border too, so the column’s top edge isn’t tucked under the header */
 		--elv-toc-sticky-top: 4.25rem;
 	}
-	.elv-header-docs:has(.elv-callout) ~.elv-layout .elv-toc {
+	.elv-header-docs:has(.elv-callout) ~ .elv-layout .elv-toc {
 		--elv-toc-sticky-top: 9rem;
 	}
 }
@@ -126,7 +127,9 @@
 	/* Wide enough at the top level that the toggle beside a section’s link reaches the 24px minimum target */
 	--elv-toc-arrow-gap: 0.85em;
 	/* Inset and gap trade against each other, so nudging the triangle leaves the labels put */
-	--elv-toc-arrow-column: calc(var(--elv-toc-arrow-inset) + var(--elv-toc-arrow-size) + var(--elv-toc-arrow-gap));
+	--elv-toc-arrow-column: calc(
+		var(--elv-toc-arrow-inset) + var(--elv-toc-arrow-size) + var(--elv-toc-arrow-gap)
+	);
 	--elv-toc-row-lead: var(--elv-toc-spacing);
 }
 .elv-toc-list ul {
@@ -257,8 +260,15 @@
 /* Where the toggle is only the gutter, hovering either half lights the whole row, so the arrow
    and the link read as one thing. The gradient keeps the part reaching into the indent unlit. */
 .elv-toc-summary-toggle:hover,
-.elv-toc-list li:has(> a:is(:hover, [aria-current="page"])) > .elv-toc-section > .elv-toc-summary-toggle {
-	background-image: linear-gradient(to left, var(--elv-toc-hover-color) var(--elv-toc-toggle-edge), transparent 0);
+.elv-toc-list
+	li:has(> a:is(:hover, [aria-current="page"]))
+	> .elv-toc-section
+	> .elv-toc-summary-toggle {
+	background-image: linear-gradient(
+		to left,
+		var(--elv-toc-hover-color) var(--elv-toc-toggle-edge),
+		transparent 0
+	);
 }
 .elv-toc-list li:has(> .elv-toc-section > .elv-toc-summary-toggle:hover) > a {
 	background-color: var(--elv-toc-hover-color);
@@ -441,7 +451,8 @@
 /* Shown once the layout itself is wide enough for a third column, whatever the window is.
    A container query resolves em against the container’s own font size, and this container is
    <main> at 1.125em, so these are 18px units: the column arrives on text width, not pixels. */
-@container elv-layout-toc (min-width: 54.5em) { /* 981px, at main’s 18px */
+@container elv-layout-toc (min-width: 54.5em) {
+	/* 981px, at main’s 18px */
 	/* Once the build-time list is in the markup or the component is upgraded, and only while it
 	   has headings to list. `:has()` can’t be nested, so both cases go in one argument list. */
 	.elv-headings-toc:has(table-of-contents:defined, table-of-contents > ol):not(

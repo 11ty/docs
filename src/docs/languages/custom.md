@@ -22,21 +22,22 @@ Eleventy now allows the addition of custom template extensions, meaning that you
 
 {% set codeContent %}
 export default function ($config) {
-	// Add as a valid extension to process
-	// Alternatively, add this to the list of formats you pass to the `--formats` CLI argument
-	$config.addTemplateFormats("clowd");
+// Add as a valid extension to process
+// Alternatively, add this to the list of formats you pass to the `--formats` CLI argument
+$config.addTemplateFormats("clowd");
 
-	// "clowd" here means that the extension will apply to any .clowd file
-	$config.addExtension("clowd", {
-		compile: async (inputContent) => {
-			// Replace any instances of cloud with butt
-			let output = inputContent.replace(/cloud/gi, "butt");
+    // "clowd" here means that the extension will apply to any .clowd file
+    $config.addExtension("clowd", {
+    	compile: async (inputContent) => {
+    		// Replace any instances of cloud with butt
+    		let output = inputContent.replace(/cloud/gi, "butt");
 
-			return async () => {
-				return output;
-			};
-		},
-	});
+    		return async () => {
+    			return output;
+    		};
+    	},
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -57,22 +58,23 @@ For a more realistic sample, here’s an example of Eleventy looking for all `.s
 import * as sass from "sass";
 
 export default function ($config) {
-	$config.addTemplateFormats("scss");
+$config.addTemplateFormats("scss");
 
-	// Creates the extension for use
-	$config.addExtension("scss", {
-		outputFileExtension: "css", // optional, default: "html"
+    // Creates the extension for use
+    $config.addExtension("scss", {
+    	outputFileExtension: "css", // optional, default: "html"
 
-		// `compile` is called once per .scss file in the input directory
-		compile: async function (inputContent) {
-			let result = sass.compileString(inputContent);
+    	// `compile` is called once per .scss file in the input directory
+    	compile: async function (inputContent) {
+    		let result = sass.compileString(inputContent);
 
-			// This is the render function, `data` is the full data cascade
-			return async (data) => {
-				return result.css;
-			};
-		},
-	});
+    		// This is the render function, `data` is the full data cascade
+    		return async (data) => {
+    			return result.css;
+    		};
+    	},
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -169,14 +171,15 @@ This functionality is more-or-less identical to the [`compileOptions` `permalink
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addExtension("11ty.jsx", {
-		key: "11ty.js",
-	});
+$config.addExtension("11ty.jsx", {
+key: "11ty.js",
+});
 
-	// Or, you can pass an array of extensions in {{ "2.0.0-canary.19" | coerceVersion }} or newer.
-	$config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
-		key: "11ty.js",
-	});
+    // Or, you can pass an array of extensions in {{ "2.0.0-canary.19" | coerceVersion }} or newer.
+    $config.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
+    	key: "11ty.js",
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -197,21 +200,22 @@ In these example, we switch from the Eleventy default `markdown-it` to `marked` 
 import { marked } from "marked";
 
 export default function ($config) {
-	$config.addExtension("md", {
-		compile: function (inputContent, inputPath) {
-			let html = marked.parse(inputContent);
+$config.addExtension("md", {
+compile: function (inputContent, inputPath) {
+let html = marked.parse(inputContent);
 
-			return function (data) {
-				// Example: use `marked` only if useMarked is set in the Data Cascade
-				if (data.useMarked) {
-					return html;
-				}
+    		return function (data) {
+    			// Example: use `marked` only if useMarked is set in the Data Cascade
+    			if (data.useMarked) {
+    				return html;
+    			}
 
-				// You can also access the default `markdown-it` renderer here:
-				return this.defaultRenderer(data);
-			};
-		},
-	});
+    			// You can also access the default `markdown-it` renderer here:
+    			return this.defaultRenderer(data);
+    		};
+    	},
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -226,12 +230,12 @@ You can override a template language once. Any attempts to override an more than
 
 If you want to add support for universal filters and shortcodes in your custom template language, you can do so with the following configuration API methods. Related [GitHub #3310](https://github.com/11ty/eleventy/issues/3310).
 
-* `$config.getFilter(name)` {% addedin "0.10.0" %}
-* `$config.getFilters()` {% addedin "3.0.0-alpha.15" %}
-* `$config.getShortcode(name)` {% addedin "3.0.0-alpha.15" %}
-* `$config.getShortcodes()` {% addedin "3.0.0-alpha.15" %}
-* `$config.getPairedShortcode(name)` {% addedin "3.0.0-alpha.15" %}
-* `$config.getPairedShortcodes()` {% addedin "3.0.0-alpha.15" %}
+- `$config.getFilter(name)` {% addedin "0.10.0" %}
+- `$config.getFilters()` {% addedin "3.0.0-alpha.15" %}
+- `$config.getShortcode(name)` {% addedin "3.0.0-alpha.15" %}
+- `$config.getShortcodes()` {% addedin "3.0.0-alpha.15" %}
+- `$config.getPairedShortcode(name)` {% addedin "3.0.0-alpha.15" %}
+- `$config.getPairedShortcodes()` {% addedin "3.0.0-alpha.15" %}
 
 ## Full Options List
 

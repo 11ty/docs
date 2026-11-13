@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-code-demo",
-  "author": "hovhaDovah",
-  "description": "Add interactive HTML/CSS/JS code demos to an Eleventy site using Markdown code blocks."
+	"npm": "eleventy-plugin-code-demo",
+	"author": "hovhaDovah",
+	"description": "Add interactive HTML/CSS/JS code demos to an Eleventy site using Markdown code blocks."
 }

@@ -79,7 +79,7 @@ To add support for `.webc` files in Eleventy, add the plugin in your Eleventy co
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function($config) {
-	$config.addPlugin(pluginWebc);
+$config.addPlugin(pluginWebc);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -91,20 +91,21 @@ export default function($config) {
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function ($config) {
-	$config.addPlugin(pluginWebc, {
-		// Glob to find no-import global components
-		// (The default changed from `false` in Eleventy WebC v0.7.0)
-		components: "_components/**/*.webc",
+$config.addPlugin(pluginWebc, {
+// Glob to find no-import global components
+// (The default changed from `false` in Eleventy WebC v0.7.0)
+components: "_components/**/*.webc",
 
-		// Adds an Eleventy WebC transform to process all HTML output
-		useTransform: false,
+    	// Adds an Eleventy WebC transform to process all HTML output
+    	useTransform: false,
 
-		// Additional global data used in the Eleventy WebC transform
-		transformData: {},
+    	// Additional global data used in the Eleventy WebC transform
+    	transformData: {},
 
-		// Options passed to @11ty/eleventy-plugin-bundle
-		bundlePluginOptions: {},
-	});
+    	// Options passed to @11ty/eleventy-plugin-bundle
+    	bundlePluginOptions: {},
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -163,7 +164,7 @@ This is a (last-resort?) catch-all option to let WebC process `.html` output fil
 A few drawbacks to the transform method:
 
 1. This is the slowest build-performance method to implement WebC in a project, so try the other methods first!
-2. The WebC Eleventy transform operates with [bundler mode disabled](<#css-and-js-bundler-mode>), which means that processes WebC but _does not_ aggregate component JS or CSS. ([Upvote this enhancement request](https://github.com/11ty/eleventy-plugin-webc/issues/55))
+2. The WebC Eleventy transform operates with [bundler mode disabled](#css-and-js-bundler-mode), which means that processes WebC but _does not_ aggregate component JS or CSS. ([Upvote this enhancement request](https://github.com/11ty/eleventy-plugin-webc/issues/55))
 
 <details>
 <summary>The transform is disabled by default, you will need to use the <code>useTransform</code> option to enable it.</summary>
@@ -172,9 +173,9 @@ A few drawbacks to the transform method:
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function ($config) {
-	$config.addPlugin(pluginWebc, {
-		useTransform: true,
-	});
+$config.addPlugin(pluginWebc, {
+useTransform: true,
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -272,7 +273,7 @@ Outputs:
 
 </details>
 
-Eleventy runs WebC in Bundler mode. That means that when it finds `<style>`, `<link rel="stylesheet">`, or `<script>` elements in component definitions, they are removed from the output markup and _their content_ is aggregated together for re-use in asset bundles on the page. Read more about [CSS and JS in WebC](<#css-and-js-bundler-mode>). _(You can opt-out of this behavior with `webc:keep`.)_
+Eleventy runs WebC in Bundler mode. That means that when it finds `<style>`, `<link rel="stylesheet">`, or `<script>` elements in component definitions, they are removed from the output markup and _their content_ is aggregated together for re-use in asset bundles on the page. Read more about [CSS and JS in WebC](#css-and-js-bundler-mode). _(You can opt-out of this behavior with `webc:keep`.)_
 
 ### `webc:keep`
 
@@ -312,10 +313,7 @@ WebC will expand any component it finds using known components. You can also use
 {% addedin "@11ty/webc@0.6.2" %}You can import directly from an installed npm package. Eleventy will begin to supply WebC components with existing plugins. The Syntax Highlighter (`4.2.0` or newer) supplies one that you can use today:
 
 ```html
-<syntax-highlight
-	language="js"
-	webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight"
->
+<syntax-highlight language="js" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 	function myFunction() { return true; }
 </syntax-highlight>
 ```
@@ -391,10 +389,7 @@ Note the use of `in` instead of `of`.
 <div webc:for="(key, value, index) in { a: 1, b: 2 }" @text="index"></div>
 
 <!-- name these whatever you’d like -->
-<div
-	webc:for="(myKey, myValue, myIndex) in { a: 1, b: 2 }"
-	@text="myIndex"
-></div>
+<div webc:for="(myKey, myValue, myIndex) in { a: 1, b: 2 }" @text="myIndex"></div>
 
 <!-- use `Object.values` or `Object.keys`, sure -->
 <div webc:for="value of Object.values({ a: 1, b: 2 })"></div>
@@ -412,8 +407,7 @@ Child content optionally precompiles using `<slot>` and `[slot]` too. This examp
 {% codetitle "page.webc" %}
 
 ```html
-<my-component></my-component>
-<my-component>This is the default slot</my-component>
+<my-component></my-component> <my-component>This is the default slot</my-component>
 ```
 
 {% codetitle "components/my-component.webc" %}
@@ -508,9 +502,7 @@ It’s worth noting also that `webc:root` can be nested inside of other content�
 ```html
 <div>
 	<div>
-		<template webc:root="override" class="another-class">
-			Some component content
-		</template>
+		<template webc:root="override" class="another-class"> Some component content </template>
 	</div>
 </div>
 ```
@@ -558,7 +550,9 @@ Make any attribute or property dynamic (using JavaScript for the value instead o
 
 - {% addedin "@11ty/webc@0.9.0" %}The `:@` dynamic property prefix was added in WebC v0.9.0.
 - In the HTML specification, attribute names are lower-case. {% addedin "@11ty/webc@0.8.0" %}Attribute or property names with dashes are converted to camelcase for JS (e.g. `<my-component @prop-name="test">` can be used like `@text="propName"`). More at [#71](https://github.com/11ty/webc/issues/71).
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in dynamic attributes (e.g. `this.src`/`this.alt`) when referencing helpers/data/attributes/property values. -->
+
 - The only currently supported `webc:*` configuration attribute that supports dynamic values is [`webc:bucket`](#asset-bucketing). More to come here: [#143](https://github.com/11ty/webc/issues/143) [#148](https://github.com/11ty/webc/issues/148)
 
 {% include "webc-attribute-guide.njk" %}
@@ -585,8 +579,7 @@ You can use this to render an arbitrary object as attributes too (note the paren
 We surface a special `@html` [prop](#props-properties) to override any tag content with custom JavaScript.
 
 ```html
-<template @html="'Template HTML'"></template>
-<template @html="dataProperty"></template>
+<template @html="'Template HTML'"></template> <template @html="dataProperty"></template>
 ```
 
 ```html
@@ -595,7 +588,9 @@ We surface a special `@html` [prop](#props-properties) to override any tag conte
 ```
 
 - Content returned from the `@html` prop will be processed as WebC—return any WebC content here! {% addedin "@11ty/webc@0.5.0" %}
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.dataProperty`) when referencing helpers/data/attributes/property values. -->
+
 - Using `webc:raw` will prevent processing the result as WebC {% addedin "@11ty/webc@0.6.0" %}
 - Use `@raw` as an alias for `webc:raw @html` {% addedin "@11ty/webc@0.7.1" %}
 
@@ -777,10 +772,7 @@ You can also transform individual element content using `webc:type`. In addition
 {% codetitle "page.webc" %}
 
 ```html
-<img
-	src="my-image.jpeg"
-	alt="An excited Zach is trying to finish this documentation"
-/>
+<img src="my-image.jpeg" alt="An excited Zach is trying to finish this documentation" />
 ```
 
 {% codetitle "components/img.webc" %}
@@ -799,8 +791,8 @@ You can also transform individual element content using `webc:type`. In addition
 
 ```html
 <script webc:type="render">
-	export default function() {
-		if(!this.alt) {
+	export default function () {
+		if (!this.alt) {
 			throw new Error("oh no you didn’t");
 		}
 		// Free idea: use the Eleventy Image plugin to return optimized markup
@@ -828,7 +820,7 @@ Or use a JavaScript render function to generate some CSS:
 ```html
 <template webc:is="style" webc:root="override">
 	<script webc:type="js">
-		export default function({ license }) {
+		export default function ({ license }) {
 			return `/* ${license} */`;
 		}
 	</script>
@@ -842,7 +834,7 @@ Or use a JavaScript render function to generate some CSS:
 ```html
 <template webc:is="style" webc:root="override">
 	<script webc:type="render">
-		export default function() {
+		export default function () {
 			return `/* ${this.license} */`;
 		}
 	</script>
@@ -859,13 +851,13 @@ Note that you can also use `webc:if`!
 
 ```html
 <script webc:type="js">
-export default function({ src, alt }) {
-	if (alt) {
-		return `<img src="${src}" alt="${alt}">`;
-	} else {
-		return `<a href="${src}">Your image didn’t have an alt so you get this link instead.</a>`;
+	export default function ({ src, alt }) {
+		if (alt) {
+			return `<img src="${src}" alt="${alt}">`;
+		} else {
+			return `<a href="${src}">Your image didn’t have an alt so you get this link instead.</a>`;
+		}
 	}
-}
 </script>
 ```
 
@@ -981,13 +973,14 @@ This includes [`url`, `slugify`, `log`, and others](/docs/filters/#eleventy-prov
 
 {% set codeContent %}
 export default function ($config) {
-	// via Universal Filter
-	$config.addFilter("alwaysRed", () => "Red");
+// via Universal Filter
+$config.addFilter("alwaysRed", () => "Red");
 
-	// or via JavaScript Template Function directly
-	$config.addJavaScriptFunction("alwaysBlue", () => "Blue");
+    // or via JavaScript Template Function directly
+    $config.addJavaScriptFunction("alwaysBlue", () => "Blue");
 
-	// Don’t forget to add the WebC plugin in your config file too!
+    // Don’t forget to add the WebC plugin in your config file too!
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -1050,14 +1043,11 @@ The above example assumes the existence of `_includes/my-layout.webc` (an [Eleve
 ...
 <my-table>
 	<x webc:is="tr">
-		<x webc:is="td">
-			My Table Content
-		</x>
+		<x webc:is="td"> My Table Content </x>
 	</x>
 </my-table>
 ...
 ```
-
 
 {% codetitle "components/my-table.webc" %}
 ```html
@@ -1113,6 +1103,7 @@ The above example assumes the existence of `_includes/my-layout.webc` (an [Eleve
 ```
 
 - Read more about the WebC properties: [`@raw`](#raw) {% addedin "@11ty/webc@0.7.1" %} and [`@html`](#html).
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.content`) when referencing helpers/data/attributes/property values. -->
 
 </details>
@@ -1145,19 +1136,20 @@ We accept:
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function ($config) {
-	$config.addPlugin(pluginWebc, {
-		// Glob to find no-import global components
-		// This path is relative to the project-root!
-		// The default value is shown:
-		components: "_components/**/*.webc",
+$config.addPlugin(pluginWebc, {
+// Glob to find no-import global components
+// This path is relative to the project-root!
+// The default value is shown:
+components: "_components/**/*.webc",
 
-		// or an Array (Eleventy WebC v0.9.2+)
-		components: [
-			"_components/**/*.webc",
-			"npm:@11ty/is-land/*.webc",
-			"npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc",
-		],
-	});
+    	// or an Array (Eleventy WebC v0.9.2+)
+    	components: [
+    		"_components/**/*.webc",
+    		"npm:@11ty/is-land/*.webc",
+    		"npm:@11ty/eleventy-plugin-syntaxhighlight/*.webc",
+    	],
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -1211,7 +1203,7 @@ For example, if you have this in `_data/site.json`:
 
 ```json
 {
-  "title": "My Site Title"
+	"title": "My Site Title"
 }
 ```
 
@@ -1277,6 +1269,7 @@ You can opt-out of bundling on a per-element basis [using `webc:keep`](#webckeep
 - {% addedin "@11ty/webc@0.8.0" %}`webc:keep` is required on `<style>` and `<script>` in your layout files to prevent re-bundling the bundles.
 - {% addedin "@11ty/webc@0.8.0" %}The `getCss` and `getJs` helpers are now available to all WebC templates without restriction. Previous versions required them to be used in an _Eleventy Layout_ file.
 - `@raw` was {% addedin "@11ty/webc@0.7.1" %}. Previous versions can use `webc:raw @html`.
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.getCss`/`this.page.url`) when referencing helpers/data/attributes/property values. -->
 
 #### Bundle Code Ordering
@@ -1397,6 +1390,7 @@ Then you can output those bucket bundles anywhere on your page like this (here w
 
 - {% addedin "@11ty/webc@0.8.0" %}`webc:keep` is required on `<style>` and `<script>` in your layout files to prevent re-bundling the bundles.
 - {% addedin "@11ty/webc@0.9.1" %}`:webc:bucket` (dynamic attribute) is supported to set this value via JavaScript. [#120](https://github.com/11ty/webc/issues/120)
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.getCss`/`this.page.url`) when referencing helpers/data/attributes/property values. -->
 
 #### Cascading Asset Buckets

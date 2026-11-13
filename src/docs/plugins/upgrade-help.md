@@ -70,8 +70,8 @@ Add to your configuration file (probably `buildawesome.config.js` or `eleventy.c
 import UpgradeHelper from "@11ty/eleventy-upgrade-help";
 
 export default function ($config) {
-	// If you have other `addPlugin` calls, it’s important that UpgradeHelper is added last.
-	$config.addPlugin(UpgradeHelper);
+// If you have other `addPlugin` calls, it’s important that UpgradeHelper is added last.
+$config.addPlugin(UpgradeHelper);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

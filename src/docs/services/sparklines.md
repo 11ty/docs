@@ -14,13 +14,14 @@ communityLinksKey: api-services-sparkline
 import Sparkline from "sparkline-svg";
 
 function sparklineDataUri(values = []) {
-	let line = new Sparkline.default(values);
-	line.setViewBoxWidth(120);
-	line.setViewBoxHeight(30);
-	line.setStrokeWidth(1);
-	line.setStroke("#000000");
+let line = new Sparkline.default(values);
+line.setViewBoxWidth(120);
+line.setViewBoxHeight(30);
+line.setStrokeWidth(1);
+line.setStroke("#000000");
 
-	return line.dataUri;
+    return line.dataUri;
+
 };
 
 // Example JavaScript Usage:

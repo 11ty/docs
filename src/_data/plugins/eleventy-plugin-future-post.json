@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-future-post",
-  "author": "johnwargo",
-  "description": "Allows you to set a future publishing date for one or more posts and not generate (publish) them until you build the site after the selected date. Based on the Eleventy Base Blog Drafts plugin."
+	"npm": "eleventy-plugin-future-post",
+	"author": "johnwargo",
+	"description": "Allows you to set a future publishing date for one or more posts and not generate (publish) them until you build the site after the selected date. Based on the Eleventy Base Blog Drafts plugin."
 }

@@ -6,7 +6,7 @@
 	color: #fff;
 	font-weight: 700;
 	padding: 0.25em 1em;
-	gap: .5em;
+	gap: 0.5em;
 }
 @media (min-width: 48em) {
 	/* 768px */

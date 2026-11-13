@@ -29,10 +29,11 @@
 .elv-nav-menu {
 	display: flex;
 	align-items: center;
-	padding: .75rem 1rem;
+	padding: 0.75rem 1rem;
 	margin-inline: auto;
 }
-@media (min-width: 58.125em) { /* 930px */
+@media (min-width: 58.125em) {
+	/* 930px */
 	.elv-nav-menu.elv-nav-menu {
 		flex-wrap: nowrap;
 		white-space: nowrap;
@@ -135,7 +136,7 @@
 		var(--stripe-color-2) 10px,
 		var(--stripe-color-2) 20px
 	);
-	background-color: #00A776;
+	background-color: #00a776;
 }
 .elv-hero-ba {
 	display: block;
@@ -173,19 +174,25 @@
 .elv-mascot-image {
 	position: absolute;
 	bottom: 0;
-	left: .5rem;
+	left: 0.5rem;
 	width: 5rem; /* 80px /16 */
 	height: auto;
 }
 .elv-hero-11ty:before {
-	--stripe-color-1: #00A776;
+	--stripe-color-1: #00a776;
 	--stripe-color-2: #222;
 	content: "";
 	width: 4rem;
 	margin-right: -1rem;
 	height: 100%;
-	background-image: linear-gradient(83deg, var(--stripe-color-1), var(--stripe-color-1) 50%, var(--stripe-color-2) 51%, var(--stripe-color-2) 100%);
-	opacity: .999;
+	background-image: linear-gradient(
+		83deg,
+		var(--stripe-color-1),
+		var(--stripe-color-1) 50%,
+		var(--stripe-color-2) 51%,
+		var(--stripe-color-2) 100%
+	);
+	opacity: 0.999;
 }
 a[href].elv-hero-11ty,
 a[href].elv-hero-11ty:visited {
@@ -223,8 +230,8 @@ a[href].elv-hero-11ty:visited {
 
 .elv-header-version,
 .elv-header-pro {
-	padding: .25em .75em;
-	border-radius: .25em;
+	padding: 0.25em 0.75em;
+	border-radius: 0.25em;
 	background-color: #efefef;
 
 	@media (prefers-color-scheme: dark) {

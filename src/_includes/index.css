@@ -12,9 +12,9 @@
 	--color: #383838;
 	--border-color: #ddd;
 	--link-color: #222;
-	--link-underline: rgba(0,0,0,.25);
+	--link-underline: rgba(0, 0, 0, 0.25);
 	--shadow-color: rgba(0, 0, 0, 0.08);
-	--external-link-underline: rgba(0,188,212,.6);
+	--external-link-underline: rgba(0, 188, 212, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,7 +23,7 @@
 		--color: var(--color_dark);
 		--border-color: #444;
 		--link-color: #fff;
-		--link-underline: rgba(255,255,255,.45);
+		--link-underline: rgba(255, 255, 255, 0.45);
 		--shadow-color: rgba(255, 255, 255, 0.25);
 	}
 }
@@ -50,7 +50,10 @@ html {
 	overflow-y: scroll;
 }
 body {
-	font-family: Cera Round Pro, system-ui, sans-serif;
+	font-family:
+		Cera Round Pro,
+		system-ui,
+		sans-serif;
 	background-color: var(--background-color);
 	color: var(--color);
 	margin: 0;
@@ -68,8 +71,8 @@ a[href] {
 	text-decoration-thickness: 0.1em;
 }
 a[href]:hover {
-	text-decoration-color: rgba(255,0,0,.3);
-	text-decoration-thickness: .3em;
+	text-decoration-color: rgba(255, 0, 0, 0.3);
+	text-decoration-thickness: 0.3em;
 	text-underline-offset: -0.1em;
 	text-decoration-skip-ink: none;
 }
@@ -177,7 +180,10 @@ main details[open] > summary {
 }
 
 .brand-typeface {
-	font-family: Cera Round Pro, system-ui, sans-serif;
+	font-family:
+		Cera Round Pro,
+		system-ui,
+		sans-serif;
 	font-weight: 700;
 }
 
@@ -189,25 +195,28 @@ h4,
 h5,
 .elv-h2,
 .elv-h3 {
-	font-family: Cera Round Pro, system-ui, sans-serif;
+	font-family:
+		Cera Round Pro,
+		system-ui,
+		sans-serif;
 	font-weight: 700;
 	text-wrap: balance;
 }
 h1 {
-	margin: 0 0 .5em;
+	margin: 0 0 0.5em;
 }
 h1,
 .elv-type1 {
 	font-size: 2.666666666667em; /* 48px /18 */
 }
-main .elv-toc + #skip-content >  heading-anchors > h1:first-child {
+main .elv-toc + #skip-content > heading-anchors > h1:first-child {
 	margin-block-start: 0.5em;
 	line-height: 1.1;
 }
 main .breadcrumb + h1,
 main h1:first-child,
-main .elv-toc + #skip-content >  heading-anchors > h1:first-child {
-	padding-block-end: .5em;
+main .elv-toc + #skip-content > heading-anchors > h1:first-child {
+	padding-block-end: 0.5em;
 	border-block-end: 1px solid #aaa;
 }
 @media (min-width: 55em) {
@@ -219,7 +228,7 @@ h2,
 .elv-h2 {
 	border-block-end: 1px solid #ddd;
 	margin: 2em 0 0.25em;
-	padding-block-end: .25em;
+	padding-block-end: 0.25em;
 	letter-spacing: -0.5px;
 }
 h2,
@@ -380,7 +389,8 @@ footer.elv-layout {
 .elv-footer .elv-callout :is(p, .inlinelist) {
 	margin: 0;
 }
-@media (min-width: 31.25em) { /* 500px */
+@media (min-width: 31.25em) {
+	/* 500px */
 	.elv-footer-nav > :last-child {
 		text-align: right;
 	}
@@ -467,7 +477,8 @@ filter-container:defined form {
 }
 
 /* Utility classes */
-.f-b, .util-bold {
+.f-b,
+.util-bold {
 	font-weight: 700;
 }
 .nowrap {
@@ -501,7 +512,7 @@ filter-container:defined form {
 	margin-block-end: 2em;
 }
 .m-8.m-8 {
-	margin-block:4em;
+	margin-block: 4em;
 }
 .mt-8 {
 	margin-block-start: 4em;
@@ -558,7 +569,7 @@ symbol {
 	overflow: visible;
 }
 .fa11ty-icon {
-	margin: 0 .25em;
+	margin: 0 0.25em;
 	width: 1.3em;
 	height: 1.3em;
 	vertical-align: text-bottom;
@@ -604,7 +615,9 @@ symbol {
 }
 
 /* Blog layout */
-.elv-layout-blog heading-anchors > *:not(h1, .breadcrumb, .fl-inline, .elv-blog-navigation, hr, .sites-vert, table) {
+.elv-layout-blog
+	heading-anchors
+	> *:not(h1, .breadcrumb, .fl-inline, .elv-blog-navigation, hr, .sites-vert, table) {
 	max-width: var(--paragraph-max);
 }
 /* Blog previous/next */
@@ -620,11 +633,11 @@ symbol {
 	flex-grow: 1;
 
 	display: flex;
-	gap: .25em;
+	gap: 0.25em;
 	flex-direction: column;
 	padding: 1em;
 	border: 1px solid var(--border-color);
-	border-radius: .25em;
+	border-radius: 0.25em;
 }
 .elv-blog-navigation:is(ul, ol) a[href] {
 	display: block;
@@ -637,25 +650,25 @@ symbol {
 	text-align: right;
 }
 .elv-blog-navigation span:first-child {
-	font-size: .75em;
+	font-size: 0.75em;
 	text-transform: uppercase;
-	letter-spacing: .15em;
+	letter-spacing: 0.15em;
 }
 .elv-blog-navigation svg {
-	font-size: .75em;
+	font-size: 0.75em;
 	vertical-align: unset;
-	margin-inline: 0 .5em;
+	margin-inline: 0 0.5em;
 }
 .elv-blog-navigation:is(ul, ol) li:last-child svg {
-	margin-inline: .5em 0;
+	margin-inline: 0.5em 0;
 }
 
 code.elv-tag {
 	display: inline-flex;
 	align-items: center;
-	font-size: .75em;
+	font-size: 0.75em;
 	white-space: nowrap;
-	margin-inline: .25em;
-	padding: .15em .5em .15em .35em;
-	border-radius: .5em;
+	margin-inline: 0.25em;
+	padding: 0.15em 0.5em 0.15em 0.35em;
+	border-radius: 0.5em;
 }

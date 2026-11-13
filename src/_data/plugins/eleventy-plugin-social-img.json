@@ -1,5 +1,5 @@
 {
-    "npm": "eleventy-plugin-social-img",
-    "author": "tannerdolby",
-    "description": "will generate social share images at build-time and return an image URL."
+	"npm": "eleventy-plugin-social-img",
+	"author": "tannerdolby",
+	"description": "will generate social share images at build-time and return an image URL."
 }

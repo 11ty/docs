@@ -1,5 +1,5 @@
 {
 	"npm": "eleventy-plugin-dart-sass",
-  "author": "chronotope",
+	"author": "chronotope",
 	"description": "Build, watch and template tags for Sass stylesheets via Dart Sass. Includes CSS code splitting and source maps."
 }

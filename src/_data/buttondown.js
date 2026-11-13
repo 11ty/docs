@@ -2,12 +2,14 @@ import fetch from "@11ty/eleventy-fetch";
 
 const CACHE_DURATION = process.env.BUILDAWESOME_RUN_MODE === "serve" ? "14d" : "23h";
 
-export default async function() {
-	if(!process.env.BUTTONDOWN_API_KEY) {
-		console.warn("Missing BUTTONDOWN_API_KEY in src/_data/buttondown.js, returning unknown newsletter count.");
+export default async function () {
+	if (!process.env.BUTTONDOWN_API_KEY) {
+		console.warn(
+			"Missing BUTTONDOWN_API_KEY in src/_data/buttondown.js, returning unknown newsletter count.",
+		);
 
 		return {
-			count: "(Unknown)"
+			count: "(Unknown)",
 		};
 	}
 
@@ -15,12 +17,12 @@ export default async function() {
 
 	let json = await fetch(API_URL, {
 		duration: CACHE_DURATION,
-    type: "json",
+		type: "json",
 		fetchOptions: {
 			headers: {
-				"Authorization": `Token ${process.env.BUTTONDOWN_API_KEY}`
-			}
-		}
+				Authorization: `Token ${process.env.BUTTONDOWN_API_KEY}`,
+			},
+		},
 	});
 
 	// TODO these are paginated or limited to 100 upstream

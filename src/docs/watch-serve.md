@@ -29,7 +29,7 @@ The `addWatchTarget` config method allows you to manually add a file or director
 
 {% set codeContent %}
 export default function($config) {
-	$config.addWatchTarget("./src/scss/");
+$config.addWatchTarget("./src/scss/");
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -46,10 +46,10 @@ To reset your configuration for a specific watch target, use the `resetConfig` o
 
 {% set codeContent %}
 export default function($config) {
-	// You probably don’t need this
-	$config.addWatchTarget("./_config/**", {
-		resetConfig: true
-	});
+// You probably don’t need this
+$config.addWatchTarget("./_config/**", {
+resetConfig: true
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -72,11 +72,12 @@ New in {{ "2.0.0-canary.18" | coerceVersion }}, watch target ignores now have th
 
 {% set codeContent %}
 export default function($config) {
-	// Do not rebuild when README.md changes (You can use a glob here too)
-	$config.watchIgnores.add("README.md");
+// Do not rebuild when README.md changes (You can use a glob here too)
+$config.watchIgnores.add("README.md");
 
-	// Or delete entries too
-	$config.watchIgnores.delete("README.md");
+    // Or delete entries too
+    $config.watchIgnores.delete("README.md");
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -89,8 +90,8 @@ When in `--watch` mode, Build Awesome will spider the dependencies of your [Java
 
 {% set codeContent %}
 export default function($config) {
-	// Enabled by default
-	$config.setWatchJavaScriptDependencies(false);
+// Enabled by default
+$config.setWatchJavaScriptDependencies(false);
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -101,8 +102,8 @@ A hardcoded amount of time Build Awesome will wait before triggering a new build
 
 {% set codeContent %}
 export default function($config) {
-	// default is 0
-	$config.setWatchThrottleWaitTime(100); // in milliseconds
+// default is 0
+$config.setWatchThrottleWaitTime(100); // in milliseconds
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -113,10 +114,10 @@ Advanced [`chokidar` options](https://github.com/paulmillr/chokidar) can be defi
 
 {% set codeContent %}
 export default function($config) {
-	$config.setChokidarConfig({
-		usePolling: true,
-		interval: 500,
-	});
+$config.setChokidarConfig({
+usePolling: true,
+interval: 500,
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

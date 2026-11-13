@@ -3,5 +3,5 @@
 	"name": "11ty-midnight",
 	"description": "Minimalist dark mode starter template for 11ty with support for jsfiddle embeds and prismjs syntax highlighting.",
 	"author": "sidswork",
-  "demo": "https://11ty-midnight.netlify.app/"
+	"demo": "https://11ty-midnight.netlify.app/"
 }

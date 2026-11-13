@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-sass",
-  "author": "kentaroi",
-  "description": "Yet another Sass/SCSS plugin for Eleventy"
+	"npm": "eleventy-sass",
+	"author": "kentaroi",
+	"description": "Yet another Sass/SCSS plugin for Eleventy"
 }

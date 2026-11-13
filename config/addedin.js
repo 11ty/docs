@@ -3,9 +3,7 @@ export { rcompare } from "semver";
 
 import versions from "../src/_data/versions.js";
 
-const newestPublishedVersion = versions
-	.filter((v) => v.tag !== "LATEST" && !v.prerelease)
-	.shift();
+const newestPublishedVersion = versions.filter((v) => v.tag !== "LATEST" && !v.prerelease).shift();
 
 // Warning: using 2.0.0 excludes 2.0.0-beta.x, 2.0.0-alpha.x releases
 const MINIMUM_VERSION_SHOWN = "0.99999.0";
@@ -57,10 +55,7 @@ export function coerceVersion(version) {
 	if (isPreReleaseOf(versionText, newestPublishedVersion.tag)) {
 		// Note 1: Strip -canary.1 or -beta.1 suffixes after 2.0.0 is shipped
 		versionText = versionText.split("-")[0];
-	} else if (
-		isPreRelease(versionText) &&
-		semver.lt(versionText, newestPublishedVersion.tag)
-	) {
+	} else if (isPreRelease(versionText) && semver.lt(versionText, newestPublishedVersion.tag)) {
 		// v2.0.0-beta.1 and the newest version is v2.0.1
 		versionText = versionText.split("-")[0];
 	}
@@ -77,17 +72,20 @@ export function addedIn(version, tag, extraClass) {
 		}
 
 		let newestPublishedVersionTag = newestPublishedVersion.tag;
-		if(newestPublishedVersionTag.startsWith("v")) {
+		if (newestPublishedVersionTag.startsWith("v")) {
 			newestPublishedVersionTag = newestPublishedVersionTag.slice(1);
 		}
 
 		if (isPreRelease(version)) {
-			if(semver.gt(version, newestPublishedVersionTag)) {
+			if (semver.gt(version, newestPublishedVersionTag)) {
 				beforeText = "Pre-release only: ";
 			}
 		} else {
 			let newestPublishedMajorVersion = parseInt(newestPublishedVersionTag.split(".")[0]);
-			if(semver.gt(version, newestPublishedVersionTag) || semver.gte(version, `${newestPublishedMajorVersion + 1}.0.0`)) {
+			if (
+				semver.gt(version, newestPublishedVersionTag) ||
+				semver.gte(version, `${newestPublishedMajorVersion + 1}.0.0`)
+			) {
 				beforeText = "Upcoming in: ";
 			}
 		}
@@ -98,7 +96,7 @@ export function addedIn(version, tag, extraClass) {
 		extraClass ? ` ${extraClass}` : ""
 	}" data-uncoerced-version="${version}">${beforeText}${coerceVersion.call(
 		this,
-		version
+		version,
 	)}</${tag}>`;
 }
 

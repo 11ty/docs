@@ -14,7 +14,10 @@ export default async function () {
 			duration: "1d",
 			directory: ".cache/eleventy-fetch/",
 		});
-		let urls = Array.from(xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g), ([, loc]) => new URL(loc).pathname);
+		let urls = Array.from(
+			xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g),
+			([, loc]) => new URL(loc).pathname,
+		);
 		return { origin, version, urls };
 	} catch (e) {
 		console.log(`Failed getting ${origin}/sitemap.xml, returning no matching urls`);

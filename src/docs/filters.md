@@ -60,9 +60,9 @@ Filters can be added using the [Configuration API](/docs/config/) and are availa
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addFilter("makeUppercase", function(value) { /* … */ });
+$config.addFilter("makeUppercase", function(value) { /* … */ });
 
-  $config.addAsyncFilter("makeUppercase", async function(value) { /* … */ });
+$config.addAsyncFilter("makeUppercase", async function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -87,9 +87,9 @@ If you’d like to reuse existing filters, you can use the Configuration API’s
 
 {% set codeContent %}
 export default function ($config) {
-	$config.addShortcode("myCustomImage", function (url, alt) {
-		return `<img src="${$config.getFilter("url")(url)}" alt="${alt}">`;
-	});
+$config.addShortcode("myCustomImage", function (url, alt) {
+return `<img src="${$config.getFilter("url")(url)}" alt="${alt}">`;
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -100,20 +100,21 @@ Eleventy has added a new universal filter API for asynchronous filters and exten
 
 {% set codeContent %}
 export default function ($config) {
-	// Async universal filters add to:
-	// * Liquid
-	// * Nunjucks
-	// * JavaScript
+// Async universal filters add to:
+// * Liquid
+// * Nunjucks
+// * JavaScript
 
-	$config.addFilter("myFilter", async function (value) {
-		// do some Async work
-		return value;
-	});
+    $config.addFilter("myFilter", async function (value) {
+    	// do some Async work
+    	return value;
+    });
 
-	$config.addAsyncFilter("myFilter", async function (value) {
-		// do some Async work
-		return value;
-	});
+    $config.addAsyncFilter("myFilter", async function (value) {
+    	// do some Async work
+    	return value;
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -133,11 +134,11 @@ A few Eleventy-specific data properties are available to filter callbacks.
 
 {% set codeContent %}
 export default function ($config) {
-	// Make sure you’re not using an arrow function here: () => {}
-	$config.addFilter("myFilter", function () {
-		// this.page
-		// this.eleventy
-	});
+// Make sure you’re not using an arrow function here: () => {}
+$config.addFilter("myFilter", function () {
+// this.page
+// this.eleventy
+});
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}
@@ -156,9 +157,9 @@ Note that Eleventy 3.0 <!-- 3.0.0-alpha.15 --> ships with a memoization layer ar
 import memoize from "memoize";
 
 export default function($config) {
-	$config.addFilter("htmlEntities", memoize(str => {
-		return encode(str);
-	}));
+$config.addFilter("htmlEntities", memoize(str => {
+return encode(str);
+}));
 };
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -169,18 +170,18 @@ Filters can also be specified individually for one or more template engines. (Th
 
 {% set codeContent %}
 export default function ($config) {
-	// Liquid Filter (async-friendly)
-  $config.addLiquidFilter("myFilter", async function(value) { /* … */ });
+// Liquid Filter (async-friendly)
+$config.addLiquidFilter("myFilter", async function(value) { /* … */ });
 
-  // Nunjucks Filter
-  $config.addNunjucksFilter("myFilter", function(value) { /* … */ });
+// Nunjucks Filter
+$config.addNunjucksFilter("myFilter", function(value) { /* … */ });
 
-  // Nunjucks Async Filter
-  // Read the Nunjucks docs before using this (link below)
-  $config.addNunjucksAsyncFilter("myFilter", function() { /* … */ });
+// Nunjucks Async Filter
+// Read the Nunjucks docs before using this (link below)
+$config.addNunjucksAsyncFilter("myFilter", function() { /* … */ });
 
-  // JavaScript Template Function (async-friendly)
-  $config.addJavaScriptFunction("myFilter", async function(value) { /* … */ });
+// JavaScript Template Function (async-friendly)
+$config.addJavaScriptFunction("myFilter", async function(value) { /* … */ });
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

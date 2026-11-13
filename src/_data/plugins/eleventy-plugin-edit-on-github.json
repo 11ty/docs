@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-edit-on-github",
-  "author": "christopherpickering",
-  "description": "An Eleventy shortcode to add an \"Edit on Github\" link to your pages."
+	"npm": "eleventy-plugin-edit-on-github",
+	"author": "christopherpickering",
+	"description": "An Eleventy shortcode to add an \"Edit on Github\" link to your pages."
 }

@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-plugin-robotstxt",
-  "author": "hovhaDovah",
-  "description": "Generate a robots.txt file for your Eleventy site."
+	"npm": "eleventy-plugin-robotstxt",
+	"author": "hovhaDovah",
+	"description": "Generate a robots.txt file for your Eleventy site."
 }

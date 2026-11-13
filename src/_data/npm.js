@@ -20,11 +20,7 @@ async function getDownloadsForYear(year) {
 export default async function () {
 	try {
 		let count = 0;
-		for (
-			let year = START_YEAR, k = new Date().getFullYear();
-			year <= k;
-			year++
-		) {
+		for (let year = START_YEAR, k = new Date().getFullYear(); year <= k; year++) {
 			count += await getDownloadsForYear(year);
 		}
 		return {

@@ -32,33 +32,34 @@ import path from "node:path";
 import Image from "@11ty/eleventy-img";
 
 export default function ($config) {
-	$config.addDataExtension("png,jpeg", {
-		read: false, // Don’t read the input file, argument is now a file path
-		parser: async (imagePath) => {
-			let stats = await Image(imagePath, {
-				widths: ["auto"],
-				formats: ["avif", "webp", "jpeg"],
-				outputDir: path.join($config.dir.output, "img", "built"),
-			});
+$config.addDataExtension("png,jpeg", {
+read: false, // Don’t read the input file, argument is now a file path
+parser: async (imagePath) => {
+let stats = await Image(imagePath, {
+widths: ["auto"],
+formats: ["avif", "webp", "jpeg"],
+outputDir: path.join($config.dir.output, "img", "built"),
+});
 
-			return {
-				image: {
-					stats,
-				},
-			};
-		},
-	});
+    		return {
+    			image: {
+    				stats,
+    			},
+    		};
+    	},
+    });
 
-	// This works sync or async: images were processed ahead of time in the data cascade
-	$config.addShortcode("dataCascadeImage", (stats, alt, sizes) => {
-		let imageAttributes = {
-			alt,
-			sizes,
-			loading: "lazy",
-			decoding: "async",
-		};
-		return Image.generateHTML(stats, imageAttributes);
-	});
+    // This works sync or async: images were processed ahead of time in the data cascade
+    $config.addShortcode("dataCascadeImage", (stats, alt, sizes) => {
+    	let imageAttributes = {
+    		alt,
+    		sizes,
+    		loading: "lazy",
+    		decoding: "async",
+    	};
+    	return Image.generateHTML(stats, imageAttributes);
+    });
+
 };
 {% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -4,6 +4,7 @@ eleventyNavigation:
   parent: Blog
 external_url: https://github.com/11ty/eleventy/releases/tag/v3.0.0-beta.1
 ---
+
 After over a year of work, our very first beta release of ESM-friendly 3.0 is now available: **Eleventy v3.0.0-beta.1** 🎈🐀
 
 We are very excited to see this ship and look forward to what y’all build with it 🏆
@@ -16,4 +17,4 @@ We are very excited to see this ship and look forward to what y’all build with
 
 Related posts:
 
-* _(May 2024) [Calling all courageous canary testers for Eleventy v3.0](/blog/canary-eleventy-v3/)_
+- _(May 2024) [Calling all courageous canary testers for Eleventy v3.0](/blog/canary-eleventy-v3/)_

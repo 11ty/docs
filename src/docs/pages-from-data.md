@@ -5,6 +5,7 @@ eleventyNavigation:
   order: 3
   excerpt: Iterate over a data set and create multiple output files.
 ---
+
 # Create Pages From Data
 
 The [Pagination feature](/docs/pagination/) is used for iterating over any data to create multiple output files.
@@ -17,22 +18,22 @@ Let's look at an example where we dynamically build pages based on data from a j
 
 {%- set codeBlock %}{% raw %}
 [
-	{
-		name: "Fluffy",
-		age: 2,
-	},
-	{
-		name: "Snugglepants",
-		age: 5,
-	},
-	{
-		name: "Lord Featherbottom",
-		age: 4,
-	},
-	{
-		name: "Pennywise",
-		age: 9,
-	},
+{
+name: "Fluffy",
+age: 2,
+},
+{
+name: "Snugglepants",
+age: 5,
+},
+{
+name: "Lord Featherbottom",
+age: 4,
+},
+{
+name: "Pennywise",
+age: 9,
+},
 ];
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("js") | safe }}
@@ -41,10 +42,11 @@ In order to create one page per possum, we can use the following template. The f
 
 {%- set codeBlock %}{% raw %}
 ---
+
 pagination:
-  data: possums
-  size: 1
-  alias: possum
+data: possums
+size: 1
+alias: possum
 permalink: "possums/{{ possum.name | slugify }}/"
 ---
 

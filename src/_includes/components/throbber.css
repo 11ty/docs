@@ -2,7 +2,12 @@ text-throbber,
 is-land--text-throbber {
 	display: block;
 	line-height: 1.2;
-	font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+	font-family:
+		Menlo,
+		Monaco,
+		Consolas,
+		Courier New,
+		monospace;
 	-ms-word-break: break-all;
 	word-break: break-word;
 	-webkit-hyphens: manual;

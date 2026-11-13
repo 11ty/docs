@@ -5,18 +5,15 @@ const CACHE_DURATION = process.env.BUILDAWESOME_RUN_MODE === "serve" ? "7d" : "1
 export default async function () {
 	try {
 		// https://developer.github.com/v3/repos/#get
-		let json = await Fetch(
-			"https://api.github.com/repos/11ty/buildawesome",
-			{
-				type: "json",
-				duration: CACHE_DURATION,
-				fetchOptions: {
-					headers: {
-						Authorization: `bearer ${process.env.GITHUB_READ_TOKEN}`,
-					},
+		let json = await Fetch("https://api.github.com/repos/11ty/buildawesome", {
+			type: "json",
+			duration: CACHE_DURATION,
+			fetchOptions: {
+				headers: {
+					Authorization: `bearer ${process.env.GITHUB_READ_TOKEN}`,
 				},
-			}
-		);
+			},
+		});
 
 		return {
 			stargazers: json.stargazers_count,

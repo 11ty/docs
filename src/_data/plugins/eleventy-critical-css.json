@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-critical-css",
-  "author": "gregiv_es",
-  "description": "extracts and inlines critical CSS from your HTML templates"
+	"npm": "eleventy-critical-css",
+	"author": "gregiv_es",
+	"description": "extracts and inlines critical CSS from your HTML templates"
 }

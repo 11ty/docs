@@ -1,5 +1,5 @@
 {
-  "npm": "eleventy-load",
-  "author": "gregiv_es",
-  "description": "brings webpack-like loaders to Eleventy"
+	"npm": "eleventy-load",
+	"author": "gregiv_es",
+	"description": "brings webpack-like loaders to Eleventy"
 }

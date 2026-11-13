@@ -20,23 +20,31 @@ In Eleventy, data is merged from multiple different sources before the template 
 {% codetitle "my-template.md" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 title: This is a Good Blog Post
 tags:
-  - CSS
-  - HTML
-layout: my-layout.njk
+
+- CSS
+- HTML
+  layout: my-layout.njk
+
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 
 {% codetitle "_includes/my-layout.njk" %}
 {%- set codeBlock %}{% raw %}
 ---
+
 title: This is a Very Good Blog Post
 author: Zach
 tags:
-  - JavaScript
+
+- JavaScript
+
 ---
+
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("yaml") | safe }}
 
@@ -47,10 +55,10 @@ The data cascade results in the following data when `my-template.md` is rendered
 {% codetitle "JavaScript", "Syntax" %}
 {%- set codeBlock %}{% raw %}
 {
-	"title": "This is a Good Blog Post",
-	"author": "Zach",
-	"tags": ["CSS", "HTML", "JavaScript"],
-	"layout": "my-layout.njk"
+"title": "This is a Good Blog Post",
+"author": "Zach",
+"tags": ["CSS", "HTML", "JavaScript"],
+"layout": "my-layout.njk"
 }
 {% endraw %}{%- endset %}
 {{ codeBlock | highlight("json") | safe }}
