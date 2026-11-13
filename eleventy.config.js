@@ -22,6 +22,7 @@ import { bundleModulePath } from "./config/bundleJavaScript.js";
 import cleanName from "./config/cleanAuthorName.js";
 import objectHas from "./config/object-has.js";
 import markdownPlugin from "./config/markdownPlugin.js";
+import pageTocPlugin from "./config/pageTocPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
@@ -281,6 +282,7 @@ export default async function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(imagePlugin);
 	eleventyConfig.addPlugin(markdownPlugin);
+	eleventyConfig.addPlugin(pageTocPlugin);
 
 	eleventyConfig.addPlugin(minificationLocalPlugin);
 	eleventyConfig.addPlugin(RenderPlugin);

@@ -1,5 +1,6 @@
+{%- set tocHeadingLevels = tocHeadings or "h2" %}
 <nav class="elv-headings-toc" aria-labelledby="headings-toc-hed" data-pagefind-ignore>
 	<script type="module" src="/js/table-of-contents.js"></script>
 	<p class="elv-headings-toc-hed" id="headings-toc-hed">On this page</p>
-	<table-of-contents selector="#skip-content :is({{ tocHeadings or 'h2' }}):not([data-ha-exclude])"></table-of-contents>
+	<table-of-contents selector="#skip-content :is({{ tocHeadingLevels }}):not([data-ha-exclude])" data-toc-build="{{ tocHeadingLevels }}"></table-of-contents>
 </nav>
