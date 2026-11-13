@@ -7,4 +7,5 @@ src/authors/author-pages.md
 src/docs/plugins/community.md
 src/docs/quicktips.md
 dist/**
+package.json
 package-lock.json
