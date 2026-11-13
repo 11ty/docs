@@ -113,12 +113,18 @@
 	   Only the starting offset: overflow clips at the padding box, so the row still travels through
 	   this space once it moves. */
 	padding-inline-start: 3em;
-	/* Sits behind the footer links rather than beside them */
-	opacity: .5;
+	/* Sits behind the footer links, muted only as far as text contrast still passes 4.5:1 */
+	color: color-mix(in srgb, var(--color) 75%, var(--background-color));
 	mask-image: linear-gradient(to right, transparent, #000 4em, #000 calc(100% - 4em), transparent);
+}
+.elv-logo-marquee :is(.avatar, .fa11ty-icon) {
+	opacity: .5;
 }
 /* It’s a link, so it comes forward when someone is actually pointed at it */
 .elv-logo-marquee:is(:hover, :focus-visible) {
+	color: var(--color);
+}
+.elv-logo-marquee:is(:hover, :focus-visible) :is(.avatar, .fa11ty-icon) {
 	opacity: 1;
 }
 /* Declared under no-preference rather than switched off after, so it never outranks the global
