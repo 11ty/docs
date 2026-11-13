@@ -121,6 +121,7 @@ eleventy-editor:not(:defined):after {
 
 /* The callout already holds the content away from the page, so the layout doesn’t bleed inside it */
 .elv-callout .editor-layout {
+	--editor-bleed: 0;
 	margin: 0;
 }
 .editor-layout {
@@ -137,7 +138,15 @@ eleventy-editor:not(:defined):after {
 	row-gap: var(--editor-label-gap);
 	margin-block: 1em;
 	/* Lines up with the code blocks and callouts around it, which full-bleed by the same amount */
-	margin-inline: -1rem;
+	--editor-bleed: 1rem;
+	margin-inline: calc(-1 * var(--editor-bleed));
+}
+/* Single column, a label row written for two columns moves its second label down to sit over the output */
+@media (width < 57.5em) {
+	.editor-filename + .editor-filename,
+	.editor-filename + .editor-filename ~ :is(browser-window, is-land--browser-window) {
+		order: 1;
+	}
 }
 /* Two columns only once each one has room to be read. Below that a file stacks over its output. */
 @media (min-width: 57.5em) {
@@ -159,6 +168,8 @@ eleventy-output {
 }
 .editor-filename {
 	margin-block: 0;
+	/* Undo the layout’s bleed so the label lines up with the prose above */
+	padding-inline-start: var(--editor-bleed);
 }
 
 /* A class-level display beats the UA [hidden] rule, so say it again for anything hidden here */
