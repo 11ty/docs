@@ -1,10 +1,12 @@
 {#- Nunjucks, not <logo-cloud>: the footer lives in a .njk layout, where WebC components aren’t
     resolved. The list is rendered twice so the animation can shift by exactly one copy and loop
-    without a seam; the second copy is hidden from assistive tech. -#}
-<a href="/docs/why/" class="logo-marquee-c elv-logo-marquee" aria-label="Eleventy is production ready and trusted by NASA, Cern, Google and more">
-	<div class="logo-marquee">
+    without a seam; the logos are decoration here, so the whole row is hidden from assistive tech
+    and the link carries its own text instead. -#}
+<a href="/docs/why/" class="logo-marquee-c elv-logo-marquee">
+	<span class="sr-only">Eleventy is production ready and trusted by NASA, Cern, Google and more</span>
+	<div class="logo-marquee" aria-hidden="true">
 	{%- for copy in [1, 2] %}
-		<ul class="logos-list"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+		<ul class="logos-list">
 			<li>{% indieavatar "https://www.nasa.gov/" %}<abbr title="National Aeronautics and Space Administration">NASA</abbr></li>
 			<li>{% indieavatar "https://home.web.cern.ch/" %}Cern</li>
 			<li>{% indieavatar "https://tc39.es/" %}TC39</li>

@@ -342,11 +342,14 @@ footer.elv-layout {
 /* Footer */
 .elv-footer-wrap {
 	--elv-footer-spacing: clamp(1rem, 5vw, 3rem);
+}
+/* The logo marquee is inside the footer landmark but above its surface, so the tint starts here */
+.elv-footer-surface {
 	background-color: #f4f4f4;
 	border-top: 1px solid #999;
 }
 @media (prefers-color-scheme: dark) {
-	.elv-footer-wrap {
+	.elv-footer-surface {
 		background-color: #131313;
 		border-color: #444;
 	}

@@ -24,9 +24,11 @@ headerClass: elv-header-default
 	</div>
 </main>
 
-{% include "logo-cloud.njk" %}
-
 <footer class="elv-footer-wrap">
+	{# In the footer landmark so it isn’t stranded outside one, but above the footer’s own surface. #}
+	{% include "logo-cloud.njk" %}
+
+	<div class="elv-footer-surface">
 	{% include "components/announcement.njk" %}
 
 	<div class="elv-footer elv-layout">
@@ -36,6 +38,7 @@ headerClass: elv-header-default
 {% endif %}
 
 	{% include "footer-nav.njk" %}
+	</div>
 	</div>
 </footer>
 {% include "components/corner-logo.njk" %}
