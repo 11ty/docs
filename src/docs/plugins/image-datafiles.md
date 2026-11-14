@@ -27,8 +27,9 @@ excludeFromSidebar: true
 
 ## Configuration
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import path from "node:path";
 import Image from "@11ty/eleventy-img";
 
@@ -61,9 +62,9 @@ export default function (eleventyConfig) {
 		return Image.generateHTML(stats, imageAttributes);
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 With a template `my-blog-post.md` and an image file `my-blog-post.jpeg`, you could use the above configuration code in your template like this:

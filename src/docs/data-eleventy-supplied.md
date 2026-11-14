@@ -107,15 +107,13 @@ If you want a file extension in your URL, you might use it like this:
 
 {% codetitle "YAML Front Matter", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```yaml
 ---
 permalink: "{{ page.filePathStem }}.html"
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("yaml") | safe }}
+```
+{% endraw %}
 
 This example output uses the above permalink value.
 
@@ -177,13 +175,11 @@ It’s helpful if you add `<meta name="generator">` to your existing Eleventy pr
 
 {% codetitle "Nunjucks, Liquid", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```jinja2
 <meta name="generator" content="{{ eleventy.generator }}">
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("jinja2") | safe }}
+```
+{% endraw %}
 
 These videos also provide some additional context as to why this is important:
 
@@ -206,12 +202,13 @@ Starting in Eleventy 3.0, the `pkg`, `eleventy`, `page`, `content`, and `collect
 
 You can temporarily opt-out of the behavior using:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
 	eleventyConfig.setFreezeReservedData(false);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

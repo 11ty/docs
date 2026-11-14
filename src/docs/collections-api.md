@@ -10,8 +10,9 @@ To get fancier with your collections (and even do a bit of your own custom filte
 
 Inside of your `eleventy.config.js` config file, you can use the `addCollection` method:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// async-friendly
 	eleventyConfig.addCollection("myCollectionName", async (collectionsApi) => {
@@ -19,9 +20,9 @@ export default function (eleventyConfig) {
 		return collectionsApi.getAllSorted();
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Return values
@@ -36,23 +37,25 @@ The data collection gets passed to the callback. You can use it in all sorts of 
 
 Returns an array of items sorted by the [default sorting algorithm](/docs/collections/#sorting), just like they'd be sorted in a template.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Use the default sorting algorithm (ascending by date, filename tiebreaker)
 	eleventyConfig.addCollection("allMySortedContent", function (collectionsApi) {
 		return collectionsApi.getAllSorted();
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 #### Example: `getAllSorted().reverse()`
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Use the default sorting algorithm in reverse (descending dir, date, filename)
 	// Note that using a template engine’s `reverse` filter might be easier here
@@ -60,17 +63,18 @@ export default function (eleventyConfig) {
 		return collectionsApi.getAllSorted().reverse();
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Note that while Array `.reverse()` mutates the array _in-place_, all Eleventy Collection API methods return new copies of collection arrays and can be modified without side effects to other collections. You can also use `.toReversed()` if you want to avoid mutations (Node 20+). However, <a href="/docs/collections.md#do-not-use-array-reverse">you do need to <strong>be careful when using Array `.reverse()`</strong> in templates!</a>
 
 #### Example: `getAllSorted().filter()`
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Filter using `Array.filter`
 	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
@@ -81,32 +85,34 @@ export default function (eleventyConfig) {
 		});
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### getAll()
 
 Returns an array of items in arbitrary order. This is marginally faster than `getAllSorted()` if you don't need a particular ordering, but most of the time you'll want `getAllSorted` instead.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Unsorted items (in whatever order they were added)
 	eleventyConfig.addCollection("allMyContent", function (collectionsApi) {
 		return collectionsApi.getAll();
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 #### Example: `getAll().filter()`
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Filter using `Array.filter`
 	eleventyConfig.addCollection("keyMustExistInData", function (collectionsApi) {
@@ -116,15 +122,16 @@ export default function (eleventyConfig) {
 		});
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 #### Example: `getAll().sort()`
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Sort with `Array.sort`
 	eleventyConfig.addCollection("myCustomSort", function (collectionsApi) {
@@ -136,9 +143,9 @@ export default function (eleventyConfig) {
 		});
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Curious where the date is coming from? [Read more about Content Dates](/docs/dates/).
@@ -149,25 +156,27 @@ Note that the last example adding the `myCustomSort` collection will be availabl
 
 Returns a sorted array.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Get only content that matches a tag
 	eleventyConfig.addCollection("myPosts", function (collectionsApi) {
 		return collectionsApi.getFilteredByTag("post");
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### getFilteredByTags( tagName, secondTagName, […] )
 
 Retrieve content that includes _all_ of the tags passed in. Returns a sorted array.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Get only content that matches a tag
 	eleventyConfig.addCollection(
@@ -177,9 +186,9 @@ export default function (eleventyConfig) {
 		}
 	);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### getFilteredByGlob( glob )
@@ -194,8 +203,9 @@ Returns an array. Will match an arbitrary glob (or an array of globs) against th
 <strong>Note</strong>: <code>getFilteredByGlob</code> will not find files that are not supported by Eleventy. For example, a file with the extension <code>.ray</code> will be ignored even if it would match the glob.
 {% endcallout %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	eleventyConfig.addCollection("onlyMarkdown", function (collectionsApi) {
 		return collectionsApi.getFilteredByGlob("**/*.md");
@@ -210,7 +220,7 @@ export default function (eleventyConfig) {
 		return collectionsApi.getFilteredByGlob(["posts/*.md", "notes/*.md"]);
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

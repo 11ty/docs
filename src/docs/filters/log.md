@@ -11,61 +11,31 @@ eleventyNavigation:
 
 {% addedin "0.11.0" %} An easy way to <code>console.log</code> anything from inside of a template file.
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "log"} %}
-  <div id="log-liquid" role="tabpanel">
-
+{% tabs "log" %}
 {% raw %}
-
-```liquid
+```liquid liquid
 {{ "My Title" | log }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="log-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {{ "My Title" | log }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="log-js" role="tabpanel">
-
-{% raw %}
-
-```js
+```js js
 export default function (data) {
 	// Caveat: you have access to `console.log` here, so probably use that.
 	return this.log("My Title");
 };
 ```
 
-{% endraw %}
-
-  </div>
-	<div id="log-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+```js cjs
 module.exports = function (data) {
 	// Caveat: you have access to `console.log` here, so probably use that.
 	return this.log("My Title");
 };
 ```
-
 {% endraw %}
-
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 is functionally the same as running `console.log("My Title")` inside of your template.
 
@@ -73,16 +43,9 @@ is functionally the same as running `console.log("My Title")` inside of your tem
 
 You can drop log in between any filter chain you already have and it will log the incoming data and pass it through to the next filter.
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-	{% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "log-chain-demo", subtractions: "js,cjs,hbs"} %}
-  <div id="log-chain-demo-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "log-chain-demo", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 {{ "My Title" | log | upcase }}
 
 This is the same as:
@@ -91,16 +54,7 @@ This is the same as:
 {{ temp | upcase }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="log-chain-demo-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {{ "My Title" | log | upper }}
 
 This is the same as:
@@ -108,12 +62,8 @@ This is the same as:
 {{ temp | log }}
 {{ temp | upper }}
 ```
-
 {% endraw %}
-
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 ---
 

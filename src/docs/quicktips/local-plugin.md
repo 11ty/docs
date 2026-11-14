@@ -9,29 +9,31 @@ First, create a plugin file. We recommend creating a `config` or `_config` folde
 
 <div class="codetitle codetitle-right-md">config/local-plugin.js</div>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
 	// Move any code from `eleventy.config.js` here.
 	// Use eleventyConfig as you would in your top-level config file
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 {% callout "info" %}Any variables defined in your <code>eleventy.config.js</code> file will <em>not</em> be available to your plugin. Consider moving those variables into your plugin file, or <a href="/docs/create-plugin/#plugin-configuration-options">passing them in as options</a>.{% endcallout %}
 
 Next, use the `addPlugin` method:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import localPlugin from "./config/local-plugin.js";
 
 export default function(eleventyConfig) {
 	eleventyConfig.addPlugin(localPlugin);
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

@@ -9,6 +9,9 @@ seven-minute-tabs {
 	display: block;
 	margin-inline: -1rem;
 	margin-block: 1rem;
+	/* Safe now that the filename floats inside: the strip sizes against its own box, which is
+	   narrower in a callout or the editor than the page is */
+	container-type: inline-size;
 }
 @media (prefers-color-scheme: dark) {
 	seven-minute-tabs {
@@ -24,16 +27,14 @@ seven-minute-tabs [role="tablist"] {
 	display: flex;
 	line-height: 1.8;
 	border-radius: 0.25em 0.25em 0 0;
+	/* Scrolls rather than breaking across rows, which would leave a row detached from the panel */
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scrollbar-width: thin;
 }
 seven-minute-tabs.tabs-right [role="tablist"] {
 	justify-content: flex-end;
 	margin: 0 0 0 0.5em;
-}
-seven-minute-tabs [role="tablist"].has-label {
-	text-indent: 1rem;
-}
-seven-minute-tabs [role="tablist"].has-label [role="tab"]:first-child {
-	margin-left: 0.5em;
 }
 seven-minute-tabs [role="tablist"]:last-child {
 	margin-top: 0.5rem;
@@ -81,10 +82,10 @@ seven-minute-tabs [role="tab"]:not([aria-selected="true"]):is(:hover, :focus) {
 }
 /* #2col */
 @media (max-width: 41.375em) {
-	seven-minute-tabs:not(.tabs-right) [role="tablist"]:not(.has-label) [role="tab"]:first-child {
+	seven-minute-tabs:not(.tabs-right) [role="tablist"] [role="tab"]:first-child {
 		border-top-left-radius: 0;
 	}
-	seven-minute-tabs.tabs-right [role="tablist"]:not(.has-label) [role="tab"]:last-child {
+	seven-minute-tabs.tabs-right [role="tablist"] [role="tab"]:last-child {
 		border-top-right-radius: 0;
 	}
 }
@@ -96,6 +97,12 @@ seven-minute-tabs [role="tab"][aria-selected="true"] {
 seven-minute-tabs [role="tabpanel"] {
 	border: var(--smt-border-width) solid var(--smt-border);
 	padding: 1rem;
+	/* Below the floated filename, whatever the strip’s height */
+	clear: both;
+}
+/* Pulled back in from the component’s full-bleed edge, so it lines up with the prose beside it */
+seven-minute-tabs > .codetitle {
+	margin-inline: 1rem;
 }
 
 /* #2col */
@@ -161,11 +168,6 @@ seven-minute-tabs:not(:defined) [role="tabpanel"] ~ [role="tabpanel"]:target {
 	}
 }
 
-/* More than 5 tabs, tabs wrap and grow */
-seven-minute-tabs:has([role="tab"]:nth-last-child(n + 5)) [role="tablist"] {
-	flex-wrap: wrap;
-}
-
 @media (max-width: 31.1875em) {
 	/* 499px */
 	seven-minute-tabs:has([role="tab"]:nth-last-child(n + 5)) [role="tab"] {
@@ -180,10 +182,6 @@ seven-minute-tabs [data-tabs-persist="templatelang:cjs"] {
 seven-minute-tabs [data-tabs-persist="templatelang:cjs"]:after {
 	content: "(CommonJS)";
 }
-seven-minute-tabs:has([data-tabs-persist="templatelang:cjs"])
-	[data-tabs-persist="templatelang:js"]:after {
-	content: "(ESM)";
-}
 /* not on demo blocks */
 .elv-callout-demo seven-minute-tabs [data-tabs-persist]:after {
 	content: "";
@@ -193,6 +191,18 @@ seven-minute-tabs
 	color: #999;
 	margin-inline-start: 0.25em;
 	font-size: 0.75rem; /* 12px /16 */
+}
+
+/* Tabs give up their padding, then the parentheticals, before the strip starts scrolling */
+@container (max-width: 34em) {
+	seven-minute-tabs [role="tab"] {
+		padding-inline: 0.5rem;
+	}
+}
+@container (max-width: 28em) {
+	seven-minute-tabs:has([data-tabs-persist="templatelang:cjs"]) [data-tabs-persist]:after {
+		content: "";
+	}
 }
 
 /* Expand height */

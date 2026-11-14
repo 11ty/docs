@@ -17,17 +17,18 @@ Note that you can also add [Custom Front Matter Formats](/docs/data-frontmatter-
 
 ## Usage
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// Receives file contents, return parsed data
 	eleventyConfig.addDataExtension("fileExtension", (contents, filePath) => {
 		return {};
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 - {% addedin "2.0.0-canary.10" %} Pass a comma-separated list of extensions.
@@ -35,8 +36,9 @@ export default function (eleventyConfig) {
 
 ### Usage with Options {% addedin "2.0.0-canary.10" %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	// or with options (new in 2.0)
 	eleventyConfig.addDataExtension("fileExtension", {
@@ -47,9 +49,9 @@ export default function (eleventyConfig) {
 		encoding: "utf8",
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 - `parser`: the callback function used to parse the data. The first argument is the data file’s contents (unless `read: false`). The second argument is the file path {% addedin "2.0.0-canary.19" %}.
@@ -62,60 +64,64 @@ export default function (eleventyConfig) {
 
 Here we’re using the [`yaml` package](https://www.npmjs.com/package/yaml). Don’t forget to `npm install yaml`.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import YAML from "yaml";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addDataExtension("yaml", (contents) => YAML.parse(contents));
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### TOML
 
 Here we’re using the [`@iarna/toml` package](https://www.npmjs.com/package/@iarna/toml). Don’t forget to `npm install @iarna/toml`.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import toml from "@iarna/toml";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### JSON5 - JSON for Humans
 
 [JSON5](https://www.npmjs.com/package/json5) is an extension to JSON that aims to be easier to write and maintain by hand. It omits quotes for the keys, allows for comments, trailing spaces, line breaks, and more. JSON5 is backwards-compatible with JSON. Don’t forget to `npm install json5`.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import JSON5 from "json5";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addDataExtension("json5", (contents) => JSON5.parse(contents));
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### Adding a custom JSON file extension
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	eleventyConfig.addDataExtension("geojson", (contents) => JSON.parse(contents));
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### Feed EXIF image data into the Data Cascade
@@ -124,8 +130,9 @@ export default function (eleventyConfig) {
 
 Note that the second argument is an object with a `parser` function.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import exifr from "exifr";
 
 export default function (eleventyConfig) {
@@ -143,9 +150,9 @@ export default function (eleventyConfig) {
 		read: false,
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 - Example using a _template data file_:
@@ -159,8 +166,9 @@ Note that in the [data cascade](/docs/data-cascade/) there is a specific conflic
 
 If you add multiple file extensions, the latter ones take priority over the earlier ones. In the following example, if there is ever conflicting data between `*.toml` and `*.yaml` files, the `yaml` file will take precedence.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import toml from "@iarna/toml";
 import yaml from "js-yaml";
 
@@ -171,9 +179,9 @@ export default function (eleventyConfig) {
 	// Higher priority
 	eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### Example

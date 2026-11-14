@@ -139,18 +139,16 @@ Read more about [supported configuration file names](/docs/config.md#default-fil
 
 Your [configuration file](/docs/config.md) using ESM can use Eleventy bundled plugins (like [i18n](/docs/plugins/i18n/), [Render](/docs/plugins/render/), [InputPath to URL](/docs/plugins/inputpath-to-url/), [`id` Attribute](/docs/plugins/id-attribute/) or [HTML `<base>`](/docs/plugins/html-base/)) directly:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 // Any combination of these
 import { I18nPlugin, RenderPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
 	// …
 };
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 Note the use of `import` and `export default`.
 
@@ -160,18 +158,16 @@ If you use Eleventy bundled plugins (like [i18n](/docs/plugins/i18n/), [Render](
 
 Consider this CommonJS configuration file:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 // This requires Node v20.19 or newer
 const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function (eleventyConfig) {
 	// …
 };
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 - Read more about [`require(ESM)` in Node.js](https://nodejs.org/docs/latest/api/modules.html#loading-ecmascript-modules-using-require)
 
@@ -181,16 +177,14 @@ If you attempt to `require("@11ty/eleventy")` with Eleventy v3 in a version of N
 
 For older versions of Node.js, you’ll need to use a dynamic `import()` instead of `require` (or change your configuration file to use ESM):
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 module.exports = async function (eleventyConfig) {
 	const { I18nPlugin, RenderPlugin, HtmlBasePlugin } = await import("@11ty/eleventy");
 	// …
 };
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 Note the `async` configuration callback.
 
@@ -200,16 +194,14 @@ _Remember, you can use `require` to import an ESM plugin in Node 20.19 and newer
 
 But if you’re on an older version of Node, you can use ESM plugins in a CommonJS configuration file with dynamic import. Keep in mind that using default export as the plugin callback, you will need to use the special `default` property supplied from dynamic `import()`.
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 module.exports = async function (eleventyConfig) {
 	const { default: myPlugin } = await import("my-eleventy-plugin");
 	// …
 };
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 ### Plugins
 

@@ -11,8 +11,8 @@ Add data in your template front matter, like this:
 
 {% codetitle "YAML", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 title: My page title
 ---
@@ -20,10 +20,8 @@ title: My page title
 <!doctype html>
 <html>
 …
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 The above is using [YAML syntax](https://learnxinyminutes.com/docs/yaml/). You can [use other formats too](#front-matter-formats).
 
@@ -53,8 +51,8 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 
 ### JSON Front Matter
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```html
 ---json
 {
   "title": "My page title"
@@ -65,10 +63,8 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 <html>
 	…
 </html>
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("html") | safe }}
+```
+{% endraw %}
 
 ### JavaScript Front Matter <span id="javascript-front-matter"></span>
 
@@ -76,8 +72,8 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 
 {% codetitle "Nunjucks", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```jinja2
 ---js
 const title = "My page title";
 
@@ -88,18 +84,16 @@ function currentDate() {
 
 <h1>{{ title }}</h1>
 <p>Published on {{ currentDate() }}</p>
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("jinja2") | safe }}
+```
+{% endraw %}
 
 _Warning: while Nunjucks and Liquid syntax are similar, the above example will **not** work in Liquid. Liquid does not allow function execution in output (e.g. `{% raw %}{{ currentDate() }}{% endraw %}`)._
 
 <details>
 <summary><strong>More Advanced Examples of JavaScript Front Matter</strong></summary>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 ---js
 // async-friendly
 const myAsyncString = await Promise.resolve("HELLO FROM THE OTHER SIDE");
@@ -115,10 +109,8 @@ const { noop } = await import("@zachleat/noop");
 console.log({ noop });
 ---
 <!-- The template content goes here -->
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 </details>
 
@@ -128,8 +120,8 @@ console.log({ noop });
 
 {% codetitle "Nunjucks", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```html
 ---js
 {
   title: "My page title",
@@ -142,10 +134,8 @@ console.log({ noop });
 
 <h1>{{ title }}</h1>
 <p>Published on {{ currentDate() }}</p>
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("html") | safe }}
+```
+{% endraw %}
 
 _Warning: while Nunjucks and Liquid syntax are similar, the above example will **not** work in Liquid. Liquid does not allow function execution in output (e.g. `{% raw %}{{ currentDate() }}{% endraw %}`)._
 

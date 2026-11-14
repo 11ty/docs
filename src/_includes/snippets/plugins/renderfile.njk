@@ -1,33 +1,20 @@
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "renderfile"} %}
-  <div id="renderfile-liquid" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+{% tabs "renderfile" %}
+{% raw %}
+```liquid liquid
 {% renderFile "./_includes/blogpost.md" %}
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("liquid") | safe }}
-  </div>
-  <div id="renderfile-njk" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```jinja2 njk
 {% renderFile "./_includes/blogpost.md" %}
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("jinja2") | safe }}
-  </div>
-  <div id="renderfile-js" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```js js
 export default async function () {
   return await this.renderFile("./includes/blogpost.md");
 };
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="renderfile-cjs" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```js cjs
 module.exports = async function () {
   return await this.renderFile("./includes/blogpost.md");
 };
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

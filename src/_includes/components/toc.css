@@ -209,6 +209,71 @@
 	white-space: nowrap;
 }
 
+/* Below the top level the triangle moves to a column at the row’s end — the same column whether or
+   not the section has a page of its own, so the arrows line up down the list. */
+/* rem, not em: `.elv-toc-list li` matches nested li too, so font size compounds with depth and an
+   em column would narrow — shifting its border — the deeper the list goes. */
+.elv-toc-list {
+	--elv-toc-arrow-cell: 1.75rem;
+}
+.elv-toc-list ul .elv-toc-summary.elv-toc-row {
+	position: relative;
+	padding-inline: var(--elv-toc-row-padding) var(--elv-toc-arrow-cell);
+	text-indent: 0;
+}
+/* The column itself: its border divides arrow from label, and only it lights on hover */
+.elv-toc-list ul .elv-toc-summary.elv-toc-row::after {
+	content: "";
+	position: absolute;
+	inset-block: 0;
+	inset-inline-end: 0;
+	/* `*` doesn’t match pseudo-elements, so this box misses the global border-box and its border
+	   would land a pixel left of the toggle’s */
+	box-sizing: border-box;
+	inline-size: var(--elv-toc-arrow-cell);
+	border-inline-start: 1px solid var(--border-color);
+}
+.elv-toc-list ul .elv-toc-summary.elv-toc-row::before {
+	position: absolute;
+	inset-block-start: 50%;
+	inset-inline-end: calc((var(--elv-toc-arrow-cell) - var(--elv-toc-arrow-size)) / 2);
+	translate: 0 -50%;
+	margin-inline-end: 0;
+	/* Over the column, which paints later as the second pseudo-element */
+	z-index: 1;
+}
+/* The toggle beside a section’s link is that same column, one row tall */
+.elv-toc-list ul .elv-toc-summary-toggle {
+	inset-inline: auto 0;
+	display: grid;
+	place-items: center;
+	inline-size: var(--elv-toc-arrow-cell);
+	block-size: calc(1lh + 2 * var(--elv-toc-row-lead));
+	padding-inline: 0;
+	border-inline-start: 1px solid var(--border-color);
+}
+/* Hovering either half no longer lights the other: the arrow is its own target here */
+.elv-toc-list ul .elv-toc-summary-toggle:hover {
+	background-color: var(--elv-toc-hover-color);
+	background-image: none;
+}
+.elv-toc-list ul li:has(> .elv-toc-section > .elv-toc-summary-toggle:hover) > a {
+	background-color: transparent;
+}
+.elv-toc-list
+	ul
+	li:has(> a:is(:hover, [aria-current="page"]))
+	> .elv-toc-section
+	> .elv-toc-summary-toggle {
+	background-image: none;
+}
+/* Margin rather than padding again, so the row’s highlight stops at the column’s border instead of
+   running under the arrow */
+.elv-toc-list ul li > a:has(+ .elv-toc-section) {
+	margin-inline: 0 var(--elv-toc-arrow-cell);
+	padding-inline: var(--elv-toc-row-padding);
+}
+
 /* Top level */
 .elv-toc-list > li > .elv-toc-row,
 .elv-toc-list > li > .elv-toc-section > .elv-toc-row {

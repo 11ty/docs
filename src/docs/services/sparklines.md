@@ -9,8 +9,7 @@ communityLinksKey: api-services-sparkline
 
 {% callout "error", "md", "Deprecated" %}The runtime service for Sparkline SVG is deprecated and will likely go away at some future date. Please switch to use a build-time SVG package directly (e.g. [`sparkline-svg`](https://www.npmjs.com/package/sparkline-svg)). Sample code shown below. If you’re using [Web Awesome](https://webawesome.com/), they have a [Sparkline](https://webawesome.com/docs/components/sparkline) too!{% endcallout %}
 
-<!-- prettier-ignore-start -->
-{%- highlight "js" %}
+```js
 // don’t forget to `npm install sparkline-svg`
 import Sparkline from "sparkline-svg";
 
@@ -26,9 +25,7 @@ function sparklineDataUri(values = []) {
 
 // Example JavaScript Usage:
 // `<img src="${sparklineDataUri([1, 2, 3])}" alt="Sparkline …">`
-{%- endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
 
 **Deprecated**: Feed this runtime service a comma separated list of numeric values and it will return an SVG sparkline image.
 

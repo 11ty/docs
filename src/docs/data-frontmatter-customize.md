@@ -28,8 +28,8 @@ Now you can use TOML in your front matter like this:
 
 {% codetitle "sample.md" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---toml
 title = "My page title using TOML"
 ---
@@ -37,10 +37,8 @@ title = "My page title using TOML"
 <!doctype html>
 <html>
 …
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 ### Example: use JavaScript in your front matter {% addedin "0.9.0" %}
 
@@ -54,8 +52,8 @@ Now you can do things like this:
 
 {% codetitle "sample.md" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 title: My page title
 ---
@@ -65,10 +63,8 @@ This is the start of my content and this will be shown as the excerpt.
 <!-- excerpt -->
 
 This is a continuation of my content…
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Your template’s content will include the excerpt but remove the separator:
 

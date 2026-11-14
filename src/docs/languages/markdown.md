@@ -16,15 +16,11 @@ For many websites, Markdown is the primary template language for authoring conte
 {% codetitle "example.md" %}
 {% codetitle "Markdown", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{% set codeBlock %}
+```markdown
 **Markdown** is a great language for writing _content_.
 You can create [links](https://11ty.dev), lists,
 tables, and more.
-{% endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
 
 | Eleventy Short Name | File Extension | npm Package                                                |
 | ------------------- | -------------- | ---------------------------------------------------------- |
@@ -50,8 +46,9 @@ Starting in Eleventy 2.0, we’ve disabled the [Indented Code Blocks](#indented-
 
 Pass in your own instance of the Markdown library using the Configuration API. See [all `markdown-it` options](https://github.com/markdown-it/markdown-it#init-with-presets-and-options).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import markdownIt from "markdown-it";
 
 export default function (eleventyConfig) {
@@ -63,23 +60,24 @@ export default function (eleventyConfig) {
 
 	eleventyConfig.setLibrary("md", markdownIt(options));
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### Optional: Amend the Library instance {% addedin "2.0.0" %}
 
 Run your own callback on the provided Library instance (the default _or_ any provided by `setLibrary` above).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.enable("code"));
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Add your own plugins {% addedin "0.3.0" %}
@@ -89,17 +87,13 @@ Pass in your own `markdown-it` plugins using the `amendLibrary` (Eleventy &gt;= 
 1. Find your [own `markdown-it` plugin on NPM](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 2. `npm install` the plugin.
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 import { full as emoji } from "markdown-it-emoji";
 
 export default function (eleventyConfig) {
 	eleventyConfig.amendLibrary("md", (mdLib) => mdLib.use(emoji));
 };
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 ## Highlighting Code
 
@@ -214,8 +208,9 @@ module.exports = function (eleventyConfig) {
 
 The truth is, **you can** return markdown inside shortcodes (as long as the file is transforming markdown, either as a `.md` file extension or [with `templateEngineOverride`](/docs/template-overrides/)). However, there is one small wrinkle that might catch you off guard.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
 	eleventyConfig.addPairedShortcode("myShortcode", function (content) {
 		// Method A: ✅ This works fine
@@ -225,9 +220,9 @@ export default function(eleventyConfig) {
 		return `<div>${content}</div>`;
 	});
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% codetitle "Liquid, Nunjucks", "Syntax" %}

@@ -29,6 +29,7 @@ import pageTocPlugin from "./config/pageTocPlugin.js";
 import feedPlugin from "./config/feedPlugin.js";
 import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
+import tabsPlugin, { codeTitleHtml } from "./config/tabsPlugin.js";
 import hiddenAuthors from "./config/hiddenAuthors.js";
 
 // Load .env if present (absent in production).
@@ -272,6 +273,7 @@ export default async function ($config) {
 
 	/* Plugins */
 	$config.addPlugin(syntaxHighlightPlugin);
+	$config.addPlugin(tabsPlugin);
 
 	$config.addPlugin(fontAwesomePlugin, {
 		defaultAttributes: {
@@ -379,14 +381,6 @@ export default async function ($config) {
 		}
 	});
 
-	let ref = 0;
-	$config.on("eleventy.before", () => {
-		ref = 0;
-	});
-	$config.addShortcode("uid", () => {
-		return `id-${++ref}`;
-	});
-
 	$config.addFilter(
 		"esmToCjs",
 		memoize((sourceCode) => {
@@ -416,9 +410,7 @@ export default async function ($config) {
 	$config.addShortcode("opencollectiveavatar", shortcodes.getOpenCollectiveAvatarHtml);
 	$config.addShortcode("getScreenshotHtml", shortcodes.getScreenshotHtml);
 
-	$config.addShortcode("codetitle", function (title, heading = "Filename") {
-		return `<div class="codetitle codetitle-left"><b>${heading} </b>${title}</div>`;
-	});
+	$config.addShortcode("codetitle", codeTitleHtml);
 
 	$config.addPairedShortcode("minilink", function (text, href) {
 		return `<a href="${href}" class="minilink minilink-lower">${text}</a>`;

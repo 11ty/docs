@@ -24,24 +24,21 @@ A plugin to use [Vite](https://vite.dev/) with Eleventy 2.0+.
 
 ## Installation
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-plugin-vite
-{%- endset %}
+```
 
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
-
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyVitePlugin);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 <details>
@@ -49,8 +46,9 @@ export default function (eleventyConfig) {
 
 View the [full list of Vite Configuration options](https://vite.dev/config/).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
 export default function (eleventyConfig) {
@@ -87,9 +85,9 @@ export default function (eleventyConfig) {
     },
   });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 See the full list of [`serverOptions` on the Dev Server documentation](/docs/dev-server/).

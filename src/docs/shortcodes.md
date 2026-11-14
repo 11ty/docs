@@ -21,8 +21,9 @@ Here are a few examples:
 
 {% include "snippets/shortcodes/intro.njk" %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
   // Shortcodes added in this way are available in:
   // * Markdown
@@ -39,9 +40,9 @@ export default function (eleventyConfig) {
   // Direct async method available
   eleventyConfig.addAsyncShortcode("user", async function(myName) { /* … */ });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 A shortcode returns content (a JavaScript string or template literal) that is used in the template. You can use these however you’d like—you could even think of them as reusable components.
@@ -65,8 +66,9 @@ The shortcodes we saw above were nice, I suppose. But really, they are not all t
 
 When adding paired shortcodes using the Configuration API, the first argument to your shortcode callback is the nested content.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
   // Shortcodes added in this way are available in:
   // * Markdown
@@ -83,9 +85,9 @@ export default function (eleventyConfig) {
   // Async method available
   eleventyConfig.addPairedAsyncShortcode("user", async function(content, myName) { /* … */ });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info" %}
@@ -112,8 +114,9 @@ A few Eleventy-specific data properties are available to shortcode callbacks.
 - `this.env` (Nunjucks-specific) {% addedin "3.0.0-canary.5" %}
 - `this.ctx` (Nunjucks-specific) {% addedin "3.0.0-canary.5" %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
   // Make sure you’re not using an arrow function here: () => {}
   eleventyConfig.addShortcode("myShortcode", function () {
@@ -121,9 +124,9 @@ export default function (eleventyConfig) {
     // this.eleventy
   });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Memoize Shortcodes
@@ -134,8 +137,8 @@ There are many popular libraries to cache or memoize functions (filters, shortco
 
 <div class="codetitle">eleventy.config.js</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 import memoize from "memoize";
 
 export default function(eleventyConfig) {
@@ -143,17 +146,16 @@ export default function(eleventyConfig) {
 		return encode(str);
 	}));
 };
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 ## Per-Engine Shortcodes
 
 You can also specify different functionality for shortcodes in each engine, if you’d like. Using the `addShortcode` or `addPairedShortcode` function is equivalent to adding the shortcode to every supported template engine.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
   // Liquid
   eleventyConfig.addLiquidShortcode("user", function(firstName, lastName) {});
@@ -167,9 +169,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addJavaScriptFunction("user", function(firstName, lastName) {});
   eleventyConfig.addJavaScriptFunction("user", function(content, firstName, lastName) {}); // Faux-paired shortcode
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info" %}
@@ -180,8 +182,9 @@ Markdown files are pre-processed as Liquid templates by default—any shortcodes
 
 Learn more about these on the individual template engine pages for [Nunjucks](/docs/languages/nunjucks/#asynchronous-shortcodes), [Liquid](/docs/languages/liquid/#asynchronous-shortcodes), and [`11ty.js` JavaScript](/docs/languages/javascript/#asynchronous-java-script-template-functions).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
   // Async-friendly
   // Liquid is already async-friendly
@@ -197,7 +200,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addJavaScriptFunction("user", async function() {});
   eleventyConfig.addJavaScriptFunction("user", async function(content) {}); // Faux-paired shortcode
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

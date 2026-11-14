@@ -1,8 +1,5 @@
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "layoutoutput", additions: "md", subtractions:"cjs", label: "View the output from"} %}
-  <div id="layoutoutput-md" role="tabpanel">
-{% set codeBlock %}
+{% tabs "layoutoutput" %}
+```html md
 <!doctype html>
 <html lang="en">
 	<head>
@@ -14,11 +11,8 @@
 		<h1>My Rad Markdown Blog Post</h1>
 	</body>
 </html>
-{% endset %}
-{{ codeBlock | highlight("html") | safe }}
-  </div>
-  <div id="layoutoutput-liquid" role="tabpanel">
-{% set codeBlock %}
+```
+```html liquid
 <!doctype html>
 <html lang="en">
 	<head>
@@ -30,11 +24,8 @@
 		<h1>My Rad Liquid Blog Post</h1>
 	</body>
 </html>
-{% endset %}
-{{ codeBlock | highlight("html") | safe }}
-  </div>
-  <div id="layoutoutput-njk" role="tabpanel">
-{% set codeBlock %}
+```
+```html njk
 <!doctype html>
 <html lang="en">
 	<head>
@@ -46,11 +37,8 @@
 		<h1>My Rad Nunjucks Blog Post</h1>
 	</body>
 </html>
-{% endset %}
-{{ codeBlock | highlight("html") | safe }}
-  </div>
-  <div id="layoutoutput-js" role="tabpanel">
-{% set codeBlock %}
+```
+```html js
 <!doctype html>
 <html lang="en">
 	<head>
@@ -62,11 +50,8 @@
 		<h1>My Rad JavaScript Blog Post</h1>
 	</body>
 </html>
-{% endset %}
-{{ codeBlock | highlight("html") | safe }}
-  </div>
-  <div id="layoutoutput-cjs" role="tabpanel">
-{% set codeBlock %}
+```
+```html cjs
 <!doctype html>
 <html lang="en">
 	<head>
@@ -78,8 +63,5 @@
 		<h1>My Rad JavaScript Blog Post</h1>
 	</body>
 </html>
-{% endset %}
-{{ codeBlock | highlight("html") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endtabs %}

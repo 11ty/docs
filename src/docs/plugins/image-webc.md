@@ -21,8 +21,9 @@ Using Eleventy Image in [WebC](/docs/languages/webc.md) offers all the same grea
 
 First, add the following to your project’s configuration file:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
 import { eleventyImagePlugin } from "@11ty/eleventy-img";
 
@@ -51,9 +52,9 @@ export default function (eleventyConfig) {
 		},
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}During local development (when using `--serve`), `<eleventy-image>` images are _not_ processed at build time and instead are optimized when requested in the browser. Read more about [`transformOnRequest`](./image.md#optimize-images-on-request).

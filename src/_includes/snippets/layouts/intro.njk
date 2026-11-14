@@ -1,42 +1,27 @@
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "layouts", additions: "md"} %}
-  <div id="layouts-md" role="tabpanel">
-{% codetitle "index.md" %}
-{% set codeBlock %}{% raw %}
+{% tabs "layouts", { titles: { md: "index.md", liquid: "index.liquid", njk: "index.njk", js: "index.11ty.js", cjs: "index.11ty.cjs" } } %}
+{% raw %}
+```markdown md
 ---
 layout: mylayout.njk
 title: My Rad Markdown Blog Post
 ---
 # {{ title }}
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("markdown") | safe }}
-  </div>
-  <div id="layouts-liquid" role="tabpanel">
-{% codetitle "index.liquid" %}
-{% set codeBlock %}{% raw %}
+```
+```liquid liquid
 ---
 layout: mylayout.njk
 title: My Rad Liquid Blog Post
 ---
 <h1>{{ title }}</h1>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("liquid") | safe }}
-  </div>
-  <div id="layouts-njk" role="tabpanel">
-{% codetitle "index.njk" %}
-{% set codeBlock %}{% raw %}
+```
+```jinja2 njk
 ---
 layout: mylayout.njk
 title: My Rad Nunjucks Blog Post
 ---
 <h1>{{ title }}</h1>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("jinja2") | safe }}
-  </div>
-  <div id="layouts-js" role="tabpanel">
-{% codetitle "index.11ty.js" %}
-{% set codeBlock %}{% raw %}
+```
+```js js
 export const data = {
 	layout: "mylayout.njk",
 	title: "My Rad JavaScript Blog Post",
@@ -45,12 +30,8 @@ export const data = {
 export function render(data) {
 	return `<h1>${data.title}</h1>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="layouts-cjs" role="tabpanel">
-{% codetitle "index.11ty.cjs" %}
-{% set codeBlock %}{% raw %}
+```
+```js cjs
 module.exports.data = {
 	layout: "mylayout.njk",
 	title: "My Rad JavaScript Blog Post",
@@ -59,8 +40,6 @@ module.exports.data = {
 module.exports.render = function(data) {
 	return `<h1>${data.title}</h1>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

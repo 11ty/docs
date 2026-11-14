@@ -26,8 +26,9 @@ eleventyConfig.addTemplate(virtualPath, content, data = {});
 
 ### Markdown, HTML (via Liquid) Layout
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
 	// Create content templates Files
 	eleventyConfig.addTemplate("virtual.md", `# Hello`, {
@@ -37,24 +38,25 @@ export default function(eleventyConfig) {
 	// Works great with Layouts too
 	eleventyConfig.addTemplate("_includes/virtual.html", `<!-- Layout -->{% raw %}{{ content }}{% endraw %}`);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ### JavaScript
 
 Any of the JavaScript shapes on [`11ty.js` templates](/docs/languages/javascript.md) are also supported here.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
 	// Create content templates Files
 	eleventyConfig.addTemplate("virtual.11ty.js", function(data) {
 		return `<h1>Hello</h1>`;
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

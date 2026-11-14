@@ -27,13 +27,9 @@ Published as [`@11ty/eleventy-img`](https://www.npmjs.com/package/@11ty/eleventy
 
 _Image v7.0.0 requires Node 22+ (and is [ESM](/docs/cjs-esm/))._
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-img
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 ## Usage
 
@@ -54,16 +50,17 @@ There are a few different ways to use Eleventy image:
 
 <br><br>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 That’s it! All `<img>` and `<picture>` elements will be processed for you by Eleventy Image.
@@ -97,8 +94,9 @@ You can configure individual `<img>` elements with per-instance overrides:
 
 Any of the [configuration options](#options) can be defined when you add the plugin:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 export default function (eleventyConfig) {
@@ -119,9 +117,9 @@ export default function (eleventyConfig) {
 		},
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 - {% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}During local development (when using `--serve`), images are optimized when requested in the browser. Read more about [`transformOnRequest`](#optimize-images-on-request).

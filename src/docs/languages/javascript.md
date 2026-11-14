@@ -34,101 +34,109 @@ Raw values will not have access to Data or [JavaScript Template Functions](#java
 
 ### String
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
-export default "<p>Zach</p>";
-{% endset %}
 
-<!-- prettier-ignore-end -->
+```js
+export default "<p>Zach</p>";
+```
+
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 Or [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals):
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default `<p>These can
 span
 multiple
 lines!</p>`;
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Buffer
 
 Some templating libraries return [Buffers](https://nodejs.org/api/buffer.html#buffer_class_method_buffer_from_string_encoding) (e.g. [viperHTML](https://github.com/WebReflection/viperHTML)).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
-export default Buffer.from("<p>Zách</p>");
-{% endset %}
 
-<!-- prettier-ignore-end -->
+```js
+export default Buffer.from("<p>Zách</p>");
+```
+
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Promise
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default new Promise((resolve, reject) => {
 	setTimeout(function () {
 		resolve("<p>Zach</p>");
 	}, 1000);
 });
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ## Function
 
 Can return any [raw value](#raw-values) (e.g. String, Buffer, Promise). Use [template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to embed data values without having to concatenate strings!
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (data) {
 	return `<p>${data.name}</p>`;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 De-structuring syntax is a little bit easier to read:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function ({ name }) {
 	return `<p>${name}</p>`;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 Maybe you like arrow functions:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
-export default ({ name }) => `<p>${name}</p>`;
-{% endset %}
 
-<!-- prettier-ignore-end -->
+```js
+export default ({ name }) => `<p>${name}</p>`;
+```
+
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 `async` functions work too:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 const getAnAsyncThing = require("./lib/asyncThing");
 
 export default async function (data) {
 	return `<p>${await getAnAsyncThing()}</p>`;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ## Classes
@@ -137,8 +145,9 @@ Eleventy looks for classes that have a `render` method and uses `render` to retu
 
 `render` can return any [raw value](#raw-values) (e.g. String, Buffer, Promise).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 class Test {
 	// or `async render({name}) {`
 	render({ name }) {
@@ -147,9 +156,9 @@ class Test {
 }
 
 export default Test;
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Optional `data` Method
@@ -158,8 +167,9 @@ export default Test;
 
 This data acts as Front Matter for the template and similarly to Front Matter will take precedence over all other data in the data cascade. The `data` method can be asynchronous `async data()` or it can be a getter `get data()`.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 class Test {
 	// or `async data() {`
 	// or `get data() {`
@@ -178,9 +188,9 @@ class Test {
 }
 
 export default Test;
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Permalinks
@@ -189,8 +199,9 @@ The `permalink` data key will work here. Permalinks can be a [raw value](#raw-va
 
 #### Permalink String
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 class Test {
 	data() {
 		return {
@@ -205,17 +216,18 @@ class Test {
 }
 
 export default Test;
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 #### Permalink Function
 
 Permalink Functions can return any [raw value](#raw-values) (e.g. String, Buffer, Promise).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 class Test {
 	data() {
 		return {
@@ -231,17 +243,18 @@ class Test {
 }
 
 export default Test;
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 #### Permalink Function using a Filter
 
 Universal filters, shortcodes, and other JavaScript Template Functions work here and are exposed on `this`. Read more about [Eleventy provided Universal Filters](/docs/filters/#eleventy-provided-filters).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 class Test {
 	data() {
 		return {
@@ -259,17 +272,18 @@ class Test {
 }
 
 export default Test;
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Markdown and JavaScript
 
 Yes, you can use JavaScript as your preprocessor language for Markdown. Read more about [`templateEngineOverride`](/docs/template-overrides/).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 class Test {
 	data() {
 		return {
@@ -284,9 +298,9 @@ class Test {
 }
 
 export default Test;
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 {% callout "info" %}While <code>templateEngineOverride: 11ty.js,md</code> works to add markdown support, the special behavior of JavaScript templates does not allow other template engines to be supported here (e.g. <code>templateEngineOverride: njk,md</code>). One workaround is to use the <a href="/docs/plugins/render/">Render Plugin</a>.{% endcallout %}
@@ -297,26 +311,28 @@ export default Test;
 
 A JavaScript Template Function allows you to extend your JavaScript templates with extra functionality. If you add any Universal Filters or Shortcodes, they will be exposed as JavaScript Template Functions.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
   eleventyConfig.addJavaScriptFunction("myFunction", function(a, b) { /* … */ });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 <div class="codetitle">js-fn-example.11ty.js</div>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (data) {
 	return `<h1>${this.myFunction(data.a, data.b)}</h1>`;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Asynchronous JavaScript Template Functions
@@ -325,28 +341,30 @@ This works the same as any `async` JavaScript function or function that returns 
 
 This is the same as the example above but adds `async` before the `function`.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
   eleventyConfig.addJavaScriptFunction("myAsyncFunction", async function(a, b) { /* … */ });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 This is the same as the example above but adds `await` before the function is called.
 
 {% codetitle "js-async-fn-example.11ty.js" %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default async function (data) {
 	return `<h1>${await this.myAsyncFunction(data.a, data.b)}</h1>`;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Warning about Arrow Functions
@@ -357,23 +375,25 @@ Note that by definition (<a href="https://developer.mozilla.org/en-US/docs/Web/J
 
 {% codetitle "js-arrow-fn-example.11ty.js" %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default (data) => {
 	// Using `this` in an arrow function will throw an error!
 	return `<h1>${this.myFunction(data.a, data.b)}</h1>`;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Relationship to Filters and Shortcodes
 
 Any universal filters or shortcodes will also be available as JavaScript Template Functions.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function(eleventyConfig) {
   // Universal filters (Adds to Liquid, Nunjucks, 11ty.js)
   eleventyConfig.addFilter("myFilter", function(myVariable) { /* … */ });
@@ -384,15 +404,16 @@ export default function(eleventyConfig) {
   // Universal Paired Shortcodes (Adds to Liquid, Nunjucks, 11ty.js)
   eleventyConfig.addPairedShortcode("pairedUser", function(content, firstName, lastName) { /* … */ });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% codetitle "universal-examples.11ty.js" %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (data) {
 	return `
 <h1>${this.myFilter(data.myVar)}</h1>
@@ -404,17 +425,18 @@ export default function (data) {
 	)}</p>
 `;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Access to `page` data values {% addedin "0.11.0" %}
 
 If you aren’t using an arrow function, JavaScript Functions (and Nunjucks, Liquid Shortcodes) will have access to Eleventy [`page` data values](/docs/data-eleventy-supplied/#page-variable-contents) without needing to pass them in as arguments.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	eleventyConfig.addJavaScriptFunction("myFunction", function () {
 		// Available in 0.11.0 and above
@@ -426,7 +448,7 @@ export default function (eleventyConfig) {
 		console.log(this.page.fileSlug);
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

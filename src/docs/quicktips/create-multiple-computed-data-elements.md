@@ -14,8 +14,9 @@ The corresponding `eleventyComputed.js` file contents can look like the followin
 
 <div class="codetitle codetitle-right-md">_data/eleventyComputed.js</div>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default {
 	myCopyrights: (data) => {
 		return data.copyrights.feed.entry;
@@ -24,7 +25,7 @@ export default {
 		return data.links.feed.entry;
 	},
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}

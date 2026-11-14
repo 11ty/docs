@@ -1,28 +1,20 @@
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "collectionssort"} %}
-  <div id="collectionssort-liquid" role="tabpanel">
-{% set codeBlock %}{% raw %}
+{% tabs "collectionssort" %}
+{% raw %}
+```liquid liquid
 <ul>
 {%- for post in collections.post reversed -%}
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("liquid") | safe }}
-  </div>
-  <div id="collectionssort-njk" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```jinja2 njk
 <ul>
 {%- for post in collections.post | reverse -%}
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("jinja2") | safe }}
-  </div>
-  <div id="collectionssort-js" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```js js
 export function render(data) {
   // `toReversed` is Node 20+, see the note below
   let posts = data.collections.post.toReversed();
@@ -30,11 +22,8 @@ export function render(data) {
     ${posts.map((post) => `<li>${post.data.title}</li>`).join("\n")}
   </ul>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="collectionssort-cjs" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```js cjs
 exports.render = function (data) {
   // `toReversed` is Node 20+, see the note below
   let posts = data.collections.post.toReversed();
@@ -42,8 +31,6 @@ exports.render = function (data) {
     ${posts.map((post) => `<li>${post.data.title}</li>`).join("\n")}
   </ul>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

@@ -40,16 +40,17 @@ npm install @11ty/eleventy-plugin-inclusive-language
 
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(inclusiveLangPlugin);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}You’re only allowed one `module.exports` in your configuration file, so make sure you only copy the `require` and the `addPlugin` lines above!{% endcallout %}
@@ -58,8 +59,9 @@ export default function (eleventyConfig) {
 
 Optionally pass in an options object as the second argument to `addPlugin` to further customize this plugin.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
 export default function (eleventyConfig) {
@@ -71,7 +73,7 @@ export default function (eleventyConfig) {
 			"simply,obviously,basically,of course,clearly,just,everyone knows,however,easy",
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

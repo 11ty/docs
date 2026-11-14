@@ -1,28 +1,20 @@
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "collectionsitem"} %}
-  <div id="collectionsitem-liquid" role="tabpanel">
-{% set codeBlock %}{% raw %}
+{% tabs "collectionsitem" %}
+{% raw %}
+```liquid liquid
 <ul>
 {%- for post in collections.post -%}
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("liquid") | safe }}
-  </div>
-  <div id="collectionsitem-njk" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```jinja2 njk
 <ul>
 {%- for post in collections.post -%}
   <li>{{ post.data.title }}</li>
 {%- endfor -%}
 </ul>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("jinja2") | safe }}
-  </div>
-  <div id="collectionsitem-js" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```js js
 export function render(data) {
 	return `<ul>
     ${data.collections.post
@@ -30,11 +22,8 @@ export function render(data) {
 			.join("\n")}
   </ul>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="collectionsitem-cjs" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```js cjs
 exports.render = function (data) {
 	return `<ul>
     ${data.collections.post
@@ -42,8 +31,6 @@ exports.render = function (data) {
 			.join("\n")}
   </ul>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

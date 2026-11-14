@@ -1,83 +1,77 @@
-async function render({ id, valid, additions, subtractions, only, label }) {
+const EXTRA_SYNTAXES = {
+	html: "HTML",
+	md: "Markdown",
+	webc: "WebC",
+	jsesm: "ESM",
+	jscjs: "CommonJS",
+	any: "Any",
+	hbs: "Handlebars",
+};
+
+const SYNTAX_MAP = {
+	liquid: "Liquid",
+	njk: "Nunjucks",
+	js: "11ty.js",
+	cjs: "11ty.cjs",
+};
+
+function getSyntaxes({ additions, subtractions, only }) {
 	let syntaxes = {};
-
-	let extraSyntaxes = {
-		html: "HTML",
-		md: "Markdown",
-		webc: "WebC",
-		jsesm: "ESM",
-		jscjs: "CommonJS",
-		any: "Any",
-		hbs: "Handlebars",
-	};
-
-	let syntaxMap = {
-		liquid: "Liquid",
-		njk: "Nunjucks",
-		js: "11ty.js",
-		cjs: "11ty.cjs",
-	};
 
 	// Extras go first (unless hbs)
 	let addHbs = false;
-	let syntaxAddArray = (additions || "").split(",").filter((entry) => !!entry);
-	for (let syn of syntaxAddArray) {
-		if (extraSyntaxes[syn]) {
-			if (syn == "hbs") {
+	for (let syn of (additions || "").split(",").filter(Boolean)) {
+		if (EXTRA_SYNTAXES[syn]) {
+			if (syn === "hbs") {
 				addHbs = true;
 			} else {
-				syntaxes[syn] = extraSyntaxes[syn];
+				syntaxes[syn] = EXTRA_SYNTAXES[syn];
 			}
 		}
 	}
 
 	if (only) {
-		for (let syn of (only || "").split(",")) {
-			syntaxes[syn] = extraSyntaxes[syn] || syntaxMap[syn];
+		for (let syn of only.split(",")) {
+			syntaxes[syn] = EXTRA_SYNTAXES[syn] || SYNTAX_MAP[syn];
 		}
 	} else {
-		Object.assign(syntaxes, syntaxMap);
+		Object.assign(syntaxes, SYNTAX_MAP);
 	}
 
 	if (addHbs) {
-		syntaxes.hbs = extraSyntaxes.hbs;
+		syntaxes.hbs = EXTRA_SYNTAXES.hbs;
 	}
 
-	for (let syn of (subtractions || "").split(",")) {
-		if (syn) {
-			delete syntaxes[syn];
-		}
+	for (let syn of (subtractions || "").split(",").filter(Boolean)) {
+		delete syntaxes[syn];
 	}
 
-	let str = [];
-	let validArray = (valid || "").split(",").filter((entry) => !!entry);
+	return syntaxes;
+}
 
-	// e.g. Liquid has no tab content but was first in the tab list
-	// If a user comes without a preference, don’t show liquid by default
-	let defaultOnNoPreference = ` or syntax == "" or syntax == undefined`;
+export function syntaxTitle(syntax) {
+	return EXTRA_SYNTAXES[syntax] || SYNTAX_MAP[syntax] || syntax;
+}
 
-	for (let syn in syntaxes) {
-		let isPreferenceSelectable = validArray.length === 0 || validArray.includes(syn);
+export function renderTablist({ id, additions, subtractions, only, syntaxes }) {
+	// `syntaxes` is an ordered list of keys; otherwise they are derived from the add/subtract options.
+	let entries = syntaxes
+		? syntaxes.map((syn) => [syn, syntaxTitle(syn)])
+		: Object.entries(getSyntaxes({ additions, subtractions, only }));
+	let tabs = entries.map(([syn, title]) => {
+		return `<a href="#${id}-${syn}" role="tab" data-tabs-persist="templatelang:${syn}">${title}</a>`;
+	});
 
-		str.push(
-			`<a href="#${id}-${syn}" role="tab" data-tabs-persist="templatelang:${syn}"{% if syntax == "${syn}"${
-				isPreferenceSelectable ? defaultOnNoPreference : ""
-			} %} aria-selected="true"{% endif %}>${syntaxes[syn]}</a>`,
-		);
+	// The leading blank line keeps Markdown’s HTML block boundaries where they were.
+	return `
 
-		// only the first one should default
-		if (isPreferenceSelectable) {
-			defaultOnNoPreference = "";
-		}
-	}
-
-	let liquidTemplate = `
-{% assign syntax = false %}
-<div role="tablist" aria-label="Template Language Chooser"${label ? ` class="has-label"` : ""}>
-	${label ? `${label}: ` : ""}${str.join("\n")}
+<div role="tablist" aria-label="Template Language Chooser">
+	${tabs.join("\n")}
 </div>`;
+}
 
-	return await this.renderTemplate(liquidTemplate, "liquid");
+function render(data) {
+	return renderTablist(data);
 }
 
 export { render };

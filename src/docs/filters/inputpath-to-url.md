@@ -19,59 +19,29 @@ _Inspired by [GitHub issue #84](https://github.com/11ty/eleventy/issues/84)._
 
 ## Usage
 
-<is-land import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "inputpathtourl"} %}
-  <div id="inputpathtourl-liquid" role="tabpanel">
-
+{% tabs "inputpathtourl", { load: "immediate" } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 <a href="{{ "index.md" | inputPathToUrl }}">Home</a>
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="inputpathtourl-njk" role="tabpanel">
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 <a href="{{ "index.md" | inputPathToUrl }}">Home</a>
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="inputpathtourl-js" role="tabpanel">
-
-{% raw %}
-
-```js
+```js js
 export default function (data) {
 	return `<a href="${this.inputPathToUrl("index.md")}">Home</a>`;
 }
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="inputpathtourl-cjs" role="tabpanel">
-
-{% raw %}
-
-```js
+```js cjs
 module.exports = function (data) {
 	return `<a href="${this.inputPathToUrl("index.md")}">Home</a>`;
 };
 ```
-
 {% endraw %}
-
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 Renders as `<a href="/">Home</a>`.
 

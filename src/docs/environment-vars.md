@@ -27,59 +27,39 @@ For private keys and other sensitive information, you’ll want to create a `.en
 
 #### macOS or Linux (et al)
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 MY_ENVIRONMENT=production npx @11ty/eleventy
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 #### Windows cmd.exe
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 set MY_ENVIRONMENT=production & npx @11ty/eleventy
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 #### Windows Powershell (default in VS Code)
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 $env:MY_ENVIRONMENT="production"; npx @11ty/eleventy
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 #### Cross Platform npm scripts
 
 Use the [`cross-env` package](https://github.com/kentcdodds/cross-env) to compatibly set your environment variables cross-platform.
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install cross-env
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 {% codetitle "package.json" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 {
 	"scripts": {
 		"build:prod": "cross-env MY_ENVIRONMENT=production npx @11ty/eleventy"
   }
 }
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 ## Use Case Ideas
 
@@ -112,42 +92,31 @@ Node.js supports a [`NODE_DISABLE_COLORS` environment variable](https://nodejs.o
 	</div>
 	<div id="disable-colors-nix" role="tabpanel">
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```bash
 NODE_DISABLE_COLORS=1 npx @11ty/eleventy
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
+{% endraw %}
     </div>
     <div id="disable-colors-win" role="tabpanel">
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 $env:NODE_DISABLE_COLORS="1"; npx @11ty/eleventy
-{%- endset %}
+```
 
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
     	<p>Or with the older <code>cmd.exe</code>:</p>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 set NODE_DISABLE_COLORS=1 & npx @11ty/eleventy
-{%- endset %}
+```
 
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
     </div>
     <div id="disable-colors-all" role="tabpanel">
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npx cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy
-{%- endset %}
+```
 
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
     	<p>Use the <a href="https://github.com/kentcdodds/cross-env"><code>cross-env</code> package</a> to compatibly set your environment variables cross-platform.</p>
     </div>
 

@@ -1,10 +1,6 @@
-{%- set tabid = "jsonoutdata" %}
-<div class="codetitle codetitle-right-md">my-node-script.js</div>
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
-  <div id="{{ tabid }}-jsesm" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+{% tabs "jsonoutdata", { title: "my-node-script.js" } %}
+{% raw %}
+```js jsesm
 import Eleventy from "@11ty/eleventy";
 
 let elev = new Eleventy(".", "_site", {
@@ -22,11 +18,8 @@ let json = await elev.toJSON();
 // json[…].data.globalData.key2
 // json[…].data.someProperty.key
 console.log(json);
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="{{ tabid }}-jscjs" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```js jscjs
 (async function () {
 	const { Eleventy } = await import("@11ty/eleventy");
 
@@ -46,8 +39,6 @@ console.log(json);
 	// json[…].data.someProperty.key
 	console.log(json);
 })();
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

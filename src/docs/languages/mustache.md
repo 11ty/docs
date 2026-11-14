@@ -27,32 +27,30 @@ The `.mustache` templating language was moved out of Eleventy core in v3 and now
 
 - [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-plugin-mustache
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 Add to your configuration file:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import mustachePlugin from "@11ty/eleventy-plugin-mustache";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(mustachePlugin);
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Use more options:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import mustache from "mustache";
 import mustachePlugin from "@11ty/eleventy-plugin-mustache";
 
@@ -62,9 +60,9 @@ export default function (eleventyConfig) {
 		eleventyLibraryOverride: mustache,
 	});
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features

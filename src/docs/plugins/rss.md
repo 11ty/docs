@@ -26,13 +26,9 @@ Since RSS Plugin v2.0, this plugin offers two options to create feeds in your pr
 
 Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-plugin-rss).
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-plugin-rss
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 - `v3` of this plugin is ESM-only and requires Eleventy v3.0 or newer.
 - `v2` of this plugin requires Eleventy v3.0 or newer.
@@ -52,8 +48,9 @@ npm install @11ty/eleventy-plugin-rss
 {% addedin "RSS 3.0.0" %}[Version 3 of this plugin](https://github.com/11ty/plugin-rss/releases/tag/v3.0.0) is now using ESM. This requires Eleventy v3 or newer. If you’re using a CommonJS configuration file on Node 20.19 or newer, use `require("@11ty/eleventy-plugin-rss").default`. On [older versions of Node (&lt; 20.19), you’ll need to use dynamic `import()` instead of `require`](/docs/cjs-esm/#using-esm-plugins-in-common-js-configuration).
 {% endcallout %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
@@ -77,9 +74,9 @@ export default function (eleventyConfig) {
 		}
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 This configuration is the only step for the Virtual Template method. If you need additional control over the template output, you can use the [Manual Template](#manual-template) method.
@@ -110,8 +107,9 @@ This configuration is the only step for the Virtual Template method. If you need
 
 {% addedin "RSS 3.1.0" %} `getFeedTemplate` returns the `content` and `data` for the same feed `feedPlugin` creates, for use with [`$config.addTemplate`](/docs/virtual-templates.md). This unlocks unlimited feeds of the same type. The feed template uses filters from the main plugin, make sure you add the plugin (via `rssPlugin`) first.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { rssPlugin, getFeedTemplate } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
@@ -137,9 +135,9 @@ export default function ($config) {
 
 	$config.addTemplate("feeds/posts.njk", content, data);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 `getFeedTemplate` accepts the same options as the [Virtual Template](#virtual-template) method, except `inputPath`: pass the path as the first argument to `addTemplate` instead. You can extend `data` before passing it in, e.g. `{ ...data, eleventyNavigation: { key: "Feed" } }`.
@@ -150,16 +148,17 @@ export default function ($config) {
 
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(rssPlugin);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}
@@ -171,8 +170,9 @@ export default function (eleventyConfig) {
 
 {% addedin "RSS 1.1.0" %} Advanced control of [PostHTML rendering options](https://github.com/posthtml/posthtml-render#options) via `posthtmlRenderOptions`.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { rssPlugin } from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
@@ -182,9 +182,9 @@ export default function (eleventyConfig) {
 		},
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -206,8 +206,9 @@ export default function (eleventyConfig) {
 
 {% addedin "RSS 1.1.0" %} This plugin exports `dateToRfc3339`, `dateToRfc822` ({% addedin "RSS 1.2.0" %}), `getNewestCollectionItemDate`, `absoluteUrl`, and `convertHtmlToAbsoluteUrls` functions so you can use with your own filters. For example:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { dateToRfc3339, dateToRfc822 } from "@11ty/eleventy-plugin-rss";
 
 export default function ($config) {
@@ -216,9 +217,9 @@ export default function ($config) {
 	// New in RSS 1.2.0
 	$config.addLiquidFilter("dateToRfc822", dateToRfc822);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}Do keep in mind that _escaping_ HTML content is a feature provided as [part of Nunjucks](https://mozilla.github.io/nunjucks/templating.html#autoescaping). Moving to another template language may require a different option for escaping (for example, [`html-entities`](https://www.npmjs.com/package/html-entities)).{% endcallout %}

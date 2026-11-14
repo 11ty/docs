@@ -1,25 +1,14 @@
-{%- set tabid = "config-htmlengine" %}
-<div class="codetitle codetitle-right-md">eleventy.config.js</div>
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
-  <div id="{{ tabid }}-jsesm" role="tabpanel">
-{% set codeBlock %}
+{% tabs "config-htmlengine", { title: "eleventy.config.js" } %}
+```js jsesm
 export const config = {
   htmlTemplateEngine: "njk",
 };
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="{{ tabid }}-jscjs" role="tabpanel">
-{% set codeBlock %}
+```
+```js jscjs
 module.exports.config = {
   htmlTemplateEngine: "njk",
 };
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endtabs %}
 
 There are many [different shapes of configuration file](/docs/config-shapes.md).

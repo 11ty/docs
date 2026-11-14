@@ -1,10 +1,5 @@
-{%- set tabid = "excerpts" %}
-<div class="codetitle codetitle-right-md">eleventy.config.js</div>
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
-  <div id="{{ tabid }}-jsesm" role="tabpanel">
-{% set codeBlock %}
+{% tabs "excerpts", { title: "eleventy.config.js" } %}
+```js jsesm
 export default function (eleventyConfig) {
 	eleventyConfig.setFrontMatterParsingOptions({
 		excerpt: true,
@@ -12,11 +7,8 @@ export default function (eleventyConfig) {
 		excerpt_separator: "<!-- excerpt -->",
 	});
 };
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="{{ tabid }}-jscjs" role="tabpanel">
-{% set codeBlock %}
+```
+```js jscjs
 module.exports = function (eleventyConfig) {
 	eleventyConfig.setFrontMatterParsingOptions({
 		excerpt: true,
@@ -24,8 +16,5 @@ module.exports = function (eleventyConfig) {
 		excerpt_separator: "<!-- excerpt -->",
 	});
 };
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endtabs %}

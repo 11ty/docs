@@ -1,10 +1,5 @@
-{%- set tabid = "config-pathprefix" %}
-<div class="codetitle codetitle-right-md">eleventy.config.js</div>
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
-  <div id="{{ tabid }}-jsesm" role="tabpanel">
-{% set codeBlock %}
+{% tabs "config-pathprefix", { title: "eleventy.config.js" } %}
+```js jsesm
 import { HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
@@ -14,11 +9,8 @@ export default function (eleventyConfig) {
 export const config = {
 	pathPrefix: "/eleventy-base-blog/",
 }
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="{{ tabid }}-jscjs" role="tabpanel">
-{% set codeBlock %}
+```
+```js jscjs
 module.exports = async function (eleventyConfig) {
 	const { HtmlBasePlugin } = await import("@11ty/eleventy");
 
@@ -28,8 +20,5 @@ module.exports = async function (eleventyConfig) {
 module.exports.config = {
 	pathPrefix: "/eleventy-base-blog/",
 }
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endtabs %}

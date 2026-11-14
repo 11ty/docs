@@ -19,16 +19,12 @@ For a blog site, your individual post files may use a tag called `post`, but it 
 
 {% codetitle "Markdown", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{% set codeBlock %}
+```markdown
 ---
 tags: post
 title: Hot Take—Social Media is Considered Harmful
 ---
-{% endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
 
 This will place this `mypost.md` into the `post` collection with all other pieces of content sharing the `post` tag. To reference this collection and make a list of all posts, use the `collections` object in any template:
 
@@ -68,32 +64,28 @@ In front matter (or further upstream in the data cascade), set the `eleventyExcl
 
 {% codetitle "excluded.md" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 eleventyExcludeFromCollections: true
 tags: post
 ---
 
 This will not be available in `collections.all` or `collections.post`.
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 {% addedin "3.0.0-alpha.1" %} `eleventyExcludeFromCollections` can now also accept an array of tag names:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 eleventyExcludeFromCollections: ["post"]
 ---
 
 This will be available in `collections.all` but not `collections.post`.
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 ## Add to a Collection using Tags
 
@@ -101,59 +93,51 @@ You can use a single tag, as in the above example OR you can use any number of t
 
 ### A single tag: cat
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 tags: cat
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 This content would show up in the template data inside of `collections.cat`.
 
 ### Using multiple words in a single tag
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 tags: cat and dog
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 If you use multiple words for one tag you can access the content by the following syntax `collections['cat and dog']`.
 
 ### Multiple tags, single line
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 tags: ["cat", "dog"]
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 This content would show up in the template data inside of `collections.cat` and `collections.dog`.
 
 ### Multiple tags, multiple lines
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 tags:
   - cat
   - dog
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 This content would show up in the template data inside of `collections.cat` and `collections.dog`.
 
@@ -161,15 +145,13 @@ This content would show up in the template data inside of `collections.cat` and 
 
 As of Eleventy 1.0, the [Data Cascade](/docs/data-cascade/) is combined using [deep data merge](/docs/data-deep-merge/) by default, which means tags are merged together with tags assigned higher in the data cascade (the Arrays are combined). To redefine `tags` in the front matter use [the `override:` prefix](/docs/data-deep-merge/#using-the-override-prefix):
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 override:tags: []
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 This content would not show up in any of the collections it was added to with `tags` higher up in the data cascade.
 
@@ -184,8 +166,7 @@ Note in the above example that we output the `post.data.title` value? Similarly,
 - `rawInput`: the raw input of the template (before any processing). This does _not_ include front matter. {% addedin "v3.0.0-alpha.1" %} _(Related: [#1206](https://github.com/11ty/eleventy/issues/1206))_
 - `content`: the rendered content of this template. This does _not_ include layout wrappers. {% addedin "2.0.0-canary.19" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```json
 {
   page: {
     inputPath: './test1.md',
@@ -199,10 +180,7 @@ Note in the above example that we output the `post.data.title` value? Similarly,
   // Available in {{ "3.0.0-alpha.1" | coerceVersion }} and newer:
 {% raw %}  rawInput: '<h1>{{ title }}</h1>\n\n<p>This is text content…',{% endraw %}
 }
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("json") | safe }}
+```
 
 _Backwards compatibility notes:_
 
@@ -220,16 +198,14 @@ The default collection sorting algorithm sorts in ascending order using:
 
 For example, assume I only write blog posts on New Years Day:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```text
 posts/postA.md (created on 2008-01-01)
 posts/postB.md (created on 2008-01-01)
 posts/post3.md (created on 2007-01-01)
 another-posts/post1.md (created on 2011-01-01)
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("text") | safe }}
+```
+{% endraw %}
 
 This collection would be sorted like this:
 
@@ -255,17 +231,18 @@ To sort descending in your template, you can use a filter to reverse the sort or
 
 This applies any time you use <code>reverse</code>, for example in a custom shortcode:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function (eleventyConfig) {
 	eleventyConfig.addShortcode("myShortcode", function (aCollection){
 	  // WARNING
 	  aCollection.reverse();
 	})
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Instead of `reverse` use:
@@ -279,15 +256,13 @@ Instead of `reverse` use:
 
 You can modify how a piece of content is sorted in a collection by changing its default `date`. [Read more at Content Dates](/docs/dates/).
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 date: 2016-01-01
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 ## Advanced: Custom Filtering and Sorting
 
