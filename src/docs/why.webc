@@ -13,7 +13,7 @@ searchTitle: Why should you use Eleventy?
 <p>We’ve shipped <span @text="versions.length"></span> releases of core going back to the first version in December 2017 and only three of those releases have had Eleventy-specific changes requiring developer changes. Read more about <a href="/blog/stability/">Eleventy’s stability</a>.</p>
 
 <blockquote>
-	<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.design/"> Eric Bailey</a></p>
+	<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.website/"> Eric Bailey</a></p>
 </blockquote>
 
 <p>There have been <a href="https://osv.dev/">zero security advisories</a> filed against all <span @text="commaNumber(npmProjectDownloads.publishCount)"></span> releases of our <span @text="npmProjectDownloads.publishedPackages"></span> official npm packages.</p>
