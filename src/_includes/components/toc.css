@@ -276,6 +276,22 @@
 	margin-inline: 0 var(--elv-toc-arrow-cell);
 	padding-inline: var(--elv-toc-row-padding);
 }
+/* A label that wraps makes a taller row than one line, and the toggle is nested in the details
+   where it can’t size against the link beside it — an anchor is what ties the two boxes together.
+   The scope keeps each toggle on its own row’s link, since they all share the one anchor name. */
+@supports (anchor-scope: --elv-toc-row) {
+	.elv-toc-list ul li:has(> a + .elv-toc-section) {
+		anchor-scope: --elv-toc-row;
+	}
+	.elv-toc-list ul li > a:has(+ .elv-toc-section) {
+		anchor-name: --elv-toc-row;
+	}
+	.elv-toc-list ul .elv-toc-summary-toggle {
+		position-anchor: --elv-toc-row;
+		inset-block: anchor(start) anchor(end);
+		block-size: auto;
+	}
+}
 
 /* Top level */
 .elv-toc-list > li > .elv-toc-row,
