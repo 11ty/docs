@@ -1,5 +1,19 @@
-// Font Awesome’s thumbtack, tilted so its point (the hotspot) is at the bottom left
-const possumCursor = `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="-128 -48 640 640"><path transform="rotate(45 192 272)" fill="#d93025" stroke="#fff" stroke-width="24" paint-order="stroke" d="M32 32C32 14.3 46.3 0 64 0L320 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-29.5 0 10.3 134.1c37.1 21.2 65.8 56.4 78.2 99.7l3.8 13.4c2.8 9.7 .8 20-5.2 28.1S362 352 352 352L32 352c-10 0-19.5-4.7-25.5-12.7s-8-18.4-5.2-28.1L5 297.8c12.4-43.3 41-78.5 78.2-99.7L93.5 64 64 64C46.3 64 32 49.7 32 32zM160 400l64 0 0 112c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-112z"/></svg>`)}") 6 26, pointer`;
+// Turn a slotted `@11ty/font-awesome` icon (an `<svg><use>` into the page sprite) into a CSS cursor
+function iconCursor(icon, { color, hotspot = [16, 16], rotate = 0 }) {
+	let id = icon?.querySelector("use")?.getAttribute("href")?.slice(1);
+	let symbol = id && document.getElementById(id);
+	let [, , width, height] = symbol?.getAttribute("viewBox")?.split(" ").map(Number) || [];
+	if (!width || !height) {
+		return "pointer";
+	}
+
+	let paths = [...symbol.querySelectorAll("path")]
+		.map((path) => `<path d="${path.getAttribute("d")}"/>`)
+		.join("");
+	let size = Math.max(width, height) * 1.25;
+	let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="${(width - size) / 2} ${(height - size) / 2} ${size} ${size}"><g transform="rotate(${rotate} ${width / 2} ${height / 2})" fill="${color}" stroke="#fff" stroke-width="${size * 0.0375}" paint-order="stroke">${paths}</g></svg>`;
+	return `url("data:image/svg+xml,${encodeURIComponent(svg)}") ${hotspot.join(" ")}, pointer`;
+}
 
 const possumMascotStyles = `
 :host {
@@ -9,7 +23,7 @@ const possumMascotStyles = `
 	display: none;
 }
 ::slotted(*) {
-	cursor: ${possumCursor};
+	cursor: var(--possum-cursor, pointer);
 }
 /* The header possum steps aside while its copy is out flying */
 :host([state]) ::slotted(*) {
@@ -18,7 +32,7 @@ const possumMascotStyles = `
 .possum {
 	position: fixed;
 	z-index: 1000;
-	cursor: ${possumCursor};
+	cursor: var(--possum-cursor, pointer);
 }
 /* Hide the balloon, keep the string */
 .possum.is-popped {
@@ -42,6 +56,16 @@ const possumMascotStyles = `
 }
 `;
 
+const POPPED_KEY = "possum-mascot-popped";
+
+function isPopped() {
+	try {
+		return localStorage.getItem(POPPED_KEY) === "true";
+	} catch {
+		return false;
+	}
+}
+
 customElements.define(
 	"possum-mascot",
 	class extends HTMLElement {
@@ -55,10 +79,42 @@ customElements.define(
 		];
 
 		connectedCallback() {
-			this.img = this.querySelector("img");
-			if (!this.img || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			// Stay put (but visible) once someone has popped the balloon, until it’s clicked again
+			if (isPopped()) {
+				this.style.cursor = iconCursor(this.querySelector(':scope > [slot="revive-cursor"]'), {
+					color: "#00a776",
+				});
+				this.onRevive = () => {
+					this.style.removeProperty("cursor");
+					try {
+						localStorage.removeItem(POPPED_KEY);
+					} catch {}
+					if (this.setup()) {
+						this.float();
+					}
+				};
+				this.addEventListener("click", this.onRevive, { once: true });
 				return;
 			}
+
+			this.setup();
+		}
+
+		setup() {
+			this.img = this.querySelector("img");
+			if (!this.img || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+				return false;
+			}
+
+			// Thumbtack tilted so its point (the hotspot) is at the bottom left
+			this.style.setProperty(
+				"--possum-cursor",
+				iconCursor(this.querySelector(':scope > [slot="cursor"]'), {
+					color: "#d93025",
+					hotspot: [6, 26],
+					rotate: 45,
+				}),
+			);
 
 			if (!this.shadowRoot) {
 				let shadow = this.attachShadow({ mode: "open" });
@@ -78,9 +134,11 @@ customElements.define(
 			document.addEventListener("visibilitychange", this.onVisibility);
 			this.addEventListener("click", this.onClick);
 			this.resetTimer();
+			return true;
 		}
 
 		disconnectedCallback() {
+			this.removeEventListener("click", this.onRevive);
 			for (let type of this.constructor.activityEvents) {
 				window.removeEventListener(type, this.onActivity);
 			}
@@ -286,6 +344,9 @@ customElements.define(
 
 			clearTimeout(this.timer);
 			this.state = "falling";
+			try {
+				localStorage.setItem(POPPED_KEY, "true");
+			} catch {}
 			this.flier.classList.add("is-popped");
 
 			// Burst where the balloon was
