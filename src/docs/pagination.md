@@ -318,6 +318,28 @@ pagination:
   {%- youtubeEmbed "oCTAZumAGNc", "Empty-results Pagination (Weekly №11)", "207" -%}
 </div>
 
+## Making `data` a function {% addedin "1.0.0" %}
+
+Instead of `data` being a string, it can be a function that returns the data key. The function gets passed a single parameter containing all template data for the current page. In this way, the pagination data key can be determined dynamically.
+
+{% raw %}
+```markdown
+---js
+{
+  pagination: {
+    data: function(data) {
+      return "collections." + data.pageTopic;
+    },
+    size: 2
+  }
+}
+---
+<!-- the rest of the template -->
+```
+{% endraw %}
+
+In the above example, if the containing page has the key-value `pageTopic: ponies` in its front matter, then the pagination data key will end up being `collections.ponies`.
+
 ## Modifying the Data Set prior to Pagination
 
 ### Reverse the Data {% addedin "0.7.0" %}
