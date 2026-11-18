@@ -518,6 +518,10 @@ filter-container:defined form {
 symbol {
 	overflow: visible;
 }
+/* The UA [hidden] rule only matches HTML elements, not SVG */
+.fa11ty-icon[hidden] {
+	display: none;
+}
 .fa-mastodon {
 	color: #7b68da;
 }
