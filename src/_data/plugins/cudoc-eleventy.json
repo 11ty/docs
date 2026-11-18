@@ -1,0 +1,5 @@
+{
+	"npm": "cudoc-eleventy",
+	"author": "cudoment",
+	"description": "Embeds a section of one page in another by its heading and adds merged table cells, lists in cells, tabs and variables to Markdown; a markdown-it library for Eleventy 3, set with setLibrary rather than addPlugin."
+}
