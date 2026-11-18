@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-less",
+	"author": "nfriedly",
+	"description": "Compiles Less stylesheets to CSS"
+}
