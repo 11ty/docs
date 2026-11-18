@@ -1,5 +1,4 @@
 import { fileURLToPath } from "node:url";
-import { mkdirSync } from "node:fs";
 import memoize from "memoize";
 import { DateTime } from "luxon";
 import HumanReadable from "human-readable-numbers";
@@ -32,9 +31,6 @@ import sidebarPlugin from "./config/sidebarPlugin.js";
 import syntaxHighlightPlugin from "./config/syntaxHighlightPlugin.js";
 import tabsPlugin, { codeTitleHtml } from "./config/tabsPlugin.js";
 import hiddenAuthors from "./config/hiddenAuthors.js";
-
-// Workaround for v4.0.0-alpha.11 caching a missing dist/ before the config creates it, which flattens the passthrough copy.
-mkdirSync("dist", { recursive: true });
 
 // Load .env if present (absent in production).
 try {
