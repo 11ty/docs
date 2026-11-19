@@ -22,17 +22,18 @@ npm install @11ty/eleventy-plugin-directory-output
 
 Open up your Build Awesome config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
 export default function ($config) {
 	$config.setQuietMode(true);
 	$config.addPlugin(dirOutputPlugin);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}You’re only allowed one `module.exports` in your configuration file, so make sure you only copy the `require` and the `addPlugin` lines above!{% endcallout %}
@@ -41,8 +42,9 @@ Read more about [Eleventy plugins.](/docs/plugins/)
 
 ## Options
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
 export default function ($config) {
@@ -58,9 +60,9 @@ export default function ($config) {
 		warningFileSize: 400 * 1000,
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}The `benchmark` column is only compatible with Eleventy 1.0.1 or newer.{% endcallout %}

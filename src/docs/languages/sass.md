@@ -27,18 +27,15 @@ The following configuration will read and render `*.scss` files as `.css` files 
 
 Install the `sass` plugin from npm:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install sass
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 Next add your configuration:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import path from "node:path";
 import * as sass from "sass";
 
@@ -72,9 +69,9 @@ export default function ($config) {
 		},
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Now run Eleventy and tell it to process `scss` files:

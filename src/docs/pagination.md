@@ -22,12 +22,9 @@ Consider the following template, which will result in two pages being created, e
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "paged-array"} %}
   <div id="paged-array-liquid" role="tabpanel">
 
-<!-- prettier-ignore-start -->
 {% set codeBlock %}
 {%- include "snippets/pagination/paged-array.njk" %}
 {% endset %}
-
-<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("liquid") | safe }}
 
 If the above file were named `paged.liquid`, it would create two pages in your output folder: `_site/paged/index.html` and `_site/paged/1/index.html`. These output paths are configurable with `permalink` (see below).
@@ -35,12 +32,9 @@ If the above file were named `paged.liquid`, it would create two pages in your o
   </div>
   <div id="paged-array-njk" role="tabpanel">
 
-<!-- prettier-ignore-start -->
 {% set codeBlock %}
 {%- include "snippets/pagination/paged-array.njk" %}
 {% endset %}
-
-<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("jinja2") | safe }}
 
 If the above file were named `paged.njk`, it would create two pages in your output folder: `_site/paged/index.html` and `_site/paged/1/index.html`. These output paths are configurable with `permalink` (see below).
@@ -48,12 +42,9 @@ If the above file were named `paged.njk`, it would create two pages in your outp
   </div>
   <div id="paged-array-js" role="tabpanel">
 
-<!-- prettier-ignore-start -->
 {% set codeBlock %}
 {%- include "snippets/pagination/paged-array.js" %}
 {% endset %}
-
-<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 If the above file were named `paged.11ty.js`, it would create two pages in your output folder: `_site/paged/index.html` and `_site/paged/1/index.html`. These output paths are configurable with `permalink` (see below).
@@ -61,12 +52,9 @@ If the above file were named `paged.11ty.js`, it would create two pages in your 
   </div>
   <div id="paged-array-cjs" role="tabpanel">
 
-<!-- prettier-ignore-start -->
 {% set codeBlock %}
 {%- include "snippets/pagination/paged-array.cjs" %}
 {% endset %}
-
-<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 If the above file were named `paged.11ty.js`, it would create two pages in your output folder: `_site/paged/index.html` and `_site/paged/1/index.html`. These output paths are configurable with `permalink` (see below).
@@ -79,8 +67,8 @@ We enable pagination and then give it a dataset with the `data` key. We control 
 
 {% codetitle "JavaScript Object", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 {
   items: [], // Array of current page’s chunk of data
   pageNumber: 0, // current page number, 0 indexed
@@ -102,10 +90,8 @@ We enable pagination and then give it a dataset with the `data` key. We control 
     last: {},
   }
 }
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 <details>
   <summary>Expand to see all of the extra stuff in the <code>pagination</code> object that you probably don’t need any more but it’s still in there for backwards compatibility.</summary>
@@ -114,8 +100,8 @@ In addition to the `pagination` object entries documented above, it also has:
 
 {% codetitle "JavaScript Object", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 {
   data: "…", // the original string key to the dataset
   size: 1, // page chunk sizes
@@ -138,10 +124,8 @@ In addition to the `pagination` object entries documented above, it also has:
   // lastPageLink
   // pageLinks (alias to `links`)
 }
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 </details>
 
 ## Creating Navigation Links to your Pages
@@ -158,17 +142,15 @@ In this example, we would get 3 pages that each print a key/value pair from `tes
 
 {% codetitle "JavaScript Object", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 [
 	["itemkey1"], // pagination.items[0] holds the object key
 	["itemkey2"],
 	["itemkey3"],
 ];
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 You can use these keys to get access to the original value: `testdata[ pagination.items[0] ]`.
 
@@ -176,8 +158,8 @@ If you’d like the pagination to iterate over the values instead of the keys (u
 
 {% codetitle "YAML Front Matter", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 pagination:
   data: testdata
@@ -188,26 +170,22 @@ testdata:
   itemkey2: itemvalue2
   itemkey3: itemvalue3
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 This resolves to:
 
 {% codetitle "JavaScript Object", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 [
 	["itemvalue1"], // pagination.items[0] holds the object value
 	["itemvalue2"],
 	["itemvalue3"],
 ];
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 ## Paginate a global or local data file
 
@@ -215,15 +193,13 @@ This resolves to:
 
 {% codetitle "JavaScript Object", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```json
 {
 	"myData": ["item1", "item2", "item3", "item4"]
 }
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("json") | safe }}
+```
+{% endraw %}
 
 Your front matter would look like this:
 
@@ -235,15 +211,13 @@ Normally, front matter does not support template syntax, but `permalink` does, e
 
 {% codetitle "YAML Front Matter using Liquid, Nunjucks", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 permalink: "different/page-{{ pagination.pageNumber }}/index.html"
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Writes to `_site/different/page-0/index.html`, `_site/different/page-1/index.html`, et cetera.
 
@@ -251,29 +225,25 @@ That means Nunjucks will also let you start your page numbers with 1 instead of 
 
 {% codetitle "YAML Front Matter using Nunjucks", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 permalink: "different/page-{{ pagination.pageNumber + 1 }}/index.html"
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Writes to `_site/different/page-1/index.html`, `_site/different/page-2/index.html`, et cetera.
 
 You can even use template logic here too:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 permalink: "different/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Writes to `_site/different/index.html`, `_site/different/page-2/index.html`, et cetera.
 
@@ -285,8 +255,8 @@ You can do more advanced things like this:
 
 {% codetitle "YAML Front Matter using Liquid, Nunjucks", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 pagination:
   data: testdata
@@ -295,10 +265,8 @@ testdata:
   - My Item
 permalink: "different/{{ pagination.items[0] | slugify }}/index.html"
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Using a universal `slug` filter (transforms `My Item` to `my-item`), this outputs: `_site/different/my-item/index.html`.
 
@@ -334,8 +302,8 @@ By default, if the specified data set is empty, Eleventy will not render any pag
 
 {% codetitle "Liquid, Nunjucks", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 title: Available Products
 pagination:
@@ -343,10 +311,8 @@ pagination:
   size: 6
   generatePageOnEmptyData: true
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 <div class="youtube-related">
   {%- youtubeEmbed "oCTAZumAGNc", "Empty-results Pagination (Weekly №11)", "207" -%}
@@ -358,8 +324,8 @@ pagination:
 
 Use `reverse: true`.
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 pagination:
   data: testdata
@@ -371,23 +337,19 @@ testdata:
   - item3
   - item4
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Paginates to:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 [
 	["item4", "item3"],
 	["item2", "item1"],
 ];
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 _(More discussion at [Issue #194](https://github.com/11ty/eleventy/issues/194))_
 
@@ -399,8 +361,8 @@ Use the `filter` pagination property to remove values from paginated data.
 
 {% codetitle "YAML Front Matter", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 pagination:
   data: testdata
@@ -412,29 +374,25 @@ testdata:
   item2: itemvalue2
   item3: itemvalue3
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Paginates to:
 
 {% codetitle "JavaScript Object", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 [["item1"], ["item2"]];
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 This will work the same with paginated arrays or with `resolve: values` for paginated objects.
 
 {% codetitle "YAML Front Matter", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 pagination:
   data: testdata
@@ -447,29 +405,25 @@ testdata:
   item2: itemvalue2
   item3: itemvalue3
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 Paginates to:
 
 {% codetitle "JavaScript Object", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 [["itemvalue1"], ["itemvalue2"]];
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 ### The `before` Callback {% addedin "0.10.0" %}
 
 The most powerful tool to change the data. Use this callback to modify, filter, or otherwise change the pagination data however you see fit _before_ pagination occurs.
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 ---js
 {
   pagination: {
@@ -490,10 +444,8 @@ The most powerful tool to change the data. Use this callback to modify, filter, 
 }
 ---
 <!-- the rest of the template -->
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 The above will iterate over a data set containing: `["item1 with a suffix", "item2 with a suffix", "item3 with a suffix", "item4 with a suffix"]`.
 
@@ -503,18 +455,16 @@ You can do anything in this `before` callback. Maybe a custom `.sort()`, `.filte
 
 {% addedin "2.0.0-canary.16" %}[JavaScript Template Functions](/docs/languages/javascript/#java-script-template-functions) (which are also populated by universal filters and shortcodes) are available in the `before` callback.
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 // …
 before: function() {
   let slug = this.slugify("My title.");
   // use Universal filters or shortcodes too…
 },
 // …
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 ### Order of Operations
 
@@ -532,8 +482,8 @@ Consider the following pagination template:
 
 {% codetitle "my-page.md" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```yaml
 ---
 tags:
   - myCollection
@@ -546,17 +496,15 @@ testdata:
   - item3
   - item4
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("yaml") | safe }}
+```
+{% endraw %}
 
 This means that `collections.myCollection` will have only the first page added to the collection array (`_site/my-page/index.html`). However, if you’d like to add all the pagination pages to the collections, use `addAllPagesToCollections: true` to the pagination front matter options like so:
 
 {% codetitle "my-page.md" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```yaml
 ---
 tags:
   - myCollection
@@ -570,10 +518,8 @@ testdata:
   - item3
   - item4
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("yaml") | safe }}
+```
+{% endraw %}
 
 Now `collections.myCollection` will have both output pages in the collection array (`_site/my-page/index.html` and `_site/my-page/1/index.html`).
 

@@ -17,26 +17,25 @@ A pack of Eleventy plugins for PrismJS syntax highlighting. No browser/client Ja
 
 Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-plugin-syntaxhighlight).
 
-<!-- prettier-ignore-start -->
-{% set codeBlock %}{% raw %}
+{% raw %}
+```bash
 npm install @11ty/eleventy-plugin-syntaxhighlight
-{% endraw %}{% endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
+{% endraw %}
 
 Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function ($config) {
 	$config.addPlugin(syntaxHighlight);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Optionally pass in an options object as the second argument to `addPlugin` to further customize this plugin pack.
@@ -44,8 +43,9 @@ Optionally pass in an options object as the second argument to `addPlugin` to fu
 <details>
   <summary>Expand to see Advanced Options</summary>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function($config) {
@@ -80,9 +80,9 @@ export default function($config) {
     errorOnInvalidLanguage: false,
   });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -123,14 +123,11 @@ Will render like this in the browser:
 
 {% callout "demo" %}
 
-<!-- prettier-ignore-start -->
-{% highlight "js" %}
+```js
 function myFunction() {
 	return true;
 }
-{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
 
 {% endcallout %}
 
@@ -146,15 +143,12 @@ Will render like this in the browser:
 
 {% callout "demo" %}
 
-<!-- prettier-ignore-start -->
-{% highlight "diff-js" %}
+```diff-js
 +function myFunction() {
 	// …
 -	return true;
 }
-{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
 
 {% endcallout %}
 

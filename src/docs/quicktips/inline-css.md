@@ -16,8 +16,9 @@ This tip works well on small sites that don’t have a lot of CSS. Inlining your
 
 Add the following `cssmin` filter to your Eleventy Config file:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { transform } from "lightningcss";
 
 export default function ($config$) {
@@ -35,9 +36,9 @@ export default function ($config$) {
 		return `/* [buildawesome] cssmin skipped during --watch and --serve */\n${inputCode}`;
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Create your CSS File
@@ -79,8 +80,9 @@ _Contributed by [Zach Green](https://github.com/zgreen)_
 
 You can also inline minified CSS in a [JavaScript template](/docs/languages/javascript/). This technique does not use filters, and instead uses `async` functions:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import fs from "node:fs/promises";
 import path from "node:path";
 import { transform } from "lightningcss";
@@ -101,7 +103,7 @@ export default async function (data) {
 			})}
 	</style>`;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

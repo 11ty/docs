@@ -22,8 +22,9 @@ This is a bit different from our client-side implementation because this data is
 
 <div class="codetitle codetitle-right-md">_data/github.js</div>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import fetch from "node-fetch";
 
 export default async function () {
@@ -38,9 +39,9 @@ export default async function () {
 		stargazers: json.stargazers_count,
 	};
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 Now in your templates you can output the stargazers count with:

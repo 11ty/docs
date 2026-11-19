@@ -68,33 +68,31 @@ relatedLinks:
 
 It’s on [npm at `@11ty/eleventy-plugin-webc`](https://www.npmjs.com/package/@11ty/eleventy-plugin-webc)!
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-plugin-webc
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 To add support for `.webc` files in Eleventy, add the plugin in your Eleventy configuration file:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function($config) {
 	$config.addPlugin(pluginWebc);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 <details>
 <summary><strong>Full options list</strong> (defaults shown)</summary>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function ($config) {
@@ -113,9 +111,9 @@ export default function ($config) {
 		bundlePluginOptions: {},
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 View the [full options list for the Bundle plugin](/docs/plugins/bundle.md). As an example, you can use the [`transforms` array to modify bundle content with postcss](/docs/plugins/bundle.md#postprocess-the-bundle-output).
@@ -177,8 +175,9 @@ A few drawbacks to the transform method:
 <details>
 <summary>The transform is disabled by default, you will need to use the <code>useTransform</code> option to enable it.</summary>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function ($config) {
@@ -186,9 +185,9 @@ export default function ($config) {
 		useTransform: true,
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -995,8 +994,9 @@ This includes [`url`, `slugify`, `log`, and others](/docs/filters/#eleventy-prov
 
 #### Supply your own Helper
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function ($config) {
 	// via Universal Filter
 	$config.addFilter("alwaysRed", () => "Red");
@@ -1006,9 +1006,9 @@ export default function ($config) {
 
 	// Don’t forget to add the WebC plugin in your config file too!
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ```html
@@ -1160,8 +1160,9 @@ We accept:
 - Array (of file paths or globs) [{% addedin "@11ty/eleventy-plugin-webc@0.9.2" %}](https://github.com/11ty/eleventy-plugin-webc/releases/tag/v0.9.2)
 - [`npm:` prefix aliases](#webcimport) [{% addedin "@11ty/eleventy-plugin-webc@0.9.2" %}](https://github.com/11ty/eleventy-plugin-webc/releases/tag/v0.9.2)
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 export default function ($config) {
@@ -1179,9 +1180,9 @@ export default function ($config) {
 		],
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Notably, the path for `components` is relative to your project root (**not** your [project’s `input` directory](/docs/config/#input-directory)).

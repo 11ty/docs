@@ -100,6 +100,13 @@ export function addedIn(version, tag, extraClass) {
 	)}</${tag}>`;
 }
 
+// npm dist-tags (e.g. `beta`) can be removed, so treat a missing version as lowest.
 export function greaterThan(first, second) {
+	if (!first) {
+		return false;
+	}
+	if (!second) {
+		return true;
+	}
 	return semver.gt(first, second);
 }

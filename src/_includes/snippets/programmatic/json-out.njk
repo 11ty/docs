@@ -1,10 +1,6 @@
-{%- set tabid = "jsonout" %}
-<div class="codetitle codetitle-right-md">my-node-script.js</div>
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
-  <div id="{{ tabid }}-jsesm" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+{% tabs "jsonout", { title: "my-node-script.js" } %}
+{% raw %}
+```js jsesm
 import BuildAwesome from "@awesome.me/buildawesome";
 
 let ba = new BuildAwesome();
@@ -12,11 +8,8 @@ let json = await ba.toJSON();
 
 // All results
 console.log(json);
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="{{ tabid }}-jscjs" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```js jscjs
 const { default: BuildAwesome } = require("@awesome.me/buildawesome");
 
 (async function () {
@@ -26,8 +19,6 @@ const { default: BuildAwesome } = require("@awesome.me/buildawesome");
 	// All results
 	console.log(json);
 })();
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

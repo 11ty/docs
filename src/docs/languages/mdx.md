@@ -25,8 +25,7 @@ The following configuration will read `*.mdx` files with full compatibility for 
 
 <div class="codetitle">buildawesome.config.js</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 import {pathToFileURL} from "node:url";
 import {evaluate} from "@mdx-js/mdx";
 import {renderToStaticMarkup} from "react-dom/server";
@@ -47,20 +46,13 @@ export default function($config) {
 		}
 	});
 };
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 Now run Eleventy and tell it to process `mdx` files:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npx @awesome.me/buildawesome --formats=mdx
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 Alternatively, you can add `$config.addTemplateFormats("mdx")` to your configuration file.
 
@@ -68,8 +60,7 @@ Alternatively, you can add `$config.addTemplateFormats("mdx")` to your configura
 
 <div class="codetitle">sample.mdx</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```jsx
 ---
 key: World
 ---
@@ -78,10 +69,7 @@ export function Exclaim(props) {
 }
 
 # Hello from <Exclaim target={props.key} />
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("jsx") | safe }}
+```
 
 The above is rendered as `<h1>Hello, World!!!</h1>`.
 
@@ -93,8 +81,7 @@ Read more on the [What is MDX? docs](https://mdxjs.com/docs/what-is-mdx/).
 
 <div class="codetitle">buildawesome.config.js</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 import {register} from 'node:module';
 import {renderToStaticMarkup} from 'react-dom/server'
 
@@ -111,10 +98,7 @@ export default function($config) {
 		}
 	});
 };
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 ## Community Contributions
 

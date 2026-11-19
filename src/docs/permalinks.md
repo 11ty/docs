@@ -44,14 +44,13 @@ We’ll start with a few simple examples of the default permalink behavior, show
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-1" output="external" data-editor-filename="index.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill url="/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-1" data-editor-filename="index.liquid"></eleventy-output></browser-window>
@@ -87,14 +86,13 @@ URL    {{ page.url }}
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-2" output="external" data-editor-filename="template.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill url="/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-2" data-editor-filename="template.liquid"></eleventy-output></browser-window>
@@ -130,14 +128,13 @@ URL    {{ page.url }}
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-3" output="external" data-editor-filename="subdir/template.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill url="/subdir/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-3" data-editor-filename="subdir/template.liquid"></eleventy-output></browser-window>
@@ -173,14 +170,13 @@ URL    {{ page.url }}
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-4" output="external" data-editor-filename="subdir/template/template.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill url="/subdir/template/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-4" data-editor-filename="subdir/template/template.liquid"></eleventy-output></browser-window>
@@ -198,14 +194,13 @@ Note that `subdir/template/template.liquid` writes to the same location as `subd
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-5" output="external" data-editor-filename="subdir/template/index.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill url="/subdir/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-5" data-editor-filename="subdir/template/index.liquid"></eleventy-output></browser-window>
@@ -237,14 +232,13 @@ Consider the follwing `index.md` input file file:
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-6" output="external" data-editor-filename="index.md">
 
-<!-- prettier-ignore-start -->
-{% highlight "html" %}{% raw %}
+{% raw %}
+```html
 ---
 permalink: this-is-a-new-path/subdirectory/testing/
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-6"></eleventy-build-output></browser-window>
@@ -263,14 +257,13 @@ When `permalink` points to a directory, we add `index.html` for you. So the abov
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-7" output="external" data-editor-filename="index.md">
 
-<!-- prettier-ignore-start -->
-{% highlight "html" %}{% raw %}
+{% raw %}
+```html
 ---
 permalink: this-is-a-new-path/subdirectory/testing/index.html
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-7"></eleventy-build-output></browser-window>
@@ -299,14 +292,13 @@ The file will still be processed and rendered for use in [collections](/docs/col
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-8" output="external" data-editor-filename="index.html">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 ---
 permalink: false
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-8"></eleventy-build-output></browser-window>
@@ -333,15 +325,14 @@ For example:
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-9" output="external" data-editor-filename="index.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 ---
 title: This is a New Path
 permalink: "subdir/{{ title | slugify }}/index.html"
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-9"></eleventy-build-output></browser-window>
@@ -366,15 +357,14 @@ Here’s another example using Liquid’s <code>date</code> filter:
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-10" output="external" data-editor-filename="index.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 ---
 date: "2016-01-01T06:00-06:00"
 permalink: "/{{ page.date | date: '%Y/%m/%d' }}/index.html"
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-10"></eleventy-build-output></browser-window>
@@ -399,14 +389,13 @@ Writes to `_site/2016/01/01/index.html`. There are a variety of ways that the pa
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-11" output="external" data-editor-filename="index.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 ---
 permalink: "{{ page.filePathStem }}.html"
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-11"></eleventy-build-output></browser-window>
@@ -426,14 +415,13 @@ If you run the following code you’ll see the error:
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-12" output="external" data-editor-filename="index.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 ---
 permalink: {{ page.filePathStem }}.html
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<button type="button" class="editor-run">Run Playground</button>
@@ -454,15 +442,14 @@ You can change the permalink to output to _any file extension_! For example:
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-13" output="external" data-editor-filename="index.liquid">
 
-<!-- prettier-ignore-start -->
-{% highlight "liquid" %}{% raw %}
+{% raw %}
+```liquid
 ---
 permalink: index.json
 ---
 {{ page | json: 2 }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-13"></eleventy-build-output></browser-window>
@@ -495,15 +482,14 @@ This may also cause local development issues if you later attempt to write to a 
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-14" output="external" data-editor-filename="index.html">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 ---
 # ✅ OK
 permalink: /resource/
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-14"></eleventy-build-output></browser-window>
@@ -519,15 +505,14 @@ permalink: /resource/
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-15" output="external" data-editor-filename="index.html">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 ---
 # ✅ OK (same as above)
 permalink: /resource/index.html
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-15"></eleventy-build-output></browser-window>
@@ -543,15 +528,14 @@ permalink: /resource/index.html
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-16" output="external" data-editor-filename="index.html">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 ---
 # ⛔️ Throws an error.
 permalink: /resource
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-16"></eleventy-build-output></browser-window>
@@ -571,16 +555,15 @@ permalink: /resource
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-17" output="external" data-editor-filename="index.html">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 ---
 # ⚠️ Careful!
 eleventyAllowMissingExtension: true
 permalink: /resource
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-17"></eleventy-build-output></browser-window>
@@ -592,15 +575,16 @@ permalink: /resource
 
 #### Allow missing file extensions globally using Configuration
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function($config) {
 	// Disable this error for the project.
 	$config.configureErrorReporting({ allowMissingExtensions: true })
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% set tabIdOverride = "permalink-configure-error-reporting" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
@@ -611,15 +595,14 @@ export default function($config) {
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-18" output="external" data-editor-filename="index.html" config="#permalink-configure-error-reporting-jsesm">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 ---
 # ⚠️ Careful!
 permalink: /resource
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-18"></eleventy-build-output></browser-window>
@@ -635,8 +618,9 @@ permalink: /resource
 
 The following configuration (using [global data via the configuration API](/docs/data-global-custom.md) but you could set this using a [Global Data file](/docs/data-global.md) too) unlocks `/resource`-style URLs on your Eleventy project and works on GitHub Pages, Netlify, Cloudflare Pages, Render, and Azure Static Web Apps. This approach **does _not_ work on Vercel** (due to a [Vercel hosting limitation](https://www.zachleat.com/web/trailing-slash/#results-table)).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function($config) {
 	// Set global permalinks to resource.html style
 	$config.addGlobalData("permalink", () => {
@@ -651,9 +635,9 @@ export default function($config) {
 		}
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% set tabIdOverride = "permalink-remove-trailing-slashes" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
@@ -666,12 +650,11 @@ Try out the above configuration with the following template:
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-19" output="external" data-editor-filename="template.html" config="#permalink-remove-trailing-slashes-jsesm">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-19" data-editor-filename="template.html"></eleventy-output></browser-window>
@@ -689,12 +672,11 @@ Compared to the default behavior:
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-20" output="external" data-editor-filename="template.html">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill url="/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-20" data-editor-filename="template.html"></eleventy-output></browser-window>
@@ -708,8 +690,9 @@ Compared to the default behavior:
 
 The following works for `/resource`-style URLs on Vercel but additionally requires [`"trailingSlash": false` in your `vercel.json` file](https://vercel.com/docs/projects/project-configuration#trailingslash).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function($config) {
 	$config.addUrlTransform((page) => {
 		// remove trailing slash from `page.url`
@@ -718,9 +701,9 @@ export default function($config) {
 		}
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Advanced Usage
@@ -733,16 +716,17 @@ Because of the order of the [data cascade](/docs/data-cascade/) the title of a c
 
 <div class="codetitle codetitle-right-md">recipes.11tydata.js</div>
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default {
 	permalink: function ({ title }) {
 		return `/recipes/${this.slugify(title)}`;
 	},
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 The title will be [slugified](/docs/filters/slugify/) to be URL-friendly.
@@ -764,8 +748,9 @@ Say we want two or more files on the file system (e.g. `about.en.html` and `abou
 
 This example matches any `.xx.html` URL:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function ($config) {
 	$config.addUrlTransform(({ url }) => {
 		// `url` is guaranteed to be a string here even if you’re using `permalink: false`
@@ -776,9 +761,9 @@ export default function ($config) {
 		// Returning undefined skips the url transform.
 	});
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% set tabIdOverride = "permalink-url-transform" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
@@ -789,15 +774,14 @@ export default function ($config) {
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-21" output="external" data-editor-filename="about.es.html" config="#permalink-url-transform-jsesm">
 
-<!-- prettier-ignore-start -->
-{% highlight "markdown" %}{% raw %}
+{% raw %}
+```markdown
 ---
 permalink: about.es.html
 ---
 {{ page.url }}
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-21"></eleventy-build-output></browser-window>
@@ -821,15 +805,14 @@ Some template syntaxes are nicer than others and you may want to opt-out of the 
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-22" output="external" data-editor-filename="index.md">
 
-<!-- prettier-ignore-start -->
-{% highlight "yaml" %}{% raw %}
+{% raw %}
+```yaml
 ---
 permalink: "/this-will-be-a-string-without-{{templating}}/"
 dynamicPermalink: false
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-22"></eleventy-build-output></browser-window>
@@ -843,15 +826,16 @@ dynamicPermalink: false
 
 Eleventy includes a global configuration option to disable dynamic templating altogether. This will save a few template renders and is probably marginally faster, too.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function ($config) {
 	// Dynamic permalinks are enabled by default
 	$config.setDynamicPermalinks(false);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% set tabIdOverride = "permalink-dynamic-permalinks" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
@@ -862,14 +846,13 @@ export default function ($config) {
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-23" output="external" data-editor-filename="index.md" config="#permalink-dynamic-permalinks-jsesm">
 
-<!-- prettier-ignore-start -->
-{% highlight "yaml" %}{% raw %}
+{% raw %}
+```yaml
 ---
 permalink: "/this-will-be-a-string-without-{{templating}}/"
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-23"></eleventy-build-output></browser-window>
@@ -890,15 +873,14 @@ To remap your template’s output to a directory independent of the output direc
 			<div class="editor-layout editor-layout-stacked">
 				<eleventy-editor group="permalink-24" output="external" data-editor-filename="index.html">
 
-<!-- prettier-ignore-start -->
-{% highlight "yaml" %}{% raw %}
+{% raw %}
+```yaml
 ---
 permalink: _includes/index.html
 permalinkBypassOutputDir: true
 ---
-{% endraw %}{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
+{% endraw %}
 
     			</eleventy-editor>
     			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-24"></eleventy-build-output></browser-window>

@@ -23,8 +23,7 @@ layout: layouts/langs.njk
 
 <div class="codetitle">buildawesome.config.js</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -44,10 +43,7 @@ export default function ($config) {
 	// or via CLI: --formats=11ty.jsx,11ty.ts,11ty.tsx
 	$config.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
 }
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 Now Eleventy will find and process `**/*.11ty.{jsx,ts,tsx}` files.
 
@@ -65,8 +61,7 @@ Your config file might look like this:
 
 {% codetitle "buildawesome.config.js (CommonJS)" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 const { register } = require("esbuild-register/dist/node");
 
 register();
@@ -77,17 +72,10 @@ module.exports = function($config) {
 		key: "11ty.js",
 	});
 };
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 Now run Eleventy and tell it to process `11ty.jsx` and `11ty.tsx` files:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npx @awesome.me/buildawesome --formats=11ty.jsx,11ty.tsx
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```

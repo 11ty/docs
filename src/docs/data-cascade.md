@@ -19,8 +19,8 @@ In Eleventy, data is merged from multiple different sources before the template 
 
 {% codetitle "my-template.md" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```yaml
 ---
 title: This is a Good Blog Post
 tags:
@@ -28,25 +28,21 @@ tags:
   - HTML
 layout: my-layout.njk
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("yaml") | safe }}
+```
+{% endraw %}
 
 {% codetitle "_includes/my-layout.njk" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```yaml
 ---
 title: This is a Very Good Blog Post
 author: Zach
 tags:
   - JavaScript
 ---
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("yaml") | safe }}
+```
+{% endraw %}
 
 Note that when `my-template.md` and `my-layout.njk` share data with the same object key (`title` and `tags`), the “leaf template” `my-template.md` takes precedence.
 
@@ -54,18 +50,16 @@ The data cascade results in the following data when `my-template.md` is rendered
 
 {% codetitle "JavaScript", "Syntax" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```json
 {
 	"title": "This is a Good Blog Post",
 	"author": "Zach",
 	"tags": ["CSS", "HTML", "JavaScript"],
 	"layout": "my-layout.njk"
 }
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("json") | safe }}
+```
+{% endraw %}
 
 Eleventy does a deep merge to combine Object literals and Arrays. (_Wait, where did the option to [opt-out of deep-merging](/docs/data-deep-merge/) go?)_ You can override this on a per-property basis with the `override:` prefix.
 

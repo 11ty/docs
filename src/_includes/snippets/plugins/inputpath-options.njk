@@ -1,10 +1,6 @@
-{% set tabid %}tab-{% uid %}{% endset %}
-<div class="codetitle codetitle-right-md">buildawesome.config.js</div>
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
-  <div id="{{ tabid }}-jsesm" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+{% tabs { title: "buildawesome.config.js" } %}
+{% raw %}
+```js jsesm
 import { InputPathToUrlTransformPlugin } from "@awesome.me/buildawesome";
 
 export default function ($config) {
@@ -13,11 +9,8 @@ export default function ($config) {
 		extensions: "html",
 	});
 }
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="{{ tabid }}-jscjs" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```js jscjs
 const { InputPathToUrlTransformPlugin } = require("@awesome.me/buildawesome");
 
 module.exports = function ($config) {
@@ -26,8 +19,6 @@ module.exports = function ($config) {
 		extensions: "html",
 	});
 }
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

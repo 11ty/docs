@@ -13,7 +13,7 @@ searchTitle: Why should you use Build Awesome?
 <p>We’ve shipped <span @text="versions.length"></span> releases of core going back to the first version in December 2017 and only three of those releases have had Eleventy-specific changes requiring developer changes. Read more about <a href="/blog/stability/">Eleventy’s stability</a>.</p>
 
 <blockquote>
-	<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.design/"> Eric Bailey</a></p>
+	<p>a11yproject.com launched with version 1.0.0 of Eleventy. […] It's been a little under three years and I haven't had to make any adjustments to its dependencies, and it can still install and run from a cold start with no complications. When I update the site to use version 2.0.0 I'll actually be removing dependencies, and not adding more. […] That's rare and special.—<a href="https://social.ericwbailey.website/@eric/109914908787346813"><img webc:is="indieweb-avatar" url="https://ericwbailey.website/"> Eric Bailey</a></p>
 </blockquote>
 
 <p>There have been <a href="https://osv.dev/">zero security advisories</a> filed against all <span @text="commaNumber(npmProjectDownloads.publishCount)"></span> releases of our <span @text="npmProjectDownloads.publishedPackages"></span> official npm packages.</p>
@@ -65,6 +65,7 @@ searchTitle: Why should you use Build Awesome?
 <ul class="video-cards">
 	<li><a href="https://youtube.com/watch?v=dIa2Y4zesnw" class="video-card elv-externalexempt">
 		<img src="https://i.ytimg.com/vi/dIa2Y4zesnw/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<i class="fa-brands fa-youtube"></i>
 		<span>Add your site to the Leaderboards (Weekly №6)</span>
 	</a></li>
 </ul>
@@ -108,16 +109,19 @@ searchTitle: Why should you use Build Awesome?
 <ul class="video-cards">
 	<li><a href="https://youtube.com/watch?v=KETQ4zS9Yp4&amp;t=30" class="video-card elv-externalexempt">
 		<img src="https://i.ytimg.com/vi/KETQ4zS9Yp4/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<i class="fa-brands fa-youtube"></i>
 		<span>28% build time performance improvement for Google’s web.dev (Weekly №1)
 		<span class="video-card-time"><code>▶0m30s</code></span></span>
 	</a></li>
 	<li><a href="https://youtube.com/watch?v=kUC87Zr0dKg&amp;t=344" class="video-card elv-externalexempt">
 		<img src="https://i.ytimg.com/vi/kUC87Zr0dKg/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<i class="fa-brands fa-youtube"></i>
 		<span>Eleventy Build went from 54s to 17s—Pagination Memory/Performance Wins 🏆 (Weekly №10)
 		<span class="video-card-time"><code>▶5m44s</code></span></span>
 	</a></li>
 	<li><a href="https://youtube.com/watch?v=sfPNgt3joWI&amp;t=1566" class="video-card elv-externalexempt">
 		<img src="https://i.ytimg.com/vi/sfPNgt3joWI/mqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async">
+		<i class="fa-brands fa-youtube"></i>
 		<span>Markdown Benchmarks (Weekly №16)
 		<span class="video-card-time"><code>▶26m6s</code></span></span>
 	</a></li>

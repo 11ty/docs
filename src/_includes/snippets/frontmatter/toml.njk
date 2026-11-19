@@ -1,10 +1,5 @@
-{%- set tabid = "toml" %}
-<div class="codetitle codetitle-right-md">buildawesome.config.js</div>
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs class="tabs-flush" persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
-  <div id="{{ tabid }}-jsesm" role="tabpanel">
-{% set codeBlock %}
+{% tabs "toml", { title: "buildawesome.config.js" } %}
+```js jsesm
 // Don’t forget to `npm install @iarna/toml`
 import toml from "@iarna/toml";
 
@@ -15,11 +10,8 @@ export default function ($config) {
 		},
 	});
 };
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-  <div id="{{ tabid }}-jscjs" role="tabpanel">
-{% set codeBlock %}
+```
+```js jscjs
 // Don’t forget to `npm install @iarna/toml`
 const toml = require("@iarna/toml");
 
@@ -30,8 +22,5 @@ module.exports = function ($config) {
 		},
 	});
 };
-{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endtabs %}

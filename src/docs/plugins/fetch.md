@@ -30,13 +30,11 @@ This plugin can save _any_ kind of asset—JSON, HTML, images, videos, etc.
 
 - [`@11ty/eleventy-fetch` on npm](https://www.npmjs.com/package/@11ty/eleventy-fetch)
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```bash
 npm install @11ty/eleventy-fetch
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
+{% endraw %}
 
 This plugin was formerly known as [`@11ty/eleventy-cache-assets`](https://www.npmjs.com/package/@11ty/eleventy-cache-assets) and was renamed to `@11ty/eleventy-fetch` with v3: [Video Changelog](https://www.youtube.com/watch?v=JCQQgtOcjH4&t=246s).
 
@@ -56,8 +54,9 @@ This plugin was formerly known as [`@11ty/eleventy-cache-assets`](https://www.np
 
 Consider the following example, perhaps in an Eleventy [Global Data File](/docs/data-global/) like `_data/githubRepos.js`.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
@@ -70,9 +69,9 @@ export default async function () {
 
 	return json;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 The first argument to Eleventy Fetch can be:
@@ -128,8 +127,9 @@ Special values:
 
 Consider the following [global data file](/docs/data-global/) in Eleventy (e.g. `_data/github.js`):
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 export default async function () {
@@ -147,9 +147,9 @@ export default async function () {
 		};
 	}
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ## Running this on your Build Server
@@ -162,8 +162,9 @@ This [documentation has moved to the Deployment page](/docs/deployment/#persisti
 
 This is what [`eleventy-img`](/docs/plugins/image/) uses internally.
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 let url = "https://www.zachleat.com/img/avatar-2017-big.png";
@@ -174,17 +175,18 @@ let imageBuffer = await Fetch(url, {
 // Use imageBuffer as an input to the `sharp` plugin, for example
 
 // (Example truncated)
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Fetch Google Fonts CSS
 
 Also a good example of using `fetchOptions` to pass in a custom user agent. Full option list is available on the [`fetch` documentation on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch#options).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 let url = "https://fonts.googleapis.com/css?family=Roboto+Mono:400&display=swap";
@@ -199,9 +201,9 @@ let fontCss = await Fetch(url, {
 		},
 	},
 });
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Fetching GitHub Stars for a repo
@@ -214,8 +216,9 @@ let fontCss = await Fetch(url, {
 
 Use `AbortSignal` to supply a timeout for the request. Read more about [`AbortSignal` on MDN](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal#aborting_a_fetch_operation_with_a_timeout).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch("https://…", {
@@ -223,9 +226,9 @@ await Fetch("https://…", {
 		signal: AbortSignal.timeout(5000)
 	},
 });
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Cache Directory
@@ -234,16 +237,17 @@ The `directory` option let’s you change where the cache is stored. It is **str
 
 {% callout "warn" %}Read the <a href="#installation">Important Security and Privacy Notice</a>.{% endcallout %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch("https://…", {
 	directory: ".cache",
 });
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 If you want to use this utility inside of a Netlify Function (or AWS Lambda), use a writeable location (`/tmp/`) like <code>directory: "/tmp/.cache/"</code>. You can also use `dryRun: true` to skip writing to the file system.
@@ -254,8 +258,9 @@ If you want to use this utility inside of a Netlify Function (or AWS Lambda), us
 
 - `removeUrlQueryParams: true` (`false` is default)
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch(
@@ -264,9 +269,9 @@ await Fetch(
 		removeUrlQueryParams: true,
 	}
 );
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 Note that query params are removed before—and **are relevant** to how—the cache key is calculated.
@@ -275,8 +280,9 @@ Note that query params are removed before—and **are relevant** to how—the ca
 
 This controls the name of the files inside your [cache directory](#cache-directory).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 await Fetch("https://…", {
@@ -285,9 +291,9 @@ await Fetch("https://…", {
 		return `custom-name-${cacheKey}-${hash}`
 	}
 });
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 - [`11ty/eleventy-fetch#49`](https://github.com/11ty/eleventy-fetch/pull/49)
@@ -296,8 +302,9 @@ await Fetch("https://…", {
 
 {% addedin "Fetch 5.0" %} You can pass a function (async-friendly) in as your source to run your own logic and return any arbitrary data. You must supply a unique key for the request in the `requestId` property. Consider the following [Global Data File](/docs/data-global/):
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import Fetch from "@11ty/eleventy-fetch";
 
 export default function() {
@@ -311,17 +318,18 @@ export default function() {
 		requestId: "zachleat_twitter_followers"
 	});
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 #### Even lower-level access to the cache
 
 **You probably won’t need to do this.** It’s more straightforward to pass in a [function source](#manually-store-your-own-data-in-the-cache). Consider the following [Global Data File](/docs/data-global/):
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import { AssetCache } from "@11ty/eleventy-fetch";
 
 export default async function () {
@@ -342,28 +350,24 @@ export default async function () {
 
 	return fakeTwitterApiContents;
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Change Global Concurrency
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 import Fetch from "@11ty/eleventy-fetch";
 Fetch.concurrency = 4; // default is 10
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}
 
 ### DEBUG mode
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 DEBUG=Eleventy:Fetch npx @awesome.me/buildawesome
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}

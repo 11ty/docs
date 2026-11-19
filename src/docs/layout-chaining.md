@@ -14,18 +14,16 @@ To chain a layout, let’s look at an example:
 
 {% codetitle "layout-chain-example.md" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```markdown
 ---
 layout: mainlayout.njk
 title: My Rad Blog
 ---
 
 # My Rad Markdown Blog Post
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("markdown") | safe }}
+```
+{% endraw %}
 
 We want to add a main element around our post’s content because we like accessibility.
 
@@ -33,20 +31,17 @@ Here’s what `mainlayout.njk` would look like:
 
 {% codetitle "_includes/mainlayout.njk" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+{% set codeBlock %}
 {% include "snippets/layout-chaining/mainlayout.njk" %}
-{%- endset %}
-
-<!-- prettier-ignore-end -->
+{% endset %}
 {{ codeBlock | highlight("html") | safe }}
 
 This layout would then be itself wrapped in the same `mylayout.njk` we used in our previous example:
 
 {% codetitle "_includes/mylayout.njk" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -58,10 +53,8 @@ This layout would then be itself wrapped in the same `mylayout.njk` we used in o
 		{{ content | safe }}
 	</body>
 </html>
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("html") | safe }}
+```
+{% endraw %}
 
 Used together, this would output:
 
@@ -69,8 +62,8 @@ Used together, this would output:
 
 {% codetitle "_site/layout-chain-example/index.html", "Output Filename" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```html
 <!doctype html>
 <html lang="en">
   <head>
@@ -84,10 +77,8 @@ Used together, this would output:
     </main>
   </body>
 </html>
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("html") | safe }}
+```
+{% endraw %}
 
 {% endcallout %}
 

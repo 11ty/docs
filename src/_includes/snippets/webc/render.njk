@@ -1,24 +1,16 @@
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-{% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "webc-render"} %}
-<div id="webc-render-liquid" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+{% tabs "webc-render" %}
+{% raw %}
+```liquid liquid
 {% renderTemplate "webc" %}
 <my-custom-component></my-custom-component>
 {% endrenderTemplate %}
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("liquid") | safe }}
-</div>
-<div id="webc-render-njk" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```jinja2 njk
 {% renderTemplate "webc" %}
 <my-custom-component></my-custom-component>
 {% endrenderTemplate %}
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("jinja2") | safe }}
-</div>
-<div id="webc-render-js" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```js js
 export default async function () {
 	let content = await this.renderTemplate(
 		`<my-custom-component></my-custom-component>`,
@@ -26,11 +18,8 @@ export default async function () {
 	);
 	return content;
 };
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-</div>
-<div id="webc-render-cjs" role="tabpanel">
-{%- set codeBlock %}{% raw %}
+```
+```js cjs
 module.exports = async function () {
 	let content = await this.renderTemplate(
 		`<my-custom-component></my-custom-component>`,
@@ -38,8 +27,6 @@ module.exports = async function () {
 	);
 	return content;
 };
-{% endraw %}{%- endset %}
-{{ codeBlock | highlight("js") | safe }}
-</div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}

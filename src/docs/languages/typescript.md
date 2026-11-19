@@ -21,9 +21,7 @@ layout: layouts/langs.njk
 
 <div class="codetitle">buildawesome.config.js</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
-
+```js
 export default function ($config) {
 	$config.addExtension("11ty.ts", {
 		key: "11ty.js",
@@ -33,10 +31,7 @@ export default function ($config) {
 	// or via CLI: --formats=11ty.ts
 	$config.addTemplateFormats("11ty.ts");
 }
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 You can optionally use an Array `["11ty.ts", "11ty.cts", "11ty.mts"]` instead of `"11ty.ts"` above (in both places) to add additional file extensions supported in Node.js.
 
@@ -48,8 +43,7 @@ You can optionally use an Array `["11ty.ts", "11ty.cts", "11ty.mts"]` instead of
 
 <div class="codetitle">buildawesome.config.js</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -69,10 +63,7 @@ export default function ($config) {
 	// or via CLI: --formats=11ty.jsx,11ty.ts,11ty.tsx
 	$config.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
 }
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 Now Build Awesome will find and process `**/*.11ty.{jsx,ts,tsx}` files.
 
@@ -80,25 +71,17 @@ Now Build Awesome will find and process `**/*.11ty.{jsx,ts,tsx}` files.
 
 {% addedin "3.0.0-alpha.11" %}Here we use [Node.js’ type stripping feature](https://nodejs.org/api/typescript.html) (available in Node 22.6+) to use a TypeScript configuration file.
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npx @awesome.me/buildawesome --config=buildawesome.config.ts
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 ### Or use `tsx` (Node.js)
 
 You can use `tsx` to process your configuration file too, just run it directly like so:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npx tsx ./node_modules/.bin/eleventy --config=buildawesome.config.ts
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 ## Community Contributions <span id="alternative-approaches"></span>
 
@@ -112,8 +95,7 @@ Your config file might look like this:
 
 {% codetitle "buildawesome.config.js (CommonJS)" %}
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```js
 const { register } = require("esbuild-register/dist/node");
 
 register();
@@ -124,17 +106,10 @@ module.exports = function($config) {
 		key: "11ty.js",
 	});
 };
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
 
 Now run Eleventy and tell it to process `11ty.ts` and `11ty.tsx` files:
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npx @awesome.me/buildawesome --formats=11ty.ts,11ty.tsx
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```

@@ -7,16 +7,13 @@ ignoreSupporters: true
 
 It is my absolute honor to announce that the very first Eleventy 1.0 Beta release is now available on the beta channel. You can try it out now:
 
-<!-- prettier-ignore-start -->
-{% highlight "bash" %}
+```bash
 # Local project
 npm install @11ty/eleventy@beta
 
 # Global install
 npm install @11ty/eleventy@beta -g
-{% endhighlight %}
-
-<!-- prettier-ignore-end -->
+```
 
 ## The Big Features:
 
@@ -67,7 +64,7 @@ npm install @11ty/eleventy@beta -g
   - {% indieweblink "Steve Stedman", "https://stedman.dev/" %}
   - {% indieweblink "Curtis Jurgensen", "https://curtisjurgensen.com/" %}
   - {% indieweblink "Malte Ubl", "https://www.industrialempathy.com/" %}
-  - {% indieweblink "Carie Fisher", "https://cariefisher.com/" %}, {% indieweblink "Dennis Gaebel Jr.", "https://droidpinkman.io/" %}, {% indieweblink "Eric Bailey", "https://ericwbailey.design/" %}, {% indieweblink "Jen Downs", "https://jendowns.com/" %}, {% indieweblink "Jerry Jones", "https://jerryjones.dev/" %}, {% indieweblink "Saptak Sengupta", "https://saptaks.website/" %}, {% indieweblink "Scott Vinkle", "https://scottvinkle.me/" %}, {% indieweblink "Tatiana Mac", "https://www.tatianamac.com/" %}, Wayne Elgin
+  - {% indieweblink "Carie Fisher", "https://cariefisher.com/" %}, {% indieweblink "Dennis Gaebel Jr.", "https://droidpinkman.io/" %}, {% indieweblink "Eric Bailey", "https://ericwbailey.website/" %}, {% indieweblink "Jen Downs", "https://jendowns.com/" %}, {% indieweblink "Jerry Jones", "https://jerryjones.dev/" %}, {% indieweblink "Saptak Sengupta", "https://saptaks.website/" %}, {% indieweblink "Scott Vinkle", "https://scottvinkle.me/" %}, {% indieweblink "Tatiana Mac", "https://www.tatianamac.com/" %}, Wayne Elgin
   - {% indieweblink "John Kemp-Cruz", "https://jkc.codes/" %}
   - {% indieweblink "Reuben Lillie", "https://reubenlillie.com/" %}
 - {% indieweblink "Eleventy Meetup", "https://11tymeetup.dev/" %} organized by:

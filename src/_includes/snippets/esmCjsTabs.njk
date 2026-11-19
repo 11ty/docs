@@ -4,10 +4,10 @@
 <seven-minute-tabs class="tabs-flush" persist sync autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: tabid, only: "jsesm,jscjs"} %}
   <div id="{{ tabid }}-jsesm" role="tabpanel">
-{%- if codeContent %}{{ codeContent | highlight("js") | safe }}{% endif %}
+{%- if codeContent %}{{ codeContent | unfence | highlight("js") | safe }}{% endif %}
   </div>
   <div id="{{ tabid }}-jscjs" role="tabpanel">
-{%- if codeContent %}{{ codeContent | esmToCjs | highlight("js") | safe }}{% endif %}
+{%- if codeContent %}{{ codeContent | unfence | esmToCjs | highlight("js") | safe }}{% endif %}
   </div>
 </seven-minute-tabs>
 </is-land>

@@ -33,32 +33,30 @@ The `hbs` templating language was moved out of Eleventy core in v3 and now requi
 
 - [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-plugin-handlebars
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 Add to your configuration file (ESM version shown):
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
 export default function ($config) {
 	$config.addPlugin(handlebarsPlugin);
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Use more options:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import handlebars from "handlebars";
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
@@ -68,9 +66,9 @@ export default function ($config) {
 		eleventyLibraryOverride: handlebars,
 	});
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
@@ -107,8 +105,9 @@ Shortcodes are basically reusable bits of content. Handlebars makes use of exist
 
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function($config) {
   $config.addShortcode("user", function(name, twitterUsername) {
     return `<div class="user">
@@ -117,9 +116,9 @@ export default function($config) {
 </div>`;
   });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 #### Usage
@@ -147,8 +146,9 @@ export default function($config) {
 
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function($config) {
   $config.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
     return `<div class="user">
@@ -158,9 +158,9 @@ export default function($config) {
 </div>`;
   });
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 #### Usage

@@ -24,12 +24,9 @@ Next, we need to create a `mylayout.njk` file. It may contain any arbitrary text
 
 {% codetitle "_includes/mylayout.njk" %}
 
-<!-- prettier-ignore-start -->
 {% set codeBlock %}
 {% include "snippets/layouts/mylayout.njk" %}
 {% endset %}
-
-<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 Note that the layout template will populate the `content` data with the child template’s content. Also note that we don’t want to double-escape the output, so we’re using the provided Nunjucks `safe` filter here (see more language double-escaping syntax below).
@@ -58,14 +55,15 @@ Front matter data set in a content template takes priority over layout front mat
 
 Configuration API: use `$config.addLayoutAlias(from, to)` to add layout aliases. Say you have a bunch of existing content using `layout: post`. If you don’t want to rewrite all of those values, map `post` to a new file like this:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function($config) {
 	$config.addLayoutAlias("post", "layouts/post.njk");
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Prevent double-escaping in layouts
@@ -95,12 +93,13 @@ Omitting the layout file extension (for example `layout: mylayout`) causes Eleve
 
 You can disable extensionless layouts in your project with the `setLayoutResolution` Configuration API method {% addedin "2.0.0-canary.21" %} (we may swap this to be the default in a future major version of Eleventy):
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 export default function($config) {
 	$config.setLayoutResolution(false);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}

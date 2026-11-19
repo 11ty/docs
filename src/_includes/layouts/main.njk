@@ -16,9 +16,11 @@ layout: layouts/base.njk
 	</div>
 </main>
 
-{% include "logo-cloud.njk" %}
-
 <footer class="elv-footer-wrap">
+	{# In the footer landmark so it isn’t stranded outside one, but above the footer’s own surface. #}
+	{% include "logo-cloud.njk" %}
+
+	<div class="elv-footer-surface">
 	{%- include "components/announcement.njk" -%}
 	<div class="elv-footer elv-layout">
 	{%- include "social-callout.njk" -%}
@@ -38,6 +40,7 @@ layout: layouts/base.njk
 		<li><a href="https://www.npmjs.com/org/11ty" class="nound elv-externalexempt elv-nav-sociallink"><i class="fa-brands fa-npm fa11ty-npm"></i><span class="sr-only">npm</span></a></li>
 		{%- include "social-icons.njk" %}
 	</ul>
+	</div>
 	</div>
 </footer>
 {% include "components/corner-logo.njk" %}

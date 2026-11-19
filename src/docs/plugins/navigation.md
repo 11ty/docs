@@ -22,26 +22,23 @@ A plugin for creating infinite-depth hierarchical navigation in Eleventy project
 
 Available on [npm](https://www.npmjs.com/package/@11ty/eleventy-navigation).
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-navigation
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 Open up your Eleventy config file (probably `buildawesome.config.js`) and use `addPlugin`:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import eleventyNavigationPlugin from "@11ty/eleventy-navigation";
 
 export default function ($config) {
 	$config.addPlugin(eleventyNavigationPlugin);
 };
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 Read more about [Eleventy plugins.](/docs/plugins/)
@@ -163,115 +160,45 @@ Template languages that support [universal filters](/docs/filters/) are supporte
 
 ### Output HTML
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navtohtml", additions: "webc"} %}
-  <div id="navtohtml-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navtohtml", { titles: { liquid: "Liquid", njk: "Nunjucks", webc: "WebC" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
-{{ collections.all | eleventyNavigation | eleventyNavigationToHtml }}
-```
-
-{% endraw %}
-
-  </div>
-  <div id="navtohtml-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
-{{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
-```
-
-{% endraw %}
-
-  </div>
-	<div id="navtohtml-webc" role="tabpanel">
-
-{% codetitle "WebC", "Syntax" %}
-
-{% raw %}
-
-```html
+```html webc
 <nav
 	@html="eleventyNavigationToHtml(eleventyNavigation($data.collections.all))"
 ></nav>
 ```
 
-{% endraw %}
+```liquid liquid
+{{ collections.all | eleventyNavigation | eleventyNavigationToHtml }}
+```
 
-  </div>
-  <div id="navtohtml-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-	<div id="navtohtml-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+```jinja2 njk
+{{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
+```
+{% endraw %}
+{% endtabs %}
 
 ### To Markdown
 
 {% addedin "Navigation 0.3.1" %} This is most useful in `.md` files (preprocessed as Liquid or Nunjucks). It’s highly unlikely you want to output Markdown in a WebC file (but maybe you do, I’m not your parent). You probably want the HTML example above.
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navtomd", additions: "webc"} %}
-  <div id="navtomd-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navtomd", { titles: { liquid: "Liquid", njk: "Nunjucks", webc: "WebC" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
-{{ collections.all | eleventyNavigation | eleventyNavigationToMarkdown }}
-```
-
-{% endraw %}
-
-  </div>
-  <div id="navtomd-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
-{{ collections.all | eleventyNavigation | eleventyNavigationToMarkdown | safe }}
-```
-
-{% endraw %}
-
-  </div>
-	<div id="navtomd-webc" role="tabpanel">
-
-{% codetitle "WebC", "Syntax" %}
-
-{% raw %}
-
-```html
+```html webc
 <nav
 	@html="eleventyNavigationToMarkdown(eleventyNavigation($data.collections.all))"
 ></nav>
 ```
 
-{% endraw %}
+```liquid liquid
+{{ collections.all | eleventyNavigation | eleventyNavigationToMarkdown }}
+```
 
-  </div>
-  <div id="navtomd-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-	<div id="navtomd-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+```jinja2 njk
+{{ collections.all | eleventyNavigation | eleventyNavigationToMarkdown | safe }}
+```
+{% endraw %}
+{% endtabs %}
 
 ## Advanced: Rendering the Navigation Bar (Deep Dive)
 
@@ -283,45 +210,19 @@ The `eleventyNavigation` filter returns a _sorted_ array of objects with `url` a
 
 For our documented templates above with the following template:
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navrender"} %}
-  <div id="navrender-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navrender", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 {% assign navPages = collections.all | eleventyNavigation %}
 {{ navPages | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navrender-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {% set navPages = collections.all | eleventyNavigation %}
 {{ navPages | dump | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navrender-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-	<div id="navrender-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 {% callout "info" %}Note that you can also pass any collection into <code>eleventyNavigation</code>. It doesn’t have to be <code>collections.all</code>!{% endcallout %}
 
@@ -355,45 +256,19 @@ Shows that `navPages` has the following structure:
 
 Just show the children of a specific key, pass a key to `eleventyNavigation`:
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navrenderbranch"} %}
-  <div id="navrenderbranch-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navrenderbranch", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 {% assign navPages = collections.all | eleventyNavigation: "Mammals" %}
 {{ navPages | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navrenderbranch-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {% set navPages = collections.all | eleventyNavigation("Mammals") %}
 {{ navPages | dump | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navrenderbranch-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-	<div id="navrenderbranch-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 ```json
 [
@@ -416,45 +291,19 @@ Just show the children of a specific key, pass a key to `eleventyNavigation`:
 
 You can also render only the parents of a specific key too, to make breadcrumb navigation. Pass a key to `eleventyNavigationBreadcrumb` like this:
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navbread"} %}
-  <div id="navbread-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navbread", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 {% assign navPages = collections.all | eleventyNavigationBreadcrumb: "Bats" %}
 {{ navPages | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navbread-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {% set navPages = collections.all | eleventyNavigationBreadcrumb("Bats") %}
 {{ navPages | dump | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navbread-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-	<div id="navbread-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 And an array of all the parents of the Bats entry will be returned (top-most parent is first):
 
@@ -470,16 +319,9 @@ And an array of all the parents of the Bats entry will be returned (top-most par
 
 ##### Include the current page in breadcrumb results
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navbreadself"} %}
-  <div id="navbreadself-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navbreadself", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 ---
 navOptions:
   includeSelf: true
@@ -488,46 +330,20 @@ navOptions:
 {{ navPages | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navbreadself-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {% set navPages = collections.all | eleventyNavigationBreadcrumb("Bats", { includeSelf: true }) %}
 {{ navPages | dump | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navbreadself-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-	<div id="navbreadself-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 ##### Allow missing pages (nodes) in breadcrumbs
 
 {% addedin "Navigation 0.3.3" %}
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-	{% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navbreadmissing", subtractions: "hbs"} %}
-  <div id="navbreadmissing-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navbreadmissing", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 ---
 navOptions:
   allowMissing: true
@@ -536,31 +352,12 @@ navOptions:
 {{ navPages | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navbreadmissing-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {% set navPages = collections.all | eleventyNavigationBreadcrumb("Does not exist", { allowMissing: true }) %}
 {{ navPages | dump | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navbreadmissing-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-  <div id="navbreadmissing-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 ### Render the menu items using the `eleventyNavigationToHtml` or `eleventyNavigationToMarkdown` Filters
 
@@ -572,16 +369,9 @@ With the Navigation structure returned from `eleventyNavigation` or `eleventyNav
 
 The `eleventyNavigationToMarkdown` filter is {% addedin "Navigation 0.3.1" %}.
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navrenderfilter"} %}
-  <div id="navrenderfilter-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navrenderfilter", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 {{ collections.all | eleventyNavigation | eleventyNavigationToHtml }}
 ```
 
@@ -589,34 +379,15 @@ The `eleventyNavigationToMarkdown` filter is {% addedin "Navigation 0.3.1" %}.
 {{ collections.all | eleventyNavigationBreadcrumb: "Bats" | eleventyNavigationToHtml }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navrenderfilter-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {{ collections.all | eleventyNavigation | eleventyNavigationToHtml | safe }}
 ```
 
 ```jinja2
 {{ collections.all | eleventyNavigationBreadcrumb("Bats") | eleventyNavigationToHtml | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navrenderfilter-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-  <div id="navrenderfilter-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 #### Showing excerpts
 
@@ -632,16 +403,9 @@ eleventyNavigation:
 
 When you render a navigation list, pass `showExcerpt: true` to the `eleventyNavigationToHtml` filter, like so:
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navexcerpt"} %}
-  <div id="navexcerpt-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navexcerpt", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 ---
 navToHtmlOptions:
   showExcerpt: true
@@ -649,49 +413,23 @@ navToHtmlOptions:
 {{ collections.all | eleventyNavigation: "Humans", navToHtmlOptions | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navexcerpt-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 ---
 navToHtmlOptions:
   showExcerpt: true
 ---
 {{ collections.all | eleventyNavigation("Humans") | eleventyNavigationToHtml(navToHtmlOptions) | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navexcerpt-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-  <div id="navexcerpt-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 #### Advanced: All Rendering Options for `eleventyNavigationToMarkdown`
 
 {% addedin "Navigation 0.3.1" %}
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navmdoptions"} %}
-  <div id="navmdoptions-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navmdoptions", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 ---
 navToMdOptions:
   # Show excerpts (if they exist in data, read more above)
@@ -700,16 +438,7 @@ navToMdOptions:
 {{ collections.all | eleventyNavigation | eleventyNavigationToMarkdown: navToMdOptions | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navmdoptions-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 ---js
 {
   navToMdOptions: {
@@ -720,18 +449,8 @@ navToMdOptions:
 ---
 {{ collections.all | eleventyNavigation | eleventyNavigationToMarkdown(navToMdOptions) | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navmdoptions-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-  <div id="navmdoptions-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 #### Advanced: All Rendering Options for `eleventyNavigationToHtml`
 
@@ -741,16 +460,9 @@ You can also add an `aria-current="page"` [ARIA attribute](https://developer.moz
 `useAriaCurrentAttr` option.
 {% addedin "Navigation 1.0.0" %}
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navhtmloptions"} %}
-  <div id="navhtmloptions-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navhtmloptions", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 ---js
 {
   navigationOptions: {
@@ -780,16 +492,7 @@ You can also add an `aria-current="page"` [ARIA attribute](https://developer.moz
 {{ collections.all | eleventyNavigation | eleventyNavigationToHtml: navigationOptions | json }}
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navhtmloptions-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 ---js
 {
   navigationOptions: {
@@ -818,18 +521,8 @@ You can also add an `aria-current="page"` [ARIA attribute](https://developer.moz
 ---
 {{ collections.all | eleventyNavigation | eleventyNavigationToHtml(navigationOptions) | safe }}
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navhtmloptions-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-  <div id="navhtmloptions-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 These work with `eleventyNavigationBreadcrumb | eleventyNavigationToHtml` too.
 
@@ -841,16 +534,9 @@ This template will render a single tier of items (no children) _without_ using t
 
 Note that `eleventyNavigationToMarkdown` is {% addedin "Navigation 0.3.1" %}.
 
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "navbyoh"} %}
-  <div id="navbyoh-liquid" role="tabpanel">
-
-{% codetitle "Liquid", "Syntax" %}
-
+{% tabs "navbyoh", { titles: { liquid: "Liquid", njk: "Nunjucks" }, titleHeading: "Syntax", missing: "js,cjs", flush: false } %}
 {% raw %}
-
-```liquid
+```liquid liquid
 {% assign navPages = collections.all | eleventyNavigation %}
 <ul>
 {%- for entry in navPages %}
@@ -861,16 +547,7 @@ Note that `eleventyNavigationToMarkdown` is {% addedin "Navigation 0.3.1" %}.
 </ul>
 ```
 
-{% endraw %}
-
-  </div>
-  <div id="navbyoh-njk" role="tabpanel">
-
-{% codetitle "Nunjucks", "Syntax" %}
-
-{% raw %}
-
-```jinja2
+```jinja2 njk
 {% set navPages = collections.all | eleventyNavigation %}
 <ul>
 {%- for entry in navPages %}
@@ -880,18 +557,8 @@ Note that `eleventyNavigationToMarkdown` is {% addedin "Navigation 0.3.1" %}.
 {%- endfor %}
 </ul>
 ```
-
 {% endraw %}
-
-  </div>
-  <div id="navbyoh-js" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-  <div id="navbyoh-cjs" role="tabpanel">
-    <p><em>This example has not yet been added—you can swap to another template language above! Or maybe you want to contribute it? {% include "edit-on-github.njk" %}</em></p>
-  </div>
-</seven-minute-tabs>
-</is-land>
+{% endtabs %}
 
 You _can_ use a Nunjucks macro to recursively render list items of any depth but the code isn’t quite as clean:
 

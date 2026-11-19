@@ -30,26 +30,23 @@ The `pug` templating language was moved out of Eleventy core in v3 and now requi
 
 - [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}
+```bash
 npm install @11ty/eleventy-plugin-pug
-{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("bash") | safe }}
+```
 
 Add to your configuration file:
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import pugPlugin from "@11ty/eleventy-plugin-pug";
 
 export default function ($config) {
 	$config.addPlugin(pugPlugin);
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Pug Options
@@ -58,8 +55,9 @@ export default function ($config) {
 
 Set compile/render options using the Configuration API. See all [Pug options](https://pugjs.org/api/reference.html#options).
 
-<!-- prettier-ignore-start -->
 {% set codeContent %}
+
+```js
 import pugPlugin from "@11ty/eleventy-plugin-pug";
 
 export default function ($config) {
@@ -67,9 +65,9 @@ export default function ($config) {
 		debug: true
 	});
 }
-{% endset %}
+```
 
-<!-- prettier-ignore-end -->
+{% endset %}
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features

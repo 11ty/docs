@@ -17,8 +17,8 @@ In the following example, each content template with an `eleventyDataSchema` cal
 
 <div class="codetitle">blog/blog.11tydata.js</div>
 
-<!-- prettier-ignore-start -->
-{%- set codeBlock %}{% raw %}
+{% raw %}
+```js
 import { z } from "zod";
 
 export default {
@@ -32,7 +32,5 @@ export default {
 		}
 	}
 };
-{% endraw %}{%- endset %}
-
-<!-- prettier-ignore-end -->
-{{ codeBlock | highlight("js") | safe }}
+```
+{% endraw %}

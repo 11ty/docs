@@ -13,8 +13,8 @@
 		clear: both;
 		padding-inline-start: 0;
 	}
-	.codetitle-right-md + is-land > seven-minute-tabs {
-		margin-block-start: 0.5em;
+	seven-minute-tabs > .codetitle-right-md {
+		margin-block-end: 0.5em;
 	}
 }
 .codetitle-left {

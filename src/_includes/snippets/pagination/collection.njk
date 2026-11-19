@@ -1,8 +1,6 @@
-<is-land on:visible import="/js/seven-minute-tabs.js">
-<seven-minute-tabs persist sync class="tabs-flush" autoheight>
-  {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "pagedcollection"} %}
-  <div id="pagedcollection-liquid" role="tabpanel">
-{% set codeBlock %}{% raw %}
+{% tabs "pagedcollection" %}
+{% raw %}
+```liquid liquid
 ---
 title: My Posts
 pagination:
@@ -16,11 +14,8 @@ pagination:
   <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
 {% endfor %}
 </ol>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("liquid") | safe }}
-  </div>
-  <div id="pagedcollection-njk" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```jinja2 njk
 ---
 title: My Posts
 pagination:
@@ -34,11 +29,8 @@ pagination:
   <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
 {% endfor %}
 </ol>
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("jinja2") | safe }}
-  </div>
-  <div id="pagedcollection-js" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```js js
 export const data = {
 	title: "My Posts",
 	pagination: {
@@ -57,11 +49,8 @@ export function render(data) {
 			.join("")}
 	</ol>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-	<div id="pagedcollection-cjs" role="tabpanel">
-{% set codeBlock %}{% raw %}
+```
+```js cjs
 exports.data = {
 	title: "My Posts",
 	pagination: {
@@ -80,8 +69,6 @@ exports.render = function (data) {
 			.join("")}
 	</ol>`;
 };
-{% endraw %}{% endset %}
-{{ codeBlock | highlight("js") | safe }}
-  </div>
-</seven-minute-tabs>
-</is-land>
+```
+{% endraw %}
+{% endtabs %}
