@@ -9,9 +9,9 @@
   },
   "scripts": {
     "check-links": "npx check-html-links _site",
-    "build": "mkdir -p dist && npx @11ty/eleventy --quiet && npm run create-search-index",
-    "build-production": "mkdir -p dist && npm run get-new-data && npm run get-firehose && NODE_ENV=production npx @11ty/eleventy && npm run create-search-index",
-    "start": "npx @11ty/eleventy --serve --quiet --port=8091",
+    "build": "npx @11ty/eleventy --quiet && npm run create-search-index",
+    "build-production": "npm run get-new-data && npm run get-firehose && NODE_ENV=production npx @11ty/eleventy && npm run create-search-index",
+    "start": "npx @11ty/eleventy --serve --quiet --port=8091 --incremental",
     "start-production": "NODE_ENV=production npx @11ty/eleventy --serve --quiet --port=8091",
     "create-search-index": "npx pagefind --site \"_site\" --glob \"{docs,blog}/**/*.html\"",
     "get-new-data": "rm -rf ./src/_data/builtwith/ && npx degit github:11ty/11ty-community/built-with-eleventy src/_data/builtwith/",
