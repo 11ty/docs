@@ -42,7 +42,7 @@ Thank you to the <code>{{ docsAuthors.length }}</code> folks who have contribute
 - We publish feeds for: [**Firehose**](/firehose/?type=youtube&type=github&type=blog&type=quick-tips) _(everything)_, [**Blog Posts**](/blog/feed.xml), or [**Documentation Updates**](/docs/feed.xml)
 - View the full [Eleventy Release History](/docs/versions/) (with documentation for previous versions)
 
-{% callout "info", "md" %}Want the full list? See [**Follow Along**](/docs/follow-along/) for every place you can keep up with the project.{% endcallout %}
+{% callout "info", "md" %}Want the full list? See [**Follow Along**](/how-to-follow/) for every place you can keep up with the project.{% endcallout %}
 
 {% set count = count + 1 %}
 
