@@ -16,7 +16,7 @@ eleventyImport:
 
 📢 [Subscribe to the **Eleventy News Feed**](/blog/feed.xml)
 
-_For extended Eleventy coverage, follow [`zachleat.com/web/eleventy`](https://www.zachleat.com/web/eleventy/)._
+_For extended Eleventy coverage, follow [`11tybundle.dev`](https://11tybundle.dev/) and [`zachleat.com/web/eleventy`](https://www.zachleat.com/web/eleventy/)._
 
 ---
 
