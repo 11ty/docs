@@ -54,6 +54,14 @@ for (let repository of githubOrgRepos) {
 let entries = await importer.getEntries({ contentType: "html" });
 
 let filtered = entries.filter((entry) => {
+	// GitHub’s releases feed lists bare tags (no release notes) with this placeholder content
+	if (
+		entry.sourceLabel.startsWith("GitHub Releases [") &&
+		(entry.content || "").trim() === "No content."
+	) {
+		return false;
+	}
+
 	// Skip entries that start with <del>
 	return (
 		!(entry.title || "").trim().startsWith("<del>") &&

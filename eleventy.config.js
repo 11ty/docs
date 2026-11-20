@@ -714,6 +714,10 @@ export default async function ($config) {
 	);
 
 	$config.addFilter("toISO", (dateObj) => {
+		// JSON data files (e.g. firehose.json) hand us date strings, not Date objects
+		if (typeof dateObj === "string") {
+			dateObj = new Date(dateObj);
+		}
 		return dateObj.toISOString();
 	});
 
