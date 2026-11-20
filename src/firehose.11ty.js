@@ -28,7 +28,7 @@ export async function render({ firehose = [] }) {
 	return `
 <h1>Eleventy Firehose</h1>
 
-<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, the <a href="https://11tybundle.dev/blog/">11ty Bundle blog</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
+<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, the <a href="https://11tybundle.dev/">11ty Bundle</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>
