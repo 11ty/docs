@@ -25,6 +25,10 @@ importer.addSource("atom", {
 	label: "Quick Tips",
 	url: "https://www.11ty.dev/docs/quicktips/feed.xml",
 });
+importer.addSource("atom", {
+	label: "11ty Bundle",
+	url: "https://11tybundle.dev/feed.xml",
+});
 // Warning: at time of writing Eleventy has 51 repos, beware if this grows beyond the max of 100
 const PER_PAGE = 100; // max: 100
 let githubOrgRepos = await Fetch(`https://api.github.com/orgs/11ty/repos?per_page=${PER_PAGE}`, {
@@ -49,16 +53,26 @@ for (let repository of githubOrgRepos) {
 
 let entries = await importer.getEntries({ contentType: "html" });
 
-let data = entries
-	.filter((entry) => {
-		// Skip entries that start with <del>
-		return (
-			!(entry.title || "").trim().startsWith("<del>") &&
-			!(entry.content || "").trim().startsWith("<del>")
-		);
-	})
-	// Entries arrive newest first
-	.slice(0, LIMIT)
+let filtered = entries.filter((entry) => {
+	// Skip entries that start with <del>
+	return (
+		!(entry.title || "").trim().startsWith("<del>") &&
+		!(entry.content || "").trim().startsWith("<del>")
+	);
+});
+
+// Entries arrive newest first
+let newest = filtered.slice(0, LIMIT);
+// The sidebar callout always needs the latest 11ty Bundle issue
+let isBundle = (entry) => entry.sourceLabel === "11ty Bundle";
+if (!newest.some(isBundle)) {
+	let latestBundle = filtered.find(isBundle);
+	if (latestBundle) {
+		newest.push(latestBundle);
+	}
+}
+
+let data = newest
 	// Only the fields the page and the feed render, `source` is a class instance
 	.map(({ sourceLabel, title, url, content, date, authors }) => {
 		return {

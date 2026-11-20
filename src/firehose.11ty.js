@@ -28,7 +28,7 @@ export async function render({ firehose = [] }) {
 	return `
 <h1>Eleventy Firehose</h1>
 
-<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
+<p>This page shows activity from the <a href="/blog/">Eleventy Blog</a>, <a href="/docs/quicktips/">Quick Tips</a>, <a href="https://11ty.dev/youtube">YouTube channel</a>, the <a href="https://11tybundle.dev/blog/">11ty Bundle blog</a>, and <em>all</em> GitHub releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).</p>
 
 <ul>
 	<li><strong><a href="/firehose/firehose.rss">Subscribe to the Firehose RSS feed.</a></strong></li>
@@ -41,6 +41,17 @@ export async function render({ firehose = [] }) {
 .activity-feed .elv-callout-box { max-width: 35em; }
 .activity-feed .filter-type--hide { display: none; }
 .activity-feed form { margin: 1em 0; }
+/* Tints of the 11tybundle.dev primary, oklch(52% 0.1 60) */
+.activity-feed [data-filter-type="11ty-bundle"] .elv-callout {
+	--callout-primary: oklch(80% 0.07 60);
+	--callout-secondary: oklch(95% 0.03 60);
+}
+@media (prefers-color-scheme: dark) {
+	.activity-feed [data-filter-type="11ty-bundle"] .elv-callout {
+		--callout-primary: oklch(38% 0.07 60);
+		--callout-secondary: oklch(25% 0.04 60);
+	}
+}
 .activity-feed a[href] {
 	-ms-word-break: break-all;
 	word-break: break-all;
@@ -76,6 +87,10 @@ export async function render({ firehose = [] }) {
 				<input type="checkbox" value="quick-tips" data-filter-key="type" checked>
 				Quick Tips
 			</label>
+			<label>
+				<input type="checkbox" value="11ty-bundle" data-filter-key="type" checked>
+				11ty Bundle
+			</label>
 		</form>
 ${firehose
 	.map((entry) => {
@@ -99,7 +114,9 @@ ${firehose
 			`<p><strong><a href="${entry.url}">${escapeText(entry.title)}</a></strong></p>${content}`,
 			"info",
 			"html",
-			entry.sourceLabel,
+			entry.sourceLabel === "11ty Bundle"
+				? `<a href="https://11tybundle.dev/">11ty Bundle</a>`
+				: entry.sourceLabel,
 		)}</div>`;
 	})
 	.join("\n")}

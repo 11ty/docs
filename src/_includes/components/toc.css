@@ -399,6 +399,30 @@
 .elv-toc .elv-callout:first-child:has(+ .elv-callout) {
 	--callout-hue: 162;
 }
+.elv-toc .elv-callout hr {
+	margin-block: 0.5em;
+	/* Cancels the 1rem inline padding of .elv-callout-c */
+	margin-inline: -1rem;
+	border: 0;
+	border-block-start: 1.5px solid var(--callout-primary);
+}
+.elv-toc-callout-link is-land {
+	display: inline-block;
+	margin-inline-start: 0.4em;
+}
+.elv-toc-callout-badge {
+	display: inline-block;
+	font-size: 0.7em;
+	line-height: 1.6;
+	white-space: nowrap;
+	padding-inline: 0.5em;
+	border-radius: 0.25em;
+	background-color: var(--callout-primary);
+	color: var(--callout-primarytext);
+}
+.elv-toc-callout-badge:not(:defined) {
+	visibility: hidden;
+}
 .elv-toc-callout-link {
 	display: block;
 	font-size: 1.15em;
