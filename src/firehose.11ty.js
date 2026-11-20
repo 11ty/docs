@@ -36,7 +36,21 @@ export function data() {
 	};
 }
 
+const FILTERS = {
+	youtube: "YouTube",
+	github: "GitHub",
+	blog: "Blog",
+	"quick-tips": "Quick Tips",
+	"11ty-bundle": "11ty Bundle",
+};
+
 export async function render({ firehose = [] }) {
+	let counts = {};
+	for (let entry of firehose) {
+		let type = getSlugFromTitle(`${entry.sourceLabel}: ${entry.title}`);
+		counts[type] = (counts[type] || 0) + 1;
+	}
+
 	return html` <h1>Build Awesome Firehose</h1>
 
 		<p>
@@ -64,10 +78,60 @@ export async function render({ firehose = [] }) {
 				display: none;
 			}
 			.activity-feed form {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 0.5em;
 				margin: 1em 0;
+			}
+			.activity-feed form label {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35em;
+				padding: 0.25em 0.75em;
+				border: 1px solid var(--border-color);
+				border-radius: 99em;
+				cursor: pointer;
+			}
+			.activity-feed form label:has(:checked) {
+				border-color: var(--brand-ba);
+			}
+			.activity-feed form label:not(:has(:checked)) {
+				opacity: 0.6;
+			}
+			.activity-feed form input {
+				margin: 0;
+				accent-color: var(--brand-ba);
+			}
+			.activity-feed .filter-empty {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35em;
+				opacity: 0.6;
+			}
+			.activity-feed .filter-count {
+				font-size: 0.8em;
+				font-variant-numeric: tabular-nums;
+				opacity: 0.7;
+			}
+			.activity-feed form .fa11ty-icon {
+				margin: 0;
+				width: 1.1em;
+				height: 1.1em;
 			}
 			.activity-feed .link-card-hed {
 				overflow-wrap: break-word;
+			}
+			/* Tints of the 11tybundle.dev primary, oklch(52% 0.1 60) */
+			.activity-feed [data-filter-type="11ty-bundle"] .link-card {
+				--border-color: oklch(80% 0.07 60);
+				background-color: oklch(95% 0.03 60);
+			}
+			@media (prefers-color-scheme: dark) {
+				.activity-feed [data-filter-type="11ty-bundle"] .link-card {
+					--border-color: oklch(38% 0.07 60);
+					background-color: oklch(25% 0.04 60);
+				}
 			}
 		</style>
 
@@ -78,26 +142,22 @@ export async function render({ firehose = [] }) {
 
 				<form>
 					<strong>Filter:</strong>
-					<label>
-						<input type="checkbox" value="youtube" data-filter-key="type" checked />
-						YouTube
-					</label>
-					<label>
-						<input type="checkbox" value="github" data-filter-key="type" checked />
-						GitHub
-					</label>
-					<label>
-						<input type="checkbox" value="blog" data-filter-key="type" checked />
-						Blog
-					</label>
-					<label>
-						<input type="checkbox" value="quick-tips" data-filter-key="type" checked />
-						Quick Tips
-					</label>
-					<label>
-						<input type="checkbox" value="11ty-bundle" data-filter-key="type" checked />
-						11ty Bundle
-					</label>
+					${Object.entries(FILTERS)
+						.sort(([a], [b]) => (counts[b] || 0) - (counts[a] || 0))
+						.map(([type, label]) => {
+							let count = counts[type] || 0;
+							let content = html`<i class="${ICONS[type]}"></i>
+								${label}
+								${count ? html`<span class="filter-count">${count}</span>` : ""}`;
+							if (!count) {
+								return html`<span class="filter-empty">${content}</span>`;
+							}
+							return html`<label>
+								<input type="checkbox" value="${type}" data-filter-key="type" checked />
+								${content}
+							</label>`;
+						})
+						.join("\n")}
 				</form>
 				<ul class="lo-grid link-cards">
 					${firehose
