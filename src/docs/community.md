@@ -25,7 +25,7 @@ searchTitle: "How can I contribute?"
 - Join us at the [**11ty Conference**](https://conf.11ty.dev/) or the [**Eleventy Meetup**](https://www.11tymeetup.dev/)!
 - Looking to **Hire an Eleventy developer**? Browse the [Eleventy Super Professional Business Network 💼](/super-professional-business-network/)
 
-Thank you to the <code>{{ docsAuthors.length }}</code> folks who have contributed to [our documentation](/docs/):
+Thank you to the <code>{{ docsAuthors.length }}</code> folks who have contributed to [our documentation](/docs/) (ordered by number of pages edited):
 
 <is-land on:visible on:save-data="false">
 	<html-fetch src="/imports/docs-facepile.html"></html-fetch>

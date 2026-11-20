@@ -10,6 +10,7 @@ const ICONS = {
 	mastodon: "fa-brands fa-mastodon",
 	bluesky: "fa-brands fa-bluesky",
 	github: "fa-brands fa-github",
+	"11ty-bundle": "fa-solid fa-box-open",
 };
 
 function getSlugFromTitle(str) {
@@ -41,7 +42,8 @@ export async function render({ firehose = [] }) {
 		<p>
 			This page shows activity from the <a href="https://www.11ty.dev/blog/">Eleventy Blog</a>,
 			<a href="/docs/quicktips/">Quick Tips</a>,
-			<a href="https://build.awesome.me/youtube">YouTube channel</a>, and <em>all</em> GitHub
+			<a href="https://build.awesome.me/youtube">YouTube channel</a>, the
+			<a href="https://11tybundle.dev/blog/">11ty Bundle blog</a>, and <em>all</em> GitHub
 			releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).
 		</p>
 
@@ -91,6 +93,10 @@ export async function render({ firehose = [] }) {
 					<label>
 						<input type="checkbox" value="quick-tips" data-filter-key="type" checked />
 						Quick Tips
+					</label>
+					<label>
+						<input type="checkbox" value="11ty-bundle" data-filter-key="type" checked />
+						11ty Bundle
 					</label>
 				</form>
 				<ul class="lo-grid link-cards">

@@ -269,7 +269,19 @@ export default async function ($config) {
 		$config.setConcurrency(Number(process.env.CONCURRENCY));
 	}
 
+	if (process?.env?.FREEZE_GLOBAL_DATA) {
+		$config.setFreezeGlobalData(process.env.FREEZE_GLOBAL_DATA !== "false");
+	}
+
 	$config.setServerPassthroughCopyBehavior("passthrough");
+	$config.addWatchTarget("src/_data/firehose.json");
+
+	$config.ignores.add(".github/**");
+	$config.ignores.add("_cache/**");
+	$config.ignores.add("README.md");
+	$config.ignores.add("src/docs/images.webc");
+	// Un-ignores the gitignored firehose.json for --watch
+	$config.ignores.add("!src/_data/firehose.json");
 
 	if (process.env.NODE_ENV !== "production") {
 		// Skip on local dev

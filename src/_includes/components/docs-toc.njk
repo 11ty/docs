@@ -4,10 +4,18 @@
 {%- callout "box", "html", proCtaTitle %}
 {%- endcallout %} #}
 
+{%- set bundlePost = false %}
+{%- for entry in firehose %}
+{%- if not bundlePost and entry.sourceLabel == "11ty Bundle" %}{% set bundlePost = entry %}{% endif %}
+{%- endfor %}
 {%- set calloutTitle %}<a href="/blog/">Blog</a>{% endset %}
 {%- for post in collections.sidebarHighlight %}
 {%- callout "", "html", calloutTitle %}
 <a href="{{ post.url }}" class="elv-toc-callout-link"><strong>{{ post.data.title }}</strong></a>
+{%- if loop.last and bundlePost %}
+<hr>
+<a href="{{ bundlePost.url }}" class="elv-toc-callout-link elv-externalexempt"><strong>11ty Bundle {{ bundlePost.title.split(":")[0] }}</strong><is-land import="/js/time-difference.js" on:idle><time-difference class="elv-toc-callout-badge" format="narrow" mode="strip-suffix"><time datetime="{{ bundlePost.date }}"></time></time-difference></is-land></a>
+{%- endif %}
 {%- endcallout %}
 {%- endfor %}
 

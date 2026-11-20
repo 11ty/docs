@@ -37,6 +37,11 @@ class TimeDifference extends HTMLElement {
 		return this.getAttribute("suffix");
 	}
 
+	get format() {
+		// Intl.RelativeTimeFormat style: "long", "short" or "narrow"
+		return this.getAttribute("format");
+	}
+
 	get prefix() {
 		return this.getAttribute("prefix");
 	}
@@ -76,7 +81,7 @@ class TimeDifference extends HTMLElement {
 	}
 
 	static getText(dateStr, options = {}) {
-		let { units, locale, mode, suffix, prefix } = options;
+		let { units, locale, mode, suffix, prefix, format } = options;
 		let modes = (mode || "").split(",");
 
 		let date1;
@@ -105,7 +110,7 @@ class TimeDifference extends HTMLElement {
 			let numFormat = new Intl.NumberFormat();
 			str = `${diff > 0 ? "in " : ""}${numFormat.format(diff)} milliseconds`;
 		} else {
-			let rtf = new Intl.RelativeTimeFormat(locale, { numeric: "always" });
+			let rtf = new Intl.RelativeTimeFormat(locale, { numeric: "always", style: format || "long" });
 			// super close to next whole unit, round up
 			if (amountDiff < 1 && amountDiff > this.MINIMUM_ROUND_UP) {
 				str = rtf.format(Math.round(diff), units);
@@ -148,6 +153,7 @@ class TimeDifference extends HTMLElement {
 					units: this.units,
 					locale,
 					mode: this.mode,
+					format: this.format,
 					prefix: this.prefix,
 					suffix: this.suffix,
 				});
