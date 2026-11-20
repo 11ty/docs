@@ -43,7 +43,7 @@ export async function render({ firehose = [] }) {
 			This page shows activity from the <a href="https://www.11ty.dev/blog/">Eleventy Blog</a>,
 			<a href="/docs/quicktips/">Quick Tips</a>,
 			<a href="https://build.awesome.me/youtube">YouTube channel</a>, the
-			<a href="https://11tybundle.dev/blog/">11ty Bundle blog</a>, and <em>all</em> GitHub
+			<a href="https://11tybundle.dev/">11ty Bundle</a>, and <em>all</em> GitHub
 			releases (all of <a href="https://github.com/11ty/"><code>11ty</code> org</a> repositories).
 		</p>
 
