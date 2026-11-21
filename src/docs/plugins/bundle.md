@@ -3,7 +3,7 @@ eleventyNavigation:
   key: Bundle
   title: '<i class="fa-solid fa-file-zipper"></i>Bundle'
   order: 3.15
-  excerpt: A plugin create small plain-text bundles of code (CSS, JS, HTML, SVG, etc)
+  excerpt: A plugin to create small plain-text bundles of code (CSS, JS, HTML, SVG, etc)
 ---
 
 # Bundle {% addedin "3.0.0-alpha.10" %}

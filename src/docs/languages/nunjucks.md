@@ -142,7 +142,7 @@ export default function (eleventyConfig) {
 {% raw %}
 
 ```html
-<h1>{{ "first" | concatThreeThings("second", "third") }}</h1>
+<h1>{{ "first" | concatThreeStrings("second", "third") }}</h1>
 ```
 
 {% endraw %}

@@ -442,7 +442,7 @@ export default function (eleventyConfig) {
 
 ### Transforms
 
-- Documented moved to [Transforms](/docs/transforms.md).
+- Documented at [Transforms](/docs/transforms.md).
 
 ### Linters
 
