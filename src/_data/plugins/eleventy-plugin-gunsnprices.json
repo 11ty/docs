@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-gunsnprices",
+	"author": "gunsnprices",
+	"description": "Filters and a shortcode for gun and ammo sites: standard caliber names, cost per round and a specs table from a product listing title."
+}
