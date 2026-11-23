@@ -292,7 +292,7 @@ Your output folder (`_site`) now contains all of the statically built files for 
 
 Congratulations—you made something with Eleventy! Now put it to work:
 
-1. Add more content! In the above tutorial we used [HTML](/docs/languages/html/) and [Markdown](/docs/languages/markdown/). Why not [JavaScript](/docs/languages/javascript/) or [WebC](/docs/languages/webc/) (for components) next? [Nunjucks](/docs/languages/nunjucks/) and [Liquid](/docs/languages/liquid/) are also very popular. Maybe you’re feeling super adventurous and want to [add your own custom type?](/docs/languages/custom/).
+1. Add more content! In the above tutorial we used [HTML](/docs/languages/html/) and [Markdown](/docs/languages/markdown/). Why not [JavaScript](/docs/languages/javascript/) or [WebC](/docs/languages/webc/) (for components) next? [Nunjucks](/docs/languages/nunjucks/) and [Liquid](/docs/languages/liquid/) are also very popular. Maybe you’re feeling super adventurous and want to [add your own custom template type](/docs/languages/custom/)?
 1. Use [a layout file so that you don’t have to repeat boilerplate on every template](/docs/layouts/).
 1. Add a [configuration file](/docs/config/) to unlock advanced Eleventy capabilities!
 1. Add [CSS, JavaScript, or Web Fonts](/docs/assets/) to your project.

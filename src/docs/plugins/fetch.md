@@ -137,7 +137,7 @@ export default async function () {
 		let url = "https://api.github.com/repos/11ty/eleventy";
 
 		/* This returns a promise */
-		return Fetch(url, {
+		return await Fetch(url, {
 			duration: "1d",
 			type: "json",
 		});

@@ -155,7 +155,7 @@ Read more about [Configuration files](/docs/config.md).
 # Output a JSON structure (does not write to the file system)
 npx @11ty/eleventy --to=json
 
-# Output a Newline Deliminated JSON structure (does not write to the file system)
+# Output a Newline Delimited JSON structure (does not write to the file system)
 npx @11ty/eleventy --to=ndjson
 
 # Default behavior (Output to file system)

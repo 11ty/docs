@@ -62,7 +62,7 @@ import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(handlebarsPlugin, {
-		// Override the `ejs` library instance
+		// Override the `handlebars` library instance
 		eleventyLibraryOverride: handlebars,
 	});
 }

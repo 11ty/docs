@@ -168,7 +168,7 @@ On Liquid, you can't do this, though you can create your own `toUTCString` [filt
 The valid strings accepted are the [TZ identifiers](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
 ```
-Given the date above this {% raw %}{{ page.date | date: '%b %d, %Y', 'UCT' }}{% endraw %} would render in UTC as:
+Given the date above this {% raw %}{{ page.date | date: '%b %d, %Y', 'UTC' }}{% endraw %} would render in UTC as:
 
 Jan 01, 2018
 ```
