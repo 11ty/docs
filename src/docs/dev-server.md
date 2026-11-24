@@ -125,6 +125,28 @@ Try out the [`devcert-cli`](https://github.com/davewasmer/devcert-cli) package t
 	{%- youtubeEmbed "ZE5Np95-PeU", "Dev Server CLI (Weekly №14)", "463" -%}
 </div>
 
+### Open a Browser on Start
+
+Using the [`tiny-open` npm package](https://www.npmjs.com/package/tiny-open). [Dev Server #28](https://github.com/11ty/dev-server/issues/28).
+
+{% set codeContent %}
+
+```js
+import open from "tiny-open";
+
+export default (eleventyConfig) => {
+	eleventyConfig.setServerOptions({
+		ready: function (server) {
+				let url = server.getServerUrl("localhost");
+				open(url);
+		}
+	});
+}
+```
+
+{% endset %}
+{% include "snippets/configDefinition.njk" %}
+
 ### `onRequest` for request-time processing
 
 {% addedin "3.0.0-alpha.7" %}{% addedin "Dev Server 2.0.0" %} Use the new `onRequest` object to configure some of your project to use on-request-time processing. The keys in this object represent strings from the [URL Pattern API](https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API).
