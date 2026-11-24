@@ -1,6 +1,7 @@
 ---
 permalink: /imports/logo-cloud.html
 ---
+<li><img webc:is="indieweb-avatar" url="https://www.bloomberg.com/">Bloomberg</li>
 <li><img webc:is="indieweb-avatar" url="https://ubuntu.com/">Ubuntu</li>
 <li><img webc:is="indieweb-avatar" url="https://www.jetbrains.com/">JetBrains</li>
 <li><img webc:is="indieweb-avatar" url="https://www.netlify.com/">Netlify</li>
