@@ -1,0 +1,5 @@
+{
+	"npm": "eleventy-plugin-privatus",
+	"author": "Privatus-Analytics",
+	"description": "Adds Privatus Analytics, cookieless website analytics with no cookie pop-up, to every page of your Eleventy site."
+}
