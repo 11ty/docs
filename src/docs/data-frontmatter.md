@@ -29,6 +29,56 @@ Locally assigned front matter values override things further up the layout chain
 
 Note that only the [`permalink`](/docs/permalinks/) and [`eleventyComputed`](/docs/data-computed/) front matter values can contain variables and shortcodes like you would use in the body of your templates. If you need to use variables or shortcodes in other front matter values, use `eleventyComputed` to set them.
 
+## Using Front Matter Data
+
+Each front matter key is available as a top-level variable in the template (and in any layouts it uses). Use dot notation to reach nested values:
+
+{% tabs "frontmatteruse" %}
+{% raw %}
+```liquid liquid
+---
+title: My page title
+author:
+  name: Zach
+---
+<h1>{{ title }}</h1>
+<p>Written by {{ author.name }}</p>
+```
+
+```jinja2 njk
+---
+title: My page title
+author:
+  name: Zach
+---
+<h1>{{ title }}</h1>
+<p>Written by {{ author.name }}</p>
+```
+{% endraw %}
+{% endtabs %}
+
+To read the front matter of _other_ templates, use [collections](/docs/collections/): each collection item stores its data in `data`, so a template tagged `post` exposes its `title` as `post.data.title`:
+
+{% tabs "frontmattercollection" %}
+{% raw %}
+```liquid liquid
+<ul>
+{%- for post in collections.post %}
+  <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+{%- endfor %}
+</ul>
+```
+
+```jinja2 njk
+<ul>
+{%- for post in collections.post %}
+  <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+{%- endfor %}
+</ul>
+```
+{% endraw %}
+{% endtabs %}
+
 ## Template Configuration
 
 <span id="user-defined-front-matter-customizations"></span>
